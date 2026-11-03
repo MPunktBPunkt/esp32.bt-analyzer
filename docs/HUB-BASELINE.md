@@ -7,15 +7,16 @@
 ## Drei Ebenen (orthogonal)
 
 ```text
-Hub (ioBroker :8093)     ← Heartbeat / Rename / OTA-Push
-Debian (:9750/:8080)     ← Discovery / Capture Collector / Lab-UI   (ab BT4)
-ESP USB Host ── HCI ── BT Dongle                                   (ab BT1/BT3)
+Hub (ioBroker :8093)              ← Heartbeat / Rename / OTA-Push
+Debian bt-analyzer :8081 / :9751  ← Lab-UI + control (parallel)
+Debian usb-analyzer :8080 / :9750 ← anderes Projekt, bleibt
+ESP USB Host ── HCI ── BT Dongle
 ```
 
 | Ebene | Rolle | Stört HCI-Capture? |
 |-------|--------|-------------------|
 | **Hub** | FW-Verteilung | Nein strukturell; WiFi-Coex messen (BT13) |
-| **Debian** | Collector / Decoder / PCAP | Nein (Analyseebene L3) |
+| **Debian bt** | Lab-UI `:8081` / Collector | Nein (Analyseebene L3) |
 | **USB-HCI** | Capture-Pfad L1 | Messpfad |
 
 ## Stufe A — BT0
@@ -34,5 +35,6 @@ Vollständiger `AppCore`-Stack (WiFiManager, HubClient, WebUi, OtaService, Diag/
 ## Defaults (lab)
 
 - `HUB_HOST` `192.168.178.113` · `HUB_PORT` `8093`
-- Debian controller `192.168.178.187:9750` / UI `:8080` (reserved)
+- Debian bt-analyzer `192.168.178.187:8081` (UI) · `:9751` (control TCP)
+- usb-analyzer remains on `:8080` / `:9750`
 - OTA artifact: `bt-analyzer.${VERSION}.esp32s3.bin`

@@ -13,6 +13,9 @@ Stand: 2026-11-03 · Instrument FW **0.1.3** (S3) · Reference hub-base **1.10.5
 | Service | Address |
 |---------|---------|
 | Debian / Cursor LXC | `192.168.178.187` |
+| **bt-analyzer Lab UI** | `http://192.168.178.187:8081/` |
+| bt-analyzer control TCP | `:9751` |
+| usb-analyzer Lab UI (parallel) | `http://192.168.178.187:8080/` |
 | esp-hub | `192.168.178.113:8093` |
 
 ## Chip capability matrix (FACT)

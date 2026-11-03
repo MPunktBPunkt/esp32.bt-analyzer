@@ -14,7 +14,7 @@
 #define DEVICE_NAME            "bt-analyzer"
 #endif
 #ifndef FW_VERSION
-#define FW_VERSION             "0.1.3"
+#define FW_VERSION             "0.1.4"
 #endif
 
 #ifndef ESPHUB_ENABLE_EXAMPLE_MODULE

@@ -51,3 +51,4 @@ diag/*.log
 # Host unit-test binaries
 logs/
 .tmp/
+logs/

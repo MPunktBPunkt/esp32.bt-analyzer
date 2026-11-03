@@ -1,0 +1,17 @@
+[Unit]
+Description=BT Analyzer lab controller (control :9751 + UI :8081)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/projects/bt-analyzer
+Environment=PYTHONPATH=%h/projects/bt-analyzer
+ExecStart=/usr/bin/python3 -m controller.run --http-port 8081 --control-port 9751
+Restart=on-failure
+RestartSec=3
+StandardOutput=append:%h/projects/bt-analyzer/logs/controller.log
+StandardError=append:%h/projects/bt-analyzer/logs/controller.log
+
+[Install]
+WantedBy=default.target

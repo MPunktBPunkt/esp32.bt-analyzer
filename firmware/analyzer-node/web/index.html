@@ -3,48 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ESP-Hub</title>
+<title>bt-analyzer</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#0d1117;color:#e6edf3;font-family:sans-serif;font-size:14px}
 header{background:#161b22;border-bottom:1px solid #30363d;padding:14px 20px;display:flex;align-items:center;gap:12px}
-h1{font-size:18px;color:#58a6ff}
-.badge{background:rgba(88,166,255,.15);color:#58a6ff;border:1px solid rgba(88,166,255,.3);padding:2px 8px;border-radius:10px;font-size:11px}
+h1{font-size:18px;color:#3fb950}
+.badge{background:rgba(63,185,80,.15);color:#3fb950;border:1px solid rgba(63,185,80,.3);padding:2px 8px;border-radius:10px;font-size:11px}
 .dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
 .dot-on{background:#3fb950;box-shadow:0 0 6px #3fb950}.dot-off{background:#f85149}
-.tabs{display:flex;background:#161b22;border-bottom:1px solid #30363d;padding:0 20px}
-.tab{padding:10px 20px;border-bottom:2px solid transparent;color:#8b949e;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;font:inherit;font-weight:500}
-.tab.active,.tab:hover{color:#58a6ff;border-bottom-color:#58a6ff}
-.content{padding:20px;max-width:800px}
+.tabs{display:flex;background:#161b22;border-bottom:1px solid #30363d;padding:0 20px;flex-wrap:wrap}
+.tab{padding:10px 16px;border-bottom:2px solid transparent;color:#8b949e;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;font:inherit;font-weight:500}
+.tab.active,.tab:hover{color:#3fb950;border-bottom-color:#3fb950}
+.content{padding:20px;max-width:880px}
 .panel{display:none}.panel.active{display:block}
 .card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:14px}
 .card h3{font-size:11px;color:#8b949e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
 table{width:100%;border-collapse:collapse;font-size:13px}
-td{padding:7px 10px;border-bottom:1px solid #21262d}
+td{padding:7px 10px;border-bottom:1px solid #21262d;vertical-align:top}
 td:first-child{color:#8b949e;width:40%}
 .bar{height:6px;background:#21262d;border-radius:3px;margin-top:4px;overflow:hidden}
 .bar-fill{height:100%;border-radius:3px;transition:width .5s}
 .green{background:#3fb950}.yellow{background:#e3b341}.red{background:#f85149}
-.mono{font-family:monospace;color:#58a6ff}
+.mono{font-family:monospace;color:#58a6ff;font-size:12px}
 .io-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
 .io-card{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:10px;text-align:center}
 .io-val{font-size:22px;font-weight:700;color:#58a6ff}
 .io-key{font-size:11px;color:#8b949e;margin-top:4px}
 .drop{border:2px dashed #30363d;border-radius:8px;padding:32px;text-align:center;cursor:pointer;color:#8b949e}
-.drop:hover{border-color:#58a6ff;color:#e6edf3}
+.drop:hover{border-color:#3fb950;color:#e6edf3}
 input[type=file]{display:none}
+input[type=text]{width:100%;background:#0d1117;border:1px solid #30363d;color:#e6edf3;padding:8px 10px;border-radius:6px;font-family:monospace;margin-top:8px}
 .btn{background:#238636;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;margin-top:14px;width:100%}
-.btn:hover{background:#2ea043}
+.btn.sec{background:#21262d;border:1px solid #30363d;margin-top:8px}
+.btn:hover{filter:brightness(1.08)}
 .prog{display:none;margin-top:14px}
 .prog .bar{height:8px;border-radius:4px}
 .prog .bar-fill{background:#58a6ff;transition:width .3s}
 .msg{margin-top:10px;font-size:13px;color:#8b949e;text-align:center}
 .warn{background:rgba(227,179,65,.1);border:1px solid rgba(227,179,65,.3);border-radius:6px;padding:12px;color:#e3b341;font-size:13px;margin-bottom:14px}
+pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;max-height:220px;overflow:auto;font-size:11px;white-space:pre-wrap;margin-top:10px}
+.ok{color:#3fb950}.bad{color:#f85149}
 </style>
 </head>
 <body>
 <header>
-  <h1>&#128225; <span id="h-name">ESP-Hub</span></h1>
+  <h1>bt-analyzer</h1>
   <span class="badge" id="h-ver">…</span>
   <span style="margin-left:auto;font-size:12px;color:#8b949e">
     <span class="dot dot-off" id="sse-dot"></span>
@@ -52,8 +56,9 @@ input[type=file]{display:none}
   </span>
 </header>
 <div class="tabs">
-  <button type="button" class="tab active" data-tab="status">&#128200; Status</button>
-  <button type="button" class="tab" data-tab="ota">&#128640; OTA Update</button>
+  <button type="button" class="tab active" data-tab="status">Status</button>
+  <button type="button" class="tab" data-tab="analyzer">Analyzer</button>
+  <button type="button" class="tab" data-tab="ota">OTA</button>
 </div>
 <div class="content">
   <div class="panel active" id="panel-status">
@@ -91,17 +96,46 @@ input[type=file]{display:none}
       <tr><td>Hub-Adresse</td><td class="mono" id="d-hub">-</td></tr>
       <tr><td>Heartbeat</td><td id="d-interval">-</td></tr>
     </table></div>
+    <div class="card"><h3>Debian Lab UI</h3>
+      <div class="mono">http://192.168.178.187:8081/</div>
+      <div style="color:#8b949e;font-size:12px;margin-top:6px">parallel zu usb-analyzer :8080</div>
+    </div>
   </div>
+
+  <div class="panel" id="panel-analyzer">
+    <div class="card"><h3>USB / OTG</h3><table>
+      <tr><td>Host</td><td id="a-usbhost">-</td></tr>
+      <tr><td>OTG</td><td id="a-otg">-</td></tr>
+      <tr><td>DUT</td><td class="mono" id="a-dut">-</td></tr>
+      <tr><td>Speed / if / ep</td><td id="a-ep">-</td></tr>
+    </table></div>
+    <div class="card"><h3>HCI map (BT2)</h3><table>
+      <tr><td>detected</td><td id="a-hci-det">-</td></tr>
+      <tr><td>capabilities</td><td class="mono" id="a-hci-cap">-</td></tr>
+      <tr><td>claim</td><td class="mono" id="a-hci-claim">-</td></tr>
+    </table></div>
+    <div class="card"><h3>Capture (BT3)</h3><table>
+      <tr><td>ring</td><td class="mono" id="a-ring">-</td></tr>
+      <tr><td>hciCapture</td><td class="mono" id="a-hcap">-</td></tr>
+    </table>
+      <button type="button" class="btn sec" onclick="drainCap()">Drain last frames</button>
+      <input type="text" id="inj-hex" value="040e0401030c00">
+      <button type="button" class="btn" onclick="injectCap()">Inject hex (Topology E)</button>
+      <pre id="a-log">(idle)</pre>
+    </div>
+    <div class="warn">HCI ≠ RF. Inject ist Pipeline-only. Live-Dongle: self-powered Hub an OTG.</div>
+  </div>
+
   <div class="panel" id="panel-ota">
     <div class="card">
-      <h3>&#128640; Firmware hochladen</h3>
-      <div class="warn">&#9888; Nach dem Hochladen startet der ESP neu.</div>
+      <h3>Firmware hochladen</h3>
+      <div class="warn">Nach dem Hochladen startet der ESP neu.</div>
       <div class="drop" id="drop" onclick="document.getElementById('fw').click()">
-        &#128190; <b>.bin</b> Datei hierher ziehen oder klicken
+        <b>.bin</b> Datei hierher ziehen oder klicken
       </div>
       <input type="file" id="fw" accept=".bin">
       <div id="fname" style="margin-top:8px;font-size:12px;color:#8b949e;text-align:center"></div>
-      <button type="button" class="btn" onclick="startUpload()">&#9889; Flashen</button>
+      <button type="button" class="btn" onclick="startUpload()">Flashen</button>
       <div class="prog" id="prog">
         <div class="bar"><div class="bar-fill" id="bar"></div></div>
         <div class="msg" id="msg">Lade hoch...</div>
@@ -118,21 +152,46 @@ input[type=file]{display:none}
     document.querySelectorAll('.panel').forEach(function(p){
       p.classList.toggle('active', p.id==='panel-'+id);
     });
-    var path = id==='ota' ? '/ota' : '/';
+    var path = id==='ota' ? '/ota' : (id==='analyzer' ? '/analyzer' : '/');
     if(location.pathname!==path) history.replaceState(null,'',path);
   }
   document.querySelectorAll('.tab').forEach(function(t){
     t.addEventListener('click',function(){ showTab(t.getAttribute('data-tab')); });
   });
   if(location.pathname.indexOf('ota')>=0 || location.hash==='#ota') showTab('ota');
+  else if(location.pathname.indexOf('analyzer')>=0 || location.hash==='#analyzer') showTab('analyzer');
   else showTab('status');
 
   function fmtKB(b){return Math.round(b/1024)+' KB';}
   function barColor(p){return p>40?'green':p>20?'yellow':'red';}
+  function applyAnalyzer(s){
+    var uh=s.usbHost||{}, otg=s.otg||{}, dut=s.dut||{}, hci=s.hci||{}, cap=s.capture||{}, hc=s.hciCapture||{};
+    document.getElementById('a-usbhost').textContent=
+      (uh.enabled?'en ':'')+(uh.beginOk?'ok ':'fail ')+(uh.state||'')+' lib '+(uh.library||'');
+    document.getElementById('a-otg').textContent=
+      (otg.mode||'?')+' / '+(otg.state||'?')+' devices='+(otg.devices!=null?otg.devices:'?');
+    document.getElementById('a-dut').textContent=
+      dut.present ? ((dut.id||'')+' · '+(dut.product||'')+' · '+(dut.manufacturer||'')) : 'none';
+    document.getElementById('a-ep').textContent=
+      dut.present ? ((dut.speed||'')+' · if='+(dut.interfaceCount||0)+' ep='+(dut.endpointCount||0)+
+        (dut.wirelessController?' · wirelessCtrl':'') ) : '—';
+    var det=!!hci.detected;
+    document.getElementById('a-hci-det').innerHTML=det?'<span class="ok">yes</span>':'<span class="bad">no</span>';
+    var c=hci.capabilities||{};
+    document.getElementById('a-hci-cap').textContent=
+      'evt='+!!c.event+' cmd/acl_out='+!!c.command_acl_out+' acl_in='+!!c.acl_in+' sco='+!!c.sco_iso;
+    document.getElementById('a-hci-claim').textContent=hci.claim||'';
+    document.getElementById('a-ring').textContent=
+      'cap='+(cap.captured||0)+' drop='+(cap.dropped||0)+' fill='+(cap.fill||0)+'/'+(cap.capacity||0)+
+      ' hw='+(cap.highWater||0)+' psram='+!!cap.psram;
+    document.getElementById('a-hcap').textContent=
+      'armed='+!!hc.armed+' open='+!!hc.openOk+' aclIn='+(hc.aclIn||0)+' inj='+(hc.inject||0)+
+      ' evt='+(hc.eventCapture||'');
+  }
   function applyStatus(s){
     var ver='v'+(s.version||'');
-    document.getElementById('h-name').textContent=s.name||'';
     document.getElementById('h-ver').textContent=ver;
+    document.title='bt-analyzer '+ver;
     document.getElementById('d-name').textContent=s.name||'';
     document.getElementById('d-hw').textContent=s.hwSummary||(s.chip||'-');
     document.getElementById('d-mac').textContent=s.mac||'';
@@ -180,6 +239,7 @@ input[type=file]{display:none}
                '</div><div class="io-key">'+k+'</div></div>';
       }).join('');
     }
+    applyAnalyzer(s);
   }
   var es=new EventSource('/events');
   var dot=document.getElementById('sse-dot'),lbl=document.getElementById('sse-lbl');
@@ -191,11 +251,25 @@ input[type=file]{display:none}
   }
   pollStatus();
 
+  window.drainCap=function(){
+    fetch('/api/capture/drain?n=16').then(function(r){return r.text();}).then(function(t){
+      document.getElementById('a-log').textContent=t||'(empty)';
+    }).catch(function(e){document.getElementById('a-log').textContent=String(e);});
+  };
+  window.injectCap=function(){
+    var hex=document.getElementById('inj-hex').value.trim();
+    var body='hex='+encodeURIComponent(hex);
+    fetch('/api/capture/inject',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
+      .then(function(r){return r.text();})
+      .then(function(t){document.getElementById('a-log').textContent='inject → '+t; pollStatus();})
+      .catch(function(e){document.getElementById('a-log').textContent=String(e);});
+  };
+
   var inp=document.getElementById('fw'),drop=document.getElementById('drop');
   inp.addEventListener('change',function(){
     if(inp.files[0])document.getElementById('fname').textContent=inp.files[0].name+' ('+Math.round(inp.files[0].size/1024)+' KB)';
   });
-  drop.addEventListener('dragover',function(e){e.preventDefault();drop.style.borderColor='#58a6ff';});
+  drop.addEventListener('dragover',function(e){e.preventDefault();drop.style.borderColor='#3fb950';});
   drop.addEventListener('dragleave',function(){drop.style.borderColor='#30363d';});
   drop.addEventListener('drop',function(e){
     e.preventDefault();drop.style.borderColor='#30363d';

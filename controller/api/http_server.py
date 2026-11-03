@@ -1,0 +1,198 @@
+"""HTTP API + static Lab UI for bt-analyzer (ports default 8081)."""
+
+from __future__ import annotations
+
+import json
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from typing import Any
+from urllib.parse import parse_qs, urlparse
+
+WEB_ROOT = Path(__file__).resolve().parents[2] / "web"
+STARTED = time.time()
+VERSION = "0.1.0"
+
+# Poll-proxy lab nodes (OBSERVE) — no HELLO required yet
+LAB_NODES = [
+    {"id": "observe_a", "ip": "192.168.178.88", "role": "OBSERVE_A"},
+    {"id": "observe_b", "ip": "192.168.178.89", "role": "OBSERVE_B"},
+]
+
+
+def _get_json(url: str, timeout: float = 3.0) -> dict[str, Any]:
+    req = urllib.request.Request(url, method="GET")
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.loads(resp.read().decode("utf-8", errors="replace"))
+
+
+def _get_text(url: str, timeout: float = 3.0) -> tuple[int, str]:
+    req = urllib.request.Request(url, method="GET")
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.status, resp.read().decode("utf-8", errors="replace")
+
+
+def _post_form(url: str, fields: dict[str, str], timeout: float = 5.0) -> tuple[int, str]:
+    data = urllib.parse.urlencode(fields).encode()
+    req = urllib.request.Request(url, data=data, method="POST")
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.status, resp.read().decode("utf-8", errors="replace")
+
+
+def fetch_node(ip: str) -> dict[str, Any]:
+    out: dict[str, Any] = {"ip": ip, "ok": False}
+    try:
+        st = _get_json(f"http://{ip}/api/status")
+        out["ok"] = True
+        out["status"] = st
+        try:
+            out["usb"] = _get_json(f"http://{ip}/api/usb/status")
+        except Exception as exc:  # noqa: BLE001
+            out["usb_error"] = str(exc)
+    except Exception as exc:  # noqa: BLE001
+        out["error"] = str(exc)
+    return out
+
+
+class Handler(BaseHTTPRequestHandler):
+    server_version = "bt-analyzer-controller/" + VERSION
+
+    def log_message(self, fmt: str, *args: Any) -> None:
+        print(f"[http] " + (fmt % args))
+
+    def _send(self, code: int, body: bytes, content_type: str) -> None:
+        self.send_response(code)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _send_json(self, code: int, obj: Any) -> None:
+        raw = json.dumps(obj, ensure_ascii=False).encode("utf-8")
+        self._send(code, raw, "application/json; charset=utf-8")
+
+    def do_OPTIONS(self) -> None:  # noqa: N802
+        self.send_response(204)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
+
+    def do_GET(self) -> None:  # noqa: N802
+        parsed = urlparse(self.path)
+        path = parsed.path
+
+        if path in ("/", "/index.html"):
+            self._serve_file(WEB_ROOT / "index.html", "text/html; charset=utf-8")
+            return
+        if path == "/styles.css":
+            self._serve_file(WEB_ROOT / "styles.css", "text/css; charset=utf-8")
+            return
+        if path == "/app.js":
+            self._serve_file(WEB_ROOT / "app.js", "application/javascript; charset=utf-8")
+            return
+
+        if path == "/api/v1/health":
+            self._send_json(
+                200,
+                {
+                    "ok": True,
+                    "service": "bt-analyzer",
+                    "version": VERSION,
+                    "uptime_s": int(time.time() - STARTED),
+                    "http_port_note": "8081 (usb-analyzer uses 8080)",
+                    "control_port_note": "9751 (usb-analyzer uses 9750)",
+                    "nodes": LAB_NODES,
+                },
+            )
+            return
+
+        if path == "/api/v1/nodes":
+            views = []
+            for n in LAB_NODES:
+                snap = fetch_node(n["ip"])
+                views.append({**n, **snap})
+            self._send_json(200, {"ok": True, "nodes": views})
+            return
+
+        if path.startswith("/api/v1/node/"):
+            # /api/v1/node/<ip>/status|usb|drain
+            parts = [p for p in path.split("/") if p]
+            # api v1 node <ip> <action>
+            if len(parts) < 5:
+                self._send_json(404, {"ok": False, "error": "path"})
+                return
+            ip = parts[3]
+            action = parts[4]
+            qs = parse_qs(parsed.query)
+            try:
+                if action == "status":
+                    self._send_json(200, {"ok": True, "ip": ip, "status": _get_json(f"http://{ip}/api/status")})
+                    return
+                if action == "usb":
+                    self._send_json(200, {"ok": True, "ip": ip, "usb": _get_json(f"http://{ip}/api/usb/status")})
+                    return
+                if action == "drain":
+                    n = int((qs.get("n") or ["32"])[0])
+                    code, text = _get_text(f"http://{ip}/api/capture/drain?n={n}")
+                    self._send(code, text.encode("utf-8"), "application/x-ndjson; charset=utf-8")
+                    return
+            except Exception as exc:  # noqa: BLE001
+                self._send_json(502, {"ok": False, "ip": ip, "error": str(exc)})
+                return
+
+        self._send_json(404, {"ok": False, "error": "not_found"})
+
+    def do_POST(self) -> None:  # noqa: N802
+        parsed = urlparse(self.path)
+        path = parsed.path
+        length = int(self.headers.get("Content-Length") or 0)
+        raw = self.rfile.read(length) if length else b""
+        ctype = self.headers.get("Content-Type") or ""
+
+        fields: dict[str, str] = {}
+        if "application/json" in ctype and raw:
+            try:
+                obj = json.loads(raw.decode("utf-8"))
+                if isinstance(obj, dict):
+                    fields = {str(k): str(v) for k, v in obj.items()}
+            except json.JSONDecodeError:
+                fields = {}
+        else:
+            fields = {k: (v[0] if v else "") for k, v in parse_qs(raw.decode("utf-8", errors="replace")).items()}
+
+        parts = [p for p in path.split("/") if p]
+        # api v1 node <ip> inject|hci-write
+        if len(parts) >= 5 and parts[0] == "api" and parts[1] == "v1" and parts[2] == "node":
+            ip = parts[3]
+            action = parts[4]
+            try:
+                if action == "inject":
+                    code, text = _post_form(f"http://{ip}/api/capture/inject", {"hex": fields.get("hex", "")})
+                    self._send(code, text.encode("utf-8"), "application/json; charset=utf-8")
+                    return
+                if action == "hci-write":
+                    code, text = _post_form(f"http://{ip}/api/hci/write", {"hex": fields.get("hex", "")})
+                    self._send(code, text.encode("utf-8"), "application/json; charset=utf-8")
+                    return
+            except Exception as exc:  # noqa: BLE001
+                self._send_json(502, {"ok": False, "error": str(exc)})
+                return
+
+        self._send_json(404, {"ok": False, "error": "not_found"})
+
+    def _serve_file(self, path: Path, content_type: str) -> None:
+        if not path.is_file():
+            self._send_json(404, {"ok": False, "error": f"missing {path.name}"})
+            return
+        self._send(200, path.read_bytes(), content_type)
+
+
+def serve_forever(host: str, port: int) -> None:
+    httpd = ThreadingHTTPServer((host, port), Handler)
+    httpd.serve_forever()

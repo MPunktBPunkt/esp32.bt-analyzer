@@ -1,12 +1,12 @@
 # esp32.bt-analyzer
 
-![Version](https://img.shields.io/badge/version-0.1.3-blue)
+![Version](https://img.shields.io/badge/version-0.1.4-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Gate](https://img.shields.io/badge/gate-BT3%20capture%20partial-yellow)](docs/GATE3_STATUS.md)
+[![Gate](https://img.shields.io/badge/gate-BT3%20%2B%20Lab%20UI-yellow)](docs/GATE3_STATUS.md)
 
 ESP32-S3 **Bluetooth USB/HCI Analyzer** lab: USB Bluetooth dongle → HCI capture → WiFi/TCP → Debian.
 
-> **v0.1.3** — BT0–BT2 + **BT3 raw capture** (PSRAM ring, bulk ACL, inject). Event interrupt IN noch offen.  
+> **v0.1.4** — Node **Analyzer-Tab** + Debian Lab UI **`:8081`** (parallel zu usb-analyzer `:8080`).  
 > **Nicht claimed:** RF/Air sniffer, Classic on-chip S3, MITM, drop-free.
 
 Wissensbasis: [technology-audit](https://github.com/MPunktBPunkt/technology-audit) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5** · Architektur-Referenz: [esp32.usb-analyzer](https://github.com/MPunktBPunkt/esp32.usb-analyzer).
@@ -49,33 +49,37 @@ V1 = **L1 HCI capture**. L0 RF = UNKNOWN / later. L2 profiles = Debian.
 
 Methods / topologies: [`docs/LAB_METHODS.md`](docs/LAB_METHODS.md) · Inventory: [`docs/LAB_INVENTORY.md`](docs/LAB_INVENTORY.md).
 
+### UIs
+
+| UI | URL |
+|----|-----|
+| Node (`.88`) | `http://192.168.178.88/` · Tab **Analyzer** |
+| **Debian bt-analyzer** | **`http://192.168.178.187:8081/`** |
+| Debian usb-analyzer (parallel) | `http://192.168.178.187:8080/` |
+
+```bash
+./tools/run_lab_controller.sh start   # :8081 + :9751
+```
 
 ---
 
 ## Repo layout
 
 ```text
-firmware/analyzer-node/   # PlatformIO · esp-hub-base AppCore (BT0)
-firmware/common/          # shared headers
-controller/               # Debian plane (BT4+)
-tools/flash_lab_ota.sh    # OTA via /ota-upload
-docs/                     # ARCHITECTURE · GATES · EVIDENCE · HCI · …
-tests/host/               # offline decoder tests (BT7+)
+firmware/analyzer-node/   # PlatformIO · Analyzer tab UI
+firmware/common/
+controller/ · web/        # Debian Lab UI :8081
+tools/flash_lab_ota.sh
+docs/
+tests/host/
 ```
 
 ## Build / OTA
 
 ```bash
-cd firmware/analyzer-node
-pio run -e analyzer-s3
-
-# Hub-compatible artifact name:
-#   bt-analyzer.0.1.3.esp32s3.bin
+cd firmware/analyzer-node && pio run -e analyzer-s3
 ./tools/flash_lab_ota.sh 192.168.178.88
-
-curl -s http://192.168.178.88/api/usb/status
-curl -s -X POST -d 'hex=040e0401030c00' http://192.168.178.88/api/capture/inject
-curl -s 'http://192.168.178.88/api/capture/drain?n=8'
+./tools/flash_lab_ota.sh 192.168.178.89
 ```
 
 Portal SSID: `BT-Analyzer-Setup` · Device name: `bt-analyzer`.  
