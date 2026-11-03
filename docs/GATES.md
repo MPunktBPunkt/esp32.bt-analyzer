@@ -7,8 +7,8 @@ No release claim without green gate status.
 |------|------|--------|
 | **BT0** | Hub-Basis / OTA / Web UI / NVS / reboot / PSRAM | **CODE READY** — lab PASS pending |
 | **BT1** | USB Host enumeration (VID/PID/if/ep) | **CODE READY** (0.1.1+) — lab PASS pending |
-| **BT2** | HCI interface detection (cmd/evt/ACL/SCO/ISO) | **CODE READY** (0.1.2) — lab PASS pending |
-| **BT3** | Raw HCI capture (ts, dir, type, payload) | pending |
+| **BT2** | HCI interface detection (cmd/evt/ACL/SCO/ISO) | **CODE READY** (0.1.2+) — lab PASS pending |
+| **BT3** | Raw HCI capture (ts, dir, type, payload) | **PARTIAL** (0.1.3) — bulk/inject; event IN pending |
 | **BT4** | TCP capture stream (BTAC framing) | pending |
 | **BT5** | PSRAM ring buffer | pending |
 | **BT6** | Lossless lab capture (drops=0, gaps=0) | pending |

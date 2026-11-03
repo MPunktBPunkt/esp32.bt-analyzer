@@ -2,13 +2,16 @@
 
 #include <Arduino.h>
 
+#include "capture/CaptureRing.h"
+#include "hci/HciCapture.h"
 #include "hci/HciTypes.h"
 
 namespace bt_analyzer {
 
 /**
  * BT1: USB Host enumeration (VID/PID/if/ep).
- * BT2: USB-HCI role map from descriptors (no packet capture).
+ * BT2: USB-HCI role map from descriptors.
+ * BT3: raw HCI capture (bulk IN ACL + inject/write; event IN pending).
  */
 class UsbHostEnum {
 public:
@@ -24,7 +27,10 @@ public:
   bool hciDetected() const { return hci_.wirelessControllerIface; }
   const HciUsbDiscovery &hciDiscovery() const { return hci_; }
 
-  /** Append otg/usbHost/dut/hci/lastUsbEvent fields (leading commas). */
+  CaptureRing &ring() { return ring_; }
+  HciCapture &hciCapture() { return hci_cap_; }
+
+  /** Append otg/usbHost/dut/hci/capture/lastUsbEvent fields (leading commas). */
   void appendStatusJson(String &json) const;
 
 private:
@@ -42,14 +48,17 @@ private:
   uint8_t dut_cfg_ = 0;
   uint8_t dut_iface_count_ = 0;
   uint8_t dut_ep_count_ = 0;
-  bool dut_wireless_ctrl_ = false;  // class 0xE0 subclass 0x01 (Bluetooth)
+  bool dut_wireless_ctrl_ = false;
   String dut_mfr_;
   String dut_product_;
   String dut_serial_;
   String dut_speed_;
-  String dut_ifaces_json_;  // cached array fragment
-  String dut_eps_json_;     // cached array fragment
+  String dut_ifaces_json_;
+  String dut_eps_json_;
   HciUsbDiscovery hci_{};
+
+  CaptureRing ring_;
+  HciCapture hci_cap_;
 
   void clearDut();
   void cacheDescriptors(uint8_t address);

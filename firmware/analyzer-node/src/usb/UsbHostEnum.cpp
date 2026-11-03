@@ -205,6 +205,10 @@ bool UsbHostEnum::begin() {
 
   clearDut();
 
+  hci_cap_.setUsb(&g_usb);
+  hci_cap_.setRing(&ring_);
+  hci_cap_.begin();
+
   g_usb.onDeviceConnected([this](const EspUsbHostDeviceInfo &d) {
     cacheDescriptors(d.address);
     logConnected(d, dut_ifaces_json_, dut_eps_json_);
@@ -220,8 +224,10 @@ bool UsbHostEnum::begin() {
     dut_serial_ = d.serial ? d.serial : "";
     dut_speed_ = speedName(d.speed);
     dut_cfg_ = d.configurationValue;
-    if (d.configurationInterfaceCount > dut_iface_count_) {
-      // keep getInterfaces() count when available
+    if (hci_.wirelessControllerIface) {
+      hci_cap_.onHciAttached(d.address, hci_);
+    } else {
+      hci_cap_.onHciDetached();
     }
   });
 
@@ -230,6 +236,7 @@ bool UsbHostEnum::begin() {
                   d.pid);
     last_event_json_ =
         deviceEventJson(d, "removed", dut_ifaces_json_, dut_eps_json_);
+    hci_cap_.onHciDetached();
     clearDut();
   });
 
@@ -251,6 +258,7 @@ void UsbHostEnum::loop() {
   if (!begin_ok_) {
     return;
   }
+  hci_cap_.loop();
   const uint32_t now = millis();
   if (now - last_report_ms_ < 2000) {
     return;
@@ -355,6 +363,8 @@ void UsbHostEnum::appendStatusJson(String &json) const {
   json += "}";
 
   HciUsbMap::appendStatusJson(hci_, json);
+  ring_.appendStatusJson(json);
+  hci_cap_.appendStatusJson(json);
 
   if (last_event_json_.length()) {
     json += ",\"lastUsbEvent\":";
@@ -386,6 +396,8 @@ void UsbHostEnum::appendStatusJson(String &json) const {
   json += ",\"otg\":{\"mode\":\"none\",\"state\":\"disabled\",\"connected\":false,\"devices\":0}";
   json += ",\"dut\":{\"present\":false}";
   json += ",\"hci\":{\"transport\":\"usb_hci\",\"detected\":false,\"claim\":\"usb_host_disabled\"}";
+  ring_.appendStatusJson(json);
+  hci_cap_.appendStatusJson(json);
 }
 
 void UsbHostEnum::clearDut() {}

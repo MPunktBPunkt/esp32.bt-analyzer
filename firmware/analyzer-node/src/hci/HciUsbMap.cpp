@@ -28,9 +28,15 @@ void HciUsbMap::discover(const EspUsbHostInterfaceInfo *interfaces, size_t n_if,
     }
   }
 
+  // Only classify endpoints when a Wireless Controller HCI iface is present.
+  // Otherwise bulk/interrupt endpoints on MSC/HID gadgets produce false roles.
+  if (!out.wirelessControllerIface) {
+    return;
+  }
+
   for (size_t i = 0; i < n_ep && out.endpointCount < kHciMaxEndpoints; i++) {
     const EspUsbHostEndpointInfo &ep = endpoints[i];
-    if (out.wirelessControllerIface && out.hciInterfaceNumber != 0xff &&
+    if (out.hciInterfaceNumber != 0xff &&
         ep.interfaceNumber != out.hciInterfaceNumber) {
       continue;
     }

@@ -3,7 +3,8 @@
  *
  * Phase BT0: esp-hub-base AppCore (WiFi / Hub / Web UI / OTA / PSRAM).
  * Phase BT1: USB Host enumeration (VID/PID/interfaces/endpoints).
- * Phase BT2: USB-HCI interface/endpoint role detection (no capture yet).
+ * Phase BT2: USB-HCI interface/endpoint role detection.
+ * Phase BT3: raw HCI capture ring (bulk IN ACL + inject; event IN pending).
  *
  * Base: ESP32.esp-hub esp-hub-base v1.10.5 (vendored under src/core/).
  */

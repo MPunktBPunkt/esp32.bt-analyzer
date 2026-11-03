@@ -1,13 +1,13 @@
 # esp32.bt-analyzer
 
-![Version](https://img.shields.io/badge/version-0.1.2-blue)
+![Version](https://img.shields.io/badge/version-0.1.3-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Gate](https://img.shields.io/badge/gate-BT2%20HCI%20detect-yellow)](docs/GATE2_STATUS.md)
+[![Gate](https://img.shields.io/badge/gate-BT3%20capture%20partial-yellow)](docs/GATE3_STATUS.md)
 
 ESP32-S3 **Bluetooth USB/HCI Analyzer** lab: USB Bluetooth dongle → HCI capture → WiFi/TCP → Debian.
 
-> **v0.1.2** — BT0 Hub/OTA · BT1 USB enum · **BT2 USB-HCI role map** (descriptors).  
-> **Nicht claimed:** HCI packet capture, RF/Air sniffer, Classic on-chip S3, MITM.
+> **v0.1.3** — BT0–BT2 + **BT3 raw capture** (PSRAM ring, bulk ACL, inject). Event interrupt IN noch offen.  
+> **Nicht claimed:** RF/Air sniffer, Classic on-chip S3, MITM, drop-free.
 
 Wissensbasis: [technology-audit](https://github.com/MPunktBPunkt/technology-audit) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5** · Architektur-Referenz: [esp32.usb-analyzer](https://github.com/MPunktBPunkt/esp32.usb-analyzer).
 
@@ -70,11 +70,12 @@ cd firmware/analyzer-node
 pio run -e analyzer-s3
 
 # Hub-compatible artifact name:
-#   bt-analyzer.0.1.2.esp32s3.bin
+#   bt-analyzer.0.1.3.esp32s3.bin
 ./tools/flash_lab_ota.sh 192.168.178.88
 
-# After USB dongle on OTG (UART/COM for Serial):
-curl -s http://192.168.178.88/api/usb/status   # dut + hci.detected / endpoints
+curl -s http://192.168.178.88/api/usb/status
+curl -s -X POST -d 'hex=040e0401030c00' http://192.168.178.88/api/capture/inject
+curl -s 'http://192.168.178.88/api/capture/drain?n=8'
 ```
 
 Portal SSID: `BT-Analyzer-Setup` · Device name: `bt-analyzer`.  
@@ -82,7 +83,7 @@ OTG = DUT only; board typically does **not** source VBUS 5 V — use self-powe
 
 ## Gates
 
-See [`docs/GATES.md`](docs/GATES.md). BT1/BT2 code ready. First milestone: **BT0–BT6**.
+See [`docs/GATES.md`](docs/GATES.md). BT3 partial ([`GATE3_STATUS.md`](docs/GATE3_STATUS.md)). First milestone: **BT0–BT6**.
 
 ## Epistemics
 
