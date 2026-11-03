@@ -1,0 +1,10 @@
+# Match hu-probe 8 MiB layout so OTA from hu-probe keeps working and NVS/WiFi survive.
+# nvs/otadata offsets identical to min_spiffs / hu-probe.
+# Name,     Type, SubType,  Offset,   Size
+nvs,        data, nvs,      0x9000,   0x5000
+otadata,    data, ota,      0xe000,   0x2000
+app0,       app,  ota_0,    0x10000,  0x300000
+app1,       app,  ota_1,    0x310000, 0x300000
+trips,      data, 0x40,     0x610000, 0x180000
+spiffs,     data, spiffs,   0x790000, 0x60000
+coredump,   data, coredump, 0x7F0000, 0x10000

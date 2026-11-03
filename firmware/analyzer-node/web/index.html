@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ESP-Hub</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d1117;color:#e6edf3;font-family:sans-serif;font-size:14px}
+header{background:#161b22;border-bottom:1px solid #30363d;padding:14px 20px;display:flex;align-items:center;gap:12px}
+h1{font-size:18px;color:#58a6ff}
+.badge{background:rgba(88,166,255,.15);color:#58a6ff;border:1px solid rgba(88,166,255,.3);padding:2px 8px;border-radius:10px;font-size:11px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+.dot-on{background:#3fb950;box-shadow:0 0 6px #3fb950}.dot-off{background:#f85149}
+.tabs{display:flex;background:#161b22;border-bottom:1px solid #30363d;padding:0 20px}
+.tab{padding:10px 20px;border-bottom:2px solid transparent;color:#8b949e;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;font:inherit;font-weight:500}
+.tab.active,.tab:hover{color:#58a6ff;border-bottom-color:#58a6ff}
+.content{padding:20px;max-width:800px}
+.panel{display:none}.panel.active{display:block}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:14px}
+.card h3{font-size:11px;color:#8b949e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+td{padding:7px 10px;border-bottom:1px solid #21262d}
+td:first-child{color:#8b949e;width:40%}
+.bar{height:6px;background:#21262d;border-radius:3px;margin-top:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;transition:width .5s}
+.green{background:#3fb950}.yellow{background:#e3b341}.red{background:#f85149}
+.mono{font-family:monospace;color:#58a6ff}
+.io-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.io-card{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:10px;text-align:center}
+.io-val{font-size:22px;font-weight:700;color:#58a6ff}
+.io-key{font-size:11px;color:#8b949e;margin-top:4px}
+.drop{border:2px dashed #30363d;border-radius:8px;padding:32px;text-align:center;cursor:pointer;color:#8b949e}
+.drop:hover{border-color:#58a6ff;color:#e6edf3}
+input[type=file]{display:none}
+.btn{background:#238636;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;margin-top:14px;width:100%}
+.btn:hover{background:#2ea043}
+.prog{display:none;margin-top:14px}
+.prog .bar{height:8px;border-radius:4px}
+.prog .bar-fill{background:#58a6ff;transition:width .3s}
+.msg{margin-top:10px;font-size:13px;color:#8b949e;text-align:center}
+.warn{background:rgba(227,179,65,.1);border:1px solid rgba(227,179,65,.3);border-radius:6px;padding:12px;color:#e3b341;font-size:13px;margin-bottom:14px}
+</style>
+</head>
+<body>
+<header>
+  <h1>&#128225; <span id="h-name">ESP-Hub</span></h1>
+  <span class="badge" id="h-ver">…</span>
+  <span style="margin-left:auto;font-size:12px;color:#8b949e">
+    <span class="dot dot-off" id="sse-dot"></span>
+    <span id="sse-lbl">Verbinde...</span>
+  </span>
+</header>
+<div class="tabs">
+  <button type="button" class="tab active" data-tab="status">&#128200; Status</button>
+  <button type="button" class="tab" data-tab="ota">&#128640; OTA Update</button>
+</div>
+<div class="content">
+  <div class="panel active" id="panel-status">
+    <div class="card"><h3>Geraet</h3><table>
+      <tr><td>Name</td><td id="d-name">-</td></tr>
+      <tr><td>Hardware</td><td id="d-hw" style="font-size:12px;line-height:1.45;color:#c9d1d9">-</td></tr>
+      <tr><td>MAC</td><td class="mono" id="d-mac">-</td></tr>
+      <tr><td>IP-Adresse</td><td class="mono" id="d-ip">-</td></tr>
+      <tr><td>WLAN RSSI</td><td id="d-rssi">-</td></tr>
+      <tr><td>Uptime</td><td id="d-uptime">-</td></tr>
+      <tr><td>Firmware</td><td id="d-ver">-</td></tr>
+    </table></div>
+    <div class="card"><h3>Speicher &amp; CPU</h3><table>
+      <tr><td>Flash gesamt</td><td id="d-flash">-</td></tr>
+      <tr><td>Firmware belegt</td><td id="d-sketch-used">-</td></tr>
+      <tr><td>OTA-Slot frei</td><td>
+        <span id="d-sketch">-</span>
+        <div class="bar"><div class="bar-fill" id="b-sketch"></div></div>
+      </td></tr>
+      <tr><td>Freier RAM</td><td>
+        <span id="d-heap">-</span>
+        <div class="bar"><div class="bar-fill" id="b-heap"></div></div>
+      </td></tr>
+      <tr id="row-psram" style="display:none"><td>PSRAM frei</td><td>
+        <span id="d-psram">-</span>
+        <div class="bar"><div class="bar-fill" id="b-psram"></div></div>
+      </td></tr>
+      <tr><td>CPU-Last</td><td id="d-cpu">-</td></tr>
+    </table></div>
+    <div class="card" id="io-card" style="display:none">
+      <h3>IO-Werte</h3>
+      <div class="io-grid" id="io-grid"></div>
+    </div>
+    <div class="card"><h3>ESP-Hub</h3><table>
+      <tr><td>Hub-Adresse</td><td class="mono" id="d-hub">-</td></tr>
+      <tr><td>Heartbeat</td><td id="d-interval">-</td></tr>
+    </table></div>
+  </div>
+  <div class="panel" id="panel-ota">
+    <div class="card">
+      <h3>&#128640; Firmware hochladen</h3>
+      <div class="warn">&#9888; Nach dem Hochladen startet der ESP neu.</div>
+      <div class="drop" id="drop" onclick="document.getElementById('fw').click()">
+        &#128190; <b>.bin</b> Datei hierher ziehen oder klicken
+      </div>
+      <input type="file" id="fw" accept=".bin">
+      <div id="fname" style="margin-top:8px;font-size:12px;color:#8b949e;text-align:center"></div>
+      <button type="button" class="btn" onclick="startUpload()">&#9889; Flashen</button>
+      <div class="prog" id="prog">
+        <div class="bar"><div class="bar-fill" id="bar"></div></div>
+        <div class="msg" id="msg">Lade hoch...</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  function showTab(id){
+    document.querySelectorAll('.tab').forEach(function(t){
+      t.classList.toggle('active', t.getAttribute('data-tab')===id);
+    });
+    document.querySelectorAll('.panel').forEach(function(p){
+      p.classList.toggle('active', p.id==='panel-'+id);
+    });
+    var path = id==='ota' ? '/ota' : '/';
+    if(location.pathname!==path) history.replaceState(null,'',path);
+  }
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click',function(){ showTab(t.getAttribute('data-tab')); });
+  });
+  if(location.pathname.indexOf('ota')>=0 || location.hash==='#ota') showTab('ota');
+  else showTab('status');
+
+  function fmtKB(b){return Math.round(b/1024)+' KB';}
+  function barColor(p){return p>40?'green':p>20?'yellow':'red';}
+  function applyStatus(s){
+    var ver='v'+(s.version||'');
+    document.getElementById('h-name').textContent=s.name||'';
+    document.getElementById('h-ver').textContent=ver;
+    document.getElementById('d-name').textContent=s.name||'';
+    document.getElementById('d-hw').textContent=s.hwSummary||(s.chip||'-');
+    document.getElementById('d-mac').textContent=s.mac||'';
+    document.getElementById('d-ip').innerHTML='<a href="http://'+s.ip+'" style="color:#58a6ff">'+s.ip+'</a>';
+    document.getElementById('d-rssi').textContent=(s.rssi||0)+' dBm';
+    document.getElementById('d-uptime').textContent=s.uptime||'';
+    document.getElementById('d-ver').textContent=ver;
+    document.getElementById('d-hub').textContent=s.hub||'';
+    document.getElementById('d-interval').textContent='alle '+(s.interval||30)+' Sekunden';
+    var flashKb=s.flashKb||0, flashReal=s.flashRealMb||0;
+    document.getElementById('d-flash').textContent=
+      (flashReal?flashReal+' MiB':'?')+(flashKb?(' (Build '+Math.round(flashKb/1024)+' MiB)'):'');
+    var used=s.sketchUsed||0;
+    document.getElementById('d-sketch-used').textContent=fmtKB(used);
+    var sk=s.sketch||0, slot=used+sk;
+    var spct=slot>0?Math.min(100,Math.round(sk*100/slot)):0;
+    document.getElementById('d-sketch').textContent=fmtKB(sk)+(slot?(' / '+fmtKB(slot)):'');
+    var bs=document.getElementById('b-sketch');bs.style.width=spct+'%';bs.className='bar-fill '+barColor(spct);
+    var hp=s.heap||0,hpct=Math.min(100,Math.round(hp/3276));
+    document.getElementById('d-heap').textContent=fmtKB(hp);
+    var bh=document.getElementById('b-heap');bh.style.width=hpct+'%';bh.className='bar-fill '+barColor(hpct);
+    var rowPs=document.getElementById('row-psram');
+    var psz=s.psramSize||0,psf=s.psram||0;
+    if(psz>0){
+      rowPs.style.display='';
+      var ppct=Math.min(100,Math.round(psf/(psz/100)));
+      document.getElementById('d-psram').textContent=fmtKB(psf)+' / '+fmtKB(psz);
+      var bp=document.getElementById('b-psram');bp.style.width=ppct+'%';bp.className='bar-fill '+barColor(ppct);
+    }else{rowPs.style.display='none';}
+    var c0=s.cpu0, c1=s.cpu1, cav=s.cpu;
+    var cpuTxt=(typeof cav==='number'?cav+'%':'—');
+    if(typeof c0==='number'&&typeof c1==='number'){
+      cpuTxt='Ø '+cav+'% (CPU0 '+c0+'% · CPU1 '+c1+'%)';
+    }else if(typeof c0==='number'){
+      cpuTxt=c0+'%';
+    }
+    document.getElementById('d-cpu').textContent=cpuTxt;
+    var ios=s.ios||{},keys=Object.keys(ios);
+    var card=document.getElementById('io-card'),grid=document.getElementById('io-grid');
+    if(keys.length>0){
+      card.style.display='';
+      grid.innerHTML=keys.map(function(k){
+        var io=ios[k];
+        return '<div class="io-card"><div class="io-val">'+parseFloat(io.v).toFixed(1)+(io.u?' '+io.u:'')+
+               '</div><div class="io-key">'+k+'</div></div>';
+      }).join('');
+    }
+  }
+  var es=new EventSource('/events');
+  var dot=document.getElementById('sse-dot'),lbl=document.getElementById('sse-lbl');
+  es.onopen=function(){dot.className='dot dot-on';lbl.textContent='Live';};
+  es.onerror=function(){dot.className='dot dot-off';lbl.textContent='Getrennt';setTimeout(pollStatus,3000);};
+  es.onmessage=function(e){try{applyStatus(JSON.parse(e.data));}catch(ex){}};
+  function pollStatus(){
+    fetch('/api/status').then(function(r){return r.json();}).then(applyStatus).catch(function(){});
+  }
+  pollStatus();
+
+  var inp=document.getElementById('fw'),drop=document.getElementById('drop');
+  inp.addEventListener('change',function(){
+    if(inp.files[0])document.getElementById('fname').textContent=inp.files[0].name+' ('+Math.round(inp.files[0].size/1024)+' KB)';
+  });
+  drop.addEventListener('dragover',function(e){e.preventDefault();drop.style.borderColor='#58a6ff';});
+  drop.addEventListener('dragleave',function(){drop.style.borderColor='#30363d';});
+  drop.addEventListener('drop',function(e){
+    e.preventDefault();drop.style.borderColor='#30363d';
+    var f=e.dataTransfer.files[0];
+    if(f&&f.name.endsWith('.bin')){var dt=new DataTransfer();dt.items.add(f);inp.files=dt.files;
+      document.getElementById('fname').textContent=f.name+' ('+Math.round(f.size/1024)+' KB)';}
+  });
+  window.startUpload=function(){
+    if(!inp.files[0]){alert('Bitte zuerst eine .bin Datei auswaehlen!');return;}
+    var fd=new FormData();fd.append('firmware',inp.files[0]);
+    var xhr=new XMLHttpRequest();xhr.open('POST','/ota-upload');
+    document.getElementById('prog').style.display='block';
+    xhr.upload.onprogress=function(e){
+      if(e.lengthComputable){var pct=Math.round(e.loaded/e.total*100);
+        document.getElementById('bar').style.width=pct+'%';
+        document.getElementById('msg').textContent='Hochladen: '+pct+'%';}
+    };
+    xhr.onload=function(){
+      if(xhr.status===200){document.getElementById('bar').style.width='100%';
+        document.getElementById('bar').style.background='#3fb950';
+        document.getElementById('msg').textContent='Erfolgreich! ESP startet neu...';}
+      else{document.getElementById('msg').textContent='Fehler: '+xhr.responseText;
+        document.getElementById('bar').style.background='#f85149';}
+    };
+    xhr.onerror=function(){document.getElementById('msg').textContent='Verbindungsfehler.';};
+    xhr.send(fd);
+  };
+})();
+</script>
+</body>
+</html>
