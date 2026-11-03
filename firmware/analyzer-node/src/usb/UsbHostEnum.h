@@ -2,11 +2,13 @@
 
 #include <Arduino.h>
 
+#include "hci/HciTypes.h"
+
 namespace bt_analyzer {
 
 /**
- * BT1: USB Host enumeration only (VID/PID/if/ep).
- * No HCI semantics — that starts at BT2/BT3.
+ * BT1: USB Host enumeration (VID/PID/if/ep).
+ * BT2: USB-HCI role map from descriptors (no packet capture).
  */
 class UsbHostEnum {
 public:
@@ -19,9 +21,10 @@ public:
   String lastEventJson() const { return last_event_json_; }
   uint16_t dutVid() const { return dut_present_ ? dut_vid_ : 0; }
   uint16_t dutPid() const { return dut_present_ ? dut_pid_ : 0; }
+  bool hciDetected() const { return hci_.wirelessControllerIface; }
+  const HciUsbDiscovery &hciDiscovery() const { return hci_; }
 
-
-  /** Append otg/usbHost/dut/lastUsbEvent fields (leading commas). */
+  /** Append otg/usbHost/dut/hci/lastUsbEvent fields (leading commas). */
   void appendStatusJson(String &json) const;
 
 private:
@@ -46,6 +49,7 @@ private:
   String dut_speed_;
   String dut_ifaces_json_;  // cached array fragment
   String dut_eps_json_;     // cached array fragment
+  HciUsbDiscovery hci_{};
 
   void clearDut();
   void cacheDescriptors(uint8_t address);

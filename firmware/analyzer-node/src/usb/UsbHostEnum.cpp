@@ -2,6 +2,8 @@
 
 #if BT_ANALYZER_ENABLE_USB_HOST
 
+#include "hci/HciUsbMap.h"
+
 #include <EspUsbHost.h>
 #include <espusbhost_version.h>
 
@@ -120,6 +122,7 @@ void UsbHostEnum::clearDut() {
   dut_speed_ = "";
   dut_ifaces_json_ = "[]";
   dut_eps_json_ = "[]";
+  HciUsbMap::clear(hci_);
 }
 
 void UsbHostEnum::cacheDescriptors(uint8_t address) {
@@ -170,6 +173,18 @@ void UsbHostEnum::cacheDescriptors(uint8_t address) {
   }
   dut_eps_json_ = "";
   serializeJson(epArr, dut_eps_json_);
+
+  HciUsbMap::discover(interfaces, n_if, endpoints, n_ep, hci_);
+  if (hci_.wirelessControllerIface) {
+    Serial.printf("[hci] BT2 USB-HCI iface=%u proto=0x%02x event=%d "
+                  "cmd_acl_out=%d acl_in=%d sco_iso=%d\n",
+                  hci_.hciInterfaceNumber, hci_.ifaceProtocol,
+                  hci_.hasEventEp ? 1 : 0, hci_.hasCommandAclOut ? 1 : 0,
+                  hci_.hasAclIn ? 1 : 0, hci_.hasScoIso ? 1 : 0);
+    Serial.println("[hci] CLAIM: descriptor inference only — not packet capture");
+  } else {
+    Serial.println("[hci] no Wireless Controller (0xE0/0x01) interface");
+  }
 }
 
 void UsbHostEnum::printNoDeviceHints() const {
@@ -339,6 +354,8 @@ void UsbHostEnum::appendStatusJson(String &json) const {
   json += ",\"note\":\"devkit_otg_no_5v_self_powered_dut_or_hub\"";
   json += "}";
 
+  HciUsbMap::appendStatusJson(hci_, json);
+
   if (last_event_json_.length()) {
     json += ",\"lastUsbEvent\":";
     json += last_event_json_;
@@ -368,6 +385,7 @@ void UsbHostEnum::appendStatusJson(String &json) const {
   json += ",\"usbHost\":{\"enabled\":false,\"beginOk\":false,\"state\":\"disabled\"}";
   json += ",\"otg\":{\"mode\":\"none\",\"state\":\"disabled\",\"connected\":false,\"devices\":0}";
   json += ",\"dut\":{\"present\":false}";
+  json += ",\"hci\":{\"transport\":\"usb_hci\",\"detected\":false,\"claim\":\"usb_host_disabled\"}";
 }
 
 void UsbHostEnum::clearDut() {}

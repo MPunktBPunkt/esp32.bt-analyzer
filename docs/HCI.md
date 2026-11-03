@@ -16,6 +16,19 @@ Primary transport for V1: **USB-HCI** via a commercial USB Bluetooth dongle atta
 | SCO / eSCO | both | Classic voice — controller-dependent |
 | ISO | both | BLE Audio / modern controllers |
 
+## USB-HCI endpoint map (BT2)
+
+Bluetooth USB transport (Wireless Controller `0xE0` / `0x01`):
+
+| Endpoint | Role string | Packet types |
+|----------|-------------|--------------|
+| Interrupt IN | `hci_event` | Event |
+| Bulk OUT | `hci_command_acl_out` | Command + ACL |
+| Bulk IN | `hci_acl_in` | ACL |
+| Isochronous | `hci_sco_iso_*` | SCO / ISO |
+
+Until BT3 captures bytes, this map is **INFERENCE** from descriptors (`hci.claim=descriptor_inference_not_capture`).
+
 ## Capture fields (minimum, BT3)
 
 ```json

@@ -3,6 +3,7 @@
  *
  * Phase BT0: esp-hub-base AppCore (WiFi / Hub / Web UI / OTA / PSRAM).
  * Phase BT1: USB Host enumeration (VID/PID/interfaces/endpoints).
+ * Phase BT2: USB-HCI interface/endpoint role detection (no capture yet).
  *
  * Base: ESP32.esp-hub esp-hub-base v1.10.5 (vendored under src/core/).
  */
@@ -22,6 +23,7 @@ IoValue ioTable[] = {
     {"usb_att", "number", 0.0f, ""},
     {"usb_vid", "number", 0.0f, ""},
     {"usb_pid", "number", 0.0f, ""},
+    {"hci_det", "number", 0.0f, ""},
 };
 
 const int IO_COUNT = sizeof(ioTable) / sizeof(ioTable[0]);
@@ -32,6 +34,7 @@ void updateIoValues() {
   ioTable[1].value = n > 0 ? 1.0f : 0.0f;
   ioTable[2].value = static_cast<float>(g_usb_host.dutVid());
   ioTable[3].value = static_cast<float>(g_usb_host.dutPid());
+  ioTable[4].value = g_usb_host.hciDetected() ? 1.0f : 0.0f;
 }
 
 void setup() {
