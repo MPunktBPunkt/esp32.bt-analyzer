@@ -39,16 +39,16 @@ V1 = **L1 HCI capture**. L0 RF = UNKNOWN / later. L2 profiles = Debian.
 | HCI capture = RF sniffer | **REJECTED** |
 | Endpoint JSONL = Phone↔Original traffic | **REJECTED** |
 
-## Lab hardware (planned)
+## Lab hardware
 
-| Rolle | Gerät |
-|-------|--------|
-| ESP Observe | YD-ESP32-S3 N8R2 |
-| ESP Stimulus (later) | YD-ESP32-S3 N8R2 |
-| BT | USB BLE + Classic dongles + self-powered Hub |
-| Control | Debian · esp-hub `:8093` |
+| IP | Board | Role |
+|----|-------|------|
+| `.88` | YD-ESP32-S3 N8R2 | **OBSERVE_A** (USB-HCI) |
+| `.89` | YD-ESP32-S3 N8R2 | OBSERVE_B / STIMULUS |
+| `.87` | D1 Mini ESP32 | **REF_ENDPOINT** (Classic+BLE on-chip, **no** USB Host) |
 
-Details: [`docs/HARDWARE.md`](docs/HARDWARE.md).
+Methods / topologies: [`docs/LAB_METHODS.md`](docs/LAB_METHODS.md) · Inventory: [`docs/LAB_INVENTORY.md`](docs/LAB_INVENTORY.md).
+
 
 ---
 

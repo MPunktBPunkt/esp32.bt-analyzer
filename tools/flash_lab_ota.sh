@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
-# OTA flash bt-analyzer onto a lab ESP (esp-hub LocalWeb contract).
+# OTA flash onto a lab ESP (esp-hub LocalWeb contract).
 #
 # Contract:
 #   GET  http://$IP/api/status   → 200
 #   POST http://$IP/ota-upload   multipart field "firmware"
 #
-# Hub artifact name: bt-analyzer.${VERSION}.esp32s3.bin
+# Default: bt-analyzer.${VERSION}.esp32s3.bin from analyzer-s3 build.
 #
 # Usage:
 #   ./tools/flash_lab_ota.sh 192.168.178.88
-#   ENV=analyzer-s3 ./tools/flash_lab_ota.sh 192.168.178.88
+#   ./tools/flash_lab_ota.sh 192.168.178.89
+#   BIN_SRC=/path/to/esp-hub-base.1.10.5.esp32.bin FW_NAME=esp-hub-base.1.10.5.esp32.bin \
+#     ./tools/flash_lab_ota.sh 192.168.178.87
 #
 set -euo pipefail
 
@@ -23,7 +25,7 @@ DIST="$ROOT/firmware/dist"
 
 die() { echo "Fehler: $*" >&2; exit 1; }
 [ -n "$IP" ] || die "IP fehlt (z.B. 192.168.178.88)"
-[ -f "$BIN_SRC" ] || die "Bin fehlt: $BIN_SRC — zuerst: cd firmware/analyzer-node && pio run -e $ENV_NAME"
+[ -f "$BIN_SRC" ] || die "Bin fehlt: $BIN_SRC — zuerst bauen oder BIN_SRC setzen"
 
 mkdir -p "$DIST"
 cp -f "$BIN_SRC" "$DIST/$FW_NAME"
@@ -31,7 +33,7 @@ echo "==> target http://$IP/ota-upload"
 echo "    file $DIST/$FW_NAME ($(wc -c <"$DIST/$FW_NAME") bytes)"
 
 code="$(curl -sS -m 3 -o /dev/null -w '%{http_code}' "http://$IP/api/status" || true)"
-[ "$code" = "200" ] || die "ESP $IP nicht erreichbar (HTTP $code) — Web UI / Hub-Base online?"
+[ "$code" = "200" ] || die "ESP $IP nicht erreichbar (HTTP $code)"
 
 tmp="$(mktemp)"
 set +e

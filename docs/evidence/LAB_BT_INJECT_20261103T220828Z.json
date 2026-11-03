@@ -1,0 +1,56 @@
+{
+  "artifact": "LAB_BT_INJECT",
+  "classification": "MEASURED",
+  "topology_id": "E_INJECT",
+  "utc": "2026-11-03T22:08:28.945516+00:00",
+  "node": "192.168.178.88",
+  "fw_version": "0.1.3",
+  "inject_http": 200,
+  "inject_body": "{\"ok\":true}",
+  "drain_lines": [
+    "{\"seq\":2,\"ts_us\":1446309576,\"dir\":\"controller_to_host\",\"transport\":\"usb_hci\",\"type\":\"event\",\"endpoint\":129,\"length\":7,\"payload_hex\":\"040e0401030c00\"}"
+  ],
+  "capture_before": {
+    "capacity": 256,
+    "fill": 0,
+    "highWater": 1,
+    "captured": 1,
+    "dequeued": 1,
+    "dropped": 0,
+    "psram": true,
+    "nextSeq": 1
+  },
+  "capture_after": {
+    "capacity": 256,
+    "fill": 0,
+    "highWater": 1,
+    "captured": 2,
+    "dequeued": 2,
+    "dropped": 0,
+    "psram": true,
+    "nextSeq": 2
+  },
+  "hciCapture": {
+    "armed": false,
+    "openOk": false,
+    "eventCapture": "pending_interrupt_in",
+    "aclIn": 0,
+    "cmdOut": 0,
+    "inject": 2,
+    "openFails": 0,
+    "bulkInEp": 0,
+    "bulkOutEp": 0
+  },
+  "pass": true,
+  "claim_boundary": {
+    "in_scope": [
+      "HTTP inject → ring → JSONL drain"
+    ],
+    "out_of_scope": [
+      "USB dongle",
+      "HCI controller",
+      "RF",
+      "Bluetooth link"
+    ]
+  }
+}

@@ -38,3 +38,15 @@ No release claim without green gate status.
 - „Bluetooth works“ without layer (L0/L1/L2)
 - „Sniffer“ without RF evidence
 - HCI MEASURED sold as Air FACT
+
+## Lab topology (see LAB_METHODS.md)
+
+| ID | Next gate relevance |
+|----|---------------------|
+| E_INJECT | BT3 plumbing — done smoke 0.1.3 |
+| A_OBSERVE | BT1–BT3 / BT9 / BT10 — **next MEASURED** |
+| B_STIMULUS | BT11 |
+| C_DUAL_DONGLE | after A×2 |
+| D_ENDPOINT_REF | `.87` classic — correlation only |
+
+Gate exit must cite **topology ID** + FW pins + evidence path. Template: `docs/LAB_METHODS.md` § Gate exit.

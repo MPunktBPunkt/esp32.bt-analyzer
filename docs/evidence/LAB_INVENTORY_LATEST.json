@@ -1,0 +1,716 @@
+{
+  "artifact": "LAB_INVENTORY",
+  "classification": "MEASURED",
+  "topology_note": "inventory only — not a capture campaign",
+  "utc": "2026-11-03T22:08:27.982491+00:00",
+  "nodes": [
+    {
+      "ip": "192.168.178.87",
+      "role_hint": "REF_ENDPOINT",
+      "board_hint": "D1 Mini ESP32",
+      "reachable": true,
+      "status": {
+        "name": "Network Scanner",
+        "version": "1.10.5",
+        "chip": "ESP32-D0WDQ6",
+        "mac": "C8C9A3CB3794",
+        "ip": "192.168.178.87",
+        "rssi": -38,
+        "uptime": "8s",
+        "heap": 202456,
+        "psram": 0,
+        "psramSize": 0,
+        "sketch": 1966080,
+        "hub": "192.168.178.113:8093",
+        "interval": 30,
+        "chipRev": 100,
+        "cores": 2,
+        "flashKb": 4096,
+        "hasPsram": false,
+        "heapMax": 110580,
+        "sketchUsed": 1222224,
+        "module": "N4",
+        "flashRealMb": 4,
+        "flashVendor": "Zbit",
+        "psramEfuseMb": 0,
+        "psramBus": null,
+        "psramVendor": null,
+        "hwSummary": "ESP32-D0WDQ6 rev 100 · Modul N4 · Flash 4 MiB (Zbit, genutzt 4) · PSRAM 0 · Heap frei 197 KiB, größter Block 107 KiB",
+        "resetReason": "software",
+        "restartCause": "none",
+        "bootGen": 1,
+        "ckptOpen": null,
+        "ckptLastOpen": null,
+        "diagRam": 240,
+        "diagPrev": 0,
+        "diagSnaps": 0,
+        "progIdleAge": 0,
+        "progHbAge": 5,
+        "progOtaAge": null,
+        "progStalled": {
+          "idle": false,
+          "heartbeat": false,
+          "ota": false
+        },
+        "recoveryHard": 0,
+        "recoveryHist": 0,
+        "recoveryLast": null,
+        "cpu0": 0,
+        "cpu1": 0,
+        "cpu": 0,
+        "otaState": "idle",
+        "otaProgress": 0,
+        "otaBytes": 0,
+        "otaTotal": 0,
+        "otaActive": false,
+        "otaError": null,
+        "ios": {}
+      },
+      "error": null,
+      "usb": null
+    },
+    {
+      "ip": "192.168.178.88",
+      "role_hint": "OBSERVE_A",
+      "board_hint": "YD-ESP32-S3 N8R2",
+      "reachable": true,
+      "status": {
+        "name": "ESP32-S3",
+        "version": "0.1.3",
+        "chip": "ESP32-S3",
+        "mac": "68B6B329339C",
+        "ip": "192.168.178.88",
+        "rssi": -24,
+        "uptime": "24min 5s",
+        "heap": 224252,
+        "psram": 1798724,
+        "psramSize": 2097152,
+        "sketch": 3145728,
+        "hub": "192.168.178.113:8093",
+        "interval": 30,
+        "chipRev": 1,
+        "cores": 2,
+        "flashKb": 8192,
+        "hasPsram": true,
+        "heapMax": 147444,
+        "sketchUsed": 1413456,
+        "module": "N8R2",
+        "flashRealMb": 8,
+        "flashVendor": "XMC/Micron",
+        "psramEfuseMb": 2,
+        "psramBus": "quad",
+        "psramVendor": "AP_3v3",
+        "hwSummary": "ESP32-S3 rev 1 · Modul N8R2 · Flash 8 MiB (XMC/Micron, genutzt 8) · PSRAM 2 MiB quad AP_3v3 (aktiv) · Heap frei 218 KiB, größter Block 143 KiB",
+        "resetReason": "software",
+        "restartCause": "web_ota",
+        "bootGen": 62,
+        "ckptOpen": null,
+        "ckptLastOpen": null,
+        "diagRam": 313,
+        "diagPrev": 697,
+        "diagSnaps": 2,
+        "progIdleAge": 0,
+        "progHbAge": 2,
+        "progOtaAge": null,
+        "progStalled": {
+          "idle": false,
+          "heartbeat": false,
+          "ota": false
+        },
+        "recoveryHard": 0,
+        "recoveryHist": 6,
+        "recoveryLast": "web_ota",
+        "cpu0": 0,
+        "cpu1": 0,
+        "cpu": 0,
+        "otaState": "idle",
+        "otaProgress": 0,
+        "otaBytes": 0,
+        "otaTotal": 0,
+        "otaActive": false,
+        "otaError": null,
+        "modules": [
+          "bt"
+        ],
+        "usbHost": {
+          "enabled": true,
+          "beginOk": true,
+          "library": "2.10.1",
+          "state": "waiting_for_dut"
+        },
+        "otg": {
+          "mode": "host",
+          "state": "waiting_for_dut",
+          "connected": false,
+          "devices": 0
+        },
+        "dut": {
+          "present": false
+        },
+        "vbus": {
+          "prtpwr": true,
+          "prtlnsts": 0,
+          "boardSourcesVbus": false,
+          "note": "devkit_otg_no_5v_self_powered_dut_or_hub"
+        },
+        "hci": {
+          "transport": "usb_hci",
+          "detected": false,
+          "primaryController": false,
+          "claim": "descriptor_inference_not_capture",
+          "capabilities": {
+            "event": false,
+            "command_acl_out": false,
+            "acl_in": false,
+            "sco_iso": false
+          },
+          "packetTypes": [
+            "command",
+            "event",
+            "acl",
+            "sco",
+            "iso"
+          ],
+          "endpoints": []
+        },
+        "capture": {
+          "capacity": 256,
+          "fill": 0,
+          "highWater": 1,
+          "captured": 1,
+          "dequeued": 1,
+          "dropped": 0,
+          "psram": true,
+          "nextSeq": 1
+        },
+        "hciCapture": {
+          "armed": false,
+          "openOk": false,
+          "eventCapture": "pending_interrupt_in",
+          "aclIn": 0,
+          "cmdOut": 0,
+          "inject": 1,
+          "openFails": 0,
+          "bulkInEp": 0,
+          "bulkOutEp": 0
+        },
+        "lastUsbEvent": {
+          "event": "removed",
+          "address": 1,
+          "vid": 12346,
+          "pid": 4097,
+          "id": "303a:1001",
+          "manufacturer": "MPB",
+          "product": "ANALYZER",
+          "serial": "lab-gadget",
+          "speed": "full",
+          "device_class": 239,
+          "device_subclass": 2,
+          "device_protocol": 1,
+          "configuration_value": 1,
+          "configuration_interfaces": 3,
+          "supported": true,
+          "is_hub": false,
+          "interfaces": [
+            {
+              "number": 0,
+              "class": 8,
+              "subclass": 6,
+              "protocol": 80,
+              "claimed": true
+            },
+            {
+              "number": 1,
+              "class": 3,
+              "subclass": 1,
+              "protocol": 1,
+              "claimed": true
+            },
+            {
+              "number": 2,
+              "class": 255,
+              "subclass": 0,
+              "protocol": 0,
+              "claimed": false
+            }
+          ],
+          "endpoints": [
+            {
+              "address": 2,
+              "interfaceNumber": 0,
+              "attributes": 2,
+              "maxPacketSize": 64,
+              "interval": 0,
+              "transfer": "bulk",
+              "dir": "out"
+            },
+            {
+              "address": 130,
+              "interfaceNumber": 0,
+              "attributes": 2,
+              "maxPacketSize": 64,
+              "interval": 0,
+              "transfer": "bulk",
+              "dir": "in"
+            },
+            {
+              "address": 1,
+              "interfaceNumber": 1,
+              "attributes": 3,
+              "maxPacketSize": 64,
+              "interval": 1,
+              "transfer": "interrupt",
+              "dir": "out"
+            },
+            {
+              "address": 129,
+              "interfaceNumber": 1,
+              "attributes": 3,
+              "maxPacketSize": 64,
+              "interval": 1,
+              "transfer": "interrupt",
+              "dir": "in"
+            },
+            {
+              "address": 3,
+              "interfaceNumber": 2,
+              "attributes": 2,
+              "maxPacketSize": 64,
+              "interval": 0,
+              "transfer": "bulk",
+              "dir": "out"
+            },
+            {
+              "address": 131,
+              "interfaceNumber": 2,
+              "attributes": 2,
+              "maxPacketSize": 64,
+              "interval": 0,
+              "transfer": "bulk",
+              "dir": "in"
+            }
+          ]
+        },
+        "ios": {
+          "usb_devs": {
+            "v": 0.0,
+            "u": "",
+            "t": "number"
+          },
+          "usb_att": {
+            "v": 0.0,
+            "u": "",
+            "t": "number"
+          },
+          "usb_vid": {
+            "v": 0.0,
+            "u": "",
+            "t": "number"
+          },
+          "usb_pid": {
+            "v": 0.0,
+            "u": "",
+            "t": "number"
+          },
+          "hci_det": {
+            "v": 0.0,
+            "u": "",
+            "t": "number"
+          }
+        }
+      },
+      "error": null,
+      "usb": {
+        "usbHost": {
+          "enabled": true,
+          "beginOk": true,
+          "library": "2.10.1",
+          "state": "waiting_for_dut"
+        },
+        "otg": {
+          "mode": "host",
+          "state": "waiting_for_dut",
+          "connected": false,
+          "devices": 0
+        },
+        "dut": {
+          "present": false
+        },
+        "vbus": {
+          "prtpwr": true,
+          "prtlnsts": 0,
+          "boardSourcesVbus": false,
+          "note": "devkit_otg_no_5v_self_powered_dut_or_hub"
+        },
+        "hci": {
+          "transport": "usb_hci",
+          "detected": false,
+          "primaryController": false,
+          "claim": "descriptor_inference_not_capture",
+          "capabilities": {
+            "event": false,
+            "command_acl_out": false,
+            "acl_in": false,
+            "sco_iso": false
+          },
+          "packetTypes": [
+            "command",
+            "event",
+            "acl",
+            "sco",
+            "iso"
+          ],
+          "endpoints": []
+        },
+        "capture": {
+          "capacity": 256,
+          "fill": 0,
+          "highWater": 1,
+          "captured": 1,
+          "dequeued": 1,
+          "dropped": 0,
+          "psram": true,
+          "nextSeq": 1
+        },
+        "hciCapture": {
+          "armed": false,
+          "openOk": false,
+          "eventCapture": "pending_interrupt_in",
+          "aclIn": 0,
+          "cmdOut": 0,
+          "inject": 1,
+          "openFails": 0,
+          "bulkInEp": 0,
+          "bulkOutEp": 0
+        },
+        "lastUsbEvent": {
+          "event": "removed",
+          "address": 1,
+          "vid": 12346,
+          "pid": 4097,
+          "id": "303a:1001",
+          "manufacturer": "MPB",
+          "product": "ANALYZER",
+          "serial": "lab-gadget",
+          "speed": "full",
+          "device_class": 239,
+          "device_subclass": 2,
+          "device_protocol": 1,
+          "configuration_value": 1,
+          "configuration_interfaces": 3,
+          "supported": true,
+          "is_hub": false,
+          "interfaces": [
+            {
+              "number": 0,
+              "class": 8,
+              "subclass": 6,
+              "protocol": 80,
+              "claimed": true
+            },
+            {
+              "number": 1,
+              "class": 3,
+              "subclass": 1,
+              "protocol": 1,
+              "claimed": true
+            },
+            {
+              "number": 2,
+              "class": 255,
+              "subclass": 0,
+              "protocol": 0,
+              "claimed": false
+            }
+          ],
+          "endpoints": [
+            {
+              "address": 2,
+              "interfaceNumber": 0,
+              "attributes": 2,
+              "maxPacketSize": 64,
+              "interval": 0,
+              "transfer": "bulk",
+              "dir": "out"
+            },
+            {
+              "address": 130,
+              "interfaceNumber": 0,
+              "attributes": 2,
+              "maxPacketSize": 64,
+              "interval": 0,
+              "transfer": "bulk",
+              "dir": "in"
+            },
+            {
+              "address": 1,
+              "interfaceNumber": 1,
+              "attributes": 3,
+              "maxPacketSize": 64,
+              "interval": 1,
+              "transfer": "interrupt",
+              "dir": "out"
+            },
+            {
+              "address": 129,
+              "interfaceNumber": 1,
+              "attributes": 3,
+              "maxPacketSize": 64,
+              "interval": 1,
+              "transfer": "interrupt",
+              "dir": "in"
+            },
+            {
+              "address": 3,
+              "interfaceNumber": 2,
+              "attributes": 2,
+              "maxPacketSize": 64,
+              "interval": 0,
+              "transfer": "bulk",
+              "dir": "out"
+            },
+            {
+              "address": 131,
+              "interfaceNumber": 2,
+              "attributes": 2,
+              "maxPacketSize": 64,
+              "interval": 0,
+              "transfer": "bulk",
+              "dir": "in"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ip": "192.168.178.89",
+      "role_hint": "OBSERVE_B_OR_STIMULUS",
+      "board_hint": "YD-ESP32-S3 N8R2",
+      "reachable": true,
+      "status": {
+        "name": "HuProbe",
+        "version": "0.1.3",
+        "chip": "ESP32-S3",
+        "mac": "68B6B32BC568",
+        "ip": "192.168.178.89",
+        "rssi": -29,
+        "uptime": "35s",
+        "heap": 225292,
+        "psram": 1793920,
+        "psramSize": 2097152,
+        "sketch": 3145728,
+        "hub": "192.168.178.113:8093",
+        "interval": 30,
+        "chipRev": 1,
+        "cores": 2,
+        "flashKb": 8192,
+        "hasPsram": true,
+        "heapMax": 159732,
+        "sketchUsed": 1413456,
+        "module": "N8R2",
+        "flashRealMb": 8,
+        "flashVendor": "XMC/Micron",
+        "psramEfuseMb": 2,
+        "psramBus": "quad",
+        "psramVendor": "AP_3v3",
+        "hwSummary": "ESP32-S3 rev 1 · Modul N8R2 · Flash 8 MiB (XMC/Micron, genutzt 8) · PSRAM 2 MiB quad AP_3v3 (aktiv) · Heap frei 219 KiB, größter Block 155 KiB",
+        "resetReason": "software",
+        "restartCause": "web_ota",
+        "bootGen": 2,
+        "ckptOpen": null,
+        "ckptLastOpen": null,
+        "diagRam": 313,
+        "diagPrev": 712,
+        "diagSnaps": 2,
+        "progIdleAge": 0,
+        "progHbAge": 2,
+        "progOtaAge": null,
+        "progStalled": {
+          "idle": false,
+          "heartbeat": false,
+          "ota": false
+        },
+        "recoveryHard": 0,
+        "recoveryHist": 1,
+        "recoveryLast": "web_ota",
+        "cpu0": 0,
+        "cpu1": 0,
+        "cpu": 0,
+        "otaState": "idle",
+        "otaProgress": 0,
+        "otaBytes": 0,
+        "otaTotal": 0,
+        "otaActive": false,
+        "otaError": null,
+        "modules": [
+          "bt"
+        ],
+        "usbHost": {
+          "enabled": true,
+          "beginOk": true,
+          "library": "2.10.1",
+          "state": "waiting_for_dut"
+        },
+        "otg": {
+          "mode": "host",
+          "state": "waiting_for_dut",
+          "connected": false,
+          "devices": 0
+        },
+        "dut": {
+          "present": false
+        },
+        "vbus": {
+          "prtpwr": true,
+          "prtlnsts": 0,
+          "boardSourcesVbus": false,
+          "note": "devkit_otg_no_5v_self_powered_dut_or_hub"
+        },
+        "hci": {
+          "transport": "usb_hci",
+          "detected": false,
+          "primaryController": false,
+          "claim": "descriptor_inference_not_capture",
+          "capabilities": {
+            "event": false,
+            "command_acl_out": false,
+            "acl_in": false,
+            "sco_iso": false
+          },
+          "packetTypes": [
+            "command",
+            "event",
+            "acl",
+            "sco",
+            "iso"
+          ],
+          "endpoints": []
+        },
+        "capture": {
+          "capacity": 256,
+          "fill": 0,
+          "highWater": 0,
+          "captured": 0,
+          "dequeued": 0,
+          "dropped": 0,
+          "psram": true,
+          "nextSeq": 0
+        },
+        "hciCapture": {
+          "armed": false,
+          "openOk": false,
+          "eventCapture": "pending_interrupt_in",
+          "aclIn": 0,
+          "cmdOut": 0,
+          "inject": 0,
+          "openFails": 0,
+          "bulkInEp": 0,
+          "bulkOutEp": 0
+        },
+        "ios": {
+          "usb_devs": {
+            "v": 0.0,
+            "u": "",
+            "t": "number"
+          },
+          "usb_att": {
+            "v": 0.0,
+            "u": "",
+            "t": "number"
+          },
+          "usb_vid": {
+            "v": 0.0,
+            "u": "",
+            "t": "number"
+          },
+          "usb_pid": {
+            "v": 0.0,
+            "u": "",
+            "t": "number"
+          },
+          "hci_det": {
+            "v": 0.0,
+            "u": "",
+            "t": "number"
+          }
+        }
+      },
+      "error": null,
+      "usb": {
+        "usbHost": {
+          "enabled": true,
+          "beginOk": true,
+          "library": "2.10.1",
+          "state": "waiting_for_dut"
+        },
+        "otg": {
+          "mode": "host",
+          "state": "waiting_for_dut",
+          "connected": false,
+          "devices": 0
+        },
+        "dut": {
+          "present": false
+        },
+        "vbus": {
+          "prtpwr": true,
+          "prtlnsts": 0,
+          "boardSourcesVbus": false,
+          "note": "devkit_otg_no_5v_self_powered_dut_or_hub"
+        },
+        "hci": {
+          "transport": "usb_hci",
+          "detected": false,
+          "primaryController": false,
+          "claim": "descriptor_inference_not_capture",
+          "capabilities": {
+            "event": false,
+            "command_acl_out": false,
+            "acl_in": false,
+            "sco_iso": false
+          },
+          "packetTypes": [
+            "command",
+            "event",
+            "acl",
+            "sco",
+            "iso"
+          ],
+          "endpoints": []
+        },
+        "capture": {
+          "capacity": 256,
+          "fill": 0,
+          "highWater": 0,
+          "captured": 0,
+          "dequeued": 0,
+          "dropped": 0,
+          "psram": true,
+          "nextSeq": 0
+        },
+        "hciCapture": {
+          "armed": false,
+          "openOk": false,
+          "eventCapture": "pending_interrupt_in",
+          "aclIn": 0,
+          "cmdOut": 0,
+          "inject": 0,
+          "openFails": 0,
+          "bulkInEp": 0,
+          "bulkOutEp": 0
+        }
+      }
+    }
+  ],
+  "claim_boundary": {
+    "in_scope": [
+      "HTTP /api/status reachability",
+      "reported FW version/chip"
+    ],
+    "out_of_scope": [
+      "HCI capture",
+      "RF",
+      "dongle identity unless present in usb.dut"
+    ]
+  }
+}

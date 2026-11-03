@@ -4,11 +4,15 @@
 
 | Item | Role |
 |------|------|
-| 2 × YD-ESP32-S3 **N8R2** | Observe (+ later Stimulus) |
-| 1 × USB Bluetooth **BLE** dongle | BT9 |
-| 1 × USB Bluetooth **Classic** dongle | BT10 |
-| 1 × self-powered USB Hub | bus-powered dongles |
-| 1 × Debian PC | collector / Wireshark |
+| `.88` YD-ESP32-S3 **N8R2** | OBSERVE_A |
+| `.89` YD-ESP32-S3 **N8R2** | OBSERVE_B / STIMULUS |
+| `.87` D1 Mini **ESP32** | REF_ENDPOINT (Classic+BLE on-chip; **no** USB Host) |
+| USB Bluetooth **BLE** dongle | BT9 / Topology A |
+| USB Bluetooth **Classic** dongle | BT10 / Topology A |
+| self-powered USB Hub | bus-powered dongles |
+| Debian PC | collector / Wireshark |
+
+See [`LAB_INVENTORY.md`](LAB_INVENTORY.md) · [`LAB_METHODS.md`](LAB_METHODS.md).
 
 ## Board facts (N8R2)
 
