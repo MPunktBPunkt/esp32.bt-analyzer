@@ -14,7 +14,7 @@ No release claim without green gate status.
 | **BT6** | Lossless lab capture (session drops + file gaps) | **CODE READY** (`lab_gap_classify.py`) |
 | **BT16** | BLE ATT throughput (CAPABILITY / BENCHMARK) | **CODE READY** 0.3.0 (`lab_bt16_throughput.py`) |
 | **BT17** | Classic A2DP/HFP (`.87` Bluedroid flavor) | **scaffold 0.3.3** (env+API stub; no A2DP/OTA yet) |
-| **BT18** | GATT Client + HOGP + FTMS Flavors (STIMULUS) | **CODE READY** 0.3.2 ([`FLAVOR_BUS.md`](FLAVOR_BUS.md)) |
+| **BT18** | GATT Client + HOGP + FTMS Flavors (STIMULUS) | **CODE READY** 0.3.5 (+ peer fault inject · BlueZ R1/R2 labs) |
 | **BT19** | Multi-node timeline (offset estimation) | **CODE READY** ([`BT19_TIMELINE.md`](BT19_TIMELINE.md)) |
 | **BT7** | Debian decoder (JSONL) | **CODE READY** (`btac_decode.py`) |
 | **BT8** | PCAPNG export (HCI, not RF) | **CODE READY** (`btac_to_pcapng.py`) |

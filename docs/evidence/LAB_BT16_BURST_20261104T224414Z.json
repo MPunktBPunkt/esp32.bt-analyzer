@@ -1,0 +1,60 @@
+{
+  "utc": "20261104T224414Z",
+  "gate": "BT16_burst",
+  "claim": "L2_ATT_burst_over_HCI_not_air",
+  "phases": [
+    {
+      "phase": "idle0",
+      "appRx": 0,
+      "appTx": 0,
+      "appRxBps": 0,
+      "dropsS": 53,
+      "fill": 511,
+      "btacGapsS": 0,
+      "le": true
+    },
+    {
+      "phase": "burst_10",
+      "dur_s": 1.5,
+      "appRx": 127,
+      "appTx": 0,
+      "appRxBps": 1293,
+      "dropsS": 191,
+      "fill": 511,
+      "btacGapsS": 0,
+      "le": true
+    },
+    {
+      "phase": "idle_after_10",
+      "appRx": 129,
+      "appTx": 0,
+      "appRxBps": 0,
+      "dropsS": 209,
+      "fill": 511,
+      "btacGapsS": 0,
+      "le": true
+    },
+    {
+      "phase": "burst_100",
+      "dur_s": 2.0,
+      "appRx": 127,
+      "appTx": 0,
+      "appRxBps": 1478,
+      "dropsS": 348,
+      "fill": 511,
+      "btacGapsS": 0,
+      "le": true
+    },
+    {
+      "phase": "idle_after_100",
+      "appRx": 131,
+      "appTx": 0,
+      "appRxBps": 218,
+      "dropsS": 357,
+      "fill": 511,
+      "btacGapsS": 0,
+      "le": true
+    }
+  ],
+  "ok": true
+}

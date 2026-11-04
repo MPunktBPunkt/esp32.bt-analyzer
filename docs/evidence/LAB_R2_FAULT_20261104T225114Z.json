@@ -1,0 +1,45 @@
+{
+  "utc": "20261104T225114Z",
+  "gate": "R2b_fault_inject",
+  "fw": "0.3.5",
+  "claim": "STIMULUS_peer_fault_not_air",
+  "results": [
+    {
+      "mode": "slow",
+      "peer_fault": "slow",
+      "peer_fault_count": 1,
+      "host_le": true,
+      "hogp_reports": 2,
+      "elapsed_s": 3.6,
+      "ok": true
+    },
+    {
+      "mode": "burst",
+      "peer_fault": "burst",
+      "peer_fault_count": 51,
+      "host_le": true,
+      "hogp_reports": 50,
+      "elapsed_s": 3.55,
+      "ok": true
+    },
+    {
+      "mode": "gap",
+      "peer_fault": "gap",
+      "peer_fault_count": 3,
+      "host_le": true,
+      "hogp_reports": 58,
+      "elapsed_s": 3.449,
+      "ok": true
+    },
+    {
+      "mode": "drop",
+      "peer_fault": "off",
+      "peer_fault_count": 0,
+      "host_le": false,
+      "hogp_reports": 64,
+      "elapsed_s": 5.475,
+      "ok": true
+    }
+  ],
+  "ok": true
+}

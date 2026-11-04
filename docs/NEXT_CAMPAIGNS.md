@@ -1,44 +1,40 @@
 # Next campaigns — Proxmox BlueZ host + ESP triad
 
 ```yaml
-status: planned
-package: "0.3.4+"
+status: shipped_0.3.5
+package: "0.3.5"
 anchor: HOST_BT_ssh_oracle
+lab_pass: 20261104T225209Z
 ```
 
 Principle (frozen): **Analyzer ≠ Universal Bluetooth Host**.  
-Proxmox/BlueZ = real host experience · ESP = measure / controlled stimulus · not RF sniffer.
+Proxmox/BlueZ = real host · ESP = measure / controlled stimulus · not RF sniffer.
+
+## Packages in 0.3.5 (no external keyboard/headset required)
+
+| ID | Tool | Stand-in | Lab |
+|----|------|----------|-----|
+| **R1a** | `lab_r1_bluez_esp.py` | BlueZ ↔ `.89` advertise/connect | PASS `LAB_R1_BLUEZ_ESP_20261104T224934Z` |
+| **R1b** | `lab_r1_pair_matrix.py` | soft reconnect (bond optional) | PASS `LAB_R1_PAIR_MATRIX_20261104T224948Z` |
+| **R2a** | `lab_r2_bluez_profiles.py` | BlueZ connect + analyzer HID/FTMS | PASS `LAB_R2_BLUEZ_PROFILES_20261104T225042Z` |
+| **R2b** | `lab_r2_fault_inject.py` | peer fault modes (FW 0.3.5) | PASS `LAB_R2_FAULT_20261104T225114Z` |
+| **BT16 burst** | `lab_bt16_burst.py` | idle/burst/idle notify | PASS `LAB_BT16_BURST_20261104T225151Z` |
+| **R3 lite** | `lab_r3_classic_visible.py` | BlueZ sees `.87` discoverable | PASS `LAB_R3_CLASSIC_VISIBLE_20261104T225209Z` |
+
+External real devices (keyboard/headset/bike/car) = operator tomorrow → same tools with foreign BD_ADDR / BlueZ pair to hardware.
+
+## Still deferred
+
+| ID | Why |
+|----|-----|
+| R4 BT20 | needs usb-analyzer/hu-probe correlation |
+| BT17 A2DP | needs phone/headset + Bluedroid wiring |
+| Air/MITM | rejected |
 
 ## Dreiklang
 
 ```text
-reales Gerät  →  Linux BlueZ host  →  Anwendungserfahrung
-ESP simulator →  kontrollierter Stimulus →  reproduzierbare Messung
-BT Analyzer   →  HCI / Timeline / Loss-Evidenz
+reales Gerät (or ESP stub) → BlueZ host → experience
+ESP simulator → STIMULUS → reproducible MEASURED
+BT Analyzer → HCI / Timeline / Loss evidence
 ```
-
-## Priority packages
-
-| ID | Fokus | Inhalt |
-|----|--------|--------|
-| **R1** | Real devices → BlueZ | Tastatur, Headset, Phone, Ergometer, optional Auto — Discovery/Pair/Connect/Services/Traffic/Disconnect/Reconnect only |
-| **R2** | ESP simulators | `.88`/`.89` GATT / FTMS / HID stubs + fault injection; Real↔Synthetic same profile |
-| **R3** | Classic `.87` | Phone/Headset/Car/Keyboard — Inquiry/Pairing first; then BT17 A2DP/HFP |
-| **R4** | Cross-layer | BT19 timeline × usb-analyzer × hu-probe → BT20 correlation |
-
-## Methods already shipped (0.3.4)
-
-| Method | Tool |
-|--------|------|
-| G Multiview | `lab_method_multiview.py` |
-| H Host oracle (SSH→Proxmox BlueZ) | `lab_method_host_oracle.py` · `lab_bt_host_ssh.py` |
-| D Classic+BLE mix | `lab_method_classic_ble_mix.py` |
-| Foreign HOGP/FTMS | `lab_hogp_ftms.py --peer-addr …` |
-
-See [`HOST_BT.md`](HOST_BT.md) · [`REAL_DEVICES.md`](REAL_DEVICES.md) · [`LAB_METHODS.md`](LAB_METHODS.md).
-
-## Explicit defer
-
-- HID/A2DP into thin VHCI core — **no**
-- ESP as MITM / Air sniffer — **no**
-- BMW protocol claims before Classic baseline — **no**

@@ -65,6 +65,12 @@ public:
   bool gattClientSubscribe(uint16_t cccd_handle, bool enable);
   bool hogpStart();
   bool ftmsStart();
+  /**
+   * Peer peripheral fault injection (lab only).
+   * mode: off|normal|slow|burst|gap|drop — drop = disconnect after N notifies.
+   */
+  bool peerFaultSet(const char *mode, uint16_t after_n = 8);
+  const char *peerFaultMode() const;
   GattClientFlavor &gattClient() { return gatt_client_; }
   HogpFlavor &hogp() { return hogp_; }
   FtmsFlavor &ftms() { return ftms_; }
@@ -123,6 +129,10 @@ private:
   bool peer_hid_cccd_ = false;
   bool peer_ftms_cccd_ = false;
   uint32_t peer_notify_ms_ = 0;
+  uint8_t peer_fault_mode_ = 0;  // 0 off/normal 1 slow 2 burst 3 gap 4 drop
+  uint16_t peer_fault_after_n_ = 8;
+  uint16_t peer_fault_count_ = 0;
+  bool peer_fault_gap_skip_ = false;
 
   bool ready_ = false;
   bool begin_attempted_ = false;

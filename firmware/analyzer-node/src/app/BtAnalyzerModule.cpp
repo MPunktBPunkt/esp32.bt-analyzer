@@ -345,6 +345,28 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
     srv->send(200, "application/json", "{\"ok\":true}");
   });
 
+  server.on("/api/bt/peer/fault", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");
+      return;
+    }
+    String mode = srv->arg("mode");
+    if (!mode.length()) {
+      mode = "off";
+    }
+    const uint16_t after_n = static_cast<uint16_t>(srv->arg("after_n").toInt());
+    const bool ok = onchip_->peerFaultSet(mode.c_str(), after_n);
+    if (!ok) {
+      srv->send(400, "application/json",
+                "{\"ok\":false,\"error\":\"bad_mode\",\"hint\":\"off|normal|slow|burst|gap|drop\"}");
+      return;
+    }
+    String body = "{\"ok\":true,\"mode\":\"";
+    body += onchip_->peerFaultMode();
+    body += "\",\"claim\":\"STIMULUS_peer_fault_not_air\"}";
+    srv->send(200, "application/json", body);
+  });
+
   server.on("/api/bt/att/mtu", HTTP_POST, [this, srv]() {
     if (!onchip_) {
       srv->send(503, "application/json", "{\"ok\":false}");

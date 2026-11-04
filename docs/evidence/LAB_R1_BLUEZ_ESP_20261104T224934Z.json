@@ -1,0 +1,65 @@
+{
+  "utc": "20261104T224934Z",
+  "gate": "R1a_bluez_esp",
+  "topology": "H_HOST_ORACLE",
+  "claim": "bluez_host_vs_esp_peripheral_not_air",
+  "peer_ip": "192.168.178.89",
+  "peer_bd": "68:b6:b3:2b:c5:69",
+  "fw": "0.3.5",
+  "show": {
+    "ok": true,
+    "controller": "c0:b8:83:34:f4:62"
+  },
+  "scan_seen": true,
+  "connect": {
+    "ok": true,
+    "addr": "68:b6:b3:2b:c5:69",
+    "elapsed_s": 0.452,
+    "connect_raw": "Attempting to connect to 68:b6:b3:2b:c5:69\nhci0 68:B6:B3:2B:C5:69 type LE Public connected eir_len 14\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 Connected: yes\nConnection successful",
+    "info": {
+      "ok": true,
+      "addr": "68:b6:b3:2b:c5:69",
+      "connected": true,
+      "paired": false,
+      "trusted": true,
+      "name": null,
+      "alias": null,
+      "uuids": [],
+      "raw": "Device 68:B6:B3:2B:C5:69 (public)\n\tName: r1-esp-89\n\tAlias: r1-esp-89\n\tPaired: no\n\tBonded: no\n\tTrusted: yes\n\tBlocked: no\n\tConnected: yes\n\tLegacyPairing: no\n\tAdvertisingFlags:\n  06                                               .",
+      "ssh": "root@192.168.178.108"
+    },
+    "ssh": "root@192.168.178.108"
+  },
+  "info": {
+    "ok": true,
+    "addr": "68:b6:b3:2b:c5:69",
+    "connected": true,
+    "paired": false,
+    "trusted": true,
+    "name": null,
+    "alias": null,
+    "uuids": [],
+    "raw": "Device 68:B6:B3:2B:C5:69 (public)\n\tName: r1-esp-89\n\tAlias: r1-esp-89\n\tPaired: no\n\tBonded: no\n\tTrusted: yes\n\tBlocked: no\n\tConnected: yes\n\tLegacyPairing: no\n\tAdvertisingFlags:\n  06                                               .",
+    "ssh": "root@192.168.178.108"
+  },
+  "disconnect": {
+    "ok": true,
+    "addr": "68:b6:b3:2b:c5:69",
+    "raw": "Attempting to disconnect from 68:B6:B3:2B:C5:69\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 ServicesResolved: yes\nhci0 68:B6:B3:2B:C5:69 type LE Public disconnected with reason 2\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 ServicesResolved: no\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 Connected: no\nDisconnection successful\n",
+    "info": {
+      "ok": true,
+      "addr": "68:b6:b3:2b:c5:69",
+      "connected": false,
+      "paired": false,
+      "trusted": true,
+      "name": null,
+      "alias": null,
+      "uuids": [],
+      "raw": "Device 68:B6:B3:2B:C5:69 (public)\n\tName: r1-esp-89\n\tAlias: r1-esp-89\n\tPaired: no\n\tBonded: no\n\tTrusted: yes\n\tBlocked: no\n\tConnected: no\n\tLegacyPairing: no\n\tAdvertisingFlags:\n  06                                               .",
+      "ssh": "root@192.168.178.108"
+    },
+    "ssh": "root@192.168.178.108"
+  },
+  "ok": true,
+  "note": "ESP stand-in for external device until operator brings keyboard/headset"
+}

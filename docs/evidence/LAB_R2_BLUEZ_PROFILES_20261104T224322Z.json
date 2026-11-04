@@ -1,0 +1,30 @@
+{
+  "utc": "20261104T224322Z",
+  "gate": "R2a_bluez_profiles",
+  "topology": "H_HOST_ORACLE",
+  "claim": "bluez_gatt_vs_esp_hid_ftms_stub_real_synth",
+  "peer_bd": "68:b6:b3:2b:c5:69",
+  "connect": {
+    "ok": true,
+    "elapsed_s": 0.47
+  },
+  "gatt_primary": {
+    "ok": false,
+    "addr": "68:b6:b3:2b:c5:69",
+    "services": [],
+    "has_gap": false,
+    "has_hid": false,
+    "has_ftms": false,
+    "raw": "connect to 68:B6:B3:2B:C5:69: Device or resource busy (16)",
+    "ssh": "root@192.168.178.108",
+    "returncode": 1
+  },
+  "reads": {},
+  "ok": false,
+  "classification": {
+    "PC_can_connect_ESP_stub": true,
+    "HID_1812_present": false,
+    "FTMS_1826_present": false,
+    "Air_sniffer": false
+  }
+}

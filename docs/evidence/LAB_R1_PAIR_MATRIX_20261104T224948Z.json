@@ -1,0 +1,140 @@
+{
+  "utc": "20261104T224948Z",
+  "gate": "R1b_pair_matrix",
+  "topology": "H_HOST_ORACLE",
+  "claim": "bluez_reconnect_vs_esp_peripheral",
+  "peer_bd": "68:b6:b3:2b:c5:69",
+  "steps": [
+    {
+      "step": "scan",
+      "ok": true,
+      "elapsed_s": 8.519,
+      "result": {
+        "ok": true,
+        "bd": "68:b6:b3:2b:c5:69"
+      }
+    },
+    {
+      "step": "connect1",
+      "ok": true,
+      "elapsed_s": 0.718,
+      "result": {
+        "ok": true,
+        "addr": "68:b6:b3:2b:c5:69",
+        "elapsed_s": 0.46,
+        "connect_raw": "Attempting to connect to 68:b6:b3:2b:c5:69\nhci0 68:B6:B3:2B:C5:69 type LE Public connected eir_len 16\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 Connected: yes\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 Name: r1b-pair-89\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 Alias: r1b-pair-89\nConnection successful",
+        "info": {
+          "ok": true,
+          "addr": "68:b6:b3:2b:c5:69",
+          "connected": true,
+          "paired": false,
+          "trusted": true,
+          "name": null,
+          "alias": null,
+          "uuids": [],
+          "raw": "Device 68:B6:B3:2B:C5:69 (public)\n\tName: r1b-pair-89\n\tAlias: r1b-pair-89\n\tPaired: no\n\tBonded: no\n\tTrusted: yes\n\tBlocked: no\n\tConnected: yes\n\tLegacyPairing: no\n\tAdvertisingFlags:\n  06                                               .",
+          "ssh": "root@192.168.178.108"
+        },
+        "ssh": "root@192.168.178.108"
+      }
+    },
+    {
+      "step": "disconnect1",
+      "ok": true,
+      "elapsed_s": 3.203,
+      "result": {
+        "ok": true,
+        "addr": "68:b6:b3:2b:c5:69",
+        "raw": "Attempting to disconnect from 68:B6:B3:2B:C5:69\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 ServicesResolved: yes\nhci0 68:B6:B3:2B:C5:69 type LE Public disconnected with reason 2\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 ServicesResolved: no\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 Connected: no\nDisconnection successful\n",
+        "info": {
+          "ok": true,
+          "addr": "68:b6:b3:2b:c5:69",
+          "connected": false,
+          "paired": false,
+          "trusted": true,
+          "name": null,
+          "alias": null,
+          "uuids": [],
+          "raw": "Device 68:B6:B3:2B:C5:69 (public)\n\tName: r1b-pair-89\n\tAlias: r1b-pair-89\n\tPaired: no\n\tBonded: no\n\tTrusted: yes\n\tBlocked: no\n\tConnected: no\n\tLegacyPairing: no\n\tAdvertisingFlags:\n  06                                               .",
+          "ssh": "root@192.168.178.108"
+        },
+        "ssh": "root@192.168.178.108"
+      }
+    },
+    {
+      "step": "reconnect",
+      "ok": true,
+      "elapsed_s": 0.676,
+      "result": {
+        "ok": true,
+        "addr": "68:b6:b3:2b:c5:69",
+        "elapsed_s": 0.433,
+        "connect_raw": "Attempting to connect to 68:b6:b3:2b:c5:69\nhci0 68:B6:B3:2B:C5:69 type LE Public connected eir_len 16\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 Connected: yes\nConnection successful",
+        "info": {
+          "ok": true,
+          "addr": "68:b6:b3:2b:c5:69",
+          "connected": true,
+          "paired": false,
+          "trusted": true,
+          "name": null,
+          "alias": null,
+          "uuids": [],
+          "raw": "Device 68:B6:B3:2B:C5:69 (public)\n\tName: r1b-pair-89\n\tAlias: r1b-pair-89\n\tPaired: no\n\tBonded: no\n\tTrusted: yes\n\tBlocked: no\n\tConnected: yes\n\tLegacyPairing: no\n\tAdvertisingFlags:\n  06                                               .",
+          "ssh": "root@192.168.178.108"
+        },
+        "ssh": "root@192.168.178.108"
+      }
+    },
+    {
+      "step": "disconnect2",
+      "ok": true,
+      "elapsed_s": 2.98,
+      "result": {
+        "ok": true,
+        "addr": "68:b6:b3:2b:c5:69",
+        "raw": "Attempting to disconnect from 68:B6:B3:2B:C5:69\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 ServicesResolved: yes\nhci0 68:B6:B3:2B:C5:69 type LE Public disconnected with reason 2\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 ServicesResolved: no\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 Connected: no\nDisconnection successful\n",
+        "info": {
+          "ok": true,
+          "addr": "68:b6:b3:2b:c5:69",
+          "connected": false,
+          "paired": false,
+          "trusted": true,
+          "name": null,
+          "alias": null,
+          "uuids": [],
+          "raw": "Device 68:B6:B3:2B:C5:69 (public)\n\tName: r1b-pair-89\n\tAlias: r1b-pair-89\n\tPaired: no\n\tBonded: no\n\tTrusted: yes\n\tBlocked: no\n\tConnected: no\n\tLegacyPairing: no\n\tAdvertisingFlags:\n  06                                               .",
+          "ssh": "root@192.168.178.108"
+        },
+        "ssh": "root@192.168.178.108"
+      }
+    },
+    {
+      "step": "pair_optional",
+      "ok": false,
+      "elapsed_s": 31.297,
+      "result": {
+        "ok": false,
+        "addr": "68:b6:b3:2b:c5:69",
+        "elapsed_s": 31.041,
+        "raw": "Attempting to pair with 68:B6:B3:2B:C5:69\nhci0 68:B6:B3:2B:C5:69 type LE Public connected eir_len 16\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 Connected: yes\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 ServicesResolved: yes\n[\u001b[0;91mDEL\u001b[0m] Device 6C:70:CB:F0:08:65 6C-70-CB-F0-08-65\nhci0 68:B6:B3:2B:C5:69 type LE Public disconnected with reason 2\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 ServicesResolved: no\n[\u001b[0;93mCHG\u001b[0m] Device 68:B6:B3:2B:C5:69 Connected: no\nFailed to pair: org.bluez.Error.AuthenticationCanceled",
+        "info": {
+          "ok": true,
+          "addr": "68:b6:b3:2b:c5:69",
+          "connected": false,
+          "paired": false,
+          "trusted": true,
+          "name": null,
+          "alias": null,
+          "uuids": [],
+          "raw": "Device 68:B6:B3:2B:C5:69 (public)\n\tName: r1b-pair-89\n\tAlias: r1b-pair-89\n\tPaired: no\n\tBonded: no\n\tTrusted: yes\n\tBlocked: no\n\tConnected: no\n\tLegacyPairing: no\n\tAdvertisingFlags:\n  06                                               .",
+          "ssh": "root@192.168.178.108"
+        },
+        "ssh": "root@192.168.178.108"
+      }
+    }
+  ],
+  "pair_ok": false,
+  "soft_ok": true,
+  "ok": true,
+  "note": "Bond/SMP optional on thin ESP peer \u2014 soft_ok is connect/reconnect MEASURED"
+}

@@ -1,0 +1,43 @@
+{
+  "utc": "20261104T224826Z",
+  "gate": "R2a_bluez_profiles",
+  "topology": "H_HOST_ORACLE+F_ONCHIP",
+  "claim": "real_synth_bluez_link_plus_analyzer_hid_ftms",
+  "peer_bd": "68:b6:b3:2b:c5:69",
+  "bluez": {
+    "seen": true,
+    "connect_ok": true,
+    "gatt_resolved": false,
+    "gatt": {
+      "ok": true,
+      "addr": "68:b6:b3:2b:c5:69",
+      "services": [],
+      "uuids_guess": [
+        "-------------------",
+        "defa"
+      ],
+      "has_gap": false,
+      "has_hid": false,
+      "has_ftms": false,
+      "raw": "Waiting to connect to bluetoothd...\n\u001b[0;94m[bluetoothctl]> \u001b[0m        \b\b\b\b\b\b\b\b\n\u001b[0;94m[r2-hid-ftms]> \u001b[0mmenu gatt\n\u001b[1;39mMenu gatt:\u001b[0m\n\u001b[1;39mAvailable commands:\u001b[0m\n\u001b[1;39m-------------------\u001b[0m\n\u001b[1;39mlist-attributes [dev/local]                       \u001b[0mList attributes\n\u001b[1;39mselect-attribute <attribute/UUID/local> [attribute/UUID] \u001b[0mSelect attribute\n\u001b[1;39mattribute-info [attribute/UUID]                   \u001b[0mSelect attribute\n\u001b[1;39mread [offset]                                     \u001b[0mRead attribute value\n\u001b[1;39mwrite <data=xx xx ...> [offset] [type]            \u001b[0mWrite attribute value\n\u001b[1;39macquire-write                                     \u001b[0mAcquire Write file descriptor\n\u001b[1;39mrelease-write                                     \u001b[0mRelease Write file descriptor\n\u001b[1;39macquire-notify                                    \u001b[0mAcquire Notify file descriptor\n\u001b[1;39mrelease-notify                                    \u001b[0mRelease Notify file descriptor\n\u001b[1;39mnotify <on/off>                                   \u001b[0mNotify attribute value\n\u001b[1;39mclone [dev/attribute/UUID]                        \u001b[0mClone a device or attribute\n\u001b[1;39mregister-application [UUID ...]                   \u001b[0mRegister profile to connect\n\u001b[1;39munregister-application                            \u001b[0mUnregister profile\n\u001b[1;39mregister-service <UUID> [handle]                  \u001b[0mRegister application service.\n\u001b[1;39munregister-service <UUID/object>                  \u001b[0mUnregister application service\n\u001b[1;39mregister-includes <UUID> [handle]                 \u001b[0mRegister as Included service in.\n\u001b[1;39munregister-includes <Service-UUID> <Inc-UUID>     \u001b[0mUnregister Included service.\n\u001b[1;39mregister-characteristic <UUID> <Flags=read,write,notify...> [handle] \u001b[0mRegister application characteristic\n\u001b[1;39munregister-characteristic <UUID/object>           \u001b[0mUnregister application characteristic\n\u001b[1;39mregister-descriptor <UUID> <Flags=read,write...> [handle] \u001b[0mRegister application descriptor\n\u001b[1;39munregister-descriptor <UUID/object>               \u001b[0mUnregister application descriptor\n\u001b[1;39mback                                              \u001b[0mReturn to main menu\n\u001b[1;39mversion                                           \u001b[0mDisplay version\n\u001b[1;39mquit                                              \u001b[0mQuit program\n\u001b[1;39mexit                                              \u001b[0mQuit program\n\u001b[1;39mhelp                                              \u001b[0mDisplay help about this program\n\u001b[1;39mexport                                            \u001b[0mPrint environment variables\n\u001b[1;39mscript <filename>                                 \u001b[0mRun script\n\u001b[0;94m[r2-hid-ftms]> \u001b[0mlist-attributes 68:b6:b3:2b:c5:69\n\u001b[0;94m[r2-hid-ftms]> \u001b[0mback\n\u001b[1;39mMenu main:\u001b[0m\n\u001b[1;39mAvailable commands:\u001b[0m\n\u001b[1;39m-------------------\u001b[0m\n\u001b[0;94madvertise                                         \u001b[0mAdvertise Options Submenu\n\u001b[0;94mmonitor                                           \u001b[0mAdvertisement Monitor Options Submenu\n\u001b[0;94mscan                                              \u001b[0mScan Options Submenu\n\u001b[0;94mgatt                                              \u001b[0mGeneric Attribute Submenu\n\u001b[0;94madmin                                             \u001b[0mAdmin Policy Submenu\n\u001b[0;94mplayer                                            \u001b[0mMedia Player Submenu\n\u001b[0;94mendpoint                                          \u001b[0mMedia Endpoint Submenu\n\u001b[0;94mtransport                                         \u001b[0mMedia Transport Submenu\n\u001b[0;94mmgmt                                              \u001b[0mManagement Submenu\n\u001b[0;94mmonitor                                           \u001b[0mAdvertisement Monitor Submenu\n\u001b[0;94massistant                                         \u001b[0mMedia Assistant Submenu\n\u001b[0;94mhci                                               \u001b[0mHCI Submenu\n\u001b[1;39mlist                                              \u001b[0mList available controllers\n\u001b[1;39mshow [ctrl]                                       \u001b[0mControll",
+      "ssh": "root@192.168.178.108",
+      "note": "thin_esp_stub_may_not_resolve_under_bluez"
+    },
+    "note": "thin ESP stub often leaves BlueZ GATT empty \u2014 not a FAIL if analyzer path green"
+  },
+  "analyzer": {
+    "ok": true,
+    "has_hid": true,
+    "has_ftms": true,
+    "hogp_reports": 4,
+    "ftms_notifies": 4,
+    "flavor_state": "ready"
+  },
+  "ok": true,
+  "classification": {
+    "PC_BlueZ_can_connect_ESP_stub": true,
+    "Analyzer_resolves_HID_FTMS_on_stub": true,
+    "BlueZ_GATT_resolve": false,
+    "Air_sniffer": false
+  }
+}

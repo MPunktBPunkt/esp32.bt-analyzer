@@ -3,8 +3,9 @@
 ```yaml
 status: active
 fw: "0.3.2+"
-package: "0.3.4"
+package: "0.3.5"
 next: "docs/NEXT_CAMPAIGNS.md"
+peer_fault: "POST /api/bt/peer/fault mode=off|slow|burst|gap|drop"
 core: analyzer_vhci_capture
 ```
 

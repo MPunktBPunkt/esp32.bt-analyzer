@@ -1,0 +1,11 @@
+{
+  "utc": "20261104T224430Z",
+  "gate": "R3_classic_visible",
+  "claim": "bluez_sees_87_classic_discoverable_not_a2dp",
+  "peer_bd": "c8:c9:a3:cb:37:96",
+  "seen_addr": true,
+  "seen_name": false,
+  "scan_n": 4,
+  "ok": true,
+  "note": "A2DP/HFP still BT17 scaffold \u2014 visibility only"
+}

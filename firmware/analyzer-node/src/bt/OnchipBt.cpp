@@ -233,11 +233,23 @@ void OnchipBt::loop() {
   gatt_client_.poll();
   hogp_.poll();
   ftms_.poll();
-  // Peer: emit HID / FTMS notifies when CCCD enabled (lab stimulus).
+  // Peer: emit HID / FTMS notifies when CCCD enabled (lab stimulus + fault modes).
   if (conn_role_ == 1 && le_connected_ && (peer_hid_cccd_ || peer_ftms_cccd_)) {
     const uint32_t now = millis();
-    if (now - peer_notify_ms_ >= 500) {
+    uint32_t gap_ms = 500;
+    if (peer_fault_mode_ == 1) {
+      gap_ms = 2000;  // slow
+    } else if (peer_fault_mode_ == 2) {
+      gap_ms = 50;  // burst
+    }
+    if (now - peer_notify_ms_ >= gap_ms) {
       peer_notify_ms_ = now;
+      if (peer_fault_mode_ == 3) {
+        peer_fault_gap_skip_ = !peer_fault_gap_skip_;
+        if (peer_fault_gap_skip_) {
+          return;
+        }
+      }
       if (peer_hid_cccd_) {
         // Handle Value Notification report handle 0x0016: mod=0 key='A'(0x04)
         uint8_t ntf[3 + 8] = {0x1b, 0x16, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00,
@@ -248,6 +260,12 @@ void OnchipBt::loop() {
         // IBD flags cadence+power, cadence=180, power=150
         uint8_t ntf[3 + 6] = {0x1b, 0x24, 0x00, 0x44, 0x00, 0xb4, 0x00, 0x96, 0x00};
         writeAtt(ntf, 9);
+      }
+      peer_fault_count_++;
+      if (peer_fault_mode_ == 4 && peer_fault_count_ >= peer_fault_after_n_) {
+        peer_fault_mode_ = 0;
+        peer_fault_count_ = 0;
+        leDisconnect();
       }
     }
   }
@@ -781,6 +799,49 @@ bool OnchipBt::ftmsStart() {
   return ftms_.startAfterDiscover();
 }
 
+bool OnchipBt::peerFaultSet(const char *mode, uint16_t after_n) {
+  peer_fault_count_ = 0;
+  peer_fault_gap_skip_ = false;
+  peer_fault_after_n_ = after_n ? after_n : 8;
+  if (!mode || !mode[0] || strcasecmp(mode, "off") == 0 ||
+      strcasecmp(mode, "normal") == 0) {
+    peer_fault_mode_ = 0;
+    return true;
+  }
+  if (strcasecmp(mode, "slow") == 0) {
+    peer_fault_mode_ = 1;
+    return true;
+  }
+  if (strcasecmp(mode, "burst") == 0) {
+    peer_fault_mode_ = 2;
+    return true;
+  }
+  if (strcasecmp(mode, "gap") == 0) {
+    peer_fault_mode_ = 3;
+    return true;
+  }
+  if (strcasecmp(mode, "drop") == 0) {
+    peer_fault_mode_ = 4;
+    return true;
+  }
+  return false;
+}
+
+const char *OnchipBt::peerFaultMode() const {
+  switch (peer_fault_mode_) {
+    case 1:
+      return "slow";
+    case 2:
+      return "burst";
+    case 3:
+      return "gap";
+    case 4:
+      return "drop";
+    default:
+      return "off";
+  }
+}
+
 bool OnchipBt::gattReadDeviceName() {
   if (!le_connected_ || !cap_.openOk()) {
     return false;
@@ -1299,6 +1360,10 @@ void OnchipBt::appendStatusJson(String &json) const {
   }
   json += "}";
 
+  json += ",\"peerFault\":\"";
+  json += peerFaultMode();
+  json += "\",\"peerFaultCount\":";
+  json += String(peer_fault_count_);
   gatt_client_.appendStatusJson(json);
   hogp_.appendStatusJson(json);
   ftms_.appendStatusJson(json);
