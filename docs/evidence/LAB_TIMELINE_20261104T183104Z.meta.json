@@ -1,0 +1,58 @@
+{
+  "utc": "20261104T183104Z",
+  "gate": "BT19_timeline",
+  "fw": "0.3.0+",
+  "method": "http_sync_marker_rtt_midpoint",
+  "dry_run": true,
+  "offsets": {
+    "88": {
+      "ok": true,
+      "offset_s_median": 0.0,
+      "offset_s_stdev": 0.0,
+      "rtt_ms_median": 0.0,
+      "rtt_ms_jitter": 0.0,
+      "uncertainty_ms_median": 0.0,
+      "sample_count": 0,
+      "best_count": 0,
+      "synthetic": true
+    },
+    "89": {
+      "ok": true,
+      "offset_s_median": 0.0,
+      "offset_s_stdev": 0.0,
+      "rtt_ms_median": 0.0,
+      "rtt_ms_jitter": 0.0,
+      "uncertainty_ms_median": 0.0,
+      "sample_count": 0,
+      "best_count": 0,
+      "synthetic": true
+    },
+    "87": {
+      "ok": true,
+      "offset_s_median": 0.0,
+      "offset_s_stdev": 0.0,
+      "rtt_ms_median": 0.0,
+      "rtt_ms_jitter": 0.0,
+      "uncertainty_ms_median": 0.0,
+      "sample_count": 0,
+      "best_count": 0,
+      "synthetic": true
+    }
+  },
+  "skew_s": {},
+  "host_bt": {
+    "hardware_present": true,
+    "kernel_hci_class": true,
+    "bluez_installed": false,
+    "userspace_oracle_ready": false,
+    "lsusb_bt": [
+      "Bus 002 Device 044: ID 8087:0025 Intel Corp. Wireless-AC 9260 Bluetooth Adapter"
+    ]
+  },
+  "claims": {
+    "PTP": false,
+    "shared_clock": false,
+    "estimated_timeline_alignment": true
+  },
+  "claim": "correlated_via_debian_bridge_not_PTP"
+}

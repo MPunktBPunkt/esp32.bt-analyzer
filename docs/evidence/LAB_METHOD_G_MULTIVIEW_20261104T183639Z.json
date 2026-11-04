@@ -1,0 +1,138 @@
+{
+  "utc": "20261104T183639Z",
+  "topology": "G_MULTIVIEW",
+  "gate": "BT9_multiview",
+  "method": "G_LE_multiview",
+  "claim": "LE_adv_visibility_between_lab_radios_HCI_not_air_phy",
+  "fw_field": "0.3.2",
+  "scan_s": 6.0,
+  "nodes": {
+    "88": {
+      "ip": "192.168.178.88",
+      "bd_addr": "68:b6:b3:29:33:9d",
+      "ble": true,
+      "classic": false,
+      "ready": true,
+      "fw": "0.3.2"
+    },
+    "89": {
+      "ip": "192.168.178.89",
+      "bd_addr": "68:b6:b3:2b:c5:69",
+      "ble": true,
+      "classic": false,
+      "ready": true,
+      "fw": "0.3.2"
+    },
+    "87": {
+      "ip": "192.168.178.87",
+      "bd_addr": "c8:c9:a3:cb:37:96",
+      "ble": true,
+      "classic": true,
+      "ready": true,
+      "fw": "0.3.2"
+    }
+  },
+  "rounds": [
+    {
+      "advertiser": "88",
+      "adv_bd": "68:b6:b3:29:33:9d",
+      "ok": true,
+      "views": {
+        "89": {
+          "seen": true,
+          "rssi": -25
+        },
+        "87": {
+          "seen": true,
+          "rssi": -43
+        }
+      }
+    },
+    {
+      "advertiser": "89",
+      "adv_bd": "68:b6:b3:2b:c5:69",
+      "ok": true,
+      "views": {
+        "88": {
+          "seen": true,
+          "rssi": -26
+        },
+        "87": {
+          "seen": true,
+          "rssi": -47
+        }
+      }
+    },
+    {
+      "advertiser": "87",
+      "adv_bd": "c8:c9:a3:cb:37:96",
+      "ok": true,
+      "views": {
+        "88": {
+          "seen": true,
+          "rssi": -50
+        },
+        "89": {
+          "seen": true,
+          "rssi": -60
+        }
+      }
+    }
+  ],
+  "matrix": {
+    "89": {
+      "88": {
+        "seen": true,
+        "rssi": -25,
+        "name": "mv-88",
+        "n_devices": 6,
+        "error": null
+      },
+      "87": {
+        "seen": true,
+        "rssi": -60,
+        "name": "mv-87",
+        "n_devices": 6,
+        "error": null
+      }
+    },
+    "87": {
+      "88": {
+        "seen": true,
+        "rssi": -43,
+        "name": "mv-88",
+        "n_devices": 6,
+        "error": null
+      },
+      "89": {
+        "seen": true,
+        "rssi": -47,
+        "name": "mv-89",
+        "n_devices": 5,
+        "error": null
+      }
+    },
+    "88": {
+      "89": {
+        "seen": true,
+        "rssi": -26,
+        "name": "mv-89",
+        "n_devices": 5,
+        "error": null
+      },
+      "87": {
+        "seen": true,
+        "rssi": -50,
+        "name": "mv-87",
+        "n_devices": 5,
+        "error": null
+      }
+    }
+  },
+  "summary": {
+    "edges_expected": 6,
+    "edges_seen": 6,
+    "missing": []
+  },
+  "ok": true
+}

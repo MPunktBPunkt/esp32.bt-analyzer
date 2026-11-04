@@ -12,6 +12,8 @@ Epistemics: `FACT` · `MEASURED` · `INFERENCE` · `HYPOTHESIS` · `UNKNOWN` · 
 | ID | Wiring | Primary claim layer | Nodes |
 |----|--------|---------------------|-------|
 | **F_ONCHIP** | Peer ↔ on-chip radio → VHCI host → WiFi → Debian | **L1 onchip_vhci** | `.88`/`.89` BLE; `.87` Classic+BLE |
+| **G_MULTIVIEW** | Rotate advertiser; others scan → visibility matrix | **L1 onchip_vhci** multi-observer | `.88`+`.89`+`.87` |
+| **H_HOST_ORACLE** | Debian BlueZ radio ⟂ ESP scans (independent stacks) | **L1 host_hci** + onchip | PC Intel 9260 + ESP triad |
 | **A_OBSERVE** | BT-Dongle ─USB→ `.88` Host → WiFi → Debian | **L1 USB-HCI** (legacy) | OBSERVE_A |
 | **B_STIMULUS** | `.88` ↔ `.89` HCI synth | **L1 synthetic** | OBSERVE_A + STIMULUS |
 | **E_INJECT** | HTTP inject (no radio) | **pipeline only** | any |
@@ -21,6 +23,7 @@ Epistemics: `FACT` · `MEASURED` · `INFERENCE` · `HYPOTHESIS` · `UNKNOWN` · 
 - Classic on-chip on S3  
 - HCI MEASURED as RF/Air FACT  
 - MITM Phone↔DUT via ESP  
+- BlueZ inside unprivileged LXC without `AF_BLUETOOTH` (sysfs-only ≠ oracle)
 
 ---
 
@@ -122,18 +125,49 @@ ESP does **not** run the Bluetooth host for the link under test unless explicitl
 
 ## Method D — Classic/BLE Endpoint Reference (`.87`)
 
-**Gate focus:** correlation / REJECTED-boundary checks  
-**Pass story:** Endpoint events on classic ESP32 ≠ HCI on `.88`  
+**Gate focus:** BT10 · correlation / REJECTED-boundary checks  
+**Pass story:** `.87` BLE scan sees advertising `.88`/`.89`; classic inquiry path exercised (peers optional)
 
-### Prerequisites
+```bash
+python3 tools/lab_method_classic_ble_mix.py
+```
 
-- `.87` hub-base or later endpoint FW  
-- FACT: Classic available on `.87` only  
+Evidence: `docs/evidence/LAB_METHOD_D_MIX_*.json`
 
-### Use
+Empty `classic_hits` in a quiet lab is **MEASURED_empty**, not FAIL.
 
-- Parallel session: Phone↔`.87` Classic/BLE while `.88` does unrelated HCI observe — prove streams are labeled apart.  
-- Never cite `.87` logs as USB-HCI evidence.  
+---
+
+## Method G — Multi-view LE visibility
+
+**Gate focus:** BT9 advanced · lab RF presence without claiming Air PHY  
+**Pass story:** 6/6 directed edges in who-sees-whom matrix (RSSI recorded)
+
+```bash
+python3 tools/lab_method_multiview.py --scan-s 6
+```
+
+| Check | Pass | Fail |
+|-------|------|------|
+| Edges | all scanners see each advertiser BD_ADDR | any missing edge |
+| Claim | LE adv visibility HCI | „Air sniffer“ / PHY |
+
+Topology ID: **G_MULTIVIEW**.
+
+---
+
+## Method H — Host BlueZ oracle
+
+**Gate focus:** independent host stack vs ESP triad  
+**Pass (unblocked):** BlueZ LE scan sees ≥2 lab ESP BD_ADDRs; ESP G-lite matrix green  
+**Pass (blocked CT):** hardware FACT + `AF_BLUETOOTH` block documented + ESP G-lite green → status `BLOCKED_HOST_ORACLE`
+
+```bash
+python3 tools/lab_host_bt_probe.py
+python3 tools/lab_method_host_oracle.py --scan-s 8
+```
+
+See [`HOST_BT.md`](HOST_BT.md). DebianCursor today: **userspace blocked** (EAFNOSUPPORT) — deeper live work uses Method G/D until BlueZ runs on a BT-capable host.
 
 ---
 
@@ -206,9 +240,10 @@ Always pair JSON + MEASURED.md with FW pins and topology ID.
 
 1. E_INJECT smoke (done in 0.1.3 lab)  
 2. Inventory freeze (this doc + snapshot tool)  
-3. A_OBSERVE with **one** BLE dongle (BT9)  
-4. A_OBSERVE with **one** Classic dongle (BT10) — separate campaign  
-5. BT4 BTAC `:9753` (`tools/btac_recv.py`) → BT7/BT8 JSONL/PCAPNG  
-6. B_STIMULUS when `.89` stimulus image exists  
-7. C_DUAL_DONGLE  
-8. D_ENDPOINT_REF only for cross-layer discipline demos  
+3. **G_MULTIVIEW** (`lab_method_multiview.py`) — deeper LE without host oracle  
+4. **D** classic+BLE mix on `.87`  
+5. **H_HOST_ORACLE** via SSH→Proxmox BlueZ (`lab_bt_host_ssh.py`)  
+6. F_ONCHIP peer + BTAC / BT16 / BT18 flavors  
+7. **R1–R4** real-device / simulator / Classic / cross-layer — [`NEXT_CAMPAIGNS.md`](NEXT_CAMPAIGNS.md)  
+8. A_OBSERVE / C_DUAL_DONGLE only with USB dongles  
+9. BT17 Classic audio flavor after scaffold + phone-first  

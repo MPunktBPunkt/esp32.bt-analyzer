@@ -1,0 +1,211 @@
+{
+  "utc": "20261104T183707Z",
+  "topology": "H_HOST_ORACLE",
+  "gate": "BT9_host_oracle",
+  "method": "H_host_bluez_oracle",
+  "claim": "host_oracle_vs_esp_scan_intersection_not_air_phy",
+  "status": "FAIL",
+  "ok": false,
+  "blocked_host_userspace": true,
+  "probe": {
+    "hardware_present": true,
+    "userspace_oracle_ready": false,
+    "userspace_bt_blocked": true,
+    "af_bluetooth": {
+      "supported": false,
+      "errno": 97,
+      "error": "[Errno 97] Address family not supported by protocol",
+      "hint": "EAFNOSUPPORT in LXC \u21d2 host radio may show in sysfs but BlueZ/oracle must run on Proxmox host (or privileged BT-capable CT), not this container"
+    },
+    "lsusb_bt": [
+      "Bus 002 Device 044: ID 8087:0025 Intel Corp. Wireless-AC 9260 Bluetooth Adapter"
+    ]
+  },
+  "scan_s": 8.0,
+  "esp": {
+    "meta": {
+      "88": {
+        "ip": "192.168.178.88",
+        "bd_addr": "68:b6:b3:29:33:9d",
+        "fw": null
+      },
+      "89": {
+        "ip": "192.168.178.89",
+        "bd_addr": "68:b6:b3:2b:c5:69",
+        "fw": null
+      },
+      "87": {
+        "ip": "192.168.178.87",
+        "bd_addr": "c8:c9:a3:cb:37:96",
+        "fw": null
+      }
+    },
+    "views": {
+      "88": {
+        "ok": true,
+        "addrs": [
+          "5c:a5:ab:06:bf:c0",
+          "6c:70:cb:f0:08:65",
+          "c8:a6:ef:99:a0:39",
+          "c8:c9:a3:cb:37:96",
+          "e7:90:40:81:00:ba"
+        ],
+        "devices": [
+          {
+            "addr": "6c:70:cb:f0:08:65",
+            "rssi": -83,
+            "name": "50\" Crystal UHDschlafen"
+          },
+          {
+            "addr": "c8:c9:a3:cb:37:96",
+            "rssi": -51,
+            "name": "oracle-87"
+          },
+          {
+            "addr": "c8:a6:ef:99:a0:39",
+            "rssi": -67,
+            "name": ""
+          },
+          {
+            "addr": "5c:a5:ab:06:bf:c0",
+            "rssi": -87,
+            "name": ""
+          },
+          {
+            "addr": "e7:90:40:81:00:ba",
+            "rssi": -87,
+            "name": ""
+          }
+        ]
+      },
+      "89": {
+        "ok": true,
+        "addrs": [
+          "5c:a5:ab:06:bf:c0",
+          "6c:70:cb:f0:08:65",
+          "c8:a6:ef:99:a0:39",
+          "e3:20:d4:77:ef:9b",
+          "e7:90:40:81:00:ba"
+        ],
+        "devices": [
+          {
+            "addr": "c8:a6:ef:99:a0:39",
+            "rssi": -66,
+            "name": ""
+          },
+          {
+            "addr": "6c:70:cb:f0:08:65",
+            "rssi": -82,
+            "name": "50\" Crystal UHDschlafen"
+          },
+          {
+            "addr": "5c:a5:ab:06:bf:c0",
+            "rssi": -81,
+            "name": ""
+          },
+          {
+            "addr": "e3:20:d4:77:ef:9b",
+            "rssi": -84,
+            "name": ""
+          },
+          {
+            "addr": "e7:90:40:81:00:ba",
+            "rssi": -81,
+            "name": ""
+          }
+        ]
+      },
+      "87": {
+        "ok": true,
+        "addrs": [
+          "5c:a5:ab:06:bf:c0",
+          "6c:70:cb:f0:08:65",
+          "c8:a6:ef:99:a0:39",
+          "e3:20:d4:77:ef:9b",
+          "e7:90:40:81:00:ba"
+        ],
+        "devices": [
+          {
+            "addr": "c8:a6:ef:99:a0:39",
+            "rssi": -79,
+            "name": ""
+          },
+          {
+            "addr": "5c:a5:ab:06:bf:c0",
+            "rssi": -92,
+            "name": ""
+          },
+          {
+            "addr": "e3:20:d4:77:ef:9b",
+            "rssi": -91,
+            "name": ""
+          },
+          {
+            "addr": "6c:70:cb:f0:08:65",
+            "rssi": -100,
+            "name": ""
+          },
+          {
+            "addr": "e7:90:40:81:00:ba",
+            "rssi": -91,
+            "name": ""
+          }
+        ]
+      }
+    }
+  },
+  "host_scan": {
+    "ok": false,
+    "skipped": true,
+    "reason": "userspace_oracle_not_ready",
+    "af_bluetooth": {
+      "supported": false,
+      "errno": 97,
+      "error": "[Errno 97] Address family not supported by protocol",
+      "hint": "EAFNOSUPPORT in LXC \u21d2 host radio may show in sysfs but BlueZ/oracle must run on Proxmox host (or privileged BT-capable CT), not this container"
+    },
+    "userspace_bt_blocked": true,
+    "bluez_installed": false
+  },
+  "lab_bd_addrs": [
+    "68:b6:b3:29:33:9d",
+    "68:b6:b3:2b:c5:69",
+    "c8:c9:a3:cb:37:96"
+  ],
+  "host_sees_lab": [],
+  "foreign_intersection": [],
+  "lab_visibility": {
+    "88": {
+      "sees_lab_peers": [
+        "c8:c9:a3:cb:37:96"
+      ],
+      "missing_lab_peers": [
+        "68:b6:b3:2b:c5:69"
+      ],
+      "ok": false
+    },
+    "89": {
+      "sees_lab_peers": [],
+      "missing_lab_peers": [
+        "68:b6:b3:29:33:9d",
+        "c8:c9:a3:cb:37:96"
+      ],
+      "ok": false
+    },
+    "87": {
+      "sees_lab_peers": [],
+      "missing_lab_peers": [
+        "68:b6:b3:29:33:9d",
+        "68:b6:b3:2b:c5:69"
+      ],
+      "ok": false
+    }
+  },
+  "next": {
+    "oracle_role": "Debian BlueZ as independent host/oracle vs ESP VHCI analyzer (not MITM)",
+    "do_not": "Do not claim Air/RF from this probe",
+    "deeper_now": "Use Method G (lab_method_multiview.py) on .88/.89/.87 until host oracle ready",
+    "if_no_bluez": "On a BT-capable host: apt install bluez && systemctl enable --now bluetooth",
+    "if_lxc_blocked": "Run BlueZ on Proxmox HOST (or CT with AF_BLUETOOTH), then python3 tools/lab_method_host_oracle.py \u2014 sysfs-only view is not enough"
+  }
+}

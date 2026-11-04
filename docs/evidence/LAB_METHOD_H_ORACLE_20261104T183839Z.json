@@ -1,0 +1,152 @@
+{
+  "utc": "20261104T183839Z",
+  "topology": "H_HOST_ORACLE",
+  "gate": "BT9_host_oracle",
+  "method": "H_host_bluez_oracle",
+  "claim": "host_oracle_vs_esp_scan_intersection_not_air_phy",
+  "status": "BLOCKED_HOST_ORACLE",
+  "ok": true,
+  "blocked_host_userspace": true,
+  "probe": {
+    "hardware_present": true,
+    "userspace_oracle_ready": false,
+    "userspace_bt_blocked": true,
+    "af_bluetooth": {
+      "supported": false,
+      "errno": 97,
+      "error": "[Errno 97] Address family not supported by protocol",
+      "hint": "EAFNOSUPPORT in LXC \u21d2 host radio may show in sysfs but BlueZ/oracle must run on Proxmox host (or privileged BT-capable CT), not this container"
+    },
+    "lsusb_bt": [
+      "Bus 002 Device 044: ID 8087:0025 Intel Corp. Wireless-AC 9260 Bluetooth Adapter"
+    ]
+  },
+  "scan_s": 6.0,
+  "esp": {
+    "meta": {
+      "88": {
+        "ip": "192.168.178.88",
+        "bd_addr": "68:b6:b3:29:33:9d",
+        "ready": true,
+        "fw": null
+      },
+      "89": {
+        "ip": "192.168.178.89",
+        "bd_addr": "68:b6:b3:2b:c5:69",
+        "ready": true,
+        "fw": null
+      },
+      "87": {
+        "ip": "192.168.178.87",
+        "bd_addr": "c8:c9:a3:cb:37:96",
+        "ready": true,
+        "fw": null
+      }
+    },
+    "views": {
+      "88": {
+        "addrs": [
+          "5c:a5:ab:06:bf:c0",
+          "68:b6:b3:2b:c5:69",
+          "6c:70:cb:f0:08:65",
+          "c8:a6:ef:99:a0:39",
+          "c8:c9:a3:cb:37:96",
+          "e7:90:40:81:00:ba"
+        ],
+        "ok": true,
+        "error": null,
+        "missed": null
+      },
+      "89": {
+        "addrs": [
+          "5c:a5:ab:06:bf:c0",
+          "68:b6:b3:29:33:9d",
+          "6c:70:cb:f0:08:65",
+          "c8:a6:ef:99:a0:39",
+          "c8:c9:a3:cb:37:96",
+          "e3:20:d4:77:ef:9b"
+        ],
+        "ok": true,
+        "error": null,
+        "missed": null
+      },
+      "87": {
+        "addrs": [
+          "5c:a5:ab:06:bf:c0",
+          "68:b6:b3:29:33:9d",
+          "68:b6:b3:2b:c5:69",
+          "6c:70:cb:f0:08:65",
+          "c8:a6:ef:99:a0:39",
+          "e7:90:40:81:00:ba"
+        ],
+        "ok": true,
+        "error": null,
+        "missed": null
+      }
+    }
+  },
+  "host_scan": {
+    "ok": false,
+    "skipped": true,
+    "reason": "userspace_oracle_not_ready",
+    "af_bluetooth": {
+      "supported": false,
+      "errno": 97,
+      "error": "[Errno 97] Address family not supported by protocol",
+      "hint": "EAFNOSUPPORT in LXC \u21d2 host radio may show in sysfs but BlueZ/oracle must run on Proxmox host (or privileged BT-capable CT), not this container"
+    },
+    "userspace_bt_blocked": true,
+    "bluez_installed": false,
+    "esp_advertise": {
+      "started": {
+        "88": true,
+        "89": true,
+        "87": true
+      },
+      "duration_s": 4.0
+    }
+  },
+  "lab_bd_addrs": [
+    "68:b6:b3:29:33:9d",
+    "68:b6:b3:2b:c5:69",
+    "c8:c9:a3:cb:37:96"
+  ],
+  "host_sees_lab": [],
+  "foreign_intersection": [],
+  "lab_visibility": {
+    "88": {
+      "sees_lab_peers": [
+        "68:b6:b3:2b:c5:69",
+        "c8:c9:a3:cb:37:96"
+      ],
+      "missing_lab_peers": [],
+      "foreign_n": 4,
+      "ok": true
+    },
+    "89": {
+      "sees_lab_peers": [
+        "68:b6:b3:29:33:9d",
+        "c8:c9:a3:cb:37:96"
+      ],
+      "missing_lab_peers": [],
+      "foreign_n": 4,
+      "ok": true
+    },
+    "87": {
+      "sees_lab_peers": [
+        "68:b6:b3:29:33:9d",
+        "68:b6:b3:2b:c5:69"
+      ],
+      "missing_lab_peers": [],
+      "foreign_n": 4,
+      "ok": true
+    }
+  },
+  "next": {
+    "oracle_role": "Debian BlueZ as independent host/oracle vs ESP VHCI analyzer (not MITM)",
+    "do_not": "Do not claim Air/RF from this probe",
+    "deeper_now": "Use Method G (lab_method_multiview.py) on .88/.89/.87 until host oracle ready",
+    "if_no_bluez": "On a BT-capable host: apt install bluez && systemctl enable --now bluetooth",
+    "if_lxc_blocked": "Run BlueZ on Proxmox HOST (or CT with AF_BLUETOOTH), then python3 tools/lab_method_host_oracle.py \u2014 sysfs-only view is not enough"
+  }
+}

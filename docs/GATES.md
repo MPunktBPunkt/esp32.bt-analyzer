@@ -13,13 +13,13 @@ No release claim without green gate status.
 | **BT5** | PSRAM ring buffer | **CODE READY** (512 slots S3 · fillPct) |
 | **BT6** | Lossless lab capture (session drops + file gaps) | **CODE READY** (`lab_gap_classify.py`) |
 | **BT16** | BLE ATT throughput (CAPABILITY / BENCHMARK) | **CODE READY** 0.3.0 (`lab_bt16_throughput.py`) |
-| **BT17** | Classic A2DP/HFP (`.87` Bluedroid flavor) | **deferred** (after HOGP/FTMS path) |
+| **BT17** | Classic A2DP/HFP (`.87` Bluedroid flavor) | **scaffold 0.3.3** (env+API stub; no A2DP/OTA yet) |
 | **BT18** | GATT Client + HOGP + FTMS Flavors (STIMULUS) | **CODE READY** 0.3.2 ([`FLAVOR_BUS.md`](FLAVOR_BUS.md)) |
 | **BT19** | Multi-node timeline (offset estimation) | **CODE READY** ([`BT19_TIMELINE.md`](BT19_TIMELINE.md)) |
 | **BT7** | Debian decoder (JSONL) | **CODE READY** (`btac_decode.py`) |
 | **BT8** | PCAPNG export (HCI, not RF) | **CODE READY** (`btac_to_pcapng.py`) |
-| **BT9** | BLE on-chip validation (scan/connect) | **CODE READY** (connect/disconnect) |
-| **BT10** | Classic on-chip validation (`.87`) | **CODE READY** (discoverable + inquiry) |
+| **BT9** | BLE on-chip validation (scan/connect) | **CODE READY** (+ Method G multiview · Method H host oracle) |
+| **BT10** | Classic on-chip validation (`.87`) | **CODE READY** (+ Method D classic+BLE mix) |
 | **BT11** | Second ESP peer / stimulus | **CODE READY** (advertise/scan/connect) |
 | **BT12** | Long capture | **CODE READY** (`lab_run_gates.py`) |
 | **BT13** | WiFi/BT stress + recovery | **CODE READY** (toggle stress) |

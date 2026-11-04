@@ -1,0 +1,167 @@
+{
+  "utc": "20261104T204443Z",
+  "topology": "H_HOST_ORACLE",
+  "gate": "BT9_host_oracle",
+  "method": "H_host_bluez_oracle",
+  "claim": "host_oracle_vs_esp_scan_intersection_not_air_phy",
+  "status": "PASS",
+  "ok": true,
+  "blocked_host_userspace": false,
+  "local_af_bluetooth_blocked": true,
+  "oracle_via": "ssh_proxmox",
+  "probe": {
+    "hardware_present": true,
+    "userspace_oracle_ready": true,
+    "local_oracle_ready": false,
+    "ssh_oracle": {
+      "ok": true,
+      "ssh": "root@192.168.178.108",
+      "controller": "c0:b8:83:34:f4:62",
+      "powered": true,
+      "mode": "ssh_bluez_on_proxmox_host"
+    },
+    "userspace_bt_blocked": true,
+    "af_bluetooth": {
+      "supported": false,
+      "errno": 97,
+      "error": "[Errno 97] Address family not supported by protocol",
+      "hint": "EAFNOSUPPORT in LXC \u21d2 host radio may show in sysfs but BlueZ/oracle must run on Proxmox host (or privileged BT-capable CT), not this container"
+    },
+    "lsusb_bt": [
+      "Bus 002 Device 044: ID 8087:0025 Intel Corp. Wireless-AC 9260 Bluetooth Adapter"
+    ]
+  },
+  "scan_s": 8.0,
+  "esp": {
+    "meta": {
+      "88": {
+        "ip": "192.168.178.88",
+        "bd_addr": "68:b6:b3:29:33:9d",
+        "ready": true,
+        "fw": null
+      },
+      "89": {
+        "ip": "192.168.178.89",
+        "bd_addr": "68:b6:b3:2b:c5:69",
+        "ready": true,
+        "fw": null
+      },
+      "87": {
+        "ip": "192.168.178.87",
+        "bd_addr": "c8:c9:a3:cb:37:96",
+        "ready": true,
+        "fw": null
+      }
+    },
+    "views": {
+      "88": {
+        "addrs": [
+          "41:33:bb:ca:89:4a",
+          "68:b6:b3:2b:c5:69",
+          "6c:70:cb:f0:08:65",
+          "c8:a6:ef:99:a0:39",
+          "c8:c9:a3:cb:37:96",
+          "f8:cc:02:ee:3c:43"
+        ],
+        "ok": true,
+        "error": null,
+        "missed": null
+      },
+      "89": {
+        "addrs": [
+          "41:33:bb:ca:89:4a",
+          "68:b6:b3:29:33:9d",
+          "6c:70:cb:f0:08:65",
+          "c8:a6:ef:99:a0:39",
+          "c8:c9:a3:cb:37:96",
+          "f1:45:e1:24:0a:fd",
+          "f2:30:5f:fd:5e:fe",
+          "f8:cc:02:ee:3c:43"
+        ],
+        "ok": true,
+        "error": null,
+        "missed": null
+      },
+      "87": {
+        "addrs": [
+          "41:33:bb:ca:89:4a",
+          "68:b6:b3:29:33:9d",
+          "68:b6:b3:2b:c5:69",
+          "6c:70:cb:f0:08:65",
+          "c8:a6:ef:99:a0:39",
+          "f1:45:e1:24:0a:fd"
+        ],
+        "ok": true,
+        "error": null,
+        "missed": null
+      }
+    }
+  },
+  "host_scan": {
+    "ok": true,
+    "addrs": [
+      "68:b6:b3:29:33:9d",
+      "68:b6:b3:2b:c5:69",
+      "6c:70:cb:f0:08:65",
+      "c0:b8:83:34:f4:62",
+      "c8:c9:a3:cb:37:96"
+    ],
+    "raw_devices": [
+      "Device 68:B6:B3:29:33:9D oracle-88",
+      "Device 68:B6:B3:2B:C5:69 oracle-89",
+      "Device 6C:70:CB:F0:08:65 6C-70-CB-F0-08-65",
+      "Device C8:C9:A3:CB:37:96 oracle-87"
+    ],
+    "via": "ssh_proxmox",
+    "ssh": "root@192.168.178.108",
+    "error": null
+  },
+  "lab_bd_addrs": [
+    "68:b6:b3:29:33:9d",
+    "68:b6:b3:2b:c5:69",
+    "c8:c9:a3:cb:37:96"
+  ],
+  "host_sees_lab": [
+    "68:b6:b3:29:33:9d",
+    "68:b6:b3:2b:c5:69",
+    "c8:c9:a3:cb:37:96"
+  ],
+  "foreign_intersection": [
+    "6c:70:cb:f0:08:65"
+  ],
+  "lab_visibility": {
+    "88": {
+      "sees_lab_peers": [
+        "68:b6:b3:2b:c5:69",
+        "c8:c9:a3:cb:37:96"
+      ],
+      "missing_lab_peers": [],
+      "foreign_n": 4,
+      "ok": true
+    },
+    "89": {
+      "sees_lab_peers": [
+        "68:b6:b3:29:33:9d",
+        "c8:c9:a3:cb:37:96"
+      ],
+      "missing_lab_peers": [],
+      "foreign_n": 6,
+      "ok": true
+    },
+    "87": {
+      "sees_lab_peers": [
+        "68:b6:b3:29:33:9d",
+        "68:b6:b3:2b:c5:69"
+      ],
+      "missing_lab_peers": [],
+      "foreign_n": 4,
+      "ok": true
+    }
+  },
+  "next": {
+    "oracle_role": "Debian BlueZ as independent host/oracle vs ESP VHCI analyzer (not MITM)",
+    "do_not": "Do not claim Air/RF from this probe",
+    "control": "python3 tools/lab_bt_host_ssh.py show|scan  (SSH \u2192 Proxmox BlueZ)",
+    "if_lxc_blocked": "AF_BLUETOOTH blocked in CT (expected) \u2014 oracle via SSH bridge is active"
+  }
+}

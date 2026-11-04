@@ -1,0 +1,596 @@
+{
+  "utc": "20261104T211623Z",
+  "topology": "F_ONCHIP",
+  "gate": "BT16",
+  "contract": "CAPABILITY_vs_BENCHMARK",
+  "claim": "L2_ATT_throughput_over_HCI_not_air",
+  "fw": "0.3.0",
+  "duration_s": 30.0,
+  "repeats": 3,
+  "capability_ok": true,
+  "benchmark_ok": false,
+  "cases": [
+    {
+      "repeats": 3,
+      "app_Bps_median_of_medians": 556.0,
+      "app_Bps_p10_of_medians": 547.2,
+      "app_Bps_p90_of_medians": 603.2,
+      "capability_pass_count": 3,
+      "benchmark_pass_count": 3,
+      "runs": [
+        {
+          "mode": "notify",
+          "mtu": 23,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 1034,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 28,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 989,
+            "peer_app_tx_packets": 991,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 19780,
+            "peer_app_tx_bytes": 19820,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 615.0,
+            "app_Bps_p10": 316.8,
+            "app_Bps_p90": 719.5000000000001,
+            "app_Bps_mean": 557.35
+          },
+          "btac": {
+            "btac_frames": 1028,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 2110.0
+          },
+          "file": {
+            "file_frames": 1147,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 1012.5,
+            "btac_Bps_median": 2110.0
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 23,
+          "attMtu_peer": 23
+        },
+        {
+          "mode": "notify",
+          "mtu": 23,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 1023,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 12,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 963,
+            "peer_app_tx_packets": 964,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 19260,
+            "peer_app_tx_bytes": 19280,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 545.0,
+            "app_Bps_p10": 454.9,
+            "app_Bps_p90": 639.6,
+            "app_Bps_mean": 547.6
+          },
+          "btac": {
+            "btac_frames": 1018,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 1981.0
+          },
+          "file": {
+            "file_frames": 1156,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 964.5,
+            "btac_Bps_median": 1981.0
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 23,
+          "attMtu_peer": 23
+        },
+        {
+          "mode": "notify",
+          "mtu": 23,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 1072,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 18,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 1008,
+            "peer_app_tx_packets": 1018,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 20160,
+            "peer_app_tx_bytes": 20360,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 556.0,
+            "app_Bps_p10": 460.0,
+            "app_Bps_p90": 656.0,
+            "app_Bps_mean": 571.047619047619
+          },
+          "btac": {
+            "btac_frames": 1073,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 1890.0
+          },
+          "file": {
+            "file_frames": 1224,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 963.0,
+            "btac_Bps_median": 1890.0
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 23,
+          "attMtu_peer": 23
+        }
+      ],
+      "capability_status": "PASS",
+      "benchmark_status": "PASS",
+      "mode": "notify",
+      "mtu": 23,
+      "payload": 20,
+      "duration_s": 30.0
+    },
+    {
+      "repeats": 3,
+      "app_Bps_median_of_medians": 569.0,
+      "app_Bps_p10_of_medians": 551.8,
+      "app_Bps_p90_of_medians": 577.4,
+      "capability_pass_count": 3,
+      "benchmark_pass_count": 3,
+      "runs": [
+        {
+          "mode": "notify",
+          "mtu": 247,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 1024,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 14,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 966,
+            "peer_app_tx_packets": 968,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 19320,
+            "peer_app_tx_bytes": 19360,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 579.5,
+            "app_Bps_p10": 510.2,
+            "app_Bps_p90": 677.2,
+            "app_Bps_mean": 592.95
+          },
+          "btac": {
+            "btac_frames": 1020,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 1903.0
+          },
+          "file": {
+            "file_frames": 1154,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 934.5,
+            "btac_Bps_median": 1903.0
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 247,
+          "attMtu_peer": 247
+        },
+        {
+          "mode": "notify",
+          "mtu": 247,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 1032,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 16,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 969,
+            "peer_app_tx_packets": 980,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 19380,
+            "peer_app_tx_bytes": 19600,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 569.0,
+            "app_Bps_p10": 472.1,
+            "app_Bps_p90": 638.9,
+            "app_Bps_mean": 563.6
+          },
+          "btac": {
+            "btac_frames": 1033,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 1903.5
+          },
+          "file": {
+            "file_frames": 1153,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 965.0,
+            "btac_Bps_median": 1903.5
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 247,
+          "attMtu_peer": 247
+        },
+        {
+          "mode": "notify",
+          "mtu": 247,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 1012,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 13,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 956,
+            "peer_app_tx_packets": 968,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 19120,
+            "peer_app_tx_bytes": 19360,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 547.5,
+            "app_Bps_p10": 479.0,
+            "app_Bps_p90": 642.6,
+            "app_Bps_mean": 560.9
+          },
+          "btac": {
+            "btac_frames": 1017,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 1960.0
+          },
+          "file": {
+            "file_frames": 1155,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 1011.5,
+            "btac_Bps_median": 1960.0
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 247,
+          "attMtu_peer": 247
+        }
+      ],
+      "capability_status": "PASS",
+      "benchmark_status": "PASS",
+      "mode": "notify",
+      "mtu": 247,
+      "payload": 20,
+      "duration_s": 30.0
+    },
+    {
+      "repeats": 3,
+      "app_Bps_median_of_medians": 0,
+      "app_Bps_p10_of_medians": 0.0,
+      "app_Bps_p90_of_medians": 2507.6000000000004,
+      "capability_pass_count": 1,
+      "benchmark_pass_count": 0,
+      "runs": [
+        {
+          "mode": "notify",
+          "mtu": 247,
+          "payload": 200,
+          "duration_s": 30.0,
+          "pace_ms": 28,
+          "capture": {
+            "capture_frames": 3574,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 97,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 492,
+            "peer_app_tx_packets": 677,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 98400,
+            "peer_app_tx_bytes": 135400,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 31,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 3134.5,
+            "app_Bps_p10": 0.0,
+            "app_Bps_p90": 4806.5,
+            "app_Bps_mean": 2908.1
+          },
+          "btac": {
+            "btac_frames": 3647,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 9464.0
+          },
+          "file": {
+            "file_frames": 3903,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 4258.0,
+            "btac_Bps_median": 9464.0
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "FAIL",
+          "ok": true,
+          "attMtu_host": 247,
+          "attMtu_peer": 247
+        },
+        {
+          "mode": "notify",
+          "mtu": 247,
+          "payload": 200,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "notify",
+          "mtu": 247,
+          "payload": 200,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        }
+      ],
+      "capability_status": "PASS",
+      "benchmark_status": "FAIL",
+      "mode": "notify",
+      "mtu": 247,
+      "payload": 200,
+      "duration_s": 30.0
+    },
+    {
+      "repeats": 3,
+      "app_Bps_median_of_medians": 0,
+      "app_Bps_p10_of_medians": 0.0,
+      "app_Bps_p90_of_medians": 0.0,
+      "capability_pass_count": 0,
+      "benchmark_pass_count": 0,
+      "runs": [
+        {
+          "mode": "write",
+          "mtu": 23,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "write",
+          "mtu": 23,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "write",
+          "mtu": 23,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        }
+      ],
+      "capability_status": "FAIL",
+      "benchmark_status": "FAIL",
+      "mode": "write",
+      "mtu": 23,
+      "payload": 20,
+      "duration_s": 30.0
+    },
+    {
+      "repeats": 3,
+      "app_Bps_median_of_medians": 0,
+      "app_Bps_p10_of_medians": 0.0,
+      "app_Bps_p90_of_medians": 0.0,
+      "capability_pass_count": 0,
+      "benchmark_pass_count": 0,
+      "runs": [
+        {
+          "mode": "write",
+          "mtu": 247,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "write",
+          "mtu": 247,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "write",
+          "mtu": 247,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        }
+      ],
+      "capability_status": "FAIL",
+      "benchmark_status": "FAIL",
+      "mode": "write",
+      "mtu": 247,
+      "payload": 20,
+      "duration_s": 30.0
+    },
+    {
+      "repeats": 3,
+      "app_Bps_median_of_medians": 0,
+      "app_Bps_p10_of_medians": 0.0,
+      "app_Bps_p90_of_medians": 0.0,
+      "capability_pass_count": 0,
+      "benchmark_pass_count": 0,
+      "runs": [
+        {
+          "mode": "write",
+          "mtu": 247,
+          "payload": 200,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "write",
+          "mtu": 247,
+          "payload": 200,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "write",
+          "mtu": 247,
+          "payload": 200,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        }
+      ],
+      "capability_status": "FAIL",
+      "benchmark_status": "FAIL",
+      "mode": "write",
+      "mtu": 247,
+      "payload": 200,
+      "duration_s": 30.0
+    }
+  ],
+  "ok": true
+}

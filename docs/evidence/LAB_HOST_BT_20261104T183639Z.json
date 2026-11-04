@@ -1,0 +1,60 @@
+{
+  "gate": "HOST_BT_probe",
+  "claim": "FACT_host_radio_inventory_not_air_sniffer",
+  "hostname": "DebianCursor",
+  "kernel": "7.0.14-14-pve",
+  "machine": "x86_64",
+  "utc": "20261104T183639Z",
+  "hardware_present": true,
+  "kernel_hci_class": true,
+  "af_bluetooth": {
+    "supported": false,
+    "errno": 97,
+    "error": "[Errno 97] Address family not supported by protocol",
+    "hint": "EAFNOSUPPORT in LXC \u21d2 host radio may show in sysfs but BlueZ/oracle must run on Proxmox host (or privileged BT-capable CT), not this container"
+  },
+  "unprivileged_container": true,
+  "userspace_bt_blocked": true,
+  "bluez_installed": false,
+  "bluetoothd_active": false,
+  "userspace_oracle_ready": false,
+  "lsusb_bt": [
+    "Bus 002 Device 044: ID 8087:0025 Intel Corp. Wireless-AC 9260 Bluetooth Adapter"
+  ],
+  "modules": [
+    "btusb",
+    "btmtk",
+    "btrtl",
+    "btbcm",
+    "btintel",
+    "bluetooth"
+  ],
+  "hci": [
+    {
+      "name": "hci0",
+      "path": "/sys/class/bluetooth/hci0",
+      "uevent": "DEVTYPE=host",
+      "device_link": "/sys/devices/pci0000:00/0000:00:08.1/0000:04:00.3/usb2/2-3/2-3.4/2-3.4:1.0"
+    }
+  ],
+  "rfkill_bluetooth": [
+    {
+      "id": "rfkill4",
+      "name": "hci0",
+      "type": "bluetooth",
+      "state": "1",
+      "soft": "0",
+      "hard": "0"
+    }
+  ],
+  "soft_blocked": false,
+  "hard_blocked": false,
+  "next": {
+    "oracle_role": "Debian BlueZ as independent host/oracle vs ESP VHCI analyzer (not MITM)",
+    "do_not": "Do not claim Air/RF from this probe",
+    "deeper_now": "Use Method G (lab_method_multiview.py) on .88/.89/.87 until host oracle ready",
+    "if_no_bluez": "On a BT-capable host: apt install bluez && systemctl enable --now bluetooth",
+    "if_lxc_blocked": "Run BlueZ on Proxmox HOST (or CT with AF_BLUETOOTH), then python3 tools/lab_method_host_oracle.py \u2014 sysfs-only view is not enough"
+  },
+  "ok": true
+}

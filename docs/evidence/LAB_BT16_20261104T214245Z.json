@@ -1,0 +1,167 @@
+{
+  "utc": "20261104T214245Z",
+  "topology": "F_ONCHIP",
+  "gate": "BT16",
+  "contract": "CAPABILITY_vs_BENCHMARK",
+  "claim": "L2_ATT_throughput_over_HCI_not_air",
+  "fw": "0.3.0",
+  "duration_s": 20.0,
+  "repeats": 2,
+  "capability_ok": false,
+  "benchmark_ok": false,
+  "cases": [
+    {
+      "repeats": 2,
+      "app_Bps_median_of_medians": 0.0,
+      "app_Bps_p10_of_medians": 0.0,
+      "app_Bps_p90_of_medians": 0.0,
+      "capability_pass_count": 0,
+      "benchmark_pass_count": 0,
+      "runs": [
+        {
+          "mode": "notify",
+          "mtu": 23,
+          "payload": 20,
+          "error": "timed out",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "notify",
+          "mtu": 23,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        }
+      ],
+      "capability_status": "FAIL",
+      "benchmark_status": "FAIL",
+      "mode": "notify",
+      "mtu": 23,
+      "payload": 20,
+      "duration_s": 20.0
+    },
+    {
+      "repeats": 2,
+      "app_Bps_median_of_medians": 0.0,
+      "app_Bps_p10_of_medians": 0.0,
+      "app_Bps_p90_of_medians": 0.0,
+      "capability_pass_count": 0,
+      "benchmark_pass_count": 0,
+      "runs": [
+        {
+          "mode": "notify",
+          "mtu": 247,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "notify",
+          "mtu": 247,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        }
+      ],
+      "capability_status": "FAIL",
+      "benchmark_status": "FAIL",
+      "mode": "notify",
+      "mtu": 247,
+      "payload": 20,
+      "duration_s": 20.0
+    },
+    {
+      "repeats": 2,
+      "app_Bps_median_of_medians": 0.0,
+      "app_Bps_p10_of_medians": 0.0,
+      "app_Bps_p90_of_medians": 0.0,
+      "capability_pass_count": 0,
+      "benchmark_pass_count": 0,
+      "runs": [
+        {
+          "mode": "write",
+          "mtu": 23,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "write",
+          "mtu": 23,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        }
+      ],
+      "capability_status": "FAIL",
+      "benchmark_status": "FAIL",
+      "mode": "write",
+      "mtu": 23,
+      "payload": 20,
+      "duration_s": 20.0
+    },
+    {
+      "repeats": 2,
+      "app_Bps_median_of_medians": 0.0,
+      "app_Bps_p10_of_medians": 0.0,
+      "app_Bps_p90_of_medians": 0.0,
+      "capability_pass_count": 0,
+      "benchmark_pass_count": 0,
+      "runs": [
+        {
+          "mode": "write",
+          "mtu": 247,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        },
+        {
+          "mode": "write",
+          "mtu": 247,
+          "payload": 20,
+          "error": "<urlopen error timed out>",
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "application": {
+            "app_Bps_median": 0
+          }
+        }
+      ],
+      "capability_status": "FAIL",
+      "benchmark_status": "FAIL",
+      "mode": "write",
+      "mtu": 247,
+      "payload": 20,
+      "duration_s": 20.0
+    }
+  ],
+  "ok": false
+}

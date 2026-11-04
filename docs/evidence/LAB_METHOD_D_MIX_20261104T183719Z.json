@@ -1,0 +1,104 @@
+{
+  "utc": "20261104T183719Z",
+  "topology": "D_ENDPOINT_REF",
+  "gate": "BT10_classic_ble_mix",
+  "method": "D_classic_ble_mix",
+  "claim": "classic_inquiry_and_ble_scan_on_87_labeled_apart",
+  "fw": "0.3.2",
+  "host87": {
+    "bd": "c8:c9:a3:cb:37:96",
+    "classic": true,
+    "ble": true
+  },
+  "peers": {
+    "88": "68:b6:b3:29:33:9d",
+    "89": "68:b6:b3:2b:c5:69"
+  },
+  "devices": [
+    {
+      "addr": "6c:70:cb:f0:08:65",
+      "addrType": 0,
+      "rssi": -96,
+      "classic": false,
+      "ble": true,
+      "name": ""
+    },
+    {
+      "addr": "68:b6:b3:2b:c5:69",
+      "addrType": 0,
+      "rssi": -48,
+      "classic": false,
+      "ble": true,
+      "name": "mix-89"
+    },
+    {
+      "addr": "5c:a5:ab:06:bf:c0",
+      "addrType": 1,
+      "rssi": -90,
+      "classic": false,
+      "ble": true,
+      "name": ""
+    },
+    {
+      "addr": "68:b6:b3:29:33:9d",
+      "addrType": 0,
+      "rssi": -41,
+      "classic": false,
+      "ble": true,
+      "name": "mix-88"
+    },
+    {
+      "addr": "c8:a6:ef:99:a0:39",
+      "addrType": 0,
+      "rssi": -73,
+      "classic": false,
+      "ble": true,
+      "name": ""
+    }
+  ],
+  "ble_hits": [
+    {
+      "addr": "6c:70:cb:f0:08:65",
+      "rssi": -96,
+      "name": "",
+      "ble": true,
+      "classic": false
+    },
+    {
+      "addr": "68:b6:b3:2b:c5:69",
+      "rssi": -48,
+      "name": "mix-89",
+      "ble": true,
+      "classic": false
+    },
+    {
+      "addr": "5c:a5:ab:06:bf:c0",
+      "rssi": -90,
+      "name": "",
+      "ble": true,
+      "classic": false
+    },
+    {
+      "addr": "68:b6:b3:29:33:9d",
+      "rssi": -41,
+      "name": "mix-88",
+      "ble": true,
+      "classic": false
+    },
+    {
+      "addr": "c8:a6:ef:99:a0:39",
+      "rssi": -73,
+      "name": "",
+      "ble": true,
+      "classic": false
+    }
+  ],
+  "classic_hits": [],
+  "seen88": true,
+  "seen89": true,
+  "ok": true,
+  "notes": [
+    "Empty classic_hits in quiet lab is MEASURED (no BR/EDR peers), not FAIL",
+    "FAIL only if .87 BLE scan misses advertising .88/.89"
+  ]
+}

@@ -77,13 +77,96 @@ def estimate_offsets(rounds: int = 12) -> dict:
     return out
 
 
+def host_bt_snapshot() -> dict | None:
+    """Best-effort embed of Debian host BT inventory (no BlueZ required)."""
+    try:
+        import importlib.util
+
+        probe_path = ROOT / "tools" / "lab_host_bt_probe.py"
+        spec = importlib.util.spec_from_file_location("lab_host_bt_probe", probe_path)
+        if spec is None or spec.loader is None:
+            return None
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        data = mod.probe()
+        return {
+            "hardware_present": data.get("hardware_present"),
+            "kernel_hci_class": data.get("kernel_hci_class"),
+            "bluez_installed": data.get("bluez_installed"),
+            "userspace_oracle_ready": data.get("userspace_oracle_ready"),
+            "lsusb_bt": data.get("lsusb_bt"),
+        }
+    except Exception as exc:  # noqa: BLE001
+        return {"error": str(exc)}
+
+
+def dry_run_meta(utc: str) -> dict:
+    """Offline schema check — no ESP HTTP. Synthetic offsets only."""
+    offsets = {}
+    for name in NODES:
+        offsets[name] = {
+            "ok": True,
+            "offset_s_median": 0.0,
+            "offset_s_stdev": 0.0,
+            "rtt_ms_median": 0.0,
+            "rtt_ms_jitter": 0.0,
+            "uncertainty_ms_median": 0.0,
+            "sample_count": 0,
+            "best_count": 0,
+            "synthetic": True,
+        }
+    return {
+        "utc": utc,
+        "gate": "BT19_timeline",
+        "fw": "0.3.0+",
+        "method": "http_sync_marker_rtt_midpoint",
+        "dry_run": True,
+        "offsets": offsets,
+        "skew_s": {},
+        "host_bt": host_bt_snapshot(),
+        "claims": {
+            "PTP": False,
+            "shared_clock": False,
+            "estimated_timeline_alignment": True,
+        },
+        "claim": "correlated_via_debian_bridge_not_PTP",
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--seconds", type=float, default=20.0)
     ap.add_argument("--offset-rounds", type=int, default=12)
+    ap.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="offline: write synthetic meta + empty jsonl (no ESP HTTP)",
+    )
     args = ap.parse_args()
     utc = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     EVIDENCE.mkdir(parents=True, exist_ok=True)
+
+    if args.dry_run:
+        meta = dry_run_meta(utc)
+        meta_path = EVIDENCE / f"LAB_TIMELINE_{utc}.meta.json"
+        out_path = EVIDENCE / f"LAB_TIMELINE_{utc}.jsonl"
+        md_path = EVIDENCE / f"LAB_TIMELINE_{utc}.md"
+        meta_path.write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
+        out_path.write_text(json.dumps({"type": "meta", **meta}) + "\n", encoding="utf-8")
+        md_path.write_text(
+            f"# LAB TIMELINE BT19 — DRY RUN\n\n**UTC:** {utc}\n\n"
+            "Synthetic offsets only · host_bt snapshot embedded · no ESP samples.\n",
+            encoding="utf-8",
+        )
+        result = {
+            "ok": True,
+            "dry_run": True,
+            "jsonl": str(out_path),
+            "meta": str(meta_path),
+            "host_bt": meta.get("host_bt"),
+        }
+        print(json.dumps(result, indent=2))
+        return 0
 
     offsets = estimate_offsets(args.offset_rounds)
     skew = {}
@@ -97,10 +180,11 @@ def main() -> int:
     meta = {
         "utc": utc,
         "gate": "BT19_timeline",
-        "fw": "0.3.0",
+        "fw": "0.3.0+",
         "method": "http_sync_marker_rtt_midpoint",
         "offsets": offsets,
         "skew_s": skew,
+        "host_bt": host_bt_snapshot(),
         "claims": {
             "PTP": False,
             "shared_clock": False,
@@ -183,6 +267,7 @@ def main() -> int:
         "meta": str(meta_path),
         "md": str(md_path),
         "offsets_ok": ok_nodes,
+        "host_bt": meta.get("host_bt"),
     }
     print(json.dumps(result, indent=2))
     return 0 if result["ok"] else 1

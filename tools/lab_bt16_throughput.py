@@ -36,6 +36,12 @@ HOST = "192.168.178.88"
 PEER = "192.168.178.89"
 
 
+def _bind_nodes(host: str, peer: str) -> None:
+    global HOST, PEER
+    HOST = host
+    PEER = peer
+
+
 def get(url: str, timeout: float = 8.0) -> dict:
     with urllib.request.urlopen(url, timeout=timeout) as r:
         return json.loads(r.read().decode())
@@ -396,6 +402,8 @@ def summarize_repeats(runs: list[dict]) -> dict:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--host", default=HOST, help="central / BTAC host (default .88)")
+    ap.add_argument("--peer", default=PEER, help="peripheral peer (default .89)")
     ap.add_argument("--duration", type=float, default=30.0)
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--modes", default="notify,write")
@@ -404,6 +412,7 @@ def main() -> int:
     ap.add_argument("--no-capture", action="store_true")
     ap.add_argument("--quick", action="store_true", help="8s × 1 repeat smoke")
     args = ap.parse_args()
+    _bind_nodes(args.host, args.peer)
     if args.quick:
         args.duration = 8.0
         args.repeats = 1
@@ -414,6 +423,7 @@ def main() -> int:
     mtus = [int(x) for x in args.mtus.split(",") if x.strip()]
     payloads = [int(x) for x in args.payloads.split(",") if x.strip()]
 
+    print(f"[bt16] host={HOST} peer={PEER}", flush=True)
     cases = []
     for mode in modes:
         for mtu in mtus:

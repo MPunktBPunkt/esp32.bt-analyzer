@@ -1,0 +1,50 @@
+{
+  "gate": "HOST_BT_probe",
+  "claim": "FACT_host_radio_inventory_not_air_sniffer",
+  "hostname": "DebianCursor",
+  "kernel": "7.0.14-14-pve",
+  "machine": "x86_64",
+  "utc": "20261104T183104Z",
+  "hardware_present": true,
+  "kernel_hci_class": true,
+  "bluez_installed": false,
+  "bluetoothd_active": false,
+  "userspace_oracle_ready": false,
+  "lsusb_bt": [
+    "Bus 002 Device 044: ID 8087:0025 Intel Corp. Wireless-AC 9260 Bluetooth Adapter"
+  ],
+  "modules": [
+    "btusb",
+    "btmtk",
+    "btrtl",
+    "btbcm",
+    "btintel",
+    "bluetooth"
+  ],
+  "hci": [
+    {
+      "name": "hci0",
+      "path": "/sys/class/bluetooth/hci0",
+      "uevent": "DEVTYPE=host",
+      "device_link": "/sys/devices/pci0000:00/0000:00:08.1/0000:04:00.3/usb2/2-3/2-3.4/2-3.4:1.0"
+    }
+  ],
+  "rfkill_bluetooth": [
+    {
+      "id": "rfkill4",
+      "name": "hci0",
+      "type": "bluetooth",
+      "state": "1",
+      "soft": "0",
+      "hard": "0"
+    }
+  ],
+  "soft_blocked": false,
+  "hard_blocked": false,
+  "next": {
+    "if_no_bluez": "apt install bluez && systemctl enable --now bluetooth",
+    "oracle_role": "Debian BlueZ as independent host/oracle vs ESP VHCI analyzer (not MITM)",
+    "do_not": "Do not claim Air/RF from this probe"
+  },
+  "ok": true
+}

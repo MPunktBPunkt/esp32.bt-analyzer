@@ -1,0 +1,495 @@
+{
+  "utc": "20261104T215441Z",
+  "topology": "F_ONCHIP",
+  "gate": "BT16",
+  "contract": "CAPABILITY_vs_BENCHMARK",
+  "claim": "L2_ATT_throughput_over_HCI_not_air",
+  "fw": "0.3.0",
+  "duration_s": 30.0,
+  "repeats": 2,
+  "capability_ok": true,
+  "benchmark_ok": true,
+  "cases": [
+    {
+      "repeats": 2,
+      "app_Bps_median_of_medians": 532.0,
+      "app_Bps_p10_of_medians": 520.4,
+      "app_Bps_p90_of_medians": 543.6,
+      "capability_pass_count": 2,
+      "benchmark_pass_count": 2,
+      "runs": [
+        {
+          "mode": "notify",
+          "mtu": 23,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 829,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 9,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 877,
+            "peer_app_tx_packets": 883,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 17540,
+            "peer_app_tx_bytes": 17660,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 517.5,
+            "app_Bps_p10": 366.20000000000005,
+            "app_Bps_p90": 678.8000000000001,
+            "app_Bps_mean": 523.3
+          },
+          "btac": {
+            "btac_frames": 831,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 1570.5
+          },
+          "file": {
+            "file_frames": 873,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 840.5,
+            "btac_Bps_median": 1570.5
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 23,
+          "attMtu_peer": 23
+        },
+        {
+          "mode": "notify",
+          "mtu": 23,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 853,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 10,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 897,
+            "peer_app_tx_packets": 900,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 17940,
+            "peer_app_tx_bytes": 18000,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 546.5,
+            "app_Bps_p10": 296.0,
+            "app_Bps_p90": 659.0,
+            "app_Bps_mean": 526.65
+          },
+          "btac": {
+            "btac_frames": 845,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 1603.5
+          },
+          "file": {
+            "file_frames": 884,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 827.5,
+            "btac_Bps_median": 1603.5
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 23,
+          "attMtu_peer": 23
+        }
+      ],
+      "capability_status": "PASS",
+      "benchmark_status": "PASS",
+      "mode": "notify",
+      "mtu": 23,
+      "payload": 20,
+      "duration_s": 30.0
+    },
+    {
+      "repeats": 2,
+      "app_Bps_median_of_medians": 526.5,
+      "app_Bps_p10_of_medians": 518.9,
+      "app_Bps_p90_of_medians": 534.1,
+      "capability_pass_count": 2,
+      "benchmark_pass_count": 2,
+      "runs": [
+        {
+          "mode": "notify",
+          "mtu": 247,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 842,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 12,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 881,
+            "peer_app_tx_packets": 889,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 17620,
+            "peer_app_tx_bytes": 17780,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 517.0,
+            "app_Bps_p10": 267.1,
+            "app_Bps_p90": 705.6000000000001,
+            "app_Bps_mean": 506.6
+          },
+          "btac": {
+            "btac_frames": 837,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 1753.0
+          },
+          "file": {
+            "file_frames": 876,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 892.0,
+            "btac_Bps_median": 1753.0
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 247,
+          "attMtu_peer": 247
+        },
+        {
+          "mode": "notify",
+          "mtu": 247,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 829,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 13,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 901,
+            "peer_app_tx_packets": 908,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 18020,
+            "peer_app_tx_bytes": 18160,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 536.0,
+            "app_Bps_p10": 383.3,
+            "app_Bps_p90": 663.2000000000002,
+            "app_Bps_mean": 527.25
+          },
+          "btac": {
+            "btac_frames": 834,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 1479.5
+          },
+          "file": {
+            "file_frames": 889,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 776.5,
+            "btac_Bps_median": 1479.5
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 247,
+          "attMtu_peer": 247
+        }
+      ],
+      "capability_status": "PASS",
+      "benchmark_status": "PASS",
+      "mode": "notify",
+      "mtu": 247,
+      "payload": 20,
+      "duration_s": 30.0
+    },
+    {
+      "repeats": 2,
+      "app_Bps_median_of_medians": 759.5,
+      "app_Bps_p10_of_medians": 757.5,
+      "app_Bps_p90_of_medians": 761.5,
+      "capability_pass_count": 2,
+      "benchmark_pass_count": 2,
+      "runs": [
+        {
+          "mode": "write",
+          "mtu": 23,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 2310,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 8,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 1212,
+            "app_rx_packets": 0,
+            "peer_app_tx_packets": 0,
+            "peer_app_rx_packets": 1222,
+            "app_tx_bytes": 24240,
+            "app_rx_bytes": 0,
+            "peer_app_tx_bytes": 0,
+            "peer_app_rx_bytes": 24440,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "peer",
+            "app_Bps_median": 757.0,
+            "app_Bps_p10": 691.0,
+            "app_Bps_p90": 828.7,
+            "app_Bps_mean": 755.05
+          },
+          "btac": {
+            "btac_frames": 2309,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 3782.5
+          },
+          "file": {
+            "file_frames": 2398,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 1207.0,
+            "btac_Bps_median": 3782.5
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 23,
+          "attMtu_peer": 23
+        },
+        {
+          "mode": "write",
+          "mtu": 23,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 2314,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 9,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 1219,
+            "app_rx_packets": 0,
+            "peer_app_tx_packets": 0,
+            "peer_app_rx_packets": 1229,
+            "app_tx_bytes": 24380,
+            "app_rx_bytes": 0,
+            "peer_app_tx_bytes": 0,
+            "peer_app_rx_bytes": 24580,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "peer",
+            "app_Bps_median": 762.0,
+            "app_Bps_p10": 696.6,
+            "app_Bps_p90": 843.0,
+            "app_Bps_mean": 766.85
+          },
+          "btac": {
+            "btac_frames": 2312,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 3968.5
+          },
+          "file": {
+            "file_frames": 2402,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 1285.0,
+            "btac_Bps_median": 3968.5
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 23,
+          "attMtu_peer": 23
+        }
+      ],
+      "capability_status": "PASS",
+      "benchmark_status": "PASS",
+      "mode": "write",
+      "mtu": 23,
+      "payload": 20,
+      "duration_s": 30.0
+    },
+    {
+      "repeats": 2,
+      "app_Bps_median_of_medians": 762.0,
+      "app_Bps_p10_of_medians": 754.8,
+      "app_Bps_p90_of_medians": 769.2,
+      "capability_pass_count": 2,
+      "benchmark_pass_count": 2,
+      "runs": [
+        {
+          "mode": "write",
+          "mtu": 247,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 2358,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 7,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 1250,
+            "app_rx_packets": 0,
+            "peer_app_tx_packets": 0,
+            "peer_app_rx_packets": 1262,
+            "app_tx_bytes": 25000,
+            "app_rx_bytes": 0,
+            "peer_app_tx_bytes": 0,
+            "peer_app_rx_bytes": 25240,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "peer",
+            "app_Bps_median": 771.0,
+            "app_Bps_p10": 694.0,
+            "app_Bps_p90": 811.0,
+            "app_Bps_mean": 758.4285714285714
+          },
+          "btac": {
+            "btac_frames": 2357,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 4069.0
+          },
+          "file": {
+            "file_frames": 2462,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 1143.0,
+            "btac_Bps_median": 4069.0
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 247,
+          "attMtu_peer": 247
+        },
+        {
+          "mode": "write",
+          "mtu": 247,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 2362,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 6,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": true,
+          "application": {
+            "app_tx_packets": 1238,
+            "app_rx_packets": 0,
+            "peer_app_tx_packets": 0,
+            "peer_app_rx_packets": 1243,
+            "app_tx_bytes": 24760,
+            "app_rx_bytes": 0,
+            "peer_app_tx_bytes": 0,
+            "peer_app_rx_bytes": 24860,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "peer",
+            "app_Bps_median": 753.0,
+            "app_Bps_p10": 699.0,
+            "app_Bps_p90": 838.0,
+            "app_Bps_mean": 766.2380952380952
+          },
+          "btac": {
+            "btac_frames": 2362,
+            "btac_seq_gaps": 0,
+            "seqGapsSession": 0,
+            "fwdBps_median": 4045.0
+          },
+          "file": {
+            "file_frames": 2458,
+            "file_gaps": 0,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 1142.0,
+            "btac_Bps_median": 4045.0
+          },
+          "capability_status": "PASS",
+          "benchmark_status": "PASS",
+          "ok": true,
+          "attMtu_host": 247,
+          "attMtu_peer": 247
+        }
+      ],
+      "capability_status": "PASS",
+      "benchmark_status": "PASS",
+      "mode": "write",
+      "mtu": 247,
+      "payload": 20,
+      "duration_s": 30.0
+    }
+  ],
+  "ok": true
+}

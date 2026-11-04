@@ -28,9 +28,12 @@ Per node the lab records:
 ```bash
 python3 tools/lab_clock_sync.py --rounds 20
 python3 tools/lab_multi_node_timeline.py --seconds 20
+python3 tools/lab_multi_node_timeline.py --dry-run   # offline schema + host_bt embed
 ```
 
 Evidence: `docs/evidence/LAB_CLOCK_SYNC_*.json` · `LAB_TIMELINE_*.jsonl` + `.meta.json`
+
+Meta embeds optional `host_bt` snapshot from [`lab_host_bt_probe.py`](../tools/lab_host_bt_probe.py) (Debian/Proxmox radio inventory).
 
 ## What this enables next
 

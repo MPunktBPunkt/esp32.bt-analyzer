@@ -1,6 +1,6 @@
 # Lab inventory — bt-analyzer
 
-Stand: 2026-11-04 · Instrument FW **0.2.6** (VHCI · BTAC · Connect · PCAPNG · gates BT5–13)
+Stand: 2026-11-04 · Instrument FW **0.3.2** (field) · package **0.3.4** (Methods G/H/D · host oracle blocked in LXC)
 
 **Overwrite authorized** on `.87` / `.88` / `.89` for bt-analyzer gates (OTA).
 
@@ -12,7 +12,8 @@ Stand: 2026-11-04 · Instrument FW **0.2.6** (VHCI · BTAC · Connect · PCAPNG 
 
 | Service | Address |
 |---------|---------|
-| Debian / Cursor LXC | `192.168.178.187` |
+| Debian / Cursor LXC | `192.168.178.187` (`DebianCursor`) |
+| **Host BT (onboard)** | Intel **Wireless-AC 9260** `8087:0025` → kernel `hci0` · BlueZ **not** installed yet — [`HOST_BT.md`](HOST_BT.md) |
 | **bt-analyzer Lab UI** | `http://192.168.178.187:8081/` |
 | bt-analyzer control TCP | `:9751` |
 | usb-analyzer Lab UI (parallel) | `http://192.168.178.187:8080/` |

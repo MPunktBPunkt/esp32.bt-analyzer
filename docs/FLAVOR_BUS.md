@@ -3,6 +3,8 @@
 ```yaml
 status: active
 fw: "0.3.2+"
+package: "0.3.4"
+next: "docs/NEXT_CAMPAIGNS.md"
 core: analyzer_vhci_capture
 ```
 
@@ -26,7 +28,7 @@ Flavors **must not** replace the VHCI capture path. Host influence stays visible
 | 1 | **GATT Client MVP** | BT18 | **0.3.1** — discover + MTU + CCCD + read |
 | 2 | **HOGP Host** | BT18b | **0.3.2** — Report Map + Input Report notify (peer stub) |
 | 3 | **FTMS Client** | BT18c | **0.3.2** — Feature + Indoor Bike Data notify (peer stub) |
-| 4 | Classic SDP/RFCOMM → HID → A2DP/HFP | BT17 | deferred (`.87` only) |
+| 4 | Classic SDP/RFCOMM → HID → A2DP/HFP | BT17 | **scaffold 0.3.3** — env `analyzer-esp32-classic-audio` (no A2DP yet, no OTA) |
 
 Runtime for BLE Flavors on this tree: **thin ATT over existing VHCI host** (same controller plane as capture). NimBLE/Bluedroid remain rejected as Core replacements (VHCI ownership conflict).
 
@@ -59,6 +61,9 @@ Labs:
 ```bash
 python3 tools/lab_gatt_client.py
 python3 tools/lab_hogp_ftms.py
+python3 tools/lab_hogp_ftms.py --peer-addr AA:BB:… --profiles hogp   # foreign peer
+python3 tools/lab_host_bt_probe.py                                   # Debian/Proxmox BT
 ```
 
-Peer stubs ≠ real keyboard / ergometer. FTMS: **Success ≠ Wirkung**.
+Peer stubs ≠ real keyboard / ergometer — see [`REAL_DEVICES.md`](REAL_DEVICES.md).  
+Host BT oracle: [`HOST_BT.md`](HOST_BT.md). FTMS: **Success ≠ Wirkung**.

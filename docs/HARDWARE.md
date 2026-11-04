@@ -7,9 +7,10 @@
 | `.88` YD-ESP32-S3 **N8R2** | OBSERVE_A — on-chip **BLE** VHCI |
 | `.89` YD-ESP32-S3 **N8R2** | OBSERVE_B / peer — on-chip **BLE** |
 | `.87` D1 Mini **ESP32** | Classic **+** BLE on-chip analyzer / peer |
-| Debian PC | Lab UI `:8081` · control `:9751` |
+| Debian PC (`DebianCursor`) | Lab UI `:8081` · control `:9751` |
+| Intel Wireless-AC 9260 BT | Onboard host radio (`8087:0025`, kernel `hci0`) — optional BlueZ oracle · [`HOST_BT.md`](HOST_BT.md) |
 
-USB Bluetooth dongles are **not required** for F_ONCHIP. Optional for legacy A_OBSERVE.
+USB Bluetooth dongles are **not required** for F_ONCHIP. Optional for legacy A_OBSERVE. Host 9260 ≠ Air sniffer.
 
 See [`LAB_INVENTORY.md`](LAB_INVENTORY.md) · [`LAB_METHODS.md`](LAB_METHODS.md).
 
