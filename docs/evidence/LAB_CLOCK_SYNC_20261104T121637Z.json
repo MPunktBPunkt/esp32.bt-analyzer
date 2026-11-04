@@ -1,0 +1,45 @@
+{
+  "utc": "20261104T121637Z",
+  "gate": "BT_clock_sync",
+  "method": "http_sync_marker_rtt_midpoint",
+  "rounds": 5,
+  "offsets": {
+    "88": {
+      "ok": true,
+      "offset_s_median": 1793794531.2441628,
+      "offset_s_stdev": 0.002476222297730898,
+      "rtt_ms_median": 81.29453659057617,
+      "samples": 5
+    },
+    "89": {
+      "ok": true,
+      "offset_s_median": 1793794552.5273452,
+      "offset_s_stdev": 0.002270018311667035,
+      "rtt_ms_median": 98.8917350769043,
+      "samples": 5
+    },
+    "87": {
+      "ok": true,
+      "offset_s_median": 1793794579.268598,
+      "offset_s_stdev": 0.0029502998209912637,
+      "rtt_ms_median": 119.43912506103516,
+      "samples": 5
+    }
+  },
+  "pairwise_skew_s": {
+    "88-89": {
+      "skew_s": -21.283182382583618,
+      "note": "positive => a\u2019s mono lags b relative to debian mapping"
+    },
+    "88-87": {
+      "skew_s": -48.02443528175354,
+      "note": "positive => a\u2019s mono lags b relative to debian mapping"
+    },
+    "89-87": {
+      "skew_s": -26.741252899169922,
+      "note": "positive => a\u2019s mono lags b relative to debian mapping"
+    }
+  },
+  "ok": true,
+  "claim": "MEASURED_offset_estimate_not_PTP"
+}

@@ -3,6 +3,9 @@
 #include "capture/CaptureFrame.h"
 #include "hci/HciTypes.h"
 
+#include <WiFi.h>
+#include <esp_timer.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -247,6 +250,65 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
     const bool ok = onchip_->classicDiscoverableStop();
     srv->send(ok ? 200 : 500, "application/json",
               ok ? "{\"ok\":true}" : "{\"ok\":false}");
+  });
+
+  server.on("/api/bt/throughput/start", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");
+      return;
+    }
+    String mode = srv->arg("mode");
+    if (!mode.length()) {
+      mode = "notify";
+    }
+    const uint16_t payload = static_cast<uint16_t>(srv->arg("payload").toInt());
+    const uint16_t mtu = static_cast<uint16_t>(srv->arg("mtu").toInt());
+    const bool ok = onchip_->throughputStart(
+        mode.c_str(), payload ? payload : 20, mtu ? mtu : 23);
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"claim\":\"L2_ATT_throughput_not_air\"}"
+                 : "{\"ok\":false,\"error\":\"throughput_start_failed\"}");
+  });
+
+  server.on("/api/bt/throughput/stop", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false}");
+      return;
+    }
+    onchip_->throughputStop();
+    srv->send(200, "application/json", "{\"ok\":true}");
+  });
+
+  server.on("/api/bt/att/mtu", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false}");
+      return;
+    }
+    const uint16_t mtu = static_cast<uint16_t>(srv->arg("mtu").toInt());
+    const bool ok = onchip_->attExchangeMtu(mtu ? mtu : 247);
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true}" : "{\"ok\":false}");
+  });
+
+  server.on("/api/lab/sync-marker", HTTP_GET, [this, srv]() {
+    String json = "{\"ok\":true,\"node\":\"";
+    json += WiFi.localIP().toString();
+    json += "\",\"mono_us\":";
+    char ts[32];
+    snprintf(ts, sizeof(ts), "%llu",
+             static_cast<unsigned long long>(esp_timer_get_time()));
+    json += ts;
+    json += ",\"millis\":";
+    json += String(millis());
+    json += ",\"bdAddr\":";
+    if (onchip_ && onchip_->ready()) {
+      // reuse status fragment lightly
+      json += "null";
+    } else {
+      json += "null";
+    }
+    json += "}";
+    srv->send(200, "application/json", json);
   });
 
   server.on("/api/bt/reset", HTTP_POST, [this, srv]() {

@@ -2,8 +2,12 @@
   const nodesEl = document.getElementById("nodes");
   const logEl = document.getElementById("log");
   const targetEl = document.getElementById("target");
+  const canvas = document.getElementById("rate-chart");
+  const ctx = canvas.getContext("2d");
   let auto = false;
   let timer = null;
+  const hist = { appTx: [], appRx: [], hciTx: [], hciRx: [], btac: [] };
+  const HMAX = 60;
 
   function esc(s) {
     return String(s ?? "").replace(/[&<>"']/g, (c) =>
@@ -32,6 +36,68 @@
     }
   }
 
+  function pushRate(fromStatus) {
+    const nodes = fromStatus.nodes || [];
+    const host = nodes.find((n) => n.ip === "192.168.178.88") || nodes[0];
+    const st = (host && host.status) || {};
+    const oc = st.onchip || {};
+    const hc = st.hciCapture || {};
+    const bt = st.btac || {};
+    const sample = {
+      appTx: (oc.appTxBps || 0) / 1000,
+      appRx: (oc.appRxBps || 0) / 1000,
+      hciTx: (hc.aclTxBps || 0) / 1000,
+      hciRx: (hc.aclRxBps || 0) / 1000,
+      btac: (bt.fwdBps || 0) / 1000,
+    };
+    Object.keys(hist).forEach((k) => {
+      hist[k].push(sample[k]);
+      if (hist[k].length > HMAX) hist[k].shift();
+    });
+    document.getElementById("rate-now").textContent =
+      `appTX ${sample.appTx.toFixed(1)}  appRX ${sample.appRx.toFixed(1)}  ` +
+      `hciTX ${sample.hciTx.toFixed(1)}  hciRX ${sample.hciRx.toFixed(1)}  ` +
+      `btac ${sample.btac.toFixed(1)} kB/s · dropS=${(st.capture || {}).droppedSession} gapS=${bt.seqGapsSession}`;
+    drawChart();
+  }
+
+  function drawChart() {
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.fillStyle = "#0d1117";
+    ctx.fillRect(0, 0, w, h);
+    const series = [
+      { k: "appTx", c: "#3fb950" },
+      { k: "appRx", c: "#58a6ff" },
+      { k: "hciTx", c: "#e3b341" },
+      { k: "hciRx", c: "#d2a8ff" },
+      { k: "btac", c: "#f85149" },
+    ];
+    let max = 1;
+    series.forEach((s) => hist[s.k].forEach((v) => (max = Math.max(max, v))));
+    ctx.strokeStyle = "#21262d";
+    ctx.beginPath();
+    for (let i = 0; i < 4; i++) {
+      const y = (h * i) / 4;
+      ctx.moveTo(0, y);
+      ctx.lineTo(w, y);
+    }
+    ctx.stroke();
+    series.forEach((s) => {
+      const arr = hist[s.k];
+      if (arr.length < 2) return;
+      ctx.strokeStyle = s.c;
+      ctx.beginPath();
+      arr.forEach((v, i) => {
+        const x = (i / (HMAX - 1)) * w;
+        const y = h - (v / max) * (h - 8) - 4;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+    });
+  }
+
   function renderNode(n) {
     const st = n.status || {};
     const oc = st.onchip || {};
@@ -45,10 +111,10 @@
         <table>
           <tr><td>IP</td><td class="mono"><a href="http://${esc(n.ip)}/" style="color:#58a6ff">${esc(n.ip)}</a></td></tr>
           <tr><td>FW</td><td class="mono">${esc(st.version)}</td></tr>
-          <tr><td>onchip</td><td class="mono">ready=${esc(oc.ready)} state=${esc(oc.state)} bd=${esc(oc.bdAddr)}</td></tr>
-          <tr><td>roles</td><td class="mono">scan=${esc(oc.leScanning)} adv=${esc(oc.leAdvertising)} conn=${esc(oc.leConnected)} gatt=${esc(oc.gattName)}</td></tr>
-          <tr><td>Capture</td><td class="mono">cap=${esc(cap.captured)} drop=${esc(cap.dropped)} fill=${esc(cap.fill)}/${esc(cap.capacity)} psram=${esc(cap.psram)}</td></tr>
-          <tr><td>HCI/BTAC</td><td class="mono">rx=${esc(hc.rx)} tx=${esc(hc.tx)} btacFwd=${esc(btac.forwarded)} listen=${esc(btac.listening)}</td></tr>
+          <tr><td>onchip</td><td class="mono">ready=${esc(oc.ready)} state=${esc(oc.state)} mtu=${esc(oc.attMtu)} thr=${esc(oc.thrRunning)}</td></tr>
+          <tr><td>rates</td><td class="mono">app ${esc(oc.appTxBps)}/${esc(oc.appRxBps)} · hci ${esc(hc.aclTxBps)}/${esc(hc.aclRxBps)} · btac ${esc(btac.fwdBps)} B/s</td></tr>
+          <tr><td>Capture</td><td class="mono">drop=${esc(cap.dropped)} dropS=${esc(cap.droppedSession)} fill=${esc(cap.fill)}/${esc(cap.capacity)} hwS=${esc(cap.highWaterSession)}</td></tr>
+          <tr><td>BTAC</td><td class="mono">fwd=${esc(btac.forwarded)} gap=${esc(btac.seqGaps)} gapS=${esc(btac.seqGapsSession)}</td></tr>
         </table>
       </div>`;
   }
@@ -87,6 +153,7 @@
     await refreshHealth();
     const data = await jget("/api/v1/nodes");
     nodesEl.innerHTML = (data.nodes || []).map(renderNode).join("");
+    pushRate(data);
     const ips = (data.nodes || []).map((n) => n.ip);
     const cur = targetEl.value;
     targetEl.innerHTML = ips.map((ip) => `<option value="${esc(ip)}">${esc(ip)}</option>`).join("");
@@ -98,9 +165,9 @@
   document.getElementById("btn-refresh").onclick = () => refreshNodes().catch(console.error);
   document.getElementById("btn-auto").onclick = function () {
     auto = !auto;
-    this.textContent = "Auto 3s: " + (auto ? "on" : "off");
+    this.textContent = "Auto 1s: " + (auto ? "on" : "off");
     if (timer) clearInterval(timer);
-    if (auto) timer = setInterval(() => refreshNodes().catch(console.error), 3000);
+    if (auto) timer = setInterval(() => refreshNodes().catch(console.error), 1000);
   };
 
   document.getElementById("btn-sess-start").onclick = async () => {
@@ -122,6 +189,21 @@
   };
   document.getElementById("btn-gatt").onclick = () =>
     jpost(`/api/v1/node/192.168.178.88/gatt-read-name`, {}).then(refreshNodes);
+  document.getElementById("btn-thr-n").onclick = async () => {
+    await jpost(`/api/v1/node/192.168.178.89/throughput-start`, { mode: "notify", payload: "20", mtu: "247" });
+    await jpost(`/api/v1/node/192.168.178.88/throughput-start`, { mode: "notify", payload: "20", mtu: "247" });
+    await refreshNodes();
+  };
+  document.getElementById("btn-thr-w").onclick = async () => {
+    await jpost(`/api/v1/node/192.168.178.89/throughput-start`, { mode: "write", payload: "20", mtu: "247" });
+    await jpost(`/api/v1/node/192.168.178.88/throughput-start`, { mode: "write", payload: "20", mtu: "247" });
+    await refreshNodes();
+  };
+  document.getElementById("btn-thr-stop").onclick = async () => {
+    await jpost(`/api/v1/node/192.168.178.88/throughput-stop`, {});
+    await jpost(`/api/v1/node/192.168.178.89/throughput-stop`, {});
+    await refreshNodes();
+  };
   document.getElementById("btn-disco").onclick = () =>
     jpost(`/api/v1/node/192.168.178.87/discoverable-start`, {}).then(refreshNodes);
 

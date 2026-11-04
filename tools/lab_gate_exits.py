@@ -196,6 +196,15 @@ def main() -> int:
             "stakeholder need + named RF instrument",
             "open separate repo/scope when Air is required",
         ),
+        block(
+            "BT16",
+            "Thin ATT Notify/Write is L2 over HCI ACL only",
+            f"appTx={(onchip.get('88') or {}).get('appTxBps')} appRx={(onchip.get('88') or {}).get('appRxBps')} "
+            f"aclTx={(live.get('88') or {}).get('hciCapture', {}).get('aclTxBps') if isinstance(live.get('88'), dict) else None}",
+            "Lab rates comparable across App/HCI/BTAC when session gaps classified",
+            "long soak + full MTU matrix under WiFi load",
+            "lab_bt16_throughput.py + lab_bt16_impact.py",
+        ),
     ]
 
     # L2 probe note (post-BT9 capability, not a numbered gate)

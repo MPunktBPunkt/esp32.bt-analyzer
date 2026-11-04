@@ -39,7 +39,7 @@ void HciVhciCapture::enqueue(HciPacketType type, HciDirection dir,
     return;
   }
   CaptureFrame f;
-  f.seq = ring_->nextSeq();
+  f.seq = 0;  // CaptureRing assigns on successful enqueue
   f.ts_us = static_cast<uint64_t>(esp_timer_get_time());
   f.dir = dir;
   f.type = type;
@@ -47,7 +47,8 @@ void HciVhciCapture::enqueue(HciPacketType type, HciDirection dir,
   f.length = static_cast<uint16_t>(len > kCaptureMaxPayload ? kCaptureMaxPayload
                                                             : len);
   memcpy(f.payload, data, f.length);
-  ring_->enqueue(f);
+  const bool ok = ring_->enqueue(f);
+  noteRate(type, dir, f.length, ok);
 }
 
 void HciVhciCapture::onRecv(const uint8_t *data, uint16_t len) {
@@ -103,6 +104,39 @@ bool HciVhciCapture::writeCommand(const uint8_t *cmd, size_t len) {
   return writeH4(buf, len + 1);
 }
 
+void HciVhciCapture::noteRate(HciPacketType type, HciDirection dir,
+                              uint16_t length, bool enqueued) {
+  if (!enqueued) {
+    return;
+  }
+  win_pkts_++;
+  if (type != HciPacketType::Acl) {
+    return;
+  }
+  if (dir == HciDirection::HostToController) {
+    win_acl_tx_ += length;
+  } else if (dir == HciDirection::ControllerToHost) {
+    win_acl_rx_ += length;
+  }
+}
+
+void HciVhciCapture::pollRates() {
+  const uint32_t now = millis();
+  if (rate_ms_ == 0) {
+    rate_ms_ = now;
+    return;
+  }
+  const uint32_t dt = now - rate_ms_;
+  if (dt < 1000) {
+    return;
+  }
+  acl_tx_bps_ = (win_acl_tx_ * 1000u) / dt;
+  acl_rx_bps_ = (win_acl_rx_ * 1000u) / dt;
+  pkt_ps_ = (win_pkts_ * 1000u) / dt;
+  win_acl_tx_ = win_acl_rx_ = win_pkts_ = 0;
+  rate_ms_ = now;
+}
+
 void HciVhciCapture::appendStatusJson(String &json) const {
   json += ",\"hciCapture\":{";
   json += "\"transport\":\"onchip_vhci\"";
@@ -123,6 +157,12 @@ void HciVhciCapture::appendStatusJson(String &json) const {
   json += String(inject_);
   json += ",\"sendFails\":";
   json += String(send_fails_);
+  json += ",\"aclTxBps\":";
+  json += String(acl_tx_bps_);
+  json += ",\"aclRxBps\":";
+  json += String(acl_rx_bps_);
+  json += ",\"pktPs\":";
+  json += String(pkt_ps_);
   json += "}";
 }
 

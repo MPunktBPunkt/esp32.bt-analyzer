@@ -64,10 +64,36 @@ void BtacStream::acceptIfNeeded() {
   client_.setNoDelay(true);
   connected_ = true;
   stream_id_++;
-  have_last_seq_ = false;
+  beginClientSession();
   Serial.printf("[btac] client %s stream_id=%u\n",
                 client_.remoteIP().toString().c_str(),
                 static_cast<unsigned>(stream_id_));
+}
+
+void BtacStream::beginClientSession() {
+  have_last_seq_ = false;
+  seq_gaps_session_ = 0;
+  win_bytes_ = 0;
+  fwd_bps_ = 0;
+  rate_ms_ = millis();
+  if (ring_) {
+    ring_->beginSession();
+  }
+}
+
+void BtacStream::pollRates() {
+  const uint32_t now = millis();
+  if (rate_ms_ == 0) {
+    rate_ms_ = now;
+    return;
+  }
+  const uint32_t dt = now - rate_ms_;
+  if (dt < 1000) {
+    return;
+  }
+  fwd_bps_ = (win_bytes_ * 1000u) / dt;
+  win_bytes_ = 0;
+  rate_ms_ = now;
 }
 
 bool BtacStream::writeExact(const uint8_t *data, size_t n) {
@@ -131,6 +157,7 @@ bool BtacStream::writeFrame(const CaptureFrame &f) {
     return false;
   }
   bytes_out_ += static_cast<uint32_t>(total);
+  win_bytes_ += static_cast<uint32_t>(total);
   forwarded_++;
   return true;
 }
@@ -150,7 +177,9 @@ void BtacStream::pumpClient() {
       break;
     }
     if (have_last_seq_ && f.seq > last_seq_ + 1) {
-      seq_gaps_ += (f.seq - last_seq_ - 1);
+      const uint32_t g = f.seq - last_seq_ - 1;
+      seq_gaps_ += g;
+      seq_gaps_session_ += g;
     }
     last_seq_ = f.seq;
     have_last_seq_ = true;
@@ -170,6 +199,7 @@ void BtacStream::loop() {
   ensureListening();
   acceptIfNeeded();
   pumpClient();
+  pollRates();
 }
 
 void BtacStream::appendStatusJson(String &json) const {
@@ -192,6 +222,10 @@ void BtacStream::appendStatusJson(String &json) const {
   json += String(send_fails_);
   json += ",\"seqGaps\":";
   json += String(seq_gaps_);
+  json += ",\"seqGapsSession\":";
+  json += String(seq_gaps_session_);
+  json += ",\"fwdBps\":";
+  json += String(fwd_bps_);
   json += "}";
 }
 

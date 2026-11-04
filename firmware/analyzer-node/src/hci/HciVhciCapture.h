@@ -25,6 +25,9 @@ public:
   uint32_t txFrames() const { return tx_; }
   uint32_t injectFrames() const { return inject_; }
   uint32_t sendFails() const { return send_fails_; }
+  uint32_t aclTxBps() const { return acl_tx_bps_; }
+  uint32_t aclRxBps() const { return acl_rx_bps_; }
+  uint32_t pktPs() const { return pkt_ps_; }
 
   bool injectRaw(HciPacketType type, HciDirection dir, uint8_t endpoint,
                  const uint8_t *data, size_t len);
@@ -34,6 +37,9 @@ public:
 
   /** Convenience: HCI command payload without type (prepends 0x01). */
   bool writeCommand(const uint8_t *cmd, size_t len);
+
+  /** Refresh 1s rate windows (call from OnchipBt::loop). */
+  void pollRates();
 
   void appendStatusJson(String &json) const;
   String drainJsonl(size_t max_frames);
@@ -46,8 +52,17 @@ private:
   uint32_t inject_ = 0;
   uint32_t send_fails_ = 0;
 
+  uint32_t win_acl_tx_ = 0;
+  uint32_t win_acl_rx_ = 0;
+  uint32_t win_pkts_ = 0;
+  uint32_t acl_tx_bps_ = 0;
+  uint32_t acl_rx_bps_ = 0;
+  uint32_t pkt_ps_ = 0;
+  uint32_t rate_ms_ = 0;
+
   void enqueue(HciPacketType type, HciDirection dir, uint8_t endpoint,
                const uint8_t *data, size_t len);
+  void noteRate(HciPacketType type, HciDirection dir, uint16_t length, bool enqueued);
   static HciPacketType typeFromH4(uint8_t t);
 };
 

@@ -1,13 +1,13 @@
 # esp32.bt-analyzer
 
-![Version](https://img.shields.io/badge/version-0.2.7-blue)
+![Version](https://img.shields.io/badge/version-0.2.8-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Gate](https://img.shields.io/badge/gate-BT14%20review%20ready-yellow)](docs/GATES.md)
+[![Gate](https://img.shields.io/badge/gate-BT16%20throughput-yellow)](docs/GATES.md)
 
 ESP **on-chip Bluetooth HCI analyzer** (VHCI): Controller ↔ Host über die Board-Radio, Capture nach Debian.  
 **Kein USB-Dongle nötig** (Topologie **F_ONCHIP**).
 
-> **v0.2.7** — BTAC `:9753` · JSONL/PCAPNG · BLE scan/adv/connect · thin ATT Device-Name (L2) · Classic name/discoverable (`.87`) · Lab-Session-UI `:8081` · Gate exits.  
+> **v0.2.8** — BT16 ATT throughput · session gap classify · live kB/s charts `:8081` · clock-sync markers · impact matrix.  
 > **Nicht claimed:** RF/Air-Sniffer · Classic auf S3 · MITM · voller GATT-Stack · HCI = Air.
 
 Wissensbasis: [technology-audit / esp32-bt-analyzer](https://github.com/MPunktBPunkt/technology-audit/tree/main/projects/esp32-bt-analyzer) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5**.
@@ -96,18 +96,21 @@ Useful node APIs: `/api/bt/scan|advertise|connect|disconnect`, `/api/bt/gatt/rea
 Primary topology **F_ONCHIP**. Status matrix: [`docs/GATES.md`](docs/GATES.md).
 
 ```bash
-python3 tools/lab_run_gates.py     # BT5–BT14 live evidence → docs/evidence/
-python3 tools/lab_gate_exits.py    # FACT/MEASURED/UNKNOWN → docs/GATE_EXITS.md
-python3 tools/btac_recv.py 192.168.178.88 -n 100 -o /tmp/x.btac --jsonl /tmp/x.jsonl
-python3 tools/btac_decode.py /tmp/x.btac --stats
-python3 tools/btac_to_pcapng.py /tmp/x.btac -o /tmp/x.pcapng
+python3 tools/lab_run_gates.py          # BT5–BT14 + session gap classify
+python3 tools/lab_gap_classify.py --host 192.168.178.88 --btac docs/evidence/….btac
+python3 tools/lab_bt16_throughput.py    # ATT notify/write matrix
+python3 tools/lab_bt16_impact.py        # analyzer impact (WiFi STA constant)
+python3 tools/lab_clock_sync.py         # multi-node offset estimate
+python3 tools/lab_gate_exits.py
 ```
 
-| Gate band | Stand (0.2.7) |
+| Gate band | Stand (0.2.8) |
 |-----------|----------------|
 | BT0–BT13 | **CODE READY** / lab MEASURED |
 | BT14 | **ready for external review** |
 | BT15 | **deferred** (RF/Air) |
+| BT16 | **CODE READY** (thin ATT throughput + charts) |
+| BT17 | **scaffold** ([`docs/BT17_CLASSIC_AUDIO.md`](docs/BT17_CLASSIC_AUDIO.md)) |
 
 ## License
 

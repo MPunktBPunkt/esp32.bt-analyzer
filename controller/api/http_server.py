@@ -16,7 +16,7 @@ from controller import session as btac_session
 
 WEB_ROOT = Path(__file__).resolve().parents[2] / "web"
 STARTED = time.time()
-VERSION = "0.2.0"
+VERSION = "0.2.8"
 
 # Poll-proxy lab nodes (OBSERVE) — no HELLO required yet
 LAB_NODES = [
@@ -230,6 +230,9 @@ class Handler(BaseHTTPRequestHandler):
                     "discoverable-start": "/api/bt/discoverable/start",
                     "discoverable-stop": "/api/bt/discoverable/stop",
                     "classic-name": "/api/bt/classic/name",
+                    "throughput-start": "/api/bt/throughput/start",
+                    "throughput-stop": "/api/bt/throughput/stop",
+                    "att-mtu": "/api/bt/att/mtu",
                 }
                 if action in proxy_map:
                     code, text = _post_form(f"http://{ip}{proxy_map[action]}", fields)

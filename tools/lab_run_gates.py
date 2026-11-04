@@ -154,7 +154,20 @@ def main() -> int:
     jsonl = EVIDENCE / f"{stem}.jsonl"
     pcap = EVIDENCE / f"{stem}.pcapng"
     before = get(f"http://{HOST}/api/status")
-    drop_before = int((before.get("capture") or {}).get("dropped") or 0)
+    # Prefer session counters when present; else lifetime delta in this window.
+    def _sess_drop(st: dict) -> int:
+        c = st.get("capture") or {}
+        return int(c["droppedSession"]) if "droppedSession" in c else int(c.get("dropped") or 0)
+
+    def _sess_gap(st: dict) -> int:
+        b = st.get("btac") or {}
+        return int(b["seqGapsSession"]) if "seqGapsSession" in b else int(b.get("seqGaps") or 0)
+
+    drop_before = _sess_drop(before)
+    gap_before = _sess_gap(before)
+    (EVIDENCE / f"{stem}_status_before.json").write_text(
+        json.dumps(before, indent=2) + "\n", encoding="utf-8"
+    )
     recv = subprocess.run(
         [
             sys.executable,
@@ -175,9 +188,17 @@ def main() -> int:
         timeout=90,
     )
     after = get(f"http://{HOST}/api/status")
-    drop_after = int((after.get("capture") or {}).get("dropped") or 0)
-    drops_delta = max(0, drop_after - drop_before)
-    gaps = int((after.get("btac") or {}).get("seqGaps") or 0)
+    (EVIDENCE / f"{stem}_status_after.json").write_text(
+        json.dumps(after, indent=2) + "\n", encoding="utf-8"
+    )
+    drops_delta = max(0, _sess_drop(after) - drop_before)
+    # New BTAC client resets session counters → after may be absolute session value
+    if "droppedSession" in (after.get("capture") or {}) and drop_before > _sess_drop(after):
+        drops_delta = _sess_drop(after)
+    gaps_delta = max(0, _sess_gap(after) - gap_before)
+    if "seqGapsSession" in (after.get("btac") or {}) and gap_before > _sess_gap(after):
+        gaps_delta = _sess_gap(after)
+    lifetime_gaps = int((after.get("btac") or {}).get("seqGaps") or 0)
     dec = subprocess.run(
         [sys.executable, str(ROOT / "tools" / "btac_decode.py"), str(btac), "--stats"],
         cwd=str(ROOT),
@@ -189,6 +210,7 @@ def main() -> int:
         dec_j = json.loads(dec.stdout)
     except json.JSONDecodeError:
         dec_j = {"ok": False, "raw": dec.stdout[-500:]}
+    file_gaps = int(dec_j.get("gaps") or 0)
     pcap_p = subprocess.run(
         [sys.executable, str(ROOT / "tools" / "btac_to_pcapng.py"), str(btac), "-o", str(pcap)],
         cwd=str(ROOT),
@@ -201,13 +223,43 @@ def main() -> int:
     except json.JSONDecodeError:
         pcap_j = {"ok": False, "stderr": pcap_p.stderr}
 
+    gap_cls = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "tools" / "lab_gap_classify.py"),
+            "--from-status",
+            str(EVIDENCE / f"{stem}_status_before.json"),
+            str(EVIDENCE / f"{stem}_status_after.json"),
+            "--btac",
+            str(btac),
+        ],
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    try:
+        gap_j = json.loads(gap_cls.stdout)
+    except json.JSONDecodeError:
+        gap_j = {"ok": False, "raw": gap_cls.stdout[-400:]}
+
+    # Ring ok + decode crc ok + frames; E2E = file_gaps==0 (separate claim).
     results["gates"]["BT6"] = {
-        "ok": drops_delta == 0 and int(dec_j.get("crc_fail") or 0) == 0 and int(dec_j.get("frames") or 0) > 0,
+        "ok": drops_delta == 0
+        and int(dec_j.get("crc_fail") or 0) == 0
+        and int(dec_j.get("frames") or 0) > 0,
         "drops_delta": drops_delta,
-        "btac_seqGaps": gaps,
+        "btac_seqGapsSession_delta": gaps_delta,
+        "btac_seqGaps_lifetime": lifetime_gaps,
+        "file_gaps": file_gaps,
+        "e2e_ok": file_gaps == 0 and drops_delta == 0,
+        "highWater": (after.get("capture") or {}).get("highWater"),
+        "highWaterSession": (after.get("capture") or {}).get("highWaterSession"),
         "frames": dec_j.get("frames"),
         "crc_fail": dec_j.get("crc_fail"),
         "recv_rc": recv.returncode,
+        "gap_classify": gap_j,
+        "note": "drops_delta=ring enqueue; e2e_ok requires file_gaps==0; never compare lifetime seqGaps to drops_delta",
     }
     results["gates"]["BT7"] = {"ok": bool(dec_j.get("ok")), "stats": dec_j}
     results["gates"]["BT8"] = {"ok": bool(pcap_j.get("ok")), "pcapng": str(pcap.relative_to(ROOT)), "stats": pcap_j}
@@ -305,9 +357,12 @@ def main() -> int:
         ROOT / "docs" / "EVIDENCE.md",
         ROOT / "docs" / "LAB_METHODS.md",
         ROOT / "docs" / "BT15_RF_AIR.md",
+        ROOT / "docs" / "BT16_THROUGHPUT.md",
         ROOT / "tools" / "btac_to_pcapng.py",
         ROOT / "tools" / "btac_decode.py",
         ROOT / "tools" / "lab_gate_exits.py",
+        ROOT / "tools" / "lab_gap_classify.py",
+        ROOT / "tools" / "lab_bt16_throughput.py",
         ROOT / "controller" / "session.py",
     ]
     missing = [str(p.relative_to(ROOT)) for p in needed if not p.is_file()]

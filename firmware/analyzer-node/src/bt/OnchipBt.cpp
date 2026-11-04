@@ -3,9 +3,11 @@
 #include "core/DiagLog.h"
 
 #include <esp_bt.h>
+#include <esp_timer.h>
 #include <nvs_flash.h>
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
+#include <strings.h>
 
 #if CONFIG_IDF_TARGET_ESP32
 #include <esp32-hal-bt.h>
@@ -216,6 +218,9 @@ void OnchipBt::loop() {
     delay(20);
     readBdAddr();
   }
+  cap_.pollRates();
+  pollAppRates();
+  thrPump();
 }
 
 void OnchipBt::handleControllerPacket(uint8_t *data, uint16_t len) {
@@ -307,6 +312,9 @@ void OnchipBt::parseLeMeta(const uint8_t *evt, uint8_t evt_len) {
       le_scanning_ = false;
       le_advertising_ = false;
       gatt_name_valid_ = false;
+      thr_cccd_enabled_ = false;
+      thr_running_ = false;
+      att_mtu_ = 23;
       setState(conn_role_ == 1 ? "le_connected_periph" : "le_connected");
     } else {
       le_connected_ = false;
@@ -736,6 +744,169 @@ bool OnchipBt::gattReadDeviceName() {
   return cap_.writeH4(h4, sizeof(h4));
 }
 
+bool OnchipBt::writeAtt(const uint8_t *att, uint16_t att_len) {
+  if (!le_connected_ || !cap_.openOk() || !att || att_len == 0 || att_len > 512) {
+    return false;
+  }
+  uint8_t h4[1 + 4 + 4 + 512];
+  const uint16_t l2 = att_len;
+  const uint16_t alen = static_cast<uint16_t>(4 + l2);
+  h4[0] = 0x02;
+  const uint16_t hdr = static_cast<uint16_t>(conn_handle_ & 0x0FFFu);
+  h4[1] = static_cast<uint8_t>(hdr & 0xff);
+  h4[2] = static_cast<uint8_t>((hdr >> 8) & 0xff);
+  h4[3] = static_cast<uint8_t>(alen & 0xff);
+  h4[4] = static_cast<uint8_t>((alen >> 8) & 0xff);
+  h4[5] = static_cast<uint8_t>(l2 & 0xff);
+  h4[6] = static_cast<uint8_t>((l2 >> 8) & 0xff);
+  h4[7] = 0x04;
+  h4[8] = 0x00;
+  memcpy(h4 + 9, att, att_len);
+  return cap_.writeH4(h4, static_cast<size_t>(9 + att_len));
+}
+
+bool OnchipBt::attExchangeMtu(uint16_t mtu) {
+  if (!le_connected_) {
+    return false;
+  }
+  if (mtu < 23) {
+    mtu = 23;
+  }
+  if (mtu > 247) {
+    mtu = 247;
+  }
+  uint8_t att[3];
+  att[0] = 0x02;  // Exchange MTU Request
+  att[1] = static_cast<uint8_t>(mtu & 0xff);
+  att[2] = static_cast<uint8_t>((mtu >> 8) & 0xff);
+  setState("att_mtu_req");
+  return writeAtt(att, 3);
+}
+
+bool OnchipBt::throughputStart(const char *mode, uint16_t payload_len,
+                               uint16_t mtu) {
+  if (!le_connected_) {
+    return false;
+  }
+  thr_notify_ = !(mode && strcasecmp(mode, "write") == 0);
+  if (payload_len < 12) {
+    payload_len = 12;
+  }
+  if (payload_len > 200) {
+    payload_len = 200;
+  }
+  thr_payload_ = payload_len;
+  thr_seq_tx_ = 0;
+  thr_have_rx_ = false;
+  thr_loss_ = 0;
+  thr_reorder_ = 0;
+  thr_app_tx_ = thr_app_rx_ = 0;
+  win_app_tx_ = win_app_rx_ = 0;
+  app_tx_bps_ = app_rx_bps_ = 0;
+  app_rate_ms_ = millis();
+  thr_last_send_ms_ = 0;
+  thr_cccd_enabled_ = (conn_role_ == 1);  // peripheral can notify once CCCD written
+  if (mtu >= 23) {
+    attExchangeMtu(mtu);
+  }
+  if (thr_notify_ && conn_role_ == 0) {
+    // Central: enable CCCD on handle 0x0004
+    uint8_t cccd[5] = {0x12, 0x04, 0x00, 0x01, 0x00};  // Write Request
+    writeAtt(cccd, 5);
+  }
+  thr_running_ = true;
+  setState(thr_notify_ ? "thr_notify" : "thr_write");
+  return true;
+}
+
+void OnchipBt::throughputStop() {
+  thr_running_ = false;
+  setState(le_connected_ ? (conn_role_ == 1 ? "le_connected_periph" : "le_connected")
+                         : "idle");
+}
+
+void OnchipBt::pollAppRates() {
+  const uint32_t now = millis();
+  if (app_rate_ms_ == 0) {
+    app_rate_ms_ = now;
+    return;
+  }
+  const uint32_t dt = now - app_rate_ms_;
+  if (dt < 1000) {
+    return;
+  }
+  app_tx_bps_ = (win_app_tx_ * 1000u) / dt;
+  app_rx_bps_ = (win_app_rx_ * 1000u) / dt;
+  win_app_tx_ = win_app_rx_ = 0;
+  app_rate_ms_ = now;
+}
+
+bool OnchipBt::sendThrPayload() {
+  // Value = [seq:u32 LE][ts_us:u64 LE][pad…]
+  uint8_t att[3 + 200];
+  uint16_t att_len = 0;
+  if (thr_notify_) {
+    if (conn_role_ != 1 || !thr_cccd_enabled_) {
+      return false;
+    }
+    att[0] = 0x1b;  // Handle Value Notification
+    att[1] = 0x03;
+    att[2] = 0x00;  // handle 0x0003
+    att_len = 3;
+  } else {
+    if (conn_role_ != 0) {
+      return false;
+    }
+    att[0] = 0x52;  // Write Command
+    att[1] = 0x03;
+    att[2] = 0x00;
+    att_len = 3;
+  }
+  const uint32_t seq = thr_seq_tx_++;
+  const uint64_t ts = static_cast<uint64_t>(esp_timer_get_time());
+  for (int i = 0; i < 4; i++) {
+    att[att_len++] = static_cast<uint8_t>((seq >> (8 * i)) & 0xff);
+  }
+  for (int i = 0; i < 8; i++) {
+    att[att_len++] = static_cast<uint8_t>((ts >> (8 * i)) & 0xff);
+  }
+  while (att_len < static_cast<uint16_t>(3 + thr_payload_) && att_len < sizeof(att)) {
+    att[att_len++] = 0xa5;
+  }
+  // Clamp to ATT MTU (opcode+handle+value ≤ mtu)
+  const uint16_t max_att = att_mtu_ > 3 ? static_cast<uint16_t>(att_mtu_) : 23;
+  if (att_len > max_att) {
+    att_len = max_att;
+  }
+  if (!writeAtt(att, att_len)) {
+    return false;
+  }
+  const uint16_t app = static_cast<uint16_t>(att_len > 3 ? att_len - 3 : 0);
+  thr_app_tx_ += app;
+  win_app_tx_ += app;
+  return true;
+}
+
+void OnchipBt::thrPump() {
+  if (!thr_running_ || !le_connected_) {
+    return;
+  }
+  const uint32_t now = millis();
+  // ~200 pps soft cap to keep WiFi/web alive
+  if (now - thr_last_send_ms_ < 5) {
+    return;
+  }
+  if (thr_notify_ && conn_role_ == 1 && thr_cccd_enabled_) {
+    if (sendThrPayload()) {
+      thr_last_send_ms_ = now;
+    }
+  } else if (!thr_notify_ && conn_role_ == 0) {
+    if (sendThrPayload()) {
+      thr_last_send_ms_ = now;
+    }
+  }
+}
+
 void OnchipBt::parseAclAtt(const uint8_t *h4, uint16_t len) {
   // H4 02 | handle[2] | acl_len[2] | l2cap_len[2] | cid[2] | att...
   if (len < 10 || h4[0] != 0x02) {
@@ -754,31 +925,88 @@ void OnchipBt::parseAclAtt(const uint8_t *h4, uint16_t len) {
   if (att_len < 1) {
     return;
   }
+
+  auto noteThrRx = [&](const uint8_t *val, uint16_t vlen) {
+    if (vlen < 12) {
+      return;
+    }
+    uint32_t seq = 0;
+    for (int i = 0; i < 4; i++) {
+      seq |= static_cast<uint32_t>(val[i]) << (8 * i);
+    }
+    thr_app_rx_ += vlen;
+    win_app_rx_ += vlen;
+    if (!thr_have_rx_) {
+      thr_expect_rx_ = seq + 1;
+      thr_have_rx_ = true;
+    } else if (seq < thr_expect_rx_) {
+      thr_reorder_++;
+    } else if (seq > thr_expect_rx_) {
+      thr_loss_ += (seq - thr_expect_rx_);
+      thr_expect_rx_ = seq + 1;
+    } else {
+      thr_expect_rx_ = seq + 1;
+    }
+  };
+
+  // Exchange MTU Request (peripheral answers)
+  if (att[0] == 0x02 && att_len >= 3 && conn_role_ == 1) {
+    uint16_t client_mtu = static_cast<uint16_t>(att[1] | (att[2] << 8));
+    if (client_mtu < 23) {
+      client_mtu = 23;
+    }
+    if (client_mtu > 247) {
+      client_mtu = 247;
+    }
+    att_mtu_ = client_mtu;
+    uint8_t rsp[3] = {0x03, att[1], att[2]};
+    writeAtt(rsp, 3);
+    return;
+  }
+  if (att[0] == 0x03 && att_len >= 3) {
+    att_mtu_ = static_cast<uint16_t>(att[1] | (att[2] << 8));
+    if (att_mtu_ < 23) {
+      att_mtu_ = 23;
+    }
+    return;
+  }
+
+  // CCCD write → enable notifications (handle 0x0004)
+  if ((att[0] == 0x12 || att[0] == 0x52) && att_len >= 5 && conn_role_ == 1) {
+    const uint16_t handle = static_cast<uint16_t>(att[1] | (att[2] << 8));
+    if (handle == 0x0004) {
+      thr_cccd_enabled_ = (att[3] & 0x01) != 0;
+      if (att[0] == 0x12) {
+        uint8_t rsp[5] = {0x13};  // Write Response
+        writeAtt(rsp, 1);
+      }
+      return;
+    }
+    if (handle == 0x0003 && att[0] == 0x52) {
+      noteThrRx(att + 3, static_cast<uint16_t>(att_len - 3));
+      return;
+    }
+  }
+
+  // Notification on central
+  if (att[0] == 0x1b && att_len >= 15) {
+    noteThrRx(att + 3, static_cast<uint16_t>(att_len - 3));
+    return;
+  }
+
   // Peripheral stub: answer Read By Type 0x2A00 with adv_name_ (thin GATT).
   if (att[0] == 0x08 && att_len >= 7 && le_connected_ && conn_role_ == 1) {
     const uint16_t uuid = static_cast<uint16_t>(att[5] | (att[6] << 8));
     if (uuid == 0x2A00) {
       const size_t nlen = strnlen(adv_name_, sizeof(adv_name_) - 1);
       const uint8_t pair = static_cast<uint8_t>(2 + nlen);
-      const uint16_t l2 = static_cast<uint16_t>(2 + pair);  // opcode+len + pair
-      const uint16_t alen = static_cast<uint16_t>(4 + l2);
-      uint8_t rsp[1 + 4 + 4 + 2 + 32];
-      rsp[0] = 0x02;
-      const uint16_t hdr = static_cast<uint16_t>(conn_handle_ & 0x0FFFu);
-      rsp[1] = static_cast<uint8_t>(hdr & 0xff);
-      rsp[2] = static_cast<uint8_t>((hdr >> 8) & 0xff);
-      rsp[3] = static_cast<uint8_t>(alen & 0xff);
-      rsp[4] = static_cast<uint8_t>((alen >> 8) & 0xff);
-      rsp[5] = static_cast<uint8_t>(l2 & 0xff);
-      rsp[6] = static_cast<uint8_t>((l2 >> 8) & 0xff);
-      rsp[7] = 0x04;
-      rsp[8] = 0x00;
-      rsp[9] = 0x09;  // Read By Type Response
-      rsp[10] = pair;
-      rsp[11] = 0x03;
-      rsp[12] = 0x00;  // fake handle 0x0003
-      memcpy(&rsp[13], adv_name_, nlen);
-      cap_.writeH4(rsp, static_cast<size_t>(9 + 2 + pair));
+      uint8_t rsp[2 + 32];
+      rsp[0] = 0x09;
+      rsp[1] = pair;
+      rsp[2] = 0x03;
+      rsp[3] = 0x00;
+      memcpy(&rsp[4], adv_name_, nlen);
+      writeAtt(rsp, static_cast<uint16_t>(2 + pair));
       return;
     }
   }
@@ -856,7 +1084,25 @@ void OnchipBt::appendStatusJson(String &json) const {
   }
   json += ",\"classicName\":\"";
   json += classic_name_;
-  json += "\",\"l2Claim\":\"att_over_hci_acl_not_air\"";
+  json += "\",\"attMtu\":";
+  json += String(att_mtu_);
+  json += ",\"thrRunning\":";
+  json += thr_running_ ? "true" : "false";
+  json += ",\"thrMode\":\"";
+  json += thr_notify_ ? "notify" : "write";
+  json += "\",\"appTxBps\":";
+  json += String(app_tx_bps_);
+  json += ",\"appRxBps\":";
+  json += String(app_rx_bps_);
+  json += ",\"appTxBytes\":";
+  json += String(thr_app_tx_);
+  json += ",\"appRxBytes\":";
+  json += String(thr_app_rx_);
+  json += ",\"thrLoss\":";
+  json += String(thr_loss_);
+  json += ",\"thrReorder\":";
+  json += String(thr_reorder_);
+  json += ",\"l2Claim\":\"att_over_hci_acl_not_air\"";
   json += ",\"hci\":{\"detected\":";
   json += ready_ ? "true" : "false";
   json += ",\"claim\":\"onchip_controller_vhci\"}";

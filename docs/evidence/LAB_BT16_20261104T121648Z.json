@@ -1,0 +1,106 @@
+{
+  "utc": "20261104T121648Z",
+  "topology": "F_ONCHIP",
+  "gate": "BT16",
+  "claim": "L2_ATT_throughput_over_HCI_not_air",
+  "cases": [
+    {
+      "duration_s": 6.0,
+      "samples": [
+        {
+          "t": 2.03,
+          "host": {
+            "appTxBps": 0,
+            "appRxBps": 878,
+            "aclTxBps": 0,
+            "aclRxBps": 1803,
+            "fwdBps": 4153,
+            "thrLoss": 6
+          },
+          "peer": {
+            "appTxBps": 772,
+            "appRxBps": 0,
+            "aclTxBps": 2653,
+            "aclRxBps": 0
+          }
+        },
+        {
+          "t": 3.57,
+          "host": {
+            "appTxBps": 0,
+            "appRxBps": 1427,
+            "aclTxBps": 0,
+            "aclRxBps": 1754,
+            "fwdBps": 2706,
+            "thrLoss": 8
+          },
+          "peer": {
+            "appTxBps": 930,
+            "appRxBps": 0,
+            "aclTxBps": 1472,
+            "aclRxBps": 0
+          }
+        },
+        {
+          "t": 5.0,
+          "host": {
+            "appTxBps": 0,
+            "appRxBps": 1113,
+            "aclTxBps": 0,
+            "aclRxBps": 1781,
+            "fwdBps": 3650,
+            "thrLoss": 8
+          },
+          "peer": {
+            "appTxBps": 1220,
+            "appRxBps": 0,
+            "aclTxBps": 1225,
+            "aclRxBps": 0
+          }
+        },
+        {
+          "t": 6.54,
+          "host": {
+            "appTxBps": 0,
+            "appRxBps": 938,
+            "aclTxBps": 0,
+            "aclRxBps": 1500,
+            "fwdBps": 3141,
+            "thrLoss": 15
+          },
+          "peer": {
+            "appTxBps": 1526,
+            "appRxBps": 0,
+            "aclTxBps": 0,
+            "aclRxBps": 0
+          }
+        }
+      ],
+      "avg_host_appTxBps": 0.0,
+      "avg_host_appRxBps": 1089.0,
+      "avg_host_aclTxBps": 0.0,
+      "avg_host_aclRxBps": 1709.5,
+      "avg_host_fwdBps": 3412.5,
+      "host_appTxBytes": 0,
+      "host_appRxBytes": 7320,
+      "peer_appTxBytes": 7960,
+      "peer_appRxBytes": 0,
+      "thrLoss": 22,
+      "thrReorder": 0,
+      "attMtu_host": 247,
+      "attMtu_peer": 247,
+      "connected": true,
+      "versions": {
+        "192.168.178.88": "0.2.8",
+        "192.168.178.89": "0.2.8"
+      },
+      "mode": "notify",
+      "mtu": 247,
+      "payload": 20,
+      "capture": true,
+      "file_gaps": 1,
+      "ok": true
+    }
+  ],
+  "ok": true
+}

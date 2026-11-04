@@ -42,6 +42,8 @@ public:
   uint32_t bytesOut() const { return bytes_out_; }
   uint32_t sendFails() const { return send_fails_; }
   uint32_t seqGaps() const { return seq_gaps_; }
+  uint32_t seqGapsSession() const { return seq_gaps_session_; }
+  uint32_t fwdBps() const { return fwd_bps_; }
 
   void appendStatusJson(String &json) const;
 
@@ -60,13 +62,19 @@ private:
   uint32_t bytes_out_ = 0;
   uint32_t send_fails_ = 0;
   uint32_t seq_gaps_ = 0;
+  uint32_t seq_gaps_session_ = 0;
   uint32_t last_seq_ = 0;
   bool have_last_seq_ = false;
+  uint32_t win_bytes_ = 0;
+  uint32_t fwd_bps_ = 0;
+  uint32_t rate_ms_ = 0;
   uint8_t txbuf_[kHeaderSize + kCaptureMaxPayload + 4]{};
 
   void ensureListening();
   void acceptIfNeeded();
+  void beginClientSession();
   void pumpClient();
+  void pollRates();
   bool writeFrame(const CaptureFrame &f);
   bool writeExact(const uint8_t *data, size_t n);
 };

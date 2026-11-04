@@ -27,9 +27,13 @@ public:
 
   uint32_t captured() const { return captured_; }
   uint32_t dropped() const { return dropped_; }
+  uint32_t droppedSession() const { return dropped_session_; }
   uint32_t dequeued() const { return dequeued_; }
   uint32_t highWater() const { return high_water_; }
-  uint32_t nextSeq() { return ++seq_; }
+  uint32_t nextSeqPeek() const { return seq_; }
+
+  /** Reset session-scoped drop/high-water baseline (e.g. BTAC client connect). */
+  void beginSession();
 
   void appendStatusJson(String &json) const;
 
@@ -42,8 +46,10 @@ private:
   uint32_t seq_ = 0;
   uint32_t captured_ = 0;
   uint32_t dropped_ = 0;
+  uint32_t dropped_session_ = 0;
   uint32_t dequeued_ = 0;
   uint32_t high_water_ = 0;
+  uint32_t high_water_session_ = 0;
 };
 
 }  // namespace bt_analyzer

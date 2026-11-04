@@ -1,0 +1,157 @@
+{
+  "utc": "20261104T121842Z",
+  "topology": "F_ONCHIP",
+  "gates": {
+    "BT5": {
+      "ok": true,
+      "capacity": 512,
+      "psram": true,
+      "fillPct": 0,
+      "frameBytes": 1048
+    },
+    "BT11": {
+      "ok": true,
+      "peer_seen": true,
+      "devices": 3,
+      "matched": [
+        {
+          "addr": "68:b6:b3:2b:c5:69",
+          "addrType": 0,
+          "rssi": -27,
+          "classic": false,
+          "ble": true,
+          "name": "bt-peer-89"
+        }
+      ]
+    },
+    "BT9": {
+      "ok": true,
+      "leConnected": true,
+      "connHandle": 1,
+      "peerAddr": "68:b6:b3:2b:c5:69",
+      "gattName": null,
+      "gatt_l2_ok": false,
+      "l2_claim": "att_over_hci_acl_not_air"
+    },
+    "BT6": {
+      "ok": true,
+      "drops_delta": 0,
+      "btac_seqGapsSession_delta": 0,
+      "btac_seqGaps_lifetime": 4,
+      "file_gaps": 0,
+      "e2e_ok": true,
+      "highWater": 337,
+      "highWaterSession": 167,
+      "frames": 120,
+      "crc_fail": 0,
+      "recv_rc": 0,
+      "gap_classify": {
+        "ring_enqueue_ok": true,
+        "e2e_file_ok": true,
+        "claim": {
+          "drops_zero": "ring_enqueue_ok_in_window",
+          "e2e": "file_gaps_zero"
+        },
+        "metrics": {
+          "dropped_delta": 0,
+          "btac_seqGapsSession_delta": 0,
+          "file_gaps": 0,
+          "btac_connected": false
+        },
+        "attribution": [
+          "clean_session"
+        ],
+        "ok": true,
+        "decode": {
+          "frames": 120,
+          "gaps": 0,
+          "crc_fail": 0,
+          "by_type": {
+            "event": 115,
+            "command": 5
+          },
+          "seq_first": 944,
+          "seq_last": 1063,
+          "input": "/home/martin/projects/bt-analyzer/docs/evidence/LAB_GATES_BT5_13_20261104T121842Z.btac",
+          "output": null,
+          "ok": true
+        }
+      },
+      "note": "drops_delta=ring enqueue; e2e_ok requires file_gaps==0; never compare lifetime seqGaps to drops_delta"
+    },
+    "BT7": {
+      "ok": true,
+      "stats": {
+        "frames": 120,
+        "gaps": 0,
+        "crc_fail": 0,
+        "by_type": {
+          "event": 115,
+          "command": 5
+        },
+        "seq_first": 944,
+        "seq_last": 1063,
+        "input": "/home/martin/projects/bt-analyzer/docs/evidence/LAB_GATES_BT5_13_20261104T121842Z.btac",
+        "output": null,
+        "ok": true
+      }
+    },
+    "BT8": {
+      "ok": true,
+      "pcapng": "docs/evidence/LAB_GATES_BT5_13_20261104T121842Z.pcapng",
+      "stats": {
+        "ok": true,
+        "input": "/home/martin/projects/bt-analyzer/docs/evidence/LAB_GATES_BT5_13_20261104T121842Z.btac",
+        "output": "/home/martin/projects/bt-analyzer/docs/evidence/LAB_GATES_BT5_13_20261104T121842Z.pcapng",
+        "packets": 120,
+        "linktype": 201,
+        "claim": "HCI_H4_not_RF"
+      }
+    },
+    "BT4": {
+      "ok": true,
+      "btac": "docs/evidence/LAB_GATES_BT5_13_20261104T121842Z.btac",
+      "jsonl": "docs/evidence/LAB_GATES_BT5_13_20261104T121842Z.jsonl"
+    },
+    "BT10": {
+      "ok": true,
+      "classicDiscoverable": true,
+      "inquiry_devices": 0,
+      "devices": [],
+      "note": "inquiry device count depends on ambient Classic discoverables"
+    },
+    "BT12": {
+      "ok": true,
+      "frames": 200,
+      "duration_s": 12.79,
+      "btac": "docs/evidence/LAB_GATES_BT5_13_20261104T121842Z_long.btac"
+    },
+    "BT13": {
+      "ok": true,
+      "toggle_fails": 0,
+      "host_ready": true,
+      "heap": 176816
+    },
+    "BT14": {
+      "ok": true,
+      "missing": [],
+      "note": "project-side audit pack present; external technology-audit review separate"
+    },
+    "BT15": {
+      "ok": true,
+      "status": "deferred",
+      "note": "RF/Air out of scope"
+    }
+  },
+  "versions": {
+    "192.168.178.88": "0.2.8",
+    "192.168.178.89": "0.2.8",
+    "192.168.178.87": "0.2.8"
+  },
+  "bd": {
+    "192.168.178.88": "68:b6:b3:29:33:9d",
+    "192.168.178.89": "68:b6:b3:2b:c5:69",
+    "192.168.178.87": "c8:c9:a3:cb:37:96"
+  },
+  "ok": true
+}

@@ -40,24 +40,37 @@ bool CaptureRing::begin(size_t capacity) {
 void CaptureRing::clear() {
   head_ = tail_ = 0;
   high_water_ = 0;
+  high_water_session_ = 0;
+}
+
+void CaptureRing::beginSession() {
+  dropped_session_ = 0;
+  high_water_session_ = size();
 }
 
 bool CaptureRing::enqueue(const CaptureFrame &frame) {
   if (!slots_ || capacity_ == 0) {
     dropped_++;
+    dropped_session_++;
     return false;
   }
   const size_t next = (head_ + 1) % capacity_;
   if (next == tail_) {
     dropped_++;
+    dropped_session_++;
     return false;
   }
+  // Assign seq only on successful enqueue — avoids phantom BTAC gaps on drop.
   slots_[head_] = frame;
+  slots_[head_].seq = ++seq_;
   head_ = next;
   captured_++;
   const size_t fill = size();
   if (fill > high_water_) {
     high_water_ = static_cast<uint32_t>(fill);
+  }
+  if (fill > high_water_session_) {
+    high_water_session_ = static_cast<uint32_t>(fill);
   }
   return true;
 }
@@ -96,6 +109,10 @@ void CaptureRing::appendStatusJson(String &json) const {
   json += String(dequeued_);
   json += ",\"dropped\":";
   json += String(dropped_);
+  json += ",\"droppedSession\":";
+  json += String(dropped_session_);
+  json += ",\"highWaterSession\":";
+  json += String(high_water_session_);
   json += ",\"psram\":";
   json += in_psram_ ? "true" : "false";
   json += ",\"fillPct\":";

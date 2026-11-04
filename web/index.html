@@ -10,7 +10,7 @@
 <header>
   <h1>bt-analyzer</h1>
   <span class="badge" id="svc-ver">…</span>
-  <span class="muted">Debian Lab UI · Port <b>8081</b> · BTAC :9753</span>
+  <span class="muted">Debian Lab UI · Port <b>8081</b> · BTAC :9753 · rates live</span>
 </header>
 <div class="content">
   <div class="card" style="margin-bottom:14px">
@@ -23,8 +23,14 @@
     </table>
     <div class="row">
       <button type="button" id="btn-refresh">Refresh nodes</button>
-      <button type="button" class="secondary" id="btn-auto">Auto 3s: off</button>
+      <button type="button" class="secondary" id="btn-auto">Auto 1s: off</button>
     </div>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <h2>Live rates (kB/s)</h2>
+    <div class="mono" id="rate-legend">App TX/RX · HCI ACL TX/RX · BTAC fwd</div>
+    <canvas id="rate-chart" width="960" height="180" style="width:100%;max-width:960px;height:180px;background:#0d1117;border:1px solid #30363d;border-radius:6px;margin-top:8px"></canvas>
+    <div class="mono" id="rate-now" style="margin-top:8px">—</div>
   </div>
   <div class="grid" id="nodes"></div>
   <div class="card" style="margin-top:14px">
@@ -35,15 +41,18 @@
       <button type="button" class="secondary" id="btn-sess-stop">Stop</button>
       <a id="btn-sess-dl" href="/api/v1/session/download" style="display:none">Download .btac</a>
     </div>
-    <div class="muted" style="margin-top:8px">HCI stream only — not RF/Air.</div>
+    <div class="muted" style="margin-top:8px">HCI stream only — not RF/Air. Session gaps ≠ lifetime seqGaps.</div>
   </div>
   <div class="card" style="margin-top:14px">
-    <h2>Peer / L2 actions</h2>
+    <h2>Peer / L2 / BT16 throughput</h2>
     <div class="row">
       <button type="button" id="btn-adv">Advertise peer</button>
       <button type="button" id="btn-scan">Scan host</button>
       <button type="button" id="btn-connect">Connect</button>
-      <button type="button" class="secondary" id="btn-gatt">GATT read name (L2)</button>
+      <button type="button" class="secondary" id="btn-gatt">GATT read name</button>
+      <button type="button" id="btn-thr-n">Thr notify</button>
+      <button type="button" id="btn-thr-w">Thr write</button>
+      <button type="button" class="secondary" id="btn-thr-stop">Thr stop</button>
       <button type="button" class="secondary" id="btn-disco">Classic discoverable</button>
     </div>
     <input type="text" id="peer-addr" placeholder="peer BD_ADDR aa:bb:…">
@@ -59,7 +68,7 @@
   </div>
 </div>
 <footer>
-  Topology F_ONCHIP · Claims: HCI ≠ Air · L2 ATT = probe over HCI ACL only · BT15 RF deferred.
+  Topology F_ONCHIP · L1 HCI · L2 ATT throughput probe · BT15 RF deferred · BT16 rates on :8081
 </footer>
 <script src="/app.js"></script>
 </body>

@@ -11,7 +11,8 @@ No release claim without green gate status.
 | **BT3** | Raw HCI capture (ts, dir, type, payload) | **CODE READY** (VHCI) |
 | **BT4** | TCP capture stream (BTAC framing) | **CODE READY** (`:9753`) |
 | **BT5** | PSRAM ring buffer | **CODE READY** (512 slots S3 · fillPct) |
-| **BT6** | Lossless lab capture (drops=0, gaps noted) | **CODE READY** (lab script) |
+| **BT6** | Lossless lab capture (session drops + file gaps) | **CODE READY** (`lab_gap_classify.py`) |
+| **BT16** | BLE ATT throughput lab (Notify/Write) | **CODE READY** (`lab_bt16_throughput.py`) |
 | **BT7** | Debian decoder (JSONL) | **CODE READY** (`btac_decode.py`) |
 | **BT8** | PCAPNG export (HCI, not RF) | **CODE READY** (`btac_to_pcapng.py`) |
 | **BT9** | BLE on-chip validation (scan/connect) | **CODE READY** (connect/disconnect) |
@@ -43,5 +44,9 @@ Gate exit must cite **topology ID** + FW pins + evidence path.
 
 ```bash
 python3 tools/lab_run_gates.py
+python3 tools/lab_gap_classify.py --host 192.168.178.88 --btac docs/evidence/….btac
 python3 tools/lab_gate_exits.py   # FACT/MEASURED/UNKNOWN exits → docs/GATE_EXITS.md
+python3 tools/lab_bt16_throughput.py
 ```
+
+**BT6 claim split:** `drops_delta==0` ⇒ ring enqueue ok im Fenster. **E2E** ⇒ zusätzlich `file_gaps==0`. Lifetime-`btac.seqGaps` nie mit Drop-Deltas vergleichen.

@@ -1,0 +1,176 @@
+{
+  "name": "ESP32-S3",
+  "version": "0.2.8",
+  "chip": "ESP32-S3",
+  "mac": "68B6B329339C",
+  "ip": "192.168.178.88",
+  "rssi": -25,
+  "uptime": "3min 26s",
+  "heap": 176816,
+  "psram": 1526224,
+  "psramSize": 2097152,
+  "sketch": 3145728,
+  "hub": "192.168.178.113:8093",
+  "interval": 30,
+  "chipRev": 1,
+  "cores": 2,
+  "flashKb": 8192,
+  "hasPsram": true,
+  "heapMax": 110580,
+  "sketchUsed": 1780432,
+  "module": "N8R2",
+  "flashRealMb": 8,
+  "flashVendor": "XMC/Micron",
+  "psramEfuseMb": 2,
+  "psramBus": "quad",
+  "psramVendor": "AP_3v3",
+  "hwSummary": "ESP32-S3 rev 1 \u00b7 Modul N8R2 \u00b7 Flash 8 MiB (XMC/Micron, genutzt 8) \u00b7 PSRAM 2 MiB quad AP_3v3 (aktiv) \u00b7 Heap frei 172 KiB, gr\u00f6\u00dfter Block 107 KiB",
+  "resetReason": "software",
+  "restartCause": "web_ota",
+  "bootGen": 72,
+  "ckptOpen": null,
+  "ckptLastOpen": null,
+  "diagRam": 362,
+  "diagPrev": 754,
+  "diagSnaps": 2,
+  "progIdleAge": 0,
+  "progHbAge": 23,
+  "progOtaAge": null,
+  "progStalled": {
+    "idle": false,
+    "heartbeat": false,
+    "ota": false
+  },
+  "recoveryHard": 0,
+  "recoveryHist": 6,
+  "recoveryLast": "web_ota",
+  "cpu0": 0,
+  "cpu1": 18,
+  "cpu": 9,
+  "otaState": "idle",
+  "otaProgress": 0,
+  "otaBytes": 0,
+  "otaTotal": 0,
+  "otaActive": false,
+  "otaError": null,
+  "modules": [
+    "bt"
+  ],
+  "onchip": {
+    "transport": "onchip_vhci",
+    "ready": true,
+    "ble": true,
+    "classic": false,
+    "state": "le_scanning",
+    "leScanning": true,
+    "leAdvertising": false,
+    "advName": "bt-peer",
+    "classicInquiry": false,
+    "classicDiscoverable": false,
+    "leConnected": false,
+    "connHandle": 0,
+    "devices": 1,
+    "bdAddr": "68:b6:b3:29:33:9d",
+    "peerAddr": null,
+    "gattName": null,
+    "classicName": "bt-classic-87",
+    "attMtu": 23,
+    "thrRunning": false,
+    "thrMode": "notify",
+    "appTxBps": 0,
+    "appRxBps": 0,
+    "appTxBytes": 0,
+    "appRxBytes": 0,
+    "thrLoss": 0,
+    "thrReorder": 0,
+    "l2Claim": "att_over_hci_acl_not_air",
+    "hci": {
+      "detected": true,
+      "claim": "onchip_controller_vhci"
+    }
+  },
+  "capture": {
+    "capacity": 512,
+    "fill": 43,
+    "highWater": 337,
+    "captured": 1107,
+    "dequeued": 1063,
+    "dropped": 0,
+    "droppedSession": 0,
+    "highWaterSession": 167,
+    "psram": true,
+    "fillPct": 8,
+    "frameBytes": 1048,
+    "nextSeq": 1111
+  },
+  "hciCapture": {
+    "transport": "onchip_vhci",
+    "armed": true,
+    "openOk": true,
+    "eventCapture": "vhci",
+    "rx": 1049,
+    "tx": 78,
+    "aclIn": 1049,
+    "cmdOut": 78,
+    "inject": 0,
+    "sendFails": 0,
+    "aclTxBps": 0,
+    "aclRxBps": 0,
+    "pktPs": 9
+  },
+  "btac": {
+    "port": 9753,
+    "version": 1,
+    "listening": true,
+    "connected": false,
+    "streamId": 4,
+    "forwarded": 1062,
+    "bytes": 60402,
+    "sendFails": 1,
+    "seqGaps": 4,
+    "seqGapsSession": 0,
+    "fwdBps": 0
+  },
+  "usbHost": {
+    "enabled": false,
+    "beginOk": false,
+    "state": "disabled"
+  },
+  "otg": {
+    "mode": "none",
+    "state": "disabled",
+    "connected": false,
+    "devices": 0
+  },
+  "dut": {
+    "present": false,
+    "note": "onchip_primary_no_dongle"
+  },
+  "ios": {
+    "bt_ready": {
+      "v": 1.0,
+      "u": "",
+      "t": "number"
+    },
+    "bt_devs": {
+      "v": 1.0,
+      "u": "",
+      "t": "number"
+    },
+    "bt_scan": {
+      "v": 1.0,
+      "u": "",
+      "t": "number"
+    },
+    "bt_ble": {
+      "v": 1.0,
+      "u": "",
+      "t": "number"
+    },
+    "bt_classic": {
+      "v": 0.0,
+      "u": "",
+      "t": "number"
+    }
+  }
+}

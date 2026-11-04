@@ -1,0 +1,60 @@
+{
+  "utc": "20261104T121953Z",
+  "gate": "BT16_impact",
+  "ok": true,
+  "cases": [
+    {
+      "avg_appTxBps": 0.0,
+      "avg_appRxBps": 1231.0,
+      "wifi_rssi": -25,
+      "heap": 176812,
+      "peer_appTxBps_end": 1231.0,
+      "name": "A_baseline_no_btac",
+      "with_btac": false,
+      "with_ui_poll": false,
+      "wifi_axis": "sta_connected_constant",
+      "coex_note": "BT13 toggles not used during window",
+      "relative_pct": 100.0
+    },
+    {
+      "avg_appTxBps": 0.0,
+      "avg_appRxBps": 1526.0,
+      "wifi_rssi": -24,
+      "heap": 176808,
+      "peer_appTxBps_end": 1526.0,
+      "name": "B_ring_capture",
+      "with_btac": false,
+      "with_ui_poll": false,
+      "wifi_axis": "sta_connected_constant",
+      "coex_note": "BT13 toggles not used during window",
+      "relative_pct": 124.0
+    },
+    {
+      "avg_appTxBps": 0.0,
+      "avg_appRxBps": 1230.0,
+      "wifi_rssi": -25,
+      "heap": 176368,
+      "peer_appTxBps_end": 1230.0,
+      "name": "C_capture_btac",
+      "with_btac": true,
+      "with_ui_poll": false,
+      "wifi_axis": "sta_connected_constant",
+      "coex_note": "BT13 toggles not used during window",
+      "relative_pct": 99.9
+    },
+    {
+      "avg_appTxBps": 0.0,
+      "avg_appRxBps": 1554.0,
+      "wifi_rssi": -25,
+      "heap": 176656,
+      "peer_appTxBps_end": 1554.0,
+      "name": "D_capture_btac_ui_poll",
+      "with_btac": true,
+      "with_ui_poll": true,
+      "wifi_axis": "sta_connected_constant",
+      "coex_note": "BT13 toggles not used during window",
+      "relative_pct": 126.2
+    }
+  ],
+  "note": "WiFi STA held constant; relative_pct vs case A"
+}

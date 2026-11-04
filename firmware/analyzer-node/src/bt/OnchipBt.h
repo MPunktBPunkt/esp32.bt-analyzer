@@ -60,6 +60,17 @@ public:
   /** Classic Write_Local_Name (0x0C13) — deepens BT10 discoverable identity. */
   bool classicSetLocalName(const char *name);
 
+  /**
+   * BT16 thin L2 throughput: ATT Notify (peripheral) or Write CMD (central).
+   * payload_len = app bytes after [seq:u32][ts_us:u64] header (min 12).
+   */
+  bool throughputStart(const char *mode, uint16_t payload_len, uint16_t mtu);
+  void throughputStop();
+  bool throughputRunning() const { return thr_running_; }
+
+  /** Exchange MTU Request (central) / respond as peripheral. */
+  bool attExchangeMtu(uint16_t mtu);
+
   bool scanning() const { return le_scanning_ || classic_inquiry_; }
   bool advertising() const { return le_advertising_; }
   bool connected() const { return le_connected_; }
@@ -67,6 +78,11 @@ public:
   bool classicDiscoverable() const { return classic_discoverable_; }
   const char *gattName() const { return gatt_name_; }
   bool gattNameValid() const { return gatt_name_valid_; }
+  uint16_t attMtu() const { return att_mtu_; }
+  uint32_t appTxBps() const { return app_tx_bps_; }
+  uint32_t appRxBps() const { return app_rx_bps_; }
+  uint32_t thrLoss() const { return thr_loss_; }
+  uint32_t thrReorder() const { return thr_reorder_; }
   size_t deviceCount() const { return device_count_; }
   const BtSeenDevice *deviceAt(size_t i) const {
     return i < device_count_ ? &devices_[i] : nullptr;
@@ -110,6 +126,25 @@ private:
   bool gatt_name_valid_ = false;
   uint32_t last_cmd_ms_ = 0;
 
+  uint16_t att_mtu_ = 23;
+  bool thr_running_ = false;
+  bool thr_notify_ = true;  // false = write_cmd
+  bool thr_cccd_enabled_ = false;
+  uint16_t thr_payload_ = 20;
+  uint32_t thr_seq_tx_ = 0;
+  uint32_t thr_expect_rx_ = 0;
+  bool thr_have_rx_ = false;
+  uint32_t thr_loss_ = 0;
+  uint32_t thr_reorder_ = 0;
+  uint32_t thr_app_tx_ = 0;
+  uint32_t thr_app_rx_ = 0;
+  uint32_t win_app_tx_ = 0;
+  uint32_t win_app_rx_ = 0;
+  uint32_t app_tx_bps_ = 0;
+  uint32_t app_rx_bps_ = 0;
+  uint32_t app_rate_ms_ = 0;
+  uint32_t thr_last_send_ms_ = 0;
+
   BtSeenDevice devices_[kBtMaxDevices]{};
   size_t device_count_ = 0;
 
@@ -120,6 +155,10 @@ private:
   void parseLeMeta(const uint8_t *evt, uint8_t evt_len);
   void parseInquiryResult(const uint8_t *params, uint8_t plen, bool with_rssi);
   void parseAclAtt(const uint8_t *h4, uint16_t len);
+  void pollAppRates();
+  void thrPump();
+  bool writeAtt(const uint8_t *att, uint16_t att_len);
+  bool sendThrPayload();
 
   static int vhciRecv(uint8_t *data, uint16_t len);
   static void vhciSendAvailable();
