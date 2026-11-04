@@ -31,6 +31,7 @@ HOSTS = {
 # Strict gate-result stem: LAB_GATES_BT5_13_YYYYMMDDTHHMMSSZ.json
 _GATE_RESULT_RE = re.compile(r"^LAB_GATES_BT5_13_\d{8}T\d{6}Z\.json$")
 _BT16_RE = re.compile(r"^LAB_BT16_\d{8}T\d{6}Z\.json$")
+_BT18_RE = re.compile(r"^LAB_BT18_GATT_\d{8}T\d{6}Z\.json$")
 
 
 def get_status(ip: str) -> dict:
@@ -52,6 +53,11 @@ def latest_gate_result() -> Path | None:
 
 def latest_bt16() -> Path | None:
     cands = [p for p in EVIDENCE.glob("LAB_BT16_*.json") if _BT16_RE.match(p.name)]
+    return sorted(cands, reverse=True)[0] if cands else None
+
+
+def latest_bt18() -> Path | None:
+    cands = [p for p in EVIDENCE.glob("LAB_BT18_GATT_*.json") if _BT18_RE.match(p.name)]
     return sorted(cands, reverse=True)[0] if cands else None
 
 
@@ -98,6 +104,10 @@ def main() -> int:
     bt16_j: dict = {}
     if bt16_path and bt16_path.is_file():
         bt16_j = json.loads(bt16_path.read_text(encoding="utf-8"))
+    bt18_path = latest_bt18()
+    bt18_j: dict = {}
+    if bt18_path and bt18_path.is_file():
+        bt18_j = json.loads(bt18_path.read_text(encoding="utf-8"))
 
     sess_dir = EVIDENCE / "sessions"
     sess_files = list(sess_dir.glob("session_*.btac")) if sess_dir.is_dir() else []
@@ -129,6 +139,16 @@ def main() -> int:
             "full matrix soak",
             "lab_bt16_throughput.py --benchmark",
         ),
+        block(
+            "BT18",
+            "GATT Client Flavor = STIMULUS discovery/CCCD over HCI",
+            f"latest={bt18_path.name if bt18_path else None} "
+            f"capability={bt18_j.get('capability_ok')} benchmark={bt18_j.get('benchmark_ok')} "
+            f"flavor={(live.get('88') or {}).get('flavor', {}).get('state') if isinstance(live.get('88'), dict) else None}",
+            "bounded MVP ≠ full GATT/HOGP/FTMS",
+            "foreign peer discovery",
+            "lab_gatt_client.py → HOGP Flavor",
+        ),
     ]
 
     payload = {
@@ -138,6 +158,7 @@ def main() -> int:
         "onchip": onchip,
         "gate_result_source": str(gates_path.relative_to(ROOT)) if gates_path else None,
         "bt16_source": str(bt16_path.relative_to(ROOT)) if bt16_path else None,
+        "bt18_source": str(bt18_path.relative_to(ROOT)) if bt18_path else None,
         "session_captures": len(sess_files),
         "source_policy": "gate_result_json_only_not_status_snapshots",
         "exits": exits,
@@ -145,6 +166,7 @@ def main() -> int:
             "HCI_eq_Air": "REJECTED",
             "Classic_on_S3": "REJECTED",
             "thin_ATT_eq_full_GATT": "REJECTED",
+            "gatt_client_mvp_eq_full_GATT": "REJECTED",
             "kbps_as_benchmark_without_loss_split": "REJECTED",
         },
     }
@@ -161,6 +183,7 @@ def main() -> int:
         f"**Topology:** F_ONCHIP · **FW:** `.88` {versions.get('88')} · `.89` {versions.get('89')} · `.87` {versions.get('87')}",
         f"**Gate result source:** `{payload['gate_result_source']}`",
         f"**BT16 source:** `{payload['bt16_source']}`",
+        f"**BT18 source:** `{payload.get('bt18_source')}`",
         f"**Raw:** [`{json_path.name}`](evidence/{json_path.name})",
         "",
         "Classification: **FACT** · **MEASURED** · **INFERENCE** · **UNKNOWN** · **NEXT TEST**",

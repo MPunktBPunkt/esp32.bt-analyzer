@@ -1,0 +1,83 @@
+{
+  "utc": "20261104T152933Z",
+  "topology": "F_ONCHIP",
+  "gate": "BT16",
+  "contract": "CAPABILITY_vs_BENCHMARK",
+  "claim": "L2_ATT_throughput_over_HCI_not_air",
+  "fw": "0.3.0",
+  "duration_s": 30.0,
+  "repeats": 1,
+  "capability_ok": false,
+  "benchmark_ok": false,
+  "cases": [
+    {
+      "repeats": 1,
+      "app_Bps_median_of_medians": 633.0,
+      "app_Bps_p10_of_medians": 633.0,
+      "app_Bps_p90_of_medians": 633.0,
+      "capability_pass_count": 0,
+      "benchmark_pass_count": 0,
+      "runs": [
+        {
+          "mode": "notify",
+          "mtu": 23,
+          "payload": 20,
+          "duration_s": 30.0,
+          "pace_ms": 18,
+          "capture": {
+            "capture_frames": 0,
+            "capture_drops": 0,
+            "droppedSession": 0,
+            "highWaterSession": 157,
+            "ring_fill_after_drain": 0
+          },
+          "warmup_rx_ok": false,
+          "application": {
+            "app_tx_packets": 0,
+            "app_rx_packets": 0,
+            "peer_app_tx_packets": 1254,
+            "peer_app_rx_packets": 0,
+            "app_tx_bytes": 0,
+            "app_rx_bytes": 0,
+            "peer_app_tx_bytes": 25080,
+            "peer_app_rx_bytes": 0,
+            "app_seq_gaps": 0,
+            "app_reorder": 0,
+            "rx_side": "host",
+            "app_Bps_median": 633.0,
+            "app_Bps_p10": 494.0,
+            "app_Bps_p90": 772.0,
+            "app_Bps_mean": 630.047619047619
+          },
+          "btac": {
+            "btac_frames": 0,
+            "btac_seq_gaps": 1,
+            "seqGapsSession": 1,
+            "fwdBps_median": 0.0
+          },
+          "file": {
+            "file_frames": 165,
+            "file_gaps": 1,
+            "file_resync": 0
+          },
+          "transport": {
+            "hci_Bps_median": 0.0,
+            "btac_Bps_median": 0.0
+          },
+          "capability_status": "FAIL",
+          "benchmark_status": "FAIL",
+          "ok": false,
+          "attMtu_host": 23,
+          "attMtu_peer": 23
+        }
+      ],
+      "capability_status": "FAIL",
+      "benchmark_status": "FAIL",
+      "mode": "notify",
+      "mtu": 23,
+      "payload": 20,
+      "duration_s": 30.0
+    }
+  ],
+  "ok": false
+}

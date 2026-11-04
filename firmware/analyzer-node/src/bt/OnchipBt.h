@@ -1,5 +1,6 @@
 #pragma once
 
+#include "bt/GattClientFlavor.h"
 #include "capture/CaptureRing.h"
 #include "hci/HciVhciCapture.h"
 
@@ -57,6 +58,11 @@ public:
    * Not a full GATT stack; not Air FACT.
    */
   bool gattReadDeviceName();
+  /** BT18 GATT Client Flavor — discover services/chars/CCCD (STIMULUS). */
+  bool gattClientDiscover(uint16_t mtu = 23);
+  bool gattClientRead(uint16_t handle);
+  bool gattClientSubscribe(uint16_t cccd_handle, bool enable);
+  GattClientFlavor &gattClient() { return gatt_client_; }
   /** Classic Write_Local_Name (0x0C13) — deepens BT10 discoverable identity. */
   bool classicSetLocalName(const char *name);
 
@@ -106,6 +112,7 @@ public:
 private:
   CaptureRing ring_;
   HciVhciCapture cap_;
+  GattClientFlavor gatt_client_{};
 
   bool ready_ = false;
   bool begin_attempted_ = false;
@@ -176,6 +183,7 @@ private:
   void thrPump();
   bool writeAtt(const uint8_t *att, uint16_t att_len);
   bool sendThrPayload();
+  static bool writeAttBridge(void *ctx, const uint8_t *att, uint16_t len);
 
   static int vhciRecv(uint8_t *data, uint16_t len);
   static void vhciSendAvailable();

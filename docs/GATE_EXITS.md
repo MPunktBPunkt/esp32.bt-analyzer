@@ -1,15 +1,16 @@
-# Gate exits — MEASURED pack (20261104T162752Z)
+# Gate exits — MEASURED pack (20261104T171121Z)
 
-**Topology:** F_ONCHIP · **FW:** `.88` 0.3.0 · `.89` 0.3.0 · `.87` 0.3.0
+**Topology:** F_ONCHIP · **FW:** `.88` 0.3.1 · `.89` 0.3.1 · `.87` 0.3.1
 **Gate result source:** `docs/evidence/LAB_GATES_BT5_13_20261104T162638Z.json`
-**BT16 source:** `docs/evidence/LAB_BT16_20261104T161828Z.json`
-**Raw:** [`LAB_GATE_EXITS_20261104T162752Z.json`](evidence/LAB_GATE_EXITS_20261104T162752Z.json)
+**BT16 source:** `docs/evidence/LAB_BT16_20261104T162753Z.json`
+**BT18 source:** `docs/evidence/LAB_BT18_GATT_20261104T171044Z.json`
+**Raw:** [`LAB_GATE_EXITS_20261104T171121Z.json`](evidence/LAB_GATE_EXITS_20261104T171121Z.json)
 
 Classification: **FACT** · **MEASURED** · **INFERENCE** · **UNKNOWN** · **NEXT TEST**
 
 | Gate | FACT | MEASURED | UNKNOWN | NEXT TEST |
 |------|------|----------|---------|-----------|
-| BT0 | esp-hub OTA/Web/NVS base present | `versions={'88': '0.3.0', '89': '0.3.0', '87': '0.3.0'}` | long-term OTA under BT | flash_lab_ota smoke |
+| BT0 | esp-hub OTA/Web/NVS base present | `versions={'88': '0.3.1', '89': '0.3.1', '87': '0.3.1'}` | long-term OTA under BT | flash_lab_ota smoke |
 | BT1 | S3 BLE; ESP32 Classic+BLE | `.88 ready=True .87 ready=True` | errata under flood | watch mem_release |
 | BT2 | HCI cmd/evt host↔controller | `bd=['68:b6:b3:29:33:9d', '68:b6:b3:2b:c5:69', 'c8:c9:a3:cb:37:96']` | vendor events | decode on demand |
 | BT3 | Raw HCI is L1 not Air | `capacity=512` | absolute sync | LINKTYPE 201 |
@@ -25,7 +26,8 @@ Classification: **FACT** · **MEASURED** · **INFERENCE** · **UNKNOWN** · **NE
 | BT13 | WiFi STA + BTDM coex smoke | `ok=True detail={"ok": true, "toggle_fails": 0, "host_ready": true, "heap": 176180}` | AP+BT | BT before WiFi |
 | BT14 | technology-audit pack present | `ok=True detail={"ok": true, "missing": [], "note": "project-side audit pack present; exter` | external stamp | STATUS green |
 | BT15 | RF/Air out of scope | `docs/BT15_RF_AIR.md deferred` | named RF instrument | separate repo |
-| BT16 | ATT Notify/Write is L2 over HCI ACL only | `latest=LAB_BT16_20261104T161828Z.json capability=True benchmark=True appTx=0 appRx=0` | full matrix soak | lab_bt16_throughput.py --benchmark |
+| BT16 | ATT Notify/Write is L2 over HCI ACL only | `latest=LAB_BT16_20261104T162753Z.json capability=True benchmark=False appTx=0 appRx=0` | full matrix soak | lab_bt16_throughput.py --benchmark |
+| BT18 | GATT Client Flavor = STIMULUS discovery/CCCD ove | `latest=LAB_BT18_GATT_20261104T171044Z.json capability=True benchmark=True flavor=ready` | foreign peer discovery | lab_gatt_client.py → HOGP Flavor |
 
 ## Claim boundary
 

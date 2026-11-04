@@ -198,6 +198,7 @@ bool OnchipBt::begin() {
 
   cap_.setOpenOk(true);
   ready_ = true;
+  gatt_client_.setWriter(&OnchipBt::writeAttBridge, this);
   setState("ready");
   Serial.printf("[bt] on-chip ready ble=%d classic=%d transport=onchip_vhci\n",
                 ble_capable_ ? 1 : 0, classic_capable_ ? 1 : 0);
@@ -205,6 +206,11 @@ bool OnchipBt::begin() {
   delay(50);
   hciReset();
   return true;
+}
+
+bool OnchipBt::writeAttBridge(void *ctx, const uint8_t *att, uint16_t len) {
+  auto *self = static_cast<OnchipBt *>(ctx);
+  return self && self->writeAtt(att, len);
 }
 
 void OnchipBt::loop() {
@@ -221,6 +227,7 @@ void OnchipBt::loop() {
   cap_.pollRates();
   pollAppRates();
   thrPump();
+  gatt_client_.poll();
 }
 
 void OnchipBt::handleControllerPacket(uint8_t *data, uint16_t len) {
@@ -713,6 +720,28 @@ bool OnchipBt::classicSetLocalName(const char *name) {
   return ok;
 }
 
+bool OnchipBt::gattClientDiscover(uint16_t mtu) {
+  if (!le_connected_ || conn_role_ != 0) {
+    return false;
+  }
+  setState("gatt_discover");
+  return gatt_client_.startDiscover(mtu);
+}
+
+bool OnchipBt::gattClientRead(uint16_t handle) {
+  if (!le_connected_ || conn_role_ != 0) {
+    return false;
+  }
+  return gatt_client_.readHandle(handle);
+}
+
+bool OnchipBt::gattClientSubscribe(uint16_t cccd_handle, bool enable) {
+  if (!le_connected_ || conn_role_ != 0) {
+    return false;
+  }
+  return gatt_client_.subscribeCccd(cccd_handle, enable);
+}
+
 bool OnchipBt::gattReadDeviceName() {
   if (!le_connected_ || !cap_.openOk()) {
     return false;
@@ -1035,6 +1064,34 @@ void OnchipBt::feedAclAtt(const uint8_t *l2cap, uint16_t len, bool has_l2cap_hdr
     if (att_mtu_ < 23) {
       att_mtu_ = 23;
     }
+    if (conn_role_ == 0) {
+      gatt_client_.onAttPdu(att, att_len);
+    }
+    return;
+  }
+
+  // GATT Client Flavor (central) — only while discovery/subscribe active
+  {
+    const GcState gst = gatt_client_.state();
+    if (conn_role_ == 0 && gst != GcState::Idle && gst != GcState::Error &&
+        (att[0] == 0x01 || att[0] == 0x05 || att[0] == 0x09 || att[0] == 0x0b ||
+         att[0] == 0x11 || att[0] == 0x13)) {
+      gatt_client_.onAttPdu(att, att_len);
+      if (att[0] == 0x0b && att_len >= 2) {
+        const size_t copy =
+            (att_len - 1) < sizeof(gatt_name_) - 1 ? (att_len - 1) : sizeof(gatt_name_) - 1;
+        memcpy(gatt_name_, att + 1, copy);
+        gatt_name_[copy] = 0;
+        gatt_name_valid_ = true;
+      }
+      return;
+    }
+  }
+
+  // Peripheral GATT discovery stub (BT18 peer)
+  if (conn_role_ == 1 &&
+      gattServerHandleRequest(conn_role_, adv_name_, &OnchipBt::writeAttBridge, this, att,
+                              att_len)) {
     return;
   }
 
@@ -1188,6 +1245,7 @@ void OnchipBt::appendStatusJson(String &json) const {
   }
   json += "}";
 
+  gatt_client_.appendStatusJson(json);
   ring_.appendStatusJson(json);
   cap_.appendStatusJson(json);
 }

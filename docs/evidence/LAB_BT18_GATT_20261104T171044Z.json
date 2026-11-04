@@ -1,0 +1,50 @@
+{
+  "utc": "20261104T171044Z",
+  "topology": "F_ONCHIP",
+  "gate": "BT18",
+  "flavor": "gatt_client",
+  "claim": "STIMULUS_L2_over_HCI_not_air",
+  "fw": "0.3.1",
+  "peer_bd": "68:b6:b3:2b:c5:69",
+  "mtu": 23,
+  "flavor_status": {
+    "id": "gatt_client",
+    "state": "ready",
+    "claim": "STIMULUS_L2_over_HCI_not_air",
+    "stimulusTx": 8,
+    "stimulusRx": 8,
+    "services": 1,
+    "characteristics": 1,
+    "descriptors": 4,
+    "cccdHandle": 4,
+    "nameHandle": 3,
+    "svc": [
+      {
+        "start": 1,
+        "end": 4,
+        "uuid": "0x1800"
+      }
+    ],
+    "chr": [
+      {
+        "decl": 2,
+        "value": 3,
+        "props": 30,
+        "uuid": "0x2A00"
+      }
+    ]
+  },
+  "gatt_name": "bt-peer-89",
+  "checks": {
+    "capability": true,
+    "has_gap_service": true,
+    "has_name_char": true,
+    "has_cccd": true,
+    "read_name_ok": true,
+    "subscribe_tx_ok": true,
+    "benchmark": true
+  },
+  "capability_ok": true,
+  "benchmark_ok": true,
+  "ok": true
+}

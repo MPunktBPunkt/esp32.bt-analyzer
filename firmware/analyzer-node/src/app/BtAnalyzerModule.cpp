@@ -196,6 +196,49 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
                  : "{\"ok\":false,\"error\":\"gatt_write_failed\"}");
   });
 
+  server.on("/api/bt/flavor/gatt/discover", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");
+      return;
+    }
+    if (!onchip_->connected()) {
+      srv->send(400, "application/json",
+                "{\"ok\":false,\"error\":\"not_connected\"}");
+      return;
+    }
+    const uint16_t mtu = static_cast<uint16_t>(srv->arg("mtu").toInt());
+    const bool ok = onchip_->gattClientDiscover(mtu ? mtu : 23);
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"flavor\":\"gatt_client\",\"claim\":\"STIMULUS_L2_over_HCI_not_air\"}"
+                 : "{\"ok\":false,\"error\":\"discover_start_failed\"}");
+  });
+
+  server.on("/api/bt/flavor/gatt/read", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");
+      return;
+    }
+    const uint16_t handle = static_cast<uint16_t>(srv->arg("handle").toInt());
+    const bool ok = onchip_->gattClientRead(handle);
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"claim\":\"STIMULUS\"}" : "{\"ok\":false}");
+  });
+
+  server.on("/api/bt/flavor/gatt/subscribe", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");
+      return;
+    }
+    uint16_t cccd = static_cast<uint16_t>(srv->arg("cccd").toInt());
+    if (!cccd) {
+      cccd = onchip_->gattClient().foundCccd();
+    }
+    const bool enable = srv->arg("enable") != "0";
+    const bool ok = onchip_->gattClientSubscribe(cccd, enable);
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"claim\":\"STIMULUS\"}" : "{\"ok\":false}");
+  });
+
   server.on("/api/bt/classic/name", HTTP_POST, [this, srv]() {
     if (!onchip_) {
       srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");
