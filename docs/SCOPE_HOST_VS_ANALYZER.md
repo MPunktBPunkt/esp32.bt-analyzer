@@ -2,7 +2,7 @@
 
 ```yaml
 status: frozen
-fw: "0.3.1+"
+fw: "0.3.2+"
 claim_split: analyzer_vs_host
 ```
 
@@ -54,7 +54,7 @@ Analyzer Core (.88/.89 + thin .87)
   ├── capture / BTAC / session-loss / timeline / evidence
   ├── thin ATT stimulus (BT16)
   └── Profile Flavors (opt-in STIMULUS) — see FLAVOR_BUS.md
-        └── BT18 GATT Client MVP (0.3.1)
+        └── BT18 GATT Client MVP (0.3.2)
 
 Classic Flavor (.87 only) — future (BT17)
   └── Bluedroid A2DP/HFP Phone-first

@@ -332,6 +332,39 @@ void GattClientFlavor::poll() {
   }
 }
 
+const GcChar *GattClientFlavor::findCharUuid(uint16_t uuid16) const {
+  for (uint8_t i = 0; i < char_n_; i++) {
+    if (chars_[i].uuid16 == uuid16) {
+      return &chars_[i];
+    }
+  }
+  return nullptr;
+}
+
+const GcService *GattClientFlavor::findServiceUuid(uint16_t uuid16) const {
+  for (uint8_t i = 0; i < svc_n_; i++) {
+    if (svcs_[i].uuid16 == uuid16) {
+      return &svcs_[i];
+    }
+  }
+  return nullptr;
+}
+
+uint16_t GattClientFlavor::findCccdForValue(uint16_t value_handle) const {
+  uint16_t best = 0;
+  for (uint8_t i = 0; i < desc_n_; i++) {
+    if (descs_[i].uuid16 != 0x2902) {
+      continue;
+    }
+    if (descs_[i].handle > value_handle && descs_[i].handle <= value_handle + 8) {
+      if (best == 0 || descs_[i].handle < best) {
+        best = descs_[i].handle;
+      }
+    }
+  }
+  return best;
+}
+
 void GattClientFlavor::appendStatusJson(String &json) const {
   json += ",\"flavor\":{";
   json += "\"id\":\"gatt_client\"";
@@ -390,116 +423,6 @@ void GattClientFlavor::appendStatusJson(String &json) const {
     json += "\"}";
   }
   json += "]}";
-}
-
-bool gattServerHandleRequest(uint8_t conn_role, const char *adv_name,
-                             bool (*write_att)(void *, const uint8_t *, uint16_t),
-                             void *ctx, const uint8_t *att, uint16_t att_len) {
-  if (conn_role != 1 || !write_att || !att || att_len < 1) {
-    return false;
-  }
-
-  // Thin GATT layout (compatible with BT16 thr handles 0x0003 / 0x0004):
-  // 0x0001 Primary Service 0x1800 end=0x0004
-  // 0x0002 Char Decl → value 0x0003 uuid 0x2A00 props Read|Notify|Write|WriteCmd (0x1E)
-  // 0x0003 Value (Device Name / thr)
-  // 0x0004 CCCD 0x2902
-
-  auto reply = [&](const uint8_t *p, uint16_t n) -> bool {
-    return write_att(ctx, p, n);
-  };
-
-  // Read By Group Type Request — Primary Service
-  if (att[0] == 0x10 && att_len >= 7) {
-    const uint16_t start = getU16(att + 1);
-    const uint16_t uuid = getU16(att + 5);
-    if (uuid != 0x2800) {
-      uint8_t err[5] = {0x01, att[0], att[1], att[2], 0x06};  // Request Not Supported
-      return reply(err, 5);
-    }
-    if (start > 0x0001) {
-      uint8_t err[5] = {0x01, 0x10, att[1], att[2], 0x0A};  // Attribute Not Found
-      return reply(err, 5);
-    }
-    // elen=6: start,end,uuid16
-    uint8_t rsp[8] = {0x11, 0x06, 0x01, 0x00, 0x04, 0x00, 0x00, 0x18};
-    return reply(rsp, 8);
-  }
-
-  // Read By Type Request — Characteristic Declaration or Device Name
-  if (att[0] == 0x08 && att_len >= 7) {
-    const uint16_t start = getU16(att + 1);
-    const uint16_t end = getU16(att + 3);
-    const uint16_t uuid = getU16(att + 5);
-    if (uuid == 0x2803) {
-      if (start > 0x0002 || end < 0x0002) {
-        uint8_t err[5] = {0x01, 0x08, att[1], att[2], 0x0A};
-        return reply(err, 5);
-      }
-      // elen=7: handle, props, value_handle, uuid16
-      uint8_t rsp[9] = {0x09, 0x07, 0x02, 0x00, 0x1e, 0x03, 0x00, 0x00, 0x2a};
-      return reply(rsp, 9);
-    }
-    if (uuid == 0x2A00) {
-      // Existing Device Name path — leave to OnchipBt if not handled here
-      return false;
-    }
-    uint8_t err[5] = {0x01, 0x08, att[1], att[2], 0x0A};
-    return reply(err, 5);
-  }
-
-  // Find Information Request
-  if (att[0] == 0x04 && att_len >= 5) {
-    const uint16_t start = getU16(att + 1);
-    const uint16_t end = getU16(att + 3);
-    // Emit handles in range from the static table
-    uint8_t rsp[2 + 4 * 4];
-    rsp[0] = 0x05;
-    rsp[1] = 0x01;  // 16-bit UUIDs
-    uint16_t n = 2;
-    struct {
-      uint16_t h;
-      uint16_t u;
-    } rows[] = {{0x0001, 0x2800}, {0x0002, 0x2803}, {0x0003, 0x2A00}, {0x0004, 0x2902}};
-    for (auto &r : rows) {
-      if (r.h < start || r.h > end) {
-        continue;
-      }
-      if (n + 4 > sizeof(rsp)) {
-        break;
-      }
-      putU16(rsp + n, r.h);
-      putU16(rsp + n + 2, r.u);
-      n = static_cast<uint16_t>(n + 4);
-    }
-    if (n == 2) {
-      uint8_t err[5] = {0x01, 0x04, att[1], att[2], 0x0A};
-      return reply(err, 5);
-    }
-    return reply(rsp, n);
-  }
-
-  // Read Request
-  if (att[0] == 0x0A && att_len >= 3) {
-    const uint16_t handle = getU16(att + 1);
-    if (handle == 0x0003) {
-      const char *name = adv_name && adv_name[0] ? adv_name : "bt-peer";
-      const size_t nlen = strnlen(name, 20);
-      uint8_t rsp[1 + 20];
-      rsp[0] = 0x0b;
-      memcpy(rsp + 1, name, nlen);
-      return reply(rsp, static_cast<uint16_t>(1 + nlen));
-    }
-    if (handle == 0x0004) {
-      uint8_t rsp[3] = {0x0b, 0x00, 0x00};
-      return reply(rsp, 3);
-    }
-    uint8_t err[5] = {0x01, 0x0A, att[1], att[2], 0x0A};
-    return reply(err, 5);
-  }
-
-  (void)adv_name;
-  return false;
 }
 
 }  // namespace bt_analyzer

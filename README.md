@@ -1,14 +1,14 @@
 # esp32.bt-analyzer
 
-![Version](https://img.shields.io/badge/version-0.3.1-blue)
+![Version](https://img.shields.io/badge/version-0.3.2-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Gate](https://img.shields.io/badge/gate-BT18%20GATT-yellow)](docs/GATES.md)
 
 ESP **on-chip Bluetooth HCI analyzer** (VHCI): Controller ↔ Host über die Board-Radio, Capture nach Debian.  
 **Kein USB-Dongle nötig** (Topologie **F_ONCHIP**).
 
-> **v0.3.1** — BT18 GATT Client Flavor MVP (discover/CCCD/`STIMULUS`) · Flavor Bus · Core bleibt Capture.  
-> **Nicht claimed:** RF/Air · Classic auf S3 · MITM · Full GATT/HOGP/FTMS · HID/A2DP · PTP.
+> **v0.3.2** — HOGP + FTMS Flavors on GATT Client · peer stubs · Flavor Bus · Core bleibt Capture.  
+> **Nicht claimed:** RF/Air · real keyboard/ergometer host · Classic A2DP · MITM · PTP.
 
 Wissensbasis: [technology-audit / esp32-bt-analyzer](https://github.com/MPunktBPunkt/technology-audit/tree/main/projects/esp32-bt-analyzer) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5**.
 
@@ -100,12 +100,13 @@ python3 tools/lab_run_gates.py          # BT5–BT14 + session gap classify
 python3 tools/lab_gap_classify.py --host 192.168.178.88 --btac docs/evidence/….btac
 python3 tools/lab_bt16_throughput.py    # ATT notify/write matrix
 python3 tools/lab_gatt_client.py        # BT18 GATT Client Flavor
+python3 tools/lab_hogp_ftms.py          # BT18b/c HOGP + FTMS Flavors
 python3 tools/lab_bt16_impact.py        # analyzer impact (WiFi STA constant)
 python3 tools/lab_clock_sync.py         # multi-node offset estimate
 python3 tools/lab_gate_exits.py
 ```
 
-| Gate band | Stand (0.3.1) |
+| Gate band | Stand (0.3.2) |
 |-----------|----------------|
 | BT0–BT13 | **CODE READY** / lab MEASURED |
 | BT14 | **ready for external review** |

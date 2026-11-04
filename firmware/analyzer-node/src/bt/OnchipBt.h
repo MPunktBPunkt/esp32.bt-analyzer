@@ -1,6 +1,7 @@
 #pragma once
 
 #include "bt/GattClientFlavor.h"
+#include "bt/ProfileFlavors.h"
 #include "capture/CaptureRing.h"
 #include "hci/HciVhciCapture.h"
 
@@ -62,7 +63,11 @@ public:
   bool gattClientDiscover(uint16_t mtu = 23);
   bool gattClientRead(uint16_t handle);
   bool gattClientSubscribe(uint16_t cccd_handle, bool enable);
+  bool hogpStart();
+  bool ftmsStart();
   GattClientFlavor &gattClient() { return gatt_client_; }
+  HogpFlavor &hogp() { return hogp_; }
+  FtmsFlavor &ftms() { return ftms_; }
   /** Classic Write_Local_Name (0x0C13) — deepens BT10 discoverable identity. */
   bool classicSetLocalName(const char *name);
 
@@ -113,6 +118,11 @@ private:
   CaptureRing ring_;
   HciVhciCapture cap_;
   GattClientFlavor gatt_client_{};
+  HogpFlavor hogp_{};
+  FtmsFlavor ftms_{};
+  bool peer_hid_cccd_ = false;
+  bool peer_ftms_cccd_ = false;
+  uint32_t peer_notify_ms_ = 0;
 
   bool ready_ = false;
   bool begin_attempted_ = false;

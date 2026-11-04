@@ -239,6 +239,28 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
               ok ? "{\"ok\":true,\"claim\":\"STIMULUS\"}" : "{\"ok\":false}");
   });
 
+  server.on("/api/bt/flavor/hogp/start", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false}");
+      return;
+    }
+    const bool ok = onchip_->hogpStart();
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"flavor\":\"hogp\",\"claim\":\"STIMULUS_HOGP\"}"
+                 : "{\"ok\":false,\"error\":\"hogp_start\"}");
+  });
+
+  server.on("/api/bt/flavor/ftms/start", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false}");
+      return;
+    }
+    const bool ok = onchip_->ftmsStart();
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"flavor\":\"ftms\",\"claim\":\"STIMULUS_FTMS\"}"
+                 : "{\"ok\":false,\"error\":\"ftms_start\"}");
+  });
+
   server.on("/api/bt/classic/name", HTTP_POST, [this, srv]() {
     if (!onchip_) {
       srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");

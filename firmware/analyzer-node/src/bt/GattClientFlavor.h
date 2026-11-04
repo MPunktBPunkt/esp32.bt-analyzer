@@ -7,8 +7,8 @@ namespace bt_analyzer {
 
 /** Bounded GATT Client Flavor (BT18) — thin ATT over VHCI, not a full stack. */
 static constexpr size_t kGcMaxServices = 8;
-static constexpr size_t kGcMaxChars = 16;
-static constexpr size_t kGcMaxDescs = 16;
+static constexpr size_t kGcMaxChars = 24;
+static constexpr size_t kGcMaxDescs = 32;
 
 struct GcService {
   uint16_t start = 0;
@@ -82,6 +82,11 @@ public:
   uint16_t foundNameHandle() const { return found_name_handle_; }
   const char *lastError() const { return last_err_; }
 
+  const GcChar *findCharUuid(uint16_t uuid16) const;
+  const GcService *findServiceUuid(uint16_t uuid16) const;
+  /** First CCCD handle strictly after value_handle within +8. */
+  uint16_t findCccdForValue(uint16_t value_handle) const;
+
   void appendStatusJson(String &json) const;
 
 private:
@@ -117,10 +122,5 @@ private:
   void advanceAfterServices();
   void advanceAfterChars();
 };
-
-/** Peripheral stub: answer discovery against the thin BT16 GATT layout. */
-bool gattServerHandleRequest(uint8_t conn_role, const char *adv_name,
-                             bool (*write_att)(void *, const uint8_t *, uint16_t),
-                             void *ctx, const uint8_t *att, uint16_t att_len);
 
 }  // namespace bt_analyzer

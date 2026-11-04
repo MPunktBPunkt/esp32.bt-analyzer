@@ -2,7 +2,7 @@
 
 ```yaml
 status: active
-fw: "0.3.1+"
+fw: "0.3.2+"
 core: analyzer_vhci_capture
 ```
 
@@ -24,8 +24,8 @@ Flavors **must not** replace the VHCI capture path. Host influence stays visible
 | # | Flavor | Gate | Status |
 |---|--------|------|--------|
 | 1 | **GATT Client MVP** | BT18 | **0.3.1** — discover + MTU + CCCD + read |
-| 2 | HOGP Host | BT18b | deferred |
-| 3 | FTMS (+ HR/CSC) | BT18c | deferred |
+| 2 | **HOGP Host** | BT18b | **0.3.2** — Report Map + Input Report notify (peer stub) |
+| 3 | **FTMS Client** | BT18c | **0.3.2** — Feature + Indoor Bike Data notify (peer stub) |
 | 4 | Classic SDP/RFCOMM → HID → A2DP/HFP | BT17 | deferred (`.87` only) |
 
 Runtime for BLE Flavors on this tree: **thin ATT over existing VHCI host** (same controller plane as capture). NimBLE/Bluedroid remain rejected as Core replacements (VHCI ownership conflict).
@@ -50,7 +50,15 @@ Every Flavor TX increments `flavor.stimulusTx`. Status block:
 POST /api/bt/flavor/gatt/discover   # mtu=23|247
 POST /api/bt/flavor/gatt/read       # handle=
 POST /api/bt/flavor/gatt/subscribe  # cccd=  enable=1|0
-GET  /api/status                    # → onchip + flavor
+POST /api/bt/flavor/hogp/start      # after discover
+POST /api/bt/flavor/ftms/start      # after discover
+GET  /api/status                    # → flavor + hogp + ftms
 ```
 
-Lab: `python3 tools/lab_gatt_client.py`
+Labs:
+```bash
+python3 tools/lab_gatt_client.py
+python3 tools/lab_hogp_ftms.py
+```
+
+Peer stubs ≠ real keyboard / ergometer. FTMS: **Success ≠ Wirkung**.

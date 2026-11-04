@@ -14,7 +14,7 @@
 #define DEVICE_NAME            "bt-analyzer"
 #endif
 #ifndef FW_VERSION
-#define FW_VERSION             "0.3.1"
+#define FW_VERSION             "0.3.2"
 #endif
 #ifndef BTAC_PORT
 #define BTAC_PORT              9753

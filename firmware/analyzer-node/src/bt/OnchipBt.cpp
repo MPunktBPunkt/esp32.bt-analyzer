@@ -1,5 +1,6 @@
 #include "bt/OnchipBt.h"
 
+#include "bt/GattPeerDb.h"
 #include "core/DiagLog.h"
 
 #include <esp_bt.h>
@@ -199,6 +200,8 @@ bool OnchipBt::begin() {
   cap_.setOpenOk(true);
   ready_ = true;
   gatt_client_.setWriter(&OnchipBt::writeAttBridge, this);
+  hogp_.bind(&gatt_client_);
+  ftms_.bind(&gatt_client_);
   setState("ready");
   Serial.printf("[bt] on-chip ready ble=%d classic=%d transport=onchip_vhci\n",
                 ble_capable_ ? 1 : 0, classic_capable_ ? 1 : 0);
@@ -228,6 +231,26 @@ void OnchipBt::loop() {
   pollAppRates();
   thrPump();
   gatt_client_.poll();
+  hogp_.poll();
+  ftms_.poll();
+  // Peer: emit HID / FTMS notifies when CCCD enabled (lab stimulus).
+  if (conn_role_ == 1 && le_connected_ && (peer_hid_cccd_ || peer_ftms_cccd_)) {
+    const uint32_t now = millis();
+    if (now - peer_notify_ms_ >= 500) {
+      peer_notify_ms_ = now;
+      if (peer_hid_cccd_) {
+        // Handle Value Notification report handle 0x0016: mod=0 key='A'(0x04)
+        uint8_t ntf[3 + 8] = {0x1b, 0x16, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00,
+                              0x00, 0x00, 0x00};
+        writeAtt(ntf, 11);
+      }
+      if (peer_ftms_cccd_) {
+        // IBD flags cadence+power, cadence=180, power=150
+        uint8_t ntf[3 + 6] = {0x1b, 0x24, 0x00, 0x44, 0x00, 0xb4, 0x00, 0x96, 0x00};
+        writeAtt(ntf, 9);
+      }
+    }
+  }
 }
 
 void OnchipBt::handleControllerPacket(uint8_t *data, uint16_t len) {
@@ -742,6 +765,22 @@ bool OnchipBt::gattClientSubscribe(uint16_t cccd_handle, bool enable) {
   return gatt_client_.subscribeCccd(cccd_handle, enable);
 }
 
+bool OnchipBt::hogpStart() {
+  if (!le_connected_ || conn_role_ != 0) {
+    return false;
+  }
+  setState("hogp");
+  return hogp_.startAfterDiscover();
+}
+
+bool OnchipBt::ftmsStart() {
+  if (!le_connected_ || conn_role_ != 0) {
+    return false;
+  }
+  setState("ftms");
+  return ftms_.startAfterDiscover();
+}
+
 bool OnchipBt::gattReadDeviceName() {
   if (!le_connected_ || !cap_.openOk()) {
     return false;
@@ -1070,28 +1109,43 @@ void OnchipBt::feedAclAtt(const uint8_t *l2cap, uint16_t len, bool has_l2cap_hdr
     return;
   }
 
-  // GATT Client Flavor (central) — only while discovery/subscribe active
-  {
+  // GATT Client / HOGP / FTMS (central)
+  if (conn_role_ == 0) {
     const GcState gst = gatt_client_.state();
-    if (conn_role_ == 0 && gst != GcState::Idle && gst != GcState::Error &&
+    if (gst != GcState::Idle && gst != GcState::Error &&
         (att[0] == 0x01 || att[0] == 0x05 || att[0] == 0x09 || att[0] == 0x0b ||
-         att[0] == 0x11 || att[0] == 0x13)) {
+         att[0] == 0x11 || att[0] == 0x13 || att[0] == 0x1b || att[0] == 0x1d)) {
       gatt_client_.onAttPdu(att, att_len);
-      if (att[0] == 0x0b && att_len >= 2) {
-        const size_t copy =
-            (att_len - 1) < sizeof(gatt_name_) - 1 ? (att_len - 1) : sizeof(gatt_name_) - 1;
-        memcpy(gatt_name_, att + 1, copy);
-        gatt_name_[copy] = 0;
-        gatt_name_valid_ = true;
+      hogp_.onAttPdu(att, att_len);
+      ftms_.onAttPdu(att, att_len);
+      if (att[0] == 0x0b && att_len >= 2 && gatt_client_.foundNameHandle() != 0) {
+        // only treat as name if reading name handle — heuristic: small ASCII
+        bool ascii = true;
+        for (uint16_t i = 1; i < att_len && i < 20; i++) {
+          if (att[i] < 0x20 || att[i] > 0x7e) {
+            ascii = false;
+            break;
+          }
+        }
+        if (ascii) {
+          const size_t copy =
+              (att_len - 1) < sizeof(gatt_name_) - 1 ? (att_len - 1) : sizeof(gatt_name_) - 1;
+          memcpy(gatt_name_, att + 1, copy);
+          gatt_name_[copy] = 0;
+          gatt_name_valid_ = true;
+        }
       }
-      return;
+      if (att[0] != 0x1b) {
+        return;
+      }
+      // notifications also feed thr path below
     }
   }
 
-  // Peripheral GATT discovery stub (BT18 peer)
+  // Peripheral GATT DB (GAP + HID + FTMS)
   if (conn_role_ == 1 &&
-      gattServerHandleRequest(conn_role_, adv_name_, &OnchipBt::writeAttBridge, this, att,
-                              att_len)) {
+      gattPeerHandleRequest(conn_role_, adv_name_, &OnchipBt::writeAttBridge, this, att,
+                            att_len, &peer_hid_cccd_, &peer_ftms_cccd_)) {
     return;
   }
 
@@ -1246,6 +1300,8 @@ void OnchipBt::appendStatusJson(String &json) const {
   json += "}";
 
   gatt_client_.appendStatusJson(json);
+  hogp_.appendStatusJson(json);
+  ftms_.appendStatusJson(json);
   ring_.appendStatusJson(json);
   cap_.appendStatusJson(json);
 }
