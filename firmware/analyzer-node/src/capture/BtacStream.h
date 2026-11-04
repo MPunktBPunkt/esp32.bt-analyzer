@@ -14,8 +14,8 @@ namespace bt_analyzer {
  * BTAC v1 TCP capture stream (Gate BT4).
  *
  * ESP listens; Debian connects and receives framed HCI captures.
- * While a client is connected the stream owns ring dequeues (HTTP drain
- * still works when idle).
+ * While a client is connected the stream owns ring dequeues
+ * (/api/capture/drain returns 409 btac_owns_ring).
  *
  * Wire (little-endian):
  *   magic[4]="BTAC" | ver:u8 | flags:u8 | stream_id:u16 | seq:u32 | ts_us:u64

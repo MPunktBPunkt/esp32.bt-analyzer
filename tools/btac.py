@@ -109,9 +109,17 @@ def iter_file(path_or_file: BinaryIO | str) -> Iterator[dict]:
 
 
 def summarize(frames: list[dict]) -> dict:
+    """Summarize frames.
+
+    ``gaps`` = forward seq holes within a contiguous run only.
+    Seq decreases / stream_id changes count as ``resync`` (corrupt/partial
+    frame or session boundary) — not as application capture loss.
+    """
     gaps = 0
+    resync = 0
     crc_fail = 0
     last = None
+    last_stream = None
     by_type: dict[str, int] = {}
     for fr in frames:
         if not fr.get("crc_ok", True):
@@ -119,13 +127,28 @@ def summarize(frames: list[dict]) -> dict:
         t = str(fr.get("type"))
         by_type[t] = by_type.get(t, 0) + 1
         seq = fr.get("seq")
-        if isinstance(seq, int) and last is not None and seq > last + 1:
-            gaps += seq - last - 1
-        if isinstance(seq, int):
-            last = seq
+        sid = fr.get("stream_id")
+        if not isinstance(seq, int):
+            continue
+        if last is not None:
+            if isinstance(sid, int) and isinstance(last_stream, int) and sid != last_stream:
+                resync += 1
+                last = seq
+                last_stream = sid
+                continue
+            if seq < last:
+                # Likely partial-frame desync inventing seq=0 — ignore phantom.
+                resync += 1
+                continue
+            if seq > last + 1:
+                gaps += seq - last - 1
+        last = seq
+        if isinstance(sid, int):
+            last_stream = sid
     return {
         "frames": len(frames),
         "gaps": gaps,
+        "resync": resync,
         "crc_fail": crc_fail,
         "by_type": by_type,
         "seq_first": frames[0]["seq"] if frames else None,

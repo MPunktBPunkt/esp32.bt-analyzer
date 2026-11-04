@@ -63,8 +63,10 @@ public:
   /**
    * BT16 thin L2 throughput: ATT Notify (peripheral) or Write CMD (central).
    * payload_len = app bytes after [seq:u32][ts_us:u64] header (min 12).
+   * pace_ms: min gap between ATT sends (0 = auto 8/12 by payload).
    */
-  bool throughputStart(const char *mode, uint16_t payload_len, uint16_t mtu);
+  bool throughputStart(const char *mode, uint16_t payload_len, uint16_t mtu,
+                       uint16_t pace_ms = 0);
   void throughputStop();
   bool throughputRunning() const { return thr_running_; }
 
@@ -151,6 +153,13 @@ private:
   uint32_t app_rx_bps_ = 0;
   uint32_t app_rate_ms_ = 0;
   uint32_t thr_last_send_ms_ = 0;
+  uint16_t thr_pace_ms_ = 0;  // 0 = auto
+
+  // HCI ACL reassembly for ATT (PB continuation fragments).
+  uint16_t acl_reasm_handle_ = 0xffff;
+  uint16_t acl_reasm_len_ = 0;
+  uint16_t acl_reasm_need_ = 0;
+  uint8_t acl_reasm_buf_[512]{};
 
   BtSeenDevice devices_[kBtMaxDevices]{};
   size_t device_count_ = 0;
@@ -162,6 +171,7 @@ private:
   void parseLeMeta(const uint8_t *evt, uint8_t evt_len);
   void parseInquiryResult(const uint8_t *params, uint8_t plen, bool with_rssi);
   void parseAclAtt(const uint8_t *h4, uint16_t len);
+  void feedAclAtt(const uint8_t *l2cap_or_att, uint16_t len, bool has_l2cap_hdr);
   void pollAppRates();
   void thrPump();
   bool writeAtt(const uint8_t *att, uint16_t att_len);

@@ -97,8 +97,23 @@ void BtacStream::pollRates() {
 }
 
 bool BtacStream::writeExact(const uint8_t *data, size_t n) {
-  size_t off = 0;
+  // Wait until the socket can take the whole frame when availableForWrite is
+  // meaningful (>0). Partial BTAC headers on the wire invent seq=0 / huge gaps.
   const uint32_t deadline = millis() + 2000;
+  while (connected_ && client_.connected()) {
+    const int avail = client_.availableForWrite();
+    if (avail <= 0 || static_cast<size_t>(avail) >= n) {
+      break;  // avail<=0: API unknown/empty — attempt write anyway
+    }
+    if (static_cast<int32_t>(deadline - millis()) < 0) {
+      return false;
+    }
+    delay(1);
+  }
+  if (!connected_ || !client_.connected()) {
+    return false;
+  }
+  size_t off = 0;
   while (off < n) {
     if (!connected_ || !client_.connected()) {
       return false;
@@ -169,8 +184,8 @@ void BtacStream::pumpClient() {
     }
     return;
   }
-  // Bound work per loop so WiFi/web stay responsive (BT6: drain harder).
-  constexpr size_t kMaxPerLoop = 48;
+  // Bound work per loop so WiFi/web stay responsive; drain hard under ATT flood.
+  constexpr size_t kMaxPerLoop = 128;
   CaptureFrame f;
   for (size_t i = 0; i < kMaxPerLoop; i++) {
     if (!ring_->dequeue(f)) {

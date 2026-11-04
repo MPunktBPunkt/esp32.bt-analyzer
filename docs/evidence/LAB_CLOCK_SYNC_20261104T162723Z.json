@@ -1,0 +1,55 @@
+{
+  "utc": "20261104T162723Z",
+  "gate": "BT_clock_offset_estimation",
+  "method": "http_sync_marker_rtt_midpoint",
+  "claims": {
+    "PTP": false,
+    "shared_clock": false,
+    "estimated_timeline_alignment": true
+  },
+  "rounds": 20,
+  "offsets": {
+    "88": {
+      "ok": true,
+      "offset_s_median": 1793809074.2566607,
+      "offset_s_stdev": 0.002241821024798119,
+      "rtt_ms_median": 38.91289234161377,
+      "rtt_ms_jitter": 4.406316445781524,
+      "uncertainty_ms_median": 19.456446170806885,
+      "sample_count": 20,
+      "best_count": 10
+    },
+    "89": {
+      "ok": true,
+      "offset_s_median": 1793809074.1257973,
+      "offset_s_stdev": 0.005633037340111704,
+      "rtt_ms_median": 97.06318378448486,
+      "rtt_ms_jitter": 11.368298645957523,
+      "uncertainty_ms_median": 48.53159189224243,
+      "sample_count": 20,
+      "best_count": 10
+    },
+    "87": {
+      "ok": true,
+      "offset_s_median": 1793803772.8824294,
+      "offset_s_stdev": 0.007994571526809706,
+      "rtt_ms_median": 112.71584033966064,
+      "rtt_ms_jitter": 18.1871412898907,
+      "uncertainty_ms_median": 56.35792016983032,
+      "sample_count": 20,
+      "best_count": 10
+    }
+  },
+  "pairwise_skew_s": {
+    "88-89": {
+      "skew_s": 0.13086342811584473
+    },
+    "88-87": {
+      "skew_s": 5301.374231338501
+    },
+    "89-87": {
+      "skew_s": 5301.243367910385
+    }
+  },
+  "ok": true
+}

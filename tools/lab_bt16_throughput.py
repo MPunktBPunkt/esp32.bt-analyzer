@@ -8,7 +8,7 @@ Evidence contract layers:
   Application: app_tx/rx_packets, app_seq_gaps, app_reorder, app_*_bytes
   Capture:     capture frames/drops (session)
   BTAC:        btac frames / seqGapsSession
-  File:        file_frames / file_gaps
+  File:        file_frames / file_gaps (forward holes; resync separate)
   Transport:   app_Bps, hci_Bps, btac_Bps
 
 Usage:
@@ -64,7 +64,7 @@ def quiet() -> None:
 
 def ensure_link() -> str:
     quiet()
-    time.sleep(0.4)
+    time.sleep(0.5)
     peer_bd = (get(f"http://{PEER}/api/status").get("onchip") or {}).get("bdAddr")
     post(f"http://{PEER}/api/bt/advertise/start", {"name": "bt-peer-89"})
     time.sleep(0.8)
@@ -78,6 +78,33 @@ def ensure_link() -> str:
             return peer_bd or ""
         time.sleep(0.3)
     raise RuntimeError("connect_failed")
+
+
+def wait_btac_connected(timeout: float = 8.0) -> bool:
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        bt = get(f"http://{HOST}/api/status").get("btac") or {}
+        if bt.get("connected"):
+            return True
+        time.sleep(0.2)
+    return False
+
+
+def wait_ring_drain(timeout: float = 8.0) -> int:
+    """Wait until capture fill≈0 after thr stop (BTAC still connected)."""
+    t0 = time.time()
+    last_fill = -1
+    while time.time() - t0 < timeout:
+        st = get(f"http://{HOST}/api/status")
+        fill = int((st.get("capture") or {}).get("fill") or 0)
+        last_fill = fill
+        if fill == 0:
+            time.sleep(0.3)  # settle
+            fill2 = int((get(f"http://{HOST}/api/status").get("capture") or {}).get("fill") or 0)
+            if fill2 == 0:
+                return 0
+        time.sleep(0.2)
+    return last_fill
 
 
 def pct(vals: list[float], p: float) -> float:
@@ -94,13 +121,60 @@ def pct(vals: list[float], p: float) -> float:
     return s[f] + (s[c] - s[f]) * (k - f)
 
 
+def pace_for(payload: int) -> int:
+    """Conservative ATT pace so BTAC/WiFi keep up for BENCHMARK."""
+    if payload >= 100:
+        return 28
+    return 18
+
+
 def run_once(mode: str, mtu: int, payload: int, duration: float, capture: bool) -> dict:
     ensure_link()
-    before = get(f"http://{HOST}/api/status")
-    peer_before = get(f"http://{PEER}/api/status")
+    pace = pace_for(payload)
+    # Peer first (peripheral), then host (central writes CCCD for notify).
+    # Single thr session — restart mid-run breaks Notify ACL on some links.
+    post(
+        f"http://{PEER}/api/bt/throughput/start",
+        {"mode": mode, "payload": str(payload), "mtu": str(mtu), "pace_ms": str(pace)},
+    )
+    time.sleep(0.15)
+    post(
+        f"http://{HOST}/api/bt/throughput/start",
+        {"mode": mode, "payload": str(payload), "mtu": str(mtu), "pace_ms": str(pace)},
+    )
+
+    # Warmup: require RX-side packets before opening BTAC (avoids connect-storm gaps).
+    rx_ip = HOST if mode == "notify" else PEER
+    warm_ok = False
+    for _ in range(40):
+        time.sleep(0.25)
+        oc = get(f"http://{rx_ip}/api/status").get("onchip") or {}
+        if int(oc.get("appRxPackets") or 0) >= 5:
+            warm_ok = True
+            break
+    if not warm_ok and mode == "notify":
+        try:
+            post(
+                f"http://{HOST}/api/bt/throughput/start",
+                {"mode": mode, "payload": str(payload), "mtu": str(mtu), "pace_ms": str(pace)},
+            )
+        except Exception:  # noqa: BLE001
+            pass
+        for _ in range(20):
+            time.sleep(0.25)
+            oc = get(f"http://{rx_ip}/api/status").get("onchip") or {}
+            if int(oc.get("appRxPackets") or 0) >= 5:
+                warm_ok = True
+                break
+
     btac_path = None
     recv = None
     if capture:
+        # Drain any pre-warmup HCI still sitting in the ring before session begins.
+        try:
+            get(f"http://{HOST}/api/capture/drain?n=512")
+        except Exception:  # noqa: BLE001
+            pass
         btac_path = EVIDENCE / f"_bt16_{mode}_{mtu}_{payload}_{int(time.time())}.btac"
         recv = subprocess.Popen(
             [
@@ -108,21 +182,23 @@ def run_once(mode: str, mtu: int, payload: int, duration: float, capture: bool) 
                 str(ROOT / "tools" / "btac_recv.py"),
                 HOST,
                 "-n",
-                "200000",
+                "500000",
                 "-o",
                 str(btac_path),
                 "--idle",
-                str(max(3, int(duration) + 3)),
+                "20",
             ],
             cwd=str(ROOT),
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
         )
-        time.sleep(0.5)
+        if not wait_btac_connected(10.0):
+            recv.kill()
+            raise RuntimeError("btac_connect_timeout")
+        time.sleep(0.4)
 
-    post(f"http://{PEER}/api/bt/throughput/start", {"mode": mode, "payload": str(payload), "mtu": str(mtu)})
-    post(f"http://{HOST}/api/bt/throughput/start", {"mode": mode, "payload": str(payload), "mtu": str(mtu)})
-    time.sleep(2.0)
+    before = get(f"http://{HOST}/api/status")
+    peer_before = get(f"http://{PEER}/api/status")
 
     samples = []
     t0 = time.time()
@@ -140,18 +216,26 @@ def run_once(mode: str, mtu: int, payload: int, duration: float, capture: bool) 
                 + float((h.get("hciCapture") or {}).get("aclTxBps") or 0),
                 "btac_Bps": float((h.get("btac") or {}).get("fwdBps") or 0),
                 "peer_appTx_Bps": float((p.get("onchip") or {}).get("appTxBps") or 0),
+                "peer_appRx_Bps": float((p.get("onchip") or {}).get("appRxBps") or 0),
             }
         )
 
     after = get(f"http://{HOST}/api/status")
     peer_after = get(f"http://{PEER}/api/status")
-    quiet()
+
+    # Stop ATT first, drain ring into BTAC, then tear down link.
+    post(f"http://{PEER}/api/bt/throughput/stop")
+    post(f"http://{HOST}/api/bt/throughput/stop")
+    fill_left = wait_ring_drain(10.0) if capture else 0
 
     file_gaps = None
+    file_resync = None
     file_frames = None
     if recv:
+        # Signal idle exit: stop producing traffic; recv exits on idle.
+        time.sleep(1.0)
         try:
-            recv.wait(timeout=duration + 20)
+            recv.wait(timeout=25)
         except Exception:  # noqa: BLE001
             recv.kill()
         if btac_path and btac_path.is_file():
@@ -165,48 +249,65 @@ def run_once(mode: str, mtu: int, payload: int, duration: float, capture: bool) 
             try:
                 dj = json.loads(dec.stdout)
                 file_gaps = int(dj.get("gaps") or 0)
+                file_resync = int(dj.get("resync") or 0)
                 file_frames = int(dj.get("frames") or 0)
             except json.JSONDecodeError:
                 file_gaps = -1
 
+    # Disconnect after capture closed
+    for ip in (HOST, PEER):
+        for path in ("/api/bt/disconnect", "/api/bt/scan/stop", "/api/bt/advertise/stop"):
+            try:
+                post(f"http://{ip}{path}")
+            except Exception:  # noqa: BLE001
+                pass
+
     oc0, oc1 = before.get("onchip") or {}, after.get("onchip") or {}
     cap0, cap1 = before.get("capture") or {}, after.get("capture") or {}
     bt0, bt1 = before.get("btac") or {}, after.get("btac") or {}
-    poc1 = peer_after.get("onchip") or {}
+    poc0, poc1 = peer_before.get("onchip") or {}, peer_after.get("onchip") or {}
 
-    def sess_delta(a: dict, b: dict, key: str, fallback: str) -> int:
-        if key in a or key in b:
-            return max(0, int(a.get(key) or 0) - int(b.get(key) or 0))
-        return max(0, int(a.get(fallback) or 0) - int(b.get(fallback) or 0))
-
-    # Prefer absolute session counters after a fresh BTAC connect
-    capture_drops = int(cap1.get("droppedSession") if "droppedSession" in cap1 else sess_delta(cap1, cap0, "droppedSession", "dropped"))
-    if "droppedSession" in cap1 and int(cap0.get("droppedSession") or 0) > int(cap1.get("droppedSession") or 0):
+    capture_drops = int(cap1.get("droppedSession") or 0)
+    # If session counter reset mid-run (new BTAC client), use absolute after.
+    if int(cap0.get("droppedSession") or 0) > capture_drops:
         capture_drops = int(cap1.get("droppedSession") or 0)
-    btac_gaps = int(bt1.get("seqGapsSession") if "seqGapsSession" in bt1 else sess_delta(bt1, bt0, "seqGapsSession", "seqGaps"))
-    if "seqGapsSession" in bt1 and int(bt0.get("seqGapsSession") or 0) > int(bt1.get("seqGapsSession") or 0):
+    btac_gaps = int(bt1.get("seqGapsSession") or 0)
+    if int(bt0.get("seqGapsSession") or 0) > btac_gaps:
         btac_gaps = int(bt1.get("seqGapsSession") or 0)
 
     app_rx_bps = [s["appRx_Bps"] for s in samples]
     app_tx_bps = [s["appTx_Bps"] for s in samples]
     peer_tx = [s["peer_appTx_Bps"] for s in samples]
-    # Primary app rate: host RX for notify, host TX for write (plus peer TX fallback)
-    primary = app_rx_bps if mode == "notify" else app_tx_bps
-    if statistics.mean(primary or [0]) < 1 and peer_tx:
-        primary = peer_tx
+    peer_rx = [s["peer_appRx_Bps"] for s in samples]
+    if mode == "notify":
+        primary = app_rx_bps
+        if statistics.mean(primary or [0]) < 1 and peer_tx:
+            primary = peer_tx
+    else:
+        primary = peer_rx if statistics.mean(peer_rx or [0]) >= 1 else app_tx_bps
 
     hci_bps = [s["hci_Bps"] for s in samples]
     btac_bps = [s["btac_Bps"] for s in samples]
 
     app_tx_packets = int(oc1.get("appTxPackets") or 0)
     app_rx_packets = int(oc1.get("appRxPackets") or 0)
-    # Also count peer TX packets for notify
     peer_tx_packets = int(poc1.get("appTxPackets") or 0)
-    app_seq_gaps = int(oc1.get("appSeqGaps") or oc1.get("thrLoss") or 0)
-    app_reorder = int(oc1.get("appReorder") or oc1.get("thrReorder") or 0)
+    peer_rx_packets = int(poc1.get("appRxPackets") or 0)
+
+    # Application loss is always measured on the RX side of the ATT path.
+    if mode == "notify":
+        app_seq_gaps = int(oc1.get("appSeqGaps") or oc1.get("thrLoss") or 0)
+        app_reorder = int(oc1.get("appReorder") or oc1.get("thrReorder") or 0)
+        rx_packets = app_rx_packets
+    else:
+        app_seq_gaps = int(poc1.get("appSeqGaps") or poc1.get("thrLoss") or 0)
+        app_reorder = int(poc1.get("appReorder") or poc1.get("thrReorder") or 0)
+        rx_packets = peer_rx_packets
 
     connected = bool(oc1.get("leConnected") or oc0.get("leConnected"))
-    att_seen = (app_tx_packets + app_rx_packets + peer_tx_packets) > 0 or statistics.mean(primary or [0]) > 0
+    att_seen = (app_tx_packets + app_rx_packets + peer_tx_packets + peer_rx_packets) > 0 or statistics.mean(
+        primary or [0]
+    ) > 0
     hci_seen = statistics.mean(hci_bps or [0]) > 0 or int((after.get("hciCapture") or {}).get("rx") or 0) > int(
         (before.get("hciCapture") or {}).get("rx") or 0
     )
@@ -214,11 +315,13 @@ def run_once(mode: str, mtu: int, payload: int, duration: float, capture: bool) 
     capability_ok = connected and att_seen and hci_seen
     benchmark_ok = (
         capability_ok
+        and rx_packets > 0
         and int(file_gaps or 0) == 0
         and app_seq_gaps == 0
         and app_reorder == 0
         and capture_drops == 0
         and duration >= 10
+        and fill_left == 0
     )
 
     return {
@@ -226,16 +329,21 @@ def run_once(mode: str, mtu: int, payload: int, duration: float, capture: bool) 
         "mtu": mtu,
         "payload": payload,
         "duration_s": duration,
+        "pace_ms": pace,
         "capture": capture,
+        "warmup_rx_ok": warm_ok,
         "application": {
             "app_tx_packets": app_tx_packets,
             "app_rx_packets": app_rx_packets,
             "peer_app_tx_packets": peer_tx_packets,
+            "peer_app_rx_packets": peer_rx_packets,
             "app_tx_bytes": oc1.get("appTxBytes"),
             "app_rx_bytes": oc1.get("appRxBytes"),
             "peer_app_tx_bytes": poc1.get("appTxBytes"),
+            "peer_app_rx_bytes": poc1.get("appRxBytes"),
             "app_seq_gaps": app_seq_gaps,
             "app_reorder": app_reorder,
+            "rx_side": "host" if mode == "notify" else "peer",
             "app_Bps_median": statistics.median(primary) if primary else 0,
             "app_Bps_p10": pct(primary, 10),
             "app_Bps_p90": pct(primary, 90),
@@ -246,6 +354,7 @@ def run_once(mode: str, mtu: int, payload: int, duration: float, capture: bool) 
             "capture_drops": capture_drops,
             "droppedSession": cap1.get("droppedSession"),
             "highWaterSession": cap1.get("highWaterSession"),
+            "ring_fill_after_drain": fill_left,
         },
         "btac": {
             "btac_frames": int(bt1.get("forwarded") or 0) - int(bt0.get("forwarded") or 0),
@@ -253,21 +362,25 @@ def run_once(mode: str, mtu: int, payload: int, duration: float, capture: bool) 
             "seqGapsSession": bt1.get("seqGapsSession"),
             "fwdBps_median": statistics.median(btac_bps) if btac_bps else 0,
         },
-        "file": {"file_frames": file_frames, "file_gaps": file_gaps},
+        "file": {
+            "file_frames": file_frames,
+            "file_gaps": file_gaps,
+            "file_resync": file_resync,
+        },
         "transport": {
             "hci_Bps_median": statistics.median(hci_bps) if hci_bps else 0,
             "btac_Bps_median": statistics.median(btac_bps) if btac_bps else 0,
         },
         "capability_status": "PASS" if capability_ok else "FAIL",
         "benchmark_status": "PASS" if benchmark_ok else "FAIL",
-        "ok": capability_ok,  # smoke-compat
+        "ok": capability_ok,
         "attMtu_host": oc1.get("attMtu"),
         "attMtu_peer": poc1.get("attMtu"),
     }
 
 
 def summarize_repeats(runs: list[dict]) -> dict:
-    medians = [r["application"]["app_Bps_median"] for r in runs]
+    medians = [r.get("application", {}).get("app_Bps_median", 0) for r in runs]
     return {
         "repeats": len(runs),
         "app_Bps_median_of_medians": statistics.median(medians) if medians else 0,
@@ -330,10 +443,6 @@ def main() -> int:
                 cases.append(summary)
 
     capability_ok = any(c.get("capability_status") == "PASS" for c in cases)
-    benchmark_ok = any(c.get("benchmark_status") == "PASS" for c in cases) and all(
-        c.get("benchmark_pass_count", 0) > 0 for c in cases if c.get("capability_status") == "PASS"
-    )
-    # Strict: overall benchmark only if every completed capability case also has full-repeat benchmark
     benchmark_ok = all(c.get("benchmark_status") == "PASS" for c in cases) and bool(cases)
 
     results = {
@@ -342,12 +451,13 @@ def main() -> int:
         "gate": "BT16",
         "contract": "CAPABILITY_vs_BENCHMARK",
         "claim": "L2_ATT_throughput_over_HCI_not_air",
+        "fw": "0.3.0",
         "duration_s": args.duration,
         "repeats": args.repeats,
         "capability_ok": capability_ok,
         "benchmark_ok": benchmark_ok,
         "cases": cases,
-        "ok": capability_ok,  # smoke / legacy
+        "ok": capability_ok,
     }
 
     stem = f"LAB_BT16_{utc}"
@@ -357,7 +467,7 @@ def main() -> int:
     lines = [
         f"# LAB BT16 — capability={'PASS' if capability_ok else 'FAIL'} · benchmark={'PASS' if benchmark_ok else 'FAIL'}",
         "",
-        f"**UTC:** {utc} · **duration:** {args.duration}s × {args.repeats}",
+        f"**UTC:** {utc} · **duration:** {args.duration}s × {args.repeats} · **fw:** 0.3.0",
         f"**Raw:** [`{stem}.json`]({stem}.json)",
         "",
         "| mode | mtu | payload | median B/s | p10 | p90 | cap PASS/n | bench PASS/n |",
@@ -375,7 +485,7 @@ def main() -> int:
         "",
         "## Exit classes",
         "- **CAPABILITY_PASS:** connected + ATT traffic + HCI traffic",
-        "- **BENCHMARK_PASS:** capability + file_gaps=0 + app_seq_gaps=0 + app_reorder=0 + capture_drops=0",
+        "- **BENCHMARK_PASS:** capability + RX packets>0 + file_gaps=0 + app_seq_gaps=0 + app_reorder=0 + capture_drops=0 + ring drained",
         "",
     ]
     md.write_text("\n".join(lines) + "\n", encoding="utf-8")

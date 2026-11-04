@@ -263,8 +263,9 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
     }
     const uint16_t payload = static_cast<uint16_t>(srv->arg("payload").toInt());
     const uint16_t mtu = static_cast<uint16_t>(srv->arg("mtu").toInt());
+    const uint16_t pace_ms = static_cast<uint16_t>(srv->arg("pace_ms").toInt());
     const bool ok = onchip_->throughputStart(
-        mode.c_str(), payload ? payload : 20, mtu ? mtu : 23);
+        mode.c_str(), payload ? payload : 20, mtu ? mtu : 23, pace_ms);
     srv->send(ok ? 200 : 500, "application/json",
               ok ? "{\"ok\":true,\"claim\":\"L2_ATT_throughput_not_air\"}"
                  : "{\"ok\":false,\"error\":\"throughput_start_failed\"}");
@@ -354,6 +355,13 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
   server.on("/api/capture/drain", HTTP_GET, [this, srv]() {
     if (!onchip_) {
       srv->send(503, "text/plain", "no_onchip\n");
+      return;
+    }
+    // BTAC owns ring dequeues while a client is connected — HTTP drain
+    // would steal frames and invent file_gaps with droppedSession==0.
+    if (btac_.clientConnected()) {
+      srv->send(409, "application/json",
+                "{\"ok\":false,\"error\":\"btac_owns_ring\"}");
       return;
     }
     size_t max_n = 64;

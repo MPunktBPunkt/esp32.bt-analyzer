@@ -16,7 +16,7 @@ from controller import session as btac_session
 
 WEB_ROOT = Path(__file__).resolve().parents[2] / "web"
 STARTED = time.time()
-VERSION = "0.2.9"
+VERSION = "0.3.0"
 
 # Poll-proxy lab nodes (OBSERVE) — no HELLO required yet
 LAB_NODES = [

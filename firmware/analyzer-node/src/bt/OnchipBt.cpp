@@ -784,7 +784,7 @@ bool OnchipBt::attExchangeMtu(uint16_t mtu) {
 }
 
 bool OnchipBt::throughputStart(const char *mode, uint16_t payload_len,
-                               uint16_t mtu) {
+                               uint16_t mtu, uint16_t pace_ms) {
   if (!le_connected_) {
     return false;
   }
@@ -796,6 +796,7 @@ bool OnchipBt::throughputStart(const char *mode, uint16_t payload_len,
     payload_len = 200;
   }
   thr_payload_ = payload_len;
+  thr_pace_ms_ = pace_ms;
   thr_seq_tx_ = 0;
   thr_have_rx_ = false;
   app_seq_gaps_ = 0;
@@ -807,7 +808,11 @@ bool OnchipBt::throughputStart(const char *mode, uint16_t payload_len,
   app_tx_bps_ = app_rx_bps_ = 0;
   app_rate_ms_ = millis();
   thr_last_send_ms_ = 0;
-  thr_cccd_enabled_ = (conn_role_ == 1);  // peripheral can notify once CCCD written
+  // Peripheral must wait for CCCD write from central — never pre-enable.
+  thr_cccd_enabled_ = false;
+  acl_reasm_handle_ = 0xffff;
+  acl_reasm_len_ = 0;
+  acl_reasm_need_ = 0;
   if (mtu >= 23) {
     attExchangeMtu(mtu);
   }
@@ -895,8 +900,11 @@ void OnchipBt::thrPump() {
     return;
   }
   const uint32_t now = millis();
-  // Pace ATT flood: larger payloads need more airtime; keep WiFi/web alive.
-  const uint32_t min_gap_ms = thr_payload_ >= 100 ? 12u : 8u;
+  // Pace ATT flood: larger payloads need more airtime; keep WiFi/BTAC alive.
+  uint32_t min_gap_ms = thr_pace_ms_;
+  if (min_gap_ms == 0) {
+    min_gap_ms = thr_payload_ >= 100 ? 12u : 8u;
+  }
   if (now - thr_last_send_ms_ < min_gap_ms) {
     return;
   }
@@ -912,26 +920,80 @@ void OnchipBt::thrPump() {
 }
 
 void OnchipBt::parseAclAtt(const uint8_t *h4, uint16_t len) {
-  // H4 02 | handle[2] | acl_len[2] | l2cap_len[2] | cid[2] | att...
-  if (len < 10 || h4[0] != 0x02) {
+  // H4 02 | handle+PB+BC[2] | acl_len[2] | data...
+  if (len < 5 || h4[0] != 0x02) {
     return;
   }
+  const uint16_t handle_full = static_cast<uint16_t>(h4[1] | (h4[2] << 8));
+  const uint16_t handle = static_cast<uint16_t>(handle_full & 0x0FFFu);
+  const uint8_t pb = static_cast<uint8_t>((handle_full >> 12) & 0x3u);
   const uint16_t acl_len = static_cast<uint16_t>(h4[3] | (h4[4] << 8));
-  if (static_cast<uint16_t>(5 + acl_len) > len || acl_len < 5) {
+  if (static_cast<uint16_t>(5 + acl_len) > len || acl_len == 0) {
     return;
   }
-  const uint16_t cid = static_cast<uint16_t>(h4[7] | (h4[8] << 8));
-  if (cid != 0x0004) {
-    return;
-  }
-  const uint8_t *att = h4 + 9;
-  const uint16_t att_len = static_cast<uint16_t>(acl_len - 4);
-  if (att_len < 1) {
+  const uint8_t *data = h4 + 5;
+
+  // PB=1 → continuation fragment; PB=2/0 → start of L2CAP.
+  if (pb == 1) {
+    if (acl_reasm_handle_ != handle || acl_reasm_need_ == 0) {
+      return;
+    }
+    const uint16_t space = static_cast<uint16_t>(sizeof(acl_reasm_buf_) - acl_reasm_len_);
+    const uint16_t copy = acl_len < space ? acl_len : space;
+    memcpy(acl_reasm_buf_ + acl_reasm_len_, data, copy);
+    acl_reasm_len_ = static_cast<uint16_t>(acl_reasm_len_ + copy);
+    if (acl_reasm_len_ >= acl_reasm_need_) {
+      feedAclAtt(acl_reasm_buf_, acl_reasm_need_, true);
+      acl_reasm_handle_ = 0xffff;
+      acl_reasm_len_ = 0;
+      acl_reasm_need_ = 0;
+    }
     return;
   }
 
+  if (acl_len < 4) {
+    return;
+  }
+  const uint16_t l2_len = static_cast<uint16_t>(data[0] | (data[1] << 8));
+  const uint16_t need = static_cast<uint16_t>(4 + l2_len);
+  if (need <= acl_len) {
+    feedAclAtt(data, need, true);
+    return;
+  }
+  // Start reassembly
+  if (need > sizeof(acl_reasm_buf_)) {
+    return;
+  }
+  memcpy(acl_reasm_buf_, data, acl_len);
+  acl_reasm_handle_ = handle;
+  acl_reasm_len_ = acl_len;
+  acl_reasm_need_ = need;
+}
+
+void OnchipBt::feedAclAtt(const uint8_t *l2cap, uint16_t len, bool has_l2cap_hdr) {
+  if (!l2cap || len < 5) {
+    return;
+  }
+  const uint8_t *att;
+  uint16_t att_len;
+  if (has_l2cap_hdr) {
+    const uint16_t cid = static_cast<uint16_t>(l2cap[2] | (l2cap[3] << 8));
+    if (cid != 0x0004) {
+      return;
+    }
+    const uint16_t l2_len = static_cast<uint16_t>(l2cap[0] | (l2cap[1] << 8));
+    if (static_cast<uint16_t>(4 + l2_len) > len || l2_len < 1) {
+      return;
+    }
+    att = l2cap + 4;
+    att_len = l2_len;
+  } else {
+    att = l2cap;
+    att_len = len;
+  }
+
   auto noteThrRx = [&](const uint8_t *val, uint16_t vlen) {
-    if (vlen < 12) {
+    if (!thr_running_ || vlen < 12) {
       return;
     }
     uint32_t seq = 0;
@@ -982,7 +1044,7 @@ void OnchipBt::parseAclAtt(const uint8_t *h4, uint16_t len) {
     if (handle == 0x0004) {
       thr_cccd_enabled_ = (att[3] & 0x01) != 0;
       if (att[0] == 0x12) {
-        uint8_t rsp[5] = {0x13};  // Write Response
+        uint8_t rsp[1] = {0x13};  // Write Response
         writeAtt(rsp, 1);
       }
       return;

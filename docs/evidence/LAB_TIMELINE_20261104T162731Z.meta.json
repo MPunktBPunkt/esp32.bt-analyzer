@@ -1,0 +1,55 @@
+{
+  "utc": "20261104T162731Z",
+  "gate": "BT19_timeline",
+  "fw": "0.3.0",
+  "method": "http_sync_marker_rtt_midpoint",
+  "offsets": {
+    "88": {
+      "ok": true,
+      "offset_s_median": 1793809074.241693,
+      "offset_s_stdev": 0.012738156556510793,
+      "rtt_ms_median": 69.08023357391357,
+      "rtt_ms_jitter": 26.433419913024057,
+      "uncertainty_ms_median": 34.54011678695679,
+      "sample_count": 12,
+      "best_count": 6
+    },
+    "89": {
+      "ok": true,
+      "offset_s_median": 1793809074.1299872,
+      "offset_s_stdev": 0.0030588708644419325,
+      "rtt_ms_median": 88.8298749923706,
+      "rtt_ms_jitter": 6.058370304681491,
+      "uncertainty_ms_median": 44.4149374961853,
+      "sample_count": 12,
+      "best_count": 6
+    },
+    "87": {
+      "ok": true,
+      "offset_s_median": 1793803772.8870053,
+      "offset_s_stdev": 0.008930764257443607,
+      "rtt_ms_median": 106.38570785522461,
+      "rtt_ms_jitter": 15.96133274101667,
+      "uncertainty_ms_median": 53.192853927612305,
+      "sample_count": 12,
+      "best_count": 6
+    }
+  },
+  "skew_s": {
+    "88-89": {
+      "skew_s": 0.11170578002929688
+    },
+    "88-87": {
+      "skew_s": 5301.354687690735
+    },
+    "89-87": {
+      "skew_s": 5301.242981910706
+    }
+  },
+  "claims": {
+    "PTP": false,
+    "shared_clock": false,
+    "estimated_timeline_alignment": true
+  },
+  "claim": "correlated_via_debian_bridge_not_PTP"
+}

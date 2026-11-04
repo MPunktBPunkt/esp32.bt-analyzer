@@ -1,14 +1,14 @@
 # esp32.bt-analyzer
 
-![Version](https://img.shields.io/badge/version-0.2.9-blue)
+![Version](https://img.shields.io/badge/version-0.3.0-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Gate](https://img.shields.io/badge/gate-BT16%20CAP%2FBENCH-yellow)](docs/GATES.md)
 
 ESP **on-chip Bluetooth HCI analyzer** (VHCI): Controller ↔ Host über die Board-Radio, Capture nach Debian.  
 **Kein USB-Dongle nötig** (Topologie **F_ONCHIP**).
 
-> **v0.2.9** — Evidence contract: CAPABILITY vs BENCHMARK · app/capture/BTAC/file loss split · gate-result→GATE_EXITS · BT16-B matrix.  
-> **Nicht claimed:** RF/Air · Classic auf S3 · MITM · Full GATT · kB/s without loss split · PTP clock.
+> **v0.3.0** — BT16-B: first **BENCHMARK_PASS** (20 B matrix) · BTAC owns ring · Host≠Analyzer scope · BT19 timeline.  
+> **Nicht claimed:** RF/Air · Classic auf S3 · MITM · Full GATT · HID/A2DP · PTP · Headset/Tastatur Host · Notify@200 B bench.
 
 Wissensbasis: [technology-audit / esp32-bt-analyzer](https://github.com/MPunktBPunkt/technology-audit/tree/main/projects/esp32-bt-analyzer) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5**.
 
@@ -104,14 +104,15 @@ python3 tools/lab_clock_sync.py         # multi-node offset estimate
 python3 tools/lab_gate_exits.py
 ```
 
-| Gate band | Stand (0.2.9) |
+| Gate band | Stand (0.3.0) |
 |-----------|----------------|
 | BT0–BT13 | **CODE READY** / lab MEASURED |
 | BT14 | **ready for external review** |
 | BT15 | **deferred** (RF/Air) |
-| BT16 | **CAPABILITY / BENCHMARK** exits ([`docs/BT16_THROUGHPUT.md`](docs/BT16_THROUGHPUT.md)) |
+| BT16 | **CAPABILITY / BENCHMARK** ([`docs/BT16_THROUGHPUT.md`](docs/BT16_THROUGHPUT.md)) |
 | BT17 | **deferred** after BT19 ([`docs/BT17_CLASSIC_AUDIO.md`](docs/BT17_CLASSIC_AUDIO.md)) |
-| BT19 | **timeline scaffold** (offset estimation, not PTP) |
+| BT19 | **timeline** ([`docs/BT19_TIMELINE.md`](docs/BT19_TIMELINE.md)) — not PTP |
+| Scope | HCI analyzer ≠ universal host ([`docs/SCOPE_HOST_VS_ANALYZER.md`](docs/SCOPE_HOST_VS_ANALYZER.md)) |
 
 ## License
 

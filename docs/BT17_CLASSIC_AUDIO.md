@@ -2,11 +2,13 @@
 
 ```yaml
 status: deferred_until_bt19
-fw_core: "0.2.9+ thin VHCI analyzer"
+fw_core: "0.3.0+ thin VHCI analyzer"
 flavor: analyzer-esp32-classic-audio  # not built yet
 board: 192.168.178.87
 phone_first: true
 ```
+
+See also: [`SCOPE_HOST_VS_ANALYZER.md`](SCOPE_HOST_VS_ANALYZER.md) — headset/keyboard ≠ current thin host.
 
 ## Architecture cut (frozen)
 
