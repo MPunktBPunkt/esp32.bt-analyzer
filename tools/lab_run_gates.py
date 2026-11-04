@@ -115,11 +115,29 @@ def main() -> int:
             conn_handle = oc.get("connHandle") or 0
             break
         time.sleep(0.4)
+    gatt_name = None
+    gatt_ok = False
+    if connected:
+        try:
+            post(f"http://{HOST}/api/bt/gatt/read-name")
+            deadline_g = time.time() + 4.0
+            while time.time() < deadline_g:
+                oc = (get(f"http://{HOST}/api/status").get("onchip") or {})
+                if oc.get("gattName"):
+                    gatt_name = oc.get("gattName")
+                    gatt_ok = True
+                    break
+                time.sleep(0.3)
+        except Exception as exc:  # noqa: BLE001
+            results["gatt_error"] = str(exc)
     results["gates"]["BT9"] = {
         "ok": connected,
         "leConnected": connected,
         "connHandle": conn_handle,
         "peerAddr": (get(f"http://{HOST}/api/status").get("onchip") or {}).get("peerAddr"),
+        "gattName": gatt_name,
+        "gatt_l2_ok": gatt_ok,
+        "l2_claim": "att_over_hci_acl_not_air",
     }
     try:
         post(f"http://{HOST}/api/bt/disconnect")
@@ -286,8 +304,11 @@ def main() -> int:
         ROOT / "docs" / "GATES.md",
         ROOT / "docs" / "EVIDENCE.md",
         ROOT / "docs" / "LAB_METHODS.md",
+        ROOT / "docs" / "BT15_RF_AIR.md",
         ROOT / "tools" / "btac_to_pcapng.py",
         ROOT / "tools" / "btac_decode.py",
+        ROOT / "tools" / "lab_gate_exits.py",
+        ROOT / "controller" / "session.py",
     ]
     missing = [str(p.relative_to(ROOT)) for p in needed if not p.is_file()]
     results["gates"]["BT14"] = {

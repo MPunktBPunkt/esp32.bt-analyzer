@@ -52,12 +52,21 @@ public:
   /** addr_hex: "aa:bb:cc:dd:ee:ff", addr_type 0/1 for BLE */
   bool leConnect(const char *addr_hex, uint8_t addr_type = 0);
   bool leDisconnect();
+  /**
+   * L2 probe only: ATT Read By Type (UUID 0x2A00 Device Name) over HCI ACL.
+   * Not a full GATT stack; not Air FACT.
+   */
+  bool gattReadDeviceName();
+  /** Classic Write_Local_Name (0x0C13) — deepens BT10 discoverable identity. */
+  bool classicSetLocalName(const char *name);
 
   bool scanning() const { return le_scanning_ || classic_inquiry_; }
   bool advertising() const { return le_advertising_; }
   bool connected() const { return le_connected_; }
   uint16_t connHandle() const { return conn_handle_; }
   bool classicDiscoverable() const { return classic_discoverable_; }
+  const char *gattName() const { return gatt_name_; }
+  bool gattNameValid() const { return gatt_name_valid_; }
   size_t deviceCount() const { return device_count_; }
   const BtSeenDevice *deviceAt(size_t i) const {
     return i < device_count_ ? &devices_[i] : nullptr;
@@ -87,6 +96,7 @@ private:
   bool reset_done_ = false;
   bool masks_done_ = false;
   uint16_t conn_handle_ = 0;
+  uint8_t conn_role_ = 0xff;  // 0=master/central, 1=slave/peripheral
   uint8_t peer_addr_[6]{};
   uint8_t peer_addr_type_ = 0;
   bool peer_addr_valid_ = false;
@@ -95,6 +105,9 @@ private:
   char state_[24] = "idle";
   char last_err_[24]{};
   char adv_name_[28] = "bt-peer";
+  char classic_name_[28] = "bt-classic-87";
+  char gatt_name_[32]{};
+  bool gatt_name_valid_ = false;
   uint32_t last_cmd_ms_ = 0;
 
   BtSeenDevice devices_[kBtMaxDevices]{};
@@ -106,6 +119,7 @@ private:
   void parseEvent(const uint8_t *h4, uint16_t len);
   void parseLeMeta(const uint8_t *evt, uint8_t evt_len);
   void parseInquiryResult(const uint8_t *params, uint8_t plen, bool with_rssi);
+  void parseAclAtt(const uint8_t *h4, uint16_t len);
 
   static int vhciRecv(uint8_t *data, uint16_t len);
   static void vhciSendAvailable();

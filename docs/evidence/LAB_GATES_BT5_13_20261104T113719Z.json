@@ -1,0 +1,119 @@
+{
+  "utc": "20261104T113719Z",
+  "topology": "F_ONCHIP",
+  "gates": {
+    "BT5": {
+      "ok": true,
+      "capacity": 512,
+      "psram": true,
+      "fillPct": 0,
+      "frameBytes": 1048
+    },
+    "BT11": {
+      "ok": true,
+      "peer_seen": true,
+      "devices": 2,
+      "matched": [
+        {
+          "addr": "68:b6:b3:2b:c5:69",
+          "addrType": 0,
+          "rssi": -25,
+          "classic": false,
+          "ble": true,
+          "name": "bt-peer-89"
+        }
+      ]
+    },
+    "BT9": {
+      "ok": true,
+      "leConnected": true,
+      "connHandle": 1,
+      "peerAddr": "68:b6:b3:2b:c5:69",
+      "gattName": "bt-peer-89",
+      "gatt_l2_ok": true,
+      "l2_claim": "att_over_hci_acl_not_air"
+    },
+    "BT6": {
+      "ok": true,
+      "drops_delta": 0,
+      "btac_seqGaps": 7,
+      "frames": 120,
+      "crc_fail": 0,
+      "recv_rc": 0
+    },
+    "BT7": {
+      "ok": true,
+      "stats": {
+        "frames": 120,
+        "gaps": 2,
+        "crc_fail": 0,
+        "by_type": {
+          "command": 7,
+          "event": 113
+        },
+        "seq_first": 187,
+        "seq_last": 308,
+        "input": "/home/martin/projects/bt-analyzer/docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.btac",
+        "output": null,
+        "ok": true
+      }
+    },
+    "BT8": {
+      "ok": true,
+      "pcapng": "docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.pcapng",
+      "stats": {
+        "ok": true,
+        "input": "/home/martin/projects/bt-analyzer/docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.btac",
+        "output": "/home/martin/projects/bt-analyzer/docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.pcapng",
+        "packets": 120,
+        "linktype": 201,
+        "claim": "HCI_H4_not_RF"
+      }
+    },
+    "BT4": {
+      "ok": true,
+      "btac": "docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.btac",
+      "jsonl": "docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.jsonl"
+    },
+    "BT10": {
+      "ok": true,
+      "classicDiscoverable": true,
+      "inquiry_devices": 0,
+      "devices": [],
+      "note": "inquiry device count depends on ambient Classic discoverables"
+    },
+    "BT12": {
+      "ok": true,
+      "frames": 200,
+      "duration_s": 11.41,
+      "btac": "docs/evidence/LAB_GATES_BT5_13_20261104T113719Z_long.btac"
+    },
+    "BT13": {
+      "ok": true,
+      "toggle_fails": 0,
+      "host_ready": true,
+      "heap": 175740
+    },
+    "BT14": {
+      "ok": true,
+      "missing": [],
+      "note": "project-side audit pack present; external technology-audit review separate"
+    },
+    "BT15": {
+      "ok": true,
+      "status": "deferred",
+      "note": "RF/Air out of scope"
+    }
+  },
+  "versions": {
+    "192.168.178.88": "0.2.7",
+    "192.168.178.89": "0.2.7",
+    "192.168.178.87": "0.2.7"
+  },
+  "bd": {
+    "192.168.178.88": "68:b6:b3:29:33:9d",
+    "192.168.178.89": "68:b6:b3:2b:c5:69",
+    "192.168.178.87": "c8:c9:a3:cb:37:96"
+  },
+  "ok": true
+}

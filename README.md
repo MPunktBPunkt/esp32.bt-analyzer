@@ -1,14 +1,14 @@
 # esp32.bt-analyzer
 
-![Version](https://img.shields.io/badge/version-0.2.6-blue)
+![Version](https://img.shields.io/badge/version-0.2.7-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Gate](https://img.shields.io/badge/gate-BT3%20onchip%20VHCI-yellow)](docs/GATES.md)
+[![Gate](https://img.shields.io/badge/gate-BT14%20review%20ready-yellow)](docs/GATES.md)
 
 ESP **on-chip Bluetooth HCI analyzer** (VHCI): board radio → HCI capture → WiFi → Debian.  
 **Kein USB-Dongle nötig.**
 
-> **v0.2.6** — BLE Advertise/Scan peer · BTAC `:9753` · JSONL decode (BT7) · F_ONCHIP evidence.  
-> **Nicht claimed:** RF/Air sniffer, Classic on S3, MITM, drop-free.
+> **v0.2.7** — GATT L2 name probe · Classic local name · BTAC session UI `:8081` · gate exits.  
+> **Nicht claimed:** RF/Air sniffer, Classic on S3, MITM, full GATT stack.
 
 Wissensbasis: [technology-audit](https://github.com/MPunktBPunkt/technology-audit) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5**.
 

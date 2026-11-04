@@ -220,8 +220,13 @@ void OnchipBt::loop() {
 
 void OnchipBt::handleControllerPacket(uint8_t *data, uint16_t len) {
   cap_.onRecv(data, len);
-  if (data && len >= 2 && data[0] == 0x04) {
+  if (!data || len < 2) {
+    return;
+  }
+  if (data[0] == 0x04) {
     parseEvent(data, len);
+  } else if (data[0] == 0x02) {
+    parseAclAtt(data, len);
   }
 }
 
@@ -292,6 +297,7 @@ void OnchipBt::parseLeMeta(const uint8_t *evt, uint8_t evt_len) {
     const uint8_t status = evt[1];
     if (status == 0) {
       conn_handle_ = static_cast<uint16_t>(evt[2] | (evt[3] << 8));
+      conn_role_ = evt[4];
       peer_addr_type_ = evt[5];
       for (int i = 0; i < 6; i++) {
         peer_addr_[i] = evt[6 + (5 - i)];
@@ -300,7 +306,8 @@ void OnchipBt::parseLeMeta(const uint8_t *evt, uint8_t evt_len) {
       le_connected_ = true;
       le_scanning_ = false;
       le_advertising_ = false;
-      setState("le_connected");
+      gatt_name_valid_ = false;
+      setState(conn_role_ == 1 ? "le_connected_periph" : "le_connected");
     } else {
       le_connected_ = false;
       setState("le_conn_fail");
@@ -586,6 +593,8 @@ bool OnchipBt::classicDiscoverableStart() {
   if (!classic_capable_ || !cap_.openOk()) {
     return false;
   }
+  classicSetLocalName(classic_name_);
+  delay(30);
   // Write_Scan_Enable (0x0C1A) = 0x03 inquiry + page scan
   const uint8_t cmd[] = {0x1a, 0x0c, 0x01, 0x03};
   if (!cap_.writeCommand(cmd, sizeof(cmd))) {
@@ -672,6 +681,124 @@ bool OnchipBt::leDisconnect() {
   return cap_.writeCommand(cmd, sizeof(cmd));
 }
 
+bool OnchipBt::classicSetLocalName(const char *name) {
+  if (!classic_capable_ || !cap_.openOk()) {
+    return false;
+  }
+  if (name && name[0]) {
+    strncpy(classic_name_, name, sizeof(classic_name_) - 1);
+    classic_name_[sizeof(classic_name_) - 1] = 0;
+  }
+  const size_t n = strnlen(classic_name_, sizeof(classic_name_) - 1);
+  // Write_Local_Name (0x0C13): Core Spec pads to 248; keep stack small — heap buffer.
+  uint8_t *cmd = static_cast<uint8_t *>(calloc(1, 3 + 248));
+  if (!cmd) {
+    return false;
+  }
+  cmd[0] = 0x13;
+  cmd[1] = 0x0c;
+  cmd[2] = 248;
+  memcpy(&cmd[3], classic_name_, n);
+  last_cmd_ms_ = millis();
+  const bool ok = cap_.writeCommand(cmd, 3 + 248);
+  free(cmd);
+  return ok;
+}
+
+bool OnchipBt::gattReadDeviceName() {
+  if (!le_connected_ || !cap_.openOk()) {
+    return false;
+  }
+  gatt_name_valid_ = false;
+  gatt_name_[0] = 0;
+  // H4 ACL + L2CAP(ATT) Read By Type Request for UUID 0x2A00.
+  // handle | PB=0 BC=0, ACL len=11, L2CAP len=7 CID=0x0004, ATT 0x08 ...
+  uint8_t h4[1 + 4 + 11];
+  h4[0] = 0x02;
+  const uint16_t hdr = static_cast<uint16_t>(conn_handle_ & 0x0FFFu);
+  h4[1] = static_cast<uint8_t>(hdr & 0xff);
+  h4[2] = static_cast<uint8_t>((hdr >> 8) & 0xff);
+  h4[3] = 11;
+  h4[4] = 0;  // ACL data length
+  h4[5] = 7;
+  h4[6] = 0;  // L2CAP length
+  h4[7] = 0x04;
+  h4[8] = 0x00;  // CID ATT
+  h4[9] = 0x08;  // ATT Read By Type Request
+  h4[10] = 0x01;
+  h4[11] = 0x00;  // starting handle
+  h4[12] = 0xff;
+  h4[13] = 0xff;  // ending handle
+  h4[14] = 0x00;
+  h4[15] = 0x2a;  // UUID 0x2A00 LE
+  setState("gatt_read_name");
+  last_cmd_ms_ = millis();
+  return cap_.writeH4(h4, sizeof(h4));
+}
+
+void OnchipBt::parseAclAtt(const uint8_t *h4, uint16_t len) {
+  // H4 02 | handle[2] | acl_len[2] | l2cap_len[2] | cid[2] | att...
+  if (len < 10 || h4[0] != 0x02) {
+    return;
+  }
+  const uint16_t acl_len = static_cast<uint16_t>(h4[3] | (h4[4] << 8));
+  if (static_cast<uint16_t>(5 + acl_len) > len || acl_len < 5) {
+    return;
+  }
+  const uint16_t cid = static_cast<uint16_t>(h4[7] | (h4[8] << 8));
+  if (cid != 0x0004) {
+    return;
+  }
+  const uint8_t *att = h4 + 9;
+  const uint16_t att_len = static_cast<uint16_t>(acl_len - 4);
+  if (att_len < 1) {
+    return;
+  }
+  // Peripheral stub: answer Read By Type 0x2A00 with adv_name_ (thin GATT).
+  if (att[0] == 0x08 && att_len >= 7 && le_connected_ && conn_role_ == 1) {
+    const uint16_t uuid = static_cast<uint16_t>(att[5] | (att[6] << 8));
+    if (uuid == 0x2A00) {
+      const size_t nlen = strnlen(adv_name_, sizeof(adv_name_) - 1);
+      const uint8_t pair = static_cast<uint8_t>(2 + nlen);
+      const uint16_t l2 = static_cast<uint16_t>(2 + pair);  // opcode+len + pair
+      const uint16_t alen = static_cast<uint16_t>(4 + l2);
+      uint8_t rsp[1 + 4 + 4 + 2 + 32];
+      rsp[0] = 0x02;
+      const uint16_t hdr = static_cast<uint16_t>(conn_handle_ & 0x0FFFu);
+      rsp[1] = static_cast<uint8_t>(hdr & 0xff);
+      rsp[2] = static_cast<uint8_t>((hdr >> 8) & 0xff);
+      rsp[3] = static_cast<uint8_t>(alen & 0xff);
+      rsp[4] = static_cast<uint8_t>((alen >> 8) & 0xff);
+      rsp[5] = static_cast<uint8_t>(l2 & 0xff);
+      rsp[6] = static_cast<uint8_t>((l2 >> 8) & 0xff);
+      rsp[7] = 0x04;
+      rsp[8] = 0x00;
+      rsp[9] = 0x09;  // Read By Type Response
+      rsp[10] = pair;
+      rsp[11] = 0x03;
+      rsp[12] = 0x00;  // fake handle 0x0003
+      memcpy(&rsp[13], adv_name_, nlen);
+      cap_.writeH4(rsp, static_cast<size_t>(9 + 2 + pair));
+      return;
+    }
+  }
+  // Read By Type Response (0x09): length, handle[2], value...
+  if (att[0] == 0x09 && att_len >= 4) {
+    const uint8_t pair_len = att[1];
+    if (pair_len >= 3 && att_len >= static_cast<uint16_t>(2 + pair_len)) {
+      const uint8_t *val = att + 4;
+      const size_t vlen = pair_len - 2;
+      const size_t copy = vlen < sizeof(gatt_name_) - 1 ? vlen : sizeof(gatt_name_) - 1;
+      memcpy(gatt_name_, val, copy);
+      gatt_name_[copy] = 0;
+      gatt_name_valid_ = true;
+      setState("gatt_name_ok");
+    }
+  } else if (att[0] == 0x01 && att_len >= 5) {
+    setState("gatt_err");
+  }
+}
+
 void OnchipBt::appendStatusJson(String &json) const {
   json += ",\"onchip\":{";
   json += "\"transport\":\"onchip_vhci\"";
@@ -719,6 +846,17 @@ void OnchipBt::appendStatusJson(String &json) const {
   } else {
     json += "null";
   }
+  json += ",\"gattName\":";
+  if (gatt_name_valid_) {
+    json += "\"";
+    json += gatt_name_;
+    json += "\"";
+  } else {
+    json += "null";
+  }
+  json += ",\"classicName\":\"";
+  json += classic_name_;
+  json += "\",\"l2Claim\":\"att_over_hci_acl_not_air\"";
   json += ",\"hci\":{\"detected\":";
   json += ready_ ? "true" : "false";
   json += ",\"claim\":\"onchip_controller_vhci\"}";

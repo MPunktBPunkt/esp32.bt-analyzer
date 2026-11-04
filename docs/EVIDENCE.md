@@ -19,7 +19,10 @@ Classification everywhere:
 | Classic ESP32 (D1) USB-OTG Host | **REJECTED** | no OTG — REF_ENDPOINT only |
 | F_ONCHIP BLE peer advertise/scan | **MEASURED** (0.2.5+) | `LAB_F_ONCHIP_PEER_*` |
 | BTAC→JSONL→PCAPNG HCI path | **MEASURED** (0.2.6) | `tools/lab_run_gates.py` |
-| BLE Connect Central↔Peripheral | **MEASURED** (0.2.6, lab) | BT9 in `lab_run_gates.py` |
+| BLE Connect Central↔Peripheral | **MEASURED** (0.2.6+, lab) | BT9 in `lab_run_gates.py` |
+| Thin ATT Device Name over HCI ACL | **MEASURED** (0.2.7, L2 probe) | `/api/bt/gatt/read-name` · ≠ Air |
+| Classic Write_Local_Name + discoverable | **MEASURED** (0.2.7, `.87`) | BT10 deepen |
+| Debian BTAC live session | **MEASURED** (0.2.7) | `controller/session.py` · UI `:8081` |
 
 ## Must NOT claim (V1)
 

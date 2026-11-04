@@ -10,7 +10,7 @@
 <header>
   <h1>bt-analyzer</h1>
   <span class="badge" id="svc-ver">…</span>
-  <span class="muted">Debian Lab UI · Port <b>8081</b> (usb-analyzer bleibt auf 8080)</span>
+  <span class="muted">Debian Lab UI · Port <b>8081</b> · BTAC :9753</span>
 </header>
 <div class="content">
   <div class="card" style="margin-bottom:14px">
@@ -18,7 +18,8 @@
     <table>
       <tr><td>Health</td><td id="c-health">…</td></tr>
       <tr><td>Uptime</td><td id="c-uptime">…</td></tr>
-      <tr><td>Ports</td><td class="mono">UI :8081 · control TCP :9751</td></tr>
+      <tr><td>Ports</td><td class="mono">UI :8081 · control :9751 · ESP BTAC :9753</td></tr>
+      <tr><td>BTAC session</td><td class="mono" id="c-session">idle</td></tr>
     </table>
     <div class="row">
       <button type="button" id="btn-refresh">Refresh nodes</button>
@@ -27,9 +28,29 @@
   </div>
   <div class="grid" id="nodes"></div>
   <div class="card" style="margin-top:14px">
-    <h2>Capture drain / inject</h2>
+    <h2>BTAC live session</h2>
     <div class="row">
       <select id="target"></select>
+      <button type="button" id="btn-sess-start">Start BTAC</button>
+      <button type="button" class="secondary" id="btn-sess-stop">Stop</button>
+      <a id="btn-sess-dl" href="/api/v1/session/download" style="display:none">Download .btac</a>
+    </div>
+    <div class="muted" style="margin-top:8px">HCI stream only — not RF/Air.</div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h2>Peer / L2 actions</h2>
+    <div class="row">
+      <button type="button" id="btn-adv">Advertise peer</button>
+      <button type="button" id="btn-scan">Scan host</button>
+      <button type="button" id="btn-connect">Connect</button>
+      <button type="button" class="secondary" id="btn-gatt">GATT read name (L2)</button>
+      <button type="button" class="secondary" id="btn-disco">Classic discoverable</button>
+    </div>
+    <input type="text" id="peer-addr" placeholder="peer BD_ADDR aa:bb:…">
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h2>Capture drain / inject</h2>
+    <div class="row">
       <button type="button" id="btn-drain">Drain JSONL</button>
       <input type="text" id="hex" value="040e0401030c00" placeholder="hex payload">
       <button type="button" id="btn-inject">Inject</button>
@@ -38,8 +59,7 @@
   </div>
 </div>
 <footer>
-  Topology: F_ONCHIP (on-chip VHCI) · legacy A_OBSERVE USB-dongle optional.
-  Claims: HCI ≠ Air. Parallel to usb-analyzer on :8080/:9750.
+  Topology F_ONCHIP · Claims: HCI ≠ Air · L2 ATT = probe over HCI ACL only · BT15 RF deferred.
 </footer>
 <script src="/app.js"></script>
 </body>

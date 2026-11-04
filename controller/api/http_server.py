@@ -12,9 +12,11 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
+from controller import session as btac_session
+
 WEB_ROOT = Path(__file__).resolve().parents[2] / "web"
 STARTED = time.time()
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
 # Poll-proxy lab nodes (OBSERVE) — no HELLO required yet
 LAB_NODES = [
@@ -108,9 +110,31 @@ class Handler(BaseHTTPRequestHandler):
                     "uptime_s": int(time.time() - STARTED),
                     "http_port_note": "8081 (usb-analyzer uses 8080)",
                     "control_port_note": "9751 (usb-analyzer uses 9750)",
+                    "btac_port_note": "9753 on ESP (BTAC v1)",
+                    "session": btac_session.status(),
                     "nodes": LAB_NODES,
                 },
             )
+            return
+
+        if path == "/api/v1/session":
+            self._send_json(200, {"ok": True, "session": btac_session.status()})
+            return
+
+        if path == "/api/v1/session/download":
+            st = btac_session.status()
+            p = Path(st["path"]) if st.get("path") else None
+            if not p or not p.is_file():
+                self._send_json(404, {"ok": False, "error": "no_capture_file"})
+                return
+            data = p.read_bytes()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/octet-stream")
+            self.send_header("Content-Disposition", f'attachment; filename="{p.name}"')
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(data)
             return
 
         if path == "/api/v1/nodes":
@@ -168,7 +192,21 @@ class Handler(BaseHTTPRequestHandler):
             fields = {k: (v[0] if v else "") for k, v in parse_qs(raw.decode("utf-8", errors="replace")).items()}
 
         parts = [p for p in path.split("/") if p]
-        # api v1 node <ip> inject|hci-write
+        if len(parts) >= 4 and parts[0] == "api" and parts[1] == "v1" and parts[2] == "session":
+            action = parts[3]
+            if action == "start":
+                ip = fields.get("ip") or fields.get("host") or ""
+                if not ip:
+                    self._send_json(400, {"ok": False, "error": "ip_required"})
+                    return
+                port = int(fields.get("port") or 9753)
+                self._send_json(200, btac_session.start(ip, port))
+                return
+            if action == "stop":
+                self._send_json(200, btac_session.stop())
+                return
+
+        # api v1 node <ip> inject|hci-write|advertise|scan|connect|gatt
         if len(parts) >= 5 and parts[0] == "api" and parts[1] == "v1" and parts[2] == "node":
             ip = parts[3]
             action = parts[4]
@@ -179,6 +217,22 @@ class Handler(BaseHTTPRequestHandler):
                     return
                 if action == "hci-write":
                     code, text = _post_form(f"http://{ip}/api/hci/write", {"hex": fields.get("hex", "")})
+                    self._send(code, text.encode("utf-8"), "application/json; charset=utf-8")
+                    return
+                proxy_map = {
+                    "scan-start": "/api/bt/scan/start",
+                    "scan-stop": "/api/bt/scan/stop",
+                    "advertise-start": "/api/bt/advertise/start",
+                    "advertise-stop": "/api/bt/advertise/stop",
+                    "connect": "/api/bt/connect",
+                    "disconnect": "/api/bt/disconnect",
+                    "gatt-read-name": "/api/bt/gatt/read-name",
+                    "discoverable-start": "/api/bt/discoverable/start",
+                    "discoverable-stop": "/api/bt/discoverable/stop",
+                    "classic-name": "/api/bt/classic/name",
+                }
+                if action in proxy_map:
+                    code, text = _post_form(f"http://{ip}{proxy_map[action]}", fields)
                     self._send(code, text.encode("utf-8"), "application/json; charset=utf-8")
                     return
             except Exception as exc:  # noqa: BLE001

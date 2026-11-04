@@ -1,0 +1,227 @@
+{
+  "utc": "20261104T113804Z",
+  "topology": "F_ONCHIP",
+  "versions": {
+    "88": "0.2.7",
+    "89": "0.2.7",
+    "87": "0.2.7"
+  },
+  "onchip": {
+    "88": {
+      "transport": "onchip_vhci",
+      "ready": true,
+      "ble": true,
+      "classic": false,
+      "state": "idle",
+      "leScanning": false,
+      "leAdvertising": false,
+      "advName": "bt-peer",
+      "classicInquiry": false,
+      "classicDiscoverable": false,
+      "leConnected": false,
+      "connHandle": 0,
+      "devices": 2,
+      "bdAddr": "68:b6:b3:29:33:9d",
+      "peerAddr": null,
+      "gattName": "bt-peer-89",
+      "classicName": "bt-classic-87",
+      "l2Claim": "att_over_hci_acl_not_air",
+      "hci": {
+        "detected": true,
+        "claim": "onchip_controller_vhci"
+      }
+    },
+    "89": {
+      "transport": "onchip_vhci",
+      "ready": true,
+      "ble": true,
+      "classic": false,
+      "state": "idle",
+      "leScanning": false,
+      "leAdvertising": false,
+      "advName": "stress-7",
+      "classicInquiry": false,
+      "classicDiscoverable": false,
+      "leConnected": false,
+      "connHandle": 0,
+      "devices": 0,
+      "bdAddr": "68:b6:b3:2b:c5:69",
+      "peerAddr": null,
+      "gattName": null,
+      "classicName": "bt-classic-87",
+      "l2Claim": "att_over_hci_acl_not_air",
+      "hci": {
+        "detected": true,
+        "claim": "onchip_controller_vhci"
+      }
+    },
+    "87": {
+      "transport": "onchip_vhci",
+      "ready": true,
+      "ble": true,
+      "classic": true,
+      "state": "idle",
+      "leScanning": false,
+      "leAdvertising": false,
+      "advName": "bt-peer",
+      "classicInquiry": false,
+      "classicDiscoverable": false,
+      "leConnected": false,
+      "connHandle": 0,
+      "devices": 0,
+      "bdAddr": "c8:c9:a3:cb:37:96",
+      "peerAddr": null,
+      "gattName": null,
+      "classicName": "bt-classic-87",
+      "l2Claim": "att_over_hci_acl_not_air",
+      "hci": {
+        "detected": true,
+        "claim": "onchip_controller_vhci"
+      }
+    }
+  },
+  "latest_gates_evidence": "docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.json",
+  "session_captures": 1,
+  "l2_probe": {
+    "claim": "att_read_by_type_2a00_over_hci_acl",
+    "layer": "L2",
+    "not": "Air FACT / full GATT stack",
+    "api": "/api/bt/gatt/read-name",
+    "status_field": "onchip.gattName"
+  },
+  "exits": [
+    {
+      "gate": "BT0",
+      "FACT": "esp-hub OTA/Web/NVS base present",
+      "MEASURED": "nodes respond /api/status versions={'88': '0.2.7', '89': '0.2.7', '87': '0.2.7'}",
+      "INFERENCE": "hub telemetry path reusable",
+      "UNKNOWN": "long-term OTA reliability under BT load",
+      "NEXT_TEST": "keep flash_lab_ota in CI smoke"
+    },
+    {
+      "gate": "BT1",
+      "FACT": "ESP32-S3 has on-chip BLE controller; ESP32 has Classic+BLE",
+      "MEASURED": ".88 ready=True \u00b7 .87 ready=True",
+      "INFERENCE": "VHCI host can drive controller without USB dongle",
+      "UNKNOWN": "silicon errata under continuous HCI flood",
+      "NEXT_TEST": "watch init_fail after mem_release regressions"
+    },
+    {
+      "gate": "BT2",
+      "FACT": "HCI cmd/evt is the host\u2194controller contract",
+      "MEASURED": "bdAddr pins: ['68:b6:b3:29:33:9d', '68:b6:b3:2b:c5:69', 'c8:c9:a3:cb:37:96']",
+      "INFERENCE": "event mask + reset path sufficient for lab",
+      "UNKNOWN": "vendor events not decoded",
+      "NEXT_TEST": "extend event decode only when a gate needs it"
+    },
+    {
+      "gate": "BT3",
+      "FACT": "Raw HCI frames are L1 (not Air)",
+      "MEASURED": "capture capacity=512",
+      "INFERENCE": "ring + VHCI capture adequate for lab bursts",
+      "UNKNOWN": "absolute clock sync across nodes",
+      "NEXT_TEST": "keep LINKTYPE 201 claims explicit"
+    },
+    {
+      "gate": "BT4",
+      "FACT": "BTAC v1 framing on TCP :9753",
+      "MEASURED": "BT4 ok=True frames=120",
+      "INFERENCE": "CRC framing lossless enough for lab",
+      "UNKNOWN": "multi-client BTAC fan-out",
+      "NEXT_TEST": "session UI + download on collector"
+    },
+    {
+      "gate": "BT5",
+      "FACT": "S3 has PSRAM usable for capture ring",
+      "MEASURED": "BT5={'ok': True, 'capacity': 512, 'psram': True, 'fillPct': 0, 'frameBytes': 1048}",
+      "INFERENCE": "512-slot ring avoids host drops in lab",
+      "UNKNOWN": "ESP32 (no PSRAM) under long Classic flood",
+      "NEXT_TEST": "keep fillPct in status"
+    },
+    {
+      "gate": "BT6",
+      "FACT": "drops_delta==0 is lab lossless claim only",
+      "MEASURED": "BT6={'ok': True, 'drops_delta': 0, 'btac_seqGaps': 7, 'frames': 120, 'crc_fail': 0, 'recv_rc': 0}",
+      "INFERENCE": "lab traffic pattern does not overflow ring",
+      "UNKNOWN": "production multi-hour soak",
+      "NEXT_TEST": "BT12 long capture remains the soak pin"
+    },
+    {
+      "gate": "BT7",
+      "FACT": "JSONL is a Debian-side decode of HCI frames",
+      "MEASURED": "BT7={'ok': True, 'stats': {'frames': 120, 'gaps': 2, 'crc_fail': 0, 'by_type': {'command': 7, 'event': 113}, 'seq_first': 187, 'seq_last': 308, 'input': '/home/martin/projects/bt-analyzer/docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.btac', 'output': None, 'ok': True}}",
+      "INFERENCE": "decoder matches BTAC CRC + seq",
+      "UNKNOWN": "full HCI opcode atlas",
+      "NEXT_TEST": "keep --stats off stdout pollution"
+    },
+    {
+      "gate": "BT8",
+      "FACT": "PCAPNG LINKTYPE 201 = Bluetooth HCI H4",
+      "MEASURED": "BT8={'ok': True, 'pcapng': 'docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.pcapng', 'stats': {'ok': True, 'input': '/home/martin/projects/bt-analyzer/docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.btac', 'output': '/home/martin/projects/bt-analyzer/docs/evidence/LAB_GATES_BT5_13_20261104T113719Z.pcapng', 'packets': 120, 'linktype': 201, 'claim': 'HCI_H4_not_RF'}}",
+      "INFERENCE": "Wireshark can open lab exports",
+      "UNKNOWN": "Air LINKTYPE must never be claimed here",
+      "NEXT_TEST": "reject any RF label on this artifact"
+    },
+    {
+      "gate": "BT9",
+      "FACT": "LE Connect is GAP Central\u2194Peripheral over on-chip radio (still L1 evidence)",
+      "MEASURED": "BT9={'ok': True, 'leConnected': True, 'connHandle': 1, 'peerAddr': '68:b6:b3:2b:c5:69', 'gattName': 'bt-peer-89', 'gatt_l2_ok': True, 'l2_claim': 'att_over_hci_acl_not_air'}",
+      "INFERENCE": "connect path sufficient for L2 ATT probe",
+      "UNKNOWN": "bonding / privacy / multi-conn",
+      "NEXT_TEST": "GATT read-name after connect (thin L2)"
+    },
+    {
+      "gate": "BT10",
+      "FACT": "Classic BR/EDR only on ESP32 (.87), not S3",
+      "MEASURED": "BT10={'ok': True, 'classicDiscoverable': True, 'inquiry_devices': 0, 'devices': [], 'note': 'inquiry device count depends on ambient Classic discoverables'} classicName=bt-classic-87",
+      "INFERENCE": "Write_Local_Name + Scan_Enable deepen discoverable identity",
+      "UNKNOWN": "Classic\u00d7Classic peer (single Classic board in lab)",
+      "NEXT_TEST": "optional second Classic ESP or phone inquiry"
+    },
+    {
+      "gate": "BT11",
+      "FACT": "Second ESP is a lab stimulus peer, not MITM",
+      "MEASURED": "BT11={'ok': True, 'peer_seen': True, 'devices': 2, 'matched': [{'addr': '68:b6:b3:2b:c5:69', 'addrType': 0, 'rssi': -25, 'classic': False, 'ble': True, 'name': 'bt-peer-89'}]}",
+      "INFERENCE": "advertise/scan symmetry holds in apartment RF",
+      "UNKNOWN": "interference from foreign advertisers",
+      "NEXT_TEST": "keep peer BD_ADDR pinned in evidence"
+    },
+    {
+      "gate": "BT12",
+      "FACT": "Long capture is duration+frame count, not Air soak",
+      "MEASURED": "BT12={'ok': True, 'frames': 200, 'duration_s': 11.41, 'btac': 'docs/evidence/LAB_GATES_BT5_13_20261104T113719Z_long.btac'}",
+      "INFERENCE": "BTAC session survives minutes of traffic",
+      "UNKNOWN": "hour-scale continuous",
+      "NEXT_TEST": "collector session manager for operator runs"
+    },
+    {
+      "gate": "BT13",
+      "FACT": "WiFi STA + BTDM coexist on same chip",
+      "MEASURED": "BT13={'ok': True, 'toggle_fails': 0, 'host_ready': True, 'heap': 175740}",
+      "INFERENCE": "toggle stress does not brick onchip.ready",
+      "UNKNOWN": "AP-mode + BT simultaneous",
+      "NEXT_TEST": "keep BT init before WiFi"
+    },
+    {
+      "gate": "BT14",
+      "FACT": "technology-audit SCOPE/STATUS/INVENTORY exist for this project",
+      "MEASURED": "BT14={'ok': True, 'missing': [], 'note': 'project-side audit pack present; external technology-audit review separate'} \u00b7 GATE_EXITS refreshed 20261104T113804Z",
+      "INFERENCE": "local pack ready for external reviewer",
+      "UNKNOWN": "external CI sign-off stamp",
+      "NEXT_TEST": "reviewer marks STATUS.md green in technology-audit"
+    },
+    {
+      "gate": "BT15",
+      "FACT": "RF/Air is out of scope for esp32.bt-analyzer",
+      "MEASURED": "docs/BT15_RF_AIR.md status=deferred",
+      "INFERENCE": "HCI must not be relabeled as sniffer",
+      "UNKNOWN": "stakeholder need + named RF instrument",
+      "NEXT_TEST": "open separate repo/scope when Air is required"
+    }
+  ],
+  "claim_boundary": {
+    "HCI_eq_Air": "REJECTED",
+    "Classic_on_S3": "REJECTED",
+    "thin_ATT_eq_full_GATT": "REJECTED"
+  }
+}

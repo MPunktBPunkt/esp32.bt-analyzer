@@ -6,8 +6,8 @@ No release claim without green gate status.
 | Gate | Ziel | Status |
 |------|------|--------|
 | **BT0** | Hub-Basis / OTA / Web UI / NVS / reboot / PSRAM | **CODE READY** |
-| **BT1** | On-chip controller bring-up (VHCI) | **CODE READY** (0.2.6) |
-| **BT2** | HCI host↔controller path (cmd/evt via VHCI) | **CODE READY** (0.2.6) |
+| **BT1** | On-chip controller bring-up (VHCI) | **CODE READY** (0.2.7) |
+| **BT2** | HCI host↔controller path (cmd/evt via VHCI) | **CODE READY** (0.2.7) |
 | **BT3** | Raw HCI capture (ts, dir, type, payload) | **CODE READY** (VHCI) |
 | **BT4** | TCP capture stream (BTAC framing) | **CODE READY** (`:9753`) |
 | **BT5** | PSRAM ring buffer | **CODE READY** (512 slots S3 · fillPct) |
@@ -19,8 +19,8 @@ No release claim without green gate status.
 | **BT11** | Second ESP peer / stimulus | **CODE READY** (advertise/scan/connect) |
 | **BT12** | Long capture | **CODE READY** (`lab_run_gates.py`) |
 | **BT13** | WiFi/BT stress + recovery | **CODE READY** (toggle stress) |
-| **BT14** | Technology-audit project green | **partial** (local pack; external review) |
-| **BT15** | RF / Air investigation (separate) | **deferred** |
+| **BT14** | Technology-audit project green | **ready for external review** (`lab_gate_exits.py`) |
+| **BT15** | RF / Air investigation (separate) | **deferred** ([`BT15_RF_AIR.md`](BT15_RF_AIR.md)) |
 
 ## Forbidden vague exits
 
@@ -43,4 +43,5 @@ Gate exit must cite **topology ID** + FW pins + evidence path.
 
 ```bash
 python3 tools/lab_run_gates.py
+python3 tools/lab_gate_exits.py   # FACT/MEASURED/UNKNOWN exits → docs/GATE_EXITS.md
 ```

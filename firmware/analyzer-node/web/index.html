@@ -110,6 +110,7 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
       <tr><td>BD_ADDR</td><td class="mono" id="a-bd">-</td></tr>
       <tr><td>caps</td><td id="a-caps">-</td></tr>
       <tr><td>state</td><td id="a-state">-</td></tr>
+      <tr><td>gattName (L2)</td><td class="mono" id="a-gatt">-</td></tr>
       <tr><td>devices</td><td id="a-ndev">-</td></tr>
     </table>
       <div class="row-btns">
@@ -127,6 +128,7 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
         <button type="button" class="btn sec" onclick="postBt('/api/bt/discoverable/stop')">Hide</button>
       </div>
       <div class="row-btns">
+        <button type="button" class="btn" onclick="postBt('/api/bt/gatt/read-name')">GATT read name (L2)</button>
         <button type="button" class="btn sec" onclick="postBt('/api/bt/disconnect')">Disconnect</button>
       </div>
       <div id="a-devs" style="margin-top:10px;font-size:12px;color:#8b949e">Keine Geräte</div>
@@ -194,6 +196,7 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
     document.getElementById('a-bd').textContent=oc.bdAddr||'—';
     document.getElementById('a-caps').textContent=
       'BLE='+(oc.ble?'yes':'no')+' · Classic='+(oc.classic?'yes':'no')+' · '+(oc.transport||'onchip_vhci');
+    document.getElementById('a-gatt').textContent=oc.gattName||'(none)';
     document.getElementById('a-state').textContent=
       (oc.state||'—')+(oc.leAdvertising?' · ADV '+(oc.advName||''):'')+(oc.leScanning?' · SCAN':'');
     document.getElementById('a-ndev').textContent=String(oc.devices!=null?oc.devices:0);

@@ -177,6 +177,45 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
               ok ? "{\"ok\":true}" : "{\"ok\":false,\"error\":\"disconnect_failed\"}");
   });
 
+  server.on("/api/bt/gatt/read-name", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");
+      return;
+    }
+    if (!onchip_->connected()) {
+      srv->send(400, "application/json",
+                "{\"ok\":false,\"error\":\"not_connected\",\"claim\":\"L2_ATT\"}");
+      return;
+    }
+    const bool ok = onchip_->gattReadDeviceName();
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"mode\":\"att_read_by_type_2a00\",\"claim\":\"L2_over_HCI_not_air\"}"
+                 : "{\"ok\":false,\"error\":\"gatt_write_failed\"}");
+  });
+
+  server.on("/api/bt/classic/name", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");
+      return;
+    }
+    if (!onchip_->classicCapable()) {
+      srv->send(400, "application/json",
+                "{\"ok\":false,\"error\":\"classic_not_available\"}");
+      return;
+    }
+    String name = srv->arg("name");
+    if (!name.length()) {
+      name = "bt-classic-87";
+    }
+    if (name.length() > 24) {
+      name = name.substring(0, 24);
+    }
+    const bool ok = onchip_->classicSetLocalName(name.c_str());
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"mode\":\"classic_local_name\"}"
+                 : "{\"ok\":false,\"error\":\"name_failed\"}");
+  });
+
   server.on("/api/bt/discoverable/start", HTTP_POST, [this, srv]() {
     if (!onchip_) {
       srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");
@@ -186,6 +225,13 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
       srv->send(400, "application/json",
                 "{\"ok\":false,\"error\":\"classic_not_available\"}");
       return;
+    }
+    String name = srv->arg("name");
+    if (name.length()) {
+      if (name.length() > 24) {
+        name = name.substring(0, 24);
+      }
+      onchip_->classicSetLocalName(name.c_str());
     }
     const bool ok = onchip_->classicDiscoverableStart();
     srv->send(ok ? 200 : 500, "application/json",
