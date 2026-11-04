@@ -798,8 +798,10 @@ bool OnchipBt::throughputStart(const char *mode, uint16_t payload_len,
   thr_payload_ = payload_len;
   thr_seq_tx_ = 0;
   thr_have_rx_ = false;
-  thr_loss_ = 0;
-  thr_reorder_ = 0;
+  app_seq_gaps_ = 0;
+  app_reorder_ = 0;
+  app_tx_packets_ = 0;
+  app_rx_packets_ = 0;
   thr_app_tx_ = thr_app_rx_ = 0;
   win_app_tx_ = win_app_rx_ = 0;
   app_tx_bps_ = app_rx_bps_ = 0;
@@ -884,6 +886,7 @@ bool OnchipBt::sendThrPayload() {
   const uint16_t app = static_cast<uint16_t>(att_len > 3 ? att_len - 3 : 0);
   thr_app_tx_ += app;
   win_app_tx_ += app;
+  app_tx_packets_++;
   return true;
 }
 
@@ -892,8 +895,9 @@ void OnchipBt::thrPump() {
     return;
   }
   const uint32_t now = millis();
-  // ~200 pps soft cap to keep WiFi/web alive
-  if (now - thr_last_send_ms_ < 5) {
+  // Pace ATT flood: larger payloads need more airtime; keep WiFi/web alive.
+  const uint32_t min_gap_ms = thr_payload_ >= 100 ? 12u : 8u;
+  if (now - thr_last_send_ms_ < min_gap_ms) {
     return;
   }
   if (thr_notify_ && conn_role_ == 1 && thr_cccd_enabled_) {
@@ -936,13 +940,14 @@ void OnchipBt::parseAclAtt(const uint8_t *h4, uint16_t len) {
     }
     thr_app_rx_ += vlen;
     win_app_rx_ += vlen;
+    app_rx_packets_++;
     if (!thr_have_rx_) {
       thr_expect_rx_ = seq + 1;
       thr_have_rx_ = true;
     } else if (seq < thr_expect_rx_) {
-      thr_reorder_++;
+      app_reorder_++;
     } else if (seq > thr_expect_rx_) {
-      thr_loss_ += (seq - thr_expect_rx_);
+      app_seq_gaps_ += (seq - thr_expect_rx_);
       thr_expect_rx_ = seq + 1;
     } else {
       thr_expect_rx_ = seq + 1;
@@ -1098,10 +1103,18 @@ void OnchipBt::appendStatusJson(String &json) const {
   json += String(thr_app_tx_);
   json += ",\"appRxBytes\":";
   json += String(thr_app_rx_);
+  json += ",\"appTxPackets\":";
+  json += String(app_tx_packets_);
+  json += ",\"appRxPackets\":";
+  json += String(app_rx_packets_);
+  json += ",\"appSeqGaps\":";
+  json += String(app_seq_gaps_);
+  json += ",\"appReorder\":";
+  json += String(app_reorder_);
   json += ",\"thrLoss\":";
-  json += String(thr_loss_);
+  json += String(app_seq_gaps_);  // compat alias
   json += ",\"thrReorder\":";
-  json += String(thr_reorder_);
+  json += String(app_reorder_);
   json += ",\"l2Claim\":\"att_over_hci_acl_not_air\"";
   json += ",\"hci\":{\"detected\":";
   json += ready_ ? "true" : "false";

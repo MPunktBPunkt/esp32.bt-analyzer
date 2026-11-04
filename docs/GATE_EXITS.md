@@ -1,45 +1,42 @@
-# Gate exits — MEASURED pack (20261104T121934Z)
+# Gate exits — MEASURED pack (20261104T140321Z)
 
-**Topology:** F_ONCHIP · **FW:** `.88` 0.2.8 · `.89` 0.2.8 · `.87` 0.2.8
-**Source gates:** `docs/evidence/LAB_GATES_BT5_13_20261104T121842Z_status_before.json`
-**Raw:** [`LAB_GATE_EXITS_20261104T121934Z.json`](evidence/LAB_GATE_EXITS_20261104T121934Z.json)
+**Topology:** F_ONCHIP · **FW:** `.88` 0.2.9 · `.89` 0.2.9 · `.87` 0.2.9
+**Gate result source:** `docs/evidence/LAB_GATES_BT5_13_20261104T132343Z.json`
+**BT16 source:** `docs/evidence/LAB_BT16_20261104T132448Z.json`
+**Raw:** [`LAB_GATE_EXITS_20261104T140321Z.json`](evidence/LAB_GATE_EXITS_20261104T140321Z.json)
 
 Classification: **FACT** · **MEASURED** · **INFERENCE** · **UNKNOWN** · **NEXT TEST**
 
 | Gate | FACT | MEASURED | UNKNOWN | NEXT TEST |
 |------|------|----------|---------|-----------|
-| BT0 | esp-hub OTA/Web/NVS base present | `"nodes respond /api/status versions={'88': '0.2.8', '89': '0.2.8', '87` | long-term OTA reliability under BT load | keep flash_lab_ota in CI smoke |
-| BT1 | ESP32-S3 has on-chip BLE controller; ESP32 has C | `".88 ready=True · .87 ready=True"` | silicon errata under continuous HCI floo | watch init_fail after mem_release regres |
-| BT2 | HCI cmd/evt is the host↔controller contract | `"bdAddr pins: ['68:b6:b3:29:33:9d', '68:b6:b3:2b:c5:69', 'c8:c9:a3:cb:` | vendor events not decoded | extend event decode only when a gate nee |
-| BT3 | Raw HCI frames are L1 (not Air) | `"capture capacity=512"` | absolute clock sync across nodes | keep LINKTYPE 201 claims explicit |
-| BT4 | BTAC v1 framing on TCP :9753 | `"BT4 ok=None frames=None"` | multi-client BTAC fan-out | session UI + download on collector |
-| BT5 | S3 has PSRAM usable for capture ring | `"BT5=None"` | ESP32 (no PSRAM) under long Classic floo | keep fillPct in status |
-| BT6 | drops_delta==0 is lab lossless claim only | `"BT6=None"` | production multi-hour soak | BT12 long capture remains the soak pin |
-| BT7 | JSONL is a Debian-side decode of HCI frames | `"BT7=None"` | full HCI opcode atlas | keep --stats off stdout pollution |
-| BT8 | PCAPNG LINKTYPE 201 = Bluetooth HCI H4 | `"BT8=None"` | Air LINKTYPE must never be claimed here | reject any RF label on this artifact |
-| BT9 | LE Connect is GAP Central↔Peripheral over on-chi | `"BT9=None"` | bonding / privacy / multi-conn | GATT read-name after connect (thin L2) |
-| BT10 | Classic BR/EDR only on ESP32 (.87), not S3 | `"BT10=None classicName=bt-classic-87"` | Classic×Classic peer (single Classic boa | optional second Classic ESP or phone inq |
-| BT11 | Second ESP is a lab stimulus peer, not MITM | `"BT11=None"` | interference from foreign advertisers | keep peer BD_ADDR pinned in evidence |
-| BT12 | Long capture is duration+frame count, not Air so | `"BT12=None"` | hour-scale continuous | collector session manager for operator r |
-| BT13 | WiFi STA + BTDM coexist on same chip | `"BT13=None"` | AP-mode + BT simultaneous | keep BT init before WiFi |
-| BT14 | technology-audit SCOPE/STATUS/INVENTORY exist fo | `"BT14=None · GATE_EXITS refreshed 20261104T121934Z"` | external CI sign-off stamp | reviewer marks STATUS.md green in techno |
-| BT15 | RF/Air is out of scope for esp32.bt-analyzer | `"docs/BT15_RF_AIR.md status=deferred"` | stakeholder need + named RF instrument | open separate repo/scope when Air is req |
-| BT16 | Thin ATT Notify/Write is L2 over HCI ACL only | `"appTx=0 appRx=0 aclTx=0"` | long soak + full MTU matrix under WiFi l | lab_bt16_throughput.py + lab_bt16_impact |
+| BT0 | esp-hub OTA/Web/NVS base present | `versions={'88': '0.2.9', '89': '0.2.9', '87': '0.2.9'}` | long-term OTA under BT | flash_lab_ota smoke |
+| BT1 | S3 BLE; ESP32 Classic+BLE | `.88 ready=True .87 ready=True` | errata under flood | watch mem_release |
+| BT2 | HCI cmd/evt host↔controller | `bd=['68:b6:b3:29:33:9d', '68:b6:b3:2b:c5:69', 'c8:c9:a3:cb:37:96']` | vendor events | decode on demand |
+| BT3 | Raw HCI is L1 not Air | `capacity=512` | absolute sync | LINKTYPE 201 |
+| BT4 | BTAC v1 :9753 | `ok=True detail={"ok": true, "btac": "docs/evidence/LAB_GATES_BT5_13_20261104T132343Z.btac"` | multi-client | session UI |
+| BT5 | S3 PSRAM capture ring | `ok=True detail={"ok": true, "capacity": 512, "psram": true, "fillPct": 1, "frameBytes": 10` | ESP32 long flood | fillPct |
+| BT6 | Ring drops_delta vs file_gaps split | `ok=True detail={"ok": true, "drops_delta": 0, "btac_seqGapsSession_delta": 1, "btac_seqGap` | multi-hour soak | lab_gap_classify |
+| BT7 | JSONL HCI decode | `ok=True detail={"ok": true, "stats": {"frames": 120, "gaps": 1, "crc_fail": 0, "by_type": ` | opcode atlas | --stats |
+| BT8 | PCAPNG LINKTYPE 201 | `ok=True detail={"ok": true, "pcapng": "docs/evidence/LAB_GATES_BT5_13_20261104T132343Z.pca` | never Air LINKTYPE | reject RF label |
+| BT9 | LE Connect Central↔Peripheral | `ok=True detail={"ok": true, "leConnected": true, "connHandle": 1, "peerAddr": "68:b6:b3:2b` | bonding | gatt read-name |
+| BT10 | Classic only on .87 | `ok=True detail={"ok": true, "classicDiscoverable": true, "inquiry_devices": 0, "devices": ` | Classic×Classic | second Classic/phone |
+| BT11 | Second ESP stimulus peer | `ok=True detail={"ok": true, "peer_seen": true, "devices": 3, "matched": [{"addr": "68:b6:b` | ambient RF | pin peer BD |
+| BT12 | Long capture duration+frames | `ok=True detail={"ok": true, "frames": 200, "duration_s": 7.83, "btac": "docs/evidence/LAB_` | hour soak | session manager |
+| BT13 | WiFi STA + BTDM coex smoke | `ok=True detail={"ok": true, "toggle_fails": 0, "host_ready": true, "heap": 176672}` | AP+BT | BT before WiFi |
+| BT14 | technology-audit pack present | `ok=True detail={"ok": true, "missing": [], "note": "project-side audit pack present; exter` | external stamp | STATUS green |
+| BT15 | RF/Air out of scope | `docs/BT15_RF_AIR.md deferred` | named RF instrument | separate repo |
+| BT16 | ATT Notify/Write is L2 over HCI ACL only | `latest=LAB_BT16_20261104T132448Z.json capability=True benchmark=False appTx=0 appRx=0` | full matrix soak | lab_bt16_throughput.py --benchmark |
 
 ## Claim boundary
 
 | Claim | Status |
 |-------|--------|
 | HCI = RF/Air | **REJECTED** |
-| Classic on ESP32-S3 on-chip | **REJECTED** |
-| Thin ATT name read = full GATT | **REJECTED** (L2 over HCI ACL only) |
+| Classic on ESP32-S3 | **REJECTED** |
+| Thin ATT = full GATT | **REJECTED** |
+| kB/s without loss split = benchmark | **REJECTED** |
 
-## L2 probe (bounded)
+## Source policy
 
-- API `/api/bt/gatt/read-name` → status `onchip.gattName`
-- Layer **L2** · Air FACT / full GATT stack
-
-## BT15
-
-Deferred — see [`BT15_RF_AIR.md`](BT15_RF_AIR.md).
+`lab_gate_exits.py` reads only `LAB_GATES_BT5_13_<UTC>.json` gate results — never `*_status_before/after.json`.
 

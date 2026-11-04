@@ -1,0 +1,15 @@
+{
+  "utc": "20261104T132432Z",
+  "gate": "BT19_timeline_scaffold",
+  "offsets_s": {
+    "88": 1793798557.3811095,
+    "89": 1793798578.5660715,
+    "87": 1793798605.026084
+  },
+  "claims": {
+    "PTP": false,
+    "shared_clock": false,
+    "estimated_timeline_alignment": true
+  },
+  "claim": "correlated_via_debian_bridge_not_PTP"
+}

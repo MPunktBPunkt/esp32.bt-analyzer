@@ -81,8 +81,13 @@ public:
   uint16_t attMtu() const { return att_mtu_; }
   uint32_t appTxBps() const { return app_tx_bps_; }
   uint32_t appRxBps() const { return app_rx_bps_; }
-  uint32_t thrLoss() const { return thr_loss_; }
-  uint32_t thrReorder() const { return thr_reorder_; }
+  uint32_t appTxPackets() const { return app_tx_packets_; }
+  uint32_t appRxPackets() const { return app_rx_packets_; }
+  uint32_t appSeqGaps() const { return app_seq_gaps_; }
+  uint32_t appReorder() const { return app_reorder_; }
+  /** @deprecated use appSeqGaps() */
+  uint32_t thrLoss() const { return app_seq_gaps_; }
+  uint32_t thrReorder() const { return app_reorder_; }
   size_t deviceCount() const { return device_count_; }
   const BtSeenDevice *deviceAt(size_t i) const {
     return i < device_count_ ? &devices_[i] : nullptr;
@@ -134,8 +139,10 @@ private:
   uint32_t thr_seq_tx_ = 0;
   uint32_t thr_expect_rx_ = 0;
   bool thr_have_rx_ = false;
-  uint32_t thr_loss_ = 0;
-  uint32_t thr_reorder_ = 0;
+  uint32_t app_seq_gaps_ = 0;
+  uint32_t app_reorder_ = 0;
+  uint32_t app_tx_packets_ = 0;
+  uint32_t app_rx_packets_ = 0;
   uint32_t thr_app_tx_ = 0;
   uint32_t thr_app_rx_ = 0;
   uint32_t win_app_tx_ = 0;

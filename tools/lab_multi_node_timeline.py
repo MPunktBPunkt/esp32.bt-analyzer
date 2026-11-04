@@ -52,6 +52,11 @@ def main() -> int:
         "utc": utc,
         "gate": "BT19_timeline_scaffold",
         "offsets_s": offsets,
+        "claims": {
+            "PTP": False,
+            "shared_clock": False,
+            "estimated_timeline_alignment": True,
+        },
         "claim": "correlated_via_debian_bridge_not_PTP",
     }
     (EVIDENCE / f"LAB_TIMELINE_{utc}.meta.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")

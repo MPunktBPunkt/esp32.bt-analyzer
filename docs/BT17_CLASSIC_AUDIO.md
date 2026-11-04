@@ -1,44 +1,48 @@
-# BT17 — Classic audio / RFCOMM endpoint (.87)
+# BT17 — Classic audio / RFCOMM (separate Bluedroid flavor)
 
 ```yaml
-status: scaffold
-fw_pin: "0.2.8+"
+status: deferred_until_bt19
+fw_core: "0.2.9+ thin VHCI analyzer"
+flavor: analyzer-esp32-classic-audio  # not built yet
 board: 192.168.178.87
-claim_boundary: endpoint_HCI_not_air
+phone_first: true
 ```
 
-## Goal
+## Architecture cut (frozen)
 
-Use the **ESP32 Classic+BLE** node (`.87`) as a **Phone-first** A2DP/HFP or RFCOMM endpoint while capturing HCI where the stack allows.
+```text
+Analyzer Core (.88/.89 + thin .87)
+  ├── capture / BTAC / session-loss / timeline / evidence
+  └── NO A2DP/HFP in thin VHCI host
 
-## Why not in Thin-Host P0
+Classic Flavor (.87 only) — future PlatformIO env
+  └── Bluedroid A2DP/HFP Phone-first
+  └── may ship separate HCI snoop claim (≠ thin VHCI path)
+```
 
-The F_ONCHIP thin VHCI host deliberately owns `esp_vhci_host_callback` and tears down Bluedroid. A2DP/HFP need a full Classic host stack (Bluedroid/IDF). Options:
+Do **not** fold A2DP into the F_ONCHIP thin-host core. That reintroduces Host/Profil-Komplexität into the measurement kernel.
 
-1. **Separate build flavor** `analyzer-esp32-classic-audio` with Bluedroid + optional HCI snoop tap (different claim: endpoint + stack logs, not same thin VHCI path).
-2. **External Classic DUT** (second ESP32 / phone) while `.87` stays discoverable stimulus only (current BT10).
+## Prerequisites (must be green first)
 
-## Phone-first checklist
+1. BT16-B benchmark evidence (CAPABILITY + BENCHMARK exits)
+2. Impact A–D with median/stdev
+3. Clock-offset estimation claims explicit
+4. BT19 multi-node timeline scaffold producing aligned JSONL
 
-1. Flash Classic-audio flavor (when built) or use stock IDF A2DP sink example on a spare ESP32.
-2. Pair phone → `.87` (or DUT).
-3. Start playback; capture HCI/snoop + Debian session.
-4. Evidence: `docs/evidence/LAB_BT17_*` with FACT/MEASURED split (profile events ≠ Air).
+## Phone-first checklist (when flavor exists)
+
+1. Build `analyzer-esp32-classic-audio`
+2. Pair phone → `.87`
+3. Play audio; capture stack HCI/snoop + Debian session
+4. Evidence `LAB_BT17_*` with FACT/MEASURED split (profile ≠ Air)
 
 ## BMW / AAIdrive
 
-Deferred until:
+Only after BT19 timeline + usb-analyzer/hu-probe correlation path — **no MITM claim**.
 
-- BT16 throughput + impact green
-- Clock sync markers (`tools/lab_clock_sync.py`) produce stable offsets
-- Multi-node timeline (BT19) exists
-
-Then correlate usb-analyzer / hu-probe with `.87` Classic HCI — **no MITM claim**.
-
-## Repro (current repo)
+## Current thin-host stimulus only
 
 ```bash
-# Stimulus only (thin host):
 curl -X POST http://192.168.178.87/api/bt/discoverable/start -d 'name=bt-classic-87'
 python3 tools/lab_clock_sync.py
 ```

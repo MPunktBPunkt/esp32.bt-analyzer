@@ -12,7 +12,9 @@ No release claim without green gate status.
 | **BT4** | TCP capture stream (BTAC framing) | **CODE READY** (`:9753`) |
 | **BT5** | PSRAM ring buffer | **CODE READY** (512 slots S3 · fillPct) |
 | **BT6** | Lossless lab capture (session drops + file gaps) | **CODE READY** (`lab_gap_classify.py`) |
-| **BT16** | BLE ATT throughput lab (Notify/Write) | **CODE READY** (`lab_bt16_throughput.py`) |
+| **BT16** | BLE ATT throughput (CAPABILITY / BENCHMARK) | **CODE READY** (`lab_bt16_throughput.py`) |
+| **BT17** | Classic A2DP/HFP (`.87` Bluedroid flavor) | **deferred** (after BT19) |
+| **BT19** | Multi-node timeline (offset estimation) | **CODE READY** scaffold |
 | **BT7** | Debian decoder (JSONL) | **CODE READY** (`btac_decode.py`) |
 | **BT8** | PCAPNG export (HCI, not RF) | **CODE READY** (`btac_to_pcapng.py`) |
 | **BT9** | BLE on-chip validation (scan/connect) | **CODE READY** (connect/disconnect) |

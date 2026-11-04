@@ -1,22 +1,20 @@
 #!/usr/bin/env python3
-"""BT16 analyzer-impact matrix with WiFi/coex as a separate axis.
+"""BT16 analyzer-impact matrix — A–D × repeats × duration.
 
-Runs short notify throughput under four capture loads; WiFi load is constant
-(STA connected) — do not toggle scan/adv during the window (avoids BT13 confound).
-
-Modes:
-  A baseline_no_btac   — throughput, no BTAC client
-  B ring_only          — same (ring always on); documented as capture-on
-  C capture_btac       — + BTAC TCP drain
-  D capture_btac_ui    — + status polling (UI-like)
+WiFi STA held constant (no BT13 toggles). Reports median/p10/p90 and Δ vs baseline.
+Does NOT claim “analyzer makes it faster” from single-run noise.
 
 Usage:
   python3 tools/lab_bt16_impact.py
+  python3 tools/lab_bt16_impact.py --duration 60 --repeats 3
+  python3 tools/lab_bt16_impact.py --quick
 """
 
 from __future__ import annotations
 
+import argparse
 import json
+import statistics
 import subprocess
 import sys
 import time
@@ -56,114 +54,186 @@ def connect() -> None:
     quiet()
     peer_bd = (get(f"http://{PEER}/api/status").get("onchip") or {}).get("bdAddr")
     post(f"http://{PEER}/api/bt/advertise/start", {"name": "bt-peer-89"})
-    time.sleep(0.5)
+    time.sleep(0.6)
     post(f"http://{HOST}/api/bt/scan/start")
     time.sleep(3.5)
     post(f"http://{HOST}/api/bt/scan/stop")
     post(f"http://{HOST}/api/bt/connect", {"addr": peer_bd, "addrType": "0"})
-    for _ in range(25):
+    for _ in range(30):
         if (get(f"http://{HOST}/api/status").get("onchip") or {}).get("leConnected"):
             return
         time.sleep(0.3)
     raise RuntimeError("connect_failed")
 
 
-def avg_app(duration: float = 8.0) -> dict:
-    vals_tx, vals_rx = [], []
+def pct(vals: list[float], p: float) -> float:
+    if not vals:
+        return 0.0
+    s = sorted(vals)
+    k = (len(s) - 1) * (p / 100.0)
+    f = int(k)
+    c = min(f + 1, len(s) - 1)
+    return s[f] if f == c else s[f] + (s[c] - s[f]) * (k - f)
+
+
+def sample_rate(duration: float) -> dict:
+    vals = []
+    peer_vals = []
+    loss = []
     t0 = time.time()
     while time.time() - t0 < duration:
         time.sleep(1.0)
-        oc = get(f"http://{HOST}/api/status").get("onchip") or {}
-        vals_tx.append(float(oc.get("appTxBps") or 0))
-        vals_rx.append(float(oc.get("appRxBps") or 0))
+        h = get(f"http://{HOST}/api/status")
+        p = get(f"http://{PEER}/api/status")
+        oc = h.get("onchip") or {}
+        poc = p.get("onchip") or {}
+        rx = float(oc.get("appRxBps") or 0)
+        tx = float(poc.get("appTxBps") or 0)
+        vals.append(rx if rx > 1 else tx)
+        peer_vals.append(tx)
+        loss.append(int(oc.get("appSeqGaps") or oc.get("thrLoss") or 0))
     return {
-        "avg_appTxBps": sum(vals_tx) / len(vals_tx) if vals_tx else 0,
-        "avg_appRxBps": sum(vals_rx) / len(vals_rx) if vals_rx else 0,
+        "median_Bps": statistics.median(vals) if vals else 0,
+        "p10_Bps": pct(vals, 10),
+        "p90_Bps": pct(vals, 90),
+        "mean_Bps": statistics.mean(vals) if vals else 0,
+        "stdev_Bps": statistics.pstdev(vals) if len(vals) > 1 else 0,
+        "app_seq_gaps_end": loss[-1] if loss else 0,
+        "peer_tx_median": statistics.median(peer_vals) if peer_vals else 0,
         "wifi_rssi": get(f"http://{HOST}/api/status").get("rssi"),
         "heap": get(f"http://{HOST}/api/status").get("heap"),
     }
 
 
-def run_load(name: str, with_btac: bool, with_poll: bool) -> dict:
+def one_run(name: str, with_btac: bool, with_poll: bool, duration: float) -> dict:
     connect()
     proc = None
     if with_btac:
-        out = EVIDENCE / f"_impact_{name}.btac"
+        out = EVIDENCE / f"_impact_{name}_{int(time.time())}.btac"
         proc = subprocess.Popen(
-            [sys.executable, str(ROOT / "tools" / "btac_recv.py"), HOST, "-n", "8000", "-o", str(out), "--idle", "12"],
+            [
+                sys.executable,
+                str(ROOT / "tools" / "btac_recv.py"),
+                HOST,
+                "-n",
+                "500000",
+                "-o",
+                str(out),
+                "--idle",
+                str(int(duration) + 5),
+            ],
             cwd=str(ROOT),
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
         )
-        time.sleep(0.4)
+        time.sleep(0.5)
     post(f"http://{PEER}/api/bt/throughput/start", {"mode": "notify", "payload": "20", "mtu": "247"})
     post(f"http://{HOST}/api/bt/throughput/start", {"mode": "notify", "payload": "20", "mtu": "247"})
-    # Allow MTU/CCCD + first notify window before measuring.
     time.sleep(2.0)
-    if not (get(f"http://{HOST}/api/status").get("onchip") or {}).get("leConnected"):
-        raise RuntimeError(f"{name}: lost connection before sample")
     if with_poll:
-        poller_stop = time.time() + 5
-        while time.time() < poller_stop:
+        end = time.time() + min(5.0, duration / 4)
+        while time.time() < end:
             get(f"http://{HOST}/api/status")
             get(f"http://{PEER}/api/status")
             time.sleep(0.25)
-        rates = avg_app(5.0)
-    else:
-        rates = avg_app(8.0)
-    # Prefer whichever direction is active (notify → host RX / peer TX).
-    peer_tx = float((get(f"http://{PEER}/api/status").get("onchip") or {}).get("appTxBps") or 0)
-    rates["peer_appTxBps_end"] = peer_tx
-    if (rates.get("avg_appRxBps") or 0) < 1 and peer_tx > 0:
-        rates["avg_appRxBps"] = peer_tx
+    rates = sample_rate(duration)
     quiet()
     if proc:
         try:
-            proc.wait(timeout=20)
+            proc.wait(timeout=30)
         except Exception:  # noqa: BLE001
             proc.kill()
-    rates["name"] = name
-    rates["with_btac"] = with_btac
-    rates["with_ui_poll"] = with_poll
-    rates["wifi_axis"] = "sta_connected_constant"
-    rates["coex_note"] = "BT13 toggles not used during window"
+    rates.update(
+        {
+            "name": name,
+            "with_btac": with_btac,
+            "with_ui_poll": with_poll,
+            "wifi_axis": "sta_connected_constant",
+            "coex_note": "BT13 toggles not used",
+            "duration_s": duration,
+        }
+    )
     return rates
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--duration", type=float, default=60.0)
+    ap.add_argument("--repeats", type=int, default=3)
+    ap.add_argument("--quick", action="store_true")
+    args = ap.parse_args()
+    if args.quick:
+        args.duration = 8.0
+        args.repeats = 1
+
     utc = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     EVIDENCE.mkdir(parents=True, exist_ok=True)
-    cases = [
-        run_load("A_baseline_no_btac", False, False),
-        run_load("B_ring_capture", False, False),
-        run_load("C_capture_btac", True, False),
-        run_load("D_capture_btac_ui_poll", True, True),
+    specs = [
+        ("A_baseline_no_btac", False, False),
+        ("B_ring_capture", False, False),
+        ("C_capture_btac", True, False),
+        ("D_capture_btac_ui_poll", True, True),
     ]
-    base = cases[0].get("avg_appRxBps") or cases[0].get("avg_appTxBps") or 1.0
+    cases = []
+    for name, btac, poll in specs:
+        runs = []
+        for i in range(args.repeats):
+            print(f"[impact] {name} {i+1}/{args.repeats}", flush=True)
+            try:
+                runs.append(one_run(name, btac, poll, args.duration))
+            except Exception as exc:  # noqa: BLE001
+                runs.append({"name": name, "error": str(exc), "median_Bps": 0})
+        meds = [r.get("median_Bps") or 0 for r in runs]
+        cases.append(
+            {
+                "name": name,
+                "with_btac": btac,
+                "with_ui_poll": poll,
+                "repeats": args.repeats,
+                "duration_s": args.duration,
+                "median_of_medians_Bps": statistics.median(meds) if meds else 0,
+                "p10_of_medians_Bps": pct(meds, 10),
+                "p90_of_medians_Bps": pct(meds, 90),
+                "stdev_of_medians_Bps": statistics.pstdev(meds) if len(meds) > 1 else 0,
+                "runs": runs,
+            }
+        )
+
+    base = cases[0]["median_of_medians_Bps"] or 1.0
     for c in cases:
-        rate = c.get("avg_appRxBps") or c.get("avg_appTxBps") or 0.0
-        c["relative_pct"] = round(100.0 * rate / base, 1) if base else None
+        c["delta_pct_vs_A"] = round(100.0 * ((c["median_of_medians_Bps"] - base) / base), 2)
+        c["note"] = (
+            "delta within stdev → do not claim overhead"
+            if abs(c["delta_pct_vs_A"]) < max(5.0, 100.0 * (c["stdev_of_medians_Bps"] / base))
+            else "delta exceeds rough noise band — investigate"
+        )
+
     out = {
         "utc": utc,
         "gate": "BT16_impact",
         "ok": True,
+        "claim": "overhead_estimate_only_if_delta_gt_stdev",
+        "wifi_axis": "sta_constant",
         "cases": cases,
-        "note": "WiFi STA held constant; relative_pct vs case A",
     }
     stem = f"LAB_BT16_IMPACT_{utc}"
     (EVIDENCE / f"{stem}.json").write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
     lines = [
-        f"# LAB BT16 analyzer impact — {utc}",
+        f"# LAB BT16 impact — {utc}",
         "",
-        "| case | appTx | appRx | relative% | btac | ui_poll | rssi |",
-        "|------|-------|-------|-----------|------|---------|------|",
+        f"duration={args.duration}s × repeats={args.repeats}",
+        "",
+        "| case | median B/s | p10 | p90 | Δ% vs A | stdev | note |",
+        "|------|------------|-----|-----|---------|-------|------|",
     ]
     for c in cases:
         lines.append(
-            f"| {c['name']} | {c.get('avg_appTxBps', 0):.0f} | {c.get('avg_appRxBps', 0):.0f} | "
-            f"{c.get('relative_pct')} | {c.get('with_btac')} | {c.get('with_ui_poll')} | {c.get('wifi_rssi')} |"
+            f"| {c['name']} | {c['median_of_medians_Bps']:.0f} | {c['p10_of_medians_Bps']:.0f} | "
+            f"{c['p90_of_medians_Bps']:.0f} | {c['delta_pct_vs_A']} | {c['stdev_of_medians_Bps']:.0f} | {c['note']} |"
         )
-    lines += ["", "WiFi/coex axis: STA connected, no BT13 toggles in window.", ""]
+    lines += ["", "WiFi STA constant. Do not interpret single-run +% as analyzer speedup.", ""]
     (EVIDENCE / f"{stem}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(json.dumps({"ok": True, "stem": stem, "cases": [{k: c.get(k) for k in ('name', 'relative_pct', 'avg_appRxBps')} for c in cases]}, indent=2))
+    print(json.dumps({"ok": True, "stem": stem, "summary": [{k: c[k] for k in ('name', 'median_of_medians_Bps', 'delta_pct_vs_A', 'note')} for c in cases]}, indent=2))
     return 0
 
 
