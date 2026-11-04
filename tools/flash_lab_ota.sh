@@ -5,13 +5,13 @@
 #   GET  http://$IP/api/status   → 200
 #   POST http://$IP/ota-upload   multipart field "firmware"
 #
-# Default: bt-analyzer.${VERSION}.esp32s3.bin from analyzer-s3 build.
+# Default: analyzer-s3 → bt-analyzer.${VERSION}.esp32s3.bin
+# Classic ESP32 (.87): ENV=analyzer-esp32 ./tools/flash_lab_ota.sh 192.168.178.87
 #
 # Usage:
 #   ./tools/flash_lab_ota.sh 192.168.178.88
 #   ./tools/flash_lab_ota.sh 192.168.178.89
-#   BIN_SRC=/path/to/esp-hub-base.1.10.5.esp32.bin FW_NAME=esp-hub-base.1.10.5.esp32.bin \
-#     ./tools/flash_lab_ota.sh 192.168.178.87
+#   ENV=analyzer-esp32 ./tools/flash_lab_ota.sh 192.168.178.87
 #
 set -euo pipefail
 
@@ -20,7 +20,13 @@ IP="${1:-}"
 ENV_NAME="${ENV:-analyzer-s3}"
 VERSION="$(tr -d '[:space:]' <"$ROOT/VERSION")"
 BIN_SRC="${BIN_SRC:-$ROOT/firmware/analyzer-node/.pio/build/${ENV_NAME}/firmware.bin}"
-FW_NAME="${FW_NAME:-bt-analyzer.${VERSION}.esp32s3.bin}"
+if [ -z "${FW_NAME:-}" ]; then
+  if [ "$ENV_NAME" = "analyzer-esp32" ]; then
+    FW_NAME="bt-analyzer.${VERSION}.esp32.bin"
+  else
+    FW_NAME="bt-analyzer.${VERSION}.esp32s3.bin"
+  fi
+fi
 DIST="$ROOT/firmware/dist"
 
 die() { echo "Fehler: $*" >&2; exit 1; }

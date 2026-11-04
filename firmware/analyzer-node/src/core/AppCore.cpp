@@ -39,6 +39,10 @@ void AppCore::begin() {
 
     net_.checkResetButton();
 
+    // On-chip BT (esp. ESP32 BTDM) needs internal DRAM before WiFi buffers land.
+    // Module HTTP routes still register later in web_.begin().
+    modules_.beginAll();
+
     Checkpoint::enter(Checkpoint::Wifi);
     net_.begin(deviceName_, hubHost_, hubPort_);
     Checkpoint::leave(Checkpoint::Wifi);
@@ -63,8 +67,6 @@ void AppCore::begin() {
         // No capture — WebUi exposes a static pump from the live instance.
         WebUi::pumpActiveClient();
     });
-
-    modules_.beginAll();
 
     lastSuccess_ = millis();
     Checkpoint::enter(Checkpoint::Hub);

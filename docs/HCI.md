@@ -2,9 +2,9 @@
 
 ## What HCI is (in this project)
 
-Host Controller Interface traffic between a **Bluetooth host stack** and a **Bluetooth controller**.
+Host Controller Interface traffic between a **thin host** (bt-analyzer) and the **on-chip Bluetooth controller** via **VHCI** (H4 framing).
 
-Primary transport for V1: **USB-HCI** via a commercial USB Bluetooth dongle attached to ESP32-S3 USB Host.
+Primary transport: **`onchip_vhci`**. USB-HCI dongle path is optional/legacy.
 
 ## Packet types (data model)
 
@@ -13,43 +13,43 @@ Primary transport for V1: **USB-HCI** via a commercial USB Bluetooth dongle atta
 | Command | host → controller | Opcode = OGF/OCF |
 | Event | controller → host | event_code |
 | ACL | both | L2CAP carrier |
-| SCO / eSCO | both | Classic voice — controller-dependent |
+| SCO / eSCO | both | Classic — ESP32 only |
 | ISO | both | BLE Audio / modern controllers |
 
-## USB-HCI endpoint map (BT2)
+## On-chip VHCI (primary)
 
-Bluetooth USB transport (Wireless Controller `0xE0` / `0x01`):
+- Controller init + `esp_vhci_host_register_callback`
+- Send: `esp_vhci_host_send_packet` (H4, leading type byte)
+- Recv: `notify_host_recv` → CaptureRing
+- Status: `transport: onchip_vhci`, `hciCapture.eventCapture: vhci`
+
+## USB-HCI endpoint map (legacy BT2)
+
+Bluetooth USB transport (Wireless Controller `0xE0` / `0x01`) when `BT_ANALYZER_ENABLE_USB_HOST=1`:
 
 | Endpoint | Role string | Packet types |
 |----------|-------------|--------------|
 | Interrupt IN | `hci_event` | Event |
 | Bulk OUT | `hci_command_acl_out` | Command + ACL |
 | Bulk IN | `hci_acl_in` | ACL |
-| Isochronous | `hci_sco_iso_*` | SCO / ISO |
 
-Until BT3 captures bytes, this map is **INFERENCE** from descriptors (`hci.claim=descriptor_inference_not_capture`).
-
-## Capture fields (minimum, BT3)
+## Capture fields (minimum)
 
 ```json
 {
   "seq": 1001,
   "ts_us": 123456789,
-  "dir": "host_to_controller",
-  "transport": "usb_hci",
-  "type": "command",
-  "endpoint": 2,
-  "length": 3,
-  "payload_hex": "010C20"
+  "dir": "controller_to_host",
+  "transport": "onchip_vhci",
+  "type": "event",
+  "endpoint": 0,
+  "length": 8,
+  "payload_hex": "040e0401030c00"
 }
 ```
 
-Raw capture must work **without** decoder.
-
 ## What HCI is not
 
-- Not advertising channel 37/38/39 visibility
-- Not PHY preamble / access address / CRC on air
-- Not proof that an RF packet was transmitted
-
-See method [`bt-passive-host-sniff`](https://github.com/MPunktBPunkt/technology-audit/blob/main/methods/bt-passive-host-sniff.md) in technology-audit.
+- Not RF/Air sniffer
+- Not a claim that “Bluetooth works” without layer
+- Not Classic on ESP32-S3

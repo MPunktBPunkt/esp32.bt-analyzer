@@ -1,0 +1,79 @@
+{
+  "topology": "F_ONCHIP",
+  "claim_layer": "L1_onchip_vhci",
+  "utc": "20261104T090443Z",
+  "host": {
+    "ip": "192.168.178.88",
+    "version": "0.2.5",
+    "bdAddr": "68:b6:b3:29:33:9d",
+    "role": "central_scan"
+  },
+  "peer": {
+    "ip": "192.168.178.89",
+    "version": "0.2.5",
+    "bdAddr": "68:b6:b3:2b:c5:69",
+    "role": "peripheral_advertise",
+    "adv_name": "bt-peer-89"
+  },
+  "peer_seen_on_host": true,
+  "matched_devices": [
+    {
+      "addr": "68:b6:b3:2b:c5:69",
+      "addrType": 0,
+      "rssi": -26,
+      "classic": false,
+      "ble": true,
+      "name": "bt-peer-89"
+    }
+  ],
+  "devices_total": 3,
+  "btac": "docs/evidence/LAB_F_ONCHIP_PEER_20261104T090443Z.btac",
+  "jsonl": "docs/evidence/LAB_F_ONCHIP_PEER_20261104T090443Z.jsonl",
+  "decode": {
+    "frames": 64,
+    "gaps": 5,
+    "crc_fail": 0,
+    "by_type": {
+      "command": 4,
+      "event": 60
+    },
+    "seq_first": 1,
+    "seq_last": 69,
+    "input": "/home/martin/projects/bt-analyzer/docs/evidence/LAB_F_ONCHIP_PEER_20261104T090443Z.btac",
+    "output": null,
+    "ok": true
+  },
+  "btac_status": {
+    "port": 9753,
+    "version": 1,
+    "listening": true,
+    "connected": false,
+    "streamId": 1,
+    "forwarded": 64,
+    "bytes": 3670,
+    "sendFails": 0,
+    "seqGaps": 5
+  },
+  "capture": {
+    "capacity": 256,
+    "fill": 132,
+    "highWater": 132,
+    "captured": 197,
+    "dequeued": 64,
+    "dropped": 0,
+    "psram": true,
+    "nextSeq": 201
+  },
+  "boundary": {
+    "in_scope": [
+      "HCI VHCI frames",
+      "BLE peer advertise/scan",
+      "BTAC\u2192JSONL"
+    ],
+    "out_of_scope": [
+      "RF/Air FACT",
+      "MITM",
+      "Classic-on-S3"
+    ]
+  }
+}

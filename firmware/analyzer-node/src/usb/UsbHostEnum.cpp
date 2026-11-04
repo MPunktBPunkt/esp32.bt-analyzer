@@ -396,8 +396,6 @@ void UsbHostEnum::appendStatusJson(String &json) const {
   json += ",\"otg\":{\"mode\":\"none\",\"state\":\"disabled\",\"connected\":false,\"devices\":0}";
   json += ",\"dut\":{\"present\":false}";
   json += ",\"hci\":{\"transport\":\"usb_hci\",\"detected\":false,\"claim\":\"usb_host_disabled\"}";
-  ring_.appendStatusJson(json);
-  hci_cap_.appendStatusJson(json);
 }
 
 void UsbHostEnum::clearDut() {}

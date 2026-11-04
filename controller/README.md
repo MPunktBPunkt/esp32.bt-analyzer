@@ -6,6 +6,7 @@ Lab control plane for **bt-analyzer**, parallel to usb-analyzer.
 |---------|------|-------|
 | Lab Web UI + HTTP API | **8081** | `http://192.168.178.187:8081/` |
 | Control TCP (HELLO later) | **9751** | placeholder accept loop |
+| Capture BTAC (on ESP) | **9753** | Debian → `tools/btac_recv.py <ip>` |
 | usb-analyzer (other project) | 8080 / 9750 | must not collide |
 
 ## Run
@@ -26,4 +27,4 @@ Lab control plane for **bt-analyzer**, parallel to usb-analyzer.
 | `POST /api/v1/node/<ip>/inject` | `{ "hex": "…" }` |
 | `POST /api/v1/node/<ip>/hci-write` | host bulk write when HCI open |
 
-Nodes are poll-proxied (no ESP HELLO required yet). BT4 may add discovery on `:9751`.
+Nodes are poll-proxied (no ESP HELLO required yet). BTAC capture is pull from ESP `:9753`.

@@ -63,6 +63,8 @@ void WebUi::updateConfig(const String& deviceName, const String& hubHost, int hu
 
 void WebUi::registerRoutes() {
     webServer_.on("/", HTTP_GET, [this]() { handleRoot(); });
+    webServer_.on("/analyzer", HTTP_GET, [this]() { handleRoot(); });
+    webServer_.on("/status", HTTP_GET, [this]() { handleRoot(); });
     webServer_.on("/events", HTTP_GET, [this]() { handleEvents(); });
     webServer_.on("/api/status", HTTP_GET, [this]() { handleStatus(); });
     webServer_.on("/api/diag/boot", HTTP_GET, [this]() {

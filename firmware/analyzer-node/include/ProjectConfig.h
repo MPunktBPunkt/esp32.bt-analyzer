@@ -14,7 +14,13 @@
 #define DEVICE_NAME            "bt-analyzer"
 #endif
 #ifndef FW_VERSION
-#define FW_VERSION             "0.1.4"
+#define FW_VERSION             "0.2.6"
+#endif
+#ifndef BTAC_PORT
+#define BTAC_PORT              9753
+#endif
+#ifndef BT_ANALYZER_ENABLE_USB_HOST
+#define BT_ANALYZER_ENABLE_USB_HOST 0
 #endif
 
 #ifndef ESPHUB_ENABLE_EXAMPLE_MODULE
@@ -53,5 +59,5 @@
 #define CONTROLLER_HOST_DEFAULT "192.168.178.187"
 #endif
 #ifndef CONTROLLER_PORT_DEFAULT
-#define CONTROLLER_PORT_DEFAULT 9750
+#define CONTROLLER_PORT_DEFAULT 9751
 #endif

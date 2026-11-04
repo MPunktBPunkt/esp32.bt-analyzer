@@ -11,41 +11,57 @@ Epistemics: `FACT` · `MEASURED` · `INFERENCE` · `HYPOTHESIS` · `UNKNOWN` · 
 
 | ID | Wiring | Primary claim layer | Nodes |
 |----|--------|---------------------|-------|
-| **A_OBSERVE** | BT-Dongle ─USB→ `.88` Host → WiFi → Debian | **L1 USB-HCI** | OBSERVE_A |
-| **B_STIMULUS** | `.88` Host ←OTG→ `.89` Device (HCI synth) | **L1 synthetic** | OBSERVE_A + STIMULUS |
-| **C_DUAL_DONGLE** | DongleA─`.88` ↔BT↔ DongleB─`.89` | **L1×2** (+ optional L0 later) | OBSERVE_A+B |
-| **D_ENDPOINT_REF** | `.87` on-chip BLE/Classic as peer/DUT | **L2 Endpoint** | REF_ENDPOINT ± phone/dongle |
-| **E_INJECT** | HTTP inject on `.88` (no radio) | **pipeline only** | OBSERVE_A |
+| **F_ONCHIP** | Peer ↔ on-chip radio → VHCI host → WiFi → Debian | **L1 onchip_vhci** | `.88`/`.89` BLE; `.87` Classic+BLE |
+| **A_OBSERVE** | BT-Dongle ─USB→ `.88` Host → WiFi → Debian | **L1 USB-HCI** (legacy) | OBSERVE_A |
+| **B_STIMULUS** | `.88` ↔ `.89` HCI synth | **L1 synthetic** | OBSERVE_A + STIMULUS |
+| **E_INJECT** | HTTP inject (no radio) | **pipeline only** | any |
 
 ### Explicitly out of registry (until own gate)
 
-- On-chip BLE `.88`↔`.89` sold as HCI analyzer  
 - Classic on-chip on S3  
 - HCI MEASURED as RF/Air FACT  
 - MITM Phone↔DUT via ESP  
 
 ---
 
-## Method A — USB-HCI Observe Baseline
+## Method F — On-Chip VHCI Baseline (primary)
 
-**Gate focus:** BT1–BT3, BT9/BT10  
-**Pass story:** Dongle enumerates · `hci.detected=true` · raw frames · documented drops/gaps  
+**Gate focus:** BT1–BT3, BT9 (BLE), BT10 (Classic on `.87`)  
+**Pass story:** `onchip.ready=true` · HCI Reset complete · scan yields devices · drain has frames  
 
 ### Prerequisites
 
-- `.88` = bt-analyzer ≥0.1.3  
-- Self-powered USB Hub + BLE **or** Classic dongle (one campaign = one class)  
-- Serial optional (UART); status via HTTP  
+- `.88`/`.89` = bt-analyzer ≥0.2.0 (BLE)  
+- `.87` = bt-analyzer `analyzer-esp32` ≥0.2.0 for Classic  
+- No USB dongle required  
 
 ### Procedure
 
-1. Record inventory snapshot: `python3 tools/lab_inventory_snapshot.py`  
-2. Unplug foreign USB gadgets from `.88` OTG; attach dongle (+ hub).  
-3. `GET /api/usb/status` → expect `dut.present`, `hci.detected`, endpoint roles.  
-4. Idle 30 s → `GET /api/status` → `capture` / `hciCapture` counters.  
-5. Optional: host write HCI Reset `POST /api/hci/write` hex `01030c00` (if openOk).  
-6. `GET /api/capture/drain?n=64` → save JSONL under `docs/evidence/`.  
-7. Write MEASURED.md with claim boundary (template below).  
+1. Inventory snapshot: `python3 tools/lab_inventory_snapshot.py`  
+2. `GET /api/status` → `onchip.ready`, `onchip.ble` / `onchip.classic`, `bdAddr`  
+3. Roles: one node **Peripheral** `POST /api/bt/advertise/start?name=bt-peer-89` · other **Central** `POST /api/bt/scan/start`  
+4. `GET /api/bt/devices` on Central → peer name/BD_ADDR  
+5. Capture: `tools/btac_recv.py` / `tools/lab_f_onchip_peer_evidence.py` → `.btac` + JSONL under `docs/evidence/`  
+6. Decode: `tools/btac_decode.py … --stats` (BT7)  
+7. Write MEASURED.md with topology **F_ONCHIP** + claim boundary  
+
+---
+
+## Method A — USB-HCI Observe Baseline (legacy)
+
+**Gate focus:** optional USB path when `BT_ANALYZER_ENABLE_USB_HOST=1`  
+**Pass story:** Dongle enumerates · USB-HCI frames  
+
+### Prerequisites
+
+- Build with USB Host enabled; self-powered hub + dongle  
+
+### Procedure
+
+1. Record inventory snapshot  
+2. Attach dongle (+ hub) to OTG  
+3. `GET /api/usb/status` → `dut.present`, HCI map  
+4. Drain capture; document topology **A_OBSERVE**  
 
 ### Pass / Fail
 
@@ -192,7 +208,7 @@ Always pair JSON + MEASURED.md with FW pins and topology ID.
 2. Inventory freeze (this doc + snapshot tool)  
 3. A_OBSERVE with **one** BLE dongle (BT9)  
 4. A_OBSERVE with **one** Classic dongle (BT10) — separate campaign  
-5. BT4–BT8 Debian path  
+5. BT4 BTAC `:9753` (`tools/btac_recv.py`) → BT7/BT8 JSONL/PCAPNG  
 6. B_STIMULUS when `.89` stimulus image exists  
 7. C_DUAL_DONGLE  
 8. D_ENDPOINT_REF only for cross-layer discipline demos  

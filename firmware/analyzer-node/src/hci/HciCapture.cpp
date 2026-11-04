@@ -1,3 +1,4 @@
+#if BT_ANALYZER_ENABLE_USB_HOST
 #include "hci/HciCapture.h"
 
 #include <esp_timer.h>
@@ -192,3 +193,4 @@ String HciCapture::drainJsonl(size_t max_frames) {
 }
 
 }  // namespace bt_analyzer
+#endif

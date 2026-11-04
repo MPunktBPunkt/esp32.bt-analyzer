@@ -37,6 +37,8 @@ input[type=text]{width:100%;background:#0d1117;border:1px solid #30363d;color:#e
 .btn{background:#238636;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;margin-top:14px;width:100%}
 .btn.sec{background:#21262d;border:1px solid #30363d;margin-top:8px}
 .btn:hover{filter:brightness(1.08)}
+.row-btns{display:flex;gap:8px;margin-top:8px}
+.row-btns .btn{margin-top:0;flex:1}
 .prog{display:none;margin-top:14px}
 .prog .bar{height:8px;border-radius:4px}
 .prog .bar-fill{background:#58a6ff;transition:width .3s}
@@ -56,12 +58,12 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
   </span>
 </header>
 <div class="tabs">
-  <button type="button" class="tab active" data-tab="status">Status</button>
-  <button type="button" class="tab" data-tab="analyzer">Analyzer</button>
+  <button type="button" class="tab active" data-tab="analyzer">Analyzer</button>
+  <button type="button" class="tab" data-tab="status">Status</button>
   <button type="button" class="tab" data-tab="ota">OTA</button>
 </div>
 <div class="content">
-  <div class="panel active" id="panel-status">
+  <div class="panel" id="panel-status">
     <div class="card"><h3>Geraet</h3><table>
       <tr><td>Name</td><td id="d-name">-</td></tr>
       <tr><td>Hardware</td><td id="d-hw" style="font-size:12px;line-height:1.45;color:#c9d1d9">-</td></tr>
@@ -102,28 +104,49 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
     </div>
   </div>
 
-  <div class="panel" id="panel-analyzer">
-    <div class="card"><h3>USB / OTG</h3><table>
-      <tr><td>Host</td><td id="a-usbhost">-</td></tr>
-      <tr><td>OTG</td><td id="a-otg">-</td></tr>
-      <tr><td>DUT</td><td class="mono" id="a-dut">-</td></tr>
-      <tr><td>Speed / if / ep</td><td id="a-ep">-</td></tr>
-    </table></div>
-    <div class="card"><h3>HCI map (BT2)</h3><table>
-      <tr><td>detected</td><td id="a-hci-det">-</td></tr>
-      <tr><td>capabilities</td><td class="mono" id="a-hci-cap">-</td></tr>
-      <tr><td>claim</td><td class="mono" id="a-hci-claim">-</td></tr>
-    </table></div>
-    <div class="card"><h3>Capture (BT3)</h3><table>
+  <div class="panel active" id="panel-analyzer">
+    <div class="card"><h3>On-Chip Bluetooth</h3><table>
+      <tr><td>ready</td><td id="a-ready">-</td></tr>
+      <tr><td>BD_ADDR</td><td class="mono" id="a-bd">-</td></tr>
+      <tr><td>caps</td><td id="a-caps">-</td></tr>
+      <tr><td>state</td><td id="a-state">-</td></tr>
+      <tr><td>devices</td><td id="a-ndev">-</td></tr>
+    </table>
+      <div class="row-btns">
+        <button type="button" class="btn" onclick="btScanStart()">BLE Scan (Central)</button>
+        <button type="button" class="btn sec" onclick="btScanStop()">Stop Scan</button>
+      </div>
+      <div class="row-btns">
+        <button type="button" class="btn" onclick="btAdvStart()">Advertise (Peripheral)</button>
+        <button type="button" class="btn sec" onclick="btAdvStop()">Stop Adv</button>
+      </div>
+      <div class="row-btns" id="classic-row" style="display:none">
+        <button type="button" class="btn" onclick="btInquiryStart()">Classic Inquiry</button>
+        <button type="button" class="btn sec" onclick="btInquiryStop()">Cancel</button>
+        <button type="button" class="btn sec" onclick="postBt('/api/bt/discoverable/start')">Discoverable</button>
+        <button type="button" class="btn sec" onclick="postBt('/api/bt/discoverable/stop')">Hide</button>
+      </div>
+      <div class="row-btns">
+        <button type="button" class="btn sec" onclick="postBt('/api/bt/disconnect')">Disconnect</button>
+      </div>
+      <div id="a-devs" style="margin-top:10px;font-size:12px;color:#8b949e">Keine Geräte</div>
+    </div>
+    <div class="card"><h3>Capture (VHCI)</h3><table>
       <tr><td>ring</td><td class="mono" id="a-ring">-</td></tr>
       <tr><td>hciCapture</td><td class="mono" id="a-hcap">-</td></tr>
     </table>
       <button type="button" class="btn sec" onclick="drainCap()">Drain last frames</button>
+      <div class="row-btns">
+        <button type="button" class="btn sec" onclick="postBt('/api/bt/reset')">HCI Reset</button>
+        <button type="button" class="btn sec" onclick="hciCmd('010c00')">Read Local Version</button>
+      </div>
+      <input type="text" id="hci-hex" value="030c00" placeholder="HCI cmd hex (ohne Packet-Type)">
+      <button type="button" class="btn sec" onclick="hciWrite()">HCI write (Host→Ctrl)</button>
       <input type="text" id="inj-hex" value="040e0401030c00">
-      <button type="button" class="btn" onclick="injectCap()">Inject hex (Topology E)</button>
+      <button type="button" class="btn sec" onclick="injectCap()">Inject hex (pipeline)</button>
       <pre id="a-log">(idle)</pre>
     </div>
-    <div class="warn">HCI ≠ RF. Inject ist Pipeline-only. Live-Dongle: self-powered Hub an OTG.</div>
+    <div class="warn">On-Chip BT · kein USB-Dongle. HCI ≠ Air. S3 = BLE only; Classic auf ESP32 (.87). Pairing folgt nach Connect.</div>
   </div>
 
   <div class="panel" id="panel-ota">
@@ -152,41 +175,52 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
     document.querySelectorAll('.panel').forEach(function(p){
       p.classList.toggle('active', p.id==='panel-'+id);
     });
-    var path = id==='ota' ? '/ota' : (id==='analyzer' ? '/analyzer' : '/');
+    var path = id==='ota' ? '/ota' : (id==='status' ? '/status' : '/');
     if(location.pathname!==path) history.replaceState(null,'',path);
   }
   document.querySelectorAll('.tab').forEach(function(t){
     t.addEventListener('click',function(){ showTab(t.getAttribute('data-tab')); });
   });
   if(location.pathname.indexOf('ota')>=0 || location.hash==='#ota') showTab('ota');
-  else if(location.pathname.indexOf('analyzer')>=0 || location.hash==='#analyzer') showTab('analyzer');
-  else showTab('status');
+  else if(location.pathname.indexOf('status')>=0 || location.hash==='#status') showTab('status');
+  else showTab('analyzer');
 
   function fmtKB(b){return Math.round(b/1024)+' KB';}
   function barColor(p){return p>40?'green':p>20?'yellow':'red';}
   function applyAnalyzer(s){
-    var uh=s.usbHost||{}, otg=s.otg||{}, dut=s.dut||{}, hci=s.hci||{}, cap=s.capture||{}, hc=s.hciCapture||{};
-    document.getElementById('a-usbhost').textContent=
-      (uh.enabled?'en ':'')+(uh.beginOk?'ok ':'fail ')+(uh.state||'')+' lib '+(uh.library||'');
-    document.getElementById('a-otg').textContent=
-      (otg.mode||'?')+' / '+(otg.state||'?')+' devices='+(otg.devices!=null?otg.devices:'?');
-    document.getElementById('a-dut').textContent=
-      dut.present ? ((dut.id||'')+' · '+(dut.product||'')+' · '+(dut.manufacturer||'')) : 'none';
-    document.getElementById('a-ep').textContent=
-      dut.present ? ((dut.speed||'')+' · if='+(dut.interfaceCount||0)+' ep='+(dut.endpointCount||0)+
-        (dut.wirelessController?' · wirelessCtrl':'') ) : '—';
-    var det=!!hci.detected;
-    document.getElementById('a-hci-det').innerHTML=det?'<span class="ok">yes</span>':'<span class="bad">no</span>';
-    var c=hci.capabilities||{};
-    document.getElementById('a-hci-cap').textContent=
-      'evt='+!!c.event+' cmd/acl_out='+!!c.command_acl_out+' acl_in='+!!c.acl_in+' sco='+!!c.sco_iso;
-    document.getElementById('a-hci-claim').textContent=hci.claim||'';
+    var oc=s.onchip||{}, cap=s.capture||{}, hc=s.hciCapture||{};
+    var ready=!!oc.ready;
+    document.getElementById('a-ready').innerHTML=ready?'<span class="ok">yes</span>':'<span class="bad">no</span>';
+    document.getElementById('a-bd').textContent=oc.bdAddr||'—';
+    document.getElementById('a-caps').textContent=
+      'BLE='+(oc.ble?'yes':'no')+' · Classic='+(oc.classic?'yes':'no')+' · '+(oc.transport||'onchip_vhci');
+    document.getElementById('a-state').textContent=
+      (oc.state||'—')+(oc.leAdvertising?' · ADV '+(oc.advName||''):'')+(oc.leScanning?' · SCAN':'');
+    document.getElementById('a-ndev').textContent=String(oc.devices!=null?oc.devices:0);
+    document.getElementById('classic-row').style.display=oc.classic?'flex':'none';
     document.getElementById('a-ring').textContent=
       'cap='+(cap.captured||0)+' drop='+(cap.dropped||0)+' fill='+(cap.fill||0)+'/'+(cap.capacity||0)+
       ' hw='+(cap.highWater||0)+' psram='+!!cap.psram;
     document.getElementById('a-hcap').textContent=
-      'armed='+!!hc.armed+' open='+!!hc.openOk+' aclIn='+(hc.aclIn||0)+' inj='+(hc.inject||0)+
-      ' evt='+(hc.eventCapture||'');
+      'armed='+!!hc.armed+' open='+!!hc.openOk+' rx='+(hc.rx||hc.aclIn||0)+' tx='+(hc.tx||hc.cmdOut||0)+
+      ' inj='+(hc.inject||0)+' evt='+(hc.eventCapture||'');
+  }
+  function refreshDevices(){
+    fetch('/api/bt/devices').then(function(r){return r.json();}).then(function(j){
+      var list=j.devices||[];
+      var el=document.getElementById('a-devs');
+      if(!list.length){el.textContent='Keine Geräte';return;}
+      el.innerHTML=list.map(function(d){
+        var tag=(d.classic?'Classic ':'')+(d.ble?'BLE':'');
+        return '<div style="display:flex;gap:8px;align-items:center;margin:4px 0;flex-wrap:wrap">'+
+          '<span class="mono">'+(d.addr||'')+'</span>'+
+          '<span>'+(d.name||'(no name)')+'</span>'+
+          '<span>'+tag+' rssi='+d.rssi+'</span>'+
+          (d.ble?('<button type="button" class="btn sec" style="width:auto;margin:0;padding:4px 10px" '+
+            'onclick="btConnect(\''+d.addr+'\','+d.addrType+')">Connect</button>'):'')+
+          '</div>';
+      }).join('');
+    }).catch(function(){});
   }
   function applyStatus(s){
     var ver='v'+(s.version||'');
@@ -240,6 +274,9 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
       }).join('');
     }
     applyAnalyzer(s);
+    if((s.onchip&&s.onchip.devices)>0 || (s.onchip&&(s.onchip.leScanning||s.onchip.classicInquiry))){
+      refreshDevices();
+    }
   }
   var es=new EventSource('/events');
   var dot=document.getElementById('sse-dot'),lbl=document.getElementById('sse-lbl');
@@ -250,7 +287,32 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
     fetch('/api/status').then(function(r){return r.json();}).then(applyStatus).catch(function(){});
   }
   pollStatus();
+  setInterval(refreshDevices, 3000);
 
+  window.postBt=function(path){
+    return fetch(path,{method:'POST'}).then(function(r){return r.text();})
+      .then(function(t){document.getElementById('a-log').textContent=path+' → '+t; pollStatus(); refreshDevices();})
+      .catch(function(e){document.getElementById('a-log').textContent=String(e);});
+  };
+  window.btScanStart=function(){ return postBt('/api/bt/scan/start'); };
+  window.btScanStop=function(){ return postBt('/api/bt/scan/stop'); };
+  window.btAdvStart=function(){
+    var name=prompt('Advertise name','bt-peer')||'bt-peer';
+    return fetch('/api/bt/advertise/start',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:'name='+encodeURIComponent(name)}).then(function(r){return r.text();})
+      .then(function(t){document.getElementById('a-log').textContent='advertise → '+t; pollStatus();})
+      .catch(function(e){document.getElementById('a-log').textContent=String(e);});
+  };
+  window.btAdvStop=function(){ return postBt('/api/bt/advertise/stop'); };
+  window.btInquiryStart=function(){ return postBt('/api/bt/inquiry/start'); };
+  window.btInquiryStop=function(){ return postBt('/api/bt/inquiry/stop'); };
+  window.btConnect=function(addr,addrType){
+    var body='addr='+encodeURIComponent(addr)+'&addrType='+(addrType||0);
+    return fetch('/api/bt/connect',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
+      .then(function(r){return r.text();})
+      .then(function(t){document.getElementById('a-log').textContent='connect '+addr+' → '+t; pollStatus();})
+      .catch(function(e){document.getElementById('a-log').textContent=String(e);});
+  };
   window.drainCap=function(){
     fetch('/api/capture/drain?n=16').then(function(r){return r.text();}).then(function(t){
       document.getElementById('a-log').textContent=t||'(empty)';
@@ -263,6 +325,20 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
       .then(function(r){return r.text();})
       .then(function(t){document.getElementById('a-log').textContent='inject → '+t; pollStatus();})
       .catch(function(e){document.getElementById('a-log').textContent=String(e);});
+  };
+  function postHci(hex){
+    var body='hex='+encodeURIComponent(hex);
+    return fetch('/api/hci/write',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
+      .then(function(r){return r.text();})
+      .then(function(t){document.getElementById('a-log').textContent='hci write '+hex+' → '+t; pollStatus();})
+      .catch(function(e){document.getElementById('a-log').textContent=String(e);});
+  }
+  window.hciCmd=function(hex){
+    document.getElementById('hci-hex').value=hex;
+    return postHci(hex);
+  };
+  window.hciWrite=function(){
+    return postHci(document.getElementById('hci-hex').value.trim());
   };
 
   var inp=document.getElementById('fw'),drop=document.getElementById('drop');

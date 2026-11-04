@@ -20,6 +20,7 @@ VERSION = "0.1.0"
 LAB_NODES = [
     {"id": "observe_a", "ip": "192.168.178.88", "role": "OBSERVE_A"},
     {"id": "observe_b", "ip": "192.168.178.89", "role": "OBSERVE_B"},
+    {"id": "classic_esp32", "ip": "192.168.178.87", "role": "F_ONCHIP_CLASSIC"},
 ]
 
 

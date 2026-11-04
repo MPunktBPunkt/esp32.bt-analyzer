@@ -5,48 +5,42 @@ No release claim without green gate status.
 
 | Gate | Ziel | Status |
 |------|------|--------|
-| **BT0** | Hub-Basis / OTA / Web UI / NVS / reboot / PSRAM | **CODE READY** — lab PASS pending |
-| **BT1** | USB Host enumeration (VID/PID/if/ep) | **CODE READY** (0.1.1+) — lab PASS pending |
-| **BT2** | HCI interface detection (cmd/evt/ACL/SCO/ISO) | **CODE READY** (0.1.2+) — lab PASS pending |
-| **BT3** | Raw HCI capture (ts, dir, type, payload) | **PARTIAL** (0.1.3) — bulk/inject; event IN pending |
-| **BT4** | TCP capture stream (BTAC framing) | pending |
-| **BT5** | PSRAM ring buffer | pending |
-| **BT6** | Lossless lab capture (drops=0, gaps=0) | pending |
-| **BT7** | Debian decoder (JSONL) | pending |
-| **BT8** | PCAPNG export (HCI, not RF) | pending |
-| **BT9** | BLE dongle validation | pending |
-| **BT10** | Classic dongle validation | pending |
-| **BT11** | Second ESP / HCI stimulus | pending |
-| **BT12** | Long capture | pending |
-| **BT13** | WiFi/USB stress + recovery | pending |
-| **BT14** | Technology-audit project green | pending |
-| **BT15** | RF / Air investigation (separate) | deferred |
-
-## BT0 exit criteria
-
-| Check | Expectation |
-|-------|-------------|
-| Hub registration | device appears with `version`, `chipModel`, heap/PSRAM |
-| OTA | `./tools/flash_lab_ota.sh <IP>` → reboot → status OK |
-| Web UI | `GET /` and `/api/status` 200 |
-| NVS | WiFi credentials survive reboot |
-| Reboot recovery | AppCore recovery path |
-| PSRAM | `freePsram` / `psramSize` reported (N8R2) |
+| **BT0** | Hub-Basis / OTA / Web UI / NVS / reboot / PSRAM | **CODE READY** |
+| **BT1** | On-chip controller bring-up (VHCI) | **CODE READY** (0.2.6) |
+| **BT2** | HCI host↔controller path (cmd/evt via VHCI) | **CODE READY** (0.2.6) |
+| **BT3** | Raw HCI capture (ts, dir, type, payload) | **CODE READY** (VHCI) |
+| **BT4** | TCP capture stream (BTAC framing) | **CODE READY** (`:9753`) |
+| **BT5** | PSRAM ring buffer | **CODE READY** (512 slots S3 · fillPct) |
+| **BT6** | Lossless lab capture (drops=0, gaps noted) | **CODE READY** (lab script) |
+| **BT7** | Debian decoder (JSONL) | **CODE READY** (`btac_decode.py`) |
+| **BT8** | PCAPNG export (HCI, not RF) | **CODE READY** (`btac_to_pcapng.py`) |
+| **BT9** | BLE on-chip validation (scan/connect) | **CODE READY** (connect/disconnect) |
+| **BT10** | Classic on-chip validation (`.87`) | **CODE READY** (discoverable + inquiry) |
+| **BT11** | Second ESP peer / stimulus | **CODE READY** (advertise/scan/connect) |
+| **BT12** | Long capture | **CODE READY** (`lab_run_gates.py`) |
+| **BT13** | WiFi/BT stress + recovery | **CODE READY** (toggle stress) |
+| **BT14** | Technology-audit project green | **partial** (local pack; external review) |
+| **BT15** | RF / Air investigation (separate) | **deferred** |
 
 ## Forbidden vague exits
 
 - „Bluetooth works“ without layer (L0/L1/L2)
 - „Sniffer“ without RF evidence
 - HCI MEASURED sold as Air FACT
+- Classic claims on ESP32-S3
 
-## Lab topology (see LAB_METHODS.md)
+## Lab topology
 
 | ID | Next gate relevance |
 |----|---------------------|
-| E_INJECT | BT3 plumbing — done smoke 0.1.3 |
-| A_OBSERVE | BT1–BT3 / BT9 / BT10 — **next MEASURED** |
-| B_STIMULUS | BT11 |
-| C_DUAL_DONGLE | after A×2 |
-| D_ENDPOINT_REF | `.87` classic — correlation only |
+| **F_ONCHIP** | primary — all BT1–BT13 lab scripts |
+| E_INJECT | pipeline-only |
+| A_OBSERVE | legacy USB-dongle |
 
-Gate exit must cite **topology ID** + FW pins + evidence path. Template: `docs/LAB_METHODS.md` § Gate exit.
+Gate exit must cite **topology ID** + FW pins + evidence path.
+
+## Repro
+
+```bash
+python3 tools/lab_run_gates.py
+```

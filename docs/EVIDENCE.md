@@ -17,6 +17,9 @@ Classification everywhere:
 | S3 USB Host + BT dongle → HCI capture | **UNKNOWN** until Topology A lab | BT1–BT3 + method baseline |
 | Inject→ring→drain pipeline | **MEASURED** (0.1.3, Topology E) | `tools/lab_inject_smoke.py` |
 | Classic ESP32 (D1) USB-OTG Host | **REJECTED** | no OTG — REF_ENDPOINT only |
+| F_ONCHIP BLE peer advertise/scan | **MEASURED** (0.2.5+) | `LAB_F_ONCHIP_PEER_*` |
+| BTAC→JSONL→PCAPNG HCI path | **MEASURED** (0.2.6) | `tools/lab_run_gates.py` |
+| BLE Connect Central↔Peripheral | **MEASURED** (0.2.6, lab) | BT9 in `lab_run_gates.py` |
 
 ## Must NOT claim (V1)
 

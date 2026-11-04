@@ -1,3 +1,4 @@
+#if BT_ANALYZER_ENABLE_USB_HOST
 #include "hci/HciUsbMap.h"
 
 namespace bt_analyzer {
@@ -139,3 +140,4 @@ void HciUsbMap::appendStatusJson(const HciUsbDiscovery &d, String &json) {
 }
 
 }  // namespace bt_analyzer
+#endif

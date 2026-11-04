@@ -98,6 +98,10 @@ void CaptureRing::appendStatusJson(String &json) const {
   json += String(dropped_);
   json += ",\"psram\":";
   json += in_psram_ ? "true" : "false";
+  json += ",\"fillPct\":";
+  json += String(capacity_ ? static_cast<unsigned>((100u * size()) / capacity_) : 0u);
+  json += ",\"frameBytes\":";
+  json += String(static_cast<unsigned>(sizeof(CaptureFrame)));
   json += ",\"nextSeq\":";
   json += String(seq_);
   json += "}";

@@ -1,53 +1,56 @@
 # esp32.bt-analyzer
 
-![Version](https://img.shields.io/badge/version-0.1.4-blue)
+![Version](https://img.shields.io/badge/version-0.2.6-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Gate](https://img.shields.io/badge/gate-BT3%20%2B%20Lab%20UI-yellow)](docs/GATE3_STATUS.md)
+[![Gate](https://img.shields.io/badge/gate-BT3%20onchip%20VHCI-yellow)](docs/GATES.md)
 
-ESP32-S3 **Bluetooth USB/HCI Analyzer** lab: USB Bluetooth dongle → HCI capture → WiFi/TCP → Debian.
+ESP **on-chip Bluetooth HCI analyzer** (VHCI): board radio → HCI capture → WiFi → Debian.  
+**Kein USB-Dongle nötig.**
 
-> **v0.1.4** — Node **Analyzer-Tab** + Debian Lab UI **`:8081`** (parallel zu usb-analyzer `:8080`).  
-> **Nicht claimed:** RF/Air sniffer, Classic on-chip S3, MITM, drop-free.
+> **v0.2.6** — BLE Advertise/Scan peer · BTAC `:9753` · JSONL decode (BT7) · F_ONCHIP evidence.  
+> **Nicht claimed:** RF/Air sniffer, Classic on S3, MITM, drop-free.
 
-Wissensbasis: [technology-audit](https://github.com/MPunktBPunkt/technology-audit) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5** · Architektur-Referenz: [esp32.usb-analyzer](https://github.com/MPunktBPunkt/esp32.usb-analyzer).
+Wissensbasis: [technology-audit](https://github.com/MPunktBPunkt/technology-audit) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5**.
 
 ---
 
 ## Goal architecture
 
 ```text
-USB Bluetooth Dongle (HCI)
-        │ USB
+Peer (Phone / ESP)
+        │ BLE / Classic
         ▼
 ┌─────────────────────┐
-│ ESP32-S3 OBSERVE    │  USB Host · HCI Capture · PSRAM · TCP
+│ On-chip controller  │  VHCI · thin host · Capture · PSRAM
+│ .88/.89 S3 = BLE    │
+│ .87 ESP32 = Classic+│
 └──────────┬──────────┘
-           │ WiFi/TCP
+           │ WiFi/HTTP
            ▼
 ┌─────────────────────┐
-│ Debian              │  Collector · Decoder · JSONL · PCAPNG
+│ Debian :8081/:9751  │  Lab UI · JSONL
 └─────────────────────┘
 ```
 
-V1 = **L1 HCI capture**. L0 RF = UNKNOWN / later. L2 profiles = Debian.
+V1 = **L1 HCI capture** + lab scan/connect. L0 RF = UNKNOWN / later.
 
 ## Hard boundaries
 
 | Claim | Status |
 |-------|--------|
-| ESP32-S3 Classic BR/EDR analyzer (on-chip) | **REJECTED** |
+| ESP32-S3 Classic BR/EDR on-chip | **REJECTED** (use `.87`) |
 | HCI capture = RF sniffer | **REJECTED** |
-| Endpoint JSONL = Phone↔Original traffic | **REJECTED** |
+| USB dongle required | **REJECTED** for F_ONCHIP |
 
 ## Lab hardware
 
 | IP | Board | Role |
 |----|-------|------|
-| `.88` | YD-ESP32-S3 N8R2 | **OBSERVE_A** (USB-HCI) |
-| `.89` | YD-ESP32-S3 N8R2 | OBSERVE_B / STIMULUS |
-| `.87` | D1 Mini ESP32 | **REF_ENDPOINT** (Classic+BLE on-chip, **no** USB Host) |
+| `.88` | YD-ESP32-S3 N8R2 | **OBSERVE_A** (BLE VHCI) |
+| `.89` | YD-ESP32-S3 N8R2 | OBSERVE_B / peer |
+| `.87` | D1 Mini ESP32 | Classic+BLE on-chip |
 
-Methods / topologies: [`docs/LAB_METHODS.md`](docs/LAB_METHODS.md) · Inventory: [`docs/LAB_INVENTORY.md`](docs/LAB_INVENTORY.md).
+Methods: [`docs/LAB_METHODS.md`](docs/LAB_METHODS.md).
 
 ### UIs
 
@@ -63,37 +66,25 @@ Methods / topologies: [`docs/LAB_METHODS.md`](docs/LAB_METHODS.md) · Inventory:
 
 ---
 
-## Repo layout
-
-```text
-firmware/analyzer-node/   # PlatformIO · Analyzer tab UI
-firmware/common/
-controller/ · web/        # Debian Lab UI :8081
-tools/flash_lab_ota.sh
-docs/
-tests/host/
-```
-
 ## Build / OTA
 
 ```bash
-cd firmware/analyzer-node && pio run -e analyzer-s3
+cd firmware/analyzer-node
+pio run -e analyzer-s3
 ./tools/flash_lab_ota.sh 192.168.178.88
 ./tools/flash_lab_ota.sh 192.168.178.89
+
+pio run -e analyzer-esp32
+ENV=analyzer-esp32 ./tools/flash_lab_ota.sh 192.168.178.87
 ```
 
-Portal SSID: `BT-Analyzer-Setup` · Device name: `bt-analyzer`.  
-OTG = DUT only; board typically does **not** source VBUS 5 V — use self-powered hub/dongle.
+Portal SSID: `BT-Analyzer-Setup` · Device name: `bt-analyzer`.
 
 ## Gates
 
-See [`docs/GATES.md`](docs/GATES.md). BT3 partial ([`GATE3_STATUS.md`](docs/GATE3_STATUS.md)). First milestone: **BT0–BT6**.
-
-## Epistemics
-
-`FACT` · `MEASURED` · `INFERENCE` · `HYPOTHESIS` · `UNKNOWN` · `REJECTED` — [`docs/EVIDENCE.md`](docs/EVIDENCE.md).
+See [`docs/GATES.md`](docs/GATES.md). Primary topology **F_ONCHIP**.
 
 ## License
 
 - Project code / docs: MIT (this repo).
-- Vendored `firmware/analyzer-node/src/core/` from ESP32.esp-hub: **GPL-3.0** (retain headers; sync only from upstream).
+- Vendored `firmware/analyzer-node/src/core/` from ESP32.esp-hub: **GPL-3.0**.

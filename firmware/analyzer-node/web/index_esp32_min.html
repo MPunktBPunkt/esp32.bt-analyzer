@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>bt-analyzer</title>
+<style>
+body{background:#0d1117;color:#e6edf3;font-family:sans-serif;font-size:14px;margin:0;padding:16px}
+h1{font-size:18px;color:#3fb950;margin:0 0 8px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;margin:12px 0}
+.mono{font-family:monospace;color:#58a6ff;font-size:12px}
+.btn{background:#238636;color:#fff;border:none;padding:10px 16px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:8px}
+.muted{color:#8b949e}
+#log{white-space:pre-wrap;font-size:12px}
+</style>
+</head>
+<body>
+<h1>bt-analyzer <span class="muted">ESP32</span></h1>
+<p class="muted">Minimal UI · Lab: Debian :8081 · BTAC :9753</p>
+<div class="card">
+  <div id="st" class="mono">loading…</div>
+  <button class="btn" type="button" onclick="refresh()">Refresh</button>
+</div>
+<div class="card">
+  <div class="muted">OTA</div>
+  <input id="fw" type="file" accept=".bin">
+  <button class="btn" type="button" onclick="ota()">Upload</button>
+  <div id="log" class="mono"></div>
+</div>
+<script>
+async function refresh(){
+  try{
+    const j=await (await fetch('/api/status')).json();
+    const o=j.onchip||{}, b=j.btac||{};
+    st.textContent=`v${j.version} ${j.chip} heap=${j.heap}\n`+
+      `onchip ready=${o.ready} classic=${o.classic} ble=${o.ble} state=${o.state} bd=${o.bdAddr}\n`+
+      `btac :${b.port} listen=${b.listening} fwd=${b.forwarded} bytes=${b.bytes}`;
+  }catch(e){st.textContent=String(e)}
+}
+async function ota(){
+  const f=fw.files[0]; if(!f){log.textContent='pick .bin';return}
+  log.textContent='uploading…';
+  const fd=new FormData(); fd.append('firmware', f, f.name);
+  try{
+    const r=await fetch('/ota-upload',{method:'POST',body:fd});
+    log.textContent=r.status+' '+await r.text();
+  }catch(e){log.textContent=String(e)}
+}
+refresh(); setInterval(refresh,5000);
+</script>
+</body>
+</html>

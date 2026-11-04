@@ -2,82 +2,65 @@
 
 ## Positioning
 
-**HCI Analyzer** (Bluetooth host↔controller traffic), not RF sniffer, not MITM.
+**HCI Analyzer** on the board’s own Bluetooth controller (VHCI), not a USB dongle, not RF sniffer, not MITM.
 
 Epistemic rule: do not promote HYPOTHESIS/UNKNOWN to FACT.  
-HCI ≠ Bluetooth Air. USB Host API ≠ USB Wire. Endpoint events ≠ HCI.
+HCI ≠ Bluetooth Air.
 
 ## Capture layers
 
 ```text
 L0  RF / PHY / Air          → UNKNOWN / later BT15 (separate capability)
-L1  Controller / HCI        → V1 primary (USB Bluetooth dongle)
-L2  Host / Profiles         → Debian analysis (not ESP)
+L1  Controller / HCI (VHCI) → V1 primary (on-chip)
+L2  Thin host (scan/connect)→ ESP lab UI + HCI cmds
 L3  Debian Analysis         → Collector / JSONL / PCAPNG / Wireshark
 ```
 
-## Target topology
+## Target topology (F_ONCHIP)
 
 ```text
-Bluetooth DUT
-      │ Bluetooth
-      ▼
-USB Bluetooth Controller (HCI)
-      │ USB
+Peer (Phone / other ESP)
+      │ BLE (S3) or Classic+BLE (ESP32)
       ▼
 ┌────────────────────────┐
-│ ESP32-S3 #1 (OBSERVE)  │
-│ USB OTG = HOST         │
+│ ESP on-chip controller │
+│ VHCI ↔ thin host       │
 │ HCI Capture + ts       │
-│ PSRAM ring             │
-│ TCP forward            │
+│ PSRAM/internal ring    │
 └───────────┬────────────┘
-            │ WiFi/TCP
+            │ WiFi/HTTP
             ▼
 ┌────────────────────────┐
-│ Debian                 │
+│ Debian :8081 / :9751   │
 │ Collector / Decoder    │
-│ JSONL / PCAPNG         │
-└───────────┬────────────┘
-            │ optional BT11+
-            ▼
-┌────────────────────────┐
-│ ESP32-S3 #2 (STIMULUS) │
-│ USB Device / HCI replay│
 └────────────────────────┘
 ```
+
+USB-dongle observe (A_OBSERVE) remains **legacy/optional** (`BT_ANALYZER_ENABLE_USB_HOST=1`).
+
+## Chip matrix
+
+| Board | Chip | On-chip |
+|-------|------|---------|
+| `.88` / `.89` | ESP32-S3 | **BLE only** |
+| `.87` | ESP32 | **Classic + BLE** |
 
 ## Modes
 
 | Mode | Path | Phase |
 |------|------|-------|
-| **A — HCI OBSERVE** | Dongle → ESP Host → TCP → Debian | BT1–BT6 |
-| **B — HCI RELAY/STIMULUS** | Host ↔ ESP-A ↔ Debian ↔ ESP-B ↔ Controller | BT11+ experimental |
+| **F — ONCHIP** | Controller ↔ VHCI host → capture → Debian | primary |
+| **A — USB OBSERVE** | Dongle → USB Host → capture | legacy |
+| **E — INJECT** | HTTP inject → ring (no radio) | pipeline test |
 
 ## Firmware basis
 
-Derive from **esp-hub-base v1.10.5** only — not a fork of usb-analyzer firmware.  
-usb-analyzer is the **architecture / gate / evidence** reference.
-
-```text
-ESP32.esp-hub / esp-hub-base
-        │
-        ▼
- bt-analyzer (AppCore BT0 → + USB/HCI modules)
-```
-
-## Capture pipeline (from BT3)
-
-```text
-USB callback → internal RAM → capture queue → PSRAM ring → TCP producer
-```
-
-Never: USB callback → TCP send directly.
+Derive from **esp-hub-base v1.10.5**. Capture path: VHCI recv/send → CaptureRing → drain JSONL.
 
 ## Hard boundaries
 
 | Claim | Status |
 |-------|--------|
-| ESP32-S3 on-chip Classic BR/EDR analyzer | **REJECTED** |
+| ESP32-S3 on-chip Classic BR/EDR | **REJECTED** (use `.87`) |
 | HCI capture = RF capture | **REJECTED** |
-| Profile parsing on ESP as SoT | **REJECTED** for V1 |
+| USB dongle required | **REJECTED** for F_ONCHIP |

@@ -3,15 +3,17 @@
 #include <Arduino.h>
 
 #include "capture/CaptureRing.h"
-#include "hci/HciCapture.h"
 #include "hci/HciTypes.h"
+
+#if BT_ANALYZER_ENABLE_USB_HOST
+#include "hci/HciCapture.h"
+#endif
 
 namespace bt_analyzer {
 
 /**
- * BT1: USB Host enumeration (VID/PID/if/ep).
- * BT2: USB-HCI role map from descriptors.
- * BT3: raw HCI capture (bulk IN ACL + inject/write; event IN pending).
+ * Legacy USB Host enumeration / USB-HCI path.
+ * Compiled fully only when BT_ANALYZER_ENABLE_USB_HOST=1.
  */
 class UsbHostEnum {
 public:
@@ -27,10 +29,11 @@ public:
   bool hciDetected() const { return hci_.wirelessControllerIface; }
   const HciUsbDiscovery &hciDiscovery() const { return hci_; }
 
+#if BT_ANALYZER_ENABLE_USB_HOST
   CaptureRing &ring() { return ring_; }
   HciCapture &hciCapture() { return hci_cap_; }
+#endif
 
-  /** Append otg/usbHost/dut/hci/capture/lastUsbEvent fields (leading commas). */
   void appendStatusJson(String &json) const;
 
 private:
@@ -57,8 +60,10 @@ private:
   String dut_eps_json_;
   HciUsbDiscovery hci_{};
 
+#if BT_ANALYZER_ENABLE_USB_HOST
   CaptureRing ring_;
   HciCapture hci_cap_;
+#endif
 
   void clearDut();
   void cacheDescriptors(uint8_t address);

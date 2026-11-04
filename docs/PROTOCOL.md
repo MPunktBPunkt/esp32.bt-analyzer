@@ -7,8 +7,8 @@
 | Hub | `:8093` | register / heartbeat / OTA URL |
 | Node Web | HTTP `/`, `/api/status`, `/ota-upload` | local ops |
 | Debian Lab UI | `:8081` | poll-proxy nodes + drain/inject |
-| Debian control TCP | `:9751` | HELLO later (BT4); placeholder now |
-| Capture data | TCP (TBD; not 9752 usb) | BTAC stream (BT4+) |
+| Debian control TCP | `:9751` | HELLO later; placeholder accept |
+| Capture data | ESP `:9753` | **BTAC v1** stream (BT4) — ESP listens |
 
 ## Hub registration (BT0)
 
