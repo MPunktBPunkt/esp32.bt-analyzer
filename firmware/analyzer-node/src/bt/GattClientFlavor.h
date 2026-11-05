@@ -60,7 +60,8 @@ public:
   /** ATT Handle Value Confirmation (0x1E) after Indication. */
   bool confirmIndication();
   /** enable CCCD notify (bit0) and/or indicate (bit1). */
-  bool subscribeCccd(uint16_t cccd_handle, bool enable, bool indicate = false);
+  bool subscribeCccd(uint16_t cccd_handle, bool enable, bool indicate = false,
+                     bool with_response = true);
 
   /** Feed ATT PDU from ACL (central RX). */
   void onAttPdu(const uint8_t *att, uint16_t len);

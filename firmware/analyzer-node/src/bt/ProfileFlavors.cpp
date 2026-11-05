@@ -136,12 +136,74 @@ void HogpFlavor::appendStatusJson(String &json) const {
 void FtmsFlavor::reset() {
   state_ = 0;
   feat_h_ = ibd_h_ = cccd_h_ = cp_h_ = cp_cccd_h_ = 0;
+  cp_use_indicate_ = false;
+  ibd_cccd_cmd_sent_ = false;
   feature_lo_ = 0;
   notifies_ = 0;
   cp_indications_ = 0;
   last_cp_req_ = last_cp_result_ = 0;
   last_power_ = last_cadence_ = 0;
   t0_ = 0;
+}
+
+bool FtmsFlavor::subscribeIbd_() {
+  if (!gc_ || !cccd_h_) {
+    return false;
+  }
+  ibd_cccd_cmd_sent_ = false;
+  // First try Write Request; poll() may retry as Write Command (Varon).
+  return gc_->subscribeCccd(cccd_h_, true, false, true);
+}
+
+void FtmsFlavor::decodeIbd_(const uint8_t *val, uint16_t val_len) {
+  // FTMS Indoor Bike Data — Instantaneous Speed is present when More Data (bit0) is clear
+  // (esp32.ergo FtmsCodec / Hammer flags 0x0B54).
+  if (!val || val_len < 2) {
+    return;
+  }
+  const uint16_t flags = static_cast<uint16_t>(val[0] | (val[1] << 8));
+  uint16_t off = 2;
+  if ((flags & 0x0001) == 0) {
+    if (off + 2 > val_len) {
+      return;
+    }
+    off = static_cast<uint16_t>(off + 2);  // instantaneous speed
+  }
+  if (flags & 0x0002) {
+    if (off + 2 > val_len) {
+      return;
+    }
+    off = static_cast<uint16_t>(off + 2);  // average speed
+  }
+  if (flags & 0x0004) {
+    if (off + 2 <= val_len) {
+      last_cadence_ = static_cast<uint16_t>(val[off] | (val[off + 1] << 8));
+      off = static_cast<uint16_t>(off + 2);
+    }
+  }
+  if (flags & 0x0008) {
+    if (off + 2 > val_len) {
+      return;
+    }
+    off = static_cast<uint16_t>(off + 2);  // average cadence
+  }
+  if (flags & 0x0010) {
+    if (off + 3 > val_len) {
+      return;
+    }
+    off = static_cast<uint16_t>(off + 3);  // total distance u24
+  }
+  if (flags & 0x0020) {
+    if (off + 2 > val_len) {
+      return;
+    }
+    off = static_cast<uint16_t>(off + 2);  // resistance
+  }
+  if (flags & 0x0040) {
+    if (off + 2 <= val_len) {
+      last_power_ = static_cast<uint16_t>(val[off] | (val[off + 1] << 8));
+    }
+  }
 }
 
 const char *FtmsFlavor::stateName() const {
@@ -179,13 +241,16 @@ bool FtmsFlavor::startAfterDiscover() {
   // (TC174 IBD@54 → CCCD@55) when desc discovery was truncated.
   cccd_h_ = gc_->findCccdForValue(ibd_h_);
   cp_cccd_h_ = cp_h_ ? gc_->findCccdForValue(cp_h_) : 0;
+  // Hammer Varon: 2AD9 is Notify (0x10), not Indicate — Spec deviation
+  // (esp32.ergo FtmsClient::subscribeTo).
+  cp_use_indicate_ = cp && (cp->properties & 0x20) != 0 && (cp->properties & 0x10) == 0;
   t0_ = millis();
   if (feat_h_) {
     state_ = 1;
     return gc_->readHandle(feat_h_);
   }
   state_ = 2;
-  return cccd_h_ != 0 && gc_->subscribeCccd(cccd_h_, true);
+  return subscribeIbd_();
 }
 
 void FtmsFlavor::onAttPdu(const uint8_t *att, uint16_t len) {
@@ -195,9 +260,7 @@ void FtmsFlavor::onAttPdu(const uint8_t *att, uint16_t len) {
   if (att[0] == 0x0b && state_ == 1 && len >= 5) {
     feature_lo_ = static_cast<uint32_t>(att[1] | (att[2] << 8) | (att[3] << 16) | (att[4] << 24));
     state_ = 2;
-    if (cccd_h_) {
-      gc_->subscribeCccd(cccd_h_, true);
-    } else {
+    if (!subscribeIbd_()) {
       state_ = 4;
     }
     return;
@@ -206,17 +269,28 @@ void FtmsFlavor::onAttPdu(const uint8_t *att, uint16_t len) {
     state_ = 3;
     return;
   }
-  if (att[0] == 0x1d && len >= 6) {
-    // Handle Value Indication — Control Point response
+  if (att[0] == 0x01 && state_ == 2 && len >= 5) {
+    // CCCD Write Request failed (Varon: 0x0A on handle 55) — retry Write Command.
+    const uint16_t h = static_cast<uint16_t>(att[2] | (att[3] << 8));
+    if (h == cccd_h_ && !ibd_cccd_cmd_sent_ && gc_) {
+      ibd_cccd_cmd_sent_ = true;
+      gc_->subscribeCccd(cccd_h_, true, false, false);
+      t0_ = millis();
+    }
+    return;
+  }
+  if ((att[0] == 0x1d || att[0] == 0x1b) && len >= 6) {
+    // CP response: Indicate (spec) or Notify (Hammer Varon / esp32.ergo)
     const uint16_t h = static_cast<uint16_t>(att[1] | (att[2] << 8));
     if (h == cp_h_) {
       cp_indications_++;
-      // att: 1d | handle | 80 | reqOp | result
       last_cp_req_ = att[4];
       last_cp_result_ = att[5];
-      gc_->confirmIndication();
+      if (att[0] == 0x1d && gc_) {
+        gc_->confirmIndication();
+      }
+      return;
     }
-    return;
   }
   if (att[0] == 0x1b && len >= 5) {
     const uint16_t h = static_cast<uint16_t>(att[1] | (att[2] << 8));
@@ -224,22 +298,9 @@ void FtmsFlavor::onAttPdu(const uint8_t *att, uint16_t len) {
       return;
     }
     notifies_++;
-    const uint16_t flags = static_cast<uint16_t>(att[3] | (att[4] << 8));
-    uint16_t off = 5;
-    // More Data bit0 unused for our stub; Instantaneous Cadence bit2; Power bit6
-    if (flags & 0x0004) {
-      if (off + 2 <= len) {
-        last_cadence_ = static_cast<uint16_t>(att[off] | (att[off + 1] << 8));
-        off = static_cast<uint16_t>(off + 2);
-      }
-    }
-    if (flags & 0x0040) {
-      if (off + 2 <= len) {
-        last_power_ = static_cast<uint16_t>(att[off] | (att[off + 1] << 8));
-      }
-    }
+    decodeIbd_(att + 3, static_cast<uint16_t>(len - 3));
     if (state_ == 2) {
-      state_ = 3;
+      state_ = 3;  // notify implies CCCD took
     }
   }
 }
@@ -248,7 +309,12 @@ bool FtmsFlavor::controlPointEnable(bool enable) {
   if (!gc_ || !cp_cccd_h_) {
     return false;
   }
-  return gc_->subscribeCccd(cp_cccd_h_, enable, true);
+  // Prefer char props; Varon uses Notify. Retry Write Command like esp32.ergo.
+  if (!gc_->subscribeCccd(cp_cccd_h_, enable, cp_use_indicate_, true)) {
+    return false;
+  }
+  gc_->subscribeCccd(cp_cccd_h_, enable, cp_use_indicate_, false);
+  return true;
 }
 
 bool FtmsFlavor::controlPointWrite(uint8_t opcode, const uint8_t *payload,
@@ -268,9 +334,17 @@ bool FtmsFlavor::controlPointWrite(uint8_t opcode, const uint8_t *payload,
 }
 
 void FtmsFlavor::poll() {
+  if (state_ == 2 && !ibd_cccd_cmd_sent_ && t0_ && (millis() - t0_) > 1200 && gc_ &&
+      cccd_h_) {
+    // No Write Response yet — esp32.ergo fallback path.
+    ibd_cccd_cmd_sent_ = true;
+    gc_->subscribeCccd(cccd_h_, true, false, false);
+    t0_ = millis();
+  }
   if (state_ == 1 || state_ == 2) {
     if (t0_ && (millis() - t0_) > 8000) {
-      state_ = 4;
+      // Still useful if IBD already arrived; otherwise error.
+      state_ = notifies_ > 0 ? 3 : 4;
     }
   }
 }

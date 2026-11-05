@@ -142,11 +142,13 @@ bool GattClientFlavor::confirmIndication() {
 }
 
 bool GattClientFlavor::subscribeCccd(uint16_t cccd_handle, bool enable,
-                                     bool indicate) {
+                                     bool indicate, bool with_response) {
   if (cccd_handle == 0) {
     return false;
   }
-  uint8_t att[5] = {0x12, 0x00, 0x00, 0x00, 0x00};
+  // 0x12 Write Request · 0x52 Write Command (Varon CCCD often needs the latter)
+  uint8_t att[5] = {static_cast<uint8_t>(with_response ? 0x12 : 0x52), 0x00, 0x00, 0x00,
+                    0x00};
   putU16(att + 1, cccd_handle);
   if (enable) {
     att[3] = indicate ? 0x02 : 0x01;  // Indicate vs Notify
@@ -207,6 +209,12 @@ void GattClientFlavor::onAttPdu(const uint8_t *att, uint16_t len) {
         }
         return;
       }
+    }
+    // Hammer Varon (TC174): CCCD Write Request on 2AD2 often returns 0x0A even
+    // while notifies already flow. Keep Ready so FTMS still sees 0x1b PDUs
+    // (esp32.ergo: subscribe fallback response=false).
+    if (state_ == GcState::Ready) {
+      return;
     }
     char buf[20];
     snprintf(buf, sizeof(buf), "att_err_%02x", err);

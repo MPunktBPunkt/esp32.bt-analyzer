@@ -67,7 +67,7 @@ public:
   uint8_t lastCpResult() const { return last_cp_result_; }
   bool ok() const { return state_ == 3; }
 
-  /** Subscribe CP CCCD (Indicate) then write opcode[+payload]. */
+  /** Subscribe CP CCCD (Notify or Indicate from char props) then write. */
   bool controlPointEnable(bool enable);
   bool controlPointWrite(uint8_t opcode, const uint8_t *payload = nullptr,
                          uint16_t payload_len = 0);
@@ -75,6 +75,9 @@ public:
   void appendStatusJson(String &json) const;
 
 private:
+  bool subscribeIbd_();
+  void decodeIbd_(const uint8_t *val, uint16_t val_len);
+
   GattClientFlavor *gc_ = nullptr;
   uint8_t state_ = 0;
   uint16_t feat_h_ = 0;
@@ -82,6 +85,8 @@ private:
   uint16_t cccd_h_ = 0;
   uint16_t cp_h_ = 0;
   uint16_t cp_cccd_h_ = 0;
+  bool cp_use_indicate_ = false;
+  bool ibd_cccd_cmd_sent_ = false;
   uint32_t feature_lo_ = 0;
   uint32_t notifies_ = 0;
   uint32_t cp_indications_ = 0;

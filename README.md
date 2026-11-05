@@ -1,13 +1,13 @@
 # esp32.bt-analyzer
 
-![Version](https://img.shields.io/badge/version-0.3.11-blue)
+![Version](https://img.shields.io/badge/version-0.3.12-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Gate](https://img.shields.io/badge/gate-BT18%20GATT-yellow)](docs/GATES.md)
 
 ESP **on-chip Bluetooth HCI analyzer** (VHCI): Controller ↔ Host über die Board-Radio, Capture nach Debian.  
 **Kein USB-Dongle nötig** (Topologie **F_ONCHIP**).
 
-> **v0.3.11** — Real FTMS CCCD resolve (TC174) · no stub-handle fallback when desc table fills.  
+> **v0.3.12** — Hammer Varon FTMS (esp32.ergo): CCCD Write-Cmd fallback · IBD speed-aware decode · CP Notify.  
 > **Nicht claimed:** RF/Air · MITM · transparent BT proxy · A2DP in thin VHCI core.
 
 Wissensbasis: [technology-audit / esp32-bt-analyzer](https://github.com/MPunktBPunkt/technology-audit/tree/main/projects/esp32-bt-analyzer) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5**.
@@ -111,7 +111,7 @@ python3 tools/lab_clock_sync.py         # multi-node offset estimate
 python3 tools/lab_gate_exits.py
 ```
 
-| Gate band | Stand (0.3.11) |
+| Gate band | Stand (0.3.12) |
 |-----------|----------------|
 | BT0–BT13 | **CODE READY** / lab MEASURED |
 | BT14 | **ready for external review** |
