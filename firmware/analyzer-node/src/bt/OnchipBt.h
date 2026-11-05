@@ -18,6 +18,8 @@ struct BtSeenDevice {
   char name[32]{};
   bool classic = false;
   bool ble = true;
+  uint8_t page_scan_rep = 0;
+  uint16_t clock_offset = 0;  // for HCI_Remote_Name_Request
   uint32_t last_seen_ms = 0;
 };
 
@@ -119,6 +121,8 @@ public:
   }
 
   void clearDevices() { device_count_ = 0; }
+  /** Queue HCI_Remote_Name_Request for classic devices still without name. */
+  bool classicRemoteNameKick();
 
   void appendStatusJson(String &json) const;
   String devicesJson() const;
@@ -201,13 +205,17 @@ private:
 
   BtSeenDevice devices_[kBtMaxDevices]{};
   size_t device_count_ = 0;
+  bool remote_name_busy_ = false;
 
   void setState(const char *s);
   void upsertDevice(const uint8_t addr[6], uint8_t addr_type, int8_t rssi,
-                    const char *name, bool classic, bool ble);
+                    const char *name, bool classic, bool ble,
+                    uint8_t page_scan_rep = 0, uint16_t clock_offset = 0);
+  void applyEirName(const uint8_t addr[6], const uint8_t *eir, uint16_t eir_len);
   void parseEvent(const uint8_t *h4, uint16_t len);
   void parseLeMeta(const uint8_t *evt, uint8_t evt_len);
   void parseInquiryResult(const uint8_t *params, uint8_t plen, bool with_rssi);
+  void parseRemoteNameComplete(const uint8_t *params, uint8_t plen);
   void parseAclAtt(const uint8_t *h4, uint16_t len);
   void feedAclAtt(const uint8_t *l2cap_or_att, uint16_t len, bool has_l2cap_hdr);
   void pollAppRates();

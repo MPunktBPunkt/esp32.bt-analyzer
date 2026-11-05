@@ -1,7 +1,7 @@
 # Next campaigns — after 0.3.13 real-device day
 
 ```yaml
-status: planned_0.3.14
+status: shipping_0.3.14
 package_now: "0.3.13"
 anchor: OBSERVABILITY_before_BT17_A2DP
 fw_lab: "0.3.13"
@@ -32,14 +32,15 @@ Findings: [`FINDINGS_LAB_20261105.md`](FINDINGS_LAB_20261105.md) · Scope: [`SCO
 
 ## Next packages
 
-### **0.3.14 — Observability (P0)** — *next ship*
+### **0.3.14 — Observability (P0)** — *shipping*
 
 | # | Measure | Where | Done when |
 |---|---------|-------|-----------|
-| 1 | **Remote Name Request** after Classic inquiry (+ optional EIR name from `0x2F`) | FW `.87` | `/api/bt/devices` shows `HD 4.40BT` (or EIR name) |
-| 2 | **Live HCI frame stream** on Debian `:8081` during BTAC session | Collector UI | scrolling list: ts · RX/TX · type · len · hex expand |
-| 3 | **Rate strip hardwired to session** | Collector (canvas exists) | Frames/s + Bytes/s RX/TX + drops/seq-gaps while session active |
-| 4 | **Lab**: `lab_classic_name.py` | tools | PASS: inquiry → name for known HD 4.40 BD_ADDR |
+| 1 | **Remote Name Request** after Classic inquiry (+ EIR name from `0x2F`, inquiry mode 2) | FW `.87` | `/api/bt/devices` shows `HD 4.40BT` (or EIR name) |
+| 2 | **Live HCI frame stream** on Debian `:8081` during BTAC session | Collector UI | scrolling list: seq · ts · RX/TX · type · len · hex |
+| 3 | **Rate strip hardwired to session** | Collector | Frames/s + Bytes/s RX/TX + gaps while session active |
+| 4 | **Lab**: `lab_classic_name.py` | tools | PASS: inquiry → name for known HD 4.40 |
+| 5 | **Scan/Connect in ESP UI** | `.87` min UI + S3 + `:8081` | BLE scan / Classic inquiry / Connect buttons |
 
 **Out of scope for 0.3.14:** A2DP/HFP pair, Bluedroid, MITM.
 

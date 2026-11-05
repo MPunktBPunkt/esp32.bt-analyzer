@@ -326,14 +326,26 @@ void OnchipBt::parseEvent(const uint8_t *h4, uint16_t len) {
   } else if (code == 0x02) {
     // Inquiry Result (no RSSI)
     parseInquiryResult(p, plen, false);
-  } else if (code == 0x22 || code == 0x2f) {
-    // 0x22 Inquiry Result with RSSI · 0x2F Extended Inquiry Result
-    // (same BD_ADDR…RSSI prefix; EIR bytes after that are ignored here)
-    // Bug was treating only 0x2F as “with RSSI” while Write Inquiry Mode 1
-    // delivers 0x22 — HD 4.40BT was on the air but never entered devices[].
+  } else if (code == 0x22) {
+    // Inquiry Result with RSSI (Write Inquiry Mode 1)
     parseInquiryResult(p, plen, true);
+  } else if (code == 0x2f) {
+    // Extended Inquiry Result — same prefix as 0x22 + EIR name
+    parseInquiryResult(p, plen, true);
+    if (plen > 15) {
+      uint8_t be[6];
+      for (int i = 0; i < 6; i++) {
+        be[i] = p[1 + (5 - i)];
+      }
+      applyEirName(be, p + 15, static_cast<uint16_t>(plen - 15));
+    }
+  } else if (code == 0x07) {
+    // Remote Name Request Complete
+    parseRemoteNameComplete(p, plen);
   } else if (code == 0x01) {
     classic_inquiry_ = false;
+    remote_name_busy_ = false;
+    classicRemoteNameKick();
     if (!le_scanning_ && !le_advertising_ && !le_connected_) {
       setState("idle");
     }
@@ -422,9 +434,8 @@ void OnchipBt::parseInquiryResult(const uint8_t *params, uint8_t plen,
   }
   const uint8_t num = params[0];
   size_t off = 1;
-  const size_t stride = with_rssi ? 14 : 14;  // addr6 + psrep1 + class3 + clk2 [+rssi]
-  // Inquiry Result: BD_ADDR[6], PageScan*, Class[3], ClockOffset[2]
-  // Inquiry Result with RSSI: + RSSI
+  // Inquiry Result: BD_ADDR[6], PageScan[1], Reserved[1], Class[3], ClockOffset[2]
+  // with RSSI: + RSSI[1]
   for (uint8_t n = 0; n < num; n++) {
     const size_t need = with_rssi ? 14 : 13;
     if (off + need > plen) {
@@ -435,22 +446,104 @@ void OnchipBt::parseInquiryResult(const uint8_t *params, uint8_t plen,
     for (int i = 0; i < 6; i++) {
       be[i] = addr[5 - i];
     }
+    const uint8_t page = params[off + 6];
+    const uint16_t clock = static_cast<uint16_t>(params[off + 11] | (params[off + 12] << 8));
     int8_t rssi = 0;
     if (with_rssi) {
       rssi = static_cast<int8_t>(params[off + 13]);
     }
-    upsertDevice(be, 0, rssi, "", true, false);
+    upsertDevice(be, 0, rssi, "", true, false, page, clock);
     off += with_rssi ? 14 : 13;
-    (void)stride;
   }
+}
+
+void OnchipBt::applyEirName(const uint8_t addr[6], const uint8_t *eir, uint16_t eir_len) {
+  if (!eir || !eir_len) {
+    return;
+  }
+  uint16_t i = 0;
+  while (i + 1 < eir_len) {
+    const uint8_t elen = eir[i];
+    if (elen == 0 || i + 1 + elen > eir_len) {
+      break;
+    }
+    const uint8_t etype = eir[i + 1];
+    // 0x09 Complete Local Name · 0x08 Shortened Local Name
+    if ((etype == 0x09 || etype == 0x08) && elen >= 2) {
+      char name[32]{};
+      const size_t nlen = elen - 1 < sizeof(name) - 1 ? elen - 1 : sizeof(name) - 1;
+      memcpy(name, &eir[i + 2], nlen);
+      upsertDevice(addr, 0, 0, name, true, false);
+      return;
+    }
+    i = static_cast<uint16_t>(i + 1 + elen);
+  }
+}
+
+void OnchipBt::parseRemoteNameComplete(const uint8_t *params, uint8_t plen) {
+  remote_name_busy_ = false;
+  if (!params || plen < 7) {
+    classicRemoteNameKick();
+    return;
+  }
+  // Status[1] BD_ADDR[6] Name…
+  if (params[0] != 0) {
+    classicRemoteNameKick();
+    return;
+  }
+  uint8_t be[6];
+  for (int i = 0; i < 6; i++) {
+    be[i] = params[1 + (5 - i)];
+  }
+  char name[32]{};
+  const uint8_t *np = params + 7;
+  const size_t maxn = plen > 7 ? plen - 7 : 0;
+  const size_t nlen = maxn < sizeof(name) - 1 ? maxn : sizeof(name) - 1;
+  for (size_t i = 0; i < nlen && np[i]; i++) {
+    name[i] = static_cast<char>(np[i]);
+  }
+  if (name[0]) {
+    upsertDevice(be, 0, 0, name, true, false);
+  }
+  classicRemoteNameKick();
+}
+
+bool OnchipBt::classicRemoteNameKick() {
+  if (!classic_capable_ || !cap_.openOk() || remote_name_busy_) {
+    return false;
+  }
+  for (size_t i = 0; i < device_count_; i++) {
+    BtSeenDevice &d = devices_[i];
+    if (!d.classic || d.name[0]) {
+      continue;
+    }
+    // HCI_Remote_Name_Request 0x0419, plen 10
+    uint8_t cmd[13] = {0x19, 0x04, 0x0a, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    for (int k = 0; k < 6; k++) {
+      cmd[3 + k] = d.addr[5 - k];  // little-endian on air
+    }
+    cmd[9] = d.page_scan_rep;
+    cmd[10] = 0x00;
+    cmd[11] = static_cast<uint8_t>(d.clock_offset & 0xff);
+    cmd[12] = static_cast<uint8_t>((d.clock_offset >> 8) & 0xff);
+    if (!cap_.writeCommand(cmd, sizeof(cmd))) {
+      return false;
+    }
+    remote_name_busy_ = true;
+    last_cmd_ms_ = millis();
+    return true;
+  }
+  return false;
 }
 
 void OnchipBt::upsertDevice(const uint8_t addr[6], uint8_t addr_type,
                             int8_t rssi, const char *name, bool classic,
-                            bool ble) {
+                            bool ble, uint8_t page_scan_rep, uint16_t clock_offset) {
   for (size_t i = 0; i < device_count_; i++) {
     if (memcmp(devices_[i].addr, addr, 6) == 0) {
-      devices_[i].rssi = rssi;
+      if (rssi != 0 || !devices_[i].rssi) {
+        devices_[i].rssi = rssi;
+      }
       devices_[i].addr_type = addr_type;
       devices_[i].last_seen_ms = millis();
       if (classic) {
@@ -459,8 +552,13 @@ void OnchipBt::upsertDevice(const uint8_t addr[6], uint8_t addr_type,
       if (ble) {
         devices_[i].ble = true;
       }
-      if (name && name[0] && (!devices_[i].name[0] || name[0])) {
+      if (page_scan_rep || clock_offset) {
+        devices_[i].page_scan_rep = page_scan_rep;
+        devices_[i].clock_offset = clock_offset;
+      }
+      if (name && name[0]) {
         strncpy(devices_[i].name, name, sizeof(devices_[i].name) - 1);
+        devices_[i].name[sizeof(devices_[i].name) - 1] = 0;
       }
       return;
     }
@@ -474,10 +572,13 @@ void OnchipBt::upsertDevice(const uint8_t addr[6], uint8_t addr_type,
   d.rssi = rssi;
   d.classic = classic;
   d.ble = ble;
+  d.page_scan_rep = page_scan_rep;
+  d.clock_offset = clock_offset;
   d.last_seen_ms = millis();
   d.name[0] = 0;
   if (name && name[0]) {
     strncpy(d.name, name, sizeof(d.name) - 1);
+    d.name[sizeof(d.name) - 1] = 0;
   }
 }
 
@@ -506,9 +607,10 @@ bool OnchipBt::setEventMasks() {
     return false;
   }
   delay(20);
-  // Write Inquiry Mode (0x0C45) = 1 → Inquiry Result with RSSI (event 0x22).
+  // Write Inquiry Mode (0x0C45) = 2 → Extended Inquiry Result (0x2F) with EIR,
+  // fallback RSSI results (0x22) when controller omits EIR.
   if (classic_capable_) {
-    const uint8_t inq[] = {0x45, 0x0c, 0x01, 0x01};
+    const uint8_t inq[] = {0x45, 0x0c, 0x01, 0x02};
     cap_.writeCommand(inq, sizeof(inq));
   }
   last_cmd_ms_ = millis();
@@ -642,6 +744,8 @@ bool OnchipBt::classicInquiryStart() {
   if (!classic_capable_ || !cap_.openOk()) {
     return false;
   }
+  clearDevices();
+  remote_name_busy_ = false;
   // HCI_Inquiry: opcode 0x0401, LAP=0x9E8B33, length=8*1.28s, num=0
   const uint8_t cmd[] = {0x01, 0x04, 0x05, 0x33, 0x8b, 0x9e, 0x08, 0x00};
   if (!cap_.writeCommand(cmd, sizeof(cmd))) {
@@ -657,6 +761,8 @@ bool OnchipBt::classicInquiryCancel() {
   const uint8_t cmd[] = {0x02, 0x04, 0x00};
   const bool ok = cap_.writeCommand(cmd, sizeof(cmd));
   classic_inquiry_ = false;
+  remote_name_busy_ = false;
+  classicRemoteNameKick();
   if (!le_scanning_ && !le_advertising_ && !le_connected_) {
     setState("idle");
   }

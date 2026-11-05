@@ -122,9 +122,11 @@
   function renderSession(s) {
     const el = document.getElementById("c-session");
     const dl = document.getElementById("btn-sess-dl");
+    const sr = document.getElementById("sess-rate");
     if (!s || (!s.active && !s.frames)) {
       el.textContent = "idle";
       dl.style.display = "none";
+      if (sr) sr.textContent = "session: idle";
       return;
     }
     el.textContent =
@@ -137,6 +139,66 @@
       " gaps=" +
       s.gaps;
     dl.style.display = s.path ? "inline" : "none";
+    if (sr) {
+      sr.textContent =
+        `session: ${s.active ? "LIVE" : "stopped"} · ${esc(s.rate_fps || 0)} fps · ` +
+        `RX ${esc(s.rate_rx_Bps || 0)} B/s · TX ${esc(s.rate_tx_Bps || 0)} B/s · gaps=${esc(s.gaps)}`;
+    }
+  }
+
+  async function refreshFrames() {
+    const list = document.getElementById("frame-list");
+    if (!list) return;
+    try {
+      const data = await jget("/api/v1/session/frames?n=48");
+      const frames = data.frames || [];
+      if (!frames.length) {
+        list.textContent = data.active ? "(waiting for frames…)" : "(no frames — start BTAC)";
+        return;
+      }
+      list.textContent = frames
+        .map((f) => {
+          const ts = f.ts_us != null ? String(f.ts_us).padStart(10, " ") : "—";
+          return `#${f.seq} ${ts} ${f.dir||"?"} ${f.type||"?"} len=${f.length} ${f.payload_hex_short || ""}`;
+        })
+        .join("\n");
+    } catch (e) {
+      list.textContent = String(e);
+    }
+  }
+
+  async function refreshLabDevices() {
+    const el = document.getElementById("lab-devs");
+    if (!el) return;
+    const ip = targetEl.value || "192.168.178.87";
+    try {
+      const data = await jget(`/api/v1/node/${ip}/devices`);
+      const list = data.devices || [];
+      if (!list.length) {
+        el.textContent = `${ip}: keine Geräte`;
+        return;
+      }
+      el.innerHTML = list
+        .map((d) => {
+          const tag = (d.classic ? "C " : "") + (d.ble ? "BLE" : "");
+          const btn = d.ble
+            ? ` <button type="button" class="secondary" data-conn="${esc(d.addr)}" data-at="${esc(d.addrType || 0)}">Connect</button>`
+            : "";
+          return `<div><span class="mono">${esc(d.addr)}</span> ${esc(d.name || "—")} ${tag} rssi=${esc(d.rssi)}${btn}</div>`;
+        })
+        .join("");
+      el.querySelectorAll("[data-conn]").forEach((b) => {
+        b.onclick = () => {
+          document.getElementById("peer-addr").value = b.getAttribute("data-conn");
+          return jpost(`/api/v1/node/192.168.178.88/connect`, {
+            addr: b.getAttribute("data-conn"),
+            addrType: b.getAttribute("data-at") || "0",
+          }).then(refreshNodes);
+        };
+      });
+    } catch (e) {
+      el.textContent = String(e);
+    }
   }
 
   async function refreshHealth() {
@@ -160,6 +222,7 @@
     if (cur && ips.includes(cur)) targetEl.value = cur;
     const sess = await jget("/api/v1/session");
     renderSession(sess.session || {});
+    await refreshFrames();
   }
 
   document.getElementById("btn-refresh").onclick = () => refreshNodes().catch(console.error);
@@ -182,7 +245,16 @@
   document.getElementById("btn-adv").onclick = () =>
     jpost(`/api/v1/node/192.168.178.89/advertise-start`, { name: "bt-peer-89" }).then(refreshNodes);
   document.getElementById("btn-scan").onclick = () =>
-    jpost(`/api/v1/node/192.168.178.88/scan-start`, {}).then(refreshNodes);
+    jpost(`/api/v1/node/192.168.178.88/scan-start`, {}).then(() => {
+      refreshNodes();
+      setTimeout(refreshLabDevices, 2500);
+    });
+  document.getElementById("btn-inquiry").onclick = () =>
+    jpost(`/api/v1/node/192.168.178.87/inquiry-start`, {}).then(() => {
+      refreshNodes();
+      setTimeout(refreshLabDevices, 9000);
+    });
+  document.getElementById("btn-devs").onclick = () => refreshLabDevices().catch(console.error);
   document.getElementById("btn-connect").onclick = () => {
     const addr = document.getElementById("peer-addr").value.trim() || "68:b6:b3:2b:c5:69";
     return jpost(`/api/v1/node/192.168.178.88/connect`, { addr, addrType: "0" }).then(refreshNodes);

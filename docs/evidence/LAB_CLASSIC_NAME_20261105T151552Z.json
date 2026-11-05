@@ -1,0 +1,30 @@
+{
+  "utc": "20261105T151552Z",
+  "gate": "classic_remote_name",
+  "fw": "0.3.14",
+  "esp": "192.168.178.87",
+  "inquiry_s": 10.0,
+  "settle_s": 5.0,
+  "start": {
+    "ok": true,
+    "mode": "classic"
+  },
+  "devices_n": 1,
+  "classic_n": 1,
+  "named_n": 1,
+  "expect_addr": "",
+  "expect_name": "HD 4.40",
+  "hit": null,
+  "devices": [
+    {
+      "addr": "c8:a6:ef:99:a0:39",
+      "addrType": 0,
+      "rssi": -88,
+      "classic": true,
+      "ble": false,
+      "name": "55\" Crystal UHD"
+    }
+  ],
+  "ok": false,
+  "claim": "inquiry_plus_remote_name_or_eir_fills_devices_name"
+}

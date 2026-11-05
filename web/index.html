@@ -28,9 +28,10 @@
   </div>
   <div class="card" style="margin-bottom:14px">
     <h2>Live rates (kB/s)</h2>
-    <div class="mono" id="rate-legend">App TX/RX · HCI ACL TX/RX · BTAC fwd</div>
+    <div class="mono" id="rate-legend">App TX/RX · HCI ACL TX/RX · BTAC fwd · session fps when live</div>
     <canvas id="rate-chart" width="960" height="180" style="width:100%;max-width:960px;height:180px;background:#0d1117;border:1px solid #30363d;border-radius:6px;margin-top:8px"></canvas>
     <div class="mono" id="rate-now" style="margin-top:8px">—</div>
+    <div class="mono" id="sess-rate" style="margin-top:4px;color:#8b949e">session: idle</div>
   </div>
   <div class="grid" id="nodes"></div>
   <div class="card" style="margin-top:14px">
@@ -42,20 +43,24 @@
       <a id="btn-sess-dl" href="/api/v1/session/download" style="display:none">Download .btac</a>
     </div>
     <div class="muted" style="margin-top:8px">HCI stream only — not RF/Air. Session gaps ≠ lifetime seqGaps.</div>
+    <pre id="frame-list" class="mono" style="margin-top:10px;max-height:280px;overflow:auto;font-size:11px;background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:8px">(no frames — start BTAC)</pre>
   </div>
   <div class="card" style="margin-top:14px">
-    <h2>Peer / L2 / BT16 throughput</h2>
+    <h2>Scan / Connect / Peer</h2>
     <div class="row">
-      <button type="button" id="btn-adv">Advertise peer</button>
-      <button type="button" id="btn-scan">Scan host</button>
-      <button type="button" id="btn-connect">Connect</button>
+      <button type="button" id="btn-adv">Advertise .89</button>
+      <button type="button" id="btn-scan">BLE Scan .88</button>
+      <button type="button" id="btn-inquiry">Classic Inquiry .87</button>
+      <button type="button" id="btn-connect">Connect .88</button>
       <button type="button" class="secondary" id="btn-gatt">GATT read name</button>
       <button type="button" id="btn-thr-n">Thr notify</button>
       <button type="button" id="btn-thr-w">Thr write</button>
       <button type="button" class="secondary" id="btn-thr-stop">Thr stop</button>
       <button type="button" class="secondary" id="btn-disco">Classic discoverable</button>
+      <button type="button" class="secondary" id="btn-devs">Refresh devices</button>
     </div>
     <input type="text" id="peer-addr" placeholder="peer BD_ADDR aa:bb:…">
+    <div id="lab-devs" class="mono" style="margin-top:8px;font-size:12px;color:#8b949e">—</div>
   </div>
   <div class="card" style="margin-top:14px">
     <h2>Capture drain / inject</h2>

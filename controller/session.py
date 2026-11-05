@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import collections
 import socket
 import struct
 import threading
@@ -13,6 +14,38 @@ from pathlib import Path
 HDR_FMT = "<4sBBHIQBBBBH"
 HDR_SIZE = struct.calcsize(HDR_FMT)
 MAGIC = b"BTAC"
+FRAME_RING = 128
+DIR_NAME = {0: "unknown", 1: "TX", 2: "RX"}
+TYPE_NAME = {
+    0: "unknown",
+    1: "cmd",
+    2: "evt",
+    3: "acl",
+    4: "sco",
+    5: "iso",
+    0xFE: "meta",
+}
+
+
+def _frame_dict(hdr: bytes, payload: bytes) -> dict:
+    _m, ver, flags, stream_id, seq, ts_us, direction, ptype, endpoint, _r, length = struct.unpack(
+        HDR_FMT, hdr
+    )
+    hx = payload.hex()
+    return {
+        "version": ver,
+        "flags": flags,
+        "stream_id": stream_id,
+        "seq": seq,
+        "ts_us": ts_us,
+        "dir": DIR_NAME.get(direction, str(direction)),
+        "type": TYPE_NAME.get(ptype, str(ptype)),
+        "endpoint": endpoint,
+        "length": length,
+        "payload_hex": hx,
+        "payload_hex_short": (hx[:96] + "…") if len(hx) > 96 else hx,
+        "crc_ok": True,
+    }
 
 
 @dataclass
@@ -28,6 +61,19 @@ class Session:
     path: Path | None = None
     last_seq: int | None = None
     error: str | None = None
+    # live observability (0.3.14)
+    recent: collections.deque = field(default_factory=lambda: collections.deque(maxlen=FRAME_RING))
+    bytes_rx: int = 0  # controller_to_host payload
+    bytes_tx: int = 0  # host_to_controller payload
+    rate_frames: float = 0.0
+    rate_bytes: float = 0.0
+    rate_bps_rx: float = 0.0
+    rate_bps_tx: float = 0.0
+    _win_t0: float = field(default_factory=time.time)
+    _win_frames: int = 0
+    _win_bytes: int = 0
+    _win_rx: int = 0
+    _win_tx: int = 0
 
 
 _lock = threading.Lock()
@@ -44,6 +90,29 @@ def _read_exact(sock: socket.socket, n: int) -> bytes:
             raise EOFError("closed")
         buf.extend(chunk)
     return bytes(buf)
+
+
+def _update_rates(sess: Session, direction: int, plen: int) -> None:
+    now = time.time()
+    sess._win_frames += 1
+    sess._win_bytes += plen
+    if direction == 2:  # controller_to_host
+        sess.bytes_rx += plen
+        sess._win_rx += plen
+    elif direction == 1:  # host_to_controller
+        sess.bytes_tx += plen
+        sess._win_tx += plen
+    dt = now - sess._win_t0
+    if dt >= 1.0:
+        sess.rate_frames = sess._win_frames / dt
+        sess.rate_bytes = sess._win_bytes / dt
+        sess.rate_bps_rx = sess._win_rx / dt
+        sess.rate_bps_tx = sess._win_tx / dt
+        sess._win_t0 = now
+        sess._win_frames = 0
+        sess._win_bytes = 0
+        sess._win_rx = 0
+        sess._win_tx = 0
 
 
 def _recv_loop(sess: Session) -> None:
@@ -76,6 +145,12 @@ def _recv_loop(sess: Session) -> None:
                     f.write(raw)
                     sess.frames += 1
                     sess.bytes += len(raw)
+                    direction = struct.unpack_from("<B", hdr, 18)[0]
+                    _update_rates(sess, direction, length)
+                    try:
+                        sess.recent.appendleft(_frame_dict(hdr, payload))
+                    except Exception:  # noqa: BLE001
+                        pass
                 except socket.timeout:
                     continue
                 except (EOFError, OSError) as exc:
@@ -128,4 +203,32 @@ def status() -> dict:
         "path": str(s.path) if s.path else None,
         "error": s.error,
         "uptime_s": int(time.time() - s.started_at),
+        "bytes_rx": s.bytes_rx,
+        "bytes_tx": s.bytes_tx,
+        "rate_fps": round(s.rate_frames, 1),
+        "rate_Bps": round(s.rate_bytes, 1),
+        "rate_rx_Bps": round(s.rate_bps_rx, 1),
+        "rate_tx_Bps": round(s.rate_bps_tx, 1),
+        "recent_n": len(s.recent),
     }
+
+
+def recent_frames(n: int = 64) -> dict:
+    with _lock:
+        s = _session
+        if not s:
+            return {"ok": True, "active": False, "frames": []}
+        frames = list(s.recent)[: max(1, min(n, FRAME_RING))]
+        return {
+            "ok": True,
+            "active": s.running,
+            "ip": s.ip,
+            "frames": frames,
+            "session": {
+                "frames": s.frames,
+                "gaps": s.gaps,
+                "rate_fps": round(s.rate_frames, 1),
+                "rate_rx_Bps": round(s.rate_bps_rx, 1),
+                "rate_tx_Bps": round(s.rate_bps_tx, 1),
+            },
+        }

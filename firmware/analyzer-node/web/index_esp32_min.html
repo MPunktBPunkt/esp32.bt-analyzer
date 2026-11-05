@@ -5,48 +5,71 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>bt-analyzer</title>
 <style>
-body{background:#0d1117;color:#e6edf3;font-family:sans-serif;font-size:14px;margin:0;padding:16px}
-h1{font-size:18px;color:#3fb950;margin:0 0 8px}
-.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;margin:12px 0}
-.mono{font-family:monospace;color:#58a6ff;font-size:12px}
-.btn{background:#238636;color:#fff;border:none;padding:10px 16px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:8px}
+body{background:#0d1117;color:#e6edf3;font-family:sans-serif;font-size:13px;margin:0;padding:12px}
+h1{font-size:16px;color:#3fb950;margin:0 0 6px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0}
+.mono{font-family:monospace;color:#58a6ff;font-size:11px;white-space:pre-wrap}
+.btn{background:#238636;color:#fff;border:0;padding:7px 10px;border-radius:5px;cursor:pointer;font-weight:600;margin:3px 3px 0 0;font-size:12px}
+.sec{background:#21262d;border:1px solid #30363d}
 .muted{color:#8b949e}
-#log{white-space:pre-wrap;font-size:12px}
+#devs div{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:3px 0;font-size:11px}
+#log{white-space:pre-wrap;font-size:11px}
 </style>
 </head>
 <body>
 <h1>bt-analyzer <span class="muted">ESP32</span></h1>
-<p class="muted">Minimal UI · Lab: Debian :8081 · BTAC :9753</p>
-<div class="card">
-  <div id="st" class="mono">loading…</div>
-  <button class="btn" type="button" onclick="refresh()">Refresh</button>
+<p class="muted">min UI · Lab :8081</p>
+<div class="card"><div id="st" class="mono">…</div>
+<button class="btn" type="button" onclick="refresh()">↻</button>
+<button class="btn" type="button" onclick="post('/api/bt/scan/start')">BLE Scan</button>
+<button class="btn sec" type="button" onclick="post('/api/bt/scan/stop')">Stop</button>
+<button class="btn" type="button" onclick="post('/api/bt/inquiry/start')">Inquiry</button>
+<button class="btn sec" type="button" onclick="post('/api/bt/inquiry/stop')">Cancel</button>
+<button class="btn sec" type="button" onclick="post('/api/bt/disconnect')">Disc</button>
 </div>
-<div class="card">
-  <div class="muted">OTA</div>
-  <input id="fw" type="file" accept=".bin">
-  <button class="btn" type="button" onclick="ota()">Upload</button>
-  <div id="log" class="mono"></div>
-</div>
+<div class="card"><div class="muted">Geräte</div><div id="devs" class="mono">—</div></div>
+<div class="card"><div class="muted">OTA</div>
+<input id="fw" type="file" accept=".bin"><button class="btn" type="button" onclick="ota()">Upload</button>
+<div id="log" class="mono"></div></div>
 <script>
 async function refresh(){
   try{
-    const j=await (await fetch('/api/status')).json();
-    const o=j.onchip||{}, b=j.btac||{};
+    const j=await(await fetch('/api/status')).json();
+    const o=j.onchip||{},b=j.btac||{};
     st.textContent=`v${j.version} ${j.chip} heap=${j.heap}\n`+
-      `onchip ready=${o.ready} classic=${o.classic} ble=${o.ble} state=${o.state} bd=${o.bdAddr}\n`+
-      `btac :${b.port} listen=${b.listening} fwd=${b.forwarded} bytes=${b.bytes}`;
+      `ready=${o.ready} c=${o.classic} ble=${o.ble} state=${o.state}\n`+
+      `bd=${o.bdAddr||'—'} peer=${o.peerAddr||'—'} link=${o.leConnected?'up':'—'}\n`+
+      `btac fwd=${b.forwarded||0}`;
   }catch(e){st.textContent=String(e)}
+  try{
+    const j=await(await fetch('/api/bt/devices')).json();
+    const list=j.devices||[];
+    if(!list.length){devs.textContent='keine';return}
+    devs.innerHTML=list.map(d=>{
+      const tag=(d.classic?'C ':'')+(d.ble?'BLE':'');
+      const btn=d.ble?`<button class="btn sec" type="button" onclick="conn('${d.addr}',${d.addrType||0})">Connect</button>`:'';
+      return `<div><span class="mono">${d.addr}</span> ${d.name||'—'} ${tag}${d.rssi} ${btn}</div>`;
+    }).join('');
+  }catch(e){devs.textContent=String(e)}
+}
+async function post(p){
+  try{const t=await(await fetch(p,{method:'POST'})).text();log.textContent=p+' → '+t;refresh()}
+  catch(e){log.textContent=String(e)}
+}
+async function conn(a,t){
+  const body='addr='+encodeURIComponent(a)+'&addrType='+(t||0);
+  try{const r=await fetch('/api/bt/connect',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+    log.textContent='connect '+a+' → '+await r.text();refresh()}
+  catch(e){log.textContent=String(e)}
 }
 async function ota(){
-  const f=fw.files[0]; if(!f){log.textContent='pick .bin';return}
+  const f=fw.files[0];if(!f){log.textContent='pick .bin';return}
   log.textContent='uploading…';
-  const fd=new FormData(); fd.append('firmware', f, f.name);
-  try{
-    const r=await fetch('/ota-upload',{method:'POST',body:fd});
-    log.textContent=r.status+' '+await r.text();
-  }catch(e){log.textContent=String(e)}
+  const fd=new FormData();fd.append('firmware',f,f.name);
+  try{const r=await fetch('/ota-upload',{method:'POST',body:fd});log.textContent=r.status+' '+await r.text()}
+  catch(e){log.textContent=String(e)}
 }
-refresh(); setInterval(refresh,5000);
+refresh();setInterval(refresh,3000);
 </script>
 </body>
 </html>

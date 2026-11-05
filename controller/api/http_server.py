@@ -16,7 +16,7 @@ from controller import session as btac_session
 
 WEB_ROOT = Path(__file__).resolve().parents[2] / "web"
 STARTED = time.time()
-VERSION = "0.3.2"
+VERSION = "0.3.14"
 
 # Poll-proxy lab nodes (OBSERVE) — no HELLO required yet
 LAB_NODES = [
@@ -121,6 +121,12 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json(200, {"ok": True, "session": btac_session.status()})
             return
 
+        if path == "/api/v1/session/frames":
+            qs = parse_qs(parsed.query)
+            n = int((qs.get("n") or ["64"])[0])
+            self._send_json(200, btac_session.recent_frames(n))
+            return
+
         if path == "/api/v1/session/download":
             st = btac_session.status()
             p = Path(st["path"]) if st.get("path") else None
@@ -166,6 +172,10 @@ class Handler(BaseHTTPRequestHandler):
                     n = int((qs.get("n") or ["32"])[0])
                     code, text = _get_text(f"http://{ip}/api/capture/drain?n={n}")
                     self._send(code, text.encode("utf-8"), "application/x-ndjson; charset=utf-8")
+                    return
+                if action == "devices":
+                    dj = _get_json(f"http://{ip}/api/bt/devices")
+                    self._send_json(200, {"ok": True, "ip": ip, **dj})
                     return
             except Exception as exc:  # noqa: BLE001
                 self._send_json(502, {"ok": False, "ip": ip, "error": str(exc)})
@@ -222,6 +232,8 @@ class Handler(BaseHTTPRequestHandler):
                 proxy_map = {
                     "scan-start": "/api/bt/scan/start",
                     "scan-stop": "/api/bt/scan/stop",
+                    "inquiry-start": "/api/bt/inquiry/start",
+                    "inquiry-stop": "/api/bt/inquiry/stop",
                     "advertise-start": "/api/bt/advertise/start",
                     "advertise-stop": "/api/bt/advertise/stop",
                     "connect": "/api/bt/connect",
@@ -233,6 +245,7 @@ class Handler(BaseHTTPRequestHandler):
                     "throughput-start": "/api/bt/throughput/start",
                     "throughput-stop": "/api/bt/throughput/stop",
                     "att-mtu": "/api/bt/att/mtu",
+                    "ftms-start": "/api/bt/flavor/ftms/start",
                 }
                 if action in proxy_map:
                     code, text = _post_form(f"http://{ip}{proxy_map[action]}", fields)
