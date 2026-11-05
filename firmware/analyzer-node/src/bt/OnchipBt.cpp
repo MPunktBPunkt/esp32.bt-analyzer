@@ -788,7 +788,23 @@ bool OnchipBt::classicDiscoverableStart() {
     return false;
   }
   classicSetLocalName(classic_name_);
-  delay(30);
+  delay(20);
+  // Write_Class_of_Device (0x0C24) — Computer / Desktop (helps some scanners)
+  const uint8_t cod[] = {0x24, 0x0c, 0x03, 0x04, 0x01, 0x24};
+  cap_.writeCommand(cod, sizeof(cod));
+  delay(15);
+  // Write_Current_IAC_LAP (0x0C3A) — GIAC 0x9E8B33
+  const uint8_t iac[] = {0x3a, 0x0c, 0x04, 0x01, 0x33, 0x8b, 0x9e};
+  cap_.writeCommand(iac, sizeof(iac));
+  delay(15);
+  // Write_Inquiry_Scan_Activity (0x0C1E): interval 0x0800, window 0x0400 (more duty)
+  const uint8_t inq_act[] = {0x1e, 0x0c, 0x04, 0x00, 0x08, 0x00, 0x04};
+  cap_.writeCommand(inq_act, sizeof(inq_act));
+  delay(15);
+  // Write_Page_Scan_Activity (0x0C1C): same aggressive window
+  const uint8_t page_act[] = {0x1c, 0x0c, 0x04, 0x00, 0x08, 0x00, 0x04};
+  cap_.writeCommand(page_act, sizeof(page_act));
+  delay(15);
   // Write_Scan_Enable (0x0C1A) = 0x03 inquiry + page scan
   const uint8_t cmd[] = {0x1a, 0x0c, 0x01, 0x03};
   if (!cap_.writeCommand(cmd, sizeof(cmd))) {

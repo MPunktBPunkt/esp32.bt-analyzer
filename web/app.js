@@ -250,6 +250,7 @@
     renderSession(sess.session || {});
     await refreshFrames();
     await refreshProxy();
+    await refreshProxySession();
   }
 
   document.getElementById("btn-refresh").onclick = () => refreshNodes().catch(console.error);
@@ -268,6 +269,30 @@
     await jpost("/api/v1/session/stop", {});
     await refreshNodes();
   };
+  document.getElementById("btn-proxy-sess").onclick = async () => {
+    await jpost("/api/v1/proxy/session/start", {});
+    await refreshNodes();
+  };
+  document.getElementById("btn-proxy-sess-stop").onclick = async () => {
+    await jpost("/api/v1/proxy/session/stop", {});
+    await refreshNodes();
+  };
+
+  async function refreshProxySession() {
+    const el = document.getElementById("proxy-sess");
+    if (!el) return;
+    try {
+      const p = await jget("/api/v1/proxy/session");
+      const px = p.proxy || {};
+      const a = px.phone_side || {};
+      const b = px.car_side || {};
+      el.textContent =
+        `proxy dual=${px.dual_active} · phone frames=${a.frames || 0} fps=${a.rate_fps || 0} · ` +
+        `car frames=${b.frames || 0} fps=${b.rate_fps || 0}`;
+    } catch (e) {
+      el.textContent = String(e);
+    }
+  }
 
   document.getElementById("btn-adv").onclick = () =>
     jpost(`/api/v1/node/192.168.178.89/advertise-start`, { name: "bt-peer-89" }).then(refreshNodes);

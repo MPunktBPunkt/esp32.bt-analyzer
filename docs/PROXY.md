@@ -68,9 +68,20 @@ python3 tools/lab_dual_controller.py
 
 Metermaster migration note: OTA path was `POST /update` multipart field `update` (not hub `/ota-upload`).
 
-### P1 — AVRCP semantic proxy (after both D1s are analyzer Classic)
+### P1.0 — Dual BTAC + visibility/SDP inventory — *shipping*
 
-SDP + pairing/bonding both sides + AVRCP PLAY/PAUSE/NEXT with capture/modify hooks.  
+```bash
+python3 tools/lab_proxy_p1_sdp.py
+# API: POST /api/v1/proxy/session/start|stop · GET …/proxy/session[/frames]
+```
+
+**Infra done when:** dual BTAC frames on `.131`+`.87` and BlueZ sees ≥1 Classic radio.  
+**Full visibility:** both BDs seen (`.131` may need closer RF — often weaker WiFi RSSI).  
+FW 0.3.15+: stronger inquiry/page scan activity when discoverable.
+
+### P1 — AVRCP semantic proxy
+
+SDP decode depth + pairing/bonding both sides + AVRCP PLAY/PAUSE/NEXT with capture/modify hooks.  
 Still **no** A2DP requirement for first PiDrive experiments.
 
 ### P2 — A2DP SBC

@@ -44,7 +44,7 @@ PROXY_CONTROLLERS = [
 ]
 
 
-def _get_json(url: str, timeout: float = 3.0) -> dict[str, Any]:
+def _get_json(url: str, timeout: float = 2.5) -> dict[str, Any]:
     req = urllib.request.Request(url, method="GET")
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         return json.loads(resp.read().decode("utf-8", errors="replace"))
@@ -205,6 +205,21 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json(200, fetch_proxy_controllers())
             return
 
+        if path == "/api/v1/proxy/session":
+            self._send_json(200, {"ok": True, "proxy": btac_session.proxy_status()})
+            return
+
+        if path == "/api/v1/proxy/session/frames":
+            qs = parse_qs(parsed.query)
+            n = int((qs.get("n") or ["48"])[0])
+            side = (qs.get("side") or ["phone_side"])[0]
+            if side in ("phone", "a"):
+                side = "phone_side"
+            if side in ("car", "b"):
+                side = "car_side"
+            self._send_json(200, btac_session.recent_frames(n, name=side))
+            return
+
         if path == "/api/v1/session":
             self._send_json(200, {"ok": True, "session": btac_session.status()})
             return
@@ -212,7 +227,8 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/v1/session/frames":
             qs = parse_qs(parsed.query)
             n = int((qs.get("n") or ["64"])[0])
-            self._send_json(200, btac_session.recent_frames(n))
+            name = (qs.get("name") or ["default"])[0]
+            self._send_json(200, btac_session.recent_frames(n, name=name))
             return
 
         if path == "/api/v1/session/download":
@@ -290,6 +306,22 @@ class Handler(BaseHTTPRequestHandler):
             fields = {k: (v[0] if v else "") for k, v in parse_qs(raw.decode("utf-8", errors="replace")).items()}
 
         parts = [p for p in path.split("/") if p]
+        if len(parts) >= 4 and parts[0] == "api" and parts[1] == "v1" and parts[2] == "proxy" and parts[3] == "session":
+            action = parts[4] if len(parts) >= 5 else ""
+            if action == "start":
+                self._send_json(
+                    200,
+                    btac_session.proxy_start(
+                        phone_ip=fields.get("phone_ip") or None,
+                        car_ip=fields.get("car_ip") or None,
+                        port=int(fields.get("port") or 9753),
+                    ),
+                )
+                return
+            if action == "stop":
+                self._send_json(200, btac_session.proxy_stop())
+                return
+
         if len(parts) >= 4 and parts[0] == "api" and parts[1] == "v1" and parts[2] == "session":
             action = parts[3]
             if action == "start":
@@ -298,10 +330,12 @@ class Handler(BaseHTTPRequestHandler):
                     self._send_json(400, {"ok": False, "error": "ip_required"})
                     return
                 port = int(fields.get("port") or 9753)
-                self._send_json(200, btac_session.start(ip, port))
+                name = fields.get("name") or "default"
+                self._send_json(200, btac_session.start(ip, port, name=name))
                 return
             if action == "stop":
-                self._send_json(200, btac_session.stop())
+                name = fields.get("name") or "default"
+                self._send_json(200, btac_session.stop(name=name))
                 return
 
         # api v1 node <ip> inject|hci-write|advertise|scan|connect|gatt

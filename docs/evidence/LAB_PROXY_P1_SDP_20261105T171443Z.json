@@ -1,0 +1,200 @@
+{
+  "utc": "20261105T171443Z",
+  "gate": "PROXY_P1_0_dual_capture_sdp",
+  "claim": "dual_btac_network_hci_plus_bluez_visibility_observe_not_avrcp_bridge",
+  "ctrl_version": "0.3.15",
+  "hci_transport": "network_hci_wifi",
+  "bds": {
+    "phone_side": "c8:c9:a3:cb:7b:0a",
+    "car_side": "c8:c9:a3:cb:37:96"
+  },
+  "discoverable": {
+    "phone_side": {
+      "ok": true,
+      "mode": "classic_discoverable"
+    },
+    "car_side": {
+      "ok": true,
+      "mode": "classic_discoverable"
+    }
+  },
+  "session_start": {
+    "ok": true,
+    "phone_side": {
+      "ok": true,
+      "session": {
+        "active": true,
+        "name": "phone_side",
+        "ip": "192.168.178.131",
+        "port": 9753,
+        "frames": 12,
+        "bytes": 457,
+        "gaps": 0,
+        "errors": 0,
+        "path": "/home/martin/projects/bt-analyzer/docs/evidence/sessions/session_phone_side_192_168_178_131_1793898886.btac",
+        "error": null,
+        "uptime_s": 0,
+        "bytes_rx": 0,
+        "bytes_tx": 0,
+        "rate_fps": 0.0,
+        "rate_Bps": 0.0,
+        "rate_rx_Bps": 0.0,
+        "rate_tx_Bps": 0.0,
+        "recent_n": 12
+      }
+    },
+    "car_side": {
+      "ok": true,
+      "session": {
+        "active": true,
+        "name": "car_side",
+        "ip": "192.168.178.87",
+        "port": 9753,
+        "frames": 2,
+        "bytes": 72,
+        "gaps": 0,
+        "errors": 0,
+        "path": "/home/martin/projects/bt-analyzer/docs/evidence/sessions/session_car_side_192_168_178_87_1793898886.btac",
+        "error": null,
+        "uptime_s": 0,
+        "bytes_rx": 0,
+        "bytes_tx": 0,
+        "rate_fps": 0.0,
+        "rate_Bps": 0.0,
+        "rate_rx_Bps": 0.0,
+        "rate_tx_Bps": 0.0,
+        "recent_n": 2
+      }
+    }
+  },
+  "bluez_show_ok": true,
+  "scan_n": 6,
+  "seen": {
+    "phone_side": {
+      "bd": "c8:c9:a3:cb:7b:0a",
+      "seen_by_bluez": true,
+      "name": null,
+      "uuids_interest": {},
+      "paired": false,
+      "connected": false
+    },
+    "car_side": {
+      "bd": "c8:c9:a3:cb:37:96",
+      "seen_by_bluez": true,
+      "name": null,
+      "uuids_interest": {},
+      "paired": false,
+      "connected": false
+    }
+  },
+  "wifi_rssi": {
+    "phone_side": -41,
+    "car_side": -38
+  },
+  "btac_frames": {
+    "phone_side": 28,
+    "car_side": 18
+  },
+  "proxy_session_final": {
+    "ok": true,
+    "phone_side": {
+      "ok": true,
+      "session": {
+        "active": false,
+        "name": "phone_side",
+        "ip": "192.168.178.131",
+        "port": 9753,
+        "frames": 28,
+        "bytes": 1538,
+        "gaps": 0,
+        "errors": 0,
+        "path": "/home/martin/projects/bt-analyzer/docs/evidence/sessions/session_phone_side_192_168_178_131_1793898886.btac",
+        "error": null,
+        "uptime_s": 27,
+        "bytes_rx": 0,
+        "bytes_tx": 0,
+        "rate_fps": 0.6,
+        "rate_Bps": 13.8,
+        "rate_rx_Bps": 0.0,
+        "rate_tx_Bps": 0.0,
+        "recent_n": 28
+      }
+    },
+    "car_side": {
+      "ok": true,
+      "session": {
+        "active": false,
+        "name": "car_side",
+        "ip": "192.168.178.87",
+        "port": 9753,
+        "frames": 18,
+        "bytes": 1153,
+        "gaps": 0,
+        "errors": 0,
+        "path": "/home/martin/projects/bt-analyzer/docs/evidence/sessions/session_car_side_192_168_178_87_1793898886.btac",
+        "error": null,
+        "uptime_s": 28,
+        "bytes_rx": 0,
+        "bytes_tx": 0,
+        "rate_fps": 0.3,
+        "rate_Bps": 1.7,
+        "rate_rx_Bps": 0.0,
+        "rate_tx_Bps": 0.0,
+        "recent_n": 18
+      }
+    },
+    "proxy": {
+      "active": false,
+      "dual_active": false,
+      "phone_side": {
+        "active": false,
+        "name": "phone_side",
+        "ip": "192.168.178.131",
+        "port": 9753,
+        "frames": 28,
+        "bytes": 1538,
+        "gaps": 0,
+        "errors": 0,
+        "path": "/home/martin/projects/bt-analyzer/docs/evidence/sessions/session_phone_side_192_168_178_131_1793898886.btac",
+        "error": null,
+        "uptime_s": 28,
+        "bytes_rx": 0,
+        "bytes_tx": 0,
+        "rate_fps": 0.6,
+        "rate_Bps": 13.8,
+        "rate_rx_Bps": 0.0,
+        "rate_tx_Bps": 0.0,
+        "recent_n": 28
+      },
+      "car_side": {
+        "active": false,
+        "name": "car_side",
+        "ip": "192.168.178.87",
+        "port": 9753,
+        "frames": 18,
+        "bytes": 1153,
+        "gaps": 0,
+        "errors": 0,
+        "path": "/home/martin/projects/bt-analyzer/docs/evidence/sessions/session_car_side_192_168_178_87_1793898886.btac",
+        "error": null,
+        "uptime_s": 28,
+        "bytes_rx": 0,
+        "bytes_tx": 0,
+        "rate_fps": 0.3,
+        "rate_Bps": 1.7,
+        "rate_rx_Bps": 0.0,
+        "rate_tx_Bps": 0.0,
+        "recent_n": 18
+      }
+    }
+  },
+  "sample_frames": {
+    "phone_n": 8,
+    "car_n": 8
+  },
+  "ok_capture": true,
+  "ok_visibility_both": true,
+  "ok_infra": true,
+  "ok": true,
+  "note": "Thin VHCI has no Classic SDP service records yet \u2014 UUID interest may be empty. Infra PASS = dual BTAC + \u22651 BlueZ sighting. Full dual visibility may need .131 RF placement."
+}

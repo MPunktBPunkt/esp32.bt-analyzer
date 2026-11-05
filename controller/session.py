@@ -1,4 +1,8 @@
-"""Live BTAC capture session manager (Debian collector)."""
+"""Live BTAC capture session manager (Debian collector).
+
+Supports multiple named sessions (PROXY dual: phone_side + car_side) while
+keeping the legacy single-session API (name=\"default\").
+"""
 
 from __future__ import annotations
 
@@ -51,6 +55,7 @@ def _frame_dict(hdr: bytes, payload: bytes) -> dict:
 @dataclass
 class Session:
     ip: str
+    name: str = "default"
     port: int = 9753
     started_at: float = field(default_factory=time.time)
     frames: int = 0
@@ -61,10 +66,9 @@ class Session:
     path: Path | None = None
     last_seq: int | None = None
     error: str | None = None
-    # live observability (0.3.14)
     recent: collections.deque = field(default_factory=lambda: collections.deque(maxlen=FRAME_RING))
-    bytes_rx: int = 0  # controller_to_host payload
-    bytes_tx: int = 0  # host_to_controller payload
+    bytes_rx: int = 0
+    bytes_tx: int = 0
     rate_frames: float = 0.0
     rate_bytes: float = 0.0
     rate_bps_rx: float = 0.0
@@ -77,8 +81,8 @@ class Session:
 
 
 _lock = threading.Lock()
-_session: Session | None = None
-_thread: threading.Thread | None = None
+_sessions: dict[str, Session] = {}
+_threads: dict[str, threading.Thread] = {}
 SESS_DIR = Path(__file__).resolve().parents[1] / "docs" / "evidence" / "sessions"
 
 
@@ -96,10 +100,10 @@ def _update_rates(sess: Session, direction: int, plen: int) -> None:
     now = time.time()
     sess._win_frames += 1
     sess._win_bytes += plen
-    if direction == 2:  # controller_to_host
+    if direction == 2:
         sess.bytes_rx += plen
         sess._win_rx += plen
-    elif direction == 1:  # host_to_controller
+    elif direction == 1:
         sess.bytes_tx += plen
         sess._win_tx += plen
     dt = now - sess._win_t0
@@ -117,7 +121,8 @@ def _update_rates(sess: Session, direction: int, plen: int) -> None:
 
 def _recv_loop(sess: Session) -> None:
     SESS_DIR.mkdir(parents=True, exist_ok=True)
-    out = SESS_DIR / f"session_{sess.ip.replace('.', '_')}_{int(sess.started_at)}.btac"
+    tag = sess.name.replace("/", "_")
+    out = SESS_DIR / f"session_{tag}_{sess.ip.replace('.', '_')}_{int(sess.started_at)}.btac"
     sess.path = out
     try:
         sock = socket.create_connection((sess.ip, sess.port), timeout=8.0)
@@ -163,37 +168,10 @@ def _recv_loop(sess: Session) -> None:
         sess.running = False
 
 
-def start(ip: str, port: int = 9753) -> dict:
-    global _session, _thread
-    with _lock:
-        if _session and _session.running:
-            return {"ok": False, "error": "session_active", "session": status()}
-        sess = Session(ip=ip, port=port)
-        _session = sess
-        _thread = threading.Thread(target=_recv_loop, args=(sess,), daemon=True, name="btac-session")
-        _thread.start()
-    time.sleep(0.2)
-    return {"ok": True, "session": status()}
-
-
-def stop() -> dict:
-    global _session
-    with _lock:
-        if not _session:
-            return {"ok": False, "error": "no_session"}
-        _session.running = False
-    if _thread:
-        _thread.join(timeout=5.0)
-    return {"ok": True, "session": status()}
-
-
-def status() -> dict:
-    with _lock:
-        s = _session
-    if not s:
-        return {"active": False}
+def _status_one(s: Session) -> dict:
     return {
         "active": s.running,
+        "name": s.name,
         "ip": s.ip,
         "port": s.port,
         "frames": s.frames,
@@ -213,15 +191,64 @@ def status() -> dict:
     }
 
 
-def recent_frames(n: int = 64) -> dict:
+def start(ip: str, port: int = 9753, name: str = "default") -> dict:
     with _lock:
-        s = _session
+        cur = _sessions.get(name)
+        if cur and cur.running:
+            return {"ok": False, "error": "session_active", "session": _status_one(cur)}
+        sess = Session(ip=ip, port=port, name=name)
+        _sessions[name] = sess
+        th = threading.Thread(target=_recv_loop, args=(sess,), daemon=True, name=f"btac-{name}")
+        _threads[name] = th
+        th.start()
+    time.sleep(0.2)
+    return {"ok": True, "session": status(name)}
+
+
+def stop(name: str = "default") -> dict:
+    with _lock:
+        sess = _sessions.get(name)
+        if not sess:
+            return {"ok": False, "error": "no_session"}
+        sess.running = False
+        th = _threads.get(name)
+    if th:
+        th.join(timeout=5.0)
+    return {"ok": True, "session": status(name)}
+
+
+def stop_all() -> dict:
+    names = list(_sessions.keys())
+    results = {n: stop(n) for n in names}
+    return {"ok": True, "stopped": results}
+
+
+def status(name: str | None = "default") -> dict:
+    """Legacy: status() / status(\"default\") → one session.
+    status(None) → {sessions: {...}} for all.
+    """
+    with _lock:
+        if name is None:
+            return {
+                "sessions": {n: _status_one(s) for n, s in _sessions.items()},
+                "active_n": sum(1 for s in _sessions.values() if s.running),
+            }
+        s = _sessions.get(name)
+    if not s:
+        return {"active": False, "name": name}
+    return _status_one(s)
+
+
+def recent_frames(n: int = 64, name: str = "default") -> dict:
+    with _lock:
+        s = _sessions.get(name)
         if not s:
-            return {"ok": True, "active": False, "frames": []}
+            return {"ok": True, "active": False, "name": name, "frames": []}
         frames = list(s.recent)[: max(1, min(n, FRAME_RING))]
         return {
             "ok": True,
             "active": s.running,
+            "name": s.name,
             "ip": s.ip,
             "frames": frames,
             "session": {
@@ -232,3 +259,45 @@ def recent_frames(n: int = 64) -> dict:
                 "rate_tx_Bps": round(s.rate_bps_tx, 1),
             },
         }
+
+
+# --- PROXY dual helpers -------------------------------------------------------
+
+PROXY_SIDES = {
+    "phone_side": "192.168.178.131",
+    "car_side": "192.168.178.87",
+}
+
+
+def proxy_start(phone_ip: str | None = None, car_ip: str | None = None, port: int = 9753) -> dict:
+    phone_ip = phone_ip or PROXY_SIDES["phone_side"]
+    car_ip = car_ip or PROXY_SIDES["car_side"]
+    a = start(phone_ip, port=port, name="phone_side")
+    b = start(car_ip, port=port, name="car_side")
+    return {
+        "ok": bool(a.get("ok") and b.get("ok")),
+        "phone_side": a,
+        "car_side": b,
+        "proxy": proxy_status(),
+    }
+
+
+def proxy_stop() -> dict:
+    return {
+        "ok": True,
+        "phone_side": stop("phone_side"),
+        "car_side": stop("car_side"),
+        "proxy": proxy_status(),
+    }
+
+
+def proxy_status() -> dict:
+    with _lock:
+        phone = _sessions.get("phone_side")
+        car = _sessions.get("car_side")
+    return {
+        "active": bool(phone and phone.running) or bool(car and car.running),
+        "dual_active": bool(phone and phone.running and car and car.running),
+        "phone_side": _status_one(phone) if phone else {"active": False, "name": "phone_side"},
+        "car_side": _status_one(car) if car else {"active": False, "name": "car_side"},
+    }

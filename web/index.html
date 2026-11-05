@@ -45,9 +45,12 @@
       <select id="target"></select>
       <button type="button" id="btn-sess-start">Start BTAC</button>
       <button type="button" class="secondary" id="btn-sess-stop">Stop</button>
+      <button type="button" id="btn-proxy-sess">PROXY dual BTAC</button>
+      <button type="button" class="secondary" id="btn-proxy-sess-stop">PROXY stop</button>
       <a id="btn-sess-dl" href="/api/v1/session/download" style="display:none">Download .btac</a>
     </div>
-    <div class="muted" style="margin-top:8px">HCI stream only — not RF/Air. Session gaps ≠ lifetime seqGaps.</div>
+    <div class="muted" style="margin-top:8px">HCI stream only — not RF/Air. PROXY dual = .131+.87 Network HCI.</div>
+    <div class="mono" id="proxy-sess" style="margin-top:6px;color:#8b949e">proxy session: idle</div>
     <pre id="frame-list" class="mono" style="margin-top:10px;max-height:280px;overflow:auto;font-size:11px;background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:8px">(no frames — start BTAC)</pre>
   </div>
   <div class="card" style="margin-top:14px">
