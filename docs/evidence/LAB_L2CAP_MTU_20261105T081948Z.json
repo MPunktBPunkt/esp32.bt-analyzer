@@ -1,0 +1,48 @@
+{
+  "utc": "20261105T081948Z",
+  "gate": "L2CAP_MTU_matrix",
+  "claim": "HCI_ACL_L2CAP_fragmentation_CAPABILITY_not_air",
+  "cells": [
+    {
+      "mtu": 23,
+      "payload": 20,
+      "attMtu": 23,
+      "appTxPackets": 0,
+      "appRxPackets": 0,
+      "appSeqGaps": 0,
+      "aclFragStart_delta": 0,
+      "aclFragCont_delta": 0,
+      "expect_frag_hint": false,
+      "ok": false,
+      "claim": "CAPABILITY_L2CAP_ACL_fragment_observe"
+    },
+    {
+      "mtu": 64,
+      "payload": 20,
+      "attMtu": 64,
+      "appTxPackets": 0,
+      "appRxPackets": 0,
+      "appSeqGaps": 0,
+      "aclFragStart_delta": 0,
+      "aclFragCont_delta": 0,
+      "expect_frag_hint": false,
+      "ok": false,
+      "claim": "CAPABILITY_L2CAP_ACL_fragment_observe"
+    },
+    {
+      "mtu": 64,
+      "payload": 50,
+      "attMtu": 64,
+      "appTxPackets": 0,
+      "appRxPackets": 0,
+      "appSeqGaps": 0,
+      "aclFragStart_delta": 0,
+      "aclFragCont_delta": 0,
+      "expect_frag_hint": false,
+      "ok": false,
+      "claim": "CAPABILITY_L2CAP_ACL_fragment_observe"
+    }
+  ],
+  "ok": false,
+  "note": "Fragment counters are CAPABILITY/observe; controller ACL size dependent"
+}

@@ -58,7 +58,7 @@ static const CharDecl kChars[] = {
     {0x0002, 0x1e, 0x0003, 0x2A00, kGapStart, kGapEnd},
     {0x0011, 0x02, 0x0012, 0x2A4A, kHidStart, kHidEnd},  // HID Info Read
     {0x0013, 0x02, 0x0014, 0x2A4B, kHidStart, kHidEnd},  // Report Map Read
-    {0x0015, 0x12, 0x0016, 0x2A4D, kHidStart, kHidEnd},  // Report Notify|Read
+    {0x0015, 0x1a, 0x0016, 0x2A4D, kHidStart, kHidEnd},  // Report Read|Write|Notify
     {0x0021, 0x02, 0x0022, 0x2ACC, kFtmsStart, kFtmsEnd},  // Feature Read
     {0x0023, 0x10, 0x0024, 0x2AD2, kFtmsStart, kFtmsEnd},  // IBD Notify
     {0x0026, 0x28, 0x0027, 0x2AD9, kFtmsStart, kFtmsEnd},  // CP Write|Indicate
@@ -104,7 +104,9 @@ const uint8_t *gattPeerFtmsFeature(size_t *len) {
 bool gattPeerHandleRequest(uint8_t conn_role, const char *adv_name,
                            bool (*write_att)(void *, const uint8_t *, uint16_t),
                            void *ctx, const uint8_t *att, uint16_t att_len,
-                           bool *hid_cccd_on, bool *ftms_cccd_on) {
+                           bool *hid_cccd_on, bool *ftms_cccd_on,
+                           bool *ftms_cp_cccd_on, uint8_t *pending_ind,
+                           uint16_t *pending_ind_len) {
   if (conn_role != 1 || !write_att || !att || att_len < 1) {
     return false;
   }
@@ -253,7 +255,8 @@ bool gattPeerHandleRequest(uint8_t conn_role, const char *adv_name,
   }
 
   // Write Request — CCCD / Control Point (leave 0x0003/0x0004 to BT16 thr path)
-  if ((att[0] == 0x12 || att[0] == 0x52) && att_len >= 5) {
+  // att_len: 1(op)+2(handle)+N(value); single-byte CP opcodes are len==4
+  if ((att[0] == 0x12 || att[0] == 0x52) && att_len >= 4) {
     const uint16_t handle = getU16(att + 1);
     if (handle == 0x0003 || handle == 0x0004) {
       return false;
@@ -266,20 +269,59 @@ bool gattPeerHandleRequest(uint8_t conn_role, const char *adv_name,
       if (handle == 0x0025 && ftms_cccd_on) {
         *ftms_cccd_on = on;
       }
+      if (handle == 0x0028 && ftms_cp_cccd_on) {
+        *ftms_cp_cccd_on = on;
+      }
       if (att[0] == 0x12) {
         uint8_t rsp[1] = {0x13};
         return reply(rsp, 1);
       }
       return true;
     }
+    if (handle == 0x0016) {
+      // HOGP Output Report write (LED / host→device) — accept, no notify
+      if (att[0] == 0x12) {
+        uint8_t wr[1] = {0x13};
+        return reply(wr, 1);
+      }
+      return true;
+    }
     if (handle == 0x0027) {
-      // Control Point write → Indicate Success (0x80 result 0x01)
+      // FTMS Control Point: Write Response + optional Indication
+      // Response PDU: 0x80 | reqOpcode | result (0x01 ok, 0x02 unsupported)
+      const uint8_t req_op = att_len >= 4 ? att[3] : 0xff;
       if (att[0] == 0x12) {
         uint8_t wr[1] = {0x13};
         reply(wr, 1);
       }
-      uint8_t ind[5] = {0x1d, 0x27, 0x00, 0x80, 0x01};
-      return reply(ind, 5);
+      if (ftms_cp_cccd_on && !*ftms_cp_cccd_on) {
+        return true;  // write-without-CCCD: no indication
+      }
+      uint8_t result = 0x02;  // Op Code not supported
+      switch (req_op) {
+      case 0x00:  // Request Control
+      case 0x01:  // Reset
+      case 0x04:  // Set Target Resistance
+      case 0x05:  // Set Target Power
+      case 0x07:  // Start or Resume
+      case 0x08:  // Stop or Pause
+        result = 0x01;
+        break;
+      default:
+        result = 0x02;
+        break;
+      }
+      // Defer Indication — nested writeAtt during ACL RX can wedge the peer.
+      if (pending_ind && pending_ind_len) {
+        pending_ind[0] = 0x1d;
+        pending_ind[1] = 0x27;
+        pending_ind[2] = 0x00;
+        pending_ind[3] = 0x80;
+        pending_ind[4] = req_op;
+        pending_ind[5] = result;
+        *pending_ind_len = 6;
+      }
+      return true;
     }
   }
 

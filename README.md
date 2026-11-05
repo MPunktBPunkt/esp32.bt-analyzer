@@ -1,14 +1,14 @@
 # esp32.bt-analyzer
 
-![Version](https://img.shields.io/badge/version-0.3.2-blue)
+![Version](https://img.shields.io/badge/version-0.3.8-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Gate](https://img.shields.io/badge/gate-BT18%20GATT-yellow)](docs/GATES.md)
 
 ESP **on-chip Bluetooth HCI analyzer** (VHCI): Controller ↔ Host über die Board-Radio, Capture nach Debian.  
 **Kein USB-Dongle nötig** (Topologie **F_ONCHIP**).
 
-> **v0.3.2** — HOGP + FTMS Flavors on GATT Client · peer stubs · Flavor Bus · Core bleibt Capture.  
-> **Nicht claimed:** RF/Air · real keyboard/ergometer host · Classic A2DP · MITM · PTP.
+> **v0.3.8** — FTMS Control Point · HOGP matrix · MTU/L2CAP fragment CAPABILITY · BlueZ host oracle · BT20 windows.  
+> **Nicht claimed:** RF/Air · MITM · PTP · A2DP in thin VHCI core.
 
 Wissensbasis: [technology-audit / esp32-bt-analyzer](https://github.com/MPunktBPunkt/technology-audit/tree/main/projects/esp32-bt-analyzer) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5**.
 
@@ -101,20 +101,26 @@ python3 tools/lab_gap_classify.py --host 192.168.178.88 --btac docs/evidence/…
 python3 tools/lab_bt16_throughput.py    # ATT notify/write matrix
 python3 tools/lab_gatt_client.py        # BT18 GATT Client Flavor
 python3 tools/lab_hogp_ftms.py          # BT18b/c HOGP + FTMS Flavors
+python3 tools/lab_ftms_control.py       # FTMS Control Point (2AD9)
+python3 tools/lab_hogp_matrix.py        # HOGP map/input/output/burst
+python3 tools/lab_l2cap_mtu_matrix.py   # MTU × payload → ACL frag observe
+python3 tools/lab_bt_host_ssh.py show   # Proxmox BlueZ oracle
+python3 tools/lab_avrcp_probe.py --local
 python3 tools/lab_bt16_impact.py        # analyzer impact (WiFi STA constant)
 python3 tools/lab_clock_sync.py         # multi-node offset estimate
 python3 tools/lab_gate_exits.py
 ```
 
-| Gate band | Stand (0.3.2) |
+| Gate band | Stand (0.3.8) |
 |-----------|----------------|
 | BT0–BT13 | **CODE READY** / lab MEASURED |
 | BT14 | **ready for external review** |
 | BT15 | **deferred** (RF/Air) |
 | BT16 | **CAPABILITY / BENCHMARK** ([`docs/BT16_THROUGHPUT.md`](docs/BT16_THROUGHPUT.md)) |
-| BT17 | **deferred** ([`docs/BT17_CLASSIC_AUDIO.md`](docs/BT17_CLASSIC_AUDIO.md)) |
-| BT18 | **GATT Client Flavor MVP** ([`docs/FLAVOR_BUS.md`](docs/FLAVOR_BUS.md)) |
+| BT17 | **scaffold** + AVRCP host probe ([`docs/AVRCP_MEASURE.md`](docs/AVRCP_MEASURE.md)) |
+| BT18 | **GATT + HOGP + FTMS + CP** ([`docs/FLAVOR_BUS.md`](docs/FLAVOR_BUS.md)) |
 | BT19 | **timeline** ([`docs/BT19_TIMELINE.md`](docs/BT19_TIMELINE.md)) — not PTP |
+| BT20 | **window correlate** ([`docs/BT20_CORRELATION.md`](docs/BT20_CORRELATION.md)) |
 | Scope | HCI analyzer ≠ universal host ([`docs/SCOPE_HOST_VS_ANALYZER.md`](docs/SCOPE_HOST_VS_ANALYZER.md)) |
 
 ## License

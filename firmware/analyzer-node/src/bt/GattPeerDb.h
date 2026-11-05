@@ -21,7 +21,10 @@ struct PeerAttr {
 bool gattPeerHandleRequest(uint8_t conn_role, const char *adv_name,
                            bool (*write_att)(void *, const uint8_t *, uint16_t),
                            void *ctx, const uint8_t *att, uint16_t att_len,
-                           bool *hid_cccd_on, bool *ftms_cccd_on);
+                           bool *hid_cccd_on, bool *ftms_cccd_on,
+                           bool *ftms_cp_cccd_on = nullptr,
+                           uint8_t *pending_ind = nullptr,
+                           uint16_t *pending_ind_len = nullptr);
 
 /** Minimal Report Map / HID Info / FTMS feature blobs. */
 const uint8_t *gattPeerReportMap(size_t *len);

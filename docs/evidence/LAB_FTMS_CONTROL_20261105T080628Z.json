@@ -1,0 +1,81 @@
+{
+  "utc": "20261105T080628Z",
+  "gate": "FTMS_control_point",
+  "claim": "STIMULUS_FTMS_CP_over_HCI_not_air",
+  "success_ne_wirkung": true,
+  "peer_bd": "68:b6:b3:2b:c5:69",
+  "ftms_ready": {
+    "id": "ftms_client",
+    "state": "ready",
+    "claim": "STIMULUS_FTMS_over_HCI_not_air",
+    "featureLo": 20,
+    "ibdHandle": 36,
+    "cccdHandle": 37,
+    "cpHandle": 39,
+    "cpCccdHandle": 40,
+    "notifies": 1,
+    "cpIndications": 0,
+    "lastCpReq": 0,
+    "lastCpResult": 0,
+    "lastCadence": 180,
+    "lastPower": 150,
+    "note": "Success_neq_Wirkung"
+  },
+  "cases": [
+    {
+      "name": "request_control",
+      "ind_delta": 0,
+      "lastCpReq": 0,
+      "lastCpResult": 0,
+      "ok": false
+    },
+    {
+      "name": "reset",
+      "ind_delta": 0,
+      "lastCpReq": 0,
+      "lastCpResult": 0,
+      "ok": false
+    },
+    {
+      "name": "start_resume",
+      "ind_delta": 0,
+      "lastCpReq": 0,
+      "lastCpResult": 0,
+      "ok": false
+    },
+    {
+      "name": "stop_pause",
+      "ind_delta": 0,
+      "lastCpReq": 0,
+      "lastCpResult": 0,
+      "ok": false
+    },
+    {
+      "name": "set_resistance",
+      "ind_delta": 0,
+      "lastCpReq": 0,
+      "lastCpResult": 0,
+      "ok": false
+    },
+    {
+      "name": "set_power",
+      "ind_delta": 0,
+      "lastCpReq": 0,
+      "lastCpResult": 0,
+      "ok": false
+    },
+    {
+      "name": "invalid_opcode",
+      "ind_delta": 0,
+      "lastCpReq": 0,
+      "lastCpResult": 0,
+      "ok": false
+    },
+    {
+      "name": "write_without_cccd",
+      "ind_delta": 0,
+      "ok": true
+    }
+  ],
+  "ok": false
+}

@@ -124,13 +124,33 @@ bool GattClientFlavor::readHandle(uint16_t handle) {
   return txAtt(att, 3);
 }
 
-bool GattClientFlavor::subscribeCccd(uint16_t cccd_handle, bool enable) {
+bool GattClientFlavor::writeHandle(uint16_t handle, const uint8_t *value,
+                                   uint16_t value_len, bool with_response) {
+  if (handle == 0 || !value || value_len == 0 || value_len > 244) {
+    return false;
+  }
+  uint8_t att[3 + 244];
+  att[0] = with_response ? 0x12 : 0x52;
+  putU16(att + 1, handle);
+  memcpy(att + 3, value, value_len);
+  return txAtt(att, static_cast<uint16_t>(3 + value_len));
+}
+
+bool GattClientFlavor::confirmIndication() {
+  uint8_t att[1] = {0x1e};
+  return txAtt(att, 1);
+}
+
+bool GattClientFlavor::subscribeCccd(uint16_t cccd_handle, bool enable,
+                                     bool indicate) {
   if (cccd_handle == 0) {
     return false;
   }
   uint8_t att[5] = {0x12, 0x00, 0x00, 0x00, 0x00};
   putU16(att + 1, cccd_handle);
-  att[3] = enable ? 0x01 : 0x00;
+  if (enable) {
+    att[3] = indicate ? 0x02 : 0x01;  // Indicate vs Notify
+  }
   att[4] = 0x00;
   return txAtt(att, 5);
 }

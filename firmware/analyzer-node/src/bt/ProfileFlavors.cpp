@@ -1,5 +1,7 @@
 #include "bt/ProfileFlavors.h"
 
+#include <string.h>
+
 namespace bt_analyzer {
 
 void HogpFlavor::reset() {
@@ -7,6 +9,7 @@ void HogpFlavor::reset() {
   report_h_ = cccd_h_ = map_h_ = 0;
   map_len_ = 0;
   reports_ = 0;
+  output_writes_ = 0;
   last_key_ = last_mod_ = 0;
   t0_ = 0;
 }
@@ -96,6 +99,17 @@ void HogpFlavor::poll() {
   }
 }
 
+bool HogpFlavor::writeOutput(const uint8_t *data, uint16_t len) {
+  if (state_ != 3 || !gc_ || !report_h_ || !data || len == 0) {
+    return false;
+  }
+  if (!gc_->writeHandle(report_h_, data, len, true)) {
+    return false;
+  }
+  output_writes_++;
+  return true;
+}
+
 void HogpFlavor::appendStatusJson(String &json) const {
   json += ",\"hogp\":{";
   json += "\"id\":\"hogp_host\"";
@@ -110,6 +124,8 @@ void HogpFlavor::appendStatusJson(String &json) const {
   json += String(map_len_);
   json += ",\"reports\":";
   json += String(reports_);
+  json += ",\"outputWrites\":";
+  json += String(output_writes_);
   json += ",\"lastMod\":";
   json += String(last_mod_);
   json += ",\"lastKey\":";
@@ -119,9 +135,11 @@ void HogpFlavor::appendStatusJson(String &json) const {
 
 void FtmsFlavor::reset() {
   state_ = 0;
-  feat_h_ = ibd_h_ = cccd_h_ = 0;
+  feat_h_ = ibd_h_ = cccd_h_ = cp_h_ = cp_cccd_h_ = 0;
   feature_lo_ = 0;
   notifies_ = 0;
+  cp_indications_ = 0;
+  last_cp_req_ = last_cp_result_ = 0;
   last_power_ = last_cadence_ = 0;
   t0_ = 0;
 }
@@ -153,11 +171,17 @@ bool FtmsFlavor::startAfterDiscover() {
   }
   const GcChar *feat = gc_->findCharUuid(0x2ACC);
   const GcChar *ibd = gc_->findCharUuid(0x2AD2);
+  const GcChar *cp = gc_->findCharUuid(0x2AD9);
   ibd_h_ = ibd ? ibd->value_handle : 0x0024;
   feat_h_ = feat ? feat->value_handle : 0x0022;
+  cp_h_ = cp ? cp->value_handle : 0x0027;
   cccd_h_ = gc_->findCccdForValue(ibd_h_);
   if (!cccd_h_) {
     cccd_h_ = 0x0025;
+  }
+  cp_cccd_h_ = gc_->findCccdForValue(cp_h_);
+  if (!cp_cccd_h_) {
+    cp_cccd_h_ = 0x0028;
   }
   t0_ = millis();
   if (feat_h_) {
@@ -186,6 +210,18 @@ void FtmsFlavor::onAttPdu(const uint8_t *att, uint16_t len) {
     state_ = 3;
     return;
   }
+  if (att[0] == 0x1d && len >= 6) {
+    // Handle Value Indication — Control Point response
+    const uint16_t h = static_cast<uint16_t>(att[1] | (att[2] << 8));
+    if (h == cp_h_) {
+      cp_indications_++;
+      // att: 1d | handle | 80 | reqOp | result
+      last_cp_req_ = att[4];
+      last_cp_result_ = att[5];
+      gc_->confirmIndication();
+    }
+    return;
+  }
   if (att[0] == 0x1b && len >= 5) {
     const uint16_t h = static_cast<uint16_t>(att[1] | (att[2] << 8));
     if (h != ibd_h_ || len < 7) {
@@ -212,6 +248,29 @@ void FtmsFlavor::onAttPdu(const uint8_t *att, uint16_t len) {
   }
 }
 
+bool FtmsFlavor::controlPointEnable(bool enable) {
+  if (!gc_ || !cp_cccd_h_) {
+    return false;
+  }
+  return gc_->subscribeCccd(cp_cccd_h_, enable, true);
+}
+
+bool FtmsFlavor::controlPointWrite(uint8_t opcode, const uint8_t *payload,
+                                   uint16_t payload_len) {
+  if (!gc_ || !cp_h_ || state_ != 3) {
+    return false;
+  }
+  uint8_t buf[16];
+  buf[0] = opcode;
+  if (payload && payload_len) {
+    if (payload_len > 15) {
+      payload_len = 15;
+    }
+    memcpy(buf + 1, payload, payload_len);
+  }
+  return gc_->writeHandle(cp_h_, buf, static_cast<uint16_t>(1 + payload_len), true);
+}
+
 void FtmsFlavor::poll() {
   if (state_ == 1 || state_ == 2) {
     if (t0_ && (millis() - t0_) > 8000) {
@@ -232,8 +291,18 @@ void FtmsFlavor::appendStatusJson(String &json) const {
   json += String(ibd_h_);
   json += ",\"cccdHandle\":";
   json += String(cccd_h_);
+  json += ",\"cpHandle\":";
+  json += String(cp_h_);
+  json += ",\"cpCccdHandle\":";
+  json += String(cp_cccd_h_);
   json += ",\"notifies\":";
   json += String(notifies_);
+  json += ",\"cpIndications\":";
+  json += String(cp_indications_);
+  json += ",\"lastCpReq\":";
+  json += String(last_cp_req_);
+  json += ",\"lastCpResult\":";
+  json += String(last_cp_result_);
   json += ",\"lastCadence\":";
   json += String(last_cadence_);
   json += ",\"lastPower\":";

@@ -234,7 +234,28 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
       cccd = onchip_->gattClient().foundCccd();
     }
     const bool enable = srv->arg("enable") != "0";
-    const bool ok = onchip_->gattClientSubscribe(cccd, enable);
+    const bool indicate = srv->arg("indicate") == "1";
+    const bool ok =
+        onchip_->gattClient().subscribeCccd(cccd, enable, indicate);
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"claim\":\"STIMULUS\"}" : "{\"ok\":false}");
+  });
+
+  server.on("/api/bt/flavor/gatt/write", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false,\"error\":\"no_onchip\"}");
+      return;
+    }
+    const uint16_t handle = static_cast<uint16_t>(srv->arg("handle").toInt());
+    String hex = srv->arg("data");
+    hex.replace(" ", "");
+    uint8_t buf[64];
+    uint16_t n = 0;
+    for (int i = 0; i + 1 < (int)hex.length() && n < sizeof(buf); i += 2) {
+      buf[n++] = (uint8_t)strtoul(hex.substring(i, i + 2).c_str(), nullptr, 16);
+    }
+    const bool wr = srv->arg("cmd") != "1";
+    const bool ok = n > 0 && onchip_->gattClientWrite(handle, buf, n, wr);
     srv->send(ok ? 200 : 500, "application/json",
               ok ? "{\"ok\":true,\"claim\":\"STIMULUS\"}" : "{\"ok\":false}");
   });
@@ -250,6 +271,28 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
                  : "{\"ok\":false,\"error\":\"hogp_start\"}");
   });
 
+  server.on("/api/bt/flavor/hogp/output", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false}");
+      return;
+    }
+    String hex = srv->arg("data");
+    if (!hex.length()) {
+      // default LED caps-lock bit
+      hex = "02";
+    }
+    hex.replace(" ", "");
+    uint8_t buf[16];
+    uint16_t n = 0;
+    for (int i = 0; i + 1 < (int)hex.length() && n < sizeof(buf); i += 2) {
+      buf[n++] = (uint8_t)strtoul(hex.substring(i, i + 2).c_str(), nullptr, 16);
+    }
+    const bool ok = n > 0 && onchip_->hogpWriteOutput(buf, n);
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"flavor\":\"hogp\",\"claim\":\"STIMULUS_HOGP_OUTPUT\"}"
+                 : "{\"ok\":false,\"error\":\"hogp_output\"}");
+  });
+
   server.on("/api/bt/flavor/ftms/start", HTTP_POST, [this, srv]() {
     if (!onchip_) {
       srv->send(503, "application/json", "{\"ok\":false}");
@@ -259,6 +302,34 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
     srv->send(ok ? 200 : 500, "application/json",
               ok ? "{\"ok\":true,\"flavor\":\"ftms\",\"claim\":\"STIMULUS_FTMS\"}"
                  : "{\"ok\":false,\"error\":\"ftms_start\"}");
+  });
+
+  server.on("/api/bt/flavor/ftms/control", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false}");
+      return;
+    }
+    if (srv->hasArg("enable")) {
+      const bool en = srv->arg("enable") != "0";
+      const bool ok = onchip_->ftmsControlEnable(en);
+      srv->send(ok ? 200 : 500, "application/json",
+                ok ? "{\"ok\":true,\"cp_cccd\":true}" : "{\"ok\":false}");
+      return;
+    }
+    const int op = srv->arg("opcode").toInt();
+    String hex = srv->arg("payload");
+    hex.replace(" ", "");
+    uint8_t buf[16];
+    uint16_t n = 0;
+    for (int i = 0; i + 1 < (int)hex.length() && n < sizeof(buf); i += 2) {
+      buf[n++] = (uint8_t)strtoul(hex.substring(i, i + 2).c_str(), nullptr, 16);
+    }
+    const bool ok =
+        onchip_->ftmsControlWrite(static_cast<uint8_t>(op & 0xff),
+                                  n ? buf : nullptr, n);
+    srv->send(ok ? 200 : 500, "application/json",
+              ok ? "{\"ok\":true,\"claim\":\"STIMULUS_FTMS_CP\",\"note\":\"Success_neq_Wirkung\"}"
+                 : "{\"ok\":false,\"error\":\"ftms_control\"}");
   });
 
   server.on("/api/bt/classic/name", HTTP_POST, [this, srv]() {

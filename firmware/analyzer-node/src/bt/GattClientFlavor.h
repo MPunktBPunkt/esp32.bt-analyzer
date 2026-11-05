@@ -55,7 +55,12 @@ public:
   void reset();
   bool startDiscover(uint16_t mtu);
   bool readHandle(uint16_t handle);
-  bool subscribeCccd(uint16_t cccd_handle, bool enable);
+  bool writeHandle(uint16_t handle, const uint8_t *value, uint16_t value_len,
+                   bool with_response = true);
+  /** ATT Handle Value Confirmation (0x1E) after Indication. */
+  bool confirmIndication();
+  /** enable CCCD notify (bit0) and/or indicate (bit1). */
+  bool subscribeCccd(uint16_t cccd_handle, bool enable, bool indicate = false);
 
   /** Feed ATT PDU from ACL (central RX). */
   void onAttPdu(const uint8_t *att, uint16_t len);

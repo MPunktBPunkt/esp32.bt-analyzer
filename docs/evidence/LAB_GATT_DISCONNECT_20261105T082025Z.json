@@ -1,0 +1,26 @@
+{
+  "utc": "20261105T082025Z",
+  "gate": "GATT_disconnect_stress",
+  "claim": "session_survives_mid_gatt_disconnect_CAPABILITY",
+  "phases": [
+    {
+      "name": "during_discover",
+      "bd": "68:b6:b3:2b:c5:69",
+      "recoverable": true,
+      "ok": true
+    },
+    {
+      "name": "during_ftms",
+      "bd": "68:b6:b3:2b:c5:69",
+      "recoverable": true,
+      "ok": true
+    },
+    {
+      "name": "during_notify_burst",
+      "bd": "68:b6:b3:2b:c5:69",
+      "recoverable": true,
+      "ok": true
+    }
+  ],
+  "ok": true
+}

@@ -3,9 +3,11 @@
 ```yaml
 status: active
 fw: "0.3.2+"
-package: "0.3.7"
+package: "0.3.8"
 next: "docs/NEXT_CAMPAIGNS.md"
 peer_fault: "POST /api/bt/peer/fault mode=off|slow|burst|gap|drop"
+ftms_cp: "POST /api/bt/flavor/ftms/control enable=1|opcode=…&payload=hex"
+hogp_out: "POST /api/bt/flavor/hogp/output data=hex"
 core: analyzer_vhci_capture
 ```
 

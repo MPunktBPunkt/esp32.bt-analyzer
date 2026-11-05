@@ -1,39 +1,32 @@
 # Next campaigns — Proxmox BlueZ host + ESP triad
 
 ```yaml
-status: shipped_0.3.7
-package: "0.3.7"
-anchor: FTMS_recreate_AVRCP_BlueZ_deep
-fw_lab: "0.3.5"
-lab_pass: 20261105T074554Z
+status: shipped_0.3.8
+package: "0.3.8"
+anchor: FTMS_CP_HOGP_L2CAP
+fw_lab: "0.3.8"
+lab_pass: 20261105T082512Z
 ```
 
 Principle (frozen): **Analyzer ≠ Universal Bluetooth Host**.  
-Proxmox/BlueZ = real host · ESP = measure / controlled stimulus · not RF sniffer.
+Layer focus (GPT): deepen **L2CAP/ATT state** before more GATT profile names.
 
-## Packages in 0.3.7 (evening HW optional)
+## Packages in 0.3.8 (GPT P0/P1 morning)
 
-| ID | Tool | Stand-in | Lab |
-|----|------|----------|-----|
-| **FTMS recreate** | `lab_ftms_recreate.py` | ftmsprobe checklist vs `.89` | PASS `LAB_FTMS_RECREATE_20261105T074554Z` |
-| **BlueZ deep** | `lab_bluez_deep.py` | reconnect×3 + classic `.87` | PASS `LAB_BLUEZ_DEEP_20261105T074415Z` |
-| **AVRCP local** | `lab_avrcp_probe.py --local` | BlueZ `110c`/`110e` inventory | PASS `LAB_AVRCP_20261105T074346Z` |
+| ID | Tool | Lab |
+|----|------|-----|
+| **FTMS CP** | `lab_ftms_control.py` | PASS `LAB_FTMS_CONTROL_20261105T082512Z` |
+| **HOGP matrix** | `lab_hogp_matrix.py` | PASS `LAB_HOGP_MATRIX_20261105T081925Z` |
+| **L2CAP/MTU** | `lab_l2cap_mtu_matrix.py` | PASS `LAB_L2CAP_MTU_20261105T082203Z` |
+| **GATT disconnect** | `lab_gatt_disconnect_stress.py` | PASS `LAB_GATT_DISCONNECT_20261105T082025Z` |
 
-Docs: [`AVRCP_MEASURE.md`](AVRCP_MEASURE.md) · [`BT20_CORRELATION.md`](BT20_CORRELATION.md)
+## Evening (operator HW)
 
-## Shipped
+| ID | Command |
+|----|---------|
+| Real FTMS | `lab_ftms_recreate.py --peer-addr …` + pedaling |
+| BMW AVRCP M1–M4 | `lab_avrcp_probe.py --addr <BMW> --classic-scan 20` |
 
-| Pkg | Labs |
-|-----|------|
-| 0.3.6 | BT20 synth/live · bluez_device · R2 real/synth |
-| 0.3.5 | R1a/b · R2a/b · BT16-burst · R3 |
+## Deferred
 
-## Still deferred (operator evening)
-
-| ID | Why |
-|----|-----|
-| Real FTMS bike | `--peer-addr` on `lab_ftms_recreate.py` + pedaling |
-| AVRCP car M1–M4 | `lab_avrcp_probe.py --addr <BMW>` |
-| BT20 usb/hu live | flash sibling nodes |
-| BT17 A2DP | phone/headset + Bluedroid |
-| Air/MITM | rejected |
+BT20 usb/hu live · BT17 A2DP · Air/MITM · more GATT profiles

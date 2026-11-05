@@ -1,0 +1,39 @@
+{
+  "utc": "20261105T081925Z",
+  "gate": "HOGP_matrix",
+  "claim": "STIMULUS_HOGP_over_HCI_not_air",
+  "peer_bd": "68:b6:b3:2b:c5:69",
+  "report_map_ok": true,
+  "report_map_len": 47,
+  "input_reports": 1,
+  "input_ok": true,
+  "output_writes": [
+    {
+      "data": "02",
+      "tx_ok": true,
+      "delta": 1,
+      "ok": true
+    },
+    {
+      "data": "0000040000000000",
+      "tx_ok": true,
+      "delta": 1,
+      "ok": true
+    },
+    {
+      "data": "ffffffffffffffff",
+      "tx_ok": true,
+      "delta": 1,
+      "ok": true
+    }
+  ],
+  "burst": {
+    "delta": 82,
+    "ok": true
+  },
+  "reconnect": {
+    "ok": true,
+    "reports": 1
+  },
+  "ok": true
+}

@@ -233,6 +233,11 @@ void OnchipBt::loop() {
   gatt_client_.poll();
   hogp_.poll();
   ftms_.poll();
+  // Deferred peer Indications (FTMS CP) — avoid nested write during ACL RX.
+  if (conn_role_ == 1 && le_connected_ && peer_pending_ind_len_ > 0) {
+    writeAtt(peer_pending_ind_, peer_pending_ind_len_);
+    peer_pending_ind_len_ = 0;
+  }
   // Peer: emit HID / FTMS notifies when CCCD enabled (lab stimulus + fault modes).
   if (conn_role_ == 1 && le_connected_ && (peer_hid_cccd_ || peer_ftms_cccd_)) {
     const uint32_t now = millis();
@@ -332,6 +337,9 @@ void OnchipBt::parseEvent(const uint8_t *h4, uint16_t len) {
       le_connected_ = false;
       conn_handle_ = 0;
       peer_addr_valid_ = false;
+      peer_hid_cccd_ = false;
+      peer_ftms_cccd_ = false;
+      peer_ftms_cp_cccd_ = false;
       setState("idle");
     }
   }
@@ -362,6 +370,9 @@ void OnchipBt::parseLeMeta(const uint8_t *evt, uint8_t evt_len) {
       gatt_name_valid_ = false;
       thr_cccd_enabled_ = false;
       thr_running_ = false;
+      peer_hid_cccd_ = false;
+      peer_ftms_cccd_ = false;
+      peer_ftms_cp_cccd_ = false;
       att_mtu_ = 23;
       setState(conn_role_ == 1 ? "le_connected_periph" : "le_connected");
     } else {
@@ -791,12 +802,42 @@ bool OnchipBt::hogpStart() {
   return hogp_.startAfterDiscover();
 }
 
+bool OnchipBt::hogpWriteOutput(const uint8_t *data, uint16_t len) {
+  if (!le_connected_ || conn_role_ != 0) {
+    return false;
+  }
+  return hogp_.writeOutput(data, len);
+}
+
 bool OnchipBt::ftmsStart() {
   if (!le_connected_ || conn_role_ != 0) {
     return false;
   }
   setState("ftms");
   return ftms_.startAfterDiscover();
+}
+
+bool OnchipBt::ftmsControlEnable(bool enable) {
+  if (!le_connected_ || conn_role_ != 0) {
+    return false;
+  }
+  return ftms_.controlPointEnable(enable);
+}
+
+bool OnchipBt::ftmsControlWrite(uint8_t opcode, const uint8_t *payload,
+                                uint16_t payload_len) {
+  if (!le_connected_ || conn_role_ != 0) {
+    return false;
+  }
+  return ftms_.controlPointWrite(opcode, payload, payload_len);
+}
+
+bool OnchipBt::gattClientWrite(uint16_t handle, const uint8_t *value,
+                               uint16_t len, bool with_response) {
+  if (!le_connected_ || conn_role_ != 0) {
+    return false;
+  }
+  return gatt_client_.writeHandle(handle, value, len, with_response);
 }
 
 bool OnchipBt::peerFaultSet(const char *mode, uint16_t after_n) {
@@ -1064,6 +1105,7 @@ void OnchipBt::parseAclAtt(const uint8_t *h4, uint16_t len) {
 
   // PB=1 → continuation fragment; PB=2/0 → start of L2CAP.
   if (pb == 1) {
+    acl_frag_cont_++;
     if (acl_reasm_handle_ != handle || acl_reasm_need_ == 0) {
       return;
     }
@@ -1093,6 +1135,7 @@ void OnchipBt::parseAclAtt(const uint8_t *h4, uint16_t len) {
   if (need > sizeof(acl_reasm_buf_)) {
     return;
   }
+  acl_frag_start_++;
   memcpy(acl_reasm_buf_, data, acl_len);
   acl_reasm_handle_ = handle;
   acl_reasm_len_ = acl_len;
@@ -1206,7 +1249,9 @@ void OnchipBt::feedAclAtt(const uint8_t *l2cap, uint16_t len, bool has_l2cap_hdr
   // Peripheral GATT DB (GAP + HID + FTMS)
   if (conn_role_ == 1 &&
       gattPeerHandleRequest(conn_role_, adv_name_, &OnchipBt::writeAttBridge, this, att,
-                            att_len, &peer_hid_cccd_, &peer_ftms_cccd_)) {
+                            att_len, &peer_hid_cccd_, &peer_ftms_cccd_,
+                            &peer_ftms_cp_cccd_, peer_pending_ind_,
+                            &peer_pending_ind_len_)) {
     return;
   }
 
@@ -1325,6 +1370,10 @@ void OnchipBt::appendStatusJson(String &json) const {
   json += classic_name_;
   json += "\",\"attMtu\":";
   json += String(att_mtu_);
+  json += ",\"aclFragStart\":";
+  json += String(acl_frag_start_);
+  json += ",\"aclFragCont\":";
+  json += String(acl_frag_cont_);
   json += ",\"thrRunning\":";
   json += thr_running_ ? "true" : "false";
   json += ",\"thrMode\":\"";
