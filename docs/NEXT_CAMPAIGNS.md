@@ -54,7 +54,7 @@ SDP / L2CAP CID summary / AVRCP observe from MEASURED channels only.
 | 2 | Debian API lists both Classic slots | `/api/v1/proxy/controllers` |
 | 3 | `.131` Metermaster → analyzer OTA | `POST /update` · Classic ready |
 
-### **P1.0 — Dual BTAC + BlueZ visibility** ← *now*
+### **P1.0 — Dual BTAC + BlueZ visibility** — *PASS*
 
 | # | Measure | Done when |
 |---|---------|-----------|
@@ -62,7 +62,9 @@ SDP / L2CAP CID summary / AVRCP observe from MEASURED channels only.
 | 2 | `/api/v1/proxy/session/*` | start/stop/frames |
 | 3 | `lab_proxy_p1_sdp.py` | both BDs seen + frames > 0 |
 
-### **P1 — AVRCP semantic proxy**
+Evidence: `LAB_PROXY_P1_SDP_20261105T171443Z` · FW 0.3.15 stronger Classic scan.
+
+### **P1 — AVRCP semantic proxy** ← *next*
 
 SDP + dual pairing + AVRCP min bridge + modify/drop hooks.
 

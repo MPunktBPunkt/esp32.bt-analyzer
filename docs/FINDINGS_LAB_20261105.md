@@ -55,6 +55,7 @@ See [`NEXT_CAMPAIGNS.md`](NEXT_CAMPAIGNS.md) (post-review 0.3.14+).
 | Scan/Connect in `.87` min UI | **0.3.14 shipped** (~2.6 KB OTA free left) |
 | FTMS rpm/W overlay | **0.3.15 observe** (`tools/ftms_ibd.py` lite ready) |
 | PROXY Dual Classic (`.131`+`.87`) | **P0 PASS** — both Classic ready; see [`PROXY.md`](PROXY.md) |
+| PROXY P1.0 dual BTAC + BlueZ both seen | **PASS** `LAB_PROXY_P1_SDP_20261105T171443Z` |
 | SDP / L2CAP observe (headset / BMW) | **0.3.16** |
 | Pair / A2DP (HD 4.40 connected) | **BT17** (not thin core) |
 | BMW AVRCP payload depth | evening car + 0.3.16 |
