@@ -2,6 +2,7 @@
 
 #include "bt/OnchipBt.h"
 #include "capture/BtacStream.h"
+#include "capture/CaptureSession.h"
 #include "core/BaseModule.h"
 #include "usb/UsbHostEnum.h"
 
@@ -20,6 +21,7 @@ public:
       onchip_->begin();
       btac_.setRing(&onchip_->ring());
       btac_.begin();
+      session_.bind(&onchip_->capture(), &onchip_->ring());
     }
 #if BT_ANALYZER_ENABLE_USB_HOST
     if (usb_) {
@@ -44,6 +46,7 @@ public:
     if (onchip_) {
       onchip_->appendStatusJson(json);
     }
+    session_.appendStatusJson(json);
     btac_.appendStatusJson(json);
 #if BT_ANALYZER_ENABLE_USB_HOST
     if (usb_) {
@@ -60,11 +63,13 @@ public:
 
   OnchipBt *onchip() { return onchip_; }
   BtacStream &btac() { return btac_; }
+  CaptureSession &session() { return session_; }
 
 private:
   OnchipBt *onchip_;
   UsbHostEnum *usb_;
   BtacStream btac_{};
+  CaptureSession session_{};
 };
 
 }  // namespace bt_analyzer

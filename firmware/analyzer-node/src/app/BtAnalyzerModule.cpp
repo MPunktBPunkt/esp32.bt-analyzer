@@ -510,6 +510,62 @@ void BtAnalyzerModule::registerRoutes(WebServer &server) {
   });
 #endif
 
+  server.on("/api/capture/session", HTTP_GET, [this, srv]() {
+    String json = "{\"ok\":true";
+    session_.appendStatusJson(json);
+    json += "}";
+    srv->send(200, "application/json", json);
+  });
+
+  server.on("/api/capture/session/start", HTTP_POST, [this, srv]() {
+    if (!onchip_) {
+      srv->send(503, "application/json", "{\"ok\":false}");
+      return;
+    }
+    const uint16_t cid = onchip_->connHandle();
+    session_.setConnectionId(cid);
+    const bool ok = session_.start(cid);
+    String json = "{\"ok\":";
+    json += ok ? "true" : "false";
+    json += ",\"sessionId\":";
+    json += String(session_.sessionId());
+    json += ",\"connectionId\":";
+    json += String(session_.connectionId());
+    json += ",\"claim\":\"HCI_session_recorder_not_air\"";
+    json += "}";
+    srv->send(ok ? 200 : 500, "application/json", json);
+  });
+
+  server.on("/api/capture/session/mark", HTTP_POST, [this, srv]() {
+    String label = srv->arg("label");
+    if (!label.length()) {
+      label = "MARK";
+    }
+    const bool ok = session_.mark(label.c_str());
+    String json = "{\"ok\":";
+    json += ok ? "true" : "false";
+    json += ",\"sessionId\":";
+    json += String(session_.sessionId());
+    json += ",\"markCount\":";
+    json += String(session_.markCount());
+    json += "}";
+    srv->send(ok ? 200 : 400, "application/json", json);
+  });
+
+  server.on("/api/capture/session/stop", HTTP_POST, [this, srv]() {
+    const uint32_t sid = session_.sessionId();
+    const uint32_t marks = session_.markCount();
+    const bool ok = session_.stop();
+    String json = "{\"ok\":";
+    json += ok ? "true" : "false";
+    json += ",\"sessionId\":";
+    json += String(sid);
+    json += ",\"markCount\":";
+    json += String(marks);
+    json += "}";
+    srv->send(ok ? 200 : 400, "application/json", json);
+  });
+
   server.on("/api/capture/drain", HTTP_GET, [this, srv]() {
     if (!onchip_) {
       srv->send(503, "text/plain", "no_onchip\n");

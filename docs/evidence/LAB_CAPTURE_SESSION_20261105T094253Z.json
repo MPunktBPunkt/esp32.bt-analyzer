@@ -1,0 +1,26 @@
+{
+  "utc": "20261105T094253Z",
+  "gate": "CAPTURE_session",
+  "claim": "HCI_session_recorder_not_air",
+  "session_start": {
+    "ok": true,
+    "sessionId": 1,
+    "connectionId": 0,
+    "claim": "HCI_session_recorder_not_air"
+  },
+  "session_stop": {
+    "ok": true,
+    "sessionId": 1,
+    "markCount": 3
+  },
+  "btac_bytes": 5116,
+  "hci_frames": 104,
+  "session_meta_seen": 5,
+  "ok": true,
+  "artifacts": {
+    "btac": "docs/evidence/LAB_CAPTURE_SESSION_20261105T094253Z.btac",
+    "jsonl": "docs/evidence/LAB_CAPTURE_SESSION_20261105T094253Z.jsonl",
+    "btevent": "docs/evidence/LAB_CAPTURE_SESSION_20261105T094253Z.btevent.jsonl"
+  },
+  "note": "Recorder foundation \u2014 Classic SDP/AVRCP decode deferred until BMW/AAIdrive run"
+}

@@ -19,6 +19,7 @@ TYPE_NAME = {
     3: "acl",
     4: "sco",
     5: "iso",
+    0xFE: "meta",  # session START/STOP/MARK (not on-air HCI)
 }
 
 

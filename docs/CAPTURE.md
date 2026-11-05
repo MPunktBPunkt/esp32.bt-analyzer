@@ -48,3 +48,10 @@ PCAP must be labeled as **HCI**, never as RF/Air capture.
 `captured` · `forwarded` · `dropped` · `seqGaps` · `ring_fill` · `ring_high_water` · `btac.bytes` · `btac.sendFails`
 
 Silent data corruption is forbidden — DROPs and gaps stay visible.
+
+## Session recorder (0.3.9)
+
+Operator-bound sessions (START / MARK / STOP) inject `packet_type=meta` frames into the same ring.  
+See [`CAPTURE_SESSION.md`](CAPTURE_SESSION.md) · `tools/lab_capture_session.py` · `tools/btac_to_btevent.py`.
+
+Capture continues without TCP; BTAC client is optional drain. **No** transparent BT proxy claim.

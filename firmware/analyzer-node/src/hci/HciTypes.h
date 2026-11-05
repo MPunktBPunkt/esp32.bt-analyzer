@@ -13,6 +13,8 @@ enum class HciPacketType : uint8_t {
   Acl = 3,
   Sco = 4,
   Iso = 5,
+  /** Session control / MARK — not on-air HCI; lives in capture ring only. */
+  Meta = 0xfe,
 };
 
 enum class HciDirection : uint8_t {
@@ -28,6 +30,7 @@ inline const char *hciPacketTypeName(HciPacketType t) {
   case HciPacketType::Acl:     return "acl";
   case HciPacketType::Sco:     return "sco";
   case HciPacketType::Iso:     return "iso";
+  case HciPacketType::Meta:    return "meta";
   default:                     return "unknown";
   }
 }
