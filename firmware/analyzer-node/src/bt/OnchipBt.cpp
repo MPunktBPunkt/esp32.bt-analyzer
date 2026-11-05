@@ -323,8 +323,15 @@ void OnchipBt::parseEvent(const uint8_t *h4, uint16_t len) {
     }
   } else if (code == 0x3e) {
     parseLeMeta(p, plen);
-  } else if (code == 0x02 || code == 0x2f) {
-    parseInquiryResult(p, plen, code == 0x2f);
+  } else if (code == 0x02) {
+    // Inquiry Result (no RSSI)
+    parseInquiryResult(p, plen, false);
+  } else if (code == 0x22 || code == 0x2f) {
+    // 0x22 Inquiry Result with RSSI · 0x2F Extended Inquiry Result
+    // (same BD_ADDR…RSSI prefix; EIR bytes after that are ignored here)
+    // Bug was treating only 0x2F as “with RSSI” while Write Inquiry Mode 1
+    // delivers 0x22 — HD 4.40BT was on the air but never entered devices[].
+    parseInquiryResult(p, plen, true);
   } else if (code == 0x01) {
     classic_inquiry_ = false;
     if (!le_scanning_ && !le_advertising_ && !le_connected_) {
@@ -499,7 +506,7 @@ bool OnchipBt::setEventMasks() {
     return false;
   }
   delay(20);
-  // Write Inquiry Mode (0x0C45) = 1 → Inquiry Result with RSSI (0x2F).
+  // Write Inquiry Mode (0x0C45) = 1 → Inquiry Result with RSSI (event 0x22).
   if (classic_capable_) {
     const uint8_t inq[] = {0x45, 0x0c, 0x01, 0x01};
     cap_.writeCommand(inq, sizeof(inq));
