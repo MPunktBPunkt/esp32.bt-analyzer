@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 # OTA flash onto a lab ESP (esp-hub LocalWeb contract).
 #
-# Contract:
+# Contract (bt-analyzer / esp-hub):
 #   GET  http://$IP/api/status   → 200
 #   POST http://$IP/ota-upload   multipart field "firmware"
 #
+# Metermaster first-flash (legacy):
+#   OTA_PATH=/update OTA_FIELD=update ENV=analyzer-esp32 ./tools/flash_lab_ota.sh 192.168.178.131
+#
 # Default: analyzer-s3 → bt-analyzer.${VERSION}.esp32s3.bin
-# Classic ESP32 (.87): ENV=analyzer-esp32 ./tools/flash_lab_ota.sh 192.168.178.87
+# Classic ESP32 (.87/.131): ENV=analyzer-esp32 ./tools/flash_lab_ota.sh 192.168.178.87
 #
 # Usage:
 #   ./tools/flash_lab_ota.sh 192.168.178.88
@@ -28,6 +31,8 @@ if [ -z "${FW_NAME:-}" ]; then
   fi
 fi
 DIST="$ROOT/firmware/dist"
+OTA_PATH="${OTA_PATH:-/ota-upload}"
+OTA_FIELD="${OTA_FIELD:-firmware}"
 
 die() { echo "Fehler: $*" >&2; exit 1; }
 [ -n "$IP" ] || die "IP fehlt (z.B. 192.168.178.88)"
@@ -35,7 +40,7 @@ die() { echo "Fehler: $*" >&2; exit 1; }
 
 mkdir -p "$DIST"
 cp -f "$BIN_SRC" "$DIST/$FW_NAME"
-echo "==> target http://$IP/ota-upload"
+echo "==> target http://$IP$OTA_PATH  field=$OTA_FIELD"
 echo "    file $DIST/$FW_NAME ($(wc -c <"$DIST/$FW_NAME") bytes)"
 
 code="$(curl -sS -m 3 -o /dev/null -w '%{http_code}' "http://$IP/api/status" || true)"
@@ -44,8 +49,8 @@ code="$(curl -sS -m 3 -o /dev/null -w '%{http_code}' "http://$IP/api/status" || 
 tmp="$(mktemp)"
 set +e
 http="$(curl -sS -m 180 -o "$tmp" -w '%{http_code}' \
-  -F "firmware=@${DIST}/${FW_NAME};filename=${FW_NAME}" \
-  "http://${IP}/ota-upload")"
+  -F "${OTA_FIELD}=@${DIST}/${FW_NAME};filename=${FW_NAME}" \
+  "http://${IP}${OTA_PATH}")"
 set -e
 echo "    HTTP $http  body=$(head -c 200 "$tmp")"
 rm -f "$tmp"

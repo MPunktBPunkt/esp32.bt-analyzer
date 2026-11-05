@@ -7,7 +7,7 @@
 | `.88` YD-ESP32-S3 **N8R2** | OBSERVE_A — on-chip **BLE** VHCI |
 | `.89` YD-ESP32-S3 **N8R2** | OBSERVE_B / peer — on-chip **BLE** |
 | `.87` D1 Mini **ESP32** | Classic **+** BLE — PROXY **car-side** / analyzer |
-| `.131` D1 Mini **ESP32** | PROXY **phone-side candidate** — **Heizung firmware today** (no OTA) |
+| `.131` D1 Mini **ESP32** | PROXY **phone-side** Classic analyzer (was Metermaster) |
 | Debian PC (`DebianCursor`) | Lab UI `:8081` · control `:9751` · PROXY brain |
 | Intel Wireless-AC 9260 BT | Onboard host radio — BlueZ SSH oracle · [`HOST_BT.md`](HOST_BT.md) |
 

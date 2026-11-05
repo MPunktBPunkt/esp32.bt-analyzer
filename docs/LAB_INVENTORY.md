@@ -2,15 +2,14 @@
 
 Stand: 2026-11-05 · Instrument FW **0.3.14** · PROXY P0 inventory
 
-**Overwrite authorized** on `.87` / `.88` / `.89` for bt-analyzer gates (OTA).  
-**`.131` overwrite blocked** — live Heizung/Metermaster (PROXY phone-side candidate). See [`PROXY.md`](PROXY.md).
+**Overwrite authorized** on `.87` / `.88` / `.89` / `.131` for bt-analyzer gates (OTA).
 
 | IP | Board | Chip | Role (assigned) | Notes |
 |----|-------|------|-----------------|-------|
 | `192.168.178.88` | YD-ESP32-S3 **N8R2** | ESP32-S3 | **OBSERVE_A** | On-chip **BLE** VHCI · 8 MiB + 2 MiB PSRAM |
 | `192.168.178.89` | YD-ESP32-S3 **N8R2** | ESP32-S3 | **OBSERVE_B / peer** | On-chip **BLE** VHCI · future car observe |
-| `192.168.178.87` | D1 Mini | ESP32-D0WDQ6 | **PROXY car-side / Classic analyzer** | Classic **+** BLE · BD `c8:c9:a3:cb:37:96` |
-| `192.168.178.131` | D1 Mini | ESP32 (hub) | **PROXY phone-side candidate** | **Heizung today** · flash blocked · not bt-analyzer |
+| `192.168.178.87` | D1 Mini | ESP32-D0WDQ6 | **PROXY car-side** | Classic **+** BLE · BD `c8:c9:a3:cb:37:96` |
+| `192.168.178.131` | D1 Mini | ESP32-D0WDQ6 | **PROXY phone-side** | Classic **+** BLE · BD `c8:c9:a3:cb:7b:0a` · was Metermaster |
 
 | Service | Address |
 |---------|---------|

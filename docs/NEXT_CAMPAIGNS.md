@@ -12,7 +12,7 @@ sources: "GPT+Grok proxy analysis 2026-11-05 · lab .131 Heizung FACT"
 
 1. **0.3.14 observability shipped** — Remote Name/EIR, `:8081` live frames + session rates, scan/connect UI, `lab_classic_name.py`.  
 2. **Proxy is now an explicit track** — semantic bridge on Debian + Classic D1s (`.131` phone-side, `.87` car-side). **Not** HCI passthrough. See [`PROXY.md`](PROXY.md).  
-3. **`.131` is Heizung today** — flash to bt-analyzer is **blocked** until operator auth.  
+3. **`.131` + `.87` both Classic analyzer** — PROXY P0 `dual_classic_ready` PASS (2026-11-05).  
 4. **S3 `.88`/`.89`** stay BLE observe/capture — never Classic proxy endpoints.
 
 Findings: [`FINDINGS_LAB_20261105.md`](FINDINGS_LAB_20261105.md) · Proxy: [`PROXY.md`](PROXY.md) · Scope: [`SCOPE_HOST_VS_ANALYZER.md`](SCOPE_HOST_VS_ANALYZER.md)
@@ -46,15 +46,15 @@ SDP / L2CAP CID summary / AVRCP observe from MEASURED channels only.
 
 ## Track B — PROXY (new)
 
-### **P0 — Dual controller inventory** ← *now*
+### **P0 — Dual controller inventory** — *PASS*
 
 | # | Measure | Done when |
 |---|---------|-----------|
-| 1 | Hardware matrix `.87` + `.131` | evidence JSON + LAB_INVENTORY |
+| 1 | Hardware matrix `.87` + `.131` | evidence + LAB_INVENTORY |
 | 2 | Debian API lists both Classic slots | `/api/v1/proxy/controllers` |
-| 3 | `.131` flash gate documented | Heizung = blocked |
+| 3 | `.131` Metermaster → analyzer OTA | `POST /update` · Classic ready |
 
-### **P1 — AVRCP semantic proxy** (after both D1s = analyzer Classic)
+### **P1 — AVRCP semantic proxy** ← *next*
 
 SDP + dual pairing + AVRCP min bridge + modify/drop hooks.
 

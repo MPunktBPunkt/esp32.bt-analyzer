@@ -32,7 +32,7 @@ PROXY_CONTROLLERS = [
         "slot": "A",
         "ip": "192.168.178.131",
         "role": "PROXY_PHONE_SIDE",
-        "flash_blocked_default": True,
+        "flash_blocked_default": False,
     },
     {
         "id": "car_side",

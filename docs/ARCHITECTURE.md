@@ -69,4 +69,4 @@ Not HCI passthrough. Details: [`PROXY.md`](PROXY.md).
 | ESP32-S3 on-chip Classic BR/EDR | **REJECTED** (use `.87` / `.131`) |
 | HCI capture = RF capture | **REJECTED** |
 | USB dongle required | **REJECTED** for F_ONCHIP |
-| OTA `.131` while Heizung | **REJECTED** until auth |
+| Classic PROXY endpoints | **`.87` + `.131`** (Network HCI) |

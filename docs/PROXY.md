@@ -4,8 +4,8 @@
 status: architecture_frozen_p0
 package: "0.3.15-proxy-track"
 anchor: semantic_bridge_not_hci_passthrough
-classic_phone_side: "192.168.178.131"   # D1 Mini — flash NOT authorized yet (Heizung)
-classic_car_side: "192.168.178.87"      # D1 Mini — bt-analyzer Classic 0.3.14
+classic_phone_side: "192.168.178.131"   # D1 Mini — bt-analyzer Classic (was Metermaster)
+classic_car_side: "192.168.178.87"      # D1 Mini — bt-analyzer Classic
 ble_observe: "192.168.178.88 / .89"     # S3 — analyzer only, never Classic proxy endpoints
 hci_transport: network_hci_wifi         # primary; USB-UART HCI optional later
 ```
@@ -14,7 +14,7 @@ hci_transport: network_hci_wifi         # primary; USB-UART HCI optional later
 
 | Decision | Choice | Why |
 |----------|--------|-----|
-| `.131` overwrite | **blocked** until explicit lab auth | Live **Heizung/Metermaster** on `.131` today — do not OTA bt-analyzer blindly |
+| `.131` overwrite | **done 2026-11-05** | Metermaster → bt-analyzer via `POST /update` field `update` |
 | HCI transport | **Network HCI over WiFi** | Matches Haus↔Auto; both D1s already on LAN; LXC cannot own AF_BLUETOOTH natively ([`HOST_BT.md`](HOST_BT.md)) |
 | Proxy semantics | **Terminate profiles on Debian** | No raw `HCI→TCP→HCI` passthrough as the product proxy |
 | S3 `.88`/`.89` | Observe/Capture only | No Classic radio |
@@ -52,24 +52,21 @@ S3 nodes stay parallel observers — not in the Classic proxy path.
 
 ## Phases / gates
 
-### P0 — Dual controller inventory + visibility
+### P0 — Dual controller inventory + visibility — *PASS*
 
-**Done when:** Debian Lab UI / API lists two Classic slots (`.87` live, `.131` role-detected); evidence JSON written; `.131` flash remains gated.
+**Done when:** both D1s are bt-analyzer Classic; Debian `/api/v1/proxy/controllers` shows `dual_classic_ready`.
 
 ```bash
 python3 tools/lab_dual_controller.py
 # → docs/evidence/LAB_DUAL_CONTROLLER_<UTC>.{json,md}
 ```
 
-Gate table:
+| Slot | IP | BD_ADDR (lab) |
+|------|-----|---------------|
+| A phone | `.131` | `c8:c9:a3:cb:7b:0a` |
+| B car | `.87` | `c8:c9:a3:cb:37:96` |
 
-| Check | Pass |
-|-------|------|
-| `.87` Classic ready + BD_ADDR | required |
-| `.131` HTTP reachable + role classified | required |
-| `.131` is bt-analyzer Classic | deferred until flash auth |
-| Controllers A≠B (MAC / IP) | required |
-| Independent status poll | required |
+Metermaster migration note: OTA path was `POST /update` multipart field `update` (not hub `/ota-upload`).
 
 ### P1 — AVRCP semantic proxy (after both D1s are analyzer Classic)
 
@@ -108,11 +105,12 @@ esp32.bt-analyzer
 
 Proxy **extends** the analyzer; it does not replace capture.
 
-## Flash when authorized
+## Flash recipes
 
 ```bash
-# ONLY after Heizung vacated / backup confirmed:
-ENV=analyzer-esp32 ./tools/flash_lab_ota.sh 192.168.178.131
-```
+# Already analyzer (hub contract):
+ENV=analyzer-esp32 ./tools/flash_lab_ota.sh 192.168.178.87
 
-Record auth in evidence JSON (`flash_authorized: true`) before OTA.
+# Metermaster → analyzer (first flash only):
+ENV=analyzer-esp32 OTA_PATH=/update OTA_FIELD=update ./tools/flash_lab_ota.sh 192.168.178.131
+```
