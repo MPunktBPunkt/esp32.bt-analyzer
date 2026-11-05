@@ -1,0 +1,222 @@
+{
+  "utc": "20261105T134211Z",
+  "topology": "F_ONCHIP",
+  "gate": "BT18bc",
+  "fw": "0.3.2+",
+  "claim": "STIMULUS_profile_flavors_over_HCI_not_air",
+  "peer": {
+    "kind": "foreign",
+    "bd_addr": "c2:32:a5:1e:bf:b5",
+    "addr_type": "0",
+    "ip": null
+  },
+  "profiles": "ftms",
+  "discover": {
+    "ok": true,
+    "flavor": {
+      "id": "gatt_client",
+      "state": "ready",
+      "claim": "STIMULUS_L2_over_HCI_not_air",
+      "stimulusTx": 17,
+      "stimulusRx": 27,
+      "services": 5,
+      "characteristics": 22,
+      "descriptors": 32,
+      "cccdHandle": 11,
+      "nameHandle": 3,
+      "svc": [
+        {
+          "start": 1,
+          "end": 7,
+          "uuid": "0x1800"
+        },
+        {
+          "start": 8,
+          "end": 15,
+          "uuid": "0x1801"
+        },
+        {
+          "start": 16,
+          "end": 34,
+          "uuid": "0x180A"
+        },
+        {
+          "start": 35,
+          "end": 40,
+          "uuid": "0x1850"
+        },
+        {
+          "start": 41,
+          "end": 55,
+          "uuid": "0x1826"
+        }
+      ],
+      "chr": [
+        {
+          "decl": 2,
+          "value": 3,
+          "props": 2,
+          "uuid": "0x2A00"
+        },
+        {
+          "decl": 4,
+          "value": 5,
+          "props": 2,
+          "uuid": "0x2A01"
+        },
+        {
+          "decl": 6,
+          "value": 7,
+          "props": 2,
+          "uuid": "0x2AC9"
+        },
+        {
+          "decl": 9,
+          "value": 10,
+          "props": 32,
+          "uuid": "0x2A05"
+        },
+        {
+          "decl": 12,
+          "value": 13,
+          "props": 10,
+          "uuid": "0x2B29"
+        },
+        {
+          "decl": 14,
+          "value": 15,
+          "props": 2,
+          "uuid": "0x2B2A"
+        },
+        {
+          "decl": 17,
+          "value": 18,
+          "props": 2,
+          "uuid": "0x2A29"
+        },
+        {
+          "decl": 19,
+          "value": 20,
+          "props": 2,
+          "uuid": "0x2A24"
+        },
+        {
+          "decl": 21,
+          "value": 22,
+          "props": 2,
+          "uuid": "0x2A25"
+        },
+        {
+          "decl": 23,
+          "value": 24,
+          "props": 2,
+          "uuid": "0x2A27"
+        },
+        {
+          "decl": 25,
+          "value": 26,
+          "props": 2,
+          "uuid": "0x2A26"
+        },
+        {
+          "decl": 27,
+          "value": 28,
+          "props": 2,
+          "uuid": "0x2A28"
+        },
+        {
+          "decl": 29,
+          "value": 30,
+          "props": 2,
+          "uuid": "0x2A23"
+        },
+        {
+          "decl": 31,
+          "value": 32,
+          "props": 2,
+          "uuid": "0x2A2A"
+        },
+        {
+          "decl": 33,
+          "value": 34,
+          "props": 2,
+          "uuid": "0x2A50"
+        },
+        {
+          "decl": 36,
+          "value": 37,
+          "props": 4,
+          "uuid": "0x2C00"
+        },
+        {
+          "decl": 38,
+          "value": 39,
+          "props": 18,
+          "uuid": "0x2C01"
+        },
+        {
+          "decl": 42,
+          "value": 43,
+          "props": 16,
+          "uuid": "0x2ACE"
+        },
+        {
+          "decl": 45,
+          "value": 46,
+          "props": 24,
+          "uuid": "0x2AD9"
+        },
+        {
+          "decl": 48,
+          "value": 49,
+          "props": 2,
+          "uuid": "0x2AD6"
+        },
+        {
+          "decl": 51,
+          "value": 52,
+          "props": 2,
+          "uuid": "0x2ACC"
+        },
+        {
+          "decl": 53,
+          "value": 54,
+          "props": 16,
+          "uuid": "0x2AD2"
+        }
+      ]
+    },
+    "has_hid": false,
+    "has_ftms": true
+  },
+  "hogp": {
+    "ok": true,
+    "status": {},
+    "skipped": true
+  },
+  "ftms": {
+    "ok": false,
+    "status": {
+      "id": "ftms_client",
+      "state": "ready",
+      "claim": "STIMULUS_FTMS_over_HCI_not_air",
+      "featureLo": 18086,
+      "ibdHandle": 54,
+      "cccdHandle": 37,
+      "cpHandle": 46,
+      "cpCccdHandle": 40,
+      "notifies": 1,
+      "cpIndications": 0,
+      "lastCpReq": 0,
+      "lastCpResult": 0,
+      "lastCadence": 0,
+      "lastPower": 0,
+      "note": "Success_neq_Wirkung"
+    },
+    "skipped": false,
+    "note": "Success_neq_Wirkung"
+  },
+  "capability_ok": true,
+  "benchmark_ok": false,
+  "ok": false
+}

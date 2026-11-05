@@ -1,0 +1,209 @@
+{
+  "utc": "20261105T135731Z",
+  "gate": "FTMS_real_TC174",
+  "peer": "c2:32:a5:1e:bf:b5",
+  "peer_name": "TC174",
+  "analyzer": "192.168.178.89",
+  "fw": "0.3.11",
+  "claim": "STIMULUS_FTMS_over_HCI_not_air",
+  "success_ne_wirkung": true,
+  "session_start": {
+    "ok": true,
+    "sessionId": 1,
+    "connectionId": 1,
+    "claim": "HCI_session_recorder_not_air"
+  },
+  "session_stop": {
+    "ok": true,
+    "sessionId": 1,
+    "markCount": 3
+  },
+  "ftms": {
+    "id": "ftms_client",
+    "state": "error",
+    "claim": "STIMULUS_FTMS_over_HCI_not_air",
+    "featureLo": 18086,
+    "ibdHandle": 54,
+    "cccdHandle": 55,
+    "cpHandle": 46,
+    "cpCccdHandle": 47,
+    "notifies": 0,
+    "cpIndications": 0,
+    "lastCpReq": 0,
+    "lastCpResult": 0,
+    "lastCadence": 0,
+    "lastPower": 0,
+    "note": "Success_neq_Wirkung"
+  },
+  "cp_after_request_control": {
+    "ind": 0,
+    "req": 0,
+    "result": 0
+  },
+  "samples": [
+    {
+      "t": 0.0,
+      "state": "subscribe",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 0.75,
+      "state": "subscribe",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 1.5,
+      "state": "subscribe",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 2.25,
+      "state": "subscribe",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 3.0,
+      "state": "subscribe",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 3.75,
+      "state": "subscribe",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 4.5,
+      "state": "subscribe",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 5.25,
+      "state": "subscribe",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 6.0,
+      "state": "error",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 6.75,
+      "state": "error",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 7.5,
+      "state": "error",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 8.25,
+      "state": "error",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 9.0,
+      "state": "error",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 9.75,
+      "state": "error",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 10.5,
+      "state": "error",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    },
+    {
+      "t": 11.25,
+      "state": "error",
+      "n": 0,
+      "cad": 0,
+      "pwr": 0,
+      "cccd": 55,
+      "ibd": 54,
+      "feat": 18086
+    }
+  ],
+  "hci_frames": 711,
+  "session_meta": 5,
+  "btac_bytes": 40721,
+  "ok": false
+}

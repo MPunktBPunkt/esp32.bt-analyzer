@@ -1,0 +1,91 @@
+{
+  "utc": "20261105T143641Z",
+  "gate": "FTMS_real_TC174",
+  "analyzer": "192.168.178.89",
+  "fw": "0.3.12",
+  "peer": "c2:32:a5:1e:bf:b5",
+  "peer_name": "TC174",
+  "claim": "STIMULUS_FTMS_over_HCI_not_air",
+  "success_ne_wirkung": true,
+  "reference": "esp32.ergo Hammer Varon XTR II",
+  "ftms": {
+    "id": "ftms_client",
+    "state": "ready",
+    "claim": "STIMULUS_FTMS_over_HCI_not_air",
+    "featureLo": 18086,
+    "ibdHandle": 54,
+    "cccdHandle": 55,
+    "cpHandle": 46,
+    "cpCccdHandle": 47,
+    "notifies": 14,
+    "cpIndications": 1,
+    "lastCpReq": 0,
+    "lastCpResult": 1,
+    "lastCadence": 174,
+    "lastPower": 38,
+    "note": "Success_neq_Wirkung"
+  },
+  "cp": {
+    "ind": 1,
+    "req": 0,
+    "result": 1
+  },
+  "samples": [
+    {
+      "t": 0.0,
+      "state": "ready",
+      "n": 1,
+      "cad": 126,
+      "pwr": 27,
+      "cccd": 55,
+      "ibd": 54
+    },
+    {
+      "t": 0.6,
+      "state": "ready",
+      "n": 3,
+      "cad": 126,
+      "pwr": 27,
+      "cccd": 55,
+      "ibd": 54
+    },
+    {
+      "t": 1.2,
+      "state": "ready",
+      "n": 5,
+      "cad": 138,
+      "pwr": 30,
+      "cccd": 55,
+      "ibd": 54
+    },
+    {
+      "t": 1.8,
+      "state": "ready",
+      "n": 6,
+      "cad": 138,
+      "pwr": 30,
+      "cccd": 55,
+      "ibd": 54
+    },
+    {
+      "t": 2.4,
+      "state": "ready",
+      "n": 8,
+      "cad": 140,
+      "pwr": 30,
+      "cccd": 55,
+      "ibd": 54
+    },
+    {
+      "t": 3.0,
+      "state": "ready",
+      "n": 9,
+      "cad": 140,
+      "pwr": 30,
+      "cccd": 55,
+      "ibd": 54
+    }
+  ],
+  "cadence_rpm_est": 87.0,
+  "ok": true
+}

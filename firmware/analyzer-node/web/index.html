@@ -110,8 +110,10 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
       <tr><td>BD_ADDR</td><td class="mono" id="a-bd">-</td></tr>
       <tr><td>caps</td><td id="a-caps">-</td></tr>
       <tr><td>state</td><td id="a-state">-</td></tr>
+      <tr><td>LE link</td><td id="a-link">-</td></tr>
+      <tr><td>peer</td><td class="mono" id="a-peer">-</td></tr>
       <tr><td>gattName (L2)</td><td class="mono" id="a-gatt">-</td></tr>
-      <tr><td>devices</td><td id="a-ndev">-</td></tr>
+      <tr><td>devices (scan)</td><td id="a-ndev">-</td></tr>
     </table>
       <div class="row-btns">
         <button type="button" class="btn" onclick="btScanStart()">BLE Scan (Central)</button>
@@ -199,6 +201,13 @@ pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;m
     document.getElementById('a-gatt').textContent=oc.gattName||'(none)';
     document.getElementById('a-state').textContent=
       (oc.state||'—')+(oc.leAdvertising?' · ADV '+(oc.advName||''):'')+(oc.leScanning?' · SCAN':'');
+    var linked=!!oc.leConnected;
+    document.getElementById('a-link').innerHTML=linked
+      ? '<span class="ok">connected</span> · handle '+(oc.connHandle!=null?oc.connHandle:'—')
+      : '<span class="bad">idle</span>';
+    document.getElementById('a-peer').textContent=oc.peerAddr
+      ? (oc.peerAddr+(oc.gattName?' · '+oc.gattName:''))
+      : '(none)';
     document.getElementById('a-ndev').textContent=String(oc.devices!=null?oc.devices:0);
     document.getElementById('classic-row').style.display=oc.classic?'flex':'none';
     document.getElementById('a-ring').textContent=

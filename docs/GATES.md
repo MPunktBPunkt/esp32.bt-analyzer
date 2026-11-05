@@ -15,13 +15,13 @@ No release claim without green gate status.
 | **BT6b** | Capture session START/MARK/STOP + BT_EVENT | **CODE READY** 0.3.9 · car-node drain lab **0.3.10** ([`CAPTURE_SESSION.md`](CAPTURE_SESSION.md)) |
 | **BT16** | BLE ATT throughput (CAPABILITY / BENCHMARK) | **CODE READY** 0.3.0 (`lab_bt16_throughput.py`) |
 | **BT17** | Classic A2DP/HFP/AVRCP (`.87` Bluedroid flavor) | **scaffold 0.3.3** (+ AVRCP host probe 0.3.7; no A2DP/OTA yet) |
-| **BT18** | GATT Client + HOGP + FTMS Flavors (STIMULUS) | **CODE READY** 0.3.8 (+ FTMS Control Point · HOGP matrix · L2CAP/MTU CAPABILITY) |
+| **BT18** | GATT Client + HOGP + FTMS Flavors (STIMULUS) | **CODE READY** 0.3.12 — **real Hammer Varon** IBD+CP ([`FINDINGS_LAB_20261105.md`](FINDINGS_LAB_20261105.md)) |
 | **BT19** | Multi-node timeline (offset estimation) | **CODE READY** ([`BT19_TIMELINE.md`](BT19_TIMELINE.md)) |
 | **BT20** | Cross-layer window correlation (no MITM) | **scaffold 0.3.6** ([`BT20_CORRELATION.md`](BT20_CORRELATION.md) · BlueZ×ESP live) |
 | **BT7** | Debian decoder (JSONL) | **CODE READY** (`btac_decode.py`) |
 | **BT8** | PCAPNG export (HCI, not RF) | **CODE READY** (`btac_to_pcapng.py`) |
 | **BT9** | BLE on-chip validation (scan/connect) | **CODE READY** (+ Method G multiview · Method H host oracle) |
-| **BT10** | Classic on-chip validation (`.87`) | **CODE READY** (+ Method D classic+BLE mix) |
+| **BT10** | Classic on-chip validation (`.87`) | **CODE READY** 0.3.13 (inquiry event `0x22` → devices[]; HD 4.40 seen) |
 | **BT11** | Second ESP peer / stimulus | **CODE READY** (advertise/scan/connect) |
 | **BT12** | Long capture | **CODE READY** (`lab_run_gates.py`) |
 | **BT13** | WiFi/BT stress + recovery | **CODE READY** (toggle stress) |

@@ -7,7 +7,7 @@
 ESP **on-chip Bluetooth HCI analyzer** (VHCI): Controller ↔ Host über die Board-Radio, Capture nach Debian.  
 **Kein USB-Dongle nötig** (Topologie **F_ONCHIP**).
 
-> **v0.3.13** — Classic inquiry: parse HCI event 0x22 (RSSI results); HD 4.40 was invisible due to 0x2F mix-up.  
+> **v0.3.13** — Real Hammer FTMS PASS · Classic inquiry `0x22` · HD 4.40 seen on `.87` · [`FINDINGS_LAB_20261105.md`](docs/FINDINGS_LAB_20261105.md).  
 > **Nicht claimed:** RF/Air · MITM · transparent BT proxy · A2DP in thin VHCI core.
 
 Wissensbasis: [technology-audit / esp32-bt-analyzer](https://github.com/MPunktBPunkt/technology-audit/tree/main/projects/esp32-bt-analyzer) · Basis-FW: [ESP32.esp-hub](https://github.com/MPunktBPunkt/ESP32.esp-hub) `esp-hub-base` **v1.10.5**.
