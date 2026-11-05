@@ -1,0 +1,25 @@
+{
+  "utc": "20261105T111104Z",
+  "gate": "CAPTURE_car_node",
+  "topology": "car_89_stim_88_drain_tcp",
+  "claim": "remote_trigger_local_bt_capture_not_proxy",
+  "car": "192.168.178.89",
+  "stim": "192.168.178.88",
+  "car_bd": "68:b6:b3:2b:c5:69",
+  "session_start": {
+    "ok": true,
+    "sessionId": 3,
+    "connectionId": 0,
+    "claim": "HCI_session_recorder_not_air"
+  },
+  "session_stop": {
+    "ok": true,
+    "sessionId": 3,
+    "markCount": 4
+  },
+  "btac_bytes": 8182,
+  "hci_frames": 177,
+  "session_meta_seen": 9,
+  "ok": true,
+  "note": "Store-and-forward lite: BTAC TCP drain while capture local on car node"
+}

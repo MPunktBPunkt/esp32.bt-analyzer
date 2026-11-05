@@ -1,0 +1,43 @@
+{
+  "utc": "20261105T110904Z",
+  "gate": "SDP_inventory",
+  "topology": "H_HOST_ORACLE",
+  "claim": "classic_service_uuid_inventory_observe_not_impl",
+  "controller": "c0:b8:83:34:f4:62",
+  "local_interest_uuids": {
+    "110c": "AVRCP Target",
+    "110e": "AVRCP",
+    "1200": "PnP Information"
+  },
+  "sdptool_local": {
+    "ok": false,
+    "note": "BlueZ 5 often has no classic SDP unix socket \u2014 UUID inventory via bluetoothctl show is MEASURED",
+    "raw_tail": "Failed to connect to SDP server on FF:FF:FF:00:00:00: No such file or directory"
+  },
+  "scan_devices": [
+    {
+      "addr": "c8:c9:a3:cb:37:96",
+      "name": "oracle-87",
+      "uuids_interest": {},
+      "paired": false,
+      "connected": false
+    },
+    {
+      "addr": "6c:70:cb:f0:08:65",
+      "name": "6C-70-CB-F0-08-65",
+      "uuids_interest": {},
+      "paired": false,
+      "connected": false
+    },
+    {
+      "addr": "68:b6:b3:2b:c5:69",
+      "name": "ftms-recreate",
+      "uuids_interest": {},
+      "paired": false,
+      "connected": false
+    }
+  ],
+  "esp_classic": "192.168.178.87",
+  "ok": true,
+  "note": "Decoder depth deferred until BMW/AAIdrive capture shows real PSM/RFCOMM"
+}

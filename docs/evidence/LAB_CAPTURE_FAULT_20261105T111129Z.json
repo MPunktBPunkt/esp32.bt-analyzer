@@ -1,0 +1,36 @@
+{
+  "utc": "20261105T111129Z",
+  "gate": "CAPTURE_fault",
+  "claim": "session_survives_peer_fault_modes",
+  "phases": [
+    {
+      "mode": "burst",
+      "leConnected": true,
+      "session_active": true
+    },
+    {
+      "mode": "gap",
+      "leConnected": true,
+      "session_active": true
+    },
+    {
+      "mode": "slow",
+      "leConnected": true,
+      "session_active": true
+    }
+  ],
+  "session_start": {
+    "ok": true,
+    "sessionId": 4,
+    "connectionId": 0,
+    "claim": "HCI_session_recorder_not_air"
+  },
+  "session_stop": {
+    "ok": true,
+    "sessionId": 4,
+    "markCount": 5
+  },
+  "session_meta_seen": 6,
+  "btac_bytes": 12224,
+  "ok": true
+}

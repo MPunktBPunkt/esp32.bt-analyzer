@@ -1,9 +1,10 @@
 # Capture Session — Recorder foundation (0.3.9)
 
 ```yaml
-status: active_0.3.9
+status: active_0.3.10
 goal: AAIdrive_BMW_HU_capture_not_proxy
 claim: HCI_session_recorder_not_air_not_MITM
+fw: "0.3.9"
 ```
 
 ## Measures derived (GPT → actionable)
@@ -16,8 +17,8 @@ claim: HCI_session_recorder_not_air_not_MITM
 | M4 | TX/RX + mono µs + seq | Ordering for RE / later USB×BT correlate | **already BTAC** |
 | M5 | BT_EVENT view | Same schema for Proxmox / PiDrive tooling | **0.3.9 mapper** |
 | M6 | Offline drain | Capture must not depend on live TCP | **HTTP drain when no BTAC client** |
-| M7 | Classic SDP/L2CAP/AVRCP decode | Observe first, implement later | **deferred until real BMW run** |
-| M8 | Store-and-forward Auto↔Haus | `.89` ring → TCP when WiFi returns | **scaffold API; full S&F later** |
+| M7 | Classic SDP/L2CAP/AVRCP decode | Observe first, implement later | **lab UUID inventory 0.3.10; decode evening** |
+| M8 | Store-and-forward Auto↔Haus | `.89` ring → TCP when WiFi returns | **lab drain 0.3.10; offline WiFi gap later** |
 | M9 | Transparent BT proxy | BMW⇄Handy via TCP | **NO (out of scope)** |
 
 ## Architecture (frozen)
@@ -69,8 +70,13 @@ GET  /api/capture/drain?n=64      # offline path when BTAC client absent
 
 ```bash
 python3 tools/lab_capture_session.py
+python3 tools/lab_capture_car_node.py          # .89 session + .88 stim + TCP drain
+python3 tools/lab_sdp_inventory.py --with-esp-classic
+python3 tools/lab_capture_fault.py             # session under peer fault
 python3 tools/btac_to_btevent.py docs/evidence/….btac -o ….btevent.jsonl
 ```
+
+BTAC `--idle` for car-node drains must cover scan/connect gaps (≥15s); 3s drops mid-session MARK/STOP.
 
 ## Evening BMW / AAIdrive
 

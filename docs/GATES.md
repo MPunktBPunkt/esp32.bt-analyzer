@@ -12,7 +12,7 @@ No release claim without green gate status.
 | **BT4** | TCP capture stream (BTAC framing) | **CODE READY** (`:9753`) |
 | **BT5** | PSRAM ring buffer | **CODE READY** (512 slots S3 · fillPct) |
 | **BT6** | Lossless lab capture (session drops + file gaps) | **CODE READY** (`lab_gap_classify.py`) |
-| **BT6b** | Capture session START/MARK/STOP + BT_EVENT | **CODE READY** 0.3.9 ([`CAPTURE_SESSION.md`](CAPTURE_SESSION.md)) |
+| **BT6b** | Capture session START/MARK/STOP + BT_EVENT | **CODE READY** 0.3.9 · car-node drain lab **0.3.10** ([`CAPTURE_SESSION.md`](CAPTURE_SESSION.md)) |
 | **BT16** | BLE ATT throughput (CAPABILITY / BENCHMARK) | **CODE READY** 0.3.0 (`lab_bt16_throughput.py`) |
 | **BT17** | Classic A2DP/HFP/AVRCP (`.87` Bluedroid flavor) | **scaffold 0.3.3** (+ AVRCP host probe 0.3.7; no A2DP/OTA yet) |
 | **BT18** | GATT Client + HOGP + FTMS Flavors (STIMULUS) | **CODE READY** 0.3.8 (+ FTMS Control Point · HOGP matrix · L2CAP/MTU CAPABILITY) |
