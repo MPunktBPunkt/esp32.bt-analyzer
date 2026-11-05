@@ -14,7 +14,15 @@ Peer stubs on `.89` prove **STIMULUS capability**. Real keyboards / ergometers p
 # Lab peer stub (existing)
 python3 tools/lab_hogp_ftms.py
 
-# Foreign BLE peer — connect by BD_ADDR, no .89 advertise
+# BlueZ host path (Proxmox SSH oracle) — ESP stand-in or foreign addr
+python3 tools/lab_bluez_device.py --peer 192.168.178.89
+python3 tools/lab_bluez_device.py --addr AA:BB:CC:DD:EE:FF --no-esp --label foreign_keyboard
+
+# Real↔Synthetic claim split (synth arm without foreign HW)
+python3 tools/lab_r2_real_synthetic.py
+python3 tools/lab_r2_real_synthetic.py --real-addr AA:BB:CC:DD:EE:FF --profiles hogp
+
+# Foreign BLE peer — analyzer connect by BD_ADDR, no .89 advertise
 python3 tools/lab_hogp_ftms.py --peer-addr AA:BB:CC:DD:EE:FF --addr-type 1 --profiles hogp
 python3 tools/lab_hogp_ftms.py --peer-addr AA:BB:CC:DD:EE:FF --addr-type 0 --profiles ftms
 python3 tools/lab_hogp_ftms.py --peer-addr AA:BB:CC:DD:EE:FF --profiles both

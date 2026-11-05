@@ -1,34 +1,40 @@
 # Next campaigns — Proxmox BlueZ host + ESP triad
 
 ```yaml
-status: shipped_0.3.5
-package: "0.3.5"
-anchor: HOST_BT_ssh_oracle
-lab_pass: 20261104T225209Z
+status: shipped_0.3.6
+package: "0.3.6"
+anchor: BT20_cross_layer
+fw_lab: "0.3.5"
+lab_pass: 20261105T071116Z
 ```
 
 Principle (frozen): **Analyzer ≠ Universal Bluetooth Host**.  
 Proxmox/BlueZ = real host · ESP = measure / controlled stimulus · not RF sniffer.
 
-## Packages in 0.3.5 (no external keyboard/headset required)
+## Packages in 0.3.6
 
 | ID | Tool | Stand-in | Lab |
 |----|------|----------|-----|
-| **R1a** | `lab_r1_bluez_esp.py` | BlueZ ↔ `.89` advertise/connect | PASS `LAB_R1_BLUEZ_ESP_20261104T224934Z` |
-| **R1b** | `lab_r1_pair_matrix.py` | soft reconnect (bond optional) | PASS `LAB_R1_PAIR_MATRIX_20261104T224948Z` |
-| **R2a** | `lab_r2_bluez_profiles.py` | BlueZ connect + analyzer HID/FTMS | PASS `LAB_R2_BLUEZ_PROFILES_20261104T225042Z` |
-| **R2b** | `lab_r2_fault_inject.py` | peer fault modes (FW 0.3.5) | PASS `LAB_R2_FAULT_20261104T225114Z` |
-| **BT16 burst** | `lab_bt16_burst.py` | idle/burst/idle notify | PASS `LAB_BT16_BURST_20261104T225151Z` |
-| **R3 lite** | `lab_r3_classic_visible.py` | BlueZ sees `.87` discoverable | PASS `LAB_R3_CLASSIC_VISIBLE_20261104T225209Z` |
+| **BT20 synth** | `lab_bt20_correlate.py --synth` | schema + usb/hu synth lanes | PASS `LAB_BT20_20261105T070957Z` |
+| **BT20 live** | `lab_bt20_correlate.py --live-bt` | BlueZ×ESP window correlate | PASS `LAB_BT20_20261105T071116Z` |
+| **R1 device** | `lab_bluez_device.py` | BlueZ device evidence (ESP/`--addr`) | PASS `LAB_BLUEZ_DEVICE_20261105T070906Z` |
+| **R2 split** | `lab_r2_real_synthetic.py` | Real↔Synthetic claim split | PASS `LAB_R2_REAL_SYNTHETIC_20261105T070920Z` |
 
-External real devices (keyboard/headset/bike/car) = operator tomorrow → same tools with foreign BD_ADDR / BlueZ pair to hardware.
+Docs: [`BT20_CORRELATION.md`](BT20_CORRELATION.md)
+
+## Shipped 0.3.5 (baseline)
+
+| ID | Lab |
+|----|-----|
+| R1a/R1b/R2a/R2b/BT16-burst/R3 | PASS `20261104T224934Z`…`225209Z` |
 
 ## Still deferred
 
 | ID | Why |
 |----|-----|
-| R4 BT20 | needs usb-analyzer/hu-probe correlation |
+| BT20 + usb/hu live | needs usb-analyzer / hu-probe nodes on session |
 | BT17 A2DP | needs phone/headset + Bluedroid wiring |
+| Foreign HOGP/FTMS | operator keyboard / bike (`--real-addr` / `--addr`) |
 | Air/MITM | rejected |
 
 ## Dreiklang
@@ -37,4 +43,6 @@ External real devices (keyboard/headset/bike/car) = operator tomorrow → same t
 reales Gerät (or ESP stub) → BlueZ host → experience
 ESP simulator → STIMULUS → reproducible MEASURED
 BT Analyzer → HCI / Timeline / Loss evidence
+     ↓
+BT20 window correlate (debian bridge) — not MITM
 ```

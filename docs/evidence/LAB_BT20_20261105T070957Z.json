@@ -1,0 +1,141 @@
+{
+  "utc": "20261105T070957Z",
+  "gate": "BT20_correlation",
+  "topology": "R4_cross_layer",
+  "claim": "cross_layer_window_via_debian_bridge_not_MITM",
+  "claims": {
+    "PTP": false,
+    "shared_clock": false,
+    "MITM": false,
+    "air": false,
+    "estimated_window_overlap": true
+  },
+  "bundle": {
+    "mode": "synth",
+    "peer_bd": null,
+    "peer_ip": null,
+    "note": "synthetic schema only \u2014 no live radios",
+    "offsets_ok": 0
+  },
+  "host_events": [
+    {
+      "name": "scan_start",
+      "t": 1793862597.547409,
+      "ok": true
+    },
+    {
+      "name": "connect",
+      "t": 1793862599.547409,
+      "ok": true
+    },
+    {
+      "name": "disconnect",
+      "t": 1793862602.547409,
+      "ok": true
+    }
+  ],
+  "correlations": {
+    "bt_esp": [
+      {
+        "host": {
+          "name": "scan_start",
+          "t": 1793862597.547409,
+          "ok": true
+        },
+        "pad_s": 2.0,
+        "lane_hits": 2,
+        "ok": true
+      },
+      {
+        "host": {
+          "name": "connect",
+          "t": 1793862599.547409,
+          "ok": true
+        },
+        "pad_s": 2.0,
+        "lane_hits": 3,
+        "ok": true
+      },
+      {
+        "host": {
+          "name": "disconnect",
+          "t": 1793862602.547409,
+          "ok": true
+        },
+        "pad_s": 2.0,
+        "lane_hits": 1,
+        "ok": true
+      }
+    ],
+    "usb": [
+      {
+        "host": {
+          "name": "scan_start",
+          "t": 1793862597.547409,
+          "ok": true
+        },
+        "pad_s": 2.0,
+        "lane_hits": 2,
+        "ok": true
+      },
+      {
+        "host": {
+          "name": "connect",
+          "t": 1793862599.547409,
+          "ok": true
+        },
+        "pad_s": 2.0,
+        "lane_hits": 2,
+        "ok": true
+      },
+      {
+        "host": {
+          "name": "disconnect",
+          "t": 1793862602.547409,
+          "ok": true
+        },
+        "pad_s": 2.0,
+        "lane_hits": 1,
+        "ok": true
+      }
+    ],
+    "hu": [
+      {
+        "host": {
+          "name": "scan_start",
+          "t": 1793862597.547409,
+          "ok": true
+        },
+        "pad_s": 2.0,
+        "lane_hits": 1,
+        "ok": true
+      },
+      {
+        "host": {
+          "name": "connect",
+          "t": 1793862599.547409,
+          "ok": true
+        },
+        "pad_s": 2.0,
+        "lane_hits": 2,
+        "ok": true
+      },
+      {
+        "host": {
+          "name": "disconnect",
+          "t": 1793862602.547409,
+          "ok": true
+        },
+        "pad_s": 2.0,
+        "lane_hits": 1,
+        "ok": true
+      }
+    ]
+  },
+  "lane_counts": {
+    "bt_esp": 4,
+    "usb": 3,
+    "hu": 3
+  },
+  "ok": true
+}

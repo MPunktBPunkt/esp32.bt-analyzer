@@ -45,4 +45,6 @@ BT analyzer timeline
     Cross-layer correlation (BT20) — no MITM claim
 ```
 
+BT20 scaffold: [`BT20_CORRELATION.md`](BT20_CORRELATION.md) · `tools/lab_bt20_correlate.py` (0.3.6).
+
 Prerequisite for BT17 Classic flavor start: BT16-B benchmark evidence + this timeline scaffold producing aligned JSONL.

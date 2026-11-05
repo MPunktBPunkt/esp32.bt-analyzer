@@ -1,0 +1,43 @@
+{
+  "utc": "20261105T070906Z",
+  "gate": "R1_bluez_device",
+  "topology": "H_HOST_ORACLE",
+  "claim": "bluez_host_device_path_not_air",
+  "label": "esp_standin",
+  "addr": "68:b6:b3:2b:c5:69",
+  "fw": "0.3.5",
+  "show": {
+    "ok": true,
+    "controller": "c0:b8:83:34:f4:62"
+  },
+  "steps": [
+    {
+      "step": "scan",
+      "ok": true
+    },
+    {
+      "step": "connect",
+      "ok": true
+    },
+    {
+      "step": "info",
+      "ok": true
+    },
+    {
+      "step": "disconnect",
+      "ok": true
+    }
+  ],
+  "pair": {
+    "ok": null,
+    "skipped": true
+  },
+  "info": {
+    "connected": true,
+    "paired": false,
+    "uuids": [],
+    "name": null
+  },
+  "ok": true,
+  "note": "pair optional; soft_ok = scan/connect/info/disconnect"
+}

@@ -1,0 +1,135 @@
+{
+  "utc": "20261105T070920Z",
+  "gate": "R2a_real_synthetic",
+  "topology": "H_HOST_ORACLE",
+  "profiles": "both",
+  "arms": {
+    "synthetic": {
+      "class": "synthetic_esp_stub",
+      "peer_bd": "68:b6:b3:2b:c5:69",
+      "bluez_seen": true,
+      "bluez_connect": true,
+      "analyzer_link": {
+        "ok": true,
+        "mode": "le_connect"
+      },
+      "hogp": {
+        "start": {
+          "ok": false,
+          "error": "HTTP Error 500: Internal Server Error"
+        },
+        "status": {
+          "id": "hogp_host",
+          "state": "ready",
+          "claim": "STIMULUS_HOGP_over_HCI_not_air",
+          "reportHandle": 22,
+          "cccdHandle": 23,
+          "reportMapLen": 47,
+          "reports": 21,
+          "lastMod": 0,
+          "lastKey": 4
+        }
+      },
+      "ftms": {
+        "start": {
+          "ok": false,
+          "error": "HTTP Error 500: Internal Server Error"
+        },
+        "status": {
+          "id": "ftms_client",
+          "state": "ready",
+          "claim": "STIMULUS_FTMS_over_HCI_not_air",
+          "featureLo": 20,
+          "ibdHandle": 36,
+          "cccdHandle": 37,
+          "notifies": 101,
+          "lastCadence": 180,
+          "lastPower": 150,
+          "note": "Success_neq_Wirkung"
+        }
+      },
+      "flavor": {
+        "id": "gatt_client",
+        "state": "ready",
+        "claim": "STIMULUS_L2_over_HCI_not_air",
+        "stimulusTx": 17,
+        "stimulusRx": 325,
+        "services": 3,
+        "characteristics": 7,
+        "descriptors": 22,
+        "cccdHandle": 4,
+        "nameHandle": 3,
+        "svc": [
+          {
+            "start": 1,
+            "end": 4,
+            "uuid": "0x1800"
+          },
+          {
+            "start": 16,
+            "end": 24,
+            "uuid": "0x1812"
+          },
+          {
+            "start": 32,
+            "end": 40,
+            "uuid": "0x1826"
+          }
+        ],
+        "chr": [
+          {
+            "decl": 2,
+            "value": 3,
+            "props": 30,
+            "uuid": "0x2A00"
+          },
+          {
+            "decl": 17,
+            "value": 18,
+            "props": 2,
+            "uuid": "0x2A4A"
+          },
+          {
+            "decl": 19,
+            "value": 20,
+            "props": 2,
+            "uuid": "0x2A4B"
+          },
+          {
+            "decl": 21,
+            "value": 22,
+            "props": 18,
+            "uuid": "0x2A4D"
+          },
+          {
+            "decl": 33,
+            "value": 34,
+            "props": 2,
+            "uuid": "0x2ACC"
+          },
+          {
+            "decl": 35,
+            "value": 36,
+            "props": 16,
+            "uuid": "0x2AD2"
+          },
+          {
+            "decl": 38,
+            "value": 39,
+            "props": 40,
+            "uuid": "0x2AD9"
+          }
+        ]
+      },
+      "ok": true,
+      "claim": "STIMULUS_L2_over_HCI_not_air"
+    }
+  },
+  "claim_split": {
+    "synthetic": "peer_stub_STIMULUS",
+    "real": "UNKNOWN_no_foreign_device",
+    "same_claim_tag": "STIMULUS_L2_over_HCI_not_air",
+    "success_ne_wirkung": true
+  },
+  "ok": true
+}
