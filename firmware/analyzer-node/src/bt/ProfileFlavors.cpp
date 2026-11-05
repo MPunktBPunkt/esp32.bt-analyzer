@@ -45,8 +45,8 @@ bool HogpFlavor::startAfterDiscover() {
   report_h_ = rep ? rep->value_handle : 0x0016;
   map_h_ = map ? map->value_handle : 0x0014;
   cccd_h_ = gc_->findCccdForValue(report_h_);
-  if (!cccd_h_) {
-    cccd_h_ = 0x0017;
+  if (!cccd_h_ && report_h_) {
+    cccd_h_ = static_cast<uint16_t>(report_h_ + 1);
   }
   t0_ = millis();
   if (map_h_) {
@@ -175,14 +175,10 @@ bool FtmsFlavor::startAfterDiscover() {
   ibd_h_ = ibd ? ibd->value_handle : 0x0024;
   feat_h_ = feat ? feat->value_handle : 0x0022;
   cp_h_ = cp ? cp->value_handle : 0x0027;
+  // Never fall back to stub handles 0x25/0x28 — those break real FTMS bikes
+  // (TC174 IBD@54 → CCCD@55) when desc discovery was truncated.
   cccd_h_ = gc_->findCccdForValue(ibd_h_);
-  if (!cccd_h_) {
-    cccd_h_ = 0x0025;
-  }
-  cp_cccd_h_ = gc_->findCccdForValue(cp_h_);
-  if (!cp_cccd_h_) {
-    cp_cccd_h_ = 0x0028;
-  }
+  cp_cccd_h_ = cp_h_ ? gc_->findCccdForValue(cp_h_) : 0;
   t0_ = millis();
   if (feat_h_) {
     state_ = 1;

@@ -8,7 +8,7 @@ namespace bt_analyzer {
 /** Bounded GATT Client Flavor (BT18) — thin ATT over VHCI, not a full stack. */
 static constexpr size_t kGcMaxServices = 8;
 static constexpr size_t kGcMaxChars = 24;
-static constexpr size_t kGcMaxDescs = 32;
+static constexpr size_t kGcMaxDescs = 96;
 
 struct GcService {
   uint16_t start = 0;

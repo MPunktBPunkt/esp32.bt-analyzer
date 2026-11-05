@@ -299,15 +299,23 @@ void GattClientFlavor::onAttPdu(const uint8_t *att, uint16_t len) {
     }
     uint16_t last_h = 0;
     for (uint16_t off = 2; off + 4 <= len; off = static_cast<uint16_t>(off + 4)) {
+      // Find Information returns every handle in range (svc/char/value/desc).
+      // Keep only CCCD/CCCD-adjacent client configs — real bikes fill 32 slots
+      // before FTMS, which previously forced stub CCCD fallbacks (0x25/0x28).
+      const uint16_t h = getU16(att + off);
+      const uint16_t u = getU16(att + off + 2);
+      last_h = h;
+      if (u != 0x2902 && u != 0x2901 && u != 0x2900) {
+        continue;
+      }
       if (desc_n_ >= kGcMaxDescs) {
         break;
       }
       GcDesc &d = descs_[desc_n_++];
-      d.handle = getU16(att + off);
-      d.uuid16 = getU16(att + off + 2);
-      last_h = d.handle;
-      if (d.uuid16 == 0x2902 && found_cccd_ == 0) {
-        found_cccd_ = d.handle;
+      d.handle = h;
+      d.uuid16 = u;
+      if (u == 0x2902 && found_cccd_ == 0) {
+        found_cccd_ = h;
       }
     }
     const uint16_t end = svcs_[svc_idx_].end;
@@ -371,18 +379,26 @@ const GcService *GattClientFlavor::findServiceUuid(uint16_t uuid16) const {
 }
 
 uint16_t GattClientFlavor::findCccdForValue(uint16_t value_handle) const {
+  if (!value_handle) {
+    return 0;
+  }
   uint16_t best = 0;
   for (uint8_t i = 0; i < desc_n_; i++) {
     if (descs_[i].uuid16 != 0x2902) {
       continue;
     }
+    // Prefer the nearest CCCD after the value handle (before next char decl).
     if (descs_[i].handle > value_handle && descs_[i].handle <= value_handle + 8) {
       if (best == 0 || descs_[i].handle < best) {
         best = descs_[i].handle;
       }
     }
   }
-  return best;
+  if (best) {
+    return best;
+  }
+  // Foreign peers often place CCCD at value+1; better than ESP stub constants.
+  return static_cast<uint16_t>(value_handle + 1);
 }
 
 void GattClientFlavor::appendStatusJson(String &json) const {
