@@ -44,9 +44,16 @@ S3 nodes (`.88`/`.89`) have no Classic radio — expected miss.
 | SDP UUID inventory (BlueZ) | 0.3.10 | PASS (observe-only) |
 | Capture under peer fault | 0.3.10 | PASS |
 
-## Still open
+## Still open → package map
 
-- BMW / AAIdrive Classic AVRCP payload depth (evening car run)  
-- BT17 Classic Audio Flavor (pair + A2DP) — not in thin VHCI core  
-- Full store-and-forward when WiFi drops  
-- Remote Name / EIR so Classic inquiry shows `HD 4.40BT` name on `.87`
+See [`NEXT_CAMPAIGNS.md`](NEXT_CAMPAIGNS.md) (post-review 0.3.14+).
+
+| Gap | Next pkg |
+|-----|----------|
+| Remote Name / EIR on `.87` | **0.3.14** |
+| Live HCI frame list + rates on `:8081` | **0.3.14** |
+| FTMS rpm/W overlay | **0.3.15** |
+| SDP / L2CAP observe (headset / BMW) | **0.3.16** |
+| Pair / A2DP (HD 4.40 connected) | **BT17** (not thin core) |
+| BMW AVRCP payload depth | evening car + 0.3.16 |
+| Store-and-forward WiFi gap | later |
