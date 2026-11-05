@@ -45,7 +45,8 @@ application profile from arbitrary HCI.
 | HID keyboard keystroke path | **NO** → HOGP Flavor |
 | A2DP / HFP audio receive | **NO** → BT17 Classic flavor |
 | Full universal GATT client | **NO** — BT18 is bounded discovery/CCCD only |
-| MITM / complex replay | **NO** |
+| Transparent HCI passthrough MITM | **NO** |
+| Semantic PROXY (Debian bridge) | **P0 inventory** → P1 AVRCP — [`PROXY.md`](PROXY.md) |
 | BT15 RF/Air | **NO** |
 
 ## Architecture cut (frozen)

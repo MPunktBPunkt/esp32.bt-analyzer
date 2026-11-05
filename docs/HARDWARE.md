@@ -6,11 +6,14 @@
 |------|------|
 | `.88` YD-ESP32-S3 **N8R2** | OBSERVE_A — on-chip **BLE** VHCI |
 | `.89` YD-ESP32-S3 **N8R2** | OBSERVE_B / peer — on-chip **BLE** |
-| `.87` D1 Mini **ESP32** | Classic **+** BLE on-chip analyzer / peer |
-| Debian PC (`DebianCursor`) | Lab UI `:8081` · control `:9751` |
-| Intel Wireless-AC 9260 BT | Onboard host radio (`8087:0025`, kernel `hci0`) — optional BlueZ oracle · [`HOST_BT.md`](HOST_BT.md) |
+| `.87` D1 Mini **ESP32** | Classic **+** BLE — PROXY **car-side** / analyzer |
+| `.131` D1 Mini **ESP32** | PROXY **phone-side candidate** — **Heizung firmware today** (no OTA) |
+| Debian PC (`DebianCursor`) | Lab UI `:8081` · control `:9751` · PROXY brain |
+| Intel Wireless-AC 9260 BT | Onboard host radio — BlueZ SSH oracle · [`HOST_BT.md`](HOST_BT.md) |
 
 USB Bluetooth dongles are **not required** for F_ONCHIP. Optional for legacy A_OBSERVE. Host 9260 ≠ Air sniffer.
+
+PROXY Classic endpoints = **`.87` + `.131` only** (not S3). Transport = Network HCI / WiFi — [`PROXY.md`](PROXY.md).
 
 See [`LAB_INVENTORY.md`](LAB_INVENTORY.md) · [`LAB_METHODS.md`](LAB_METHODS.md).
 

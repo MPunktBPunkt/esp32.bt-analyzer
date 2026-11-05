@@ -53,7 +53,8 @@ See [`NEXT_CAMPAIGNS.md`](NEXT_CAMPAIGNS.md) (post-review 0.3.14+).
 | Remote Name / EIR on `.87` | **0.3.14 shipped** (lab: `55" Crystal UHD` named; HD 4.40 when on air) |
 | Live HCI frame list + rates on `:8081` | **0.3.14 shipped** |
 | Scan/Connect in `.87` min UI | **0.3.14 shipped** (~2.6 KB OTA free left) |
-| FTMS rpm/W overlay | **0.3.15** (`tools/ftms_ibd.py` lite ready) |
+| FTMS rpm/W overlay | **0.3.15 observe** (`tools/ftms_ibd.py` lite ready) |
+| PROXY Dual Classic (`.131`+`.87`) | **P0 inventory** — `.131`=Heizung (flash blocked); see [`PROXY.md`](PROXY.md) |
 | SDP / L2CAP observe (headset / BMW) | **0.3.16** |
 | Pair / A2DP (HD 4.40 connected) | **BT17** (not thin core) |
 | BMW AVRCP payload depth | evening car + 0.3.16 |

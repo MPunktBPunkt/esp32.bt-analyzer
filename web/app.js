@@ -159,7 +159,14 @@
       list.textContent = frames
         .map((f) => {
           const ts = f.ts_us != null ? String(f.ts_us).padStart(10, " ") : "—";
-          return `#${f.seq} ${ts} ${f.dir||"?"} ${f.type||"?"} len=${f.length} ${f.payload_hex_short || ""}`;
+          const hx = f.payload_hex || "";
+          let mark = "";
+          if (f.type === "evt" && hx.startsWith("04")) {
+            const ev = hx.slice(2, 4);
+            if (ev === "05") mark = " [DISC 0x" + (hx.slice(12, 14) || "?") + "]";
+            else if (ev === "3e" && hx.slice(6, 8) === "01") mark = " [LE_CONN]";
+          }
+          return `#${f.seq} ${ts} ${f.dir||"?"} ${f.type||"?"}${mark} len=${f.length} ${f.payload_hex_short || ""}`;
         })
         .join("\n");
     } catch (e) {
@@ -201,6 +208,25 @@
     }
   }
 
+  async function refreshProxy() {
+    const el = document.getElementById("proxy-ctl");
+    if (!el) return;
+    try {
+      const p = await jget("/api/v1/proxy/controllers");
+      const lines = (p.controllers || []).map((c) => {
+        const cl = c.classified || {};
+        const ready = cl.classic_ready ? "CLASSIC_READY" : cl.class || "?";
+        const bd = cl.bd_addr || cl.label || "—";
+        const block = cl.flash_blocked ? " · FLASH_BLOCKED" : "";
+        return `slot ${c.slot} ${c.id} ${c.ip} → ${ready} ${bd}${block}`;
+      });
+      el.textContent =
+        `transport=${p.hci_transport || "?"} dual=${p.dual_classic_ready}\n` + lines.join("\n");
+    } catch (e) {
+      el.textContent = String(e);
+    }
+  }
+
   async function refreshHealth() {
     const h = await jget("/api/v1/health");
     document.getElementById("svc-ver").textContent = "ctrl " + (h.version || "?");
@@ -223,6 +249,7 @@
     const sess = await jget("/api/v1/session");
     renderSession(sess.session || {});
     await refreshFrames();
+    await refreshProxy();
   }
 
   document.getElementById("btn-refresh").onclick = () => refreshNodes().catch(console.error);

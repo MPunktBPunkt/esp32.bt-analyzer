@@ -155,6 +155,9 @@ private:
   bool classic_capable_ = false;
   bool le_scanning_ = false;
   bool le_advertising_ = false;
+  /** Remember advertise intent; re-start after disconnect (from loop, not HCI cb). */
+  bool adv_resume_ = false;
+  bool adv_restart_pending_ = false;
   bool le_connected_ = false;
   bool classic_inquiry_ = false;
   bool classic_discoverable_ = false;

@@ -229,6 +229,10 @@ void OnchipBt::loop() {
   }
   cap_.pollRates();
   pollAppRates();
+  if (adv_restart_pending_ && !le_connected_ && !le_advertising_) {
+    adv_restart_pending_ = false;
+    leAdvertiseStart(adv_name_);
+  }
   thrPump();
   gatt_client_.poll();
   hogp_.poll();
@@ -359,7 +363,13 @@ void OnchipBt::parseEvent(const uint8_t *h4, uint16_t len) {
       peer_hid_cccd_ = false;
       peer_ftms_cccd_ = false;
       peer_ftms_cp_cccd_ = false;
-      setState("idle");
+      if (adv_resume_) {
+        // Phone abort (often unpaired SMP) leaves peripheral invisible otherwise.
+        adv_restart_pending_ = true;
+        setState("adv_restart");
+      } else {
+        setState("idle");
+      }
     }
   }
 }
@@ -725,6 +735,8 @@ bool OnchipBt::leAdvertiseStart(const char *name) {
     return false;
   }
   le_advertising_ = true;
+  adv_resume_ = true;
+  adv_restart_pending_ = false;
   setState("le_advertising");
   last_cmd_ms_ = millis();
   return true;
@@ -734,6 +746,8 @@ bool OnchipBt::leAdvertiseStop() {
   const uint8_t en[] = {0x0a, 0x20, 0x01, 0x00};
   const bool ok = cap_.writeCommand(en, sizeof(en));
   le_advertising_ = false;
+  adv_resume_ = false;
+  adv_restart_pending_ = false;
   if (!le_scanning_ && !classic_inquiry_) {
     setState("idle");
   }

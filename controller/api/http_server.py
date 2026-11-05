@@ -16,13 +16,31 @@ from controller import session as btac_session
 
 WEB_ROOT = Path(__file__).resolve().parents[2] / "web"
 STARTED = time.time()
-VERSION = "0.3.14"
+VERSION = "0.3.15"
 
 # Poll-proxy lab nodes (OBSERVE) — no HELLO required yet
 LAB_NODES = [
     {"id": "observe_a", "ip": "192.168.178.88", "role": "OBSERVE_A"},
     {"id": "observe_b", "ip": "192.168.178.89", "role": "OBSERVE_B"},
     {"id": "classic_esp32", "ip": "192.168.178.87", "role": "F_ONCHIP_CLASSIC"},
+]
+
+# PROXY Classic slots (Network HCI) — see docs/PROXY.md
+PROXY_CONTROLLERS = [
+    {
+        "id": "phone_side",
+        "slot": "A",
+        "ip": "192.168.178.131",
+        "role": "PROXY_PHONE_SIDE",
+        "flash_blocked_default": True,
+    },
+    {
+        "id": "car_side",
+        "slot": "B",
+        "ip": "192.168.178.87",
+        "role": "PROXY_CAR_SIDE",
+        "flash_blocked_default": False,
+    },
 ]
 
 
@@ -58,6 +76,68 @@ def fetch_node(ip: str) -> dict[str, Any]:
     except Exception as exc:  # noqa: BLE001
         out["error"] = str(exc)
     return out
+
+
+def classify_proxy_status(st: dict[str, Any] | None, error: str | None = None) -> dict[str, Any]:
+    """Classify HTTP /api/status for PROXY P0 (Heizung vs bt-analyzer Classic)."""
+    if error or st is None:
+        return {
+            "class": "UNREACHABLE",
+            "bt_analyzer": False,
+            "classic_ready": False,
+            "error": error,
+        }
+    if "value" in st and "unit" in st and "onchip" not in st and "version" not in st:
+        return {
+            "class": "HEIZUNG_METERMASTER",
+            "bt_analyzer": False,
+            "classic_ready": False,
+            "flash_blocked": True,
+            "label": st.get("label"),
+        }
+    oc = st.get("onchip") or {}
+    if "onchip" in st or st.get("version"):
+        classic = bool(oc.get("classic"))
+        ready = bool(oc.get("ready"))
+        return {
+            "class": "BT_ANALYZER",
+            "bt_analyzer": True,
+            "classic_ready": classic and ready,
+            "flash_blocked": False,
+            "version": st.get("version"),
+            "chip": st.get("chip"),
+            "bd_addr": oc.get("bdAddr"),
+            "state": oc.get("state"),
+            "classic": classic,
+            "ble": oc.get("ble"),
+        }
+    return {"class": "UNKNOWN_HTTP", "bt_analyzer": False, "classic_ready": False}
+
+
+def fetch_proxy_controllers() -> dict[str, Any]:
+    views = []
+    for meta in PROXY_CONTROLLERS:
+        snap = fetch_node(meta["ip"])
+        st = snap.get("status") if snap.get("ok") else None
+        classified = classify_proxy_status(st, None if snap.get("ok") else snap.get("error"))
+        if classified.get("class") == "HEIZUNG_METERMASTER":
+            classified["flash_blocked"] = True
+        views.append({**meta, "ok": bool(snap.get("ok")), "classified": classified, "raw_ok": snap.get("ok")})
+    car = next((v for v in views if v["id"] == "car_side"), None)
+    phone = next((v for v in views if v["id"] == "phone_side"), None)
+    dual = bool(
+        car
+        and phone
+        and (car.get("classified") or {}).get("classic_ready")
+        and (phone.get("classified") or {}).get("classic_ready")
+    )
+    return {
+        "ok": True,
+        "hci_transport": "network_hci_wifi",
+        "dual_classic_ready": dual,
+        "controllers": views,
+        "doc": "docs/PROXY.md",
+    }
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -113,8 +193,16 @@ class Handler(BaseHTTPRequestHandler):
                     "btac_port_note": "9753 on ESP (BTAC v1)",
                     "session": btac_session.status(),
                     "nodes": LAB_NODES,
+                    "proxy": {
+                        "hci_transport": "network_hci_wifi",
+                        "controllers": PROXY_CONTROLLERS,
+                    },
                 },
             )
+            return
+
+        if path == "/api/v1/proxy/controllers":
+            self._send_json(200, fetch_proxy_controllers())
             return
 
         if path == "/api/v1/session":
