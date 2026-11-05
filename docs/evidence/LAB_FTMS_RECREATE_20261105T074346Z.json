@@ -1,0 +1,123 @@
+{
+  "utc": "20261105T074346Z",
+  "gate": "FTMS_recreate",
+  "topology": "H_HOST_ORACLE",
+  "peer_class": "esp_ftms_stub",
+  "peer_bd": "68:b6:b3:2b:c5:69",
+  "claim": "STIMULUS_FTMS_over_HCI_not_air",
+  "success_ne_wirkung": true,
+  "reference": "esp32.ftmsprobe ERGEBNISBERICHT checklist (1826/2ACC/2AD2/2AD9)",
+  "linked": true,
+  "discover": {
+    "ok": true,
+    "flavor": "gatt_client",
+    "claim": "STIMULUS_L2_over_HCI_not_air"
+  },
+  "ftms_start": {
+    "ok": false,
+    "error": "HTTP Error 500: Internal Server Error"
+  },
+  "flavor": {
+    "id": "gatt_client",
+    "state": "ready",
+    "claim": "STIMULUS_L2_over_HCI_not_air",
+    "stimulusTx": 15,
+    "stimulusRx": 45,
+    "services": 3,
+    "characteristics": 7,
+    "descriptors": 22,
+    "cccdHandle": 4,
+    "nameHandle": 3,
+    "svc": [
+      {
+        "start": 1,
+        "end": 4,
+        "uuid": "0x1800"
+      },
+      {
+        "start": 16,
+        "end": 24,
+        "uuid": "0x1812"
+      },
+      {
+        "start": 32,
+        "end": 40,
+        "uuid": "0x1826"
+      }
+    ],
+    "chr": [
+      {
+        "decl": 2,
+        "value": 3,
+        "props": 30,
+        "uuid": "0x2A00"
+      },
+      {
+        "decl": 17,
+        "value": 18,
+        "props": 2,
+        "uuid": "0x2A4A"
+      },
+      {
+        "decl": 19,
+        "value": 20,
+        "props": 2,
+        "uuid": "0x2A4B"
+      },
+      {
+        "decl": 21,
+        "value": 22,
+        "props": 18,
+        "uuid": "0x2A4D"
+      },
+      {
+        "decl": 33,
+        "value": 34,
+        "props": 2,
+        "uuid": "0x2ACC"
+      },
+      {
+        "decl": 35,
+        "value": 36,
+        "props": 16,
+        "uuid": "0x2AD2"
+      },
+      {
+        "decl": 38,
+        "value": 39,
+        "props": 40,
+        "uuid": "0x2AD9"
+      }
+    ]
+  },
+  "ftms": {
+    "id": "ftms_client",
+    "state": "error",
+    "claim": "STIMULUS_FTMS_over_HCI_not_air",
+    "featureLo": 0,
+    "ibdHandle": 0,
+    "cccdHandle": 0,
+    "notifies": 0,
+    "lastCadence": 0,
+    "lastPower": 0,
+    "note": "Success_neq_Wirkung"
+  },
+  "checklist": {
+    "has_ftms_1826": true,
+    "feature_2acc_read": false,
+    "feature_lo": 0,
+    "ibd_2ad2_notifies": 0,
+    "control_point_2ad9_present": true,
+    "last_cadence": 0,
+    "last_power": 0,
+    "bluez_link": true,
+    "note": "stub: Success\u2260Wirkung; real bike needs operator pedaling for non-zero IBD"
+  },
+  "bluez": {
+    "seen": true,
+    "connect": true,
+    "gatt_has_ftms": false,
+    "note": "thin_stub_gatt_often_empty_under_bluez"
+  },
+  "ok": false
+}

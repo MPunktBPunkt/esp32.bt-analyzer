@@ -1,0 +1,117 @@
+{
+  "utc": "20261105T074510Z",
+  "topology": "F_ONCHIP",
+  "gate": "BT18bc",
+  "fw": "0.3.2+",
+  "claim": "STIMULUS_profile_flavors_over_HCI_not_air",
+  "peer": {
+    "kind": "stub_89",
+    "bd_addr": "68:b6:b3:2b:c5:69",
+    "addr_type": "0",
+    "ip": "192.168.178.89"
+  },
+  "profiles": "ftms",
+  "discover": {
+    "ok": true,
+    "flavor": {
+      "id": "gatt_client",
+      "state": "ready",
+      "claim": "STIMULUS_L2_over_HCI_not_air",
+      "stimulusTx": 15,
+      "stimulusRx": 25,
+      "services": 3,
+      "characteristics": 7,
+      "descriptors": 22,
+      "cccdHandle": 4,
+      "nameHandle": 3,
+      "svc": [
+        {
+          "start": 1,
+          "end": 4,
+          "uuid": "0x1800"
+        },
+        {
+          "start": 16,
+          "end": 24,
+          "uuid": "0x1812"
+        },
+        {
+          "start": 32,
+          "end": 40,
+          "uuid": "0x1826"
+        }
+      ],
+      "chr": [
+        {
+          "decl": 2,
+          "value": 3,
+          "props": 30,
+          "uuid": "0x2A00"
+        },
+        {
+          "decl": 17,
+          "value": 18,
+          "props": 2,
+          "uuid": "0x2A4A"
+        },
+        {
+          "decl": 19,
+          "value": 20,
+          "props": 2,
+          "uuid": "0x2A4B"
+        },
+        {
+          "decl": 21,
+          "value": 22,
+          "props": 18,
+          "uuid": "0x2A4D"
+        },
+        {
+          "decl": 33,
+          "value": 34,
+          "props": 2,
+          "uuid": "0x2ACC"
+        },
+        {
+          "decl": 35,
+          "value": 36,
+          "props": 16,
+          "uuid": "0x2AD2"
+        },
+        {
+          "decl": 38,
+          "value": 39,
+          "props": 40,
+          "uuid": "0x2AD9"
+        }
+      ]
+    },
+    "has_hid": true,
+    "has_ftms": true
+  },
+  "hogp": {
+    "ok": true,
+    "status": {},
+    "skipped": true
+  },
+  "ftms": {
+    "ok": true,
+    "status": {
+      "id": "ftms_client",
+      "state": "ready",
+      "claim": "STIMULUS_FTMS_over_HCI_not_air",
+      "featureLo": 20,
+      "ibdHandle": 36,
+      "cccdHandle": 37,
+      "notifies": 1,
+      "lastCadence": 180,
+      "lastPower": 150,
+      "note": "Success_neq_Wirkung"
+    },
+    "skipped": false,
+    "note": "Success_neq_Wirkung"
+  },
+  "capability_ok": true,
+  "benchmark_ok": true,
+  "ok": true
+}

@@ -1,0 +1,25 @@
+{
+  "utc": "20261105T074346Z",
+  "gate": "AVRCP_probe",
+  "topology": "H_HOST_ORACLE",
+  "claim": "host_avrcp_presence_and_sdp_not_air",
+  "claims": {
+    "MITM": false,
+    "air": false,
+    "car_browsing": "UNKNOWN",
+    "local_uuid_inventory": true
+  },
+  "controller": "c0:b8:83:34:f4:62",
+  "local_avrcp": {
+    "110c": "A/V Remote Control Target",
+    "110e": "A/V Remote Control"
+  },
+  "players": {
+    "mentions_player": true,
+    "raw_tail": "nt variables\n\u001b[1;39mscript <filename>                                 \u001b[0mRun script\n\u001b[0;94m[bluetoothctl]> \u001b[0mlist\n\u001b[0;94m[bluetoothctl]> \u001b[0mshow\nNo default player available\n\u001b[0;94m[bluetoothctl]> \u001b[0mback\n\u001b[1;39mMenu main:\u001b[0m\n\u001b[1;39mAvailable commands:\u001b[0m\n\u001b[1;39m-------------------\u001b[0m\n\u001b[0;94madvertise                                         \u001b[0mAdvertise Options Submenu\n\u001b[0;94mmonitor                                           \u001b[0mAdvertisement Monitor Options Submenu\n\u001b[0;94mscan                                              \u001b[0mScan Options Submenu\n\u001b[0;94mgatt                                              \u001b[0mGeneric Attribute Submenu\n\u001b[0;94madmin                                             \u001b[0mAdmin Policy Submenu\n\u001b[0;94mplayer                                            \u001b[0mMedia Pla"
+  },
+  "scan": null,
+  "peer": null,
+  "ok": true,
+  "note": "Car M1\u2013M4 deferred to operator evening \u2014 see docs/AVRCP_MEASURE.md"
+}

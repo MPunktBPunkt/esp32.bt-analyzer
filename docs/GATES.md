@@ -13,7 +13,7 @@ No release claim without green gate status.
 | **BT5** | PSRAM ring buffer | **CODE READY** (512 slots S3 · fillPct) |
 | **BT6** | Lossless lab capture (session drops + file gaps) | **CODE READY** (`lab_gap_classify.py`) |
 | **BT16** | BLE ATT throughput (CAPABILITY / BENCHMARK) | **CODE READY** 0.3.0 (`lab_bt16_throughput.py`) |
-| **BT17** | Classic A2DP/HFP (`.87` Bluedroid flavor) | **scaffold 0.3.3** (env+API stub; no A2DP/OTA yet) |
+| **BT17** | Classic A2DP/HFP/AVRCP (`.87` Bluedroid flavor) | **scaffold 0.3.3** (+ AVRCP host probe 0.3.7; no A2DP/OTA yet) |
 | **BT18** | GATT Client + HOGP + FTMS Flavors (STIMULUS) | **CODE READY** 0.3.5 (+ peer fault inject · BlueZ R1/R2 labs) |
 | **BT19** | Multi-node timeline (offset estimation) | **CODE READY** ([`BT19_TIMELINE.md`](BT19_TIMELINE.md)) |
 | **BT20** | Cross-layer window correlation (no MITM) | **scaffold 0.3.6** ([`BT20_CORRELATION.md`](BT20_CORRELATION.md) · BlueZ×ESP live) |

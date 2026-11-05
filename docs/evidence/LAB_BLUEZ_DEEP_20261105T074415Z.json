@@ -1,0 +1,94 @@
+{
+  "utc": "20261105T074415Z",
+  "gate": "BlueZ_deep",
+  "topology": "H_HOST_ORACLE",
+  "claim": "bluez_host_stability_vs_esp_not_air",
+  "controller": "c0:b8:83:34:f4:62",
+  "peer_bd": "68:b6:b3:2b:c5:69",
+  "classic_bd": "c8:c9:a3:cb:37:96",
+  "steps": [
+    {
+      "step": "show",
+      "ok": true,
+      "elapsed_s": 0.0,
+      "result": {
+        "ok": true,
+        "controller": "c0:b8:83:34:f4:62",
+        "powered": true,
+        "raw": "Controller C0:B8:83:34:F4:62 (public)\n\tManufacturer: 0x0002 (2)\n\tVersion: 0x0a (10)\n\tName: Proxmox\n\tAlias: Proxmox\n\tClass: 0x00400104 (4194564)\n\tPowered: yes\n\tPowerState: on\n\tDiscoverable: no\n\tDiscoverableTimeout: 0x000000b4 (180)\n\tPairable: yes\n\tUUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)\n\tUUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)\n\tUUID: SIM Access                (0000112d-0000-1000-8000-00805f9b34fb)\n\tUUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)\n\tUUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)\n\tUUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)\n\tUUID: Device Information        (0000180a-0000-1000-8000-00805f9b34fb)\n\tModalias: usb:v1D6Bp0246d0552\n\tDiscovering: no\n\tRoles: central\n\tRoles: peripheral\nAdvertising Features:\n\tActiveInstances: 0x00 (0)\n\tSupportedInstances: 0x06 (6)\n\tSupportedIncludes: tx-power\n\tSupportedIncludes: appearance\n\tSupportedIncludes: local-name\n\tSupportedSecondaryChannels: 1M\n\tSupportedSecondaryChannels: 2M\n\tSupportedCapabilities.MinTxPower: 0xffffffde (-34)\n\tSupportedCapabilities.MaxTxPower: 0x0007 (7)\n\tSupportedCapabilities.MaxAdvLen: 0xfb (251)\n\tSupportedCapabilities.MaxScnRspLen: 0xfb (251)\n\tSupportedFeatures: CanSetTxPower\n\tSupportedFeatures: HardwareOffload",
+        "ssh": "root@192.168.178.108",
+        "error": null
+      }
+    },
+    {
+      "step": "scan_le",
+      "ok": true,
+      "elapsed_s": 6.502,
+      "result": {
+        "ok": true,
+        "bd": "68:b6:b3:2b:c5:69"
+      }
+    },
+    {
+      "step": "reconnect_matrix",
+      "ok": true,
+      "elapsed_s": 0.0,
+      "result": {
+        "ok": true,
+        "runs": [
+          {
+            "i": 0,
+            "connect": true,
+            "disconnect": true,
+            "elapsed_s": 0.603
+          },
+          {
+            "i": 1,
+            "connect": true,
+            "disconnect": true,
+            "elapsed_s": 0.494
+          },
+          {
+            "i": 2,
+            "connect": true,
+            "disconnect": true,
+            "elapsed_s": 0.435
+          }
+        ]
+      }
+    },
+    {
+      "step": "classic_visible",
+      "ok": true,
+      "elapsed_s": 0.0,
+      "result": {
+        "ok": true,
+        "bd": "c8:c9:a3:cb:37:96",
+        "fw": "0.3.2"
+      }
+    },
+    {
+      "step": "timeline_offsets",
+      "ok": true,
+      "elapsed_s": 0.0,
+      "result": {
+        "ok": true,
+        "offsets": {
+          "88": {
+            "ok": true,
+            "rtt_ms": 84.96928215026855
+          },
+          "89": {
+            "ok": true,
+            "rtt_ms": 108.21676254272461
+          },
+          "87": {
+            "ok": true,
+            "rtt_ms": 108.74652862548828
+          }
+        }
+      }
+    }
+  ],
+  "ok": true
+}
