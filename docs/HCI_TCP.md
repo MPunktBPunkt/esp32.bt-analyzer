@@ -11,6 +11,7 @@ evidence:
   - docs/evidence/LAB_HCI_TCP_A1A5_20261111T204600Z.md
   - docs/evidence/LAB_HCI_TCP_WIFI_PS_SWEEP_20261111T202605Z.md
   - docs/evidence/LAB_HCI_TCP_POSTRESET_20261111T205600Z.md
+  - docs/evidence/LAB_HCI_TCP_WIFI_PS_SWEEP_ROUTER_20261111T221956Z.md
 not_claim: passive air sniff of an existing Phone↔HU link
 ```
 
@@ -63,11 +64,10 @@ curl -s http://192.168.178.131/api/hci/wifi_ps
 curl -s -X POST -d 'mode=none' http://192.168.178.131/api/hci/wifi_ps
 ```
 
-Throughput (MEASURED, see `LAB_HCI_TCP_WIFI_PS_SWEEP_20261111T202605Z`):
-`max`/`min` cold ≈ 3.4–3.8 kB/s; `none` ≈ 38–39 kB/s sustained 60 s (short-window
-live peaks previously ~62 kB/s). `ringPeak` ≪ 24 KiB and drops=0 → coex/PS limit,
-not software queue. After a `none` session, API `min` may not re-throttle until
-radio/session reset.
+Throughput (MEASURED): on router AP (RSSI ≈ −45) and on repeater (≈ −85) alike,
+`max`/`min` cold ≈ 3–4 kB/s; `none` ≈ 36–39 kB/s sustained. Better WiFi RSSI does
+not raise ACL — coex/PS limit. `ringPeak` ≪ 24 KiB, drops=0. After `none`, API
+`min` may not re-throttle until radio/session reset. Evidence: `LAB_HCI_TCP_WIFI_PS_SWEEP_*`.
 
 ## Attach
 

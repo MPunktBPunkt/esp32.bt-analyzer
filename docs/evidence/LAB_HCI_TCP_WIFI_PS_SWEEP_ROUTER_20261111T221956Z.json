@@ -1,0 +1,542 @@
+{
+  "utc": "20261111T221958Z",
+  "fw": {
+    "131": "0.3.18",
+    "87": "0.3.18"
+  },
+  "baseline": {
+    "131": {
+      "version": "0.3.18",
+      "rssi": -46,
+      "wifi": {
+        "ssid": "FRITZ!Box 7490MA",
+        "bssid": "5C:49:79:D1:8E:A6",
+        "channel": 6,
+        "rssi": -46
+      },
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 4315,
+      "toHostBytes": 1505,
+      "toCtrlPkts": 80,
+      "toHostPkts": 80,
+      "drops": 0,
+      "ringPeak": 326,
+      "ringUsed": 255,
+      "rttLastUs": 1732,
+      "rttMaxUs": 3385,
+      "rttSamples": 80
+    },
+    "87": {
+      "version": "0.3.18",
+      "rssi": -52,
+      "wifi": {
+        "ssid": "FRITZ!Box 7490MA",
+        "bssid": "5C:49:79:D1:8E:A6",
+        "channel": 6,
+        "rssi": -52
+      },
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 7987,
+      "toHostBytes": 2345,
+      "toCtrlPkts": 139,
+      "toHostPkts": 139,
+      "drops": 0,
+      "ringPeak": 270,
+      "ringUsed": 255,
+      "rttLastUs": 1343,
+      "rttMaxUs": 10055,
+      "rttSamples": 73
+    }
+  },
+  "duration_s": 45,
+  "tests": [
+    {
+      "tag": "T1_max",
+      "start_ps": "max",
+      "mid": null,
+      "ok": true,
+      "elapsed_s": 47.79,
+      "wifi": {
+        "131": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -45
+        },
+        "87": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -52
+        }
+      },
+      "rssi": [
+        -45,
+        -52
+      ],
+      "rates_131": {
+        "kBps_toCtrl": 4.13,
+        "kBps_toHost": 0.07,
+        "pps_toCtrl": 6.68,
+        "mean_pkt": 633.1,
+        "drops": 0
+      },
+      "rates_87": {
+        "kBps_toCtrl": 0.01,
+        "kBps_toHost": 4.12,
+        "pps_toCtrl": 0.5,
+        "mean_pkt": 19.0,
+        "drops": 0
+      },
+      "ringPeak": [
+        513,
+        1370
+      ],
+      "rttMaxUs": [
+        3469,
+        10055
+      ],
+      "inst": [
+        {
+          "t": 13.0,
+          "kBps": 4.51,
+          "ps": "max",
+          "rssi": -45
+        },
+        {
+          "t": 19.4,
+          "kBps": 4.16,
+          "ps": "max",
+          "rssi": -45
+        },
+        {
+          "t": 25.8,
+          "kBps": 5.72,
+          "ps": "max",
+          "rssi": -45
+        },
+        {
+          "t": 32.3,
+          "kBps": 4.2,
+          "ps": "max",
+          "rssi": -45
+        },
+        {
+          "t": 38.9,
+          "kBps": 5.04,
+          "ps": "max",
+          "rssi": -46
+        },
+        {
+          "t": 45.4,
+          "kBps": 5.83,
+          "ps": "max",
+          "rssi": -46
+        }
+      ],
+      "tx_tail": "l2test[2362756]: Connected to C8:C9:A3:CB:37:96 (bredr, psm 4113, dcid 65)\nl2test[2362756]: Local device C8:C9:A3:CB:7B:0A (bredr, psm 4113, scid 64)\nl2test[2362756]: Options [imtu 672, omtu 672, flush_to 65535, mode 0, handle 129, class 0x000000, priority 0, rcvbuf 212992]\nl2test[2362756]: Supported PHY: 0x000001ff\nl2test[2362756]: Sending ...\n"
+    },
+    {
+      "tag": "T2_min",
+      "start_ps": "min",
+      "mid": null,
+      "ok": false,
+      "elapsed_s": 47.51,
+      "wifi": {
+        "131": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -45
+        },
+        "87": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -52
+        }
+      },
+      "rssi": [
+        -45,
+        -52
+      ],
+      "rates_131": {
+        "kBps_toCtrl": 0.0,
+        "kBps_toHost": 0.0,
+        "pps_toCtrl": 0.02,
+        "mean_pkt": 17.0,
+        "drops": 0
+      },
+      "rates_87": {
+        "kBps_toCtrl": 0.0,
+        "kBps_toHost": 0.0,
+        "pps_toCtrl": 0.0,
+        "mean_pkt": 0.0,
+        "drops": 0
+      },
+      "ringPeak": [
+        516,
+        1370
+      ],
+      "rttMaxUs": [
+        3469,
+        10055
+      ],
+      "inst": [
+        {
+          "t": 12.9,
+          "kBps": 0.0,
+          "ps": "min",
+          "rssi": -46
+        },
+        {
+          "t": 19.4,
+          "kBps": 0.0,
+          "ps": "min",
+          "rssi": -45
+        },
+        {
+          "t": 25.8,
+          "kBps": 0.0,
+          "ps": "min",
+          "rssi": -45
+        },
+        {
+          "t": 32.3,
+          "kBps": 0.0,
+          "ps": "min",
+          "rssi": -45
+        },
+        {
+          "t": 38.7,
+          "kBps": 0.0,
+          "ps": "min",
+          "rssi": -45
+        },
+        {
+          "t": 45.2,
+          "kBps": 0.0,
+          "ps": "min",
+          "rssi": -45
+        }
+      ],
+      "tx_tail": "l2test[2365497]: Can't connect: Host is down (112)\n"
+    },
+    {
+      "tag": "T3_none",
+      "start_ps": "none",
+      "mid": null,
+      "ok": true,
+      "elapsed_s": 49.03,
+      "wifi": {
+        "131": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -46
+        },
+        "87": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -50
+        }
+      },
+      "rssi": [
+        -46,
+        -50
+      ],
+      "rates_131": {
+        "kBps_toCtrl": 36.27,
+        "kBps_toHost": 0.47,
+        "pps_toCtrl": 55.15,
+        "mean_pkt": 673.4,
+        "drops": 0
+      },
+      "rates_87": {
+        "kBps_toCtrl": 0.04,
+        "kBps_toHost": 36.9,
+        "pps_toCtrl": 0.63,
+        "mean_pkt": 61.9,
+        "drops": 0
+      },
+      "ringPeak": [
+        774,
+        4086
+      ],
+      "rttMaxUs": [
+        3469,
+        10055
+      ],
+      "inst": [
+        {
+          "t": 13.2,
+          "kBps": 39.82,
+          "ps": "none",
+          "rssi": -45
+        },
+        {
+          "t": 19.8,
+          "kBps": 39.82,
+          "ps": "none",
+          "rssi": -46
+        },
+        {
+          "t": 26.4,
+          "kBps": 40.11,
+          "ps": "none",
+          "rssi": -46
+        },
+        {
+          "t": 33.2,
+          "kBps": 38.53,
+          "ps": "none",
+          "rssi": -45
+        },
+        {
+          "t": 39.9,
+          "kBps": 39.31,
+          "ps": "none",
+          "rssi": -45
+        },
+        {
+          "t": 46.4,
+          "kBps": 44.71,
+          "ps": "none",
+          "rssi": -45
+        }
+      ],
+      "tx_tail": "l2test[2368187]: Connected to C8:C9:A3:CB:37:96 (bredr, psm 4113, dcid 64)\nl2test[2368187]: Local device C8:C9:A3:CB:7B:0A (bredr, psm 4113, scid 64)\nl2test[2368187]: Options [imtu 672, omtu 672, flush_to 65535, mode 0, handle 129, class 0x6c0104, priority 0, rcvbuf 212992]\nl2test[2368187]: Supported PHY: 0x000001ff\nl2test[2368187]: Sending ...\n"
+    },
+    {
+      "tag": "T4_min_to_none",
+      "start_ps": "min",
+      "mid": [
+        10,
+        "none"
+      ],
+      "ok": true,
+      "elapsed_s": 49.22,
+      "wifi": {
+        "131": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -46
+        },
+        "87": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -51
+        }
+      },
+      "rssi": [
+        -46,
+        -51
+      ],
+      "rates_131": {
+        "kBps_toCtrl": 37.69,
+        "kBps_toHost": 0.49,
+        "pps_toCtrl": 57.29,
+        "mean_pkt": 673.7,
+        "drops": 0
+      },
+      "rates_87": {
+        "kBps_toCtrl": 0.04,
+        "kBps_toHost": 38.3,
+        "pps_toCtrl": 0.63,
+        "mean_pkt": 61.9,
+        "drops": 0
+      },
+      "ringPeak": [
+        1362,
+        4086
+      ],
+      "rttMaxUs": [
+        16168,
+        10055
+      ],
+      "inst": [
+        {
+          "t": 13.3,
+          "kBps": 38.63,
+          "ps": "min",
+          "rssi": -46
+        },
+        {
+          "t": 20.1,
+          "kBps": 42.26,
+          "ps": "none",
+          "rssi": -46
+        },
+        {
+          "t": 26.7,
+          "kBps": 41.92,
+          "ps": "none",
+          "rssi": -46
+        },
+        {
+          "t": 33.3,
+          "kBps": 39.3,
+          "ps": "none",
+          "rssi": -44
+        },
+        {
+          "t": 40.0,
+          "kBps": 42.09,
+          "ps": "none",
+          "rssi": -44
+        },
+        {
+          "t": 46.6,
+          "kBps": 44.13,
+          "ps": "none",
+          "rssi": -46
+        }
+      ],
+      "tx_tail": "l2test[2370949]: Connected to C8:C9:A3:CB:37:96 (bredr, psm 4113, dcid 64)\nl2test[2370949]: Local device C8:C9:A3:CB:7B:0A (bredr, psm 4113, scid 64)\nl2test[2370949]: Options [imtu 672, omtu 672, flush_to 65535, mode 0, handle 129, class 0x6c0104, priority 0, rcvbuf 212992]\nl2test[2370949]: Supported PHY: 0x000001ff\nl2test[2370949]: Sending ...\n"
+    },
+    {
+      "tag": "T5_none_to_min",
+      "start_ps": "none",
+      "mid": [
+        10,
+        "min"
+      ],
+      "ok": true,
+      "elapsed_s": 49.27,
+      "wifi": {
+        "131": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -46
+        },
+        "87": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -51
+        }
+      },
+      "rssi": [
+        -46,
+        -51
+      ],
+      "rates_131": {
+        "kBps_toCtrl": 37.47,
+        "kBps_toHost": 0.49,
+        "pps_toCtrl": 56.96,
+        "mean_pkt": 673.7,
+        "drops": 0
+      },
+      "rates_87": {
+        "kBps_toCtrl": 0.04,
+        "kBps_toHost": 37.54,
+        "pps_toCtrl": 0.65,
+        "mean_pkt": 60.5,
+        "drops": 0
+      },
+      "ringPeak": [
+        1362,
+        4086
+      ],
+      "rttMaxUs": [
+        16168,
+        10055
+      ],
+      "inst": [
+        {
+          "t": 13.4,
+          "kBps": 41.22,
+          "ps": "none",
+          "rssi": -46
+        },
+        {
+          "t": 20.1,
+          "kBps": 42.1,
+          "ps": "min",
+          "rssi": -44
+        },
+        {
+          "t": 26.7,
+          "kBps": 39.5,
+          "ps": "min",
+          "rssi": -45
+        },
+        {
+          "t": 33.4,
+          "kBps": 40.5,
+          "ps": "min",
+          "rssi": -45
+        },
+        {
+          "t": 40.1,
+          "kBps": 37.62,
+          "ps": "min",
+          "rssi": -44
+        },
+        {
+          "t": 46.7,
+          "kBps": 42.12,
+          "ps": "min",
+          "rssi": -45
+        }
+      ],
+      "tx_tail": "l2test[2373719]: Connected to C8:C9:A3:CB:37:96 (bredr, psm 4113, dcid 64)\nl2test[2373719]: Local device C8:C9:A3:CB:7B:0A (bredr, psm 4113, scid 64)\nl2test[2373719]: Options [imtu 672, omtu 672, flush_to 65535, mode 0, handle 129, class 0x6c0104, priority 0, rcvbuf 212992]\nl2test[2373719]: Supported PHY: 0x000001ff\nl2test[2373719]: Sending ...\n"
+    }
+  ],
+  "final": {
+    "131": {
+      "version": "0.3.18",
+      "rssi": -46,
+      "wifi": {
+        "ssid": "FRITZ!Box 7490MA",
+        "bssid": "5C:49:79:D1:8E:A6",
+        "channel": 6,
+        "rssi": -46
+      },
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 5922525,
+      "toHostBytes": 92179,
+      "toCtrlPkts": 8936,
+      "toHostPkts": 9102,
+      "drops": 0,
+      "ringPeak": 1362,
+      "ringUsed": 681,
+      "rttLastUs": 2719,
+      "rttMaxUs": 16168,
+      "rttSamples": 171
+    },
+    "87": {
+      "version": "0.3.18",
+      "rssi": -51,
+      "wifi": {
+        "ssid": "FRITZ!Box 7490MA",
+        "bssid": "5C:49:79:D1:8E:A6",
+        "channel": 6,
+        "rssi": -51
+      },
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 14392,
+      "toHostBytes": 5909765,
+      "toCtrlPkts": 298,
+      "toHostPkts": 9098,
+      "drops": 0,
+      "ringPeak": 4086,
+      "ringUsed": 681,
+      "rttLastUs": 468,
+      "rttMaxUs": 10055,
+      "rttSamples": 142
+    }
+  }
+}
