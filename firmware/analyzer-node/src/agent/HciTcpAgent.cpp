@@ -4,9 +4,11 @@
 
 #include <esp_bt.h>
 #include <esp_mac.h>
+#include <esp_wifi.h>
 #include <lwip/sockets.h>
 #include <nvs_flash.h>
 #include <stdio.h>
+#include <string.h>
 
 #if CONFIG_IDF_TARGET_ESP32
 #include <esp32-hal-bt.h>
@@ -52,6 +54,14 @@ void enableKeepalive(int fd) {
 #endif
 }
 
+void enlargeTcpBuffers(int fd, int bytes) {
+  if (fd < 0) {
+    return;
+  }
+  setsockopt(fd, SOL_SOCKET, SO_RCVBUF, &bytes, sizeof(bytes));
+  setsockopt(fd, SOL_SOCKET, SO_SNDBUF, &bytes, sizeof(bytes));
+}
+
 }  // namespace
 
 void HciTcpAgent::begin() {
@@ -79,11 +89,63 @@ void HciTcpAgent::begin() {
     return;
   }
   ready_ = true;
+  setWifiPs("min");
   xTaskCreatePinnedToCore(&HciTcpAgent::taskEntry, "hci_agent", 4096, this, 3,
                           nullptr, 1);
-  DiagLog::printf("[hci_agent] ready port=%u heap=%u\n",
+  DiagLog::printf("[hci_agent] ready port=%u heap=%u wifi_ps=%s\n",
                   static_cast<unsigned>(HCI_AGENT_PORT),
-                  static_cast<unsigned>(ESP.getFreeHeap()));
+                  static_cast<unsigned>(ESP.getFreeHeap()), wifi_ps_name_);
+}
+
+bool HciTcpAgent::setWifiPs(const char *mode) {
+  wifi_ps_type_t ps = WIFI_PS_MIN_MODEM;
+  const char *name = "min";
+  if (mode && strcasecmp(mode, "none") == 0) {
+    ps = WIFI_PS_NONE;
+    name = "none";
+  } else if (mode && strcasecmp(mode, "max") == 0) {
+    ps = WIFI_PS_MAX_MODEM;
+    name = "max";
+  } else if (mode && strcasecmp(mode, "min") == 0) {
+    ps = WIFI_PS_MIN_MODEM;
+    name = "min";
+  } else if (mode && mode[0]) {
+    return false;
+  }
+  const esp_err_t err = esp_wifi_set_ps(ps);
+  if (err != ESP_OK) {
+    return false;
+  }
+  WiFi.setSleep(ps != WIFI_PS_NONE);
+  wifi_ps_name_ = name;
+  DiagLog::printf("[hci_agent] wifi_ps=%s\n", wifi_ps_name_);
+  return true;
+}
+
+void HciTcpAgent::registerRoutes(WebServer &server) {
+  WebServer *srv = &server;
+  server.on("/api/hci/wifi_ps", HTTP_GET, [this, srv]() {
+    String j = "{\"wifi_ps\":\"";
+    j += wifi_ps_name_;
+    j += "\",\"modes\":[\"none\",\"min\",\"max\"]}";
+    srv->send(200, "application/json", j);
+  });
+  server.on("/api/hci/wifi_ps", HTTP_POST, [this, srv]() {
+    String mode = srv->hasArg("mode") ? srv->arg("mode") : "";
+    if (mode.isEmpty() && srv->hasArg("plain")) {
+      mode = srv->arg("plain");
+      mode.trim();
+    }
+    if (!setWifiPs(mode.c_str())) {
+      srv->send(400, "application/json",
+                "{\"ok\":false,\"error\":\"bad_mode\",\"hint\":\"none|min|max\"}");
+      return;
+    }
+    String j = "{\"ok\":true,\"wifi_ps\":\"";
+    j += wifi_ps_name_;
+    j += "\"}";
+    srv->send(200, "application/json", j);
+  });
 }
 
 bool HciTcpAgent::startController() {
@@ -155,10 +217,9 @@ void HciTcpAgent::run() {
       vTaskDelay(pdMS_TO_TICKS(20));
       continue;
     }
-    if (overflow_) {
-      dropClient("to_host_overflow");
-      continue;
-    }
+    // Ring overflow only counts drops — killing the TCP session forced a full
+    // HCI reset and was worse for A2DP than a short ACL gap.
+    overflow_ = false;
     if (!client_.connected()) {
       dropClient("peer_closed");
       continue;
@@ -177,6 +238,7 @@ void HciTcpAgent::adoptClient(WiFiClient &fresh) {
   client_ = fresh;
   client_.setNoDelay(true);
   enableKeepalive(client_.fd());
+  enlargeTcpBuffers(client_.fd(), kSockBufBytes);
   framer_.reset();
   pending_ = false;
   in_len_ = in_pos_ = 0;
@@ -262,6 +324,22 @@ bool HciTcpAgent::pumpToController() {
 
 bool HciTcpAgent::pumpToHost(TickType_t wait) {
   bool moved = false;
+  uint8_t batch[kToHostBatchBytes];
+  size_t batch_len = 0;
+  auto flush_batch = [&]() -> bool {
+    if (batch_len == 0) {
+      return true;
+    }
+    const size_t w = client_.write(batch, batch_len);
+    if (w != batch_len) {
+      dropClient("write_fail");
+      return false;
+    }
+    to_host_bytes_ += batch_len;
+    batch_len = 0;
+    moved = true;
+    return true;
+  };
   for (size_t i = 0; i < kMaxItemsPerPump; i++) {
     size_t n = 0;
     auto *item = static_cast<uint8_t *>(
@@ -269,16 +347,33 @@ bool HciTcpAgent::pumpToHost(TickType_t wait) {
     if (!item) {
       break;
     }
-    const size_t w = client_.write(item, n);
-    vRingbufferReturnItem(to_host_, item);
-    if (w != n) {
-      dropClient("write_fail");
+    if (n > sizeof(batch)) {
+      // Oversized (should not happen with kMaxPacket): flush then raw write.
+      if (!flush_batch()) {
+        vRingbufferReturnItem(to_host_, item);
+        return moved;
+      }
+      const size_t w = client_.write(item, n);
+      vRingbufferReturnItem(to_host_, item);
+      if (w != n) {
+        dropClient("write_fail");
+        return moved;
+      }
+      to_host_pkts_++;
+      to_host_bytes_ += n;
+      moved = true;
+      continue;
+    }
+    if (batch_len + n > sizeof(batch) && !flush_batch()) {
+      vRingbufferReturnItem(to_host_, item);
       return moved;
     }
+    memcpy(batch + batch_len, item, n);
+    batch_len += n;
+    vRingbufferReturnItem(to_host_, item);
     to_host_pkts_++;
-    to_host_bytes_ += n;
-    moved = true;
   }
+  flush_batch();
   return moved;
 }
 
@@ -309,7 +404,9 @@ void HciTcpAgent::appendStatusJson(String &json) {
   json += ",\"toHostBytes\":" + String(to_host_bytes_);
   json += ",\"drops\":" + String(drops_);
   json += ",\"framingErrors\":" + String(framing_errors_);
-  json += "}";
+  json += ",\"wifiPs\":\"";
+  json += wifi_ps_name_;
+  json += "\"}";
 }
 
 }  // namespace bt_analyzer

@@ -14,35 +14,61 @@ h1{font-size:16px;color:#3fb950;margin:0 0 6px}
 .muted{color:#8b949e}
 #devs div{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:3px 0;font-size:11px}
 #log{white-space:pre-wrap;font-size:11px}
+#btBtns{display:none}
 </style>
 </head>
 <body>
 <h1>bt-analyzer <span class="muted">ESP32</span></h1>
-<p class="muted">min UI · Lab :8081</p>
+<p id="sub" class="muted">min UI · Lab :8081</p>
 <div class="card"><div id="st" class="mono">…</div>
 <button class="btn" type="button" onclick="refresh()">↻</button>
+<span id="btBtns">
 <button class="btn" type="button" onclick="post('/api/bt/scan/start')">BLE Scan</button>
 <button class="btn sec" type="button" onclick="post('/api/bt/scan/stop')">Stop</button>
 <button class="btn" type="button" onclick="post('/api/bt/inquiry/start')">Inquiry</button>
 <button class="btn sec" type="button" onclick="post('/api/bt/inquiry/stop')">Cancel</button>
 <button class="btn sec" type="button" onclick="post('/api/bt/disconnect')">Disc</button>
+</span>
 </div>
-<div class="card"><div class="muted">Geräte</div><div id="devs" class="mono">—</div></div>
+<div class="card"><div class="muted" id="devsLabel">Geräte</div><div id="devs" class="mono">—</div></div>
 <div class="card"><div class="muted">OTA</div>
 <input id="fw" type="file" accept=".bin"><button class="btn" type="button" onclick="ota()">Upload</button>
 <div id="log" class="mono"></div></div>
 <script>
+let agentMode=false;
 async function refresh(){
   try{
     const j=await(await fetch('/api/status')).json();
+    agentMode=Array.isArray(j.modules)&&j.modules.indexOf('hci_agent')>=0;
+    btBtns.style.display=agentMode?'none':'inline';
+    if(agentMode){
+      const h=j.hciAgent||{};
+      sub.textContent='hci-agent · BlueZ via TCP :'+(h.port||9754)+' · Lab :8081';
+      devsLabel.textContent='HCI agent';
+      st.textContent=`v${j.version} ${j.chip} heap=${j.heap}\n`+
+        `hci ready=${!!h.ready} err=${h.error||'—'}\n`+
+        `bd=${h.bdAddr||'—'} client=${h.client||'—'}\n`+
+        `sess=${h.sessions||0} toCtrl=${h.toCtrlPkts||0}/${h.toCtrlBytes||0}B `+
+        `toHost=${h.toHostPkts||0}/${h.toHostBytes||0}B\n`+
+        `drops=${h.drops||0} framing=${h.framingErrors||0}`;
+      devs.textContent=h.client
+        ?('bridge connected: '+h.client)
+        :'warte auf hci_tcp_bridge.py (BlueZ scan/inquiry dort)';
+      return;
+    }
+    sub.textContent='min UI · Lab :8081';
+    devsLabel.textContent='Geräte';
     const o=j.onchip||{},b=j.btac||{};
     st.textContent=`v${j.version} ${j.chip} heap=${j.heap}\n`+
       `ready=${o.ready} c=${o.classic} ble=${o.ble} state=${o.state}\n`+
       `bd=${o.bdAddr||'—'} peer=${o.peerAddr||'—'} link=${o.leConnected?'up':'—'}\n`+
       `btac fwd=${b.forwarded||0}`;
-  }catch(e){st.textContent=String(e)}
+  }catch(e){st.textContent=String(e);return}
   try{
-    const j=await(await fetch('/api/bt/devices')).json();
+    const r=await fetch('/api/bt/devices');
+    const ct=(r.headers.get('content-type')||'');
+    if(!r.ok||ct.indexOf('json')<0){devs.textContent='keine BT-API';return}
+    const j=await r.json();
     const list=j.devices||[];
     if(!list.length){devs.textContent='keine';return}
     devs.innerHTML=list.map(d=>{

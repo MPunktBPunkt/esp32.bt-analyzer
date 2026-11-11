@@ -31,7 +31,11 @@ public:
 private:
   // ESP32 BR/EDR ACL buffer is 1021 B; headroom for the H4 header.
   static constexpr size_t kMaxPacket = 1100;
-  static constexpr size_t kToHostRingBytes = 16 * 1024;
+  // Larger ring absorbs WiFi coexistence stalls without killing the TCP session.
+  static constexpr size_t kToHostRingBytes = 24 * 1024;
+  // Batch controller→host H4 into ~one TCP segment (BT+WiFi coex hates tiny writes).
+  static constexpr size_t kToHostBatchBytes = 1200;
+  static constexpr int kSockBufBytes = 32 * 1024;
 
   RingbufHandle_t to_host_ = nullptr;
   WiFiServer server_{HCI_AGENT_PORT};
@@ -63,11 +67,18 @@ private:
   bool pumpToController();
   bool pumpToHost(TickType_t wait);
   void sendControllerReset();
+  bool setWifiPs(const char *mode);  // "none"|"min"|"max"
+  const char *wifiPsName() const { return wifi_ps_name_; }
   void run();
+  void registerRoutes(WebServer &server) override;
 
   static int onControllerPacket(uint8_t *data, uint16_t len);
   static void onSendAvailable() {}
   static void taskEntry(void *self);
+
+  // Default matches pre-0.3.16-opt behavior (modem sleep). "none" helps TCP
+  // RTT but can break Classic page/ACL under BT/WiFi coex — toggle via API.
+  const char *wifi_ps_name_ = "min";
 };
 
 }  // namespace bt_analyzer

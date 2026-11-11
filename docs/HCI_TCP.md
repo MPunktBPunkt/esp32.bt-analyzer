@@ -76,7 +76,10 @@ CT100 → `.108` SSH key that `lab_bt_host_ssh.py` already uses.
 - One TCP client; a new connection replaces the old one (reconnecting bridge wins).
 - Client loss (close, keepalive ~11 s, WiFi down) → agent sends HCI_Reset, so
   phone/HU links drop instead of hanging; bridge closes vhci, `hciN` disappears.
-- Controller→host queue 16 KiB; overflow drops the client (no silent gaps).
+- Controller→host queue 24 KiB; overflow increments `drops` (session stays up —
+  a full HCI reset was worse for A2DP than a short ACL gap).
+- Host bridge drains queued VHCI frames into one TCP write; agent batches the
+  reverse path (~1200 B). Tiny per-frame `TCP_NODELAY` segments hurt under BT/WiFi coex.
 - Malformed H4 from the host drops the client (`framingErrors`).
 
 ## Acceptance (lab, in this order)

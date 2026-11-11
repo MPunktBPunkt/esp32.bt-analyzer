@@ -74,11 +74,19 @@ def open_vhci() -> tuple[int, int]:
         raise
 
 
+# Drain queued VHCI packets into one TCP write (no timed delay — a 2 ms wait
+# per lone HCI frame capped A2DP-class flows). Larger socket buffers help the
+# ESP's still-small LwIP window until the agent firmware bump is flashed.
+SOCK_BUF = 256 * 1024
+
+
 def connect_agent(host: str, port: int) -> socket.socket:
     sock = socket.create_connection((host, port), timeout=5)
     sock.settimeout(None)
     sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, SOCK_BUF)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, SOCK_BUF)
     for opt, val in (("TCP_KEEPIDLE", 5), ("TCP_KEEPINTVL", 2), ("TCP_KEEPCNT", 3)):
         if hasattr(socket, opt):
             sock.setsockopt(socket.IPPROTO_TCP, getattr(socket, opt), val)
@@ -103,12 +111,30 @@ def run_session(host: str, port: int) -> None:
         while True:
             ready, _, _ = select.select([sock, fd], [], [])
             if fd in ready:
+                out = bytearray()
                 pkt = os.read(fd, 4096)
                 if not pkt:
                     raise ConnectionError("vhci closed")
                 if pkt[0] in HOST_TO_CONTROLLER:
-                    sock.sendall(pkt)
+                    out += pkt
                     stats["to_ctrl"] += 1
+                # Drain anything already queued without waiting.
+                os.set_blocking(fd, False)
+                try:
+                    while True:
+                        try:
+                            pkt = os.read(fd, 4096)
+                        except BlockingIOError:
+                            break
+                        if not pkt:
+                            raise ConnectionError("vhci closed")
+                        if pkt[0] in HOST_TO_CONTROLLER:
+                            out += pkt
+                            stats["to_ctrl"] += 1
+                finally:
+                    os.set_blocking(fd, True)
+                if out:
+                    sock.sendall(out)
             if sock in ready:
                 data = sock.recv(65536)
                 if not data:
