@@ -26,5 +26,8 @@ Lab control plane for **bt-analyzer**, parallel to usb-analyzer.
 | `GET /api/v1/node/<ip>/drain?n=32` | proxy capture JSONL |
 | `POST /api/v1/node/<ip>/inject` | `{ "hex": "…" }` |
 | `POST /api/v1/node/<ip>/hci-write` | host bulk write when HCI open |
+| `GET /api/v1/agents` | hci-agent D1s (`.131`, `.87`): `hciAgent` status + B/s, pkt/s per direction |
+| `POST /api/v1/btmon/start` · `/stop` | `ssh $BT_HOST_SSH stdbuf -oL btmon` (default `root@192.168.178.108`) |
+| `GET /api/v1/btmon?since=<seq>&hci=<n>` | parsed btmon blocks (dir, proto, title, details), ring 400 |
 
 Nodes are poll-proxied (no ESP HELLO required yet). BTAC capture is pull from ESP `:9753`.

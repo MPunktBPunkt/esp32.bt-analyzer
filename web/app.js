@@ -3,7 +3,6 @@
   const logEl = document.getElementById("log");
   const targetEl = document.getElementById("target");
   const canvas = document.getElementById("rate-chart");
-  const ctx = canvas.getContext("2d");
   let auto = false;
   let timer = null;
   const hist = { appTx: [], appRx: [], hciTx: [], hciRx: [], btac: [] };
@@ -62,17 +61,21 @@
   }
 
   function drawChart() {
-    const w = canvas.width;
-    const h = canvas.height;
-    ctx.fillStyle = "#0d1117";
-    ctx.fillRect(0, 0, w, h);
-    const series = [
+    drawSeries(canvas, hist, [
       { k: "appTx", c: "#3fb950" },
       { k: "appRx", c: "#58a6ff" },
       { k: "hciTx", c: "#e3b341" },
       { k: "hciRx", c: "#d2a8ff" },
       { k: "btac", c: "#f85149" },
-    ];
+    ]);
+  }
+
+  function drawSeries(cv, hist, series) {
+    const ctx = cv.getContext("2d");
+    const w = cv.width;
+    const h = cv.height;
+    ctx.fillStyle = "#0d1117";
+    ctx.fillRect(0, 0, w, h);
     let max = 1;
     series.forEach((s) => hist[s.k].forEach((v) => (max = Math.max(max, v))));
     ctx.strokeStyle = "#21262d";
@@ -227,6 +230,139 @@
     }
   }
 
+  const agentHist = { pCtrl: [], pHost: [], cCtrl: [], cHost: [] };
+
+  async function refreshAgents() {
+    const el = document.getElementById("agents");
+    if (!el) return;
+    try {
+      const data = await jget("/api/v1/agents");
+      const agents = data.agents || [];
+      el.innerHTML = agents
+        .map((a) => {
+          if (!a.ok) return `${esc(a.id)} ${esc(a.ip)} <span class="bad">down</span>`;
+          if (!a.is_agent) return `${esc(a.id)} ${esc(a.ip)} <span class="warn">keine Agent-FW</span> (${esc(a.version)})`;
+          const g = a.agent || {};
+          const r = {};
+          Object.entries(a.rates || {}).forEach(([k, v]) => (r[k] = Math.round(v)));
+          const client = g.client
+            ? `<span class="ok">Brücke ${esc(g.client)}</span>`
+            : '<span class="warn">keine Brücke</span>';
+          return (
+            `${esc(a.id)} ${esc(a.ip)} ${esc(g.bdAddr)} ready=${esc(g.ready)} ${client} · ` +
+            `→ctrl ${esc(r.toCtrlBytesPs)} B/s ${esc(r.toCtrlPktsPs)} pkt/s · ` +
+            `→host ${esc(r.toHostBytesPs)} B/s ${esc(r.toHostPktsPs)} pkt/s · ` +
+            `drops=${esc(g.drops)} framing=${esc(g.framingErrors)} sess=${esc(g.sessions)}`
+          );
+        })
+        .join("<br>");
+      const rate = (id, key) => {
+        const a = agents.find((x) => x.id === id);
+        return ((a && a.rates && a.rates[key]) || 0) / 1000;
+      };
+      const sample = {
+        pCtrl: rate("phone_side", "toCtrlBytesPs"),
+        pHost: rate("phone_side", "toHostBytesPs"),
+        cCtrl: rate("car_side", "toCtrlBytesPs"),
+        cHost: rate("car_side", "toHostBytesPs"),
+      };
+      Object.keys(agentHist).forEach((k) => {
+        agentHist[k].push(sample[k]);
+        if (agentHist[k].length > HMAX) agentHist[k].shift();
+      });
+      document.getElementById("agent-now").textContent =
+        `Handy-Seite →ctrl ${sample.pCtrl.toFixed(1)} →host ${sample.pHost.toFixed(1)} · ` +
+        `Auto-Seite →ctrl ${sample.cCtrl.toFixed(1)} →host ${sample.cHost.toFixed(1)} kB/s`;
+      drawSeries(document.getElementById("agent-chart"), agentHist, [
+        { k: "pCtrl", c: "#e3b341" },
+        { k: "pHost", c: "#58a6ff" },
+        { k: "cCtrl", c: "#f85149" },
+        { k: "cHost", c: "#3fb950" },
+      ]);
+    } catch (e) {
+      el.textContent = String(e);
+    }
+  }
+
+  const btmon = { seq: 0, blocks: [], timer: null };
+  const BTMON_KEEP = 400;
+  const btmonList = document.getElementById("btmon-list");
+
+  function btmonLine(b, details) {
+    const hci = b.hci != null ? `[hci${b.hci}] ` : "";
+    const arrow = { tx: "<", rx: ">", mgmt: "@", note: "=" }[b.dir] || "?";
+    let s =
+      `<span class="bt-${esc(b.dir)}">${hci}${arrow} </span>` +
+      `<span class="bt-proto">${esc(b.proto).padEnd(6)}</span> ` +
+      `<span class="bt-${esc(b.dir)}">${esc(b.title)}</span>` +
+      (b.meta ? ` <span class="bt-meta">${esc(b.meta)}</span>` : "");
+    if (details && b.details && b.details.length) {
+      s += "\n" + b.details.map((d) => `<span class="bt-det">${esc(d)}</span>`).join("\n");
+    }
+    return s;
+  }
+
+  function renderBtmon() {
+    const q = document.getElementById("btmon-filter").value.trim().toLowerCase();
+    const details = document.getElementById("btmon-details").checked;
+    const shown = btmon.blocks.filter(
+      (b) =>
+        !q ||
+        [b.proto, b.title, b.meta, ...(b.details || [])].join("\n").toLowerCase().includes(q)
+    );
+    const atBottom = btmonList.scrollTop + btmonList.clientHeight >= btmonList.scrollHeight - 30;
+    btmonList.innerHTML = shown.length
+      ? shown.slice(-300).map((b) => btmonLine(b, details)).join("\n")
+      : "(noch keine Pakete)";
+    if (atBottom) btmonList.scrollTop = btmonList.scrollHeight;
+  }
+
+  async function pollBtmon() {
+    const hci = document.getElementById("btmon-hci").value;
+    try {
+      const d = await jget(`/api/v1/btmon?since=${btmon.seq}&hci=${hci}`);
+      const fresh = d.blocks || [];
+      if (fresh.length) {
+        btmon.seq = fresh[fresh.length - 1].seq;
+        btmon.blocks = btmon.blocks.concat(fresh).slice(-BTMON_KEEP);
+        renderBtmon();
+      }
+      document.getElementById("btmon-state").textContent =
+        (d.running ? "läuft" : "gestoppt") +
+        ` · ${d.ssh} · Pakete gesamt ${d.last_seq}` +
+        (d.error ? ` · Fehler: ${d.error}` : "");
+      if (!d.running && btmon.timer) {
+        clearInterval(btmon.timer);
+        btmon.timer = null;
+      }
+    } catch (e) {
+      document.getElementById("btmon-state").textContent = String(e);
+    }
+  }
+
+  function btmonReset() {
+    btmon.seq = 0;
+    btmon.blocks = [];
+    renderBtmon();
+  }
+
+  document.getElementById("btn-btmon-start").onclick = async () => {
+    await jpost("/api/v1/btmon/start", {});
+    if (!btmon.timer) btmon.timer = setInterval(pollBtmon, 700);
+    pollBtmon();
+  };
+  document.getElementById("btn-btmon-stop").onclick = async () => {
+    await jpost("/api/v1/btmon/stop", {});
+    pollBtmon();
+  };
+  document.getElementById("btn-btmon-clear").onclick = () => {
+    btmon.blocks = [];
+    renderBtmon();
+  };
+  document.getElementById("btmon-hci").onchange = btmonReset;
+  document.getElementById("btmon-filter").oninput = renderBtmon;
+  document.getElementById("btmon-details").onchange = renderBtmon;
+
   async function refreshHealth() {
     const h = await jget("/api/v1/health");
     document.getElementById("svc-ver").textContent = "ctrl " + (h.version || "?");
@@ -250,6 +386,7 @@
     renderSession(sess.session || {});
     await refreshFrames();
     await refreshProxy();
+    await refreshAgents();
     await refreshProxySession();
   }
 

@@ -12,11 +12,13 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
+from controller import agent_view
 from controller import session as btac_session
+from controller.btmon_live import live as btmon_live
 
 WEB_ROOT = Path(__file__).resolve().parents[2] / "web"
 STARTED = time.time()
-VERSION = "0.3.15"
+VERSION = "0.3.16"
 
 # Poll-proxy lab nodes (OBSERVE) — no HELLO required yet
 LAB_NODES = [
@@ -94,6 +96,17 @@ def classify_proxy_status(st: dict[str, Any] | None, error: str | None = None) -
             "classic_ready": False,
             "flash_blocked": True,
             "label": st.get("label"),
+        }
+    agent = st.get("hciAgent")
+    if agent is not None:
+        return {
+            "class": "HCI_AGENT",
+            "bt_analyzer": True,
+            "classic_ready": bool(agent.get("ready")),
+            "flash_blocked": False,
+            "version": st.get("version"),
+            "bd_addr": agent.get("bdAddr"),
+            "client": agent.get("client"),
         }
     oc = st.get("onchip") or {}
     if "onchip" in st or st.get("version"):
@@ -209,6 +222,20 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json(200, {"ok": True, "proxy": btac_session.proxy_status()})
             return
 
+        if path == "/api/v1/agents":
+            agents = [{**meta, **agent_view.fetch_agent(meta["ip"])} for meta in PROXY_CONTROLLERS]
+            self._send_json(200, {"ok": True, "agents": agents})
+            return
+
+        if path == "/api/v1/btmon":
+            qs = parse_qs(parsed.query)
+            since_arg = (qs.get("since") or ["0"])[0]
+            since = int(since_arg) if since_arg.isdigit() else 0
+            hci_arg = (qs.get("hci") or [""])[0]
+            hci = int(hci_arg) if hci_arg.isdigit() else None
+            self._send_json(200, btmon_live.since(since, hci=hci))
+            return
+
         if path == "/api/v1/proxy/session/frames":
             qs = parse_qs(parsed.query)
             n = int((qs.get("n") or ["48"])[0])
@@ -304,6 +331,13 @@ class Handler(BaseHTTPRequestHandler):
                 fields = {}
         else:
             fields = {k: (v[0] if v else "") for k, v in parse_qs(raw.decode("utf-8", errors="replace")).items()}
+
+        if path == "/api/v1/btmon/start":
+            self._send_json(200, btmon_live.start())
+            return
+        if path == "/api/v1/btmon/stop":
+            self._send_json(200, btmon_live.stop())
+            return
 
         parts = [p for p in path.split("/") if p]
         if len(parts) >= 4 and parts[0] == "api" and parts[1] == "v1" and parts[2] == "proxy" and parts[3] == "session":

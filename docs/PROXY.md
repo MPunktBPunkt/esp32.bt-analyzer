@@ -81,6 +81,7 @@ FW 0.3.15+: stronger inquiry/page scan activity when discoverable.
 
 ### P1 — AVRCP semantic proxy
 
+**Prerequisite:** [`HCI_TCP.md`](HCI_TCP.md) acceptance A1–A6 (both D1s as BlueZ controllers).  
 SDP decode depth + pairing/bonding both sides + AVRCP PLAY/PAUSE/NEXT with capture/modify hooks.  
 Still **no** A2DP requirement for first PiDrive experiments.
 
@@ -94,14 +95,18 @@ Deferred (SCO/eSCO timing).
 
 ## HCI transport design (Network HCI)
 
+**0.3.16:** dedicated `hci-agent-esp32` image — raw H4 over TCP `:9754`, attached
+to BlueZ as `hciN` via `/dev/vhci` (`tools/hci_tcp_bridge.py`). Profiles run in
+BlueZ; the proxy is bridge logic between two BlueZ controllers. See [`HCI_TCP.md`](HCI_TCP.md).
+
 ```text
-Debian controller
-  ├── Controller A agent  → HTTP/BTAC/HCI-cmd API on .131
-  └── Controller B agent  → HTTP/BTAC/HCI-cmd API on .87
+BlueZ host (.108 or VM)
+  ├── hci1 ← hci_tcp_bridge.py ← TCP :9754 ← D1 .131 (phone side)
+  └── hci2 ← hci_tcp_bridge.py ← TCP :9754 ← D1 .87  (car side)
 ```
 
-- **Capture:** existing BTAC `:9753` per node (already proven).
-- **Host commands:** existing `/api/hci/write` + `/api/bt/*` on analyzer FW; later a dedicated `hci_agent` mode may strip thin-host profiles and expose raw HCI only.
+- **Capture:** `btmon -i hciN` (full decode in Wireshark); BTAC `:9753` stays in the analyzer image.
+- **Host commands:** `bluetoothctl` / D-Bus; the HTTP `/api/hci/write` path is analyzer-only.
 - **BlueZ:** keep using Proxmox SSH oracle ([`HOST_BT.md`](HOST_BT.md)) for phone/HU visibility checks; do **not** require AF_BLUETOOTH inside the unprivileged CT.
 - **Future:** optional USB-UART HCI when a D1 is plugged into `.108` — additive, not required for P0.
 

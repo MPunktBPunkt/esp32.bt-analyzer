@@ -10,6 +10,7 @@
 #
 # Default: analyzer-s3 → bt-analyzer.${VERSION}.esp32s3.bin
 # Classic ESP32 (.87/.131): ENV=analyzer-esp32 ./tools/flash_lab_ota.sh 192.168.178.87
+# HCI agent (BlueZ over TCP): ENV=hci-agent-esp32 ./tools/flash_lab_ota.sh 192.168.178.131
 #
 # Usage:
 #   ./tools/flash_lab_ota.sh 192.168.178.88
@@ -26,6 +27,8 @@ BIN_SRC="${BIN_SRC:-$ROOT/firmware/analyzer-node/.pio/build/${ENV_NAME}/firmware
 if [ -z "${FW_NAME:-}" ]; then
   if [ "$ENV_NAME" = "analyzer-esp32" ]; then
     FW_NAME="bt-analyzer.${VERSION}.esp32.bin"
+  elif [ "$ENV_NAME" = "hci-agent-esp32" ]; then
+    FW_NAME="bt-hci-agent.${VERSION}.esp32.bin"
   else
     FW_NAME="bt-analyzer.${VERSION}.esp32s3.bin"
   fi

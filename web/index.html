@@ -28,8 +28,34 @@
   </div>
   <div class="card" style="margin-bottom:14px">
     <h2>PROXY controllers (P0)</h2>
-    <div class="muted">Network HCI · Classic D1s only · semantic bridge later — not HCI passthrough</div>
+    <div class="muted">Network HCI · Classic D1s only · hci-agent → BlueZ (docs/HCI_TCP.md)</div>
     <div class="mono" id="proxy-ctl" style="margin-top:8px">…</div>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <h2>HCI agents (TCP :9754 → BlueZ)</h2>
+    <div class="mono" id="agents">…</div>
+    <canvas id="agent-chart" width="960" height="140" class="chart"></canvas>
+    <div class="mono" id="agent-now" style="margin-top:8px">—</div>
+    <div class="muted" style="margin-left:0;margin-top:4px">B/s je Richtung: zum Controller = BlueZ sendet (Befehle, ACL TX) · zum Host = Controller meldet (Events, ACL RX)</div>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <h2>btmon live (BlueZ-Host, per SSH)</h2>
+    <div class="row">
+      <button type="button" id="btn-btmon-start">Start</button>
+      <button type="button" class="secondary" id="btn-btmon-stop">Stop</button>
+      <button type="button" class="secondary" id="btn-btmon-clear">Leeren</button>
+      <select id="btmon-hci">
+        <option value="">alle hci</option>
+        <option value="0">hci0</option>
+        <option value="1">hci1</option>
+        <option value="2">hci2</option>
+        <option value="3">hci3</option>
+      </select>
+      <input type="text" id="btmon-filter" placeholder="Filter: AVRCP, ATT, SDP, Handle 11, BD-Adresse …">
+      <label class="muted" style="margin-left:0"><input type="checkbox" id="btmon-details" checked> Details</label>
+    </div>
+    <div class="mono" id="btmon-state" style="margin-top:6px;color:#8b949e">gestoppt</div>
+    <pre id="btmon-list" class="mono btmon">(Start drücken — btmon läuft auf dem BlueZ-Host)</pre>
   </div>
   <div class="card" style="margin-bottom:14px">
     <h2>Live rates (kB/s)</h2>

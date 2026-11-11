@@ -1,0 +1,14 @@
+[Unit]
+Description=HCI over TCP bridge to hci-agent ESP %i (BlueZ hciN via /dev/vhci)
+After=network-online.target bluetooth.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=/sbin/modprobe hci_vhci
+ExecStart=/usr/bin/python3 /opt/bt-analyzer/tools/hci_tcp_bridge.py %i
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

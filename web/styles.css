@@ -22,4 +22,9 @@ input[type=text]{flex:1;min-width:180px;background:#0d1117;border:1px solid #303
 pre{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;max-height:280px;overflow:auto;font-size:11px;line-height:1.4;white-space:pre-wrap}
 .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;border:1px solid #30363d;color:#8b949e}
 .pill.on{border-color:#3fb950;color:#3fb950}
+select{background:#0d1117;border:1px solid #30363d;color:#e6edf3;padding:8px 10px;border-radius:6px}
+.chart{width:100%;max-width:960px;height:140px;background:#0d1117;border:1px solid #30363d;border-radius:6px;margin-top:8px}
+pre.btmon{max-height:420px;margin-top:10px;color:#c9d1d9}
+.bt-tx{color:#e3b341}.bt-rx{color:#58a6ff}.bt-mgmt,.bt-note{color:#8b949e}
+.bt-proto{color:#3fb950;font-weight:600}.bt-det{color:#6e7681}.bt-meta{color:#484f58}
 footer{padding:16px 20px;color:#8b949e;font-size:12px;border-top:1px solid #21262d;margin-top:24px}

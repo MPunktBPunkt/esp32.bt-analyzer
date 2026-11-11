@@ -57,10 +57,12 @@ USB-dongle observe (A_OBSERVE) remains **legacy/optional** (`BT_ANALYZER_ENABLE_
 
 Derive from **esp-hub-base v1.10.5**. Capture path: VHCI recv/send → CaptureRing → drain JSONL.
 
-## PROXY extension (planned)
+## PROXY extension
 
-Debian semantic bridge between two Classic D1 radios (`.131` phone-side, `.87` car-side).  
-Not HCI passthrough. Details: [`PROXY.md`](PROXY.md).
+Semantic bridge between two Classic D1 radios (`.131` phone-side, `.87` car-side).  
+Transport (0.3.16): `hci-agent-esp32` exposes each D1 controller as raw H4 over TCP;
+BlueZ on `.108`/VM owns both as `hciN` ([`HCI_TCP.md`](HCI_TCP.md)). No HCI passthrough
+between the two radios — profiles terminate in BlueZ. Details: [`PROXY.md`](PROXY.md).
 
 ## Hard boundaries
 
