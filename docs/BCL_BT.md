@@ -2,9 +2,10 @@
 
 ```yaml
 status: plan · step B1 tool ready (tools/bcl_sdp_probe.py), untested on HW
-depends_on: HCI_TCP A1–A6 (docs/HCI_TCP.md)
+depends_on: HCI_TCP A1–A6 (docs/HCI_TCP.md) — A1–A5 MEASURED, A6 OPEN
 related: hu-probe Gate G2 "BCL wire" (USB AOA path, still open)
 claim_level: HYPOTHESIS — "BCL primarily over BT RFCOMM" is not proven for NBT Evo / F20
+architecture: controlled dual-leg HCI bridge — not passive Phone↔HU air sniff
 ```
 
 ## Why
@@ -15,6 +16,11 @@ seen no BCL on USB AOA so far (G2 open). bimmergestalt's `BclCarLink` speaks BCL
 over RFCOMM, which makes the Bluetooth path the second independent chance.
 Connected traffic is cleartext above the transport (C-D11). On HCI it is also
 above link encryption, so a capture shows the BCL frames directly.
+
+The HCI agent gives a **controlled** capture point (Phone⇄`.131` and, after A6,
+`.87`⇄HU), not a passive listen on an existing Phone↔HU air link. For PiDrive
+the value is correlating BCL/HCI timestamps with USB-MSC events once B2 proves
+RFCOMM bytes on the real HU.
 
 ## Target picture (B3, only if B1/B2 say yes)
 

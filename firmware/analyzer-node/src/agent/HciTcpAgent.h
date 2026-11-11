@@ -60,6 +60,16 @@ private:
   volatile uint32_t to_host_bytes_ = 0;
   volatile uint32_t drops_ = 0;
   volatile uint32_t framing_errors_ = 0;
+  // Self-tracked ring occupancy (NOSPLIT free-size is contiguous-only).
+  volatile uint32_t ring_used_ = 0;
+  volatile uint32_t ring_peak_ = 0;
+  // HCI Command → Command Complete/Status RTT (controller path only).
+  volatile bool rtt_pending_ = false;
+  volatile uint16_t rtt_opcode_ = 0;
+  volatile uint32_t rtt_start_us_ = 0;
+  volatile uint32_t rtt_last_us_ = 0;
+  volatile uint32_t rtt_max_us_ = 0;
+  volatile uint32_t rtt_samples_ = 0;
 
   bool startController();
   void adoptClient(WiFiClient &fresh);
@@ -69,6 +79,10 @@ private:
   void sendControllerReset();
   bool setWifiPs(const char *mode);  // "none"|"min"|"max"
   const char *wifiPsName() const { return wifi_ps_name_; }
+  void noteRingEnqueue(size_t n);
+  void noteRingDequeue(size_t n);
+  void noteHostCommand(const uint8_t *pkt, size_t n);
+  void noteControllerEvent(const uint8_t *pkt, size_t n);
   void run();
   void registerRoutes(WebServer &server) override;
 

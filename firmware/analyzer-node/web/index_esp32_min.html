@@ -46,11 +46,13 @@ async function refresh(){
       sub.textContent='hci-agent · BlueZ via TCP :'+(h.port||9754)+' · Lab :8081';
       devsLabel.textContent='HCI agent';
       st.textContent=`v${j.version} ${j.chip} heap=${j.heap}\n`+
-        `hci ready=${!!h.ready} err=${h.error||'—'}\n`+
+        `hci ready=${!!h.ready} err=${h.error||'—'} wifiPs=${h.wifiPs||'—'}\n`+
         `bd=${h.bdAddr||'—'} client=${h.client||'—'}\n`+
         `sess=${h.sessions||0} toCtrl=${h.toCtrlPkts||0}/${h.toCtrlBytes||0}B `+
         `toHost=${h.toHostPkts||0}/${h.toHostBytes||0}B\n`+
-        `drops=${h.drops||0} framing=${h.framingErrors||0}`;
+        `drops=${h.drops||0} framing=${h.framingErrors||0}\n`+
+        `ring=${h.ringUsed||0}/${h.ringPeak||0}/${h.ringBytes||0}B `+
+        `rtt=${h.rttLastUs||0}/${h.rttMaxUs||0}us n=${h.rttSamples||0}`;
       devs.textContent=h.client
         ?('bridge connected: '+h.client)
         :'warte auf hci_tcp_bridge.py (BlueZ scan/inquiry dort)';

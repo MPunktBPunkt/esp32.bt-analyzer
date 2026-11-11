@@ -1,12 +1,14 @@
-# HCI over TCP — D1 Mini as a BlueZ controller (0.3.16)
+# HCI over TCP — D1 Mini as a BlueZ controller (0.3.17)
 
 ```yaml
-status: code_ready_untested_on_hw
+status: a1_a5_measured
 fw_env: hci-agent-esp32
 port: 9754
 linux: tools/hci_tcp_bridge.py  (root, /dev/vhci)
 boards: ".131 phone side · .87 car side (D1 Mini ESP32, Classic+BLE)"
 claim: transport_only — profiles come from BlueZ, not from this firmware
+evidence: docs/evidence/LAB_HCI_TCP_A1A5_20261111T204600Z.md
+not_claim: passive air sniff of an existing Phone↔HU link
 ```
 
 ## Why
@@ -21,6 +23,9 @@ Phone ─BT─ D1 .131 ─WiFi TCP :9754─┐
                                    ├─ hci_tcp_bridge.py ×2 → /dev/vhci → hci1 / hci2
 BMW HU ─BT─ D1 .87 ─WiFi TCP :9754─┘        BlueZ (bluetoothctl, btmon, Python bridge logic)
 ```
+
+This is a **controlled measurement / relay point** (two real BT links terminated
+on the ESP controllers). It is **not** a passive air sniffer of Phone↔HU.
 
 ## Where the Linux side runs
 
@@ -44,8 +49,19 @@ OTA (`/ota-upload`), Web UI and hub heartbeat stay from esp-hub core, so the boa
 can be flashed back to `analyzer-esp32` the same way. Legacy heartbeat WDT is off
 in this env (no hub in the car must not reset live links).
 
-`GET /api/status` → `hciAgent{ready, bdAddr, client, sessions, toCtrlPkts,
-toHostPkts, drops, framingErrors}`.
+`GET /api/status` → `hciAgent{ready, bdAddr, client, sessions, toCtrlPkts/Bytes,
+toHostPkts/Bytes, drops, framingErrors, ringBytes, ringUsed, ringPeak,
+rttLastUs, rttMaxUs, rttSamples, wifiPs}`.
+
+WiFi power save live toggle (default `min` for stable Classic ACL):
+
+```bash
+curl -s http://192.168.178.131/api/hci/wifi_ps
+curl -s -X POST -d 'mode=none' http://192.168.178.131/api/hci/wifi_ps
+```
+
+Throughput recipe (MEASURED): bring ACL up under `min`, then mid-stream `none`
+→ ~62 kB/s live / ~41.5 kB/s effective (`LAB_HCI_TCP_A1A5_…`).
 
 ## Attach
 
@@ -77,9 +93,12 @@ CT100 → `.108` SSH key that `lab_bt_host_ssh.py` already uses.
 - Client loss (close, keepalive ~11 s, WiFi down) → agent sends HCI_Reset, so
   phone/HU links drop instead of hanging; bridge closes vhci, `hciN` disappears.
 - Controller→host queue 24 KiB; overflow increments `drops` (session stays up —
-  a full HCI reset was worse for A2DP than a short ACL gap).
+  a full HCI reset was worse for A2DP than a short ACL gap). `ringUsed` /
+  `ringPeak` expose queue water level for coex stalls vs sustained-rate limits.
 - Host bridge drains queued VHCI frames into one TCP write; agent batches the
   reverse path (~1200 B). Tiny per-frame `TCP_NODELAY` segments hurt under BT/WiFi coex.
+- `rttLastUs` / `rttMaxUs` measure HCI Command → Command Complete/Status on the
+  controller path (useful for BCL/RFCOMM latency, not just bulk kB/s).
 - Malformed H4 from the host drops the client (`framingErrors`).
 
 ## Acceptance (lab, in this order)
@@ -93,16 +112,19 @@ CT100 → `.108` SSH key that `lab_bt_host_ssh.py` already uses.
 | A5 | Unplug WiFi / stop bridge | phone shows disconnect ≤ 15 s; bridge reconnects, `hciN` back |
 | A6 | Same for `.87`, BMW HU pairs | HU lists the ESP controller as phone |
 
+**A1–A5: MEASURED** (evidence above). **A6: OPEN.**
+
 Only after A1–A6: AVRCP bridge script (P1), the heart-rate GATT relay and the
-BCL-over-BT probe ([`BCL_BT.md`](BCL_BT.md) B1).
+BCL-over-BT probe ([`BCL_BT.md`](BCL_BT.md) B1 → B2 RFCOMM → BCL bytes).
 
 ## Limits
 
 | Item | Status |
 |------|--------|
 | Port 9754 has no auth — anyone on the LAN controls the radio | lab LAN only |
-| WiFi modem sleep is mandatory with BT on ESP32 | adds latency, fine for HCI timeouts (2 s) |
+| WiFi PS default `min`; `none` raises TCP rate but can break Classic page/ACL cold | toggle via `/api/hci/wifi_ps`; recipe min→none mid-stream |
+| Sustained ACL ~41–62 kB/s under coex | MEASURED; dual A2DP relay choppy — physics, not soft bug |
 | Car ESP behind a phone hotspot (NAT) | not reachable as TCP server → needs dial-out or VPN (later) |
 | SCO/HFP audio over HCI | not routed; P3 |
 | A2DP over hotspot | expect dropouts; terminate locally in the car instead (later) |
-| HCI ≠ Air | unchanged |
+| HCI ≠ Air | unchanged — no passive Phone↔HU air capture |

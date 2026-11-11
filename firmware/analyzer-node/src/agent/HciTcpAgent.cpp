@@ -177,14 +177,67 @@ bool HciTcpAgent::startController() {
   return true;
 }
 
+void HciTcpAgent::noteRingEnqueue(size_t n) {
+  const uint32_t used = ring_used_ + static_cast<uint32_t>(n);
+  ring_used_ = used;
+  if (used > ring_peak_) {
+    ring_peak_ = used;
+  }
+}
+
+void HciTcpAgent::noteRingDequeue(size_t n) {
+  const uint32_t cur = ring_used_;
+  ring_used_ = (n >= cur) ? 0 : (cur - static_cast<uint32_t>(n));
+}
+
+void HciTcpAgent::noteHostCommand(const uint8_t *pkt, size_t n) {
+  // H4 Command: type | opcode_lo | opcode_hi | plen | ...
+  if (!pkt || n < 3 || pkt[0] != kH4Command || rtt_pending_) {
+    return;
+  }
+  rtt_opcode_ = static_cast<uint16_t>(pkt[1] | (pkt[2] << 8));
+  rtt_start_us_ = micros();
+  rtt_pending_ = true;
+}
+
+void HciTcpAgent::noteControllerEvent(const uint8_t *pkt, size_t n) {
+  // H4 Event: type | event | plen | params...
+  if (!rtt_pending_ || !pkt || n < 3 || pkt[0] != kH4Event) {
+    return;
+  }
+  uint16_t op = 0;
+  if (pkt[1] == 0x0e && n >= 6) {
+    // Command Complete: Num_HCI_Command_Packets, Opcode
+    op = static_cast<uint16_t>(pkt[4] | (pkt[5] << 8));
+  } else if (pkt[1] == 0x0f && n >= 7) {
+    // Command Status: Status, Num_HCI_Command_Packets, Opcode
+    op = static_cast<uint16_t>(pkt[5] | (pkt[6] << 8));
+  } else {
+    return;
+  }
+  if (op != rtt_opcode_) {
+    return;
+  }
+  const uint32_t dt = micros() - rtt_start_us_;
+  rtt_last_us_ = dt;
+  if (dt > rtt_max_us_) {
+    rtt_max_us_ = dt;
+  }
+  rtt_samples_++;
+  rtt_pending_ = false;
+}
+
 int HciTcpAgent::onControllerPacket(uint8_t *data, uint16_t len) {
   HciTcpAgent *self = g_agent;
   if (!self || !self->client_active_ || !data || len == 0) {
     return 0;
   }
+  self->noteControllerEvent(data, len);
   if (xRingbufferSend(self->to_host_, data, len, 0) != pdTRUE) {
     self->drops_++;
     self->overflow_ = true;
+  } else {
+    self->noteRingEnqueue(len);
   }
   return 0;
 }
@@ -244,6 +297,12 @@ void HciTcpAgent::adoptClient(WiFiClient &fresh) {
   in_len_ = in_pos_ = 0;
   overflow_ = false;
   flushRing(to_host_);
+  ring_used_ = 0;
+  ring_peak_ = 0;
+  rtt_pending_ = false;
+  rtt_last_us_ = 0;
+  rtt_max_us_ = 0;
+  rtt_samples_ = 0;
   client_ip_ = static_cast<uint32_t>(client_.remoteIP());
   sessions_++;
   client_active_ = true;
@@ -283,6 +342,7 @@ bool HciTcpAgent::pumpToController() {
       if (!esp_vhci_host_check_send_available()) {
         return moved;  // leave bytes in the socket: TCP back-pressure
       }
+      noteHostCommand(framer_.data(), framer_.size());
       esp_vhci_host_send_packet(const_cast<uint8_t *>(framer_.data()),
                                 static_cast<uint16_t>(framer_.size()));
       to_ctrl_pkts_++;
@@ -355,6 +415,7 @@ bool HciTcpAgent::pumpToHost(TickType_t wait) {
       }
       const size_t w = client_.write(item, n);
       vRingbufferReturnItem(to_host_, item);
+      noteRingDequeue(n);
       if (w != n) {
         dropClient("write_fail");
         return moved;
@@ -371,6 +432,7 @@ bool HciTcpAgent::pumpToHost(TickType_t wait) {
     memcpy(batch + batch_len, item, n);
     batch_len += n;
     vRingbufferReturnItem(to_host_, item);
+    noteRingDequeue(n);
     to_host_pkts_++;
   }
   flush_batch();
@@ -404,6 +466,12 @@ void HciTcpAgent::appendStatusJson(String &json) {
   json += ",\"toHostBytes\":" + String(to_host_bytes_);
   json += ",\"drops\":" + String(drops_);
   json += ",\"framingErrors\":" + String(framing_errors_);
+  json += ",\"ringBytes\":" + String(static_cast<unsigned>(kToHostRingBytes));
+  json += ",\"ringUsed\":" + String(ring_used_);
+  json += ",\"ringPeak\":" + String(ring_peak_);
+  json += ",\"rttLastUs\":" + String(rtt_last_us_);
+  json += ",\"rttMaxUs\":" + String(rtt_max_us_);
+  json += ",\"rttSamples\":" + String(rtt_samples_);
   json += ",\"wifiPs\":\"";
   json += wifi_ps_name_;
   json += "\"}";
