@@ -1,0 +1,315 @@
+{
+  "utc": "20261111T205603Z",
+  "fw": {
+    "131": "0.3.17",
+    "87": "0.3.17"
+  },
+  "baseline": {
+    "131": {
+      "version": "0.3.17",
+      "rssi": -87,
+      "heap": 64764,
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 11046,
+      "toHostBytes": 12808,
+      "toCtrlPkts": 277,
+      "toHostPkts": 339,
+      "drops": 0,
+      "ringPeak": 270,
+      "ringUsed": 255,
+      "rttLastUs": 2437,
+      "rttMaxUs": 4820,
+      "rttSamples": 77,
+      "bdAddr": "c8:c9:a3:cb:7b:0a"
+    },
+    "87": {
+      "version": "0.3.17",
+      "rssi": -84,
+      "heap": 65352,
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 12629,
+      "toHostBytes": 8149,
+      "toCtrlPkts": 284,
+      "toHostPkts": 299,
+      "drops": 0,
+      "ringPeak": 270,
+      "ringUsed": 15,
+      "rttLastUs": 1529,
+      "rttMaxUs": 3058,
+      "rttSamples": 71,
+      "bdAddr": "c8:c9:a3:cb:37:96"
+    }
+  },
+  "inquiry": {
+    "from_87": "Inquiring ...\n\tC0:B8:83:34:F4:62\tclock offset: 0x40d3\tclass: 0x6c0104\n",
+    "from_131": "Inquiring ...\n"
+  },
+  "tests": [
+    {
+      "tag": "host_to_131_min",
+      "mode": "min",
+      "connected": false,
+      "dt": 7.85,
+      "rates": {
+        "131": {
+          "kBps_toCtrl": 0.0,
+          "kBps_toHost": 0.0,
+          "drops": 0,
+          "ringPeak": 513,
+          "rttLastUs": 382,
+          "rssi": -87,
+          "wifiPs": "min"
+        }
+      },
+      "l2_rx_kBps_mean": null,
+      "l2_rx_kBps_max": null,
+      "l2_rx_n": 0,
+      "tx_tail": "l2test[2153782]: Can't connect: Host is down (112)\n",
+      "rx_tail": "l2test[2153675]: Waiting for connection on psm 4113 ...\n"
+    },
+    {
+      "tag": "host_to_131_none",
+      "mode": "none",
+      "connected": false,
+      "dt": 6.96,
+      "rates": {
+        "131": {
+          "kBps_toCtrl": 0.0,
+          "kBps_toHost": 0.0,
+          "drops": 0,
+          "ringPeak": 513,
+          "rttLastUs": 1284,
+          "rssi": -87,
+          "wifiPs": "none"
+        }
+      },
+      "l2_rx_kBps_mean": null,
+      "l2_rx_kBps_max": null,
+      "l2_rx_n": 0,
+      "tx_tail": "l2test[2154590]: Can't connect: Host is down (112)\n",
+      "rx_tail": "l2test[2154444]: Waiting for connection on psm 4113 ...\n"
+    },
+    {
+      "tag": "esp131_to_87_min",
+      "mode": "min",
+      "connected": false,
+      "dt": 16.05,
+      "rates": {
+        "131": {
+          "kBps_toCtrl": 0.0,
+          "kBps_toHost": 0.0,
+          "drops": 0,
+          "ringPeak": 513,
+          "rttLastUs": 3432,
+          "rssi": -87,
+          "wifiPs": "min"
+        },
+        "87": {
+          "kBps_toCtrl": 0.0,
+          "kBps_toHost": 0.0,
+          "drops": 0,
+          "ringPeak": 273,
+          "rttLastUs": 1157,
+          "rssi": -84,
+          "wifiPs": "min"
+        }
+      },
+      "l2_rx_kBps_mean": null,
+      "l2_rx_kBps_max": null,
+      "l2_rx_n": 0,
+      "tx_tail": "l2test[2155348]: Can't connect: Host is down (112)\n",
+      "rx_tail": "l2test[2155074]: Waiting for connection on psm 4113 ...\n"
+    },
+    {
+      "tag": "esp131_to_87_none",
+      "mode": "none",
+      "connected": false,
+      "dt": 7.54,
+      "rates": {
+        "131": {
+          "kBps_toCtrl": 0.0,
+          "kBps_toHost": 0.0,
+          "drops": 0,
+          "ringPeak": 513,
+          "rttLastUs": 1714,
+          "rssi": -88,
+          "wifiPs": "none"
+        },
+        "87": {
+          "kBps_toCtrl": 0.0,
+          "kBps_toHost": 0.0,
+          "drops": 0,
+          "ringPeak": 273,
+          "rttLastUs": 1696,
+          "rssi": -84,
+          "wifiPs": "none"
+        }
+      },
+      "l2_rx_kBps_mean": null,
+      "l2_rx_kBps_max": null,
+      "l2_rx_n": 0,
+      "tx_tail": "l2test[2156436]: Can't connect: Host is down (112)\n",
+      "rx_tail": "l2test[2156287]: Waiting for connection on psm 4113 ...\n"
+    },
+    {
+      "tag": "esp131_to_87_min_after_none",
+      "mode": "min",
+      "connected": false,
+      "dt": 15.95,
+      "rates": {
+        "131": {
+          "kBps_toCtrl": 0.0,
+          "kBps_toHost": 0.0,
+          "drops": 0,
+          "ringPeak": 513,
+          "rttLastUs": 4991,
+          "rssi": -88,
+          "wifiPs": "min"
+        },
+        "87": {
+          "kBps_toCtrl": 0.0,
+          "kBps_toHost": 0.0,
+          "drops": 0,
+          "ringPeak": 273,
+          "rttLastUs": 1704,
+          "rssi": -84,
+          "wifiPs": "min"
+        }
+      },
+      "l2_rx_kBps_mean": null,
+      "l2_rx_kBps_max": null,
+      "l2_rx_n": 0,
+      "tx_tail": "l2test[2157193]: Can't connect: Host is down (112)\n",
+      "rx_tail": "l2test[2156903]: Waiting for connection on psm 4113 ...\n"
+    },
+    {
+      "tag": "esp87_to_131_none",
+      "mode": "none",
+      "connected": false,
+      "dt": 7.51,
+      "rates": {
+        "87": {
+          "kBps_toCtrl": 0.0,
+          "kBps_toHost": 0.0,
+          "drops": 0,
+          "ringPeak": 273,
+          "rttLastUs": 1442,
+          "rssi": -85,
+          "wifiPs": "none"
+        },
+        "131": {
+          "kBps_toCtrl": 0.0,
+          "kBps_toHost": 0.0,
+          "drops": 0,
+          "ringPeak": 513,
+          "rttLastUs": 310,
+          "rssi": -88,
+          "wifiPs": "none"
+        }
+      },
+      "l2_rx_kBps_mean": null,
+      "l2_rx_kBps_max": null,
+      "l2_rx_n": 0,
+      "tx_tail": "l2test[2158310]: Can't connect: Host is down (112)\n",
+      "rx_tail": "l2test[2158112]: Waiting for connection on psm 4113 ...\n"
+    }
+  ],
+  "rtt": {
+    "min": {
+      "http_131": {
+        "n": 12,
+        "p50": 724.8,
+        "p95": 3810.9,
+        "min": 682.9,
+        "max": 3810.9
+      },
+      "http_87": {
+        "n": 12,
+        "p50": 657.0,
+        "p95": 690.8,
+        "min": 646.8,
+        "max": 690.8
+      },
+      "hci_131": {
+        "delta": 9,
+        "last": 2325,
+        "max": 19082
+      },
+      "hci_87": {
+        "delta": 10,
+        "last": 1536,
+        "max": 3058
+      }
+    },
+    "none": {
+      "http_131": {
+        "n": 12,
+        "p50": 704.2,
+        "p95": 725.0,
+        "min": 659.8,
+        "max": 725.0
+      },
+      "http_87": {
+        "n": 12,
+        "p50": 652.2,
+        "p95": 742.2,
+        "min": 645.2,
+        "max": 742.2
+      },
+      "hci_131": {
+        "delta": 10,
+        "last": 1616,
+        "max": 19082
+      },
+      "hci_87": {
+        "delta": 10,
+        "last": 1376,
+        "max": 3058
+      }
+    }
+  },
+  "final": {
+    "131": {
+      "version": "0.3.17",
+      "rssi": -87,
+      "heap": 63996,
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 11316,
+      "toHostBytes": 19461,
+      "toCtrlPkts": 329,
+      "toHostPkts": 396,
+      "drops": 0,
+      "ringPeak": 513,
+      "ringUsed": 255,
+      "rttLastUs": 1431,
+      "rttMaxUs": 19082,
+      "rttSamples": 128,
+      "bdAddr": "c8:c9:a3:cb:7b:0a"
+    },
+    "87": {
+      "version": "0.3.17",
+      "rssi": -84,
+      "heap": 64052,
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 12831,
+      "toHostBytes": 16011,
+      "toCtrlPkts": 327,
+      "toHostPkts": 351,
+      "drops": 0,
+      "ringPeak": 510,
+      "ringUsed": 255,
+      "rttLastUs": 1376,
+      "rttMaxUs": 3058,
+      "rttSamples": 114,
+      "bdAddr": "c8:c9:a3:cb:37:96"
+    }
+  }
+}

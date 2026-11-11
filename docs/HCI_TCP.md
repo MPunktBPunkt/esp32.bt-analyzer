@@ -10,6 +10,7 @@ claim: transport_only — profiles come from BlueZ, not from this firmware
 evidence:
   - docs/evidence/LAB_HCI_TCP_A1A5_20261111T204600Z.md
   - docs/evidence/LAB_HCI_TCP_WIFI_PS_SWEEP_20261111T202605Z.md
+  - docs/evidence/LAB_HCI_TCP_POSTRESET_20261111T205600Z.md
 not_claim: passive air sniff of an existing Phone↔HU link
 ```
 
