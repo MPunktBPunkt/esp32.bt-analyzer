@@ -7,7 +7,9 @@ port: 9754
 linux: tools/hci_tcp_bridge.py  (root, /dev/vhci)
 boards: ".131 phone side · .87 car side (D1 Mini ESP32, Classic+BLE)"
 claim: transport_only — profiles come from BlueZ, not from this firmware
-evidence: docs/evidence/LAB_HCI_TCP_A1A5_20261111T204600Z.md
+evidence:
+  - docs/evidence/LAB_HCI_TCP_A1A5_20261111T204600Z.md
+  - docs/evidence/LAB_HCI_TCP_WIFI_PS_SWEEP_20261111T202605Z.md
 not_claim: passive air sniff of an existing Phone↔HU link
 ```
 
@@ -60,8 +62,11 @@ curl -s http://192.168.178.131/api/hci/wifi_ps
 curl -s -X POST -d 'mode=none' http://192.168.178.131/api/hci/wifi_ps
 ```
 
-Throughput recipe (MEASURED): bring ACL up under `min`, then mid-stream `none`
-→ ~62 kB/s live / ~41.5 kB/s effective (`LAB_HCI_TCP_A1A5_…`).
+Throughput (MEASURED, see `LAB_HCI_TCP_WIFI_PS_SWEEP_20261111T202605Z`):
+`max`/`min` cold ≈ 3.4–3.8 kB/s; `none` ≈ 38–39 kB/s sustained 60 s (short-window
+live peaks previously ~62 kB/s). `ringPeak` ≪ 24 KiB and drops=0 → coex/PS limit,
+not software queue. After a `none` session, API `min` may not re-throttle until
+radio/session reset.
 
 ## Attach
 
@@ -123,7 +128,7 @@ BCL-over-BT probe ([`BCL_BT.md`](BCL_BT.md) B1 → B2 RFCOMM → BCL bytes).
 |------|--------|
 | Port 9754 has no auth — anyone on the LAN controls the radio | lab LAN only |
 | WiFi PS default `min`; `none` raises TCP rate but can break Classic page/ACL cold | toggle via `/api/hci/wifi_ps`; recipe min→none mid-stream |
-| Sustained ACL ~41–62 kB/s under coex | MEASURED; dual A2DP relay choppy — physics, not soft bug |
+| Sustained ACL ~4 kB/s (`min`/`max`) / ~39 kB/s (`none`); ringPeak ≪ capacity | MEASURED sweep; dual A2DP choppy = coex, not soft bug |
 | Car ESP behind a phone hotspot (NAT) | not reachable as TCP server → needs dial-out or VPN (later) |
 | SCO/HFP audio over HCI | not routed; P3 |
 | A2DP over hotspot | expect dropouts; terminate locally in the car instead (later) |
