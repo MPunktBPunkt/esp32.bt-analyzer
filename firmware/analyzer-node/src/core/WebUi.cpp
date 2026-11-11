@@ -120,6 +120,16 @@ String WebUi::buildStatusJson() const {
     j += ",\"mac\":\"" + macNoColon() + "\"";
     j += ",\"ip\":\"" + WiFi.localIP().toString() + "\"";
     j += ",\"rssi\":" + String(WiFi.RSSI());
+    // Which AP we actually joined (mesh/repeater vs local) — RSSI alone is ambiguous.
+    {
+        String ssid = WiFi.SSID();
+        ssid.replace("\\", "\\\\");
+        ssid.replace("\"", "\\\"");
+        j += ",\"wifi\":{\"ssid\":\"" + ssid + "\"";
+        j += ",\"bssid\":\"" + WiFi.BSSIDstr() + "\"";
+        j += ",\"channel\":" + String(WiFi.channel());
+        j += ",\"rssi\":" + String(WiFi.RSSI()) + "}";
+    }
     j += ",\"uptime\":\"" + fmtUptime(millis() / 1000UL) + "\"";
     j += ",\"heap\":" + String(heap);
     j += ",\"psram\":" + String(psramFree);
