@@ -140,7 +140,7 @@ python3 tools/lab_gate_exits.py
 | BT18 | **GATT + HOGP + FTMS + CP** ([`docs/FLAVOR_BUS.md`](docs/FLAVOR_BUS.md)) |
 | BT19 | **timeline** ([`docs/BT19_TIMELINE.md`](docs/BT19_TIMELINE.md)) — not PTP |
 | BT20 | **window correlate** ([`docs/BT20_CORRELATION.md`](docs/BT20_CORRELATION.md)) |
-| PROXY | P0 + P1.0 **PASS** (dual Classic visible) · HCI over TCP **code ready, HW open** ([`docs/HCI_TCP.md`](docs/HCI_TCP.md) A1–A6) · P1 AVRCP next |
+| PROXY | P0 + P1.0 **PASS** (dual Classic visible) · HCI over TCP **code ready, HW open** ([`docs/HCI_TCP.md`](docs/HCI_TCP.md) A1–A6) · P1 AVRCP next · BCL over BT: plan + SDP probe ([`docs/BCL_BT.md`](docs/BCL_BT.md) B1) |
 | Scope | HCI analyzer ≠ universal host ([`docs/SCOPE_HOST_VS_ANALYZER.md`](docs/SCOPE_HOST_VS_ANALYZER.md)) |
 
 ## License

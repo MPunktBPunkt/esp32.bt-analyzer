@@ -90,7 +90,8 @@ CT100 → `.108` SSH key that `lab_bt_host_ssh.py` already uses.
 | A5 | Unplug WiFi / stop bridge | phone shows disconnect ≤ 15 s; bridge reconnects, `hciN` back |
 | A6 | Same for `.87`, BMW HU pairs | HU lists the ESP controller as phone |
 
-Only after A1–A6: AVRCP bridge script (P1) and the heart-rate GATT relay.
+Only after A1–A6: AVRCP bridge script (P1), the heart-rate GATT relay and the
+BCL-over-BT probe ([`BCL_BT.md`](BCL_BT.md) B1).
 
 ## Limits
 
