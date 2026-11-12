@@ -21,6 +21,8 @@ MAX_PAYLOAD = 4000  # desk practical limit (protocol-bcl.md / BclCarLink)
 
 DEST_ETCH_DESK = 0x0FA4
 DEST_WATCHDOG_DESK = 0x1389
+# Desk/reuse expectation for session init (BclCarLink) — verify on real HU in B2+.
+INIT_MAGIC = bytes([0x12, 0x34, 0x56, 0x78])
 
 CMD_NAMES = {
     1: "OPEN",

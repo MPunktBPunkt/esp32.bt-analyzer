@@ -1,11 +1,12 @@
 # BCL over Bluetooth — observe first, relay later (plan)
 
 ```yaml
-status: plan · B0.5 synth PASS · B0.6 Dummy-HU SDP PASS · B1 tool ready (untested on HU) · A6 OPEN
+status: lab closed → car · B0.5/B0.6 PASS · A6/B1 OPEN · runbook docs/CAR_A6_B1.md
 depends_on: HCI_TCP A1–A6 (docs/HCI_TCP.md) — A1–A5 MEASURED, A6 OPEN
 related: hu-probe Gate G2 "BCL wire" (USB AOA path, still open)
 claim_level: HYPOTHESIS — "BCL primarily over BT RFCOMM" is not proven for NBT Evo / F20
 architecture: controlled dual-leg HCI bridge — not passive Phone↔HU air sniff
+audit_reuse: technology-audit technologies/bmw-bcl + projects/esp32-bt-analyzer/applications/bmw-bcl.md
 ```
 
 ## Why
@@ -48,10 +49,13 @@ B1 needs no pairing. B2 pairs a D1 with a real device (new BD_ADDR, so the HU or
 phone sees a new device; remove it afterwards).
 
 ```bash
-# on .108, bridges for .131 (hci1) and .87 (hci2) running
-python3 tools/bcl_sdp_probe.py -i hci2 hu=<HU BD_ADDR> --records --json /tmp/sdp_hu.json
-python3 tools/bcl_sdp_probe.py -i hci1 phone=<phone BD_ADDR> --records --json /tmp/sdp_phone.json
+# on .108 — re-check hciN after bridge start (lab 2026-11-12: hci1=.87, hci2=.131)
+python3 tools/bcl_sdp_probe.py -i hci1 hu=<HU BD_ADDR> --records --json /tmp/sdp_hu.json
+python3 tools/bcl_sdp_probe.py -i hci2 phone=<phone BD_ADDR> --records --json /tmp/sdp_phone.json
 ```
+
+Car procedure + B1 expectation table: [`CAR_A6_B1.md`](CAR_A6_B1.md).
+**Do not assume RFCOMM channel 5** (Dummy-HU lab only); measure **X** from HU SDP.
 
 The verdict marks SPP (`0x1101`) and vendor 128-bit UUIDs with an RFCOMM channel
 as candidates. A BMW/Connected service name upgrades the verdict to
