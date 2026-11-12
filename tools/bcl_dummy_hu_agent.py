@@ -127,7 +127,12 @@ def run_hu(args: argparse.Namespace) -> int:
                 if c["dev"] == dev:
                     close(fd, "request_disconnection")
 
-    bus.request_name("org.btanalyzer.BclDummyHu")
+    # Well-known name is optional: BlueZ talks to this connection's object path.
+    # Without a system.d policy, request_name raises AccessDenied (SDP script already soft-fails).
+    try:
+        bus.request_name("org.btanalyzer.BclDummyHu")
+    except dbus.DBusException as exc:
+        log.write({"event": "name_warn", "error": str(exc)})
     path = "/org/bluez/bcl_dummy_hu"
     Profile(bus, path)
     pm = dbus.Interface(bus.get_object("org.bluez", "/org/bluez"), "org.bluez.ProfileManager1")

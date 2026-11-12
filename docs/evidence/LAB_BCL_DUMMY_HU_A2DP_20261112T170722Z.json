@@ -1,0 +1,27 @@
+{
+  "utc": "20261112T170722Z",
+  "peer": "external",
+  "hu": "131",
+  "channel": 5,
+  "hu_version": 3,
+  "echo_watchdog": true,
+  "require_a2dp": true,
+  "gate": null,
+  "epistemic": {
+    "source": "real_phone",
+    "evidence_level": "TEST",
+    "claim": "Dummy-HU BCL; not BMW wire FACT"
+  },
+  "pair_agent": true,
+  "prepare_hu_tail": "Waiting to connect to bluetoothd...\n\u001b[0;94m[bluetoothctl]> \u001b[0m        \b\b\b\b\b\b\b\bselect C8:C9:A3:CB:7B:0A\n\u001b[0;94m[bluetoothctl]> \u001b[0mpower on\n\u001b[0;94m[bluetoothctl]> \u001b[0mpairable on\n\u001b[0;94m[bluetoothctl]> \u001b[0mdiscoverable on\nWarning: setting discoverable while discoverable-timeout not set(0) is not recommended\n\u001b[0;94m[bluetoothctl]> \u001b[0msystem-alias BCL-HU-Dummy\n\u001b[0;94m[bluetoothctl]> \u001b[0mquit\n\u001b[0;94m[bluetoothctl]> \u001b[0m\n                           \n",
+  "error": "RuntimeError('hu agent not ready: Traceback (most recent call last):\\n  File \"/tmp/bcl_dummy/bcl_dummy_hu_agent.py\", line 251, in <module>\\n    raise SystemExit(main())\\n                     ~~~~^^\\n  File \"/tmp/bcl_dummy/bcl_dummy_hu_agent.py\", line 247, in main\\n    return run_hu(args) if args.mode == \"hu\" else run_phone(args)\\n           ~~~~~~^^^^^^\\n  File \"/tmp/bcl_dummy/bcl_dummy_hu_agent.py\", line 130, in run_hu\\n    bus.request_name(\"org.btanalyzer.BclDummyHu\")\\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"/usr/lib/python3/dist-packages/dbus/bus.py\", line 299, in request_name\\n    return self.call_blocking(BUS_DAEMON_NAME, BUS_DAEMON_PATH,\\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n                              BUS_DAEMON_IFACE, \\'RequestName\\',\\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n                              \\'su\\', (name, flags))\\n                              ^^^^^^^^^^^^^^^^^^^^\\n  File \"/usr/lib/python3/dist-packages/dbus/connection.py\", line 696, in call_blocking\\n    reply_message = self.send_message_with_reply_and_block(\\n        message, timeout)\\ndbus.exceptions.DBusException: org.freedesktop.DBus.Error.AccessDenied: Connection \":1.4759\" is not allowed to own the service \"org.btanalyzer.BclDummyHu\" due to security policies in the configuration file\\n')",
+  "hu_events": [],
+  "phone_events": [],
+  "hu_summary": {
+    "session_init": 0,
+    "frames": {},
+    "framer_error": false
+  },
+  "phone_summary": null,
+  "verdict": "ERROR"
+}

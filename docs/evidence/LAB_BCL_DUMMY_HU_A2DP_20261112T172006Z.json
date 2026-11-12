@@ -1,0 +1,35 @@
+{
+  "utc": "20261112T172006Z",
+  "peer": "external",
+  "hu": "131",
+  "channel": 5,
+  "apps": [
+    "MyBMW",
+    "AAIDRIVE"
+  ],
+  "phone": {
+    "bd": "AC:C0:48:5E:CB:20",
+    "name": "OnePlus 12"
+  },
+  "gate": {
+    "connected": true,
+    "a2dp_transport": true,
+    "spp_registered_local": true,
+    "rfcomm": false
+  },
+  "hu_events_seen": [
+    "profile_registered",
+    "agent_stopped"
+  ],
+  "verdict": "NO_RFCOMM",
+  "notes": [
+    "Re-paired while Dummy-HU SPP 'BMW Connected' ch.5 + A2DP sink active",
+    "A2DP fd present; no RFCOMM NewConnection; btmon showed no RFCOMM SABM",
+    "AAIDRIVE UI showed no connection attempt",
+    "TEST only \u2014 does not falsify BCL on real HU; falsifies 'these apps open BclCarLink-like SPP to this dummy'"
+  ],
+  "epistemic": {
+    "evidence_level": "TEST",
+    "claim": "MyBMW/AAIDRIVE did not open RFCOMM to Dummy-HU after re-pair with A2DP+SPP gate satisfied"
+  }
+}

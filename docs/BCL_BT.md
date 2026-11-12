@@ -87,11 +87,15 @@ as candidates. A BMW/Connected service name upgrades the verdict to
 |------|-------|
 | NBT Evo / F20 offers BCL over BT at all | UNKNOWN → B1 |
 | RFCOMM server role (HU or phone) | INFERENCE: HU = server, phone app = client (BclCarLink @7cfd959, audit `bmw-bcl-rfcomm-role-2026-desk`) → confirm B1/B2 |
-| App only tries A2DP-connected devices that list SPP | FACT for BclCarLink (`BtClientService`), HYPOTHESIS for MyBMW → B0.7 external |
-| App accepts a D1 as "car" (name, CoD, SDP) | UNKNOWN → B3 |
+| App only tries A2DP-connected devices that list SPP | FACT for **BclCarLink** (`BtClientService`); **not** the AAIdrive/MyBMW opener path |
+| MyBMW + AAIdrive open RFCOMM to Dummy-HU (A2DP+SPP up) | **REJECTED** for this setup — `LAB_BCL_DUMMY_HU_A2DP_20261112T172006Z` `NO_RFCOMM` (AAIdrive = Etch consumer; needs Connected/BclCarLink as link owner) |
+| App accepts a D1 as "car" (name, CoD, SDP) | UNKNOWN → needs BclCarLink peer or real HU B3 |
 | SAS/BCL timeouts over WiFi + HCI | expected fine in home LAN; car must be in WiFi range |
 | iPhone | iAP2/MFi, out of scope |
 | Car behind hotspot NAT | as in HCI_TCP: needs dial-out/VPN, not for B1–B3 |
+| USB/ENET BCL vs BT-only | Desk **Contradiction/HYPOTHESIS** (EVID-BG-020) — not REJECTED; AOA+car can resolve |
+
+**Next (epistemic order):** A6/B1 on car (`docs/CAR_A6_B1.md`). Optional lab: B0.7 external with **BclCarLink** as RFCOMM peer. Do not re-test AAIdrive-alone against Dummy-HU. Desk matrix: pidrive [`HU-Technical-Facts.md`](../../pidrive/docs/fahrzeug/HU-Technical-Facts.md) §10.1–10.4.
 
 ## Decision rule
 

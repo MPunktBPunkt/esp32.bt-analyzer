@@ -28,18 +28,22 @@ linux: ".108 BlueZ + hci_tcp_bridge"
 
 ## B1 expectation table (verify / falsify)
 
-| Layer | Expectation | Status before A6 | Pass if measured |
-|-------|-------------|------------------|------------------|
+| Layer | Expectation | Desk pin / status before A6 | Pass if measured |
+|-------|-------------|------------------------------|------------------|
 | BT link | `.87` pairs/connects to HU | UNKNOWN | A6: stable ACL, HU lists ESP |
-| SDP | some RFCOMM data service | REUSE | any SPP/vendor128 + channel |
-| UUID | SPP `00001101-0000-1000-8000-00805f9b34fb` | REUSE | present **or** documented absent |
-| RFCOMM channel | **X from SDP** (not 5) | UNKNOWN | integer channel recorded |
+| SDP | some RFCOMM data service | REUSE (BclCarLink client needs SPP server) | any SPP/vendor128 + channel |
+| UUID | SPP `00001101-0000-1000-8000-00805f9b34fb` | REUSE · EVID-BCLRF-002 | present **or** documented absent |
+| RFCOMM channel | **X from SDP** (not 5) | UNKNOWN — lab Dummy used 5 only | integer channel recorded |
 | Service name | maybe BMW/Connected hint | REUSE | name string logged (may differ) |
-| BCL framing | 8-byte BE header | REUSE | only after B2 payload |
-| BCL init | `12 34 56 78` then HANDSHAKE | REUSE | B2+ only |
-| Etch dest | `0x0FA4` | REUSE | B2+ only |
-| Watchdog dest | `0x1389` | REUSE | B2+ only |
-| SAS | after BCL tunnel | separate gate | do not claim today |
+| RFCOMM role | HU server / phone client | INFERENCE · EVID-BCLRF-001/003 | SABM direction in B2 |
+| BCL framing | 8-byte BE header | REUSE · EVID-BG-001 | only after B2 payload |
+| BCL init | `12 34 56 78` then HANDSHAKE | REUSE · EVID-BG-003–005 | B2+ only; record **version** |
+| Etch dest | `0x0FA4` | REUSE · EVID-BG-002 | B2+ only |
+| Watchdog dest | `0x1389` / ping `13371337` / 5 s / 20 s TO | REUSE · EVID-BCLRF-004 | B2+ only |
+| SAS | after BCL tunnel | separate gate (AAIdrive/Addons) | do not claim today |
+| AppTypes | A4A/TouchCommand/… possible | Desk dissector · EVID-BG-019 | filter hint only |
+
+Lab note (2026-11-12): MyBMW+AAIdrive vs Dummy-HU = `NO_RFCOMM` — those apps are Etch consumers, not RFCOMM openers. Car B1 still required; optional lab peer = BclCarLink. Matrix: pidrive `HU-Technical-Facts.md` §10.4.
 
 ## Connectivity warning (read before driving)
 
