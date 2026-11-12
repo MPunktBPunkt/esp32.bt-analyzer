@@ -1,0 +1,91 @@
+{
+  "mode": "rfcomm",
+  "ok": true,
+  "transport_ok": true,
+  "decode_ok": true,
+  "hu_dummy": {
+    "ip": "192.168.178.87",
+    "hci": "hci1",
+    "bd": "C8:C9:A3:CB:37:96",
+    "role": "hu_dummy"
+  },
+  "phone_side": {
+    "ip": "192.168.178.131",
+    "hci": "hci2",
+    "bd": "C8:C9:A3:CB:7B:0A",
+    "role": "phone_side"
+  },
+  "rfcomm_channel": 5,
+  "prep": {
+    "btctl_hci1": {
+      "ok": true,
+      "stderr": ""
+    },
+    "btctl_hci2": {
+      "ok": true,
+      "stderr": ""
+    },
+    "sdp_add_sp": {
+      "ok": false,
+      "stdout": "",
+      "note": "optional; RFCOMM uses known channel without SDP"
+    }
+  },
+  "remote": {
+    "ok": true,
+    "phase": "done",
+    "rx_hex": "00040000000000080000000000000000000200010fa4000753594e5448303100ee0000000000000002000000000fa1",
+    "tx_len": 47,
+    "error": null,
+    "listening": true,
+    "peer": "('C8:C9:A3:CB:7B:0A', 5)",
+    "connected": true,
+    "rx_len": 47,
+    "rx_ok": true
+  },
+  "stream_bytes": 47,
+  "frame_count": 3,
+  "frames": [
+    {
+      "cmd": 4,
+      "cmd_name": "HANDSHAKE",
+      "src": 0,
+      "dest": 0,
+      "dest_label": null,
+      "len": 8,
+      "payload_hex": "0000000000000000",
+      "raw_hex": "00040000000000080000000000000000"
+    },
+    {
+      "cmd": 2,
+      "cmd_name": "DATA",
+      "src": 1,
+      "dest": 4004,
+      "dest_label": "Etch",
+      "len": 7,
+      "payload_hex": "53594e54483031",
+      "raw_hex": "000200010fa4000753594e54483031"
+    },
+    {
+      "cmd": 238,
+      "cmd_name": "UNKNOWN",
+      "src": 0,
+      "dest": 0,
+      "dest_label": null,
+      "len": 0,
+      "payload_hex": "",
+      "raw_hex": "00ee000000000000"
+    }
+  ],
+  "error": {
+    "error_code": 1,
+    "error_detail": "payload_len_exceeds_kMaxPayload"
+  },
+  "capture_dir_host": "/tmp/bcl_synth_20261112T060649Z",
+  "epistemic": {
+    "source": "synthetic",
+    "evidence_level": "TEST",
+    "direct_observation": false,
+    "claim": "RFCOMM path can carry synthetic BCL; not BMW service FACT"
+  }
+}

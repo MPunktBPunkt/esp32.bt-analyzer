@@ -1,0 +1,565 @@
+{
+  "utc": "20261112T061010Z",
+  "gate": "62_vs_37",
+  "fw": {
+    "131": "0.3.18",
+    "87": "0.3.18"
+  },
+  "baseline": {
+    "131": {
+      "version": "0.3.18",
+      "rssi": -45,
+      "wifi": {
+        "ssid": "FRITZ!Box 7490MA",
+        "bssid": "5C:49:79:D1:8E:A6",
+        "channel": 6,
+        "rssi": -45
+      },
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 7583913,
+      "toHostBytes": 126598,
+      "toCtrlPkts": 11564,
+      "toHostPkts": 11924,
+      "drops": 0,
+      "ringPeak": 1362,
+      "ringUsed": 681,
+      "ringBytes": 24576,
+      "rttLastUs": 1501,
+      "rttMaxUs": 16168,
+      "rttSamples": 247
+    },
+    "87": {
+      "version": "0.3.18",
+      "rssi": -49,
+      "wifi": {
+        "ssid": "FRITZ!Box 7490MA",
+        "bssid": "5C:49:79:D1:8E:A6",
+        "channel": 6,
+        "rssi": -49
+      },
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 27310,
+      "toHostBytes": 7575762,
+      "toCtrlPkts": 535,
+      "toHostPkts": 11943,
+      "drops": 0,
+      "ringPeak": 4086,
+      "ringUsed": 681,
+      "ringBytes": 24576,
+      "rttLastUs": 1712,
+      "rttMaxUs": 10055,
+      "rttSamples": 257
+    }
+  },
+  "duration_s": 60,
+  "sample_s": 2.0,
+  "tests": [
+    {
+      "tag": "T3_none",
+      "start_ps": "none",
+      "mid": null,
+      "ok": true,
+      "elapsed_s": 65.0,
+      "switch_t": null,
+      "wifi": {
+        "131": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -46
+        },
+        "87": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -50
+        }
+      },
+      "rssi": [
+        -46,
+        -50
+      ],
+      "rates_131": {
+        "kBps_toCtrl": 43.38,
+        "kBps_toHost": 0.55,
+        "pps_toCtrl": 65.7,
+        "mean_pkt": 676.2,
+        "drops": 0
+      },
+      "rates_87": {
+        "kBps_toCtrl": 0.03,
+        "kBps_toHost": 43.85,
+        "pps_toCtrl": 0.48,
+        "mean_pkt": 61.9,
+        "drops": 0
+      },
+      "post_switch_mean_kBps": {
+        "toCtrl": 45.59,
+        "toHost": 45.58
+      },
+      "windows_ctrl": {
+        "n": 16,
+        "mean": 45.59,
+        "max": 47.61,
+        "p50": 45.96,
+        "ge55": 0,
+        "ge45": 14
+      },
+      "windows_ctrl_post": {
+        "n": 16,
+        "mean": 45.59,
+        "max": 47.61,
+        "p50": 45.96,
+        "ge55": 0,
+        "ge45": 14
+      },
+      "windows_host": {
+        "n": 16,
+        "mean": 45.58,
+        "max": 47.14,
+        "p50": 45.71,
+        "ge55": 0,
+        "ge45": 14
+      },
+      "windows_host_post": {
+        "n": 16,
+        "mean": 45.58,
+        "max": 47.14,
+        "p50": 45.71,
+        "ge55": 0,
+        "ge45": 14
+      },
+      "ringPeak": [
+        1362,
+        4086
+      ],
+      "ringBytes": [
+        24576,
+        24576
+      ],
+      "rttMaxUs": [
+        16168,
+        10055
+      ],
+      "inst_ctrl": [
+        {
+          "t": 7.25,
+          "dt": 3.68,
+          "kBps": 45.02,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 10.89,
+          "dt": 3.64,
+          "kBps": 46.43,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 14.57,
+          "dt": 3.68,
+          "kBps": 43.54,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 18.26,
+          "dt": 3.69,
+          "kBps": 47.61,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 21.94,
+          "dt": 3.68,
+          "kBps": 40.85,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 25.58,
+          "dt": 3.64,
+          "kBps": 46.22,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 29.26,
+          "dt": 3.68,
+          "kBps": 46.08,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 32.91,
+          "dt": 3.65,
+          "kBps": 45.37,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 36.59,
+          "dt": 3.68,
+          "kBps": 45.54,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 40.33,
+          "dt": 3.74,
+          "kBps": 45.34,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 44.02,
+          "dt": 3.69,
+          "kBps": 46.86,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 47.67,
+          "dt": 3.65,
+          "kBps": 45.92,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 51.36,
+          "dt": 3.69,
+          "kBps": 45.96,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 55.03,
+          "dt": 3.67,
+          "kBps": 46.39,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 58.71,
+          "dt": 3.68,
+          "kBps": 45.9,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 62.42,
+          "dt": 3.71,
+          "kBps": 46.43,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        }
+      ],
+      "tx_tail": "l2test[3529406]: Connected to C8:C9:A3:CB:37:96 (bredr, psm 4113, dcid 64)\nl2test[3529406]: Local device C8:C9:A3:CB:7B:0A (bredr, psm 4113, scid 64)\nl2test[3529406]: Options [imtu 672, omtu 672, flush_to 65535, mode 0, handle 129, class 0x6c0104, priority 0, rcvbuf 212992]\nl2test[3529406]: Supported PHY: 0x000001ff\nl2test[3529406]: Sending ...\n"
+    },
+    {
+      "tag": "T4_min_to_none",
+      "start_ps": "min",
+      "mid": [
+        10,
+        "none"
+      ],
+      "ok": true,
+      "elapsed_s": 64.58,
+      "switch_t": 10.78,
+      "wifi": {
+        "131": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -45
+        },
+        "87": {
+          "ssid": "FRITZ!Box 7490MA",
+          "bssid": "5C:49:79:D1:8E:A6",
+          "channel": 6,
+          "rssi": -50
+        }
+      },
+      "rssi": [
+        -45,
+        -50
+      ],
+      "rates_131": {
+        "kBps_toCtrl": 40.97,
+        "kBps_toHost": 0.52,
+        "pps_toCtrl": 62.07,
+        "mean_pkt": 675.9,
+        "drops": 0
+      },
+      "rates_87": {
+        "kBps_toCtrl": 0.03,
+        "kBps_toHost": 41.29,
+        "pps_toCtrl": 0.48,
+        "mean_pkt": 61.9,
+        "drops": 0
+      },
+      "post_switch_mean_kBps": {
+        "toCtrl": 43.34,
+        "toHost": 43.46
+      },
+      "windows_ctrl": {
+        "n": 16,
+        "mean": 43.16,
+        "max": 44.94,
+        "p50": 43.79,
+        "ge55": 0,
+        "ge45": 0
+      },
+      "windows_ctrl_post": {
+        "n": 15,
+        "mean": 43.38,
+        "max": 44.94,
+        "p50": 43.79,
+        "ge55": 0,
+        "ge45": 0
+      },
+      "windows_host": {
+        "n": 16,
+        "mean": 43.37,
+        "max": 45.49,
+        "p50": 43.34,
+        "ge55": 0,
+        "ge45": 2
+      },
+      "windows_host_post": {
+        "n": 15,
+        "mean": 43.45,
+        "max": 45.49,
+        "p50": 43.34,
+        "ge55": 0,
+        "ge45": 2
+      },
+      "ringPeak": [
+        1362,
+        4086
+      ],
+      "ringBytes": [
+        24576,
+        24576
+      ],
+      "rttMaxUs": [
+        16168,
+        10055
+      ],
+      "inst_ctrl": [
+        {
+          "t": 7.14,
+          "dt": 3.66,
+          "kBps": 39.82,
+          "ps": "min",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 10.78,
+          "dt": 3.64,
+          "kBps": 43.87,
+          "ps": "min",
+          "rssi": -46,
+          "switched_to": "none"
+        },
+        {
+          "t": 14.52,
+          "dt": 3.74,
+          "kBps": 44.45,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 18.16,
+          "dt": 3.64,
+          "kBps": 41.87,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 21.8,
+          "dt": 3.64,
+          "kBps": 43.67,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 25.47,
+          "dt": 3.67,
+          "kBps": 40.6,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 29.11,
+          "dt": 3.64,
+          "kBps": 44.94,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 32.75,
+          "dt": 3.64,
+          "kBps": 43.3,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 36.42,
+          "dt": 3.67,
+          "kBps": 42.22,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 40.06,
+          "dt": 3.64,
+          "kBps": 44.94,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 43.7,
+          "dt": 3.64,
+          "kBps": 43.3,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 47.34,
+          "dt": 3.64,
+          "kBps": 44.4,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 50.97,
+          "dt": 3.63,
+          "kBps": 43.79,
+          "ps": "none",
+          "rssi": -46,
+          "switched_to": null
+        },
+        {
+          "t": 54.65,
+          "dt": 3.68,
+          "kBps": 40.48,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 58.34,
+          "dt": 3.69,
+          "kBps": 43.98,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        },
+        {
+          "t": 62.03,
+          "dt": 3.69,
+          "kBps": 44.88,
+          "ps": "none",
+          "rssi": -45,
+          "switched_to": null
+        }
+      ],
+      "tx_tail": "l2test[3532535]: Connected to C8:C9:A3:CB:37:96 (bredr, psm 4113, dcid 64)\nl2test[3532535]: Local device C8:C9:A3:CB:7B:0A (bredr, psm 4113, scid 64)\nl2test[3532535]: Options [imtu 672, omtu 672, flush_to 65535, mode 0, handle 129, class 0x6c0104, priority 0, rcvbuf 212992]\nl2test[3532535]: Supported PHY: 0x000001ff\nl2test[3532535]: Sending ...\n"
+    }
+  ],
+  "claim": "short-window peak vs sustained mean under wifi_ps none",
+  "final": {
+    "131": {
+      "version": "0.3.18",
+      "rssi": -45,
+      "wifi": {
+        "ssid": "FRITZ!Box 7490MA",
+        "bssid": "5C:49:79:D1:8E:A6",
+        "channel": 6,
+        "rssi": -45
+      },
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 13251758,
+      "toHostBytes": 199304,
+      "toCtrlPkts": 19967,
+      "toHostPkts": 20393,
+      "drops": 0,
+      "ringPeak": 1362,
+      "ringUsed": 681,
+      "ringBytes": 24576,
+      "rttLastUs": 6783,
+      "rttMaxUs": 16168,
+      "rttSamples": 285
+    },
+    "87": {
+      "version": "0.3.18",
+      "rssi": -51,
+      "wifi": {
+        "ssid": "FRITZ!Box 7490MA",
+        "bssid": "5C:49:79:D1:8E:A6",
+        "channel": 6,
+        "rssi": -51
+      },
+      "ready": true,
+      "client": "192.168.178.108",
+      "wifiPs": "min",
+      "toCtrlBytes": 31267,
+      "toHostBytes": 13241048,
+      "toCtrlPkts": 615,
+      "toHostPkts": 20407,
+      "drops": 0,
+      "ringPeak": 4086,
+      "ringUsed": 681,
+      "ringBytes": 24576,
+      "rttLastUs": 476,
+      "rttMaxUs": 10055,
+      "rttSamples": 288
+    }
+  },
+  "verdict": {
+    "gate": "62_vs_37",
+    "result": "PASS_37",
+    "reason": "sustained ~43.34 kB/s under none; short-window max 44.94 kB/s (no \u226555.0 62-class window). Accept ~37\u201339 as coex budget.",
+    "sustained_kBps": 43.34,
+    "peak_window_kBps": 44.94,
+    "drops": 0,
+    "ringPeak": 4086,
+    "ringBytes": 24576,
+    "focus_tag": "T4_min_to_none"
+  }
+}

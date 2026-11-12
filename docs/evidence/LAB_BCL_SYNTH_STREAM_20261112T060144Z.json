@@ -1,0 +1,116 @@
+{
+  "mode": "offline",
+  "ok": true,
+  "stream_bytes": 47,
+  "stream_hex": "00040000000000080000000000000000000200010fa4000753594e5448303100ee0000000000000002000000000fa1",
+  "chunk_sizes": [
+    1,
+    3,
+    2,
+    8,
+    5,
+    1000
+  ],
+  "frames": [
+    {
+      "cmd": 4,
+      "cmd_name": "HANDSHAKE",
+      "src": 0,
+      "dest": 0,
+      "dest_label": null,
+      "len": 8,
+      "payload_hex": "0000000000000000",
+      "raw_hex": "00040000000000080000000000000000"
+    },
+    {
+      "cmd": 2,
+      "cmd_name": "DATA",
+      "src": 1,
+      "dest": 4004,
+      "dest_label": "Etch",
+      "len": 7,
+      "payload_hex": "53594e54483031",
+      "raw_hex": "000200010fa4000753594e54483031"
+    },
+    {
+      "cmd": 238,
+      "cmd_name": "UNKNOWN",
+      "src": 0,
+      "dest": 0,
+      "dest_label": null,
+      "len": 0,
+      "payload_hex": "",
+      "raw_hex": "00ee000000000000"
+    }
+  ],
+  "frame_count": 3,
+  "error": {
+    "t_us": 1794463304211336,
+    "error_code": 1,
+    "error_name": "PAYLOAD_TOO_LARGE",
+    "error_detail": "payload_len_exceeds_kMaxPayload",
+    "chunk_i": 5
+  },
+  "checks": {
+    "handshake_cmd4": true,
+    "data_synth01": true,
+    "unknown_cmd_ee": true,
+    "payload_too_large": true,
+    "oneshot_matches_chunked_count": true
+  },
+  "events": [
+    {
+      "t_us": 1794463304210336,
+      "direction": "hu_dummy\u2192phone",
+      "chunk_i": 4,
+      "cmd": 4,
+      "cmd_name": "HANDSHAKE",
+      "src": 0,
+      "dest": 0,
+      "dest_label": null,
+      "len": 8,
+      "payload_hex": "0000000000000000",
+      "raw_hex": "00040000000000080000000000000000"
+    },
+    {
+      "t_us": 1794463304211336,
+      "direction": "hu_dummy\u2192phone",
+      "chunk_i": 5,
+      "cmd": 2,
+      "cmd_name": "DATA",
+      "src": 1,
+      "dest": 4004,
+      "dest_label": "Etch",
+      "len": 7,
+      "payload_hex": "53594e54483031",
+      "raw_hex": "000200010fa4000753594e54483031"
+    },
+    {
+      "t_us": 1794463304211336,
+      "direction": "hu_dummy\u2192phone",
+      "chunk_i": 5,
+      "cmd": 238,
+      "cmd_name": "UNKNOWN",
+      "src": 0,
+      "dest": 0,
+      "dest_label": null,
+      "len": 0,
+      "payload_hex": "",
+      "raw_hex": "00ee000000000000"
+    },
+    {
+      "t_us": 1794463304211336,
+      "direction": "hu_dummy\u2192phone",
+      "chunk_i": 5,
+      "error_code": 1,
+      "error_name": "PAYLOAD_TOO_LARGE",
+      "error_detail": "payload_len_exceeds_kMaxPayload"
+    }
+  ],
+  "epistemic": {
+    "source": "synthetic",
+    "evidence_level": "TEST",
+    "direct_observation": false,
+    "claim": "BCL framer mechanics + fragmentation; not BMW wire FACT"
+  }
+}

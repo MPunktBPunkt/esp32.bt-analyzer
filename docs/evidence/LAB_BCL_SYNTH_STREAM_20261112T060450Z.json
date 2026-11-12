@@ -1,0 +1,55 @@
+{
+  "mode": "rfcomm",
+  "ok": false,
+  "transport_ok": false,
+  "decode_ok": false,
+  "hu_dummy": {
+    "ip": "192.168.178.87",
+    "hci": "hci1",
+    "bd": "C8:C9:A3:CB:37:96",
+    "role": "hu_dummy"
+  },
+  "phone_side": {
+    "ip": "192.168.178.131",
+    "hci": "hci2",
+    "bd": "C8:C9:A3:CB:7B:0A",
+    "role": "phone_side"
+  },
+  "rfcomm_channel": 5,
+  "prep": {
+    "btctl_hci1": {
+      "ok": true,
+      "stderr": ""
+    },
+    "btctl_hci2": {
+      "ok": true,
+      "stderr": ""
+    },
+    "sdp_add_sp": {
+      "ok": true,
+      "stdout": "rvice\n\tget \t\tGet local service\n\tsetattr\t\tSet/Add attribute to a SDP record\n\tsetseq\t\tSet/Add attribute sequence to a SDP record\n\nServices:\n\tDID SP DUN LAN FAX OPUSH FTP PRINT HS HSAG HF HFAG SAP PBAP MAP \n\tNAP GN PANU HCRP HID KEYB WIIMOTE CIP CTP A2SRC A2SNK AVRCT AVRTG \n\tUDIUE UDITE SEMCHLA SR1 SYNCML SYNCMLSERV ACTIVESYNC HOTSYNC \n\tPALMOS NOKID PCSUITE NFTP NSYNCML NGAGE APPLE IAP ISYNC GATT \n\t\n",
+      "note": "optional; RFCOMM uses known channel without SDP"
+    }
+  },
+  "remote": {
+    "ok": false,
+    "error": "no_json",
+    "stdout": "",
+    "stderr": "",
+    "returncode": 0
+  },
+  "stream_bytes": 47,
+  "frame_count": 0,
+  "frames": [],
+  "error": {
+    "error_code": null,
+    "error_detail": null
+  },
+  "capture_dir_host": "/tmp/bcl_synth_20261112T060449Z",
+  "epistemic": {
+    "source": "synthetic",
+    "evidence_level": "TEST",
+    "direct_observation": false,
+    "claim": "RFCOMM path can carry synthetic BCL; not BMW service FACT"
+  }
+}

@@ -1,7 +1,7 @@
 # BCL over Bluetooth — observe first, relay later (plan)
 
 ```yaml
-status: plan · step B1 tool ready (tools/bcl_sdp_probe.py), untested on HW
+status: plan · B0.5 synth PASS · B1 tool ready (untested on HU) · A6 OPEN
 depends_on: HCI_TCP A1–A6 (docs/HCI_TCP.md) — A1–A5 MEASURED, A6 OPEN
 related: hu-probe Gate G2 "BCL wire" (USB AOA path, still open)
 claim_level: HYPOTHESIS — "BCL primarily over BT RFCOMM" is not proven for NBT Evo / F20
@@ -38,6 +38,7 @@ end between app and HU; nothing is modified or bypassed.
 | # | Step | Tool | Pass / decision |
 |---|------|------|-----------------|
 | B0 | HCI_TCP A1–A6 | `docs/HCI_TCP.md` | both D1 as BlueZ controllers |
+| B0.5 | Synthetic BCL stream (hu-probe CaC1) offline + optional RFCOMM Dummy-HU `.87`↔`.131` | `tools/bcl_framer.py`, `tools/lab_bcl_synth_stream.py` | framer emits HANDSHAKE/DATA(`SYNTH01`)/UNKNOWN then sticky `PayloadTooLarge`; RFCOMM mode proves bytes survive HCI TCP ↔ BlueZ — **not** BMW wire FACT |
 | B1 | SDP of the HU (via `.87` controller) **and** of the phone with the app (via `.131`) | `tools/bcl_sdp_probe.py` | verdict `CANDIDATE*` on at least one side → B2 · `NONE` both sides → repeat with app active / Connected enabled in HU menu, then stop BT path |
 | B2 | Who is RFCOMM server? Pair the side **without** the service to its D1, start the app, watch `btmon -i hciN` for `RFCOMM` SABM to the channel from B1 | btmon / Lab UI btmon card (filter `RFCOMM`) | first payload bytes match the BCL 8-byte header → G2 evidence over BT |
 | B3 | Relay: D1 registers the service found in B1 (same UUID/channel), accepts the client, connects to the real server through the other D1, copies bytes, decodes BCL | new `tools/bcl_rfcomm_relay.py` (Python port of hu-probe `BclFramer`) | app reaches the same state as with a direct link; JSONL has BCL frames both directions |

@@ -65,9 +65,12 @@ curl -s -X POST -d 'mode=none' http://192.168.178.131/api/hci/wifi_ps
 ```
 
 Throughput (MEASURED): on router AP (RSSI ≈ −45) and on repeater (≈ −85) alike,
-`max`/`min` cold ≈ 3–4 kB/s; `none` ≈ 36–39 kB/s sustained. Better WiFi RSSI does
+`max`/`min` cold ≈ 3–4 kB/s; `none` ≈ 36–45 kB/s sustained. Better WiFi RSSI does
 not raise ACL — coex/PS limit. `ringPeak` ≪ 24 KiB, drops=0. After `none`, API
 `min` may not re-throttle until radio/session reset. Evidence: `LAB_HCI_TCP_WIFI_PS_SWEEP_*`.
+**62-vs-37 gate** (`LAB_HCI_TCP_62_37_GATE_*`, tool `lab_hci_tcp_62_37_gate.py`):
+prior ~62 kB/s not reproduced as sustained or ≥55 kB/s 2 s window; accept ~41–45
+(`none`) as current coex budget (earlier sweeps ~36–39).
 
 ## Attach
 
