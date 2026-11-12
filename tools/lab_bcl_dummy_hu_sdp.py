@@ -147,21 +147,47 @@ def ssh(remote: str, timeout: float = 60.0) -> subprocess.CompletedProcess[str]:
     )
 
 
+def btctl(lines: list[str], timeout: float = 60.0) -> str:
+    """One piped bluetoothctl session; `select` only persists inside a session.
+
+    `@sleep N` lines pause the feed. A piped session registers its own agent, which
+    answers requests for pairings started from this session (feed `yes`); requests
+    for the other side go to the default agent (bt-pair-agent, docs/PAIRING.md).
+    """
+    import shlex
+
+    feed = "; ".join(
+        f"sleep {ln[6:]}" if ln.startswith("@sleep") else f"echo {shlex.quote(ln)}"
+        for ln in lines + ["quit"]
+    )
+    p = ssh(f"{{ {feed}; }} | bluetoothctl", timeout=timeout)
+    return (p.stdout or "") + (p.stderr or "")
+
+
+def resolve_hci(bd: str) -> str | None:
+    """hciN changes after each bridge reconnect; the BD address does not."""
+    import re
+
+    out = ssh("hciconfig -a", timeout=15).stdout or ""
+    for block in re.split(r"\n(?=hci\d+:)", out):
+        if bd.lower() in block.lower():
+            return block.split(":", 1)[0].strip()
+    return None
+
+
+def prep_adapter(side: dict, alias: str) -> dict:
+    hci = resolve_hci(side["bd"]) or side["hci"]
+    out = btctl([f"select {side['bd']}", "power on", "pairable on", "discoverable on",
+                 f"system-alias {alias}"], timeout=30)
+    p = ssh(f"hciconfig {hci} piscan; hciconfig {hci} sspmode 1", timeout=15)
+    selected = "succeeded" in out and "not available" not in out
+    return {"hci": hci, "ok": selected and p.returncode == 0,
+            "tail": out[-300:], "stderr": (p.stderr or "")[-300:]}
+
+
 def prep_adapters(channel: int) -> dict:
-    steps = {}
-    for side, alias in ((HU_DUMMY, "BCL-HU-Dummy"), (PHONE, "BCL-Phone")):
-        script = (
-            f"bluetoothctl select {side['bd']}; "
-            f"bluetoothctl power on; "
-            f"bluetoothctl pairable on; "
-            f"bluetoothctl discoverable on; "
-            f"bluetoothctl system-alias {alias}; "
-            f"hciconfig {side['hci']} piscan; "
-            f"hciconfig {side['hci']} sspmode 1"
-        )
-        p = ssh(script, timeout=30)
-        steps[side["hci"]] = {"ok": p.returncode == 0, "stderr": (p.stderr or "")[-300:]}
-    return steps
+    return {side["role"]: prep_adapter(side, alias)
+            for side, alias in ((HU_DUMMY, "BCL-HU-Dummy"), (PHONE, "BCL-Phone"))}
 
 
 def start_profile(channel: int, hold_s: float) -> tuple[str, Path]:

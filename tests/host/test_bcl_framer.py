@@ -19,10 +19,12 @@ from bcl_framer import (  # noqa: E402
     CA_C1_LAB_CHUNKS,
     DEST_ETCH_DESK,
     HEADER_SIZE,
+    INIT_MAGIC,
     MAX_PAYLOAD,
     BclFramer,
     BclParseError,
     build_ca_c1_lab_bcl_stream,
+    build_phone_session_prelude,
     build_synthetic_frame,
     cmd_desk_name,
     dest_desk_label,
@@ -159,6 +161,44 @@ class TestBclFramer(unittest.TestCase):
             frames, last = feed_chunked(stream, sizes)
             self.assertFalse(last.error)
             self.assertEqual(frames, expected)
+
+
+class TestSessionInit(unittest.TestCase):
+    """Phone→HU prelude per BclCarLink desk evidence (not BMW wire FACT)."""
+
+    def test_prelude_counts_inits_then_frames(self):
+        fr = BclFramer()
+        r = fr.feed(build_phone_session_prelude(repeats=3))
+        self.assertFalse(r.error)
+        self.assertEqual(r.session_inits, 3)
+        self.assertEqual([f.cmd for f in r.frames], [5])
+        self.assertEqual(r.frames[0].payload, bytes([0x00, 0x03]))
+        self.assertEqual(fr.session_init_count(), 3)
+
+    def test_prelude_bytewise(self):
+        stream = build_phone_session_prelude(repeats=2)
+        frames, last = feed_chunked(stream, (1,) * len(stream))
+        self.assertFalse(last.error)
+        self.assertEqual([f.cmd for f in frames], [5])
+
+    def test_lone_magic_is_not_incomplete(self):
+        r = BclFramer().feed(INIT_MAGIC)
+        self.assertEqual(r.session_inits, 1)
+        self.assertFalse(r.incomplete)
+        self.assertEqual(r.frames, [])
+
+    def test_magic_between_frames(self):
+        stream = (build_synthetic_frame(2, 1, DEST_ETCH_DESK, b"A") + INIT_MAGIC
+                  + build_synthetic_frame(2, 1, DEST_ETCH_DESK, b"B"))
+        r = BclFramer().feed(stream)
+        self.assertEqual([f.payload for f in r.frames], [b"A", b"B"])
+        self.assertEqual(r.session_inits, 1)
+
+    def test_magic_inside_payload_untouched(self):
+        raw = build_synthetic_frame(2, 1, DEST_ETCH_DESK, INIT_MAGIC * 2)
+        r = BclFramer().feed(raw)
+        self.assertEqual(r.session_inits, 0)
+        self.assertEqual(r.frames[0].payload, INIT_MAGIC * 2)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,26 @@
+[Unit]
+# Pairing agent for the HCI-TCP adapters (tools/bt_pair_agent.py, docs/PAIRING.md).
+# .131 faces the phone and plays the car; .87 faces the HU and plays the phone.
+Description=bt-analyzer BlueZ pairing agent
+After=bluetooth.service dbus.service
+Wants=bluetooth.service
+PartOf=bluetooth.service
+
+[Service]
+Type=simple
+User=root
+Environment=BT_PAIR_CONFIRM=always
+Environment=PYTHONUNBUFFERED=1
+RuntimeDirectory=bt-analyzer
+RuntimeDirectoryPreserve=yes
+LogsDirectory=bt-analyzer
+# org.bluez.AgentManager1 shows up a moment after bluetoothd starts.
+ExecStartPre=/bin/sleep 3
+ExecStart=/usr/bin/python3 /opt/bt-analyzer/bt_pair_agent.py \
+  --adapter C8:C9:A3:CB:7B:0A=car_audio:BT-Analyzer-Car \
+  --adapter C8:C9:A3:CB:37:96=phone:BT-Analyzer-Phone
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

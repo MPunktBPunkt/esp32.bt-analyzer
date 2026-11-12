@@ -21,6 +21,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 import time
 from typing import Any
 
@@ -72,14 +73,20 @@ def bluetoothctl(*ctl_args: str, timeout: float = 20.0) -> dict[str, Any]:
     }
 
 
-def ensure_agent() -> None:
+def ensure_agent() -> bool:
+    """Power on and check that bt-pair-agent answers pairing (docs/PAIRING.md).
+
+    A one-shot `bluetoothctl agent …` dies with its process, so it cannot be the
+    fallback. One-shot `bluetoothctl pair X` registers no agent of its own, so
+    both sides are answered by the default agent — the service.
+    """
     bluetoothctl("power", "on", timeout=10)
-    # Headless agent — best-effort
-    ssh_run(
-        ["bash", "-lc", "bluetoothctl agent NoInputNoOutput >/dev/null 2>&1 || true; "
-         "bluetoothctl default-agent >/dev/null 2>&1 || true"],
-        timeout=10,
-    )
+    p = ssh_run(["systemctl", "is-active", "bt-pair-agent"], timeout=10)
+    active = (p.stdout or "").strip() == "active"
+    if not active:
+        print("WARN: bt-pair-agent not active on BlueZ host — pairing requests stay unanswered "
+              "(python3 tools/lab_pair_agent.py deploy)", file=sys.stderr)
+    return active
 
 
 def show() -> dict[str, Any]:
@@ -189,7 +196,7 @@ def disconnect(addr: str) -> dict[str, Any]:
 
 
 def pair(addr: str) -> dict[str, Any]:
-    ensure_agent()
+    agent = ensure_agent()
     t0 = time.time()
     r = bluetoothctl("pair", addr, timeout=45)
     text = (r.get("stdout") or "") + (r.get("stderr") or "")
@@ -197,6 +204,7 @@ def pair(addr: str) -> dict[str, Any]:
     inf = info(addr)
     return {
         "ok": bool(inf.get("paired") or "Pairing successful" in text),
+        "pair_agent": agent,
         "addr": addr.lower(),
         "elapsed_s": round(time.time() - t0, 3),
         "raw": text.strip(),

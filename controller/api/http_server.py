@@ -12,13 +12,13 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
-from controller import agent_view
+from controller import agent_view, pairing
 from controller import session as btac_session
 from controller.btmon_live import live as btmon_live
 
 WEB_ROOT = Path(__file__).resolve().parents[2] / "web"
 STARTED = time.time()
-VERSION = "0.3.16"
+VERSION = "0.3.19"
 
 # Poll-proxy lab nodes (OBSERVE) — no HELLO required yet
 LAB_NODES = [
@@ -227,6 +227,10 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json(200, {"ok": True, "agents": agents})
             return
 
+        if path == "/api/v1/pairing":
+            self._send_json(200, pairing.status())
+            return
+
         if path == "/api/v1/btmon":
             qs = parse_qs(parsed.query)
             since_arg = (qs.get("since") or ["0"])[0]
@@ -337,6 +341,10 @@ class Handler(BaseHTTPRequestHandler):
             return
         if path == "/api/v1/btmon/stop":
             self._send_json(200, btmon_live.stop())
+            return
+        if path == "/api/v1/pairing/window":
+            secs = fields.get("seconds") or "300"
+            self._send_json(200, pairing.open_window(int(secs) if secs.isdigit() else 300))
             return
 
         parts = [p for p in path.split("/") if p]

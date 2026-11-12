@@ -99,9 +99,16 @@ def classify(rec: dict) -> list[str]:
     return tags
 
 
+def is_data_service(rec: dict) -> bool:
+    """SPP/vendor UUID carried over RFCOMM; bluetoothctl records have no protocol list to check."""
+    if not {"spp", "vendor128"} & set(classify(rec)):
+        return False
+    return rec["rfcomm"] is not None or not rec["protocols"]
+
+
 def verdict(records: list[dict]) -> str:
     tagged = [classify(r) for r in records]
-    data = [t for t in tagged if {"spp", "vendor128"} & set(t)]
+    data = [classify(r) for r in records if is_data_service(r)]
     if any("name_hint" in t for t in data):
         return "CANDIDATE_STRONG: RFCOMM data service with BMW/Connected name"
     if data:

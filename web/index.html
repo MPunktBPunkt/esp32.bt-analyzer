@@ -36,7 +36,10 @@
     <div class="mono" id="agents">…</div>
     <canvas id="agent-chart" width="960" height="140" class="chart"></canvas>
     <div class="mono" id="agent-now" style="margin-top:8px">—</div>
-    <div class="muted" style="margin-left:0;margin-top:4px">B/s je Richtung: zum Controller = BlueZ sendet (Befehle, ACL TX) · zum Host = Controller meldet (Events, ACL RX)</div>
+    <div class="row" style="margin-top:4px">
+      <button type="button" class="secondary" id="btn-agent-clear">Grafik leeren</button>
+    </div>
+    <div class="muted" style="margin-left:0;margin-top:4px">kB/s je Richtung, Abfrage jede Sekunde: zum Controller = BlueZ sendet (Befehle, ACL TX) · zum Host = Controller meldet (Events, ACL RX). Nach 5 s ohne Verkehr friert die Kurve ein, der letzte Datenstoß bleibt stehen.</div>
   </div>
   <div class="card" style="margin-bottom:14px">
     <h2>btmon live (BlueZ-Host, per SSH)</h2>
@@ -58,8 +61,20 @@
     <pre id="btmon-list" class="mono btmon">(Start drücken — btmon läuft auf dem BlueZ-Host)</pre>
   </div>
   <div class="card" style="margin-bottom:14px">
+    <h2>Pairing (BlueZ-Agent auf dem Host)</h2>
+    <div class="mono" id="pair-state" style="color:#8b949e">…</div>
+    <div class="mono" id="pair-passkey" style="display:none;margin-top:8px;padding:8px;border:1px solid #d29922;border-radius:6px;font-size:15px"></div>
+    <div class="mono" id="pair-adapters" style="margin-top:8px">—</div>
+    <div class="row" style="margin-top:4px">
+      <button type="button" id="btn-pair-window">Pairing-Fenster 5 min</button>
+      <button type="button" class="secondary" id="btn-pair-refresh">Aktualisieren</button>
+    </div>
+    <pre id="pair-events" class="mono btmon" style="max-height:220px">(keine Ereignisse)</pre>
+    <div class="muted" style="margin-left:0;margin-top:4px">Der Agent bestätigt unsere Seite automatisch (DisplayYesNo). Die Zahl muss am Handy bzw. im iDrive verglichen und dort bestätigt werden. Regel <b>window</b>: nur bei offenem Fenster.</div>
+  </div>
+  <div class="card" style="margin-bottom:14px">
     <h2>Live rates (kB/s)</h2>
-    <div class="mono" id="rate-legend">App TX/RX · HCI ACL TX/RX · BTAC fwd · session fps when live</div>
+    <div class="mono" id="rate-legend">App TX/RX · HCI ACL TX/RX · BTAC fwd · session fps when live — nur On-Chip-Topologie (.88), braucht „Auto 1s“</div>
     <canvas id="rate-chart" width="960" height="180" style="width:100%;max-width:960px;height:180px;background:#0d1117;border:1px solid #30363d;border-radius:6px;margin-top:8px"></canvas>
     <div class="mono" id="rate-now" style="margin-top:8px">—</div>
     <div class="mono" id="sess-rate" style="margin-top:4px;color:#8b949e">session: idle</div>

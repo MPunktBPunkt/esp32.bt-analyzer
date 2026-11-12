@@ -1,4 +1,4 @@
-# HCI over TCP — D1 Mini as a BlueZ controller (0.3.17)
+# HCI over TCP — D1 Mini as a BlueZ controller (0.3.19)
 
 ```yaml
 status: a1_a5_measured
@@ -55,7 +55,7 @@ in this env (no hub in the car must not reset live links).
 
 `GET /api/status` → `hciAgent{ready, bdAddr, client, sessions, toCtrlPkts/Bytes,
 toHostPkts/Bytes, drops, framingErrors, ringBytes, ringUsed, ringPeak,
-rttLastUs, rttMaxUs, rttSamples, wifiPs}`.
+rttLastUs, rttMaxUs, rttSamples, wifiPs, coex, coexErr}`.
 
 WiFi power save live toggle (default `min` for stable Classic ACL):
 
@@ -71,6 +71,11 @@ not raise ACL — coex/PS limit. `ringPeak` ≪ 24 KiB, drops=0. After `none`,
 **62-vs-37 gate** (`LAB_HCI_TCP_62_37_GATE_*`, tool `lab_hci_tcp_62_37_gate.py`):
 prior ~62 kB/s not reproduced as sustained or ≥55 kB/s 2 s window; accept ~41–45
 (`none`) as current coex budget (earlier sweeps ~36–39).
+
+Coex mode (0.3.19, untested on HW): `GET|POST /api/hci/coex` `mode=default|a2dp|prefer_bt`.
+`a2dp` sets the A2DP-streaming coex status that Bluedroid would set; BlueZ on
+Linux cannot. A/B with `tools/lab_hci_coex_ab.py`; A2DP bit-rate budget and relay
+plan in [`A2DP_RELAY.md`](A2DP_RELAY.md).
 
 ## Attach
 
@@ -123,6 +128,9 @@ CT100 → `.108` SSH key that `lab_bt_host_ssh.py` already uses.
 
 **A1–A5: MEASURED** (evidence above). **A6: OPEN.**
 
+A4/A6 need a default pairing agent on `.108` (`bt-pair-agent`, DisplayYesNo):
+the remote side starts pairing and BlueZ asks that agent. See `docs/PAIRING.md`.
+
 Only after A1–A6: AVRCP bridge script (P1), the heart-rate GATT relay and the
 BCL-over-BT probe ([`BCL_BT.md`](BCL_BT.md) B1 → B2 RFCOMM → BCL bytes).
 
@@ -132,7 +140,7 @@ BCL-over-BT probe ([`BCL_BT.md`](BCL_BT.md) B1 → B2 RFCOMM → BCL bytes).
 |------|--------|
 | Port 9754 has no auth — anyone on the LAN controls the radio | lab LAN only |
 | WiFi PS default `min`; `none` raises TCP rate but can break Classic page/ACL cold | toggle via `/api/hci/wifi_ps`; recipe min→none mid-stream |
-| Sustained ACL ~4 kB/s (`min`/`max`) / ~39 kB/s (`none`); ringPeak ≪ capacity | MEASURED sweep; dual A2DP choppy = coex, not soft bug |
+| Sustained ACL ~4 kB/s (`min`/`max`) / ~39 kB/s (`none`); ringPeak ≪ capacity | MEASURED sweep; dual A2DP choppy = coex, not soft bug; SBC bitpool 53 needs ~42 kB/s per leg ([`A2DP_RELAY.md`](A2DP_RELAY.md)) |
 | Car ESP behind a phone hotspot (NAT) | not reachable as TCP server → needs dial-out or VPN (later) |
 | SCO/HFP audio over HCI | not routed; P3 |
 | A2DP over hotspot | expect dropouts; terminate locally in the car instead (later) |

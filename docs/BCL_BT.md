@@ -41,12 +41,31 @@ end between app and HU; nothing is modified or bypassed.
 | B0 | HCI_TCP A1–A6 | `docs/HCI_TCP.md` | both D1 as BlueZ controllers |
 | B0.5 | Synthetic BCL stream (hu-probe CaC1) offline + optional RFCOMM Dummy-HU `.87`↔`.131` | `tools/bcl_framer.py`, `tools/lab_bcl_synth_stream.py` | framer emits HANDSHAKE/DATA(`SYNTH01`)/UNKNOWN then sticky `PayloadTooLarge`; RFCOMM mode proves bytes survive HCI TCP ↔ BlueZ — **not** BMW wire FACT |
 | B0.6 | Dummy-HU advertises SPP `"BMW Connected"` ch.5 via ProfileManager; phone-side `sdptool browse` | `tools/lab_bcl_dummy_hu_sdp.py` | `bcl_sdp_probe` verdict `CANDIDATE_STRONG` — messkette for B1 ready without real HU |
+| B0.7 | Dummy-HU on `.131` = SPP server **and** A2DP sink; keeps RFCOMM open, answers `12 34 56 78` with HANDSHAKE, logs frames (JSONL). Synthetic: `.87` pairs, A2DP-connects, checks the BclCarLink gate, then runs init → HANDSHAKE → (SELECTPROTO) → KNOCK → watchdog. External: real phone with the app | `tools/lab_bcl_dummy_hu_a2dp.py` (+ `bcl_dummy_hu.py`, `bcl_dummy_hu_agent.py`) | synthetic `PASS`; external `BCL_INIT_SEEN` / `BCL_KNOCK_SEEN` = the app speaks BCL over BT to a D1 — still not HU wire |
 | B1 | SDP of the HU (via `.87` controller) **and** of the phone with the app (via `.131`) | `tools/bcl_sdp_probe.py` | verdict `CANDIDATE*` on at least one side → B2 · `NONE` both sides → repeat with app active / Connected enabled in HU menu, then stop BT path |
 | B2 | Who is RFCOMM server? Pair the side **without** the service to its D1, start the app, watch `btmon -i hciN` for `RFCOMM` SABM to the channel from B1 | btmon / Lab UI btmon card (filter `RFCOMM`) | first payload bytes match the BCL 8-byte header → G2 evidence over BT |
 | B3 | Relay: D1 registers the service found in B1 (same UUID/channel), accepts the client, connects to the real server through the other D1, copies bytes, decodes BCL | new `tools/bcl_rfcomm_relay.py` (Python port of hu-probe `BclFramer`) | app reaches the same state as with a direct link; JSONL has BCL frames both directions |
 
+B0.7 order matters: the dummy must run **before** the phone pairs or connects,
+otherwise the phone's cached SDP has no SPP UUID and the app skips the device
+(Android: re-pair or toggle BT). HU replies after HANDSHAKE are unknown; the
+dummy stays silent, so a BclCarLink-like client drops the link after the 20 s
+watchdog timeout unless `--echo-watchdog` is set.
+
+B0.7 external and B2 need `bt-pair-agent` on `.108` (`docs/PAIRING.md`): the
+phone starts pairing, the passkey shows in the Lab UI card **Pairing**, confirm on
+the phone. Synthetic B0.7 uses the agent too (Numeric Comparison on both D1s via
+`busctl`); without it the script falls back to Just Works and records
+`pair_agent: false`.
+
+```bash
+python3 tools/lab_bcl_dummy_hu_a2dp.py                       # synthetic, .131 = HU-dummy
+python3 tools/lab_bcl_dummy_hu_a2dp.py --hu-version 4        # phone must send SELECTPROTO(3)
+python3 tools/lab_bcl_dummy_hu_a2dp.py --peer external --seconds 180 --echo-watchdog
+```
+
 B1 needs no pairing. B2 pairs a D1 with a real device (new BD_ADDR, so the HU or
-phone sees a new device; remove it afterwards).
+phone sees a new device; remove it afterwards with `tools/lab_pair_agent.py remove`).
 
 ```bash
 # on .108 — re-check hciN after bridge start (lab 2026-11-12: hci1=.87, hci2=.131)
@@ -67,7 +86,8 @@ as candidates. A BMW/Connected service name upgrades the verdict to
 | Item | State |
 |------|-------|
 | NBT Evo / F20 offers BCL over BT at all | UNKNOWN → B1 |
-| RFCOMM server role (HU or phone) | UNKNOWN → B1/B2 |
+| RFCOMM server role (HU or phone) | INFERENCE: HU = server, phone app = client (BclCarLink @7cfd959, audit `bmw-bcl-rfcomm-role-2026-desk`) → confirm B1/B2 |
+| App only tries A2DP-connected devices that list SPP | FACT for BclCarLink (`BtClientService`), HYPOTHESIS for MyBMW → B0.7 external |
 | App accepts a D1 as "car" (name, CoD, SDP) | UNKNOWN → B3 |
 | SAS/BCL timeouts over WiFi + HCI | expected fine in home LAN; car must be in WiFi range |
 | iPhone | iAP2/MFi, out of scope |

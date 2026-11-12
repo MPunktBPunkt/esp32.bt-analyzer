@@ -22,6 +22,8 @@ MAX_PAYLOAD = 4000  # desk practical limit (protocol-bcl.md / BclCarLink)
 DEST_ETCH_DESK = 0x0FA4
 DEST_WATCHDOG_DESK = 0x1389
 # Desk/reuse expectation for session init (BclCarLink) — verify on real HU in B2+.
+# Phone→HU sends these 4 bytes (repeated ~1 s) before any 8-byte header; read as a
+# header they would give len=0x5678 and a sticky PayloadTooLarge.
 INIT_MAGIC = bytes([0x12, 0x34, 0x56, 0x78])
 
 CMD_NAMES = {
@@ -70,6 +72,7 @@ class BclFrame:
 @dataclass
 class BclFeedResult:
     frames: list[BclFrame] = field(default_factory=list)
+    session_inits: int = 0
     incomplete: bool = False
     error: bool = False
     error_code: BclParseError = BclParseError.NONE
@@ -127,6 +130,11 @@ def build_ca_c1_lab_bcl_stream() -> bytes:
     return b"".join(parts)
 
 
+def build_phone_session_prelude(repeats: int = 2) -> bytes:
+    """Phone→HU start as BclCarLink sends it: init magic (repeated), then SELECTPROTO(3)."""
+    return INIT_MAGIC * repeats + build_synthetic_frame(5, 0, 0, _be16(3))
+
+
 def iter_chunks(data: bytes, sizes: Iterable[int]) -> list[bytes]:
     """Split data by successive chunk sizes; remainder is one final chunk."""
     out: list[bytes] = []
@@ -149,11 +157,16 @@ class BclFramer:
         self._buf = bytearray()
         self._error = False
         self._error_code = BclParseError.NONE
+        self._session_inits = 0
 
     def reset(self) -> None:
         self._buf.clear()
         self._error = False
         self._error_code = BclParseError.NONE
+        self._session_inits = 0
+
+    def session_init_count(self) -> int:
+        return self._session_inits
 
     def has_error(self) -> bool:
         return self._error
@@ -187,6 +200,12 @@ class BclFramer:
 
     def _try_emit(self, out: BclFeedResult) -> None:
         while not self._error:
+            # No valid command is 0x1234, so the magic is unambiguous at a frame boundary.
+            if self._buf[: len(INIT_MAGIC)] == INIT_MAGIC:
+                del self._buf[: len(INIT_MAGIC)]
+                self._session_inits += 1
+                out.session_inits += 1
+                continue
             if len(self._buf) < HEADER_SIZE:
                 out.incomplete = len(self._buf) > 0
                 return

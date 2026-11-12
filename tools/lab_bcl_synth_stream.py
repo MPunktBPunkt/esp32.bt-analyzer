@@ -262,21 +262,12 @@ print(json.dumps(result))
 
 def prep_rfcomm_adapters() -> dict:
     """Power/discoverable both adapters; alias HU-dummy. SDP optional (known channel)."""
+    from lab_bcl_dummy_hu_sdp import prep_adapter
+
     steps = {}
     for side in (HU_DUMMY, PHONE):
         alias = "BCL-HU-Dummy" if side is HU_DUMMY else "BCL-Phone"
-        script = (
-            f"bluetoothctl select {side['bd']}; "
-            f"bluetoothctl power on; "
-            f"bluetoothctl pairable on; "
-            f"bluetoothctl discoverable on; "
-            f"bluetoothctl system-alias {alias}"
-        )
-        p = ssh(f"bash -lc {shlex.quote(script)}", timeout=25)
-        steps[f"btctl_{side['hci']}"] = {
-            "ok": p.returncode == 0,
-            "stderr": (p.stderr or "")[-400:],
-        }
+        steps[f"btctl_{side['role']}"] = prep_adapter(side, alias)
 
     # Best-effort Serial Port SDP on HU-dummy (may fail on virtual HCI — channel still works).
     sdp_cmd = (

@@ -74,6 +74,24 @@ class ParseSdptool(unittest.TestCase):
         self.assertTrue(verdict(self.recs[:1]).startswith("NONE"))
 
 
+GATT_ONLY_VENDOR = """Service Name: MIDI
+Service RecHandle: 0x10010
+Service Class ID List:
+  UUID 128: 03b80e5a-ede8-4b33-a751-6ce34ec4c700
+Protocol Descriptor List:
+  "L2CAP" (0x0100)
+    PSM: 31
+  "ATT" (0x0007)
+"""
+
+
+class GattOnlyVendor(unittest.TestCase):
+    def test_vendor_uuid_without_rfcomm_is_not_candidate(self):
+        recs = parse_sdptool(GATT_ONLY_VENDOR)
+        self.assertEqual(classify(recs[0]), ["vendor128"])
+        self.assertTrue(verdict(recs).startswith("NONE"))
+
+
 class ParseBluetoothctl(unittest.TestCase):
     def test_uuids(self):
         recs = parse_bluetoothctl_info(CTL_INFO)

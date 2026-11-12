@@ -79,6 +79,7 @@ private:
   void sendControllerReset();
   bool setWifiPs(const char *mode);  // "none"|"min"|"max"
   const char *wifiPsName() const { return wifi_ps_name_; }
+  bool setCoex(const char *mode);  // "default"|"a2dp"|"prefer_bt"
   void noteRingEnqueue(size_t n);
   void noteRingDequeue(size_t n);
   void noteHostCommand(const uint8_t *pkt, size_t n);
@@ -93,6 +94,10 @@ private:
   // Default matches pre-0.3.16-opt behavior (modem sleep). "none" helps TCP
   // RTT but can break Classic page/ACL under BT/WiFi coex — toggle via API.
   const char *wifi_ps_name_ = "min";
+  // BlueZ runs A2DP on Linux, so the coex scheduler never sees the
+  // A2DP-streaming status Bluedroid would set — "a2dp" sets it by hand.
+  const char *coex_name_ = "default";
+  char coex_err_[24] = "";
 };
 
 }  // namespace bt_analyzer

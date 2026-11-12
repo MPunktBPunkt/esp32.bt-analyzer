@@ -14,6 +14,14 @@
 #include <esp32-hal-bt.h>
 #endif
 
+#if __has_include(<esp_coexist.h>) && \
+    (defined(CONFIG_ESP_COEX_SW_COEXIST_ENABLE) || defined(CONFIG_SW_COEXIST_ENABLE))
+#include <esp_coexist.h>
+#define HCI_AGENT_HAS_COEX 1
+#else
+#define HCI_AGENT_HAS_COEX 0
+#endif
+
 #if defined(CONFIG_BT_BLUEDROID_ENABLED) && CONFIG_BT_BLUEDROID_ENABLED
 #include <esp_bt_main.h>
 #endif
@@ -52,6 +60,19 @@ void enableKeepalive(int fd) {
   (void)intvl_s;
   (void)cnt;
 #endif
+}
+
+const char *coexModeName(const char *mode) {
+  if (!mode || !mode[0] || strcasecmp(mode, "default") == 0) {
+    return "default";
+  }
+  if (strcasecmp(mode, "a2dp") == 0) {
+    return "a2dp";
+  }
+  if (strcasecmp(mode, "prefer_bt") == 0) {
+    return "prefer_bt";
+  }
+  return nullptr;
 }
 
 void enlargeTcpBuffers(int fd, int bytes) {
@@ -122,6 +143,38 @@ bool HciTcpAgent::setWifiPs(const char *mode) {
   return true;
 }
 
+bool HciTcpAgent::setCoex(const char *mode) {
+  const char *name = coexModeName(mode);
+  if (!name) {
+    return false;
+  }
+#if HCI_AGENT_HAS_COEX
+  // Start from the IDF default (balance, no A2DP bit) so modes never stack.
+  esp_err_t err =
+      esp_coex_status_bit_clear(ESP_COEX_ST_TYPE_BT, ESP_COEX_BT_ST_A2DP_STREAMING);
+  if (err == ESP_OK) {
+    err = esp_coex_preference_set(ESP_COEX_PREFER_BALANCE);
+  }
+  if (err == ESP_OK && strcmp(name, "a2dp") == 0) {
+    err = esp_coex_status_bit_set(ESP_COEX_ST_TYPE_BT, ESP_COEX_BT_ST_A2DP_STREAMING);
+  } else if (err == ESP_OK && strcmp(name, "prefer_bt") == 0) {
+    err = esp_coex_preference_set(ESP_COEX_PREFER_BT);
+  }
+  if (err != ESP_OK) {
+    snprintf(coex_err_, sizeof(coex_err_), "%s", esp_err_to_name(err));
+    DiagLog::printf("[hci_agent] coex=%s failed: %s\n", name, coex_err_);
+    return false;
+  }
+  coex_err_[0] = '\0';
+  coex_name_ = name;
+  DiagLog::printf("[hci_agent] coex=%s\n", coex_name_);
+  return true;
+#else
+  snprintf(coex_err_, sizeof(coex_err_), "no_coex_api");
+  return false;
+#endif
+}
+
 void HciTcpAgent::registerRoutes(WebServer &server) {
   WebServer *srv = &server;
   server.on("/api/hci/wifi_ps", HTTP_GET, [this, srv]() {
@@ -143,6 +196,37 @@ void HciTcpAgent::registerRoutes(WebServer &server) {
     }
     String j = "{\"ok\":true,\"wifi_ps\":\"";
     j += wifi_ps_name_;
+    j += "\"}";
+    srv->send(200, "application/json", j);
+  });
+  server.on("/api/hci/coex", HTTP_GET, [this, srv]() {
+    String j = "{\"coex\":\"";
+    j += coex_name_;
+    j += "\",\"err\":\"";
+    j += coex_err_;
+    j += "\",\"modes\":[\"default\",\"a2dp\",\"prefer_bt\"]}";
+    srv->send(200, "application/json", j);
+  });
+  server.on("/api/hci/coex", HTTP_POST, [this, srv]() {
+    String mode = srv->hasArg("mode") ? srv->arg("mode") : "";
+    if (mode.isEmpty() && srv->hasArg("plain")) {
+      mode = srv->arg("plain");
+      mode.trim();
+    }
+    if (!coexModeName(mode.c_str())) {
+      srv->send(400, "application/json",
+                "{\"ok\":false,\"error\":\"bad_mode\",\"hint\":\"default|a2dp|prefer_bt\"}");
+      return;
+    }
+    if (!setCoex(mode.c_str())) {
+      String j = "{\"ok\":false,\"error\":\"";
+      j += coex_err_;
+      j += "\"}";
+      srv->send(500, "application/json", j);
+      return;
+    }
+    String j = "{\"ok\":true,\"coex\":\"";
+    j += coex_name_;
     j += "\"}";
     srv->send(200, "application/json", j);
   });
@@ -474,6 +558,10 @@ void HciTcpAgent::appendStatusJson(String &json) {
   json += ",\"rttSamples\":" + String(rtt_samples_);
   json += ",\"wifiPs\":\"";
   json += wifi_ps_name_;
+  json += "\",\"coex\":\"";
+  json += coex_name_;
+  json += "\",\"coexErr\":\"";
+  json += coex_err_;
   json += "\"}";
 }
 

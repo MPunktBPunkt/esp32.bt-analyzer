@@ -64,12 +64,26 @@ curl -s http://192.168.178.87/api/status | python3 -m json.tool | head
 
 Live mapping (lab 2026-11-12): **hci1 = `.87` / esp87**, **hci2 = `.131`**. Re-check after restart.
 
+Pairing agent (docs/PAIRING.md) must be active, otherwise the HU's Numeric
+Comparison is never answered on our side:
+
+```bash
+systemctl is-active bt-pair-agent        # active
+python3 /opt/bt-analyzer/bt_pair_agent.py --status | python3 -m json.tool | head -40
+```
+
 ### A6 — Bluetooth to HU only
 
 1. HU Bluetooth on; phone Connected app **not** required yet.
-2. On `.108`, select the `.87` controller, scan, find HU BD_ADDR.
+2. On `.108`, select the `.87` controller, scan, find HU BD_ADDR. `.87` is
+   discoverable as "BT-Analyzer-Phone" with a smartphone Class of Device.
 3. Optional: pair / connect (note: new BD_ADDR → HU sees a new device; remove later).
-4. Capture:
+   Start pairing from iDrive ("Neues Gerät verbinden") or from `.108`. iDrive shows a
+   six-digit number; the Lab UI card **Pairing** shows the same number with
+   `RequestConfirmation → yes` (agent). **Confirm in iDrive** — that side cannot be
+   automated. PiDrive reference: passkey dialog, then HU lists the device
+   (`iDriveBt.md` §8, field test 2026-09-16).
+4. Capture (start before step 3 to keep the SSP exchange):
 
 ```bash
 H=$(hciconfig | awk -v b='c8:c9:a3:cb:37:96' 'BEGIN{RS=""} tolower($0)~tolower(b){match($0,/hci[0-9]+/);print substr($0,RSTART,RLENGTH);exit}')
@@ -108,5 +122,9 @@ Copy into `docs/evidence/`:
 
 - `LAB_A6_*` or `FIELD_A6_*` md+json (link, BD_ADDR, btsnoop path)
 - `FIELD_B1_SDP_*` from probe JSON
+- pairing events: `/var/log/bt-analyzer/pair_events.jsonl` (passkey, answer, reason)
+
+Remove the lab device from the HU afterwards (iDrive device list) and on `.108`:
+`python3 tools/lab_pair_agent.py remove C8:C9:A3:CB:37:96 <HU_BD>`.
 
 Then update `docs/BCL_BT.md` status line only from MEASURED results.
