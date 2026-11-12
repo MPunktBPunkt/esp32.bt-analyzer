@@ -3,10 +3,11 @@
 ```yaml
 status: ready_for_car
 lab_closed: [HCI_TCP A1–A5, 62/37 gate, B0.5 BCL synth, B0.6 Dummy-HU SDP]
-next: A6 then B1 only — no relay, no BCL TX, no channel-5 assumption
+next: A6 then B1/B2 split — no relay, no BCL TX, no channel-5 assumption
 claim_level: VERIFY reuse expectations from technology-audit/bmw-bcl — not FACT until measured
 boards: ".87 = car / HU side (hci1, BD c8:c9:a3:cb:37:96) · .131 = phone side (optional today)"
 linux: ".108 BlueZ + hci_tcp_bridge"
+measures: docs/MASSNAHMEN_BCL_A6.md
 ```
 
 ## Lab already closed (do not re-litigate in the car)
@@ -112,12 +113,34 @@ Record: UUID list, service names, **RFCOMM channel X**, verdict.
 | `NONE` | retry with Connected enabled in HU / app active once; if still NONE → document negative |
 | `IAP2_ONLY` | BT SPP path not usable for relay; keep USB track |
 
+### B1 states (repeat SDP — service may be state-dependent)
+
+| State | Condition |
+|-------|-----------|
+| A | paired only |
+| B | + A2DP connected |
+| C | + MyBMW/Connected active |
+| D | + AAIdrive active (control: Etch consumer must not invent SPP) |
+
+Single `NONE` ≠ final “no BCL service” until A–D are covered.
+
+### B2 split (if ACL up and operator time allows)
+
+| # | Measure | Pass signal |
+|---|---------|-------------|
+| B2.1 | SDP endpoint | UUID + **channel X** + name |
+| B2.2 | SABM/UA direction | initiator recorded |
+| B2.3 | first payload | `12 34 56 78` candidate → then stop or continue to B3 observe-only |
+
+Do **not** TX BCL from lab scripts in the car. Observe only. `OPEN 4004` is **not** required for BCL bootstrap (consumer-triggered).
+
 ### Explicitly do **not** today
 
-- RFCOMM connect / SABM
-- send `12 34 56 78` or HANDSHAKE
+- RFCOMM connect / SABM initiated by us
+- send `12 34 56 78` or HANDSHAKE from lab
 - BCL relay
 - assume channel 5
+- treat missing OPEN 4004 as fail without AAIdrive/consumer
 - enlarge HCI ring / wifi_ps tuning
 
 ## After the drive

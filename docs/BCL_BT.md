@@ -95,7 +95,7 @@ as candidates. A BMW/Connected service name upgrades the verdict to
 | Car behind hotspot NAT | as in HCI_TCP: needs dial-out/VPN, not for B1–B3 |
 | USB/ENET BCL vs BT-only | Desk **Contradiction/HYPOTHESIS** (EVID-BG-020) — not REJECTED; AOA+car can resolve |
 
-**Next (epistemic order):** A6/B1 on car (`docs/CAR_A6_B1.md`). Optional lab: B0.7 external with **BclCarLink** as RFCOMM peer. Do not re-test AAIdrive-alone against Dummy-HU. Desk matrix: pidrive [`HU-Technical-Facts.md`](../../pidrive/docs/fahrzeug/HU-Technical-Facts.md) §10.1–10.4.
+**Next (epistemic order):** Maßnahmen [`MASSNAHMEN_BCL_A6.md`](MASSNAHMEN_BCL_A6.md) · A6/B1 on car (`CAR_A6_B1.md`). Optional lab: **B0.7** BclCarLink↔Dummy (differential), **B0.8** BclCarLink↔Simulator(:4006) for Etch — not AAIdrive-alone. Simulator ≠ F20 wire. Desk matrix: pidrive [`HU-Technical-Facts.md`](../../pidrive/docs/fahrzeug/HU-Technical-Facts.md) §10.1–10.4.
 
 ## Decision rule
 
