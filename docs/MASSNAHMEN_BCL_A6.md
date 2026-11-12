@@ -57,6 +57,8 @@ trigger: multi-analysis 2026-11-12 (Transport-Owner vs Etch-Consumer · Simulato
 9. Sheets/Runbooks: OPEN 4004 = optional/E; Watchdog-Pong ≠ FACT; MyBMW-Opener = **UNKNOWN** (nur BclCarLink = FACT-Client).
 10. BclCarLink `BclOutputStream`@7cfd959 Bugs **dokumentiert** (pidrive HU-Technical-Facts **C-D27**): `write(Int)`→`ByteArray(b)`; `sliceArray(off until len)`. **Nicht** in unseren Repos „korrigiert“ (Fremd-Upstream). B0.7/B0.8: Full-Array-Writes bevorzugen; Partial/Etch-Proxy misstrauen.
 11. Lab-Evidence `C-L*` / `NO_RFCOMM` in Audit belassen; `field_evidence` erst nach B1+.
+12. Post-A6 decode: Resync auf `12 34 56 78`, dann HANDSHAKE `len=8` verlangen — sonst `BCL_MISALIGNED` vs `NO_BCL` (siehe `docs/analysis/BCL_AUDIT_DEEP_20261112.md`).
+13. Evidence-Labels strikt: `BT_TRANSPORT` / `BCL_TRANSPORT` / `WD` / `ETCH_TUNNEL` / `SAS` / `RHMI` — nie „Connected works“.
 
 ### Explizit **nicht** tun
 
