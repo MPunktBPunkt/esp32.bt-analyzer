@@ -1,0 +1,42 @@
+{
+  "utc": "20261112T061757Z",
+  "channel": 5,
+  "service_name": "BMW Connected",
+  "spp_uuid": "00001101-0000-1000-8000-00805f9b34fb",
+  "hu_dummy": {
+    "ip": "192.168.178.87",
+    "hci": "hci1",
+    "bd": "C8:C9:A3:CB:37:96",
+    "role": "hu_dummy"
+  },
+  "phone_side": {
+    "ip": "192.168.178.131",
+    "hci": "hci2",
+    "bd": "C8:C9:A3:CB:7B:0A",
+    "role": "phone_side"
+  },
+  "ok": false,
+  "epistemic": {
+    "source": "synthetic",
+    "evidence_level": "TEST",
+    "direct_observation": false,
+    "claim": "Dummy-HU SDP advertisement; not BMW wire FACT"
+  },
+  "prep": {
+    "hci1": {
+      "ok": true,
+      "stderr": ""
+    },
+    "hci2": {
+      "ok": true,
+      "stderr": ""
+    }
+  },
+  "profile_ok": true,
+  "profile_pid": "3548609",
+  "acl": {
+    "ok": true,
+    "raw": "Connections:\n\t< ACL C8:C9:A3:CB:37:96 handle 129 state 1 lm PERIPHERAL \nConnections:\n\t> ACL C8:C9:A3:CB:7B:0A handle 128 state 1 lm CENTRAL \n"
+  },
+  "error": "TimeoutExpired(['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=5', '-o', 'StrictHostKeyChecking=accept-new', 'root@192.168.178.108', \"bash -lc 'sdptool -i hci2 records C8:C9:A3:CB:37:96'\"], 45)"
+}

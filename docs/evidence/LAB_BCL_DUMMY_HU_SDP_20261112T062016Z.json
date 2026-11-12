@@ -1,0 +1,49 @@
+{
+  "utc": "20261112T062016Z",
+  "channel": 5,
+  "service_name": "BMW Connected",
+  "spp_uuid": "00001101-0000-1000-8000-00805f9b34fb",
+  "hu_dummy": {
+    "ip": "192.168.178.87",
+    "hci": "hci1",
+    "bd": "C8:C9:A3:CB:37:96",
+    "role": "hu_dummy"
+  },
+  "phone_side": {
+    "ip": "192.168.178.131",
+    "hci": "hci2",
+    "bd": "C8:C9:A3:CB:7B:0A",
+    "role": "phone_side"
+  },
+  "ok": false,
+  "epistemic": {
+    "source": "synthetic",
+    "evidence_level": "TEST",
+    "direct_observation": false,
+    "claim": "Dummy-HU SDP advertisement; not BMW wire FACT"
+  },
+  "prep": {
+    "hci1": {
+      "ok": true,
+      "stderr": ""
+    },
+    "hci2": {
+      "ok": true,
+      "stderr": ""
+    }
+  },
+  "profile_ok": true,
+  "profile_pid": "3554767",
+  "acl": {
+    "ok": false,
+    "raw": "Inquiring ...\n\tC8:C9:A3:CB:37:96\tclock offset: 0x1d34\tclass: 0x6c0104\n\tC0:B8:83:34:F4:62\tclock offset: 0x01d0\tclass: 0x6c0104\nTRY_1\nConnections:\n\t< ACL C8:C9:A3:CB:37:96 handle 3840 state 2 lm CENTRAL \nConnections:\n\t> ACL C8:C9:A3:CB:7B:0A handle 129 state 1 lm PERIPHERAL \nTRY_2\nConnections:\nConnections:\n\t> ACL C8:C9:A3:CB:7B:0A handle 129 state 1 lm PERIPHERAL \nTRY_3\nConnections:\nConnections:\n\t> ACL C8:C9:A3:CB:7B:0A handle 129 state 1 lm PERIPHERAL \nACL_OK=0\nCan't create connection: Input/output error\nCan't create connection: Input/output error\n"
+  },
+  "sdp": {
+    "source": "sdptool browse",
+    "returncode": 255,
+    "verdict": "NONE: no RFCOMM data service in SDP (may appear only with app active)",
+    "records": [],
+    "raw_tail": "Failed to connect to SDP server on C8:C9:A3:CB:37:96: Operation already in progress\n",
+    "bluetoothctl_info_tail": "Controller C8:C9:A3:CB:7B:0A BMW [default]\nDevice C8:C9:A3:CB:37:96 not available\nDeviceSet C8:C9:A3:CB:37:96 not available\n"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "utc": "20261112T062151Z",
+  "channel": 5,
+  "service_name": "BMW Connected",
+  "spp_uuid": "00001101-0000-1000-8000-00805f9b34fb",
+  "hu_dummy": {
+    "ip": "192.168.178.87",
+    "hci": "hci1",
+    "bd": "C8:C9:A3:CB:37:96",
+    "role": "hu_dummy"
+  },
+  "phone_side": {
+    "ip": "192.168.178.131",
+    "hci": "hci2",
+    "bd": "C8:C9:A3:CB:7B:0A",
+    "role": "phone_side"
+  },
+  "ok": true,
+  "epistemic": {
+    "source": "synthetic",
+    "evidence_level": "TEST",
+    "direct_observation": false,
+    "claim": "Dummy-HU SDP advertisement; not BMW wire FACT"
+  },
+  "prep": {
+    "hci1": {
+      "ok": true,
+      "stderr": ""
+    },
+    "hci2": {
+      "ok": true,
+      "stderr": ""
+    }
+  },
+  "link": {
+    "ok": false,
+    "raw": "CONS_PHONE\nConnections:\nCONS_HU\nConnections:\nPREP_DONE=1\n"
+  },
+  "profile_ok": true,
+  "profile_pid": "3559680",
+  "sdp": {
+    "source": "sdptool browse",
+    "returncode": 0,
+    "verdict": "CANDIDATE_STRONG: RFCOMM data service with BMW/Connected name",
+    "records": [
+      {
+        "name": "",
+        "handle": "0x10000",
+        "classes": [
+          "0x1200"
+        ],
+        "protocols": [],
+        "rfcomm": null
+      },
+      {
+        "name": "Generic Access Profile",
+        "handle": "0x10015",
+        "classes": [
+          "0x1800"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0007"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "Generic Attribute Profile",
+        "handle": "0x10017",
+        "classes": [
+          "0x1801"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0007"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "Device Information",
+        "handle": "0x10018",
+        "classes": [
+          "0x180a"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0007"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "AVRCP CT",
+        "handle": "0x1001a",
+        "classes": [
+          "0x110e",
+          "0x110f"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0017"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "AVRCP TG",
+        "handle": "0x1001b",
+        "classes": [
+          "0x110c"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0017"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "SIM Access Server",
+        "handle": "0x1001d",
+        "classes": [
+          "0x112d",
+          "0x1204"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0003"
+        ],
+        "rfcomm": 8
+      },
+      {
+        "name": "Headset Voice gateway",
+        "handle": "0x1001e",
+        "classes": [
+          "0x1112",
+          "0x1203"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0003"
+        ],
+        "rfcomm": 12
+      },
+      {
+        "name": "Headset unit",
+        "handle": "0x1001f",
+        "classes": [
+          "0x1108",
+          "0x1131",
+          "0x1203"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0003"
+        ],
+        "rfcomm": 3
+      },
+      {
+        "name": "Hands-Free Voice gateway",
+        "handle": "0x10020",
+        "classes": [
+          "0x111f",
+          "0x1203"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0003"
+        ],
+        "rfcomm": 13
+      },
+      {
+        "name": "Hands-Free unit",
+        "handle": "0x10021",
+        "classes": [
+          "0x111e",
+          "0x1203"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0003"
+        ],
+        "rfcomm": 7
+      },
+      {
+        "name": "Audio Source",
+        "handle": "0x10022",
+        "classes": [
+          "0x110a"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0019"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "Audio Sink",
+        "handle": "0x10025",
+        "classes": [
+          "0x110b"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0019"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "Vendor specific",
+        "handle": "0x10027",
+        "classes": [
+          "03b80e5a-ede8-4b33-a751-6ce34ec4c700"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0007"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "BMW Connected",
+        "handle": "0x1002a",
+        "classes": [
+          "0x1101"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0003"
+        ],
+        "rfcomm": 5
+      }
+    ],
+    "raw_tail": ": 12\nProfile Descriptor List:\n  \"Headset\" (0x1108)\n    Version: 0x0102\n\nService Name: Headset unit\nService RecHandle: 0x1001f\nService Class ID List:\n  \"Headset\" (0x1108)\n  \"\" (0x1131)\n  \"Generic Audio\" (0x1203)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n  \"RFCOMM\" (0x0003)\n    Channel: 3\nProfile Descriptor List:\n  \"Headset\" (0x1108)\n    Version: 0x0102\n\nService Name: Hands-Free Voice gateway\nService RecHandle: 0x10020\nService Class ID List:\n  \"Handsfree Audio Gateway\" (0x111f)\n  \"Generic Audio\" (0x1203)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n  \"RFCOMM\" (0x0003)\n    Channel: 13\nProfile Descriptor List:\n  \"Handsfree\" (0x111e)\n    Version: 0x0109\n\nService Name: Hands-Free unit\nService RecHandle: 0x10021\nService Class ID List:\n  \"Handsfree\" (0x111e)\n  \"Generic Audio\" (0x1203)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n  \"RFCOMM\" (0x0003)\n    Channel: 7\nProfile Descriptor List:\n  \"Handsfree\" (0x111e)\n    Version: 0x0109\n\nService Name: Audio Source\nService RecHandle: 0x10022\nService Class ID List:\n  \"Audio Source\" (0x110a)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n    PSM: 25\n  \"AVDTP\" (0x0019)\n    uint16: 0x0103\nProfile Descriptor List:\n  \"Advanced Audio\" (0x110d)\n    Version: 0x0104\n\nService Name: Audio Sink\nService RecHandle: 0x10025\nService Class ID List:\n  \"Audio Sink\" (0x110b)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n    PSM: 25\n  \"AVDTP\" (0x0019)\n    uint16: 0x0103\nProfile Descriptor List:\n  \"Advanced Audio\" (0x110d)\n    Version: 0x0104\n\nService Name: Vendor specific\nService Provider: BlueZ\nService RecHandle: 0x10027\nService Class ID List:\n  UUID 128: 03b80e5a-ede8-4b33-a751-6ce34ec4c700\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n    PSM: 31\n  \"ATT\" (0x0007)\n    uint16: 0x0013\n    uint16: 0x0017\n\nService Name: BMW Connected\nService RecHandle: 0x1002a\nService Class ID List:\n  \"Serial Port\" (0x1101)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n  \"RFCOMM\" (0x0003)\n    Channel: 5\nProfile Descriptor List:\n  \"Serial Port\" (0x1101)\n    Version: 0x0102\n\n",
+    "bluetoothctl_info_tail": "Controller C8:C9:A3:CB:7B:0A BMW [default]\nDevice C8:C9:A3:CB:37:96 not available\nDeviceSet C8:C9:A3:CB:37:96 not available\n"
+  }
+}
