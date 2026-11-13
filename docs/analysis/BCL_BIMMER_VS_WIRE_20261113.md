@@ -59,3 +59,7 @@ Dummy Class must stay **`0x340408`**. Drift to computer CoD → endless DEADBEEF
 ## A2DP liveness (lab check vs Mistral)
 
 `LAB_A2DP_BCL_CORR_*` + `LAB_COD_AB_BOUNCE_*`: A2DP MediaTransport **`idle`** during BCL INIT/HS/WD and at close; ACL stayed connected. BclCarLink’s “shutdown when leaving A2DP connected set” did **not** explain the ~38 s eof here — phone sent **CLOSE 5001** then RFCOMM eof (no Dummy WD pong). CoD gate still holds; “CoD ⇒ A2DP drop ⇒ no BCL” is **not** required for this Dummy.
+
+## Watchdog pong (C-L11)
+
+`LAB_WD_PONG_*`: Dummy `--echo-watchdog` → session **≥95 s**, no CLOSE 5001. Same phone path without pong → CLOSE@~38 s. Wire WD ≈2.5 s; ~14 unanswered pings ≈ phone session cut.

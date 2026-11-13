@@ -1,0 +1,20 @@
+{
+  "session_id": "LAB_WD_PONG",
+  "echo_watchdog": true,
+  "init_ts": 1794610876.224,
+  "hs_ms": 0,
+  "selectproto_ms": 2970,
+  "selectproto_payload": "0002",
+  "open_5001_ms": 2970,
+  "open_4004_ms": 3280,
+  "wd_ping_n": 38,
+  "wd_pong_tx_n": 38,
+  "wd_iv_ms_median": 2508,
+  "session_age_to_last_ping_ms": 95796,
+  "close_5001": false,
+  "rfcomm_closed": false,
+  "verdict": "WD_PONG_EXTENDS_PAST_38S",
+  "note": "session_age seconds not ms in gate; ~96s alive, no CLOSE 5001",
+  "baseline_no_pong_close5001_ms": 38094,
+  "baseline_source": "LAB_A2DP_CORR sessions in hu_pre_wd_*"
+}
