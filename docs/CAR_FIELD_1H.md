@@ -7,7 +7,8 @@ hu: D4:36:39:CF:E1:B5
 phone_esp: C8:C9:A3:CB:37:96 (.87)
 host: .108 via SSH
 tools: tools/field_b1_b2.py · tools/lab_hfp_stack.py · tools/btsnoop_decode.py
-b1_state_a: DONE — docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z.md (aus A6-Capture dekodiert)
+b1_sdp_state_a: PASS / MEASURED — docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z.md
+note: "B1-SDP ≠ BCL-Transport bewiesen — Kanal 5/6–10 bekannt, welcher BCL trägt = B2"
 ```
 
 ## Stand aus A6 (2026-11-13)

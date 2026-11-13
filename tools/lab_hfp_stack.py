@@ -46,7 +46,10 @@ for b in pipewire wireplumber bluealsa ofonod pulseaudio bluetoothd; do
   command -v $b >/dev/null && echo "$b: $($b --version 2>&1 | head -n 3 | tr '\n' ' ')"
 done
 echo '## roles'
-grep -rhs -E 'bluez5\.(roles|hfphsp-backend|enable-msbc|enable-sbc-xq)' /etc/wireplumber /usr/share/wireplumber /etc/pipewire /root/.config/wireplumber /home/*/.config/wireplumber 2>/dev/null | sort -u
+grep -rhs -E 'bluez5\.(roles|hfphsp-backend|enable-msbc|enable-sbc-xq)' \
+  /etc/wireplumber /usr/share/wireplumber /etc/pipewire \
+  /root/.config/wireplumber /home/*/.config/wireplumber 2>/dev/null \
+  | grep -v '\.bak' | sort -u
 echo '## dropins'; ls -1 /etc/wireplumber/wireplumber.conf.d /etc/wireplumber/bluetooth.lua.d 2>/dev/null
 echo '## uuids'; bluetoothctl list; bluetoothctl show 2>/dev/null | grep -E 'Controller|UUID: (Handsfree|Headset|Audio)'
 """
@@ -104,11 +107,31 @@ def diag() -> dict[str, Any]:
 
 
 def restart_wireplumber() -> str:
-    """WirePlumber runs as a user service; restart it for every user that has it running."""
-    script = (
-        "for u in $(ps -o user= -C wireplumber | sort -u); do "
-        "systemctl --machine=$u@.host --user restart wireplumber && echo restarted:$u || echo failed:$u; done"
-    )
+    """WirePlumber may be a systemd --user unit or a bare root process (lab .108)."""
+    script = r"""
+set +e
+out=""
+for u in $(ps -o user= -C wireplumber 2>/dev/null | sort -u); do
+  if systemctl --machine=$u@.host --user restart wireplumber 2>/dev/null; then
+    out="${out}restarted:$u "
+  else
+    # bare process (common when started outside systemd user session)
+    pkill -u "$u" -x wireplumber
+    sleep 1
+    if [ "$u" = root ]; then
+      export XDG_RUNTIME_DIR=/run/user/0
+      mkdir -p /run/user/0
+      nohup wireplumber >/tmp/wireplumber-root.log 2>&1 &
+      out="${out}relaunched:root "
+    else
+      out="${out}killed:$u(no-systemd) "
+    fi
+  fi
+done
+# If 50-bt-lab.conf still lists HFP roles, WirePlumber may merge them back in.
+# Ensure our drop-in is present; operator may also need to clear HFP from 50-bt-lab.
+echo "$out"
+"""
     p = ssh_run(["bash", "-lc", shlex.quote(script)], timeout=30)
     return ((p.stdout or "") + (p.stderr or "")).strip()
 
