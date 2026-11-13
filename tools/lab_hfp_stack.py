@@ -46,10 +46,10 @@ for b in pipewire wireplumber bluealsa ofonod pulseaudio bluetoothd; do
   command -v $b >/dev/null && echo "$b: $($b --version 2>&1 | head -n 3 | tr '\n' ' ')"
 done
 echo '## roles'
-grep -rhs -E 'bluez5\.(roles|hfphsp-backend|enable-msbc|enable-sbc-xq)' \
+grep -rhs --exclude='*.bak*' --exclude='*~' -E 'bluez5\.(roles|hfphsp-backend|enable-msbc|enable-sbc-xq)' \
   /etc/wireplumber /usr/share/wireplumber /etc/pipewire \
   /root/.config/wireplumber /home/*/.config/wireplumber 2>/dev/null \
-  | grep -v '\.bak' | sort -u
+  | sort -u
 echo '## dropins'; ls -1 /etc/wireplumber/wireplumber.conf.d /etc/wireplumber/bluetooth.lua.d 2>/dev/null
 echo '## uuids'; bluetoothctl list; bluetoothctl show 2>/dev/null | grep -E 'Controller|UUID: (Handsfree|Headset|Audio)'
 """
