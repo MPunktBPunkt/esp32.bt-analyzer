@@ -32,7 +32,7 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 
 **Korrektur:** `OPEN 4004` ist **Consumer-triggered** (EtchProxy erst nach TCP auf :4007), **nicht** deterministischer Bootstrap. Fehlen von OPEN 4004 nach HANDSHAKE ≠ Fehler.
 
-**Watchdog:** Request `13 37 13 37` / dest 5001 / 5 s / 20 s TO = Desk-FACT. HU-Pong-Bytes = **UNKNOWN** (Client zählt jedes Antwort-Byte).
+**Watchdog:** Request `13 37 13 37` / dest 5001 / **Desk 5 s** — **Lab-Wire (AAIdrive/OnePlus) ≈ 2,5 s** (`LAB_PHONE_BCL_20261113T2201Z_DECODE`). 20 s TO + Pong-Bytes = **UNKNOWN** (Client zählt jedes Antwort-Byte).
 
 ## Priorisierte Maßnahmen
 
@@ -78,7 +78,8 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
     Beantwortet auch, welche Phone-App den HU-Dienst `deca-fade` (Kanal 5) öffnet.
     Gegen **F20-förmiges** Dummy-SDP (`lab_bcl_dummy_hu_f20_sdp.py`: ch5 `deca-fade` + ch6–10 `0x1101`) — Endpoint-Fingerabdruck; `NO_RFCOMM` bleibt erwartbar (C-L4/5).
 11. Post-decode: Resync auf `12 34 56 78`, dann HANDSHAKE `len=8` verlangen — sonst `BCL_MISALIGNED` vs `NO_BCL` (siehe `docs/analysis/BCL_AUDIT_DEEP_20261112.md`).
-11b. **Lab-Abend:** F20-SDP-Spiegel PASS; später OnePlus→Dummy **BCL live** (`LAB_PHONE_BCL_20261113T2201Z`) — AAIdrive „verbunden mit BMW“; Etch/PKCS7/Watchdog RX. Dummy ≠ F20; B3 am Auto weiter offen.
+11b. **Lab-Abend:** OnePlus→Dummy **BCL live** (`LAB_PHONE_BCL_*` + `_DECODE`) — Signatur eingefroren; SELECTPROTO(2); WD≈2,5 s; Certs myBMW/TouchCommand.  
+11c. **Priorität ab jetzt:** (1) Baseline eingefroren. (2) **Feld P0:** OnePlus HCI-Snoop ↔ echte F20-HU (+ `.87` btmon Beobachter) — prüft INIT/HANDSHAKE/`instanceId` am Auto. (3) Lab-Orakel L1–L8 / Retry-Matrix / Modus A–C — gezielt nach Feldlücken, nicht blind. (4) Multi-`0x1101` auf **einem** BlueZ-Adapter = blockiert (`LAB_F20_SDP_MIRROR`); Kanalwahl ch6–10 bleibt Feld. (5) Kein B3-Inject / kein ch5-BCL / keine weiteren generischen Dummies vor Feld-Snoop.
 
 ### P2 — Docs / Epistemik
 

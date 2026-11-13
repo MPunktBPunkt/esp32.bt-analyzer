@@ -23,9 +23,24 @@
     "rx:OPEN:src12:dst4004": 3,
     "rx:CLOSE:src5001:dst5001": 2
   },
+  "handshake_direction": "HU_ONLY",
+  "dummy_handshake": {"version": 3, "instanceId": 1, "bufferSize": 32768},
+  "phone_selectproto_payload_u16": 2,
+  "watchdog_interval_ms_median": 2505,
+  "watchdog_interval_ms_desk_claim": 5000,
+  "reconnect_gap_s": [5.735, 5.119],
+  "etch_app_cns": [
+    "a4a_app_myBMW.perm___applicationmanager_*",
+    "a4a_app_mobile___com_smartthings_android_00.00.03",
+    "a4a_app_myBMW.perm___cdsbaseapp_*",
+    "a4a_app_BMWTouchCommand_Connection_00.00.10"
+  ],
   "notes": [
     "OnePlus opened RFCOMM to Dummy BMW Connected ch6 after Dummy answered HANDSHAKE",
     "AAIdrive UI 'verbunden mit BMW' coincides with BCL+Etch(DEADBEEF)+PKCS7+watchdog 13371337",
-    "Dummy does not implement Etch/SAS replies; UI may still show connected via BCL Ready OR"
+    "Phone does not TX HANDSHAKE; instanceId 12-14 remains F20/HU question",
+    "SELECTPROTO(2) after v3 HANDSHAKE — desk 'only if version>3 / SelectProto(3)' incomplete",
+    "Watchdog ~2.5s not 5s — FACT for this phone stack",
+    "Dummy does not implement Etch/SAS replies"
   ]
 }
