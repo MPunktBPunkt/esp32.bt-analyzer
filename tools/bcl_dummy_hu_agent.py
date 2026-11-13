@@ -34,6 +34,7 @@ from bcl_dummy_hu import (  # noqa: E402
     ObserveOnlySession,
     PhoneClientSession,
 )
+from bcl_framer import INIT_MAGIC  # noqa: E402
 
 SPP_UUID = "00001101-0000-1000-8000-00805f9b34fb"
 
@@ -254,14 +255,46 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
     return 0
 
 
-def run_phone(args: argparse.Namespace, *, observe_only: bool) -> int:
+def run_phone(
+    args: argparse.Namespace,
+    *,
+    observe_only: bool,
+    controlled_init: bool = False,
+) -> int:
+    """Phone-side RFCOMM client.
+
+    observe_only: B2-A — connect + recv, no TX (expected empty under BclCarLink model).
+    controlled_init (b2a-tx): send INIT_MAGIC a few times, then observe for HANDSHAKE;
+      do **not** auto KNOCK/OPEN unless --full-client (field-safe discriminator for H-A).
+    lab phone: full BclCarLink-like client (INIT → HANDSHAKE → SELECTPROTO/KNOCK/OPEN).
+    """
     log = JsonlLog(args.log)
     session_id = args.session_id or str(uuid.uuid4())
+    full_client = bool(getattr(args, "full_client", False)) and not observe_only
+    init_count = int(getattr(args, "init_count", 1) or 1)
+    if controlled_init:
+        mode = "B2-A-TX"
+        tx_allowed = True
+        bcl_tx = True
+        bcl_tx_mode = "controlled_init"
+    elif observe_only:
+        mode = "B2-A"
+        tx_allowed = False
+        bcl_tx = False
+        bcl_tx_mode = "none"
+    else:
+        mode = "lab_phone"
+        tx_allowed = True
+        bcl_tx = True
+        bcl_tx_mode = "full_client"
     meta = {
         "session_id": session_id,
-        "mode": "B2-A" if observe_only else "lab_phone",
-        "tx_allowed": not observe_only,
-        "bcl_tx_enabled": not observe_only,
+        "mode": mode,
+        "tx_allowed": tx_allowed,
+        "bcl_tx_enabled": bcl_tx,
+        "bcl_tx_mode": bcl_tx_mode,
+        "init_count": init_count if controlled_init else None,
+        "full_client": full_client if controlled_init else (not observe_only),
         "origin": args.origin,
         "source": args.source,
         "peer": args.hu_bd,
@@ -287,9 +320,25 @@ def run_phone(args: argparse.Namespace, *, observe_only: bool) -> int:
     next_ping = 0.0
     last_rx = time.time()
     hs_logged = False
+    inits_sent = 0
     while time.time() < end:
         now = time.time()
-        if not observe_only and sess is not None:
+        if controlled_init and sess is not None and sess.handshake is None:
+            if inits_sent < init_count and now >= next_init:
+                sock.sendall(INIT_MAGIC)
+                inits_sent += 1
+                log.write(
+                    {
+                        "event": "tx_bytes",
+                        "n": len(INIT_MAGIC),
+                        "hex": INIT_MAGIC.hex(),
+                        "kind": "session_init",
+                        "init_i": inits_sent,
+                        "session_id": session_id,
+                    }
+                )
+                next_init = now + SESSION_INIT_INTERVAL_S
+        elif not observe_only and not controlled_init and sess is not None:
             if sess.handshake is None and now >= next_init:
                 sock.sendall(sess.session_init())
                 next_init = now + SESSION_INIT_INTERVAL_S
@@ -319,30 +368,38 @@ def run_phone(args: argparse.Namespace, *, observe_only: bool) -> int:
                     "session_id": session_id,
                 }
             )
-            if not observe_only and sess is not None:
-                for out in sess.on_bytes(data):
-                    sock.sendall(out)
-                    log.write(
-                        {
-                            "event": "tx_bytes",
-                            "n": len(out),
-                            "hex": out.hex(),
-                            "session_id": session_id,
-                        }
-                    )
+            if sess is not None and (controlled_init or not observe_only):
+                replies = sess.on_bytes(data)
                 if sess.handshake and not hs_logged:
                     log.write(
                         {"event": "handshake_rx", **sess.handshake, "session_id": session_id}
                     )
                     hs_logged = True
+                # Field-safe: controlled_init stops after HANDSHAKE unless --full-client
+                if controlled_init and not full_client:
+                    replies = []
+                if not observe_only or controlled_init:
+                    for out in replies:
+                        sock.sendall(out)
+                        log.write(
+                            {
+                                "event": "tx_bytes",
+                                "n": len(out),
+                                "hex": out.hex(),
+                                "session_id": session_id,
+                            }
+                        )
                 sent = _flush_events(log, sess, sent, session_id=session_id)
-    if not observe_only and sess is not None:
+    if sess is not None:
         _flush_events(log, sess, sent, session_id=session_id)
     cls = classify_bytes(rx_raw)
     log.write(
         {
             "event": "phone_done",
-            "active": bool(sess and sess.active) if not observe_only else False,
+            "active": bool(sess and sess.active) if sess else False,
+            "handshake": bool(sess and sess.handshake) if sess else False,
+            "handshake_fields": (sess.handshake if sess else None),
+            "inits_sent": inits_sent if controlled_init else None,
             "rx_silence_s": round(time.time() - last_rx, 1),
             "rx_total": len(rx_raw),
             "bcl_classification": cls["bcl_classification"],
@@ -351,8 +408,10 @@ def run_phone(args: argparse.Namespace, *, observe_only: bool) -> int:
         }
     )
     sock.close()
-    if observe_only:
-        return 0 if len(rx_raw) >= 0 else 1  # connect success already returned 2
+    if observe_only and not controlled_init:
+        return 0
+    if controlled_init:
+        return 0 if (sess and sess.handshake) else 1
     return 0 if sess and sess.active else 1
 
 
@@ -395,6 +454,22 @@ def main() -> int:
     add_phone(b2a)
     b2a_alias = sub.add_parser("phone-observe", help="alias for b2a")
     add_phone(b2a_alias)
+    b2a_tx = sub.add_parser(
+        "b2a-tx",
+        help="B2-A controlled INIT (12 34 56 78) then observe HANDSHAKE; no KNOCK unless --full-client",
+    )
+    add_phone(b2a_tx)
+    b2a_tx.add_argument(
+        "--init-count",
+        type=int,
+        default=3,
+        help="how many INIT_MAGIC bursts (1 s apart) before observe-only",
+    )
+    b2a_tx.add_argument(
+        "--full-client",
+        action="store_true",
+        help="after HANDSHAKE continue SELECTPROTO/KNOCK/OPEN (lab only by default)",
+    )
 
     args = ap.parse_args()
     if args.mode == "hu":
@@ -413,6 +488,11 @@ def main() -> int:
         if args.origin == "bclcarlink":
             args.origin = "f20"
         return run_phone(args, observe_only=True)
+    if args.mode == "b2a-tx":
+        # Field default: origin f20 unless caller overrides for lab dummy.
+        if args.origin == "bclcarlink":
+            args.origin = "f20"
+        return run_phone(args, observe_only=False, controlled_init=True)
     return 2
 
 

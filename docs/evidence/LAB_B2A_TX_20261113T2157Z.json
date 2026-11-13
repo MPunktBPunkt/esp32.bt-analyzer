@@ -1,0 +1,227 @@
+{
+  "session_id": "LAB_B2A_TX_20261113T2157Z",
+  "gate": "B2-A-TX",
+  "source": "lab",
+  "origin": "lab",
+  "ts_utc": "20261113T220003Z",
+  "event_count": 7,
+  "events_head": [
+    {
+      "ts": 1794607178.875,
+      "event": "session_start",
+      "session_id": "LAB_B2A_TX_20261113T2157Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": false,
+      "origin": "lab",
+      "source": "lab",
+      "peer": "C8:C9:A3:CB:7B:0A",
+      "channel": 6
+    },
+    {
+      "ts": 1794607183.036,
+      "event": "rfcomm_connected",
+      "session_id": "LAB_B2A_TX_20261113T2157Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": false,
+      "origin": "lab",
+      "source": "lab",
+      "peer": "C8:C9:A3:CB:7B:0A",
+      "channel": 6
+    },
+    {
+      "ts": 1794607183.036,
+      "event": "tx_bytes",
+      "n": 4,
+      "hex": "12345678",
+      "kind": "session_init",
+      "init_i": 1,
+      "session_id": "LAB_B2A_TX_20261113T2157Z"
+    },
+    {
+      "ts": 1794607183.445,
+      "event": "rx_bytes",
+      "n": 16,
+      "hex": "00040000000000080003000100008000",
+      "rx_total": 16,
+      "session_id": "LAB_B2A_TX_20261113T2157Z"
+    },
+    {
+      "ts": 1794607183.445,
+      "event": "handshake_rx",
+      "version": 3,
+      "instance_id": 1,
+      "buffer_size": 32768,
+      "session_id": "LAB_B2A_TX_20261113T2157Z"
+    }
+  ],
+  "events_tail": [
+    {
+      "ts": 1794607178.875,
+      "event": "session_start",
+      "session_id": "LAB_B2A_TX_20261113T2157Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": false,
+      "origin": "lab",
+      "source": "lab",
+      "peer": "C8:C9:A3:CB:7B:0A",
+      "channel": 6
+    },
+    {
+      "ts": 1794607183.036,
+      "event": "rfcomm_connected",
+      "session_id": "LAB_B2A_TX_20261113T2157Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": false,
+      "origin": "lab",
+      "source": "lab",
+      "peer": "C8:C9:A3:CB:7B:0A",
+      "channel": 6
+    },
+    {
+      "ts": 1794607183.036,
+      "event": "tx_bytes",
+      "n": 4,
+      "hex": "12345678",
+      "kind": "session_init",
+      "init_i": 1,
+      "session_id": "LAB_B2A_TX_20261113T2157Z"
+    },
+    {
+      "ts": 1794607183.445,
+      "event": "rx_bytes",
+      "n": 16,
+      "hex": "00040000000000080003000100008000",
+      "rx_total": 16,
+      "session_id": "LAB_B2A_TX_20261113T2157Z"
+    },
+    {
+      "ts": 1794607183.445,
+      "event": "handshake_rx",
+      "version": 3,
+      "instance_id": 1,
+      "buffer_size": 32768,
+      "session_id": "LAB_B2A_TX_20261113T2157Z"
+    },
+    {
+      "ts": 1794607183.445,
+      "event": "frame",
+      "dir": "rx",
+      "cmd": 4,
+      "cmd_name": "HANDSHAKE",
+      "src": 0,
+      "dest": 0,
+      "len": 8,
+      "payload_hex": "0003000100008000",
+      "session_id": "LAB_B2A_TX_20261113T2157Z"
+    },
+    {
+      "ts": 1794607203.073,
+      "event": "phone_done",
+      "active": true,
+      "handshake": true,
+      "handshake_fields": {
+        "version": 3,
+        "instance_id": 1,
+        "buffer_size": 32768
+      },
+      "inits_sent": 1,
+      "rx_silence_s": 19.6,
+      "rx_total": 16,
+      "bcl_classification": "BCL_FIELD_CONFIRMED",
+      "classification": {
+        "bcl_classification": "BCL_FIELD_CONFIRMED",
+        "magic_count": 0,
+        "magic_offsets": [],
+        "frames": [
+          {
+            "cmd": 4,
+            "cmd_name": "HANDSHAKE",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 8,
+            "payload_hex": "0003000100008000",
+            "raw_hex": "00040000000000080003000100008000"
+          }
+        ],
+        "handshake": {
+          "version": 3,
+          "instance_id": 1,
+          "buffer_size": 32768,
+          "src": 0,
+          "dest": 0
+        },
+        "framer_error": null,
+        "incomplete": false,
+        "bytes_len": 16,
+        "payload_hex_head": "00040000000000080003000100008000",
+        "session_inits_at_boundary": 0
+      },
+      "session_id": "LAB_B2A_TX_20261113T2157Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": false,
+      "origin": "lab",
+      "source": "lab",
+      "peer": "C8:C9:A3:CB:7B:0A",
+      "channel": 6
+    }
+  ],
+  "channel": 6,
+  "tx_allowed": true,
+  "bcl_tx_enabled": true,
+  "bcl_tx_mode": "controlled_init",
+  "init_count": 3,
+  "full_client": false,
+  "bcl_classification": "BCL_FIELD_CONFIRMED",
+  "classification": {
+    "bcl_classification": "BCL_FIELD_CONFIRMED",
+    "magic_count": 0,
+    "magic_offsets": [],
+    "frames": [
+      {
+        "cmd": 4,
+        "cmd_name": "HANDSHAKE",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 8,
+        "payload_hex": "0003000100008000",
+        "raw_hex": "00040000000000080003000100008000"
+      }
+    ],
+    "handshake": {
+      "version": 3,
+      "instance_id": 1,
+      "buffer_size": 32768,
+      "src": 0,
+      "dest": 0
+    },
+    "framer_error": null,
+    "incomplete": false,
+    "bytes_len": 16,
+    "payload_hex_head": "00040000000000080003000100008000",
+    "session_inits_at_boundary": 0
+  },
+  "tx_bytes_events": 1,
+  "tx_blocked_events": 0
+}

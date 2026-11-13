@@ -51,21 +51,23 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
    - B2-A ch **6** + ch **5**: SABM local → **UA remote**, 0 Payload, DISC local; BCL **UNKNOWN** (negativ ≠ absent)
    - B2-B observe-only 180 s: **kein** HU-SABM inbound unter Control (Apps/HFP off)
 5. **B1/B2 state C** (P0 jetzt) — MyBMW ON, HFP weiter OFF; optional B1-SDP-Delta (`d31fbf50`?); B2-A ch6/5 + B2-B. Dann D (+AAIdrive).
-   Engpass nach B2 state A ist **zweidimensional**: **Trigger** (MyBMW/Connected/Apps/Security?) × **Endpoint** (ch5 `deca-fade` ≠ ch6 `0x1101` ≠ ggf. ch7–10). UA ≠ BCL. A2DP/AVRCP aktiv ohne BCL ⇒ Media ist kein BCL-Trigger.
-6. **B3 nur nach BCL-Klassifikation** — INIT → HANDSHAKE → **version** → Branch → OPEN 5001. Capture-Paar X/Y wenn Consumer aktiv. **Kein B3** ohne first UIH / magic vom F20.
+   Engpass nach B2: **Trigger** (Apps-Kontext?) × **Endpoint** (ch6 `0x1101`; ch7–10 Reserve).  
+   **ch5 `deca-fade` = Apple iAP2/MFi** — nicht BCL (siehe `BCL_BT.md`). A2DP/AVRCP ≠ BCL-Trigger.
+6. **B2-A-TX (billigster Diskriminator):** `field_b1_b2.py b2a-tx --channel 6` — einmal/mehrfach `12 34 56 78`, dann observe HANDSHAKE (kein KNOCK default). BclCarLink-Modell: Phone TX zuerst; observe-only B2-A **muss** leer bleiben. **B3** erst nach HANDSHAKE-Klassifikation; erwartetes MyBMW-`instanceId` **12–14**.
 
-### Hypothesen nach B2 (Stand 2026-11-13 Abend)
+### Hypothesen nach B2 + BimmerGestalt-Abgleich (Stand 2026-11-13 Nacht)
 
 | ID | Hypothese | Status |
 |----|-----------|--------|
-| **H-A** | BCL auf ch6, wartet nur auf Phone-TX | geschwächt (UA + 60 s empty, observe-only) |
-| **H-B** | HU initiiert BCL autonom | State A stark geschwächt (180 s kein HU-SABM zum getesteten Service) |
-| **H-C** | MyBMW/Connected aktiviert Car-Link (Trigger) | **führend**, F20 noch UNKNOWN — State C |
-| **H-D** | ch5 `deca-fade` = Connected-Pfad | UNKNOWN / interessant (accept, 0 payload) |
-| **H-E** | ch7–10 relevant | UNKNOWN — erst nach negativem State-C-Vergleich auf ch6 |
-| **H-F** | BCL nicht über RFCOMM/SPP | unwahrscheinlich (Desk/Secondary), F20 offen |
+| **H-A** | BCL auf ch6, HU antwortet auf Phone-INIT | **offen / führend für Wire** — observe-only empty = **Vorhersage**, nicht Falsifikation; entscheidet `b2a-tx` |
+| **H-B** | HU initiiert RFCOMM/BCL autonom | State A geschwächt für SABM; BCL-Knock bleibt phone-seitig (BclCarLink/Analysis) |
+| **H-C** | MyBMW/Connected aktiviert Apps-Kontext (Handshake-Annahme) | **parallel** zu H-A — State C ± b2a-tx |
+| **H-D** | ch5 `deca-fade` = Connected/BCL | **verworfen** — iAP2/MFi (öffentlich + `BCL_BT.md`) |
+| **H-E** | ch7–10 relevant | UNKNOWN — nach negativem ch6 |
+| **H-F** | BCL nicht über RFCOMM/SPP | unwahrscheinlich, F20 offen |
 
-**B2-B scoped:** „Unter State A, 180 s, kein HU-SABM zu *unserem* observe-only SPP (`BMW Connected` / Lab-`channel_offered`)“ — nicht „HU öffnet grundsätzlich kein SPP“.
+**B2-A scoped:** „UA + 0 Payload unter observe-only“ = BclCarLink-kompatibel (Client sendet INIT).  
+**B2-B scoped:** kein HU-SABM zu *unserem* SPP in State A — nicht „HU öffnet nie SPP“.
 
 ### P1 — Lab (parallel / vor nächstem Feld, nicht statt B1)
 

@@ -277,6 +277,58 @@ def cmd_b2a(args: argparse.Namespace) -> int:
     return p.returncode
 
 
+def cmd_b2a_tx(args: argparse.Namespace) -> int:
+    """Controlled INIT on channel X (BclCarLink order), then observe HANDSHAKE.
+
+    Under the BclCarLink model, observe-only B2-A is expected empty — this gate
+    discriminates H-A (HU answers HANDSHAKE) vs silence. Default: no KNOCK/OPEN.
+    """
+    if args.channel is None:
+        print("B2-A-TX needs --channel X (prefer 6 = first 0x1101)", file=sys.stderr)
+        return 2
+    ensure_remote_tools()
+    sid = args.session_id or f"FIELD_B2A_TX_{utc_stamp()}"
+    log = f"/tmp/{sid}.jsonl"
+    origin = "lab" if args.lab else "f20"
+    source = "lab" if args.lab else "field"
+    full = " --full-client" if args.full_client else ""
+    cmd = (
+        f"python3 {REMOTE_TOOLS}/{AGENT} b2a-tx "
+        f"--adapter-bd {shlex.quote(PHONE_BD)} "
+        f"--hu-bd {shlex.quote(args.hu_bd)} "
+        f"--channel {int(args.channel)} "
+        f"--seconds {float(args.seconds)} "
+        f"--init-count {int(args.init_count)} "
+        f"--session-id {shlex.quote(sid)} "
+        f"--origin {origin} --source {source} "
+        f"--log {shlex.quote(log)}{full}"
+    )
+    print(
+        f"B2-A-TX controlled INIT×{args.init_count} ch={args.channel} "
+        f"({args.seconds}s, full_client={args.full_client})"
+    )
+    p = ssh(cmd, timeout=float(args.seconds) + 40)
+    print(p.stdout or "")
+    if p.stderr:
+        print(p.stderr, file=sys.stderr)
+    _pull_log(
+        log,
+        sid,
+        gate="B2-A-TX",
+        extra={
+            "channel": args.channel,
+            "tx_allowed": True,
+            "bcl_tx_enabled": True,
+            "bcl_tx_mode": "controlled_init",
+            "init_count": args.init_count,
+            "full_client": args.full_client,
+            "origin": "lab" if args.lab else "f20",
+            "source": "lab" if args.lab else "field",
+        },
+    )
+    return p.returncode
+
+
 def cmd_b2b(args: argparse.Namespace) -> int:
     ensure_remote_tools()
     sid = args.session_id or f"FIELD_B2B_{utc_stamp()}"
@@ -341,11 +393,17 @@ def _pull_log(remote_log: str, sid: str, *, gate: str, extra: dict) -> None:
     for line in local.read_text().splitlines():
         if line.strip():
             events.append(json.loads(line))
+    # Prefer explicit extra, else first event meta, else field/f20 defaults.
+    origin = extra.get("origin")
+    source = extra.get("source")
+    if events:
+        origin = origin or events[0].get("origin")
+        source = source or events[0].get("source")
     summary = {
         "session_id": sid,
         "gate": gate,
-        "source": "field",
-        "origin": "f20",
+        "source": source or "field",
+        "origin": origin or "f20",
         "ts_utc": utc_stamp(),
         "event_count": len(events),
         "events_head": events[:5],
@@ -366,11 +424,14 @@ def _pull_log(remote_log: str, sid: str, *, gate: str, extra: dict) -> None:
         summary["FAIL"] = "B2-B must not TX"
     out = EVIDENCE / f"{sid}.json"
     out.write_text(json.dumps(summary, indent=2) + "\n")
+    tx_allowed = summary.get("tx_allowed", False)
     (EVIDENCE / f"{sid}.md").write_text(
         f"# {sid}\n\n"
         f"- gate: {gate}\n"
+        f"- origin/source: {summary.get('origin')}/{summary.get('source')}\n"
         f"- bcl_classification: {summary.get('bcl_classification', 'n/a')}\n"
-        f"- tx_allowed: false\n"
+        f"- tx_allowed: {tx_allowed}\n"
+        f"- bcl_tx_mode: {summary.get('bcl_tx_mode', 'n/a')}\n"
         f"- tx_bytes_events: {len(tx)}\n"
         f"- jsonl: {local.name}\n"
     )
@@ -440,6 +501,26 @@ def main() -> int:
     b2a.add_argument("--seconds", type=float, default=20.0)
     b2a.add_argument("--session-id", default="")
     b2a.set_defaults(func=cmd_b2a)
+
+    b2atx = sub.add_parser(
+        "b2a-tx",
+        help="controlled INIT 12 34 56 78 then observe HANDSHAKE (BclCarLink order)",
+    )
+    b2atx.add_argument("--channel", type=int, required=True, help="prefer 6 (first 0x1101)")
+    b2atx.add_argument("--seconds", type=float, default=30.0)
+    b2atx.add_argument("--init-count", type=int, default=3)
+    b2atx.add_argument(
+        "--full-client",
+        action="store_true",
+        help="continue KNOCK/OPEN after HANDSHAKE (lab; avoid on F20 until classified)",
+    )
+    b2atx.add_argument(
+        "--lab",
+        action="store_true",
+        help="mark evidence origin/source as lab (Dummy-HU)",
+    )
+    b2atx.add_argument("--session-id", default="")
+    b2atx.set_defaults(func=cmd_b2a_tx)
 
     b2b = sub.add_parser("b2b")
     b2b.add_argument("--channel", type=int, default=5, help="offered lab channel (not HU X)")

@@ -20,8 +20,8 @@ HU-SDP ist bekannt (MEASURED, `FIELD_B1_FROM_A6_20261113T062824Z`):
 
 | HU-Kanal | Dienst | Bedeutung für B2 |
 |---:|---|---|
-| 5 | „SPP Server 0“, UUID `00000000-deca-fade-deca-deafdecacaff` | Vendor-Dienst, Nutzer **UNKNOWN** — B2-A Ziel 2 |
-| 6 | „SPP Server 1“, SPP `0x1101` | Erster SPP-`0x1101`-Record → dort landet BclCarLink (`createRfcommSocketToServiceRecord`) — B2-A Ziel 1 |
+| 5 | „SPP Server 0“, UUID `00000000-deca-fade-deca-deafdecacaff` | **Apple iAP2/MFi** — nicht BCL; B2-A ch5 nur Referenz/Transport |
+| 6 | „SPP Server 1“, SPP `0x1101` | Erster `0x1101` → BclCarLink-Ziel — **B2-A / B2-A-TX** |
 | 7–10 | „SPP Server 2–5“, SPP `0x1101` | Reserve |
 | 2 / 1 / 11 | HFP 1.6 HF / MAP-MNS / OPP | nicht BCL |
 
@@ -49,17 +49,18 @@ python3 tools/field_b1_b2.py preflight            # darf keine HFP-AG-Warnung me
 |----:|---------|-----------------|
 | 0–3 | Preflight + btmon | `preflight` · `btmon-start` |
 | 3–8 | Ruhephase gekoppelt | nichts tun; prüft, dass HU ohne HFP **keinen** Kanal mehr öffnet |
-| 8–16 | **B2-A Kanal 6** | `b2a --channel 6 --seconds 60` — SABM/UA? HU sendet von sich aus UIH? |
-| 16–24 | **B2-A Kanal 5** | `b2a --channel 5 --seconds 60` — `deca-fade`: UA oder DM? erste UIH? |
-| 24–46 | **B2-B** | `b2b --hold 300` · iDrive bedienen (Apps-/ConnectedDrive-Menü), warten ob HU dialt |
+| 8–14 | **B2-A Kanal 6 observe** | `b2a --channel 6` — UA erwartet; **0 Payload unter BclCarLink-Modell erwartet** |
+| 14–22 | **B2-A-TX Kanal 6** | `b2a-tx --channel 6 --init-count 3` — `12 34 56 78`, warte HANDSHAKE (kein KNOCK) |
+| 22–28 | optional ch5 | nur iAP2-Referenz; nicht BCL |
+| 28–46 | **B2-B** | `b2b --hold 180` · State C: MyBMW ON |
 | 46–50 | Stop + pull + decode | `btmon-stop` → Tabelle pro RFCOMM-Sitzung |
 | 50–60 | Kurznotiz / Wiederholung | bei Unklarheit B2-A Kanal 7 als Kontrolle |
 
 ```bash
 python3 tools/field_b1_b2.py btmon-start
-python3 tools/field_b1_b2.py b2a --channel 6 --seconds 60
-python3 tools/field_b1_b2.py b2a --channel 5 --seconds 60
-python3 tools/field_b1_b2.py b2b --hold 300
+python3 tools/field_b1_b2.py b2a --channel 6 --seconds 30          # expect empty (BclCarLink model)
+python3 tools/field_b1_b2.py b2a-tx --channel 6 --init-count 3     # INIT → wait HANDSHAKE
+python3 tools/field_b1_b2.py b2b --hold 180                        # State C: MyBMW ON
 python3 tools/field_b1_b2.py btmon-stop --session-id FIELD_B2_<stamp>
 ```
 
@@ -73,9 +74,10 @@ B1 nur wiederholen, wenn sich der HU-Zustand ändert (state C/D: Phone-App aktiv
 
 | Frage | Quelle |
 |-------|--------|
-| Phone-init RFCOMM auf Kanal 6 / 5 möglich? | B2-A (SABM von `.87`, UA vs DM) |
-| Spricht die HU auf Kanal 6 / 5 zuerst? | B2-A (UIH von `remote` ohne unser TX) |
-| HU-init RFCOMM? | B2-B (SABM von `remote` auf unseren Kanal) |
+| Phone-init RFCOMM ch6 möglich? | B2-A (SABM/UA) |
+| HU spricht BCL zuerst? | B2-A observe — unter BclCarLink **nein erwartet** |
+| HU antwortet auf `12 34 56 78`? | **B2-A-TX** → HANDSHAKE? (`instanceId` 12–14 = MyBMW-ish) |
+| HU-init RFCOMM? | B2-B |
 | first UIH / BCL-Kandidat? | `btmon-stop` → `bcl_classification` pro Sitzung |
 | Initiator am F20 | SABM-Richtung B2-A vs B2-B |
 
