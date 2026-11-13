@@ -53,12 +53,25 @@ Chain always includes `a4a_app_BMWTouchCommand_Connection_00.00.10` + `a4a_andro
 
 So “verbunden mit BMW” rides on a **real BCL+Etch cert push** from MyBMW/AAIdrive apps — Dummy never answered SAS.
 
+## BclCarLink@7cfd959 cross-check (same evening)
+
+See [`BCL_BIMMER_VS_WIRE_20261113.md`](../analysis/BCL_BIMMER_VS_WIRE_20261113.md).
+
+- Pin-drift / “AAIdrive bundles newer bcl” = **not proven** (GPT).
+- Wire **disproves** desk for: SELECTPROTO after v3, SelectProto value **2**, WD **2.5 s**, session life **~38 s** without pong.
+- Wire **consistent** with desk for: INIT→HS order, no KNOCK at v3, OPEN 5001, Etch dest 4004, src ports from **10**.
+- DATAACK/HANGUP absent: Dummy silent after HS → BclCarLink would also not ACK until later HU frames (`readPacket` only).
+- Desk INIT retry is **≈2 s** (double `sleep(1000)`), not 1 s — L3 (no-HS) still to measure on phone.
+
+Live note: after Dummy stop, phone stayed ACL-connected; **14** identical ~38.3 s BCL sessions while HS Dummy was up.
+
 ## Epistemic
 
 ```text
 YES: Phone BCL client state machine against Dummy is reproducible
 YES: Watchdog TX period ≈ 2.5 s (lab FACT for this stack)
 YES: SELECTPROTO(2) after v3 HANDSHAKE (lab FACT; desk branch incomplete)
+NO:  Wire client identity = BclCarLink (markers contradict @7cfd959)
 NO:  F20 HU version/instanceId
-NO:  Which Connected “generation” instanceId 12–14 would look like on wire (need real HU HS)
+NO:  Phone INIT retry period without HS (L3 pending reconnect)
 ```

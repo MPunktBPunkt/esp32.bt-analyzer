@@ -80,6 +80,7 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 11. Post-decode: Resync auf `12 34 56 78`, dann HANDSHAKE `len=8` verlangen — sonst `BCL_MISALIGNED` vs `NO_BCL` (siehe `docs/analysis/BCL_AUDIT_DEEP_20261112.md`).
 11b. **Lab-Abend:** OnePlus→Dummy **BCL live** (`LAB_PHONE_BCL_*` + `_DECODE`) — Signatur eingefroren; SELECTPROTO(2); WD≈2,5 s; Certs myBMW/TouchCommand.  
 11c. **Priorität ab jetzt:** (1) Baseline eingefroren. (2) **Feld P0:** OnePlus HCI-Snoop ↔ echte F20-HU (+ `.87` btmon Beobachter) — prüft INIT/HANDSHAKE/`instanceId` am Auto. (3) Lab-Orakel L1–L8 / Retry-Matrix / Modus A–C — gezielt nach Feldlücken, nicht blind. (4) Multi-`0x1101` auf **einem** BlueZ-Adapter = blockiert (`LAB_F20_SDP_MIRROR`); Kanalwahl ch6–10 bleibt Feld. (5) Kein B3-Inject / kein ch5-BCL / keine weiteren generischen Dummies vor Feld-Snoop.
+11d. **Bimmer-vs-Wire** (`BCL_BIMMER_VS_WIRE_20261113`): Pin `7cfd959` bestätigt; SELECTPROTO(2)/WD2.5s = Wire≠Desk; AAIdrive-Pin-Drift **unproven**. Desk INIT-Retry ≈**2 s** (Doppel-sleep). L3 no-HS: Phone sendet **DEADBEEF+UUID**, nicht INIT (`LAB_L3_NO_HS_*`).
 
 ### P2 — Docs / Epistemik
 
