@@ -78,7 +78,7 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
     Beantwortet auch, welche Phone-App den HU-Dienst `deca-fade` (Kanal 5) öffnet.
     Gegen **F20-förmiges** Dummy-SDP (`lab_bcl_dummy_hu_f20_sdp.py`: ch5 `deca-fade` + ch6–10 `0x1101`) — Endpoint-Fingerabdruck; `NO_RFCOMM` bleibt erwartbar (C-L4/5).
 11. Post-decode: Resync auf `12 34 56 78`, dann HANDSHAKE `len=8` verlangen — sonst `BCL_MISALIGNED` vs `NO_BCL` (siehe `docs/analysis/BCL_AUDIT_DEEP_20261112.md`).
-11b. **Lab-Abend ohne Auto:** F20-SDP-Spiegel PASS; Phone+MyBMW/AAIdrive vs Dummy = **NO_RFCOMM inbound** (`LAB_BMW_SIM_20261113T181344Z`); Alias/CoD BMW-like irrelevant für AAIdrive-UI (AOA-Pfad war 30.10.); kein B3.
+11b. **Lab-Abend:** F20-SDP-Spiegel PASS; später OnePlus→Dummy **BCL live** (`LAB_PHONE_BCL_20261113T2201Z`) — AAIdrive „verbunden mit BMW“; Etch/PKCS7/Watchdog RX. Dummy ≠ F20; B3 am Auto weiter offen.
 
 ### P2 — Docs / Epistemik
 

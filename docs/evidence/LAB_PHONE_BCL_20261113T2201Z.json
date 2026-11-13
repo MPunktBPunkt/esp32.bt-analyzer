@@ -1,0 +1,31 @@
+{
+  "session_id": "LAB_PHONE_BCL_20261113T2201Z",
+  "gate": "LAB_PHONE_BCL",
+  "epistemic": "LAB_TEST",
+  "verdict": "PHONE_BCL_OVER_DUMMY_SPP",
+  "dummy_bd": "C8:C9:A3:CB:7B:0A",
+  "phone_bd": "AC:C0:48:5E:CB:20",
+  "event_count": 197,
+  "rfcomm_connects_by_peer": {
+    "C8:C9:A3:CB:37:96": 1,
+    "AC:C0:48:5E:CB:20": 3
+  },
+  "frame_counts": {
+    "rx:DATA:src5001:dst5001": 42,
+    "rx:DATA:src10:dst4004": 6,
+    "rx:OPEN:src11:dst4004": 6,
+    "rx:DATA:src11:dst4004": 6,
+    "rx:DATA:src12:dst4004": 6,
+    "rx:SELECTPROTO:src0:dst0": 3,
+    "rx:OPEN:src5001:dst5001": 3,
+    "rx:OPEN:src10:dst4004": 3,
+    "rx:CLOSE:src11:dst4004": 3,
+    "rx:OPEN:src12:dst4004": 3,
+    "rx:CLOSE:src5001:dst5001": 2
+  },
+  "notes": [
+    "OnePlus opened RFCOMM to Dummy BMW Connected ch6 after Dummy answered HANDSHAKE",
+    "AAIdrive UI 'verbunden mit BMW' coincides with BCL+Etch(DEADBEEF)+PKCS7+watchdog 13371337",
+    "Dummy does not implement Etch/SAS replies; UI may still show connected via BCL Ready OR"
+  ]
+}
