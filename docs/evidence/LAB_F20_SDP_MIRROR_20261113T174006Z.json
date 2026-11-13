@@ -1,0 +1,265 @@
+{
+  "gate": "LAB_F20_SDP_MIRROR",
+  "utc": "20261113T174006Z",
+  "epistemic_status": "lab_test",
+  "prep": {
+    "hu_dummy": {
+      "ok": true,
+      "hci": "hci1",
+      "bd": "C8:C9:A3:CB:7B:0A",
+      "alias": "F20-SDP-Mirror"
+    },
+    "phone": {
+      "ok": true,
+      "hci": "hci2",
+      "bd": "C8:C9:A3:CB:37:96",
+      "alias": "BCL-Phone"
+    }
+  },
+  "register": [
+    {
+      "channel": 5,
+      "name": "SPP Server 0",
+      "uuid": "00000000-deca-fade-deca-deafdecacaff",
+      "ok": true,
+      "error": null
+    },
+    {
+      "channel": 6,
+      "name": "SPP Server 1",
+      "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+      "ok": true,
+      "error": null
+    },
+    {
+      "channel": 7,
+      "name": "SPP Server 2",
+      "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+      "ok": false,
+      "error": "org.bluez.Error.NotPermitted: UUID already registered"
+    },
+    {
+      "channel": 8,
+      "name": "SPP Server 3",
+      "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+      "ok": false,
+      "error": "org.bluez.Error.NotPermitted: UUID already registered"
+    },
+    {
+      "channel": 9,
+      "name": "SPP Server 4",
+      "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+      "ok": false,
+      "error": "org.bluez.Error.NotPermitted: UUID already registered"
+    },
+    {
+      "channel": 10,
+      "name": "SPP Server 5",
+      "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+      "ok": false,
+      "error": "org.bluez.Error.NotPermitted: UUID already registered"
+    }
+  ],
+  "register_pid": "437493",
+  "browse": {
+    "ok": true,
+    "returncode": 0,
+    "source": "sdptool -i hci2 browse C8:C9:A3:CB:7B:0A",
+    "records": [
+      {
+        "name": "",
+        "handle": "0x10000",
+        "classes": [
+          "0x1200"
+        ],
+        "protocols": [],
+        "rfcomm": null
+      },
+      {
+        "name": "Generic Access Profile",
+        "handle": "0x10007",
+        "classes": [
+          "0x1800"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0007"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "Generic Attribute Profile",
+        "handle": "0x10008",
+        "classes": [
+          "0x1801"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0007"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "Device Information",
+        "handle": "0x10009",
+        "classes": [
+          "0x180a"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0007"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "AVRCP CT",
+        "handle": "0x1000a",
+        "classes": [
+          "0x110e",
+          "0x110f"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0017"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "AVRCP TG",
+        "handle": "0x1000b",
+        "classes": [
+          "0x110c"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0017"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "SIM Access Server",
+        "handle": "0x1000c",
+        "classes": [
+          "0x112d",
+          "0x1204"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0003"
+        ],
+        "rfcomm": 8
+      },
+      {
+        "name": "Audio Source",
+        "handle": "0x10015",
+        "classes": [
+          "0x110a"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0019"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "Audio Sink",
+        "handle": "0x10016",
+        "classes": [
+          "0x110b"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0019"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "Vendor specific",
+        "handle": "0x1001a",
+        "classes": [
+          "03b80e5a-ede8-4b33-a751-6ce34ec4c700"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0007"
+        ],
+        "rfcomm": null
+      },
+      {
+        "name": "SPP Server 0",
+        "handle": "0x1001c",
+        "classes": [
+          "00000000-deca-fade-deca-deafdecacaff"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0003"
+        ],
+        "rfcomm": 5
+      },
+      {
+        "name": "SPP Server 1",
+        "handle": "0x1001f",
+        "classes": [
+          "0x1101"
+        ],
+        "protocols": [
+          "0x0100",
+          "0x0003"
+        ],
+        "rfcomm": 6
+      }
+    ],
+    "raw_tail": "D List:\n  \"Generic Attribute\" (0x1801)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n    PSM: 31\n  \"ATT\" (0x0007)\n    uint16: 0x0008\n    uint16: 0x0011\n\nService Name: Device Information\nService Provider: BlueZ\nService RecHandle: 0x10009\nService Class ID List:\n  \"\" (0x180a)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n    PSM: 31\n  \"ATT\" (0x0007)\n    uint16: 0x0012\n    uint16: 0x0014\n\nService Name: AVRCP CT\nService RecHandle: 0x1000a\nService Class ID List:\n  \"AV Remote\" (0x110e)\n  \"AV Remote Controller\" (0x110f)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n    PSM: 23\n  \"AVCTP\" (0x0017)\n    uint16: 0x0104\nProfile Descriptor List:\n  \"AV Remote\" (0x110e)\n    Version: 0x0106\n\nService Name: AVRCP TG\nService RecHandle: 0x1000b\nService Class ID List:\n  \"AV Remote Target\" (0x110c)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n    PSM: 23\n  \"AVCTP\" (0x0017)\n    uint16: 0x0104\nProfile Descriptor List:\n  \"AV Remote\" (0x110e)\n    Version: 0x0106\n\nService Name: SIM Access Server\nService RecHandle: 0x1000c\nService Class ID List:\n  \"SIM Access\" (0x112d)\n  \"Generic Telephony\" (0x1204)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n  \"RFCOMM\" (0x0003)\n    Channel: 8\nProfile Descriptor List:\n  \"SIM Access\" (0x112d)\n    Version: 0x0101\n\nService Name: Audio Source\nService RecHandle: 0x10015\nService Class ID List:\n  \"Audio Source\" (0x110a)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n    PSM: 25\n  \"AVDTP\" (0x0019)\n    uint16: 0x0103\nProfile Descriptor List:\n  \"Advanced Audio\" (0x110d)\n    Version: 0x0104\n\nService Name: Audio Sink\nService RecHandle: 0x10016\nService Class ID List:\n  \"Audio Sink\" (0x110b)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n    PSM: 25\n  \"AVDTP\" (0x0019)\n    uint16: 0x0103\nProfile Descriptor List:\n  \"Advanced Audio\" (0x110d)\n    Version: 0x0104\n\nService Name: Vendor specific\nService Provider: BlueZ\nService RecHandle: 0x1001a\nService Class ID List:\n  UUID 128: 03b80e5a-ede8-4b33-a751-6ce34ec4c700\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n    PSM: 31\n  \"ATT\" (0x0007)\n    uint16: 0x0015\n    uint16: 0x0019\n\nService Name: SPP Server 0\nService RecHandle: 0x1001c\nService Class ID List:\n  UUID 128: 00000000-deca-fade-deca-deafdecacaff\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n  \"RFCOMM\" (0x0003)\n    Channel: 5\n\nService Name: SPP Server 1\nService RecHandle: 0x1001f\nService Class ID List:\n  \"Serial Port\" (0x1101)\nProtocol Descriptor List:\n  \"L2CAP\" (0x0100)\n  \"RFCOMM\" (0x0003)\n    Channel: 6\nProfile Descriptor List:\n  \"Serial Port\" (0x1101)\n    Version: 0x0102\n\n",
+    "error": null
+  },
+  "summary": {
+    "ok": true,
+    "registered_channels": [
+      5,
+      6
+    ],
+    "register_failures": [
+      {
+        "channel": 7,
+        "name": "SPP Server 2",
+        "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+        "ok": false,
+        "error": "org.bluez.Error.NotPermitted: UUID already registered"
+      },
+      {
+        "channel": 8,
+        "name": "SPP Server 3",
+        "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+        "ok": false,
+        "error": "org.bluez.Error.NotPermitted: UUID already registered"
+      },
+      {
+        "channel": 9,
+        "name": "SPP Server 4",
+        "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+        "ok": false,
+        "error": "org.bluez.Error.NotPermitted: UUID already registered"
+      },
+      {
+        "channel": 10,
+        "name": "SPP Server 5",
+        "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+        "ok": false,
+        "error": "org.bluez.Error.NotPermitted: UUID already registered"
+      }
+    ],
+    "browsed_rfcomm_channels": [
+      5,
+      6,
+      8
+    ],
+    "browse_saw_ch5_deca": true,
+    "browse_saw_ch6_spp": true,
+    "browse_saw_deca_fade": true,
+    "browse_saw_spp_1101": true,
+    "bluez_multi_spp_limitation": true,
+    "epistemic": "LAB_TEST \u2014 F20-shaped Dummy SDP; not BMW HU FACT"
+  },
+  "ok": true
+}

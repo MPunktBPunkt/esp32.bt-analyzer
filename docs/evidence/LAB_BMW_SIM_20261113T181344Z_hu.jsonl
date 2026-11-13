@@ -1,0 +1,2 @@
+{"ts": 1794593628.441, "event": "session_start", "session_id": "c1fc8e17-7294-475a-8345-93c7a2f49686", "mode": "lab_hu", "tx_allowed": true, "bcl_tx_enabled": true, "origin": "lab", "source": "lab"}
+{"ts": 1794593628.443, "event": "profile_registered", "channel": 6, "name": "BMW Connected", "uuid": "00001101-0000-1000-8000-00805f9b34fb", "hu_version": 3, "echo_watchdog": false, "observe_only": false, "session_id": "c1fc8e17-7294-475a-8345-93c7a2f49686", "mode": "lab_hu", "tx_allowed": true, "bcl_tx_enabled": true, "origin": "lab", "source": "lab"}

@@ -51,7 +51,21 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
    - B2-A ch **6** + ch **5**: SABM local → **UA remote**, 0 Payload, DISC local; BCL **UNKNOWN** (negativ ≠ absent)
    - B2-B observe-only 180 s: **kein** HU-SABM inbound unter Control (Apps/HFP off)
 5. **B1/B2 state C** (P0 jetzt) — MyBMW ON, HFP weiter OFF; optional B1-SDP-Delta (`d31fbf50`?); B2-A ch6/5 + B2-B. Dann D (+AAIdrive).
-6. **B3 nur nach BCL-Klassifikation** — INIT → HANDSHAKE → **version** → Branch → OPEN 5001. Capture-Paar X/Y wenn Consumer aktiv.
+   Engpass nach B2 state A ist **zweidimensional**: **Trigger** (MyBMW/Connected/Apps/Security?) × **Endpoint** (ch5 `deca-fade` ≠ ch6 `0x1101` ≠ ggf. ch7–10). UA ≠ BCL. A2DP/AVRCP aktiv ohne BCL ⇒ Media ist kein BCL-Trigger.
+6. **B3 nur nach BCL-Klassifikation** — INIT → HANDSHAKE → **version** → Branch → OPEN 5001. Capture-Paar X/Y wenn Consumer aktiv. **Kein B3** ohne first UIH / magic vom F20.
+
+### Hypothesen nach B2 (Stand 2026-11-13 Abend)
+
+| ID | Hypothese | Status |
+|----|-----------|--------|
+| **H-A** | BCL auf ch6, wartet nur auf Phone-TX | geschwächt (UA + 60 s empty, observe-only) |
+| **H-B** | HU initiiert BCL autonom | State A stark geschwächt (180 s kein HU-SABM zum getesteten Service) |
+| **H-C** | MyBMW/Connected aktiviert Car-Link (Trigger) | **führend**, F20 noch UNKNOWN — State C |
+| **H-D** | ch5 `deca-fade` = Connected-Pfad | UNKNOWN / interessant (accept, 0 payload) |
+| **H-E** | ch7–10 relevant | UNKNOWN — erst nach negativem State-C-Vergleich auf ch6 |
+| **H-F** | BCL nicht über RFCOMM/SPP | unwahrscheinlich (Desk/Secondary), F20 offen |
+
+**B2-B scoped:** „Unter State A, 180 s, kein HU-SABM zu *unserem* observe-only SPP (`BMW Connected` / Lab-`channel_offered`)“ — nicht „HU öffnet grundsätzlich kein SPP“.
 
 ### P1 — Lab (parallel / vor nächstem Feld, nicht statt B1)
 
@@ -60,7 +74,9 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 9. **B0.8** — BclCarLink (+ optional AAIdrive) ↔ **Simulator** :4006: ATTACHED → Etch → SAS-Stub. Epistemik: Simulator-Login ≠ Crypto-FACT.
 10. **Phone HCI-Snoop (P1 Differential)** — optional zweites Auge (ACL/RFCOMM/UIH); ersetzt F20-Nachweis **nicht**.
     Beantwortet auch, welche Phone-App den HU-Dienst `deca-fade` (Kanal 5) öffnet.
+    Gegen **F20-förmiges** Dummy-SDP (`lab_bcl_dummy_hu_f20_sdp.py`: ch5 `deca-fade` + ch6–10 `0x1101`) — Endpoint-Fingerabdruck; `NO_RFCOMM` bleibt erwartbar (C-L4/5).
 11. Post-decode: Resync auf `12 34 56 78`, dann HANDSHAKE `len=8` verlangen — sonst `BCL_MISALIGNED` vs `NO_BCL` (siehe `docs/analysis/BCL_AUDIT_DEEP_20261112.md`).
+11b. **Lab-Abend ohne Auto:** F20-SDP-Spiegel PASS; Phone+MyBMW/AAIdrive vs Dummy = **NO_RFCOMM inbound** (`LAB_BMW_SIM_20261113T181344Z`); Alias/CoD BMW-like irrelevant für AAIdrive-UI (AOA-Pfad war 30.10.); kein B3.
 
 ### P2 — Docs / Epistemik
 
@@ -110,4 +126,4 @@ Analyzer: **kein** Multi-Wochen-Umbau. Minimal (done/in tree): Klassifikation + 
 
 ## One-liner
 
-**A6 PASS, B1-A aus A6 dekodiert. Nächster Termin: HFP off → B2-A Kanal 6 + 5 → B2-B observe-only (`CAR_FIELD_1H`). Simulator = Layer E später. Negatives Phone-Connect ≠ negatives BCL.**
+**A6/B1A/B2A done. Lab: F20-SDP-Spiegel PASS (`LAB_F20_SDP_MIRROR_*`). P0 nächster Autotermin: State C (MyBMW ON, HFP OFF). Phone-Dummy/B0.7 skipped 13.11. ohne Handy/APK. Negatives Phone-Connect ≠ negatives BCL. B3 blocked.**

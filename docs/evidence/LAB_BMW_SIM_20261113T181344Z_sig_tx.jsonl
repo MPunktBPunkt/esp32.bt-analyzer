@@ -1,0 +1,18 @@
+{"ts": 1794594159.9969668, "event": "connect_try", "bd": "AC:C0:48:5E:CB:20", "channel": 5}
+{"ts": 1794594165.2611778, "event": "error", "error": "OSError(112, 'Host is down')"}
+{"ts": 1794594165.3017724, "event": "connect_try", "bd": "AC:C0:48:5E:CB:20", "channel": 6}
+{"ts": 1794594170.4530246, "event": "error", "error": "OSError(112, 'Host is down')"}
+{"ts": 1794594188.1143396, "event": "bind_ok", "local": "C8:C9:A3:CB:7B:0A", "channel": 5}
+{"ts": 1794594188.1143942, "event": "connect_try", "bd": "AC:C0:48:5E:CB:20", "channel": 5, "local": "C8:C9:A3:CB:7B:0A"}
+{"ts": 1794594189.081628, "event": "connected", "channel": 5}
+{"ts": 1794594189.0817127, "event": "tx_init_magic", "channel": 5, "i": 0, "hex": "12345678"}
+{"ts": 1794594189.881883, "event": "error", "channel": 5, "error": "ConnectionResetError(104, 'Connection reset by peer')"}
+{"ts": 1794594189.8820124, "event": "bind_ok", "local": "C8:C9:A3:CB:7B:0A", "channel": 6}
+{"ts": 1794594189.8820312, "event": "connect_try", "bd": "AC:C0:48:5E:CB:20", "channel": 6, "local": "C8:C9:A3:CB:7B:0A"}
+{"ts": 1794594190.5157678, "event": "connected", "channel": 6}
+{"ts": 1794594190.5158508, "event": "tx_init_magic", "channel": 6, "i": 0, "hex": "12345678"}
+{"ts": 1794594191.7167022, "event": "tx_init_magic", "channel": 6, "i": 1, "hex": "12345678"}
+{"ts": 1794594192.9173439, "event": "tx_init_magic", "channel": 6, "i": 2, "hex": "12345678"}
+{"ts": 1794594194.1180458, "event": "tx_init_magic", "channel": 6, "i": 3, "hex": "12345678"}
+{"ts": 1794594195.3184998, "event": "tx_init_magic", "channel": 6, "i": 4, "hex": "12345678"}
+{"ts": 1794594196.1187587, "event": "error", "channel": 6, "error": "ConnectionResetError(104, 'Connection reset by peer')"}

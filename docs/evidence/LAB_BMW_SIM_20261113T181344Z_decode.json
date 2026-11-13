@@ -1,0 +1,978 @@
+{
+  "handles": {
+    "1/129": {
+      "bd": "AC:C0:48:5E:CB:20",
+      "connected_t": 395.876
+    }
+  },
+  "l2cap_connects": [
+    {
+      "t": 396.183,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 397.003,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 397.412,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 398.026,
+      "by": "remote",
+      "psm": "0x0019"
+    },
+    {
+      "t": 399.563,
+      "by": "remote",
+      "psm": "0x0019"
+    },
+    {
+      "t": 399.972,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 400.382,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 401.694,
+      "by": "local",
+      "psm": "0x0017"
+    },
+    {
+      "t": 401.918,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 401.918,
+      "by": "local",
+      "psm": "0x001b"
+    },
+    {
+      "t": 405.809,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 406.321,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 409.293,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 409.7,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 480.732,
+      "by": "local",
+      "psm": "0x0001"
+    },
+    {
+      "t": 482.406,
+      "by": "local",
+      "psm": "0x0001"
+    },
+    {
+      "t": 482.612,
+      "by": "local",
+      "psm": "0x0001"
+    },
+    {
+      "t": 483.125,
+      "by": "local",
+      "psm": "0x0001"
+    },
+    {
+      "t": 559.672,
+      "by": "local",
+      "psm": "0x0003"
+    },
+    {
+      "t": 561.439,
+      "by": "local",
+      "psm": "0x0003"
+    }
+  ],
+  "sdp_remote": [
+    {
+      "handle": 65536,
+      "classes": [
+        "0x1801"
+      ],
+      "l2cap_psm": 31,
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005"
+      ]
+    },
+    {
+      "handle": 65537,
+      "classes": [
+        "0x1800"
+      ],
+      "l2cap_psm": 31,
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005"
+      ]
+    },
+    {
+      "handle": 65539,
+      "classes": [
+        "0x110a A2DP-Source"
+      ],
+      "name": "Advanced Audio Source",
+      "l2cap_psm": 25,
+      "profiles": {
+        "0x110d A2DP": "1.3"
+      },
+      "features": "0x0001",
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0009",
+        "0x0100",
+        "0x0311"
+      ]
+    },
+    {
+      "handle": 65541,
+      "classes": [
+        "0x110e AVRCP",
+        "0x110f AVRCP-Controller"
+      ],
+      "name": "AV Remote Control",
+      "provider": "",
+      "l2cap_psm": 23,
+      "profiles": {
+        "0x110e AVRCP": "1.4"
+      },
+      "features": "0x0002",
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0009",
+        "0x0100",
+        "0x0102",
+        "0x0311"
+      ]
+    },
+    {
+      "handle": 65542,
+      "classes": [
+        "0x110c AVRCP-Target"
+      ],
+      "name": "AV Remote Control Target",
+      "provider": "",
+      "l2cap_psm": 23,
+      "profiles": {
+        "0x110e AVRCP": "1.6"
+      },
+      "features": "0x01d1",
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0009",
+        "0x000d",
+        "0x0100",
+        "0x0102",
+        "0x0311"
+      ]
+    },
+    {
+      "handle": 65543,
+      "classes": [
+        "0x1112 HSP-AG",
+        "0x1203 GenericAudio"
+      ],
+      "name": "Headset Gateway",
+      "rfcomm_channel": 3,
+      "profiles": {
+        "0x1108 HSP": "1.2"
+      },
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0009",
+        "0x0100"
+      ]
+    },
+    {
+      "handle": 65544,
+      "classes": [
+        "0x111f HFP-AG",
+        "0x1203 GenericAudio"
+      ],
+      "name": "Handsfree Gateway",
+      "rfcomm_channel": 4,
+      "profiles": {
+        "0x111e HFP": "1.7"
+      },
+      "features": "0x002f",
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0009",
+        "0x0100",
+        "0x0301",
+        "0x0311"
+      ]
+    },
+    {
+      "handle": 65545,
+      "classes": [
+        "0x1116 NAP"
+      ],
+      "name": "Android Network Access Point",
+      "description": "NAP",
+      "l2cap_psm": 15,
+      "profiles": {
+        "0x1116 NAP": "1.0"
+      },
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0006",
+        "0x0009",
+        "0x0100",
+        "0x0101",
+        "0x030a",
+        "0x030b",
+        "0x030c"
+      ]
+    },
+    {
+      "handle": 65546,
+      "classes": [
+        "0x1115 PANU"
+      ],
+      "name": "Android Network User",
+      "description": "PANU",
+      "l2cap_psm": 15,
+      "profiles": {
+        "0x1115 PANU": "1.0"
+      },
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0006",
+        "0x0009",
+        "0x0100",
+        "0x0101",
+        "0x030a"
+      ]
+    },
+    {
+      "handle": 65547,
+      "classes": [
+        "0x1132 MAP-MAS"
+      ],
+      "name": "SMS/MMS",
+      "rfcomm_channel": 26,
+      "obex": true,
+      "profiles": {
+        "0x1134 MAP": "1.4"
+      },
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0009",
+        "0x0100",
+        "0x0200",
+        "0x0315",
+        "0x0316",
+        "0x0317"
+      ]
+    },
+    {
+      "handle": 65548,
+      "classes": [
+        "0x1855"
+      ],
+      "l2cap_psm": 31,
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005"
+      ]
+    },
+    {
+      "handle": 65549,
+      "classes": [
+        "0x112f PBAP-PSE"
+      ],
+      "name": "OBEX Phonebook Access Server",
+      "rfcomm_channel": 19,
+      "obex": true,
+      "profiles": {
+        "0x1130 PBAP": "1.2"
+      },
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0009",
+        "0x0100",
+        "0x0200",
+        "0x0314",
+        "0x0317"
+      ]
+    },
+    {
+      "handle": 65550,
+      "classes": [
+        "931c7e8a-540f-4686-b798-e8df0a2ad9f7"
+      ],
+      "name": "AMA SPP Server",
+      "rfcomm_channel": 5,
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0100"
+      ]
+    },
+    {
+      "handle": 65551,
+      "classes": [
+        "0xfcf1"
+      ],
+      "l2cap_psm": 31,
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005"
+      ]
+    },
+    {
+      "handle": 65552,
+      "classes": [
+        "0xfef3"
+      ],
+      "l2cap_psm": 31,
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005"
+      ]
+    },
+    {
+      "handle": 65553,
+      "classes": [
+        "0xbb15"
+      ],
+      "l2cap_psm": 31,
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005"
+      ]
+    },
+    {
+      "handle": 65554,
+      "classes": [
+        "0x1105 OPP"
+      ],
+      "name": "OBEX Object Push",
+      "rfcomm_channel": 12,
+      "obex": true,
+      "profiles": {
+        "0x1105 OPP": "1.2"
+      },
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0009",
+        "0x0100",
+        "0x0200",
+        "0x0303"
+      ]
+    },
+    {
+      "handle": 65555,
+      "classes": [
+        "a82efa21-ae5c-3dde-9bbc-f16da7b16c5a"
+      ],
+      "name": "NearbySharing",
+      "rfcomm_channel": 6,
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0100"
+      ]
+    }
+  ],
+  "sdp_local": [
+    {
+      "handle": null,
+      "classes": [
+        "0x110b A2DP-Sink"
+      ],
+      "l2cap_psm": 25,
+      "profiles": {
+        "0x110d A2DP": "1.4"
+      },
+      "attr_ids": [
+        "0x0001",
+        "0x0004",
+        "0x0009"
+      ]
+    },
+    {
+      "handle": null,
+      "classes": [
+        "0x110e AVRCP",
+        "0x110f AVRCP-Controller"
+      ],
+      "profiles": {
+        "0x110e AVRCP": "1.6"
+      },
+      "features": "0x03cf",
+      "attr_ids": [
+        "0x0001",
+        "0x0009",
+        "0x0311"
+      ]
+    },
+    {
+      "handle": null,
+      "classes": [
+        "0x110c AVRCP-Target"
+      ],
+      "profiles": {
+        "0x110e AVRCP": "1.6"
+      },
+      "features": "0x005f",
+      "attr_ids": [
+        "0x0001",
+        "0x0009",
+        "0x0311"
+      ]
+    },
+    {
+      "handle": null,
+      "classes": [
+        "0x110b A2DP-Sink"
+      ],
+      "profiles": {
+        "0x110d A2DP": "1.4"
+      },
+      "features": "0x000f",
+      "attr_ids": [
+        "0x0001",
+        "0x0009",
+        "0x0311"
+      ]
+    }
+  ],
+  "rfcomm_sessions": [
+    {
+      "channel": 5,
+      "dlci": 10,
+      "opened_by": "local",
+      "t_open": 560.537,
+      "t_close": 561.151,
+      "closed_by": "remote",
+      "accepted": true,
+      "frames": {
+        "SABM": 1,
+        "UA": 1,
+        "UIH": 3,
+        "DISC": 1
+      },
+      "first_uih": {
+        "t": 560.844,
+        "by": "local",
+        "len": 4,
+        "hex": "12345678"
+      },
+      "server": "remote",
+      "service": "AMA SPP Server",
+      "bytes_local": 4,
+      "bytes_remote": 0,
+      "payload": {
+        "kind": "binary",
+        "local": {
+          "bcl_classification": "BCL_CANDIDATE",
+          "len": 4,
+          "head": "12345678",
+          "handshake": null
+        }
+      }
+    },
+    {
+      "channel": 6,
+      "dlci": 12,
+      "opened_by": "local",
+      "t_open": 561.97,
+      "t_close": 567.192,
+      "closed_by": "remote",
+      "accepted": true,
+      "frames": {
+        "SABM": 1,
+        "UA": 1,
+        "UIH": 9,
+        "DISC": 1
+      },
+      "first_uih": {
+        "t": 562.176,
+        "by": "local",
+        "len": 4,
+        "hex": "12345678"
+      },
+      "server": "remote",
+      "service": "NearbySharing",
+      "bytes_local": 20,
+      "bytes_remote": 0,
+      "payload": {
+        "kind": "binary",
+        "local": {
+          "bcl_classification": "BCL_CANDIDATE",
+          "len": 20,
+          "head": "12345678123456781234567812345678",
+          "handshake": null
+        }
+      }
+    }
+  ],
+  "avdtp": [
+    {
+      "t": 398.232,
+      "by": "remote",
+      "signal": "DISCOVER",
+      "msg": "CMD"
+    },
+    {
+      "t": 398.232,
+      "by": "local",
+      "signal": "DISCOVER",
+      "msg": "ACC",
+      "endpoints": [
+        {
+          "seid": 1,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 2,
+          "in_use": false,
+          "sink": true
+        },
+        {
+          "seid": 3,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 4,
+          "in_use": false,
+          "sink": true
+        },
+        {
+          "seid": 5,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 6,
+          "in_use": false,
+          "sink": true
+        },
+        {
+          "seid": 7,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 8,
+          "in_use": false,
+          "sink": true
+        },
+        {
+          "seid": 9,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 10,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 11,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 12,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 13,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 14,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 15,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 16,
+          "in_use": false,
+          "sink": true
+        },
+        {
+          "seid": 17,
+          "in_use": false,
+          "sink": false
+        },
+        {
+          "seid": 18,
+          "in_use": false,
+          "sink": true
+        },
+        {
+          "seid": 19,
+          "in_use": false,
+          "sink": false
+        }
+      ]
+    },
+    {
+      "t": 398.538,
+      "by": "remote",
+      "signal": "GET_ALL_CAPS",
+      "msg": "CMD"
+    },
+    {
+      "t": 398.538,
+      "by": "local",
+      "signal": "GET_ALL_CAPS",
+      "msg": "ACC",
+      "seid": 2,
+      "caps": [
+        {
+          "codec": "vendor",
+          "info": "d70000002400f207ffffff"
+        },
+        {
+          "delay_reporting": true
+        }
+      ]
+    },
+    {
+      "t": 398.641,
+      "by": "remote",
+      "signal": "GET_ALL_CAPS",
+      "msg": "CMD"
+    },
+    {
+      "t": 398.641,
+      "by": "local",
+      "signal": "GET_ALL_CAPS",
+      "msg": "ACC",
+      "seid": 4,
+      "caps": [
+        {
+          "codec": "vendor",
+          "info": "4f0000000100f2"
+        },
+        {
+          "delay_reporting": true
+        }
+      ]
+    },
+    {
+      "t": 398.848,
+      "by": "remote",
+      "signal": "GET_ALL_CAPS",
+      "msg": "CMD"
+    },
+    {
+      "t": 398.848,
+      "by": "local",
+      "signal": "GET_ALL_CAPS",
+      "msg": "ACC",
+      "seid": 6,
+      "caps": [
+        {
+          "codec": "vendor",
+          "info": "e000000001009f"
+        },
+        {
+          "delay_reporting": true
+        }
+      ]
+    },
+    {
+      "t": 398.948,
+      "by": "remote",
+      "signal": "GET_ALL_CAPS",
+      "msg": "CMD"
+    },
+    {
+      "t": 398.948,
+      "by": "local",
+      "signal": "GET_ALL_CAPS",
+      "msg": "ACC",
+      "seid": 8,
+      "caps": [
+        {
+          "codec": "SBC",
+          "info": "ffff0240",
+          "rates": [
+            "16000",
+            "32000",
+            "44100",
+            "48000"
+          ],
+          "modes": [
+            "mono",
+            "dual",
+            "stereo",
+            "joint"
+          ],
+          "blocks": [
+            "4",
+            "8",
+            "12",
+            "16"
+          ],
+          "subbands": [
+            "4",
+            "8"
+          ],
+          "allocation": [
+            "snr",
+            "loudness"
+          ],
+          "bitpool": [
+            2,
+            64
+          ]
+        },
+        {
+          "delay_reporting": true
+        }
+      ]
+    },
+    {
+      "t": 399.05,
+      "by": "remote",
+      "signal": "GET_ALL_CAPS",
+      "msg": "CMD"
+    },
+    {
+      "t": 399.05,
+      "by": "local",
+      "signal": "GET_ALL_CAPS",
+      "msg": "ACC",
+      "seid": 16,
+      "caps": [
+        {
+          "codec": "vendor",
+          "info": "f105000005104000ffffff0f1f0000000000000000000000"
+        },
+        {
+          "delay_reporting": true
+        }
+      ]
+    },
+    {
+      "t": 399.153,
+      "by": "remote",
+      "signal": "GET_ALL_CAPS",
+      "msg": "CMD"
+    },
+    {
+      "t": 399.153,
+      "by": "local",
+      "signal": "GET_ALL_CAPS",
+      "msg": "ACC",
+      "seid": 18,
+      "caps": [
+        {
+          "codec": "vendor",
+          "info": "f105000005104000ffffff0f1f00004000ffffff0f1f0000"
+        },
+        {
+          "delay_reporting": true
+        }
+      ]
+    },
+    {
+      "t": 399.357,
+      "by": "remote",
+      "signal": "SET_CONF",
+      "msg": "CMD",
+      "seid": 2,
+      "caps": [
+        {
+          "codec": "vendor",
+          "info": "d700000024001200000000"
+        },
+        {
+          "delay_reporting": true
+        }
+      ]
+    },
+    {
+      "t": 399.362,
+      "by": "local",
+      "signal": "SET_CONF",
+      "msg": "ACC"
+    },
+    {
+      "t": 399.363,
+      "by": "local",
+      "signal": "DELAY_REPORT",
+      "msg": "CMD"
+    },
+    {
+      "t": 399.46,
+      "by": "remote",
+      "signal": "OPEN",
+      "msg": "CMD"
+    },
+    {
+      "t": 399.46,
+      "by": "remote",
+      "signal": "DELAY_REPORT",
+      "msg": "ACC"
+    },
+    {
+      "t": 399.46,
+      "by": "local",
+      "signal": "OPEN",
+      "msg": "ACC"
+    }
+  ],
+  "a2dp_media_bytes": {},
+  "avctp": {
+    "avrcp local STATUS GetCapabilities": 1,
+    "avrcp remote STABLE GetCapabilities": 1,
+    "avrcp local NOTIFY RegisterNotification 0x0c": 1,
+    "avrcp remote INTERIM RegisterNotification 0x0c": 1,
+    "avrcp local NOTIFY RegisterNotification 0x0b": 1,
+    "avrcp remote INTERIM RegisterNotification 0x0b": 1,
+    "avrcp local NOTIFY RegisterNotification 0x0a": 1,
+    "avrcp remote INTERIM RegisterNotification 0x0a": 1,
+    "avrcp local NOTIFY RegisterNotification 0x09": 1,
+    "browse local GetFolderItems": 1,
+    "avrcp remote INTERIM RegisterNotification 0x09": 1,
+    "browse remote GetFolderItems status 0x0b": 1,
+    "avrcp local NOTIFY RegisterNotification 0x08": 9,
+    "avrcp remote INTERIM RegisterNotification 0x08": 9,
+    "avrcp local NOTIFY RegisterNotification 0x05": 1,
+    "browse local ertm s-frame": 2,
+    "avrcp remote INTERIM RegisterNotification 0x05": 1,
+    "avrcp local NOTIFY RegisterNotification 0x02": 1,
+    "avrcp remote INTERIM RegisterNotification 0x02": 1,
+    "avrcp local NOTIFY RegisterNotification 0x01": 1,
+    "browse local GetItemAttributes": 1,
+    "avrcp remote INTERIM RegisterNotification 0x01": 1,
+    "browse remote GetItemAttributes status 0x04": 1,
+    "avrcp local STATUS GetPlayStatus": 2,
+    "avrcp remote STABLE GetPlayStatus": 2,
+    "avrcp remote CHANGED RegisterNotification 0x08": 16
+  },
+  "evidence_rows": [
+    {
+      "session_id": "LAB_BMW_SIM_20261113T181344Z-rfcomm1",
+      "hci_adapter": "hci1",
+      "local_bdaddr": "C8:C9:A3:CB:7B:0A",
+      "remote_bdaddr": "AC:C0:48:5E:CB:20",
+      "hci_timestamp": 560.537,
+      "rfcomm_channel": 5,
+      "rfcomm_dlci": 10,
+      "opened_by": "local",
+      "service": "AMA SPP Server",
+      "sabm": 1,
+      "ua": 1,
+      "dm": 0,
+      "disc": 1,
+      "uih": 3,
+      "payload_length": 4,
+      "payload_hex": "12345678",
+      "first_uih_timestamp": 560.844,
+      "first_uih_direction": "local",
+      "connection_state": "closed_by_remote",
+      "payload_kind": "binary",
+      "bcl_classification": "BCL_CANDIDATE"
+    },
+    {
+      "session_id": "LAB_BMW_SIM_20261113T181344Z-rfcomm2",
+      "hci_adapter": "hci1",
+      "local_bdaddr": "C8:C9:A3:CB:7B:0A",
+      "remote_bdaddr": "AC:C0:48:5E:CB:20",
+      "hci_timestamp": 561.97,
+      "rfcomm_channel": 6,
+      "rfcomm_dlci": 12,
+      "opened_by": "local",
+      "service": "NearbySharing",
+      "sabm": 1,
+      "ua": 1,
+      "dm": 0,
+      "disc": 1,
+      "uih": 9,
+      "payload_length": 20,
+      "payload_hex": "12345678",
+      "first_uih_timestamp": 562.176,
+      "first_uih_direction": "local",
+      "connection_state": "closed_by_remote",
+      "payload_kind": "binary",
+      "bcl_classification": "BCL_CANDIDATE"
+    }
+  ]
+}
