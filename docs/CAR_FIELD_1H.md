@@ -8,7 +8,9 @@ phone_esp: C8:C9:A3:CB:37:96 (.87)
 host: .108 via SSH
 tools: tools/field_b1_b2.py · tools/lab_hfp_stack.py · tools/btsnoop_decode.py
 b1_sdp_state_a: PASS / MEASURED — docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z.md
-note: "B1-SDP ≠ BCL-Transport bewiesen — Kanal 5/6–10 bekannt, welcher BCL trägt = B2"
+b2_state_a: DONE 2026-11-13 — docs/evidence/FIELD_B2_20261113T154728Z.md
+next: state C (MyBMW ON, HFP OFF) — gleiches Skript
+note: "B1-SDP ≠ BCL — ch5/6 accept empty; BCL weiter UNKNOWN"
 ```
 
 ## Stand aus A6 (2026-11-13)

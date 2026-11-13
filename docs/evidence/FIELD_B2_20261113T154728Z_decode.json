@@ -1,0 +1,357 @@
+{
+  "handles": {
+    "2/129": {
+      "disconnected_t": 358.111,
+      "reason": "0x13"
+    },
+    "2/128": {
+      "bd": "D4:36:39:CF:E1:B5",
+      "connected_t": 399.977
+    }
+  },
+  "l2cap_connects": [
+    {
+      "t": 23.324,
+      "by": "local",
+      "psm": "0x0003"
+    },
+    {
+      "t": 93.902,
+      "by": "local",
+      "psm": "0x0003"
+    },
+    {
+      "t": 400.186,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 400.908,
+      "by": "remote",
+      "psm": "0x0019"
+    },
+    {
+      "t": 401.101,
+      "by": "remote",
+      "psm": "0x0017"
+    },
+    {
+      "t": 401.104,
+      "by": "remote",
+      "psm": "0x0001"
+    },
+    {
+      "t": 402.333,
+      "by": "remote",
+      "psm": "0x001b"
+    },
+    {
+      "t": 403.048,
+      "by": "local",
+      "psm": "0x0019"
+    }
+  ],
+  "sdp_remote": [],
+  "sdp_local": [
+    {
+      "handle": 65559,
+      "classes": [
+        "0x110a A2DP-Source"
+      ],
+      "name": "Audio Source",
+      "l2cap_psm": 25,
+      "profiles": {
+        "0x110d A2DP": "1.4"
+      },
+      "features": "0x000f",
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0009",
+        "0x0100",
+        "0x0311"
+      ]
+    },
+    {
+      "handle": 65541,
+      "classes": [
+        "0x110c AVRCP-Target"
+      ],
+      "name": "AVRCP TG",
+      "l2cap_psm": 23,
+      "profiles": {
+        "0x110e AVRCP": "1.6"
+      },
+      "features": "0x005f",
+      "attr_ids": [
+        "0x0000",
+        "0x0001",
+        "0x0004",
+        "0x0005",
+        "0x0009",
+        "0x000d",
+        "0x0100",
+        "0x0311"
+      ]
+    }
+  ],
+  "rfcomm_sessions": [
+    {
+      "channel": 6,
+      "dlci": 12,
+      "opened_by": "local",
+      "t_open": 23.759,
+      "t_close": 83.938,
+      "closed_by": "local",
+      "accepted": true,
+      "frames": {
+        "SABM": 1,
+        "UA": 1,
+        "UIH": 1,
+        "DISC": 1
+      },
+      "first_uih": null,
+      "server": "remote",
+      "service": null,
+      "bytes_local": 0,
+      "bytes_remote": 0,
+      "payload": {
+        "kind": "empty"
+      }
+    },
+    {
+      "channel": 5,
+      "dlci": 10,
+      "opened_by": "local",
+      "t_open": 94.315,
+      "t_close": 154.491,
+      "closed_by": "local",
+      "accepted": true,
+      "frames": {
+        "SABM": 1,
+        "UA": 1,
+        "UIH": 1,
+        "DISC": 1
+      },
+      "first_uih": null,
+      "server": "remote",
+      "service": null,
+      "bytes_local": 0,
+      "bytes_remote": 0,
+      "payload": {
+        "kind": "empty"
+      }
+    }
+  ],
+  "avdtp": [
+    {
+      "t": 402.723,
+      "by": "local",
+      "signal": "DISCOVER",
+      "msg": "CMD"
+    },
+    {
+      "t": 402.847,
+      "by": "remote",
+      "signal": "DISCOVER",
+      "msg": "ACC",
+      "endpoints": [
+        {
+          "seid": 2,
+          "in_use": false,
+          "sink": true
+        },
+        {
+          "seid": 3,
+          "in_use": false,
+          "sink": true
+        },
+        {
+          "seid": 1,
+          "in_use": false,
+          "sink": true
+        }
+      ]
+    },
+    {
+      "t": 402.865,
+      "by": "local",
+      "signal": "SET_CONF",
+      "msg": "CMD",
+      "seid": 1,
+      "caps": [
+        {
+          "codec": "SBC",
+          "info": "11150235",
+          "rates": [
+            "48000"
+          ],
+          "modes": [
+            "joint"
+          ],
+          "blocks": [
+            "16"
+          ],
+          "subbands": [
+            "8"
+          ],
+          "allocation": [
+            "loudness"
+          ],
+          "bitpool": [
+            2,
+            53
+          ]
+        },
+        {
+          "delay_reporting": true
+        }
+      ]
+    },
+    {
+      "t": 402.952,
+      "by": "remote",
+      "signal": "SET_CONF",
+      "msg": "ACC"
+    },
+    {
+      "t": 402.957,
+      "by": "local",
+      "signal": "OPEN",
+      "msg": "CMD"
+    },
+    {
+      "t": 402.965,
+      "by": "remote",
+      "signal": "DELAY_REPORT",
+      "msg": "CMD"
+    },
+    {
+      "t": 402.965,
+      "by": "local",
+      "signal": "DELAY_REPORT",
+      "msg": "ACC"
+    },
+    {
+      "t": 403.048,
+      "by": "remote",
+      "signal": "OPEN",
+      "msg": "ACC"
+    },
+    {
+      "t": 407.398,
+      "by": "remote",
+      "signal": "START",
+      "msg": "CMD"
+    },
+    {
+      "t": 407.398,
+      "by": "local",
+      "signal": "START",
+      "msg": "ACC"
+    },
+    {
+      "t": 412.724,
+      "by": "local",
+      "signal": "SUSPEND",
+      "msg": "CMD"
+    },
+    {
+      "t": 412.883,
+      "by": "remote",
+      "signal": "SUSPEND",
+      "msg": "ACC"
+    }
+  ],
+  "a2dp_media_bytes": {},
+  "avctp": {
+    "avrcp remote STATUS GetCapabilities": 2,
+    "avrcp local STABLE GetCapabilities": 2,
+    "avrcp remote STATUS ListPlayerAppSettingAttributes": 2,
+    "avrcp local STABLE ListPlayerAppSettingAttributes": 2,
+    "avrcp remote NOTIFY RegisterNotification 0x01": 1,
+    "avrcp local INTERIM RegisterNotification 0x01": 1,
+    "avrcp remote NOTIFY RegisterNotification 0x02": 1,
+    "avrcp local INTERIM RegisterNotification 0x02": 1,
+    "avrcp remote NOTIFY RegisterNotification 0x03": 1,
+    "avrcp local INTERIM RegisterNotification 0x03": 1,
+    "avrcp remote NOTIFY RegisterNotification 0x04": 1,
+    "avrcp local INTERIM RegisterNotification 0x04": 1,
+    "avrcp remote NOTIFY RegisterNotification 0x0a": 1,
+    "avrcp local INTERIM RegisterNotification 0x0a": 1,
+    "avrcp remote NOTIFY RegisterNotification 0x0b": 1,
+    "avrcp local INTERIM RegisterNotification 0x0b": 1,
+    "avrcp remote STATUS GetPlayStatus": 1,
+    "avrcp local STABLE GetPlayStatus": 1,
+    "avrcp remote STATUS GetCurrentPlayerAppSettingValue": 1,
+    "avrcp local REJECTED GetCurrentPlayerAppSettingValue": 1,
+    "avrcp remote STATUS GetElementAttributes": 14,
+    "avrcp local STABLE GetElementAttributes": 14,
+    "browse remote GetFolderItems": 2,
+    "browse local GetFolderItems status 0x04": 1,
+    "browse remote ertm s-frame": 2,
+    "browse local GetFolderItems status 0x0b": 1,
+    "pass-through remote CONTROL PLAY pressed": 1,
+    "pass-through local ACCEPTED PLAY pressed": 1,
+    "pass-through remote CONTROL PLAY released": 1,
+    "pass-through local ACCEPTED PLAY released": 1,
+    "pass-through remote CONTROL BACKWARD pressed": 7,
+    "pass-through local ACCEPTED BACKWARD pressed": 7,
+    "pass-through remote CONTROL BACKWARD released": 7,
+    "pass-through local ACCEPTED BACKWARD released": 7,
+    "pass-through remote CONTROL FORWARD pressed": 6,
+    "pass-through local ACCEPTED FORWARD pressed": 6,
+    "pass-through remote CONTROL FORWARD released": 6,
+    "pass-through local ACCEPTED FORWARD released": 6
+  },
+  "evidence_rows": [
+    {
+      "session_id": "FIELD_B2_20261113T154728Z-rfcomm1",
+      "hci_adapter": "hci2",
+      "local_bdaddr": "C8:C9:A3:CB:37:96",
+      "remote_bdaddr": null,
+      "hci_timestamp": 23.759,
+      "rfcomm_channel": 6,
+      "rfcomm_dlci": 12,
+      "opened_by": "local",
+      "service": null,
+      "sabm": 1,
+      "ua": 1,
+      "dm": 0,
+      "disc": 1,
+      "uih": 1,
+      "payload_length": 0,
+      "payload_hex": null,
+      "first_uih_timestamp": null,
+      "first_uih_direction": null,
+      "connection_state": "closed_by_local",
+      "payload_kind": "empty",
+      "bcl_classification": "UNKNOWN"
+    },
+    {
+      "session_id": "FIELD_B2_20261113T154728Z-rfcomm2",
+      "hci_adapter": "hci2",
+      "local_bdaddr": "C8:C9:A3:CB:37:96",
+      "remote_bdaddr": null,
+      "hci_timestamp": 94.315,
+      "rfcomm_channel": 5,
+      "rfcomm_dlci": 10,
+      "opened_by": "local",
+      "service": null,
+      "sabm": 1,
+      "ua": 1,
+      "dm": 0,
+      "disc": 1,
+      "uih": 1,
+      "payload_length": 0,
+      "payload_hex": null,
+      "first_uih_timestamp": null,
+      "first_uih_direction": null,
+      "connection_state": "closed_by_local",
+      "payload_kind": "empty",
+      "bcl_classification": "UNKNOWN"
+    }
+  ]
+}

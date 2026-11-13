@@ -1,12 +1,13 @@
 # Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
 
 ```yaml
-status: active · A6 done 2026-11-13 · B1 state A done (from A6 capture) · P0 now HFP off → B2-A (ch 6, ch 5) + B2-B
+status: active · A6/B1A done · B2 state A DONE 2026-11-13 Abend · P0 next = state C (MyBMW ON, HFP OFF)
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake / supra-idrive6-android-auto-2026-secondary]
 trigger: 2026-11-13 secondary NBT-AAD + RFCOMM two-mode review (initiator UNKNOWN · B2-A/B2-B)
 method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md
 a6_evidence: docs/evidence/FIELD_A6_HU_20261113T062824Z
 b1_evidence: docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z
+b2_evidence: docs/evidence/FIELD_B2_20261113T154728Z
 hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 ```
 
@@ -45,15 +46,12 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
    - ~~B: + A2DP connected~~ → in A6 mit enthalten (A2DP OPEN/START/SUSPEND), SDP unverändert.
    - C: + MyBMW/Connected aktiv — nur wiederholen, wenn dieser Zustand herstellbar ist
    - D: + AAIdrive aktiv (Kontrolle: Consumer öffnet keinen SPP)
-3. **HFP vor B2 abschalten** — HU bricht die SLC bei `AT+CHLD=?` → `ERROR` ab und öffnet alle 20–35 s unseren Kanal 13 neu
-   (`docs/analysis/HFP_SLC_A6_20261113.md`). `tools/lab_hfp_stack.py diag` → `hfp-off --apply` (A2DP bleibt). Danach Ruhephase prüfen.
-4. **B2-A + B2-B** — Initiator **nicht** voraussetzen (`docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md`):
-   - B2-Control: MyBMW/AAIdrive OFF (Versuchsbedingung)  
-   - B2-A Kanal **6** (erster SPP-`0x1101`-Record = Ziel von BclCarLink) und Kanal **5** (`deca-fade`): `.87` connect() → HU; SABM von Phone; UA/DM; UIH der HU ohne unser TX; negativ ≠ BCL absent  
-   - B2-B: `.87` SPP-Server **observe-only** (kein BCL-TX); SABM von HU; negativ ≠ kein BCL  
-   - shared: DLCI / first UIH / magic=`candidate` / header / HANDSHAKE — `field_b1_b2.py btmon-stop` dekodiert direkt
-5. **B3 nur nach BCL-Klassifikation** — INIT → HANDSHAKE → **version** → Branch (≤3 vs >3 SELECTPROTO+KNOCK) → OPEN 5001. OPEN 4004 erst wenn Consumer aktiv (Capture Y).
-6. **Capture-Paar X/Y** — X: Transport only (kein AAIdrive); Y: + AAIdrive → isoliert Layer B vs E. Pflichtschema siehe Runbook.
+3. ~~**HFP vor B2 abschalten**~~ → **DONE** (`hfp-off` + 50-bt-lab A2DP-only); B2-Capture **0×** `AT+`.
+4. ~~**B2-A + B2-B state A**~~ → **DONE** `FIELD_B2_20261113T154728Z`:
+   - B2-A ch **6** + ch **5**: SABM local → **UA remote**, 0 Payload, DISC local; BCL **UNKNOWN** (negativ ≠ absent)
+   - B2-B observe-only 180 s: **kein** HU-SABM inbound unter Control (Apps/HFP off)
+5. **B1/B2 state C** (P0 jetzt) — MyBMW ON, HFP weiter OFF; optional B1-SDP-Delta (`d31fbf50`?); B2-A ch6/5 + B2-B. Dann D (+AAIdrive).
+6. **B3 nur nach BCL-Klassifikation** — INIT → HANDSHAKE → **version** → Branch → OPEN 5001. Capture-Paar X/Y wenn Consumer aktiv.
 
 ### P1 — Lab (parallel / vor nächstem Feld, nicht statt B1)
 

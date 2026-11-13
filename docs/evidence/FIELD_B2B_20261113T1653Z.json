@@ -1,0 +1,81 @@
+{
+  "session_id": "FIELD_B2B_20261113T1653Z",
+  "gate": "B2-B",
+  "source": "field",
+  "origin": "f20",
+  "ts_utc": "20261113T155705Z",
+  "event_count": 3,
+  "events_head": [
+    {
+      "ts": 1794585244.672,
+      "event": "session_start",
+      "session_id": "FIELD_B2B_20261113T1653Z",
+      "mode": "B2-B",
+      "tx_allowed": false,
+      "bcl_tx_enabled": false,
+      "origin": "f20",
+      "source": "field"
+    },
+    {
+      "ts": 1794585244.674,
+      "event": "profile_registered",
+      "channel": 5,
+      "name": "BMW Connected",
+      "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+      "hu_version": 3,
+      "echo_watchdog": false,
+      "observe_only": true,
+      "session_id": "FIELD_B2B_20261113T1653Z",
+      "mode": "B2-B",
+      "tx_allowed": false,
+      "bcl_tx_enabled": false,
+      "origin": "f20",
+      "source": "field"
+    },
+    {
+      "ts": 1794585424.961,
+      "event": "agent_stopped",
+      "session_id": "FIELD_B2B_20261113T1653Z"
+    }
+  ],
+  "events_tail": [
+    {
+      "ts": 1794585244.672,
+      "event": "session_start",
+      "session_id": "FIELD_B2B_20261113T1653Z",
+      "mode": "B2-B",
+      "tx_allowed": false,
+      "bcl_tx_enabled": false,
+      "origin": "f20",
+      "source": "field"
+    },
+    {
+      "ts": 1794585244.674,
+      "event": "profile_registered",
+      "channel": 5,
+      "name": "BMW Connected",
+      "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+      "hu_version": 3,
+      "echo_watchdog": false,
+      "observe_only": true,
+      "session_id": "FIELD_B2B_20261113T1653Z",
+      "mode": "B2-B",
+      "tx_allowed": false,
+      "bcl_tx_enabled": false,
+      "origin": "f20",
+      "source": "field"
+    },
+    {
+      "ts": 1794585424.961,
+      "event": "agent_stopped",
+      "session_id": "FIELD_B2B_20261113T1653Z"
+    }
+  ],
+  "channel_offered": 5,
+  "service_name": "BMW Connected",
+  "tx_allowed": false,
+  "bcl_tx_enabled": false,
+  "note": "channel_offered is lab SDP value; not F20 HU channel X",
+  "tx_bytes_events": 0,
+  "tx_blocked_events": 0
+}
