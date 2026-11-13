@@ -1,10 +1,10 @@
 # BCL over Bluetooth — observe first, relay later (plan)
 
 ```yaml
-status: lab closed → car · B0.5/B0.6 PASS · A6/B1 OPEN · runbook docs/CAR_A6_B1.md
-depends_on: HCI_TCP A1–A6 (docs/HCI_TCP.md) — A1–A5 MEASURED, A6 OPEN
+status: A6 PASS (FIELD) · B1/B2 OPEN · runbook docs/CAR_A6_B1.md · evidence FIELD_A6_HU_20261113T062824Z
+depends_on: HCI_TCP A1–A6 (docs/HCI_TCP.md) — A1–A5 MEASURED, A6 MEASURED 2026-11-13
 related: hu-probe Gate G2 "BCL wire" (USB AOA path, still open)
-claim_level: HYPOTHESIS — "BCL primarily over BT RFCOMM" is not proven for NBT Evo / F20
+claim_level: HYPOTHESIS — "BCL primarily over BT RFCOMM" is not proven for NBT Evo / F20 (SPP UUID on HU is MEASURED; channel/BCL still UNKNOWN)
 architecture: controlled dual-leg HCI bridge — not passive Phone↔HU air sniff
 audit_reuse: technology-audit technologies/bmw-bcl + projects/esp32-bt-analyzer/applications/bmw-bcl.md
 ```
@@ -68,9 +68,10 @@ B1 needs no pairing. B2 pairs a D1 with a real device (new BD_ADDR, so the HU or
 phone sees a new device; remove it afterwards with `tools/lab_pair_agent.py remove`).
 
 ```bash
-# on .108 — re-check hciN after bridge start (lab 2026-11-12: hci1=.87, hci2=.131)
-python3 tools/bcl_sdp_probe.py -i hci1 hu=<HU BD_ADDR> --records --json /tmp/sdp_hu.json
-python3 tools/bcl_sdp_probe.py -i hci2 phone=<phone BD_ADDR> --records --json /tmp/sdp_phone.json
+# on .108 — re-check hciN after bridge start (2026-11-13 live: hci2=.87, hci1=.131)
+python3 tools/bcl_sdp_probe.py -i hci2 hu=D4:36:39:CF:E1:B5 --records \
+  --json /tmp/sdp_hu_$(date -u +%Y%m%dT%H%M%SZ).json
+python3 tools/bcl_sdp_probe.py -i hci1 phone=<phone BD_ADDR> --records --json /tmp/sdp_phone.json
 ```
 
 Car procedure + B1 expectation table: [`CAR_A6_B1.md`](CAR_A6_B1.md).
@@ -85,7 +86,9 @@ as candidates. A BMW/Connected service name upgrades the verdict to
 
 | Item | State |
 |------|-------|
-| NBT Evo / F20 offers BCL over BT at all | UNKNOWN → B1 |
+| A6 `.87`↔HU ACL + Numeric Comparison | **MEASURED PASS** `FIELD_A6_HU_20261113T062824Z` (BMW 38304 / `D4:36:39:CF:E1:B5`) |
+| HU advertises SPP `00001101` after bond | **MEASURED** (BlueZ UUID list; SDP channel X still B1) |
+| NBT Evo / F20 offers BCL over BT at all | UNKNOWN → B1 (SPP present ≠ BCL) |
 | RFCOMM server role (HU or phone) | INFERENCE: HU = server, phone app = client (BclCarLink @7cfd959, audit `bmw-bcl-rfcomm-role-2026-desk`) → confirm B1/B2 |
 | App only tries A2DP-connected devices that list SPP | FACT for **BclCarLink** (`BtClientService`); **not** the AAIdrive/MyBMW opener path |
 | MyBMW + AAIdrive open RFCOMM to Dummy-HU (A2DP+SPP up) | **REJECTED** for this setup — `LAB_BCL_DUMMY_HU_A2DP_20261112T172006Z` `NO_RFCOMM` (AAIdrive = Etch consumer; needs Connected/BclCarLink as link owner) |
@@ -95,7 +98,7 @@ as candidates. A BMW/Connected service name upgrades the verdict to
 | Car behind hotspot NAT | as in HCI_TCP: needs dial-out/VPN, not for B1–B3 |
 | USB/ENET BCL vs BT-only | Desk **Contradiction/HYPOTHESIS** (EVID-BG-020) — not REJECTED; AOA+car can resolve |
 
-**Next (epistemic order):** Maßnahmen [`MASSNAHMEN_BCL_A6.md`](MASSNAHMEN_BCL_A6.md) · A6/B1 on car (`CAR_A6_B1.md`). Optional lab: **B0.7** BclCarLink↔Dummy (differential), **B0.8** BclCarLink↔Simulator(:4006) for Etch — not AAIdrive-alone. Simulator ≠ F20 wire. Desk matrix: pidrive [`HU-Technical-Facts.md`](../../pidrive/docs/fahrzeug/HU-Technical-Facts.md) §10.1–10.4.
+**Next (epistemic order):** **B1** SDP on bonded HU (`hu=D4:36:39:CF:E1:B5`, `-i hci2` — re-check mapping) states A→D · then B2 split. Runbook [`CAR_A6_B1.md`](CAR_A6_B1.md) · Maßnahmen [`MASSNAHMEN_BCL_A6.md`](MASSNAHMEN_BCL_A6.md). Optional lab while waiting for car: **B0.7** BclCarLink↔Dummy, **B0.8** Simulator — not AAIdrive-alone.
 
 ## Decision rule
 

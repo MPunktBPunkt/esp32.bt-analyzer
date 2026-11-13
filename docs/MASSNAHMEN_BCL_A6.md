@@ -1,9 +1,10 @@
 # Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
 
 ```yaml
-status: active
+status: active · A6 done 2026-11-13 · P0 now B1
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake]
 trigger: multi-analysis 2026-11-12 (Transport-Owner vs Etch-Consumer · Simulator · OPEN-4004 · B2 split)
+a6_evidence: docs/evidence/FIELD_A6_HU_20261113T062824Z
 ```
 
 ## Simulator: hilft — aber wo?
@@ -33,8 +34,8 @@ trigger: multi-analysis 2026-11-12 (Transport-Owner vs Etch-Consumer · Simulato
 
 ### P0 — Feld (nächster Erkenntnissprung)
 
-1. **A6** — `.87` ↔ NBT Evo: ACL + Pairing + `btmon -w` (Runbook `CAR_A6_B1.md`).
-2. **B1 zustandsweise** — SDP in Zuständen A→D (kein channel=5):
+1. ~~**A6** — `.87` ↔ NBT Evo: ACL + Pairing + `btmon -w`~~ → **PASS** `FIELD_A6_HU_20261113T062824Z` (BMW 38304 / SPP UUID seen).
+2. **B1 zustandsweise** — SDP in Zuständen A→D (kein channel=5); HU=`D4:36:39:CF:E1:B5`, Controller `.87` (hciN neu mappen):
    - A: nur gekoppelt  
    - B: + A2DP connected  
    - C: + MyBMW/Connected aktiv  

@@ -1,0 +1,38 @@
+{
+  "gate": "A6",
+  "status": "PASS",
+  "ts_utc": "20261113T062824Z",
+  "controller": {
+    "ip": "192.168.178.87",
+    "hci": "hci2",
+    "bd": "C8:C9:A3:CB:37:96",
+    "alias": "BT-Analyzer-Phone"
+  },
+  "hu": {
+    "name": "BMW 38304",
+    "bd": "D4:36:39:CF:E1:B5",
+    "class": "0x340408"
+  },
+  "pairing": {
+    "passkey": "656859",
+    "agent_answer": "yes",
+    "reason": "rule always"
+  },
+  "result": {
+    "paired": true,
+    "bonded": true,
+    "connected": true
+  },
+  "uuids_seen": [
+    "00001101 SPP",
+    "0000110b A2DP Sink",
+    "0000110e AVRCP",
+    "0000111e HFP",
+    "00001105 OPP",
+    "00001133 MAP MNS",
+    "vendor deca-fade"
+  ],
+  "btsnoop": "FIELD_A6_HU_20261113T062824Z.btsnoop",
+  "pair_events": "FIELD_A6_HU_20261113T062824Z_pair_events.jsonl",
+  "note": "Operator left after A6; B1 SDP not run this session."
+}

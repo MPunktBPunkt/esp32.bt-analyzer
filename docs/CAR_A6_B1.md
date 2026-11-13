@@ -1,13 +1,16 @@
 # Car runbook — A6 + B1 (F20 / NBT Evo)
 
 ```yaml
-status: ready_for_car
-lab_closed: [HCI_TCP A1–A5, 62/37 gate, B0.5 BCL synth, B0.6 Dummy-HU SDP]
-next: A6 then B1/B2 split — no relay, no BCL TX, no channel-5 assumption
+status: A6_PASS · next B1
+lab_closed: [HCI_TCP A1–A5, 62/37 gate, B0.5 BCL synth, B0.6 Dummy-HU SDP, A6 FIELD 2026-11-13]
+next: B1 SDP states A–D then B2 split — no relay, no BCL TX, no channel-5 assumption
 claim_level: VERIFY reuse expectations from technology-audit/bmw-bcl — not FACT until measured
-boards: ".87 = car / HU side (hci1, BD c8:c9:a3:cb:37:96) · .131 = phone side (optional today)"
+boards: ".87 = car / HU side (BD c8:c9:a3:cb:37:96) · .131 = phone side (optional)"
 linux: ".108 BlueZ + hci_tcp_bridge"
+hu_bd: "D4:36:39:CF:E1:B5 (BMW 38304)"
+a6_evidence: docs/evidence/FIELD_A6_HU_20261113T062824Z
 measures: docs/MASSNAHMEN_BCL_A6.md
+note: "lab 2026-11-13 live mapping was hci2=.87 / hci1=.131 — re-check after bridge restart"
 ```
 
 ## Lab already closed (do not re-litigate in the car)
@@ -31,7 +34,7 @@ measures: docs/MASSNAHMEN_BCL_A6.md
 
 | Layer | Expectation | Desk pin / status before A6 | Pass if measured |
 |-------|-------------|------------------------------|------------------|
-| BT link | `.87` pairs/connects to HU | UNKNOWN | A6: stable ACL, HU lists ESP |
+| BT link | `.87` pairs/connects to HU | **MEASURED PASS** FIELD_A6 | A6: stable ACL, HU lists ESP |
 | SDP | some RFCOMM data service | REUSE (BclCarLink client needs SPP server) | any SPP/vendor128 + channel |
 | UUID | SPP `00001101-0000-1000-8000-00805f9b34fb` | REUSE · EVID-BCLRF-002 | present **or** documented absent |
 | RFCOMM channel | **X from SDP** (not 5) | UNKNOWN — lab Dummy used 5 only | integer channel recorded |
