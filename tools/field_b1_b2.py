@@ -9,6 +9,7 @@ Examples (from laptop with SSH to .108):
   python3 tools/field_b1_b2.py b1 --state A
   python3 tools/field_b1_b2.py b2a --channel X          # after B1
   python3 tools/field_b1_b2.py b2b --hold 90            # observe-only server
+  python3 tools/field_b1_b2.py btmon-stop               # pull + decode btsnoop
   python3 tools/field_b1_b2.py pack --session-id SID    # write evidence stub
 
 Control before RFCOMM: MyBMW + AAIdrive force-stopped on phone.
@@ -110,6 +111,10 @@ def cmd_preflight(_: argparse.Namespace) -> int:
     print(f".87 BD {PHONE_BD} → {hci or 'NOT FOUND'}")
     agent = ssh("systemctl is-active bt-pair-agent || true", timeout=15)
     print(f"bt-pair-agent: {(agent.stdout or '').strip()}")
+    uuids = ssh(f"bluetoothctl show {PHONE_BD} | grep -c 'Handsfree Audio Gateway' || true", timeout=15)
+    if (uuids.stdout or "").strip() not in ("", "0"):
+        print("WARN: HFP AG active on .87 — HU will reopen RFCOMM every 20-35 s "
+              "(docs/analysis/HFP_SLC_A6_20261113.md): python3 tools/lab_hfp_stack.py hfp-off --apply")
     print("Control reminder: MyBMW OFF, AAIdrive OFF before B2.")
     return 0 if hci else 1
 
@@ -127,6 +132,35 @@ def cmd_btmon_start(args: argparse.Namespace) -> int:
         timeout=15,
     )
     print(json.dumps({"hci": hci, "btsnoop": path, "ts": stamp}, indent=2))
+    return 0
+
+
+def cmd_btmon_stop(args: argparse.Namespace) -> int:
+    """Stop btmon, pull the newest /tmp/field_*.btsnoop and decode it next to the evidence."""
+    ssh("pkill -INT -f 'btmon -i' || true; sleep 1", timeout=15)
+    remote = (ssh("ls -1t /tmp/field_*.btsnoop 2>/dev/null | head -n 1", timeout=15).stdout or "").strip()
+    if not remote:
+        print("no /tmp/field_*.btsnoop on host", file=sys.stderr)
+        return 1
+    sid = args.session_id or Path(remote).stem.replace("field_", "FIELD_CAPTURE_")
+    local = EVIDENCE / f"{sid}.btsnoop"
+    pull = subprocess.run(["scp", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5",
+                           f"{DEFAULT_SSH}:{remote}", str(local)], capture_output=True, text=True, timeout=60)
+    if pull.returncode != 0:
+        print(f"scp failed: {pull.stderr}", file=sys.stderr)
+        return 1
+    sys.path.insert(0, str(ROOT / "tools"))
+    from btsnoop_decode import decode, evidence_rows, to_markdown
+
+    out = decode(local.read_bytes())
+    out["evidence_rows"] = evidence_rows(out, sid, resolve_hci(PHONE_BD), PHONE_BD)
+    (EVIDENCE / f"{sid}_decode.json").write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n",
+                                                 encoding="utf-8")
+    (EVIDENCE / f"{sid}_decode.md").write_text(to_markdown(out, sid), encoding="utf-8")
+    for row in out["evidence_rows"]:
+        print(f"ch {row['rfcomm_channel']:>2} opened_by {row['opened_by']:<6} {row['payload_kind']:<6} "
+              f"{row['bcl_classification']:<20} {row['connection_state']}")
+    print(f"wrote {local.name} + _decode.json/.md")
     return 0
 
 
@@ -388,6 +422,10 @@ def main() -> int:
 
     bm = sub.add_parser("btmon-start")
     bm.set_defaults(func=cmd_btmon_start)
+
+    bs = sub.add_parser("btmon-stop", help="stop btmon, pull + decode the capture")
+    bs.add_argument("--session-id", default="")
+    bs.set_defaults(func=cmd_btmon_stop)
 
     b1 = sub.add_parser("b1")
     b1.add_argument("--state", default="A", help="A paired / B +A2DP / C +MyBMW / D +AAIdrive")

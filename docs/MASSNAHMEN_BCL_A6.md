@@ -1,11 +1,13 @@
 # Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
 
 ```yaml
-status: active · A6 done 2026-11-13 · P0 now B1 then B2-A+B2-B
+status: active · A6 done 2026-11-13 · B1 state A done (from A6 capture) · P0 now HFP off → B2-A (ch 6, ch 5) + B2-B
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake / supra-idrive6-android-auto-2026-secondary]
 trigger: 2026-11-13 secondary NBT-AAD + RFCOMM two-mode review (initiator UNKNOWN · B2-A/B2-B)
 method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md
 a6_evidence: docs/evidence/FIELD_A6_HU_20261113T062824Z
+b1_evidence: docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z
+hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 ```
 
 ## Simulator: hilft — aber wo?
@@ -36,38 +38,44 @@ a6_evidence: docs/evidence/FIELD_A6_HU_20261113T062824Z
 ### P0 — Feld (nächster Erkenntnissprung)
 
 1. ~~**A6** — `.87` ↔ NBT Evo: ACL + Pairing + `btmon -w`~~ → **PASS** `FIELD_A6_HU_20261113T062824Z` (BMW 38304 / SPP UUID seen).
-2. **B1 zustandsweise** — SDP in Zuständen A→D (kein channel=5); HU=`D4:36:39:CF:E1:B5`, Controller `.87` (hciN neu mappen):
-   - A: nur gekoppelt  
-   - B: + A2DP connected  
-   - C: + MyBMW/Connected aktiv  
+2. **B1 zustandsweise** — HU=`D4:36:39:CF:E1:B5`, Controller `.87` (hciN neu mappen):
+   - ~~A: nur gekoppelt~~ → **DONE** aus A6-Capture (`FIELD_B1_FROM_A6_20261113T062824Z`, `tools/btsnoop_decode.py`):
+     HU-Kanal 5 = `deca-fade`-Vendor-UUID („SPP Server 0“), 6–10 = SPP `0x1101`, 2 = HFP 1.6, 1 = MAP-MNS, 11 = OPP;
+     A2DP 1.3 (SBC 2..53 / AAC / MPEG-1,2, SCMS-T), AVRCP CT 1.5 **mit Browsing**. HU öffnete in A **keinen** SPP-Kanal.
+   - ~~B: + A2DP connected~~ → in A6 mit enthalten (A2DP OPEN/START/SUSPEND), SDP unverändert.
+   - C: + MyBMW/Connected aktiv — nur wiederholen, wenn dieser Zustand herstellbar ist
    - D: + AAIdrive aktiv (Kontrolle: Consumer öffnet keinen SPP)
-3. **B2-A + B2-B** — Initiator **nicht** voraussetzen (`docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md`):
+3. **HFP vor B2 abschalten** — HU bricht die SLC bei `AT+CHLD=?` → `ERROR` ab und öffnet alle 20–35 s unseren Kanal 13 neu
+   (`docs/analysis/HFP_SLC_A6_20261113.md`). `tools/lab_hfp_stack.py diag` → `hfp-off --apply` (A2DP bleibt). Danach Ruhephase prüfen.
+4. **B2-A + B2-B** — Initiator **nicht** voraussetzen (`docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md`):
    - B2-Control: MyBMW/AAIdrive OFF (Versuchsbedingung)  
-   - B2-A: `.87` connect() → HU; SABM von Phone; negativ ≠ BCL absent  
+   - B2-A Kanal **6** (erster SPP-`0x1101`-Record = Ziel von BclCarLink) und Kanal **5** (`deca-fade`): `.87` connect() → HU; SABM von Phone; UA/DM; UIH der HU ohne unser TX; negativ ≠ BCL absent  
    - B2-B: `.87` SPP-Server **observe-only** (kein BCL-TX); SABM von HU; negativ ≠ kein BCL  
-   - shared: DLCI / first UIH / magic=`candidate` / header / HANDSHAKE
-4. **B3 nur nach BCL-Klassifikation** — INIT → HANDSHAKE → **version** → Branch (≤3 vs >3 SELECTPROTO+KNOCK) → OPEN 5001. OPEN 4004 erst wenn Consumer aktiv (Capture Y).
-5. **Capture-Paar X/Y** — X: Transport only (kein AAIdrive); Y: + AAIdrive → isoliert Layer B vs E. Pflichtschema siehe Runbook.
+   - shared: DLCI / first UIH / magic=`candidate` / header / HANDSHAKE — `field_b1_b2.py btmon-stop` dekodiert direkt
+5. **B3 nur nach BCL-Klassifikation** — INIT → HANDSHAKE → **version** → Branch (≤3 vs >3 SELECTPROTO+KNOCK) → OPEN 5001. OPEN 4004 erst wenn Consumer aktiv (Capture Y).
+6. **Capture-Paar X/Y** — X: Transport only (kein AAIdrive); Y: + AAIdrive → isoliert Layer B vs E. Pflichtschema siehe Runbook.
 
 ### P1 — Lab (parallel / vor nächstem Feld, nicht statt B1)
 
-6. **B2-B observe-only mode** auf bestehendem ProfileManager/Dummy-HU-Agent: SPP listen, Accept, Payload loggen, **BCL-TX hard-off**. Kein neuer BT-Stack. SABM/DLCI weiter über btmon.
-7. **B0.7 Differential** — BclCarLink ↔ Dummy-HU (nicht AAIdrive-alone): raw TX == Capture; BCL frames; State OPENING→ACTIVE. Dummy: SPP + RFCOMM accept + HANDSHAKE auf Init; version 3 **und** 4 testen. (B0.7 ≠ B2-B observe-only.)
-8. **B0.8** — BclCarLink (+ optional AAIdrive) ↔ **Simulator** :4006: ATTACHED → Etch → SAS-Stub. Epistemik: Simulator-Login ≠ Crypto-FACT.
-9. **Phone HCI-Snoop (P1 Differential)** — optional zweites Auge (ACL/RFCOMM/UIH); ersetzt F20-Nachweis **nicht**.
-10. Post-decode: Resync auf `12 34 56 78`, dann HANDSHAKE `len=8` verlangen — sonst `BCL_MISALIGNED` vs `NO_BCL` (siehe `docs/analysis/BCL_AUDIT_DEEP_20261112.md`).
+7. **B2-B observe-only mode** auf bestehendem ProfileManager/Dummy-HU-Agent: SPP listen, Accept, Payload loggen, **BCL-TX hard-off**. Kein neuer BT-Stack. SABM/DLCI weiter über btmon.
+8. **B0.7 Differential** — BclCarLink ↔ Dummy-HU (nicht AAIdrive-alone): raw TX == Capture; BCL frames; State OPENING→ACTIVE. Dummy: SPP + RFCOMM accept + HANDSHAKE auf Init; version 3 **und** 4 testen. (B0.7 ≠ B2-B observe-only.)
+9. **B0.8** — BclCarLink (+ optional AAIdrive) ↔ **Simulator** :4006: ATTACHED → Etch → SAS-Stub. Epistemik: Simulator-Login ≠ Crypto-FACT.
+10. **Phone HCI-Snoop (P1 Differential)** — optional zweites Auge (ACL/RFCOMM/UIH); ersetzt F20-Nachweis **nicht**.
+    Beantwortet auch, welche Phone-App den HU-Dienst `deca-fade` (Kanal 5) öffnet.
+11. Post-decode: Resync auf `12 34 56 78`, dann HANDSHAKE `len=8` verlangen — sonst `BCL_MISALIGNED` vs `NO_BCL` (siehe `docs/analysis/BCL_AUDIT_DEEP_20261112.md`).
 
 ### P2 — Docs / Epistemik
 
-11. Sheets/Runbooks: F20-Initiator = **UNKNOWN**; OPEN 4004 = optional/E; Watchdog-Pong ≠ FACT; MyBMW-Opener = **UNKNOWN** (nur BclCarLink = FACT-Client).
-12. BclCarLink `BclOutputStream`@7cfd959 Bugs **dokumentiert** (pidrive HU-Technical-Facts **C-D27**): `write(Int)`→`ByteArray(b)`; `sliceArray(off until len)`. **Nicht** in unseren Repos „korrigiert“ (Fremd-Upstream). B0.7/B0.8: Full-Array-Writes bevorzugen; Partial/Etch-Proxy misstrauen.
-13. Lab-Evidence `C-L*` / `NO_RFCOMM` + Secondary `C-S*` / `EVID-SUPRA-*` belassen; `field_evidence` erst nach B1+. Secondary **nie** still zu F20-[B].
-14. Evidence-Labels strikt: `BT_TRANSPORT` / `BCL_TRANSPORT` / `WD` / `ETCH_TUNNEL` / `SAS` / `RHMI` — nie „Connected works“.
+12. Sheets/Runbooks: F20-Initiator = **UNKNOWN**; OPEN 4004 = optional/E; Watchdog-Pong ≠ FACT; MyBMW-Opener = **UNKNOWN** (nur BclCarLink = FACT-Client).
+13. BclCarLink `BclOutputStream`@7cfd959 Bugs **dokumentiert** (pidrive HU-Technical-Facts **C-D27**): `write(Int)`→`ByteArray(b)`; `sliceArray(off until len)`. **Nicht** in unseren Repos „korrigiert“ (Fremd-Upstream). B0.7/B0.8: Full-Array-Writes bevorzugen; Partial/Etch-Proxy misstrauen.
+14. Lab-Evidence `C-L*` / `NO_RFCOMM` + Secondary `C-S*` / `EVID-SUPRA-*` belassen; `field_evidence` erst nach B1+. Secondary **nie** still zu F20-[B].
+15. Evidence-Labels strikt: `BT_TRANSPORT` / `BCL_TRANSPORT` / `WD` / `ETCH_TUNNEL` / `SAS` / `RHMI` — nie „Connected works“.
 
 ### Explizit **nicht** tun
 
 - Weiter AAIdrive/MyBMW-alone gegen Dummy (NO_RFCOMM erwartet).
-- Channel 5 als BMW-Soll.
+- Lab-Dummy-Channel 5 als BMW-Soll. (HU-Kanal 5 existiert, ist aber `deca-fade`, nicht SPP `0x1101` — zufällige Gleichheit der Nummer.)
+- B2 mit aktivem HFP-AG fahren (Kanal-13-Rauschen auf dem RFCOMM-Mux).
 - RFCOMM-Initiator am F20 voraussetzen (Phone→HU oder HU→Phone).
 - B2-A-Negativ als „BCL fehlt“ lesen.
 - BCL-TX während B2-B observe-only.
@@ -104,4 +112,4 @@ Analyzer: **kein** Multi-Wochen-Umbau. Minimal (done/in tree): Klassifikation + 
 
 ## One-liner
 
-**A6 PASS. Heute: B1→B2-A+B2-B observe-only (`CAR_FIELD_1H`). Simulator = Layer E später. Negatives Phone-Connect ≠ negatives BCL.**
+**A6 PASS, B1-A aus A6 dekodiert. Nächster Termin: HFP off → B2-A Kanal 6 + 5 → B2-B observe-only (`CAR_FIELD_1H`). Simulator = Layer E später. Negatives Phone-Connect ≠ negatives BCL.**
