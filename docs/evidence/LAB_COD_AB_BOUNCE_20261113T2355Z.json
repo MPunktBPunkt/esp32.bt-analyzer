@@ -1,0 +1,28 @@
+{
+  "session_id": "LAB_COD_AB_BOUNCE_20261113T2355Z",
+  "gate": "LAB_COD_AB_WITH_ACL_BOUNCE",
+  "epistemic": "LAB_TEST",
+  "verdict": "COD_WITH_ACL_BOUNCE_SELECTS_FIRST_PDU",
+  "phase_A": {
+    "cod": "0x4c0104",
+    "INIT": false,
+    "HS": false,
+    "DEADBEEF": true,
+    "note": "3x CONNECT/DEADBEEF/CLOSE after bounce; no INIT"
+  },
+  "phase_B": {
+    "cod": "0x340408",
+    "INIT": true,
+    "HS": true,
+    "DEADBEEF": false,
+    "note": "INIT+HS within window after bounce; no DEADBEEF"
+  },
+  "a2dp_note": "MediaTransport state stayed idle throughout BCL sessions; ACL Connected=true at BCL close \u2014 session eof not explained by A2DP drop",
+  "session_end_marker": "Phone CLOSE dest 5001 then RFCOMM eof ~38s without watchdog pong (Dummy echo_watchdog=false)",
+  "bimmer": {
+    "pin": "7cfd959",
+    "tryConnections_A2DP_liveness": "NOT observed as cause of ~38s teardown in this lab",
+    "isCar_name_prefix": "BMW alias present both phases",
+    "CoD_not_in_BclCarLink": true
+  }
+}

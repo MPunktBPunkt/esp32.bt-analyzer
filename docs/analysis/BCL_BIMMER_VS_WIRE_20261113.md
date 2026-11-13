@@ -54,4 +54,8 @@ Transport (RFCOMM / UUID 0x1101)
 
 ## Ops lesson
 
-Dummy Class must stay **`0x340408`**. Drift to computer CoD → endless DEADBEEF probes, looks like app failure. Alias `BMW 38304` alone is not enough.
+Dummy Class must stay **`0x340408`**. Drift to computer CoD → endless DEADBEEF probes, looks like app failure. Alias `BMW 38304` alone is not enough. After CoD change: **ACL bounce** (or phone BT toggle) so Android re-evaluates.
+
+## A2DP liveness (lab check vs Mistral)
+
+`LAB_A2DP_BCL_CORR_*` + `LAB_COD_AB_BOUNCE_*`: A2DP MediaTransport **`idle`** during BCL INIT/HS/WD and at close; ACL stayed connected. BclCarLink’s “shutdown when leaving A2DP connected set” did **not** explain the ~38 s eof here — phone sent **CLOSE 5001** then RFCOMM eof (no Dummy WD pong). CoD gate still holds; “CoD ⇒ A2DP drop ⇒ no BCL” is **not** required for this Dummy.

@@ -81,7 +81,7 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 11b. **Lab-Abend:** OnePlus→Dummy **BCL live** (`LAB_PHONE_BCL_*` + `_DECODE`) — Signatur eingefroren; SELECTPROTO(2); WD≈2,5 s; Certs myBMW/TouchCommand.  
 11c. **Priorität ab jetzt:** (1) Baseline eingefroren. (2) **Feld P0:** OnePlus HCI-Snoop ↔ echte F20-HU (+ `.87` btmon Beobachter) — prüft INIT/HANDSHAKE/`instanceId` am Auto. (3) Lab-Orakel L1–L8 / Retry-Matrix / Modus A–C — gezielt nach Feldlücken, nicht blind. (4) Multi-`0x1101` auf **einem** BlueZ-Adapter = blockiert (`LAB_F20_SDP_MIRROR`); Kanalwahl ch6–10 bleibt Feld. (5) Kein B3-Inject / kein ch5-BCL / keine weiteren generischen Dummies vor Feld-Snoop.
 11d. **Bimmer-vs-Wire** (`BCL_BIMMER_VS_WIRE_20261113`): Pin `7cfd959`; SELECTPROTO(2)/WD2.5s = Wire≠Desk; AAIdrive-Pin-Drift **unproven**. Desk INIT-Retry ≈**2 s**.  
-11e. **CoD-Gate** (`LAB_EVENING_COD_GATE_*`): Computer-CoD → DEADBEEF+UUID-Probe; **`hciconfig hci1 class 0x340408`** stellt BCL INIT wieder her. Lab-Dummy CoD festnageln.
+11e. **CoD-Gate** (`LAB_COD_AB_BOUNCE_*` / `LAB_EVENING_COD_GATE_*`): Computer-CoD+ACL-Bounce → nur DEADBEEF-Probe; **`0x340408`+Bounce** → INIT/HS. CoD wechseln ohne Bounce = sticky. A2DP blieb `idle` — Session-EOF ≈ WD ohne Pong (CLOSE 5001), nicht A2DP-Drop.
 
 ### P2 — Docs / Epistemik
 
