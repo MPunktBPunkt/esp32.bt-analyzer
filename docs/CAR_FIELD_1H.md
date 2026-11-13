@@ -10,8 +10,8 @@ tools: tools/field_b1_b2.py · tools/lab_hfp_stack.py · tools/btsnoop_decode.py
 b1_sdp_state_a: PASS / MEASURED — docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z.md
 b2_state_a: DONE 2026-11-13 — docs/evidence/FIELD_B2_20261113T154728Z.md
 lab_f20_sdp_mirror: PASS LAB_TEST — docs/evidence/LAB_F20_SDP_MIRROR_20261113T174006Z.md (ch5+ch6; ch7–10 BlueZ UUID limit)
-next: state C (MyBMW ON, HFP OFF) — gleiches Skript; Engpass = Trigger × Endpoint
-note: "B1-SDP ≠ BCL — ch5/6 accept empty; BCL weiter UNKNOWN; A2DP≠BCL-Trigger"
+next: state C ± b2a-tx ch6 (INIT→HANDSHAKE); ch5=iAP2 not BCL
+note: "B2-A empty = BclCarLink-expected; H-A open until b2a-tx on F20"
 ```
 
 ## Stand aus A6 (2026-11-13)
