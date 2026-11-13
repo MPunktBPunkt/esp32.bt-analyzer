@@ -171,7 +171,15 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                 ObserveOnlySession()
                 if observe_only
                 else DummyHuSession(
-                    version=args.hu_version, echo_watchdog=args.echo_watchdog
+                    version=args.hu_version,
+                    echo_watchdog=args.echo_watchdog,
+                    wd_pong_max=args.wd_pong_max,
+                    wd_pong_skip_mod=args.wd_pong_skip_mod,
+                    wd_pong_payload=(
+                        bytes.fromhex(args.wd_pong_payload)
+                        if args.wd_pong_payload
+                        else None
+                    ),
                 )
             )
             conns[fd] = {
@@ -230,6 +238,9 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
             "uuid": SPP_UUID,
             "hu_version": args.hu_version,
             "echo_watchdog": args.echo_watchdog,
+            "wd_pong_max": args.wd_pong_max,
+            "wd_pong_skip_mod": args.wd_pong_skip_mod,
+            "wd_pong_payload": args.wd_pong_payload or None,
             "observe_only": observe_only,
             **meta,
         }
@@ -424,6 +435,23 @@ def main() -> int:
         p.add_argument("--name", default="BMW Connected")
         p.add_argument("--hu-version", type=int, default=3)
         p.add_argument("--echo-watchdog", action="store_true")
+        p.add_argument(
+            "--wd-pong-max",
+            type=int,
+            default=0,
+            help="stop echoing after N pongs (0=unlimited); C-L12 timeout probe",
+        )
+        p.add_argument(
+            "--wd-pong-skip-mod",
+            type=int,
+            default=0,
+            help="if >1, echo only when ping_index %% mod == 1",
+        )
+        p.add_argument(
+            "--wd-pong-payload",
+            default="",
+            help="hex override for WD pong payload (empty=mirror ping)",
+        )
         p.add_argument("--hold", type=float, default=120.0)
         p.add_argument("--log", required=True)
         p.add_argument("--ready")

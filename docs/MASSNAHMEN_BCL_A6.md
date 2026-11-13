@@ -82,7 +82,9 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 11c. **Priorität ab jetzt:** (1) Baseline eingefroren. (2) **Feld P0:** OnePlus HCI-Snoop ↔ echte F20-HU (+ `.87` btmon Beobachter) — prüft INIT/HANDSHAKE/`instanceId` am Auto. (3) Lab-Orakel L1–L8 / Retry-Matrix / Modus A–C — gezielt nach Feldlücken, nicht blind. (4) Multi-`0x1101` auf **einem** BlueZ-Adapter = blockiert (`LAB_F20_SDP_MIRROR`); Kanalwahl ch6–10 bleibt Feld. (5) Kein B3-Inject / kein ch5-BCL / keine weiteren generischen Dummies vor Feld-Snoop.
 11d. **Bimmer-vs-Wire** (`BCL_BIMMER_VS_WIRE_20261113`): Pin `7cfd959`; SELECTPROTO(2)/WD2.5s = Wire≠Desk; AAIdrive-Pin-Drift **unproven**. Desk INIT-Retry ≈**2 s**.  
 11e. **CoD-Gate** (`LAB_COD_AB_BOUNCE_*` / `LAB_EVENING_COD_GATE_*`): Computer-CoD+ACL-Bounce → nur DEADBEEF-Probe; **`0x340408`+Bounce** → INIT/HS. CoD wechseln ohne Bounce = sticky. A2DP blieb `idle` — Session-EOF ≈ WD ohne Pong (CLOSE 5001), nicht A2DP-Drop.  
-11f. **WD-Pong** (`LAB_WD_PONG_*`): ohne Echo → CLOSE 5001 @~38 s; mit `--echo-watchdog` → ≥96 s alive. Lab-Dummy für Dauerläufe immer mit Pong.
+11f. **WD-Pong** (`LAB_WD_PONG_*`): ohne Echo → CLOSE 5001 @~38 s; mit `--echo-watchdog` → Minuten alive (final ~171 s / 288 Pings bis agent_stop). Lab-Dummy immer mit Pong; CoD `0x340408` pinnen (BlueZ driftet).  
+11g. **Morgen F20:** P0 Phone-HCI-Snoop (HU-Antworten). Phone-Sim (`agent phone`) existiert, ist aber noch Desk-förmig ≠ Wire (SP(2)/WD2.5/kein KNOCK) — erst wire-faithful, dann ggf. HU anspielen. C-L12 Bounce-Matrix nicht wiederholen.  
+11h. EOD `LAB_EOD_20261114T0030Z`.
 
 ### P2 — Docs / Epistemik
 

@@ -111,10 +111,19 @@ class DummyHuSession(_Session):
     instance_id: int = 1
     buffer_size: int = 0x8000
     echo_watchdog: bool = False
+    # C-L12 policies (only when echo_watchdog):
+    #   wd_pong_max: stop echoing after N pongs (0 = unlimited)
+    #   wd_pong_skip_mod: if >1, echo only when ping_index % mod == 1 (1-based)
+    #   wd_pong_payload: override echo payload (None = mirror ping)
+    wd_pong_max: int = 0
+    wd_pong_skip_mod: int = 0
+    wd_pong_payload: bytes | None = None
     observe_only: bool = False
     handshake_sent: bool = False
     knocked: bool = False
     selected_proto: int | None = None
+    wd_ping_seen: int = 0
+    wd_pong_sent: int = 0
 
     def on_bytes(self, data: bytes) -> list[bytes]:
         inits, frames = self._parse(data, "rx")
@@ -138,8 +147,34 @@ class DummyHuSession(_Session):
                 and fr.cmd == CMD_DATA
                 and fr.dest == DEST_WATCHDOG_DESK
             ):
-                replies.append(build_synthetic_frame(CMD_DATA, fr.dest, fr.src, fr.payload))
-                self.events.append({"event": "watchdog_echo"})
+                self.wd_ping_seen += 1
+                idx = self.wd_ping_seen
+                skip = self.wd_pong_skip_mod > 1 and (idx % self.wd_pong_skip_mod) != 1
+                capped = self.wd_pong_max > 0 and self.wd_pong_sent >= self.wd_pong_max
+                if skip or capped:
+                    self.events.append(
+                        {
+                            "event": "watchdog_echo_skipped",
+                            "ping_index": idx,
+                            "reason": "skip_mod" if skip else "max",
+                        }
+                    )
+                    continue
+                payload = (
+                    self.wd_pong_payload
+                    if self.wd_pong_payload is not None
+                    else fr.payload
+                )
+                replies.append(build_synthetic_frame(CMD_DATA, fr.dest, fr.src, payload))
+                self.wd_pong_sent += 1
+                self.events.append(
+                    {
+                        "event": "watchdog_echo",
+                        "ping_index": idx,
+                        "pong_index": self.wd_pong_sent,
+                        "payload_hex": payload.hex(),
+                    }
+                )
         return replies
 
 

@@ -62,4 +62,8 @@ Dummy Class must stay **`0x340408`**. Drift to computer CoD → endless DEADBEEF
 
 ## Watchdog pong (C-L11)
 
-`LAB_WD_PONG_*`: Dummy `--echo-watchdog` → session **≥95 s**, no CLOSE 5001. Same phone path without pong → CLOSE@~38 s. Wire WD ≈2.5 s; ~14 unanswered pings ≈ phone session cut.
+`LAB_WD_PONG_*`: Dummy `--echo-watchdog` → minutes alive (final ~171 s / 288 pings until agent_stop). Without pong → CLOSE@~38 s. Wire WD ≈2.5 s; ~14 unanswered pings ≈ phone session cut.
+
+## Phone simulation toward F20
+
+`bcl_dummy_hu_agent.py phone` can RFCOMM-client the HU, but `PhoneClientSession` still follows **desk** BclCarLink (SP only if ver>3→3, +KNOCK, 5 s WD). Lab phone wire is different (SP(2) after v3, ~2.5 s WD, no KNOCK). **Do not claim wire-faithful phone sim until that client is patched.** Tomorrow: capture F20 with real phone first (`LAB_EOD_20261114T0030Z`).

@@ -1,0 +1,10 @@
+{
+  "session_id": "LAB_WD_PONG",
+  "ping_n": 288,
+  "age_s": 171.1,
+  "close_5001": false,
+  "eof": true,
+  "eof_reason": "eof",
+  "agent_stopped": true,
+  "note": "final snapshot before C-L12; earlier 38/95s and 54/136s were mid-run"
+}
