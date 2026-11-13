@@ -1,0 +1,21 @@
+{
+  "session_id": "LAB_EVENING_COD_GATE_20261113T2342Z",
+  "gate": "LAB_COD_BCL_ELIGIBILITY",
+  "epistemic": "LAB_TEST",
+  "dummy_bd": "C8:C9:A3:CB:7B:0A",
+  "phone_bd": "AC:C0:48:5E:CB:20",
+  "cod_restored": "0x340408",
+  "rfcomm_sessions": 25,
+  "kinds": {
+    "DEADBEEF_UUID": 22,
+    "BCL": 3
+  },
+  "verdict": "WRONG_COD_YIELDS_DEADBEEF_UUID_PROBE_NOT_BCL_INIT; COD_0x340408_RESTORES_INIT_HS",
+  "bimmer_pin": "7cfd959",
+  "notes": [
+    "When Dummy Class drifted to computer 0x4c0104, phone RFCOMM first PDU = deadbeef+ASCII uuid (not 12345678)",
+    "hciconfig hci1 class 0x340408 + ACL bounce restored INIT\u2192HANDSHAKE\u2192SELECTPROTO(2)\u2192Etch within ~2.5s",
+    "Same DEADBEEF probe also seen under observe-only (no HS) \u2014 eligibility/answer path selects PDU family",
+    "BclCarLink@7cfd959 still does not explain SELECTPROTO(2) or WD 2.5s"
+  ]
+}
