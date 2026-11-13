@@ -88,19 +88,41 @@ class _Session:
 
 
 @dataclass
+class ObserveOnlySession(_Session):
+    """B2-B / passive: parse and log only — never emit bytes (tx_allowed=false)."""
+
+    def on_bytes(self, data: bytes) -> list[bytes]:
+        self._parse(data, "rx")
+        self.events.append(
+            {"event": "observe_rx", "n": len(data), "hex": data.hex()}
+        )
+        return []
+
+
+@dataclass
 class DummyHuSession(_Session):
-    """HU role: answer the first session init with HANDSHAKE, then log."""
+    """HU role: answer the first session init with HANDSHAKE, then log.
+
+    Set observe_only=True for B2-B field mode (no BCL TX). Prefer ObserveOnlySession
+    for clarity; this flag keeps lab_bcl_dummy_hu_a2dp callers simple if needed.
+    """
 
     version: int = 3
     instance_id: int = 1
     buffer_size: int = 0x8000
     echo_watchdog: bool = False
+    observe_only: bool = False
     handshake_sent: bool = False
     knocked: bool = False
     selected_proto: int | None = None
 
     def on_bytes(self, data: bytes) -> list[bytes]:
         inits, frames = self._parse(data, "rx")
+        if self.observe_only:
+            self.events.append(
+                {"event": "observe_rx", "n": len(data), "hex": data.hex()}
+            )
+            return []
         replies: list[bytes] = []
         if inits and not self.handshake_sent:
             replies.append(build_handshake(self.version, self.instance_id, self.buffer_size))

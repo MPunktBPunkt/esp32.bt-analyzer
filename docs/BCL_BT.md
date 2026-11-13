@@ -1,10 +1,13 @@
 # BCL over Bluetooth — observe first, relay later (plan)
 
 ```yaml
-status: A6 PASS (FIELD) · B1/B2 OPEN · runbook docs/CAR_A6_B1.md · evidence FIELD_A6_HU_20261113T062824Z
+status: A6 PASS (FIELD) · B1 OPEN · B2 = B2-A+B2-B · runbook docs/CAR_A6_B1.md · evidence FIELD_A6_HU_20261113T062824Z
 depends_on: HCI_TCP A1–A6 (docs/HCI_TCP.md) — A1–A5 MEASURED, A6 MEASURED 2026-11-13
 related: hu-probe Gate G2 "BCL wire" (USB AOA path, still open)
-claim_level: HYPOTHESIS — "BCL primarily over BT RFCOMM" is not proven for NBT Evo / F20 (SPP UUID on HU is MEASURED; channel/BCL still UNKNOWN)
+claim_level: HYPOTHESIS — "BCL primarily over BT RFCOMM" is not proven for NBT Evo / F20 (SPP UUID on HU is MEASURED; channel/BCL/initiator still UNKNOWN)
+rfcomm_initiator: UNKNOWN  # BclCarLink Phone→HU = Desk-FACT; nbt-aad HU→Phone = Secondary; F20 unresolved
+secondary: technology-audit audits/supra-idrive6-android-auto-2026-secondary @4f70751
+method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md
 architecture: controlled dual-leg HCI bridge — not passive Phone↔HU air sniff
 audit_reuse: technology-audit technologies/bmw-bcl + projects/esp32-bt-analyzer/applications/bmw-bcl.md
 ```
@@ -43,8 +46,9 @@ end between app and HU; nothing is modified or bypassed.
 | B0.6 | Dummy-HU advertises SPP `"BMW Connected"` ch.5 via ProfileManager; phone-side `sdptool browse` | `tools/lab_bcl_dummy_hu_sdp.py` | `bcl_sdp_probe` verdict `CANDIDATE_STRONG` — messkette for B1 ready without real HU |
 | B0.7 | Dummy-HU on `.131` = SPP server **and** A2DP sink; keeps RFCOMM open, answers `12 34 56 78` with HANDSHAKE, logs frames (JSONL). Synthetic: `.87` pairs, A2DP-connects, checks the BclCarLink gate, then runs init → HANDSHAKE → (SELECTPROTO) → KNOCK → watchdog. External: real phone with the app | `tools/lab_bcl_dummy_hu_a2dp.py` (+ `bcl_dummy_hu.py`, `bcl_dummy_hu_agent.py`) | synthetic `PASS`; external `BCL_INIT_SEEN` / `BCL_KNOCK_SEEN` = the app speaks BCL over BT to a D1 — still not HU wire |
 | B1 | SDP of the HU (via `.87` controller) **and** of the phone with the app (via `.131`) | `tools/bcl_sdp_probe.py` | verdict `CANDIDATE*` on at least one side → B2 · `NONE` both sides → repeat with app active / Connected enabled in HU menu, then stop BT path |
-| B2 | Who is RFCOMM server? Pair the side **without** the service to its D1, start the app, watch `btmon -i hciN` for `RFCOMM` SABM to the channel from B1 | btmon / Lab UI btmon card (filter `RFCOMM`) | first payload bytes match the BCL 8-byte header → G2 evidence over BT |
-| B3 | Relay: D1 registers the service found in B1 (same UUID/channel), accepts the client, connects to the real server through the other D1, copies bytes, decodes BCL | new `tools/bcl_rfcomm_relay.py` (Python port of hu-probe `BclFramer`) | app reaches the same state as with a direct link; JSONL has BCL frames both directions |
+| B2-A | Phone/ESP initiates RFCOMM to HU channel X from B1; `btmon` SABM/UA/UIH | btmon + optional RFCOMM client | SABM from `.87`; first UIH classifies BCL (candidate → header → HANDSHAKE). Negative ≠ BCL absent |
+| B2-B | `.87` registers SPP + RFCOMM **observe-only** server; wait for HU dial | ProfileManager (B0.6 reuse) + btmon | SABM from HU; payload logged unmodified; **no** BCL TX from lab. Negative ≠ kein BCL |
+| B3 | Relay: D1 registers the service found in B1 (same UUID/channel), accepts the client, connects to the real server through the other D1, copies bytes, decodes BCL | new `tools/bcl_rfcomm_relay.py` (Python port of hu-probe `BclFramer`) | app reaches the same state as with a direct link; JSONL has BCL frames both directions · **only after** B2 BCL classification |
 
 B0.7 order matters: the dummy must run **before** the phone pairs or connects,
 otherwise the phone's cached SDP has no SPP UUID and the app skips the device
@@ -89,16 +93,18 @@ as candidates. A BMW/Connected service name upgrades the verdict to
 | A6 `.87`↔HU ACL + Numeric Comparison | **MEASURED PASS** `FIELD_A6_HU_20261113T062824Z` (BMW 38304 / `D4:36:39:CF:E1:B5`) |
 | HU advertises SPP `00001101` after bond | **MEASURED** (BlueZ UUID list; SDP channel X still B1) |
 | NBT Evo / F20 offers BCL over BT at all | UNKNOWN → B1 (SPP present ≠ BCL) |
-| RFCOMM server role (HU or phone) | INFERENCE: HU = server, phone app = client (BclCarLink @7cfd959, audit `bmw-bcl-rfcomm-role-2026-desk`) → confirm B1/B2 |
+| RFCOMM initiator on **this F20** | **UNKNOWN** — do not assume. BclCarLink Phone→HU = Desk-FACT; nbt-aad HU→Phone = Secondary NBT-family (`supra-idrive6-android-auto-2026-secondary` / `4f70751`) |
+| HU = SDP server / phone = client | Desk **INFERENCE** (EVID-BCLRF-003) for BclCarLink path only → falsify with B2-A **and** B2-B |
 | App only tries A2DP-connected devices that list SPP | FACT for **BclCarLink** (`BtClientService`); **not** the AAIdrive/MyBMW opener path |
 | MyBMW + AAIdrive open RFCOMM to Dummy-HU (A2DP+SPP up) | **REJECTED** for this setup — `LAB_BCL_DUMMY_HU_A2DP_20261112T172006Z` `NO_RFCOMM` (AAIdrive = Etch consumer; needs Connected/BclCarLink as link owner) |
+| HU SPP `/dev/btspp*`, MyBMW contention, `looksLikeBmwBcl` | SECONDARY (NBT-Evo family) — F20-plausible, **not** F20-[B] |
 | App accepts a D1 as "car" (name, CoD, SDP) | UNKNOWN → needs BclCarLink peer or real HU B3 |
 | SAS/BCL timeouts over WiFi + HCI | expected fine in home LAN; car must be in WiFi range |
 | iPhone | iAP2/MFi, out of scope |
 | Car behind hotspot NAT | as in HCI_TCP: needs dial-out/VPN, not for B1–B3 |
 | USB/ENET BCL vs BT-only | Desk **Contradiction/HYPOTHESIS** (EVID-BG-020) — not REJECTED; AOA+car can resolve |
 
-**Next (epistemic order):** **B1** SDP on bonded HU (`hu=D4:36:39:CF:E1:B5`, `-i hci2` — re-check mapping) states A→D · then B2 split. Runbook [`CAR_A6_B1.md`](CAR_A6_B1.md) · Maßnahmen [`MASSNAHMEN_BCL_A6.md`](MASSNAHMEN_BCL_A6.md). Optional lab while waiting for car: **B0.7** BclCarLink↔Dummy, **B0.8** Simulator — not AAIdrive-alone.
+**Next (epistemic order):** **B1** SDP on bonded HU (`hu=D4:36:39:CF:E1:B5`, `-i hci2` — re-check mapping) states A→D · then **B2-A + B2-B**. Method [`BCL_RFCOMM_TWO_MODE_20261113.md`](analysis/BCL_RFCOMM_TWO_MODE_20261113.md) · Runbook [`CAR_A6_B1.md`](CAR_A6_B1.md) · Maßnahmen [`MASSNAHMEN_BCL_A6.md`](MASSNAHMEN_BCL_A6.md). Optional lab: **B0.7** BclCarLink↔Dummy, **B2-B observe-only mode** on ProfileManager, **B0.8** Simulator — not AAIdrive-alone.
 
 ## Decision rule
 

@@ -139,9 +139,11 @@ Already covered there: A6, B1 A–D, B2 split, X/Y, B0.7/B0.8, OPEN 4004, WD pon
 |------|--------|
 | `HU-Technical-Facts` C-D16 sharpen, C-D24–29 | done |
 | `MASSNAHMEN_BCL_A6.md` | done |
-| `CAR_A6_B1.md` B1 states + B2 split | done |
+| `CAR_A6_B1.md` B1 states + B2 split | done · **superseded 2026-11-13** by B2-A/B2-B two-mode |
+| Two-mode + Secondary fold-in | done — `BCL_RFCOMM_TWO_MODE_20261113.md` · pidrive C-D30/C-S* |
 | `bmw-bcl` sheet Watchdog pong wording | **remaining** in technology-audit if still says pong=13371337 |
 | Upstream BclCarLink issue | optional |
+| B2-B observe-only code mode | **remaining** (ProfileManager reuse; BCL-TX off) |
 
 ## 10. One-liner
 
