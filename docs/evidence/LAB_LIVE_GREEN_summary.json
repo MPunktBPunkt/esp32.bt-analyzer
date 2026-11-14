@@ -1,0 +1,54 @@
+{
+  "session_events": 2217,
+  "duration_s": 891.5,
+  "event_counts": {
+    "handshake_sent": 1,
+    "tx_bytes": 728,
+    "rx_bytes": 376,
+    "frame": 369,
+    "dataack_tx": 369,
+    "selectproto_rx": 1,
+    "knock_rx": 1,
+    "watchdog_echo": 355,
+    "etch_open_rx": 4,
+    "etch_close_rx": 1,
+    "etch_msg_rx": 3,
+    "sas_certificate_rx": 3,
+    "sas_challenge_tx": 3,
+    "etch_data_tx": 3
+  },
+  "wd_n": 355,
+  "wd_ping_first": 1,
+  "wd_ping_last": 355,
+  "wd_gap_mean": 2.5097,
+  "wd_gap_median": 2.512,
+  "certs": [
+    {
+      "ts": 1794675413.555,
+      "len": 6813
+    },
+    {
+      "ts": 1794675414.271,
+      "len": 6126
+    },
+    {
+      "ts": 1794675416.526,
+      "len": 6687
+    }
+  ],
+  "etch_counts": {
+    "etch_open_rx": 4,
+    "etch_close_rx": 1,
+    "etch_msg_rx": 3,
+    "sas_certificate_rx": 3,
+    "sas_challenge_tx": 3,
+    "etch_data_tx": 3
+  },
+  "peer": "AC:C0:48:5E:CB:20",
+  "session_id": "LAB_DUMMY_F20_20261114T165425Z",
+  "hs_keys": {
+    "version": 5,
+    "instance_id": 14,
+    "buffer_size": 16384
+  }
+}

@@ -19,6 +19,7 @@ phone_hu_hs_v5: docs/evidence/FIELD_PHONE_HU_BCL_HS_V5_20261114T1113Z.md
 phone_hu_analysis: docs/analysis/FIELD_PHONE_HU_SPP_20261114.md
 lab_dummy_evening_btlogs: docs/evidence/LAB_PHONE_DUMMY_BTLOGS_20261114T1732Z.md
 lab_dummy_evening_analysis: docs/analysis/LAB_PHONE_DUMMY_SPP_EVENING_20261114.md
+lab_live_green: docs/evidence/LAB_LIVE_GREEN_20261114T1654Z.md
 raw_full: docs/bluetooth_20261114_083313_01892.log
 raw_midday: docs/bluetooth_20261114_103731_10775.log
 raw_cleaned_pending: docs/bluetooth_20261114_104405_CLEANED.log
