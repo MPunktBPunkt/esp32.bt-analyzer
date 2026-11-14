@@ -127,6 +127,34 @@ Wire-OPEN `src=dst=5001`: HU-Echo ebenfalls 5001↔5001. Evidence: `…SP2_*`, `
 Analyzer TX OPEN `src=10 dest=4004` → extra DATAACK `0x08`, aber **0** Frames/`deadbeef` von der HU in 180 s.  
 Etch/PKCS7 ist **App→HU** (Lab Phone↔Dummy), nicht HU-unsolicited.
 
+### M22 — Lab Dummy: AAIdrive Etch `deadbeef`/PKCS7 **[LAB FACT]**
+
+`LAB_DUMMY_ETCH_20261114T1550Z`: car A2DP/ACL-Bounce → Phone→Dummy HS v5 → SP **`0004`** → KNOCK → OPEN5001+WD → OPEN4004 src 10/11/12 + PKCS7. Deep: [`LAB_DUMMY_ETCH_DEEP_20261114.md`](LAB_DUMMY_ETCH_DEEP_20261114.md).
+
+### M23 — HS v5 ⇒ Phone SP(4)+KNOCK **[LAB FACT]**
+
+Nicht Desk SP3, nicht Lab-v3 SP2. BclCarLink kommentiert „version 4 WD unknown“ — Wire nutzt SP4 trotzdem; WD bleibt ≈2.5 s.
+
+### M24 — Official KNOCK = UUID-Serial + TouchCommand(1)/7 **[LAB FACT]**
+
+BclPacket.Knock-Layout; Desk-Default (leer, A4A/0+1) ≠ MyBMW-Wire.
+
+### M25 — Etch-Kanäle 10/11/12 = AM / SmartThings / cdsbaseapp **[LAB FACT]**
+
+CN aus PKCS7; **cdsbaseapp** = MyBMW CDS-Cert-Pfad.
+
+### M26 — Etch-Fragmentierung @4000 BCL-DATA **[LAB FACT]**
+
+Reassembly: `deadbeef` + `u32BE(len)` → Gesamtlänge `8+len`.
+
+### M27 — UI grün ohne HU-Etch-Reply / ohne DATAACK **[LAB FACT]**
+
+Dummy TX nur HS + WD-Echo; AAIdrive bleibt grün (~760 s Capture).
+
+### M28 — src11 CLOSE→OPEN vor Cert **[LAB FACT]**
+
+Retry/Reset eines Etch-Kanals vor SmartThings-PKCS7.
+
 ### M17 — HS-Fingerprint peer-/versionsabhängig **[REPORTED]**
 
 | Quelle | version | instanceId | bufferSize |
@@ -164,15 +192,18 @@ silent (083313/     HS v5 REPORTED
   │                 │
  ???                DATAACK? → kurz CLOSE
                     │
-                 ??? post-HS / WD / Etch
-                    ← HCI-Snoop + CLEANED ingest
+                 WD ACTIVE (F20)
+                    │
+                 OPEN 4004 ACK only (HU)
+                    │
+         Lab Dummy: SP4+KNOCK+App PKCS7 (M23–M28)
 ```
 
 ## Hypothesen-Update
 
 | ID | Update |
 |----|--------|
-| **H-A** | **FIELD CONFIRMED** HS v5 via `.87` b2a-tx. Post-HS (WD/Etch/SP2) offen. Silent-/DM-Captures = andere States |
+| **H-A** | **FIELD CONFIRMED** HS v5 + WD. Etch am F20 = App/Proxy (M21); Lab Dummy liefert Cert-Pfad inkl. cdsbaseapp (M25) |
 | **H-E** | Explizite ch7–10 ändern DM-Negativ **nicht** (dieser State) |
 | **H-C** | MyBMW+Restart am Dummy = starker Eligibility-Hebel (Lab). Am Auto parallel unklar |
 | **H-G** | HU SPP-Accept hängt an **App-/Owner-State**, nicht nur ACL+A2DP — **[H]**; M6/M7/M10 stützen |
@@ -181,14 +212,15 @@ silent (083313/     HS v5 REPORTED
 
 - MyBMW autorisiert RFCOMM (plausible Hypothese)
 - CoD `0x340408` alleiniges Gate
-- Stabiler BCL/WD/Etch zur echten HU (HS allein ≠ ACTIVE-Session)
-- Analyzer-`.87` erreicht denselben HS
+- F20 liefert Etch/CDS ohne App-Cert-Push
+- Analyzer-`.87` aktuell erreichbar (Timeout 16:04)
 - Rohzeilen Session 96 (CLEANED noch nicht im Repo)
+- KNOCK-UUID Semantik (Session-ID?) über eine Capture hinaus
 
 ## Nächste Schritte (Priorität)
 
-1. **P0** `bluetooth_20261114_104405_CLEANED.log` ingestieren → REPORTED→FACT.
-2. **P0** Phone HCI-Snoop F20, RFCOMM-Filter **aus** — Wire um HS-v5-Fenster.
-3. **P0.5** 2×2-Feldmatrix (M7) + btmon Security-Flags (M6/M15)
-4. **P1** Dummy `--hu-version 5` / iid 14 · Silent-HU-Lab · Faktorisierung (M8)
+1. **P0** F20-Proxy: WD halten + Lab-klassifizierte App-Etch (cdsbaseapp) auf 4004.
+2. **P0** PhoneClientSession: nach HS v5 **SP4+KNOCK** (nicht Desk SP3).
+3. **P0** `bluetooth_20261114_104405_CLEANED.log` ingestieren → REPORTED→FACT.
+4. **P0.5** 2×2-Feldmatrix (M7) + btmon Security-Flags (M6/M15)
 5. Kein B3 / kein ch5-als-BCL

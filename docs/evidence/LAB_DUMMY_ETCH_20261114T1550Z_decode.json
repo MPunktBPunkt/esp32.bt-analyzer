@@ -1,0 +1,117 @@
+{
+  "session": "LAB_DUMMY_ETCH_20261114T1550Z",
+  "peer": "AC:C0:48:5E:CB:20",
+  "adapter": "hci2",
+  "duration_s": 759.7,
+  "hs_tx_hex": "00040000000000080005000100008000",
+  "hs": {
+    "version": 5,
+    "instance_id": 1,
+    "buffer_size": 32768
+  },
+  "selectproto": 4,
+  "knock": {
+    "uuid_serial": "0e9b90c4-cbe1-4742-8283-d367e9a56619",
+    "layout": "BclPacket.Knock: serial_len|serial|bt_len|bt|mac_len|mac|wifi_len|wifi|appType|param1",
+    "serial_len": 36,
+    "bt_len": 0,
+    "mac_len": 0,
+    "wifi_len": 0,
+    "appType": 1,
+    "param1": 7,
+    "vs_bclcarlink_default": "desk empty serial + appType=0(A4A)+param1=1; wire=UUID serial + TouchCommand+7"
+  },
+  "wd": {
+    "interval_p50_s": 2.509,
+    "count": 173,
+    "payload": "13371337",
+    "src_dst": 5001
+  },
+  "etch_msgs": [
+    {
+      "src": 10,
+      "bytes": 6126,
+      "need": 6126,
+      "pem": 1,
+      "subjects": [
+        "DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_myBMW.perm___applicationmanager_3e80d28cc70847c4914df91cb6dd4ad44fbc90a6bd7db2f96904e21bca92b8e3",
+        "DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_android-ca"
+      ],
+      "sha256": "d4350a115ebce0bd5e4ba068edbbf6f872633744bcfdabafc080ccb7c87548c2",
+      "be_len": 6118,
+      "etch16": "0386304ba8bb0286144a776f8b8517c7"
+    },
+    {
+      "src": 11,
+      "bytes": 6813,
+      "need": 6813,
+      "pem": 1,
+      "subjects": [
+        "DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_mobile___com_smartthings_android_00.00.03",
+        "DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_android-ca",
+        "DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10"
+      ],
+      "sha256": "0fdd1482b34fb196b0709b721b5d6b3ccf55d51cba5c9673f6bc4d0f3ae9b8d2",
+      "be_len": 6805,
+      "etch16": "0386304ba8bb0286144a776f8b851a76"
+    },
+    {
+      "src": 12,
+      "bytes": 6687,
+      "need": 6687,
+      "pem": 1,
+      "subjects": [
+        "DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf8",
+        "DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_android-ca",
+        "DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10"
+      ],
+      "sha256": "b891b7e313ec6b1eff1e9ab046a33bc0d05f2c88d251daf2ea1056908501be8e",
+      "be_len": 6679,
+      "etch16": "0386304ba8bb0286144a776f8b8519f8"
+    }
+  ],
+  "dummy_tx_only": [
+    "HANDSHAKE",
+    "WD_ECHO"
+  ],
+  "no_hu_etch_reply": true,
+  "no_dataack_from_dummy": true,
+  "selectproto_vs": {
+    "this_capture_after_hs_v5": 4,
+    "lab_20261113_after_hs_v3": 2,
+    "bclcarlink_7cfd959_if_version_gt_3": 3,
+    "bclcarlink_comment": "hardcoded to version 3, version 4 has an unknown watchdog behavior"
+  },
+  "cert_channels": [
+    {
+      "src": 10,
+      "app": "myBMW applicationmanager",
+      "cn_leaf": "a4a_app_myBMW.perm___applicationmanager_\u2026"
+    },
+    {
+      "src": 11,
+      "app": "SmartThings",
+      "cn_leaf": "a4a_app_mobile___com_smartthings_android_00.00.03",
+      "note": "CLOSE+re-OPEN before DATA"
+    },
+    {
+      "src": 12,
+      "app": "cdsbaseapp (MyBMW CDS)",
+      "cn_leaf": "a4a_app_myBMW.perm___cdsbaseapp_\u2026",
+      "note": "CDS vehicle-data path cert"
+    }
+  ],
+  "fragmentation": {
+    "bcl_data_cap_observed": 4000,
+    "etch_msg": "deadbeef + u32BE(len) + body; body starts with 16B etch hdr then PEM PKCS7 + 15B etch trailer"
+  },
+  "ui_green_without_hu_etch_reply": true,
+  "crossref": {
+    "bclcarlink": "https://github.com/BimmerGestalt/BclCarLink/blob/7cfd959/app/src/main/java/io/bimmergestalt/bcl/client/BclClientTransport.kt",
+    "analysis_cds": "https://bimmergestalt.github.io/BMWConnectedAnalysis/cds/",
+    "handshake_doc": "technology-audit/.../bmw-bcl-handshake.md",
+    "prior_lab": "LAB_PHONE_BCL_20261113T2201Z (HS v3\u2192SP2, no KNOCK)",
+    "f20_contrast": "FIELD_B2A_TX_CH6_ETCH (OPEN4004 ACK, no App certs)"
+  }
+}
