@@ -184,6 +184,8 @@ class PhoneClientSession(_Session):
 
     handshake: dict | None = None
     active: bool = False
+    # Desk default 3 when HS version>3; Dummy-Wire used 2 — set via field --selectproto.
+    selectproto: int | None = 3
 
     def session_init(self) -> bytes:
         self.events.append({"event": "session_init", "dir": "tx"})
@@ -200,8 +202,12 @@ class PhoneClientSession(_Session):
                 self.events.append({"event": "unexpected_before_handshake", "cmd": fr.cmd})
                 continue
             self.handshake = hs
-            if hs["version"] > 3:
-                out.append(build_synthetic_frame(CMD_SELECTPROTO, 0, 0, struct.pack(">H", 3)))
+            sp = self.selectproto
+            if sp is not None and (hs["version"] > 3 or sp != 3):
+                # version>3 → always SP; explicit non-3 (e.g. wire SP2) also after any HS
+                out.append(
+                    build_synthetic_frame(CMD_SELECTPROTO, 0, 0, struct.pack(">H", int(sp)))
+                )
             out.append(build_synthetic_frame(CMD_KNOCK, 0, 0, KNOCK_DEFAULT_PAYLOAD))
             out.append(build_synthetic_frame(CMD_OPEN, PHONE_SRC, DEST_WATCHDOG_DESK))
             self.active = True

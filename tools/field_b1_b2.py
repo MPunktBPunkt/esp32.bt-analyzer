@@ -292,6 +292,8 @@ def cmd_b2a_tx(args: argparse.Namespace) -> int:
     origin = "lab" if args.lab else "f20"
     source = "lab" if args.lab else "field"
     full = " --full-client" if args.full_client else ""
+    sp = getattr(args, "selectproto", 3)
+    wd = getattr(args, "wd_interval", 5.0)
     cmd = (
         f"python3 {REMOTE_TOOLS}/{AGENT} b2a-tx "
         f"--adapter-bd {shlex.quote(PHONE_BD)} "
@@ -301,11 +303,14 @@ def cmd_b2a_tx(args: argparse.Namespace) -> int:
         f"--init-count {int(args.init_count)} "
         f"--session-id {shlex.quote(sid)} "
         f"--origin {origin} --source {source} "
+        f"--selectproto {int(sp)} "
+        f"--wd-interval {float(wd)} "
         f"--log {shlex.quote(log)}{full}"
     )
     print(
         f"B2-A-TX controlled INIT×{args.init_count} ch={args.channel} "
-        f"({args.seconds}s, full_client={args.full_client})"
+        f"({args.seconds}s, full_client={args.full_client}, "
+        f"selectproto={sp}, wd_interval={wd})"
     )
     p = ssh(cmd, timeout=float(args.seconds) + 40)
     print(p.stdout or "")
@@ -322,6 +327,8 @@ def cmd_b2a_tx(args: argparse.Namespace) -> int:
             "bcl_tx_mode": "controlled_init",
             "init_count": args.init_count,
             "full_client": args.full_client,
+            "selectproto": sp,
+            "wd_interval": wd,
             "origin": "lab" if args.lab else "f20",
             "source": "lab" if args.lab else "field",
         },
@@ -513,6 +520,18 @@ def main() -> int:
         "--full-client",
         action="store_true",
         help="continue KNOCK/OPEN after HANDSHAKE (lab; avoid on F20 until classified)",
+    )
+    b2atx.add_argument(
+        "--selectproto",
+        type=int,
+        default=3,
+        help="SELECTPROTO u16 after HS (desk=3, Dummy-wire=2)",
+    )
+    b2atx.add_argument(
+        "--wd-interval",
+        type=float,
+        default=2.5,
+        help="WD ping interval after OPEN 5001 (lab-wire ~2.5, desk 5)",
     )
     b2atx.add_argument(
         "--lab",

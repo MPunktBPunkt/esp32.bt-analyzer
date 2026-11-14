@@ -1,0 +1,88 @@
+{
+  "handles": {},
+  "l2cap_connects": [
+    {
+      "t": 0.978,
+      "by": "local",
+      "psm": "0x0003"
+    }
+  ],
+  "sdp_remote": [],
+  "sdp_local": [],
+  "rfcomm_sessions": [
+    {
+      "channel": 6,
+      "dlci": 12,
+      "opened_by": "local",
+      "t_open": 1.439,
+      "t_close": 91.622,
+      "closed_by": "local",
+      "accepted": true,
+      "frames": {
+        "SABM": 1,
+        "UA": 1,
+        "UIH": 99,
+        "DISC": 1
+      },
+      "first_uih": {
+        "t": 1.65,
+        "by": "local",
+        "len": 4,
+        "hex": "12345678"
+      },
+      "server": "remote",
+      "service": null,
+      "bytes_local": 462,
+      "bytes_remote": 880,
+      "payload": {
+        "kind": "binary",
+        "local": {
+          "bcl_classification": "STRONG_BCL_CANDIDATE",
+          "len": 462,
+          "head": "12345678000500000000000200020008",
+          "handshake": null
+        },
+        "remote": {
+          "bcl_classification": "BCL_FIELD_CONFIRMED",
+          "len": 880,
+          "head": "00040000000000080005000e00004000",
+          "handshake": {
+            "version": 5,
+            "instance_id": 14,
+            "buffer_size": 16384,
+            "src": 0,
+            "dest": 0
+          }
+        }
+      }
+    }
+  ],
+  "avdtp": [],
+  "a2dp_media_bytes": {},
+  "avctp": {},
+  "evidence_rows": [
+    {
+      "session_id": "FIELD_B2A_TX_CH6_SP2_20261114T1531Z-rfcomm1",
+      "hci_adapter": "hci1",
+      "local_bdaddr": "C8:C9:A3:CB:37:96",
+      "remote_bdaddr": null,
+      "hci_timestamp": 1.439,
+      "rfcomm_channel": 6,
+      "rfcomm_dlci": 12,
+      "opened_by": "local",
+      "service": null,
+      "sabm": 1,
+      "ua": 1,
+      "dm": 0,
+      "disc": 1,
+      "uih": 99,
+      "payload_length": 1342,
+      "payload_hex": "12345678",
+      "first_uih_timestamp": 1.65,
+      "first_uih_direction": "local",
+      "connection_state": "closed_by_local",
+      "payload_kind": "binary",
+      "bcl_classification": "BCL_FIELD_CONFIRMED"
+    }
+  ]
+}

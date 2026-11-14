@@ -323,7 +323,8 @@ def run_phone(
     log.write({"event": "rfcomm_connected", **meta})
     sock.settimeout(0.2)
 
-    sess = None if observe_only else PhoneClientSession()
+    sp = getattr(args, "selectproto", 3)
+    sess = None if observe_only else PhoneClientSession(selectproto=sp)
     sent = 0
     rx_raw = b""
     end = time.time() + args.seconds
@@ -332,6 +333,7 @@ def run_phone(
     last_rx = time.time()
     hs_logged = False
     inits_sent = 0
+    wd_interval = float(getattr(args, "wd_interval", WATCHDOG_INTERVAL_S) or WATCHDOG_INTERVAL_S)
     while time.time() < end:
         now = time.time()
         if controlled_init and sess is not None and sess.handshake is None:
@@ -353,10 +355,23 @@ def run_phone(
             if sess.handshake is None and now >= next_init:
                 sock.sendall(sess.session_init())
                 next_init = now + SESSION_INIT_INTERVAL_S
-            if sess.active and now >= next_ping:
-                sock.sendall(sess.watchdog_ping())
-                log.write({"event": "watchdog_ping", "session_id": session_id})
-                next_ping = now + WATCHDOG_INTERVAL_S
+        # WD pings once ACTIVE — including controlled_init --full-client (was missing before)
+        if (
+            sess is not None
+            and sess.active
+            and (full_client or not controlled_init)
+            and not observe_only
+            and now >= next_ping
+        ):
+            sock.sendall(sess.watchdog_ping())
+            log.write(
+                {
+                    "event": "watchdog_ping",
+                    "session_id": session_id,
+                    "interval_s": wd_interval,
+                }
+            )
+            next_ping = now + wd_interval
         try:
             data = sock.recv(4096)
         except socket.timeout:
@@ -497,6 +512,18 @@ def main() -> int:
         "--full-client",
         action="store_true",
         help="after HANDSHAKE continue SELECTPROTO/KNOCK/OPEN (lab only by default)",
+    )
+    b2a_tx.add_argument(
+        "--selectproto",
+        type=int,
+        default=3,
+        help="SELECTPROTO payload u16 after HS version>3 (desk=3, Dummy-wire=2)",
+    )
+    b2a_tx.add_argument(
+        "--wd-interval",
+        type=float,
+        default=WATCHDOG_INTERVAL_S,
+        help="watchdog ping interval seconds after OPEN 5001 (desk 5, lab-wire ~2.5)",
     )
 
     args = ap.parse_args()

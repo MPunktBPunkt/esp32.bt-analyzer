@@ -115,10 +115,13 @@ A/B-Alternation + parallele `result:1` Establish-Fails. Dummy hält Minuten wege
 
 ### M16 — Echte HU liefert BCL-HANDSHAKE v5 **[FIELD FACT]**
 
-`FIELD_B2A_TX_CH6_LIVE_20261114T1525Z` + `…FULL…1528Z`: `.87` → HU ch6 SABM→UA → INIT → HS  
-`00040000000000080005000e00004000` → **v5 / iid 14 / buf 0x4000**.  
-FULL: SP(3)+KNOCK+OPEN5001 → HU **DATAACK** `0x0A` + `0x08`.  
-Grok-Phone-Log war Vorläufer (REPORTED); Analyzer-Wire macht es **FACT**. Morgen-Matrix-DM = anderer Admission-State (M7).
+`.87` → HU ch6: SABM→UA → INIT → HS **v5 / iid 14 / buf 0x4000**.
+
+### M20 — HU WD-Echo ACTIVE nach OPEN 5001 **[FIELD FACT]**
+
+Mit Client-WD @ **2,5 s**: HU → DATAACK `0x0C` + DATA `13 37 13 37` (dest 5001), Minuten-fähig (90 s gemessen).  
+SP(2) und SP(3) **beide** OK — Diskriminator war fehlender WD-TX im ersten FULL-Lauf.  
+Evidence: `FIELD_B2A_TX_CH6_SP2_*`, `…SP3WD_*`.
 
 ### M17 — HS-Fingerprint peer-/versionsabhängig **[REPORTED]**
 
