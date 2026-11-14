@@ -113,5 +113,12 @@
     "handshake_doc": "technology-audit/.../bmw-bcl-handshake.md",
     "prior_lab": "LAB_PHONE_BCL_20261113T2201Z (HS v3\u2192SP2, no KNOCK)",
     "f20_contrast": "FIELD_B2A_TX_CH6_ETCH (OPEN4004 ACK, no App certs)"
-  }
+  },
+  "cert_channels_note": "sequential not parallel; src\u2194bmw/mini/j29 = INFERENCE only",
+  "cert_permissions": {
+    "oid": "1.3.6.1.4.1.513.59.4.2",
+    "src10_excerpt": "CDS=true&RHMI=true&APPID=myBMW&Make=BMW,MINI,J29&SAS.CertificateType=APP&AVS=true",
+    "src12_excerpt": "CDS=true&RHMI=true&APPID=myBMW&Make=BMW,MINI,J29&cds.*=1&MAP=true&AVS=false&\u2026"
+  },
+  "stand_doc": "docs/analysis/FIELD_STAND_Grok_GPT_20261114.md"
 }

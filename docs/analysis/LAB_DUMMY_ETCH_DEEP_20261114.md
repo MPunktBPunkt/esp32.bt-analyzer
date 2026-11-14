@@ -8,7 +8,9 @@ trigger: car-side A2DP/ACL-Bounce → AAIdrive grün
 
 ## Verdict
 
-Nach HS **v5** spricht das offizielle Phone-Stack **SELECTPROTO(4) + KNOCK** (UUID-Serial, appType=TouchCommand/7), öffnet WD@2.5 s und pusht **drei** Etch-PKCS7 an dest 4004 (ApplicationManager, SmartThings, **cdsbaseapp**). Das weicht klar von BclCarLink@`7cfd959` (SP3+leerer Knock, WD 5 s) und vom Lab-Abend mit Dummy-HS **v3** (SP2, kein Knock) ab. UI bleibt grün **ohne** HU-Etch-Reply / ohne Dummy-DATAACK — nur HS + WD-Echo.
+Nach HS **v5** spricht das offizielle Phone-Stack **SELECTPROTO(4) + KNOCK** (UUID-Serial, appType=TouchCommand/7), öffnet WD@2.5 s und pusht **sequenziell** drei Etch-PKCS7 an dest 4004 (ApplicationManager → SmartThings → **cdsbaseapp**). Das weicht klar von BclCarLink@`7cfd959` (SP3+leerer Knock, WD 5 s) und vom Lab-Abend mit Dummy-HS **v3** (SP2, kein Knock) ab. UI bleibt grün **ohne** HU-Etch-Reply / ohne Dummy-DATAACK — nur HS + WD-Echo (**≠** SAS/RHMI/CDS).
+
+Siehe auch: [`FIELD_STAND_Grok_GPT_20261114.md`](FIELD_STAND_Grok_GPT_20261114.md) (M29–M44, Proxy-Soll-Sequenz).
 
 ## Timeline (relativ zu `rfcomm_connected`)
 
@@ -36,7 +38,7 @@ Nach HS **v5** spricht das offizielle Phone-Stack **SELECTPROTO(4) + KNOCK** (UU
 | WD interval | **≈2.5 s** | **5 s** / timeout 20 s | ≈2.5 s |
 | OPEN 5001 vor 4004 | ja | ja | ja |
 | Etch dest 4004 / magic `deadbeef` | ja | ja | ja |
-| Cert src 10/11/12 | ja (AM / SmartThings / **cdsbaseapp**) | Grantor ab 10 | ja (ähnliches Muster) |
+| Cert src 10/11/12 | sequenziell AM → SmartThings → **cdsbaseapp** | Grantor ab 10 | ja (ähnliches Muster) |
 
 Quellen: `BclClientTransport.selectProtocol` / `doKnock` · Analysis CDS · `bmw-bcl-handshake.md` · `bmw-bcl-wire-vs-desk-2026-11-14`.
 
@@ -63,28 +65,37 @@ Body: 16 B Etch-Vorspann + PEM PKCS7 (3 Certs) + 15 B Trailer `866306b46887�
 | 11 | `a4a_app_mobile___com_smartthings_android_…` (+ CLOSE/re-OPEN) | 6813 |
 | 12 | `a4a_app_myBMW.perm___cdsbaseapp_…` | 6687 |
 
-**cdsbaseapp** = MyBMW-eingebettete CDS-App (Vehicle Status / `cds_*`) — deckt sich mit Analysis/Diskussion #346. Ohne echte HU-Antwort kein `cds_onPropertyChangedEvent` im Dummy-Log.
+**cdsbaseapp** = MyBMW-eingebettete CDS-App. CarProber@3e93419: `j29Cert` = „optional cdsBaseApp from MyBMW“ — Wire-CN bestätigt cdsbaseapp; **src↔bmw/mini/j29** bleibt INFERENCE.
 
-## Neue Muster (M23–M28)
+### Cert-Permissions (OID `1.3.6.1.4.1.513.59.4.2`) **[LAB FACT]**
+
+Leaf src10 (applicationmanager): `CDS=true&RHMI=true&APPID=myBMW&Make=BMW,MINI,J29&SAS.CertificateType=APP&AVS=true&…`  
+Leaf src12 (cdsbaseapp): zusätzlich `cds.*=1`, viele `rhmi.*`, `MAP=true`, `AVS=false`, …
+
+## Muster (M23–M28; Fortsetzung M29–M44 in FIELD_STAND)
 
 | ID | Muster | Status |
 |----|--------|--------|
-| **M23** | HS **v5** → Phone **SP(4)+KNOCK** (nicht Desk SP3, nicht Lab-v3 SP2) | LAB FACT |
+| **M23** | HS **v5** → Phone **SP(4)+KNOCK** | LAB FACT |
 | **M24** | Official KNOCK = UUID-Serial + TouchCommand(1)/7 | LAB FACT |
-| **M25** | Drei parallele Etch-Kanäle 10/11/12 = AM / SmartThings / **cdsbaseapp** | LAB FACT |
-| **M26** | Etch über BCL fragmentiert @4000; Reassembly via `8+be_len` | LAB FACT |
-| **M27** | AAIdrive grün mit Dummy: **kein** HU-Etch-Reply, **kein** DATAACK nötig — HS+WD-Echo reicht für UI | LAB FACT |
-| **M28** | src11 CLOSE→OPEN vor Cert-Push (Retry/Reset-Kanal) | LAB FACT |
+| **M25** | ~~parallele~~ → **sequenzielle** Cert-Pushes src10→11→12 (AM / SmartThings / cdsbaseapp) | LAB FACT (korrigiert) |
+| **M26** | Etch fragmentiert @4000; Reassembly `8+be_len` | LAB FACT |
+| **M27/M40** | UI grün ohne HU-Etch-Reply — nur BCL/WD | LAB FACT |
+| **M28** | src11 CLOSE→OPEN vor Cert | LAB FACT |
+| **M35** | Timing: HS@0.2 s → SP/KNOCK@~3.2 s → OPEN5001 → OPEN4004@~3.7 s | LAB FACT |
+| **M36** | WD parallel zu Etch-Bootstrap | LAB FACT |
+| **M39** | PKCS7 = Capability-Landkarte (CDS/RHMI/APPID/Make/SAS) | LAB FACT |
+| **M42** | SP folgt HS-version; iid/buf Fingerprint | LAB FACT |
 
 ## Konsequenzen
 
-1. **PhoneClientSession / b2a-tx:** nach HU-HS v5 Wire-treu **SP(4)+KNOCK(UUID,1,7)** modellieren — nicht BclCarLink-SP3.
-2. **F20:** Analyzer-OPEN 4004 allein ≠ Etch; App-Certs (bes. cdsbaseapp) müssen vom Phone/Proxy kommen (M21 bestätigt).
-3. **CDS:** Cert-Pfad ist da (src12); Property-JSON erst nach SAS auf echter HU/Simulator.
-4. **Dummy-HS Fingerprint:** iid1/buf 0x8000 ≠ F20 iid14/buf 0x4000 — Phone akzeptiert trotzdem SP4-Pfad.
+1. **b2a-tx / PhoneClient:** nach HU-HS v5 → **SP4+KNOCK(UUID,1,7)**; WD 2.5 s; Echo erst nach OPEN 5001 (M29).
+2. **F20-Proxy P0:** unveränderte App-PKCS7 an 4004 durchreichen → erste erwartete HU-Antwort = **SAS Challenge**.
+3. OPEN 4004 + DATAACK `0x08` allein = BCL-ACK, nicht Etch-OK (M41).
+4. Dummy iid/buf dürfen von F20 abweichen; Version steuert SP-Pfad.
 
 ## Nicht in diesem Log
 
-- `sas_*` / Challenge / `cds_*` Callbacks (Dummy spricht kein Etch-Server)
-- DATAACK von der „HU“
-- Zweite BCL-Session / HANGUP
+- `sas_*` / Challenge / `cds_*` Callbacks (Dummy = kein Etch-Server)
+- DATAACK von der Dummy-„HU“
+- Beweis src10=BMW / src11=MINI / src12=J29

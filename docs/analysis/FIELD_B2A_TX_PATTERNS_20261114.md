@@ -155,6 +155,64 @@ Dummy TX nur HS + WD-Echo; AAIdrive bleibt grün (~760 s Capture).
 
 Retry/Reset eines Etch-Kanals vor SmartThings-PKCS7.
 
+### M29 — Setup vs Maintenance **[FIELD+LAB]**
+
+HU WD-Echo erst nachdem Client OPEN 5001 **und** WD-TX fährt. `--echo-watchdog` vor OPEN = zu früh.
+
+### M30 — HS-Fingerprint peer-/generationsabhängig **[FACT]**
+
+Dummy alt v3/1/0x8000 · Dummy-Lab-v5 iid1/0x8000 · F20 v5/14/0x4000.
+
+### M31/M40 — UI-Grün ≠ SAS/RHMI/CDS **[LAB FACT]**
+
+HS+SP/KNOCK+WD reichen für AAIdrive-Grün.
+
+### M32 — Fehlender Client-WD tötet Session, nicht SP-Wahl **[FIELD]**
+
+SP2+WD ✓ · SP3+WD ✓ · SP3 ohne WD ✗.
+
+### M33 — Peer-Asymmetrie Eligibility **[STRONG H]**
+
+Phone→HU oft UA; Analyzer→HU oft DM — oberhalb A2DP.
+
+### M35 — Timing-Signatur Setup **[LAB FACT]**
+
+INIT/HS ~0.2 s → SP4/KNOCK ~+3.2 s → OPEN5001 → OPEN4004 ~+3.7 s.
+
+### M36 — WD parallel zu Etch-Bootstrap **[LAB FACT]**
+
+Session-Liveness, nicht Etch-Mechanismus.
+
+### M37 — Cert-Pushes sequenziell **[LAB FACT]**
+
+Korrigiert M25 „parallel“. src↔bmw/mini/j29 = INFERENCE (CarProber-ähnlich).
+
+### M38 — cdsbaseapp / j29Cert **[LAB+Desk]**
+
+Wire-CN cdsbaseapp; CarProber: optional `j29Cert` = cdsBaseApp.
+
+### M39 — PKCS7 Capability-Landkarte **[LAB FACT]**
+
+OID `…513.59.4.2`: `CDS=true&RHMI=true&APPID=myBMW&Make=BMW,MINI,J29&SAS.CertificateType=APP&…`.
+
+### M41 — DATAACK 0x08 nach OPEN 4004 = Frame-ACK **[STRONG]**
+
+BclCarLink `DATAACK(8+len)`; OPEN len=0 → 0x08. Kein Etch-Accept.
+
+### M42 — SP folgt HS-version **[LAB FACT]**
+
+Beide v5 (iid1 oder 14) → Phone SP4; iid/buf = Fingerprint.
+
+### M43 — TouchCommand/7-KNOCK real **[LAB FACT]**
+
+Desk nur Kommentar; Wire gemessen.
+
+### M44 — WD-Maintenance F20 + Dummy **[FIELD+LAB FACT]**
+
+Gleicher Mechanismus unabhängig reproduziert.
+
+Vollständiger Abgleich Grok/GPT: [`FIELD_STAND_Grok_GPT_20261114.md`](FIELD_STAND_Grok_GPT_20261114.md).
+
 ### M17 — HS-Fingerprint peer-/versionsabhängig **[REPORTED]**
 
 | Quelle | version | instanceId | bufferSize |
@@ -219,8 +277,9 @@ silent (083313/     HS v5 REPORTED
 
 ## Nächste Schritte (Priorität)
 
-1. **P0** F20-Proxy: WD halten + Lab-klassifizierte App-Etch (cdsbaseapp) auf 4004.
-2. **P0** PhoneClientSession: nach HS v5 **SP4+KNOCK** (nicht Desk SP3).
-3. **P0** `bluetooth_20261114_104405_CLEANED.log` ingestieren → REPORTED→FACT.
-4. **P0.5** 2×2-Feldmatrix (M7) + btmon Security-Flags (M6/M15)
-5. Kein B3 / kein ch5-als-BCL
+1. **P0** F20-**Proxy**: BCL WD halten + unveränderte Phone-PKCS7 an 4004 → erwarten **SAS Challenge** (nicht blindes Etch).
+2. **P0** Wire-Client nach HS v5: **SP4+KNOCK(UUID,1,7)**; WD 2.5 s; Echo erst nach OPEN 5001.
+3. **P0** Phone HCI-Snoop (Hex 4/56 B) + passiver Hold/btmon (unsolicited HU).
+4. **P0.5** Dummy Feldsignatur optional (iid14/0x4000) — SP-Pfad hängt an Version, nicht iid.
+5. **P1** 2×2 Eligibility (M7/M33) · Silent-HU-Lab (M9)
+6. Kein B3 / kein ch5-als-BCL

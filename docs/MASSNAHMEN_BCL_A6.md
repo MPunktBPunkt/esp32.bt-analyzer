@@ -1,11 +1,12 @@
 # Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
 
 ```yaml
-status: active · F20 BCL WD ACTIVE · Lab Dummy Etch DEEP (SP4+KNOCK+cdsbaseapp) · F20 Etch still app/proxy
+status: active · BCL+WD FIELD CONFIRMED · Grenze = SAS nach PKCS7 · Proxy P0
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake / supra-idrive6-android-auto-2026-secondary]
 trigger: 2026-11-13 secondary NBT-AAD + RFCOMM two-mode review (initiator UNKNOWN · B2-A/B2-B)
-method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md · docs/analysis/LAB_DUMMY_ETCH_DEEP_20261114.md
+method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md · docs/analysis/LAB_DUMMY_ETCH_DEEP_20261114.md · docs/analysis/FIELD_STAND_Grok_GPT_20261114.md
 lab_dummy_etch: docs/evidence/LAB_DUMMY_ETCH_20261114T1550Z.md
+stand_grok_gpt: docs/analysis/FIELD_STAND_Grok_GPT_20261114.md
 a6_evidence: docs/evidence/FIELD_A6_HU_20261113T062824Z
 b1_evidence: docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z
 b2_evidence: docs/evidence/FIELD_B2_20261113T154728Z
@@ -92,14 +93,15 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 
 ### P0 / P0.5 / P1 — Priorität nach M6–M15
 
-8. ~~**P0 — Etch/Layer E Lab**~~ → **DEEP** `LAB_DUMMY_ETCH_20261114T1550Z` + `LAB_DUMMY_ETCH_DEEP_20261114`: HS v5→**SP(4)+KNOCK**(UUID,TouchCommand/7); Etch src10/11/12 = AM/SmartThings/**cdsbaseapp**; UI grün ohne HU-Etch-Reply (M23–M28). ≠ BclCarLink SP3/WD5s; ≠ Lab-v3 SP2.
-9. **P0 — Proxy-Pfad:** Analyzer hält WD 5001 am F20, App-Etch-Bytes (Lab-Klassifikation, inkl. cdsbaseapp) auf 4004 durchreichen (B0.8-Vorstufe).
-10. **P1 — Admission 2×2 (M7)** für DM-Zellen; Positive = ACL+AUTH+ENCRYPT + WD.
-11. **P1 — Wire-treuer Client nach HS-version:** v3→SP2; **v5→SP4+KNOCK(UUID,1,7)**; WD 2.5 s; + CLEANED-Ingest. (Altes Default SP2 nur für v3-Pfad.)
-11b. Lab Phone→Dummy BCL: `LAB_PHONE_BCL_*` (HS v3/SP2) + `LAB_DUMMY_ETCH_*` (HS v5/SP4).
-11c. Kein B3 / kein ch5-als-BCL; kein blindes Wiederholen der Negativ-Matrix ohne State-Kontrolle.
-11d. **Bimmer-vs-Wire** / CoD / WD: unverändert (`BCL_BIMMER_VS_WIRE_*`, `LAB_COD_*`, `LAB_WD_PONG_*`).
-11e. **B0.8** — BclCarLink (+ optional AAIdrive) ↔ Simulator :4006 (nach A6-Wire).
+8. ~~**P0 — Etch/Layer E Lab**~~ → **DEEP** + Grok/GPT-Abgleich `FIELD_STAND_Grok_GPT_20261114`: SP4+KNOCK; sequenzielle Certs AM→SmartThings→cdsbaseapp; PKCS7-Permissions CDS/RHMI/APPID; M23–M44. UI-Grün ≠ SAS.
+9. **P0 — F20-Proxy (Erkenntnissprung):** WD 5001 halten; Phone-PKCS7 unverändert an dest 4004; **erwarte HU→SAS Challenge**, dann `sas_login` / `rhmi_getCapabilities`. OPEN+DATAACK `0x08` allein ≠ Etch-OK (M41).
+9b. **P0 — Wire-Client:** nach HS v5 SP4+KNOCK(UUID,1,7); WD 2.5 s; Echo erst nach OPEN 5001 (M29). Parallel: Phone HCI-Snoop + passiver Hold/btmon.
+10. **P1 — Admission 2×2 (M7/M33)** UA vs DM; Positive = ACL+AUTH+ENCRYPT + WD.
+11. **P1 — Dummy-Feldsignatur optional** (iid14/0x4000) — SP hängt an HS-version (M42). CLEANED-Ingest.
+11b. Lab: `LAB_PHONE_BCL_*` (v3/SP2) + `LAB_DUMMY_ETCH_*` (v5/SP4).
+11c. Kein B3 / kein ch5-als-BCL; keine Negativ-Matrix ohne State-Kontrolle.
+11d. Bimmer-vs-Wire / CoD / WD-Docs belassen.
+11e. **B0.8** Simulator :4006 nach Proxy-Bedarf (SAS-Stub), nicht vor Proxy-Feldtest.
 
 ### P2 — Docs / Epistemik
 
