@@ -294,6 +294,12 @@ def cmd_b2a_tx(args: argparse.Namespace) -> int:
     full = " --full-client" if args.full_client else ""
     sp = getattr(args, "selectproto", 3)
     wd = getattr(args, "wd_interval", 5.0)
+    extra_flags = ""
+    if getattr(args, "wire_open5001", False):
+        extra_flags += " --wire-open5001"
+    if getattr(args, "open_etch", False):
+        extra_flags += " --open-etch"
+        extra_flags += f" --etch-src {int(getattr(args, 'etch_src', 10))}"
     cmd = (
         f"python3 {REMOTE_TOOLS}/{AGENT} b2a-tx "
         f"--adapter-bd {shlex.quote(PHONE_BD)} "
@@ -305,12 +311,14 @@ def cmd_b2a_tx(args: argparse.Namespace) -> int:
         f"--origin {origin} --source {source} "
         f"--selectproto {int(sp)} "
         f"--wd-interval {float(wd)} "
-        f"--log {shlex.quote(log)}{full}"
+        f"--log {shlex.quote(log)}{full}{extra_flags}"
     )
     print(
         f"B2-A-TX controlled INIT×{args.init_count} ch={args.channel} "
         f"({args.seconds}s, full_client={args.full_client}, "
-        f"selectproto={sp}, wd_interval={wd})"
+        f"selectproto={sp}, wd_interval={wd}, "
+        f"wire_open5001={getattr(args, 'wire_open5001', False)}, "
+        f"open_etch={getattr(args, 'open_etch', False)})"
     )
     p = ssh(cmd, timeout=float(args.seconds) + 40)
     print(p.stdout or "")
@@ -329,6 +337,9 @@ def cmd_b2a_tx(args: argparse.Namespace) -> int:
             "full_client": args.full_client,
             "selectproto": sp,
             "wd_interval": wd,
+            "wire_open5001": getattr(args, "wire_open5001", False),
+            "open_etch": getattr(args, "open_etch", False),
+            "etch_src": getattr(args, "etch_src", 10),
             "origin": "lab" if args.lab else "f20",
             "source": "lab" if args.lab else "field",
         },
@@ -533,6 +544,17 @@ def main() -> int:
         default=2.5,
         help="WD ping interval after OPEN 5001 (lab-wire ~2.5, desk 5)",
     )
+    b2atx.add_argument(
+        "--wire-open5001",
+        action="store_true",
+        help="OPEN 5001 as src=dest=5001 (AAIdrive wire style)",
+    )
+    b2atx.add_argument(
+        "--open-etch",
+        action="store_true",
+        help="also OPEN Etch dest=4004 after watchdog OPEN",
+    )
+    b2atx.add_argument("--etch-src", type=int, default=10, help="BCL src for OPEN 4004")
     b2atx.add_argument(
         "--lab",
         action="store_true",

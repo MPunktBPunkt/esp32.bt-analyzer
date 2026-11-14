@@ -21,6 +21,7 @@ import struct
 from dataclasses import dataclass, field
 
 from bcl_framer import (
+    DEST_ETCH_DESK,
     DEST_WATCHDOG_DESK,
     INIT_MAGIC,
     BclFrame,
@@ -186,6 +187,10 @@ class PhoneClientSession(_Session):
     active: bool = False
     # Desk default 3 when HS version>3; Dummy-Wire used 2 — set via field --selectproto.
     selectproto: int | None = 3
+    # Lab AAIdrive: OPEN src=5001 dst=5001 then OPEN src=10 dst=4004 (Etch).
+    wire_open5001: bool = False
+    open_etch: bool = False
+    etch_src: int = 10
 
     def session_init(self) -> bytes:
         self.events.append({"event": "session_init", "dir": "tx"})
@@ -209,12 +214,23 @@ class PhoneClientSession(_Session):
                     build_synthetic_frame(CMD_SELECTPROTO, 0, 0, struct.pack(">H", int(sp)))
                 )
             out.append(build_synthetic_frame(CMD_KNOCK, 0, 0, KNOCK_DEFAULT_PAYLOAD))
-            out.append(build_synthetic_frame(CMD_OPEN, PHONE_SRC, DEST_WATCHDOG_DESK))
+            if self.wire_open5001:
+                # Lab wire: OPEN watchdog with src=dest=5001
+                out.append(
+                    build_synthetic_frame(CMD_OPEN, DEST_WATCHDOG_DESK, DEST_WATCHDOG_DESK)
+                )
+            else:
+                out.append(build_synthetic_frame(CMD_OPEN, PHONE_SRC, DEST_WATCHDOG_DESK))
+            if self.open_etch:
+                out.append(
+                    build_synthetic_frame(CMD_OPEN, int(self.etch_src), DEST_ETCH_DESK)
+                )
             self.active = True
         return out
 
     def watchdog_ping(self) -> bytes:
-        return build_synthetic_frame(CMD_DATA, PHONE_SRC, DEST_WATCHDOG_DESK, WATCHDOG_PING)
+        src = DEST_WATCHDOG_DESK if self.wire_open5001 else PHONE_SRC
+        return build_synthetic_frame(CMD_DATA, src, DEST_WATCHDOG_DESK, WATCHDOG_PING)
 
 
 def summarize(events: list[dict]) -> dict:

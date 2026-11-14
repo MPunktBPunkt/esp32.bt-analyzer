@@ -1,7 +1,7 @@
 # Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
 
 ```yaml
-status: active · F20 BCL ACTIVE — HS v5 + WD echo 13371337 @2.5s (SP2 und SP3) · Agent WD-fix für full-client
+status: active · F20 BCL WD ACTIVE (180s) · OPEN 4004 accepted but HU Etch empty · Etch needs app certs
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake / supra-idrive6-android-auto-2026-secondary]
 trigger: 2026-11-13 secondary NBT-AAD + RFCOMM two-mode review (initiator UNKNOWN · B2-A/B2-B)
 method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md
@@ -70,8 +70,9 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 7e. ~~**B2-A-TX ch6 FULL**~~ → **PASS / HS+DATAACK** `FIELD_B2A_TX_CH6_FULL_20261114T1528Z`: SP(3)+KNOCK+OPEN5001 → DATAACK; **kein WD-TX** (Agent-Bug, fixed).
 7f. ~~**SP(2)+WD**~~ → **PASS / WD live** `FIELD_B2A_TX_CH6_SP2_20261114T1531Z`: 90 s, 35× HU-Echo `13371337` + DATAACK `0x0C`.
 7g. ~~**SP(3)+WD Kontrolle**~~ → **PASS / WD live** `FIELD_B2A_TX_CH6_SP3WD_20261114T1534Z`: gleich; SP2≠Diskriminator.
+7h. ~~**OPEN Etch 4004 + wire OPEN5001**~~ → **WD PASS / Etch empty** `FIELD_B2A_TX_CH6_ETCH_20261114T1539Z`: 180 s, 70× WD-Echo; HU sendet kein `deadbeef`/4004-Payload (OPEN 4004 → extra ACK `0x08`).
 
-### Hypothesen nach F20 WD-ACTIVE (Stand 2026-11-14 ~15:35)
+### Hypothesen nach F20 WD-ACTIVE + Etch-Negativ (Stand 2026-11-14 ~15:43)
 
 | ID | Hypothese | Status |
 |----|-----------|--------|
@@ -90,10 +91,10 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 
 ### P0 / P0.5 / P1 — Priorität nach M6–M15
 
-8. **P0 — Post-WD:** OPEN 4004 / Etch / große Frames beobachten (längerer Hold, optional App parallel).
-9. **P0 — Phone HCI-Snoop** (Filter aus) Cross-check App vs Analyzer-Wire.
-10. **P1 — Admission 2×2 (M7)** für DM-Zellen; Positive-Zelle = ACL+AUTH+ENCRYPT + WD.
-11. **P1 — Dummy v5 + Silent-HU + Faktorisierung + CLEANED-Ingest.** Default field: `--full-client --wd-interval 2.5` (SP 2 oder 3).
+8. **P0 — Etch/Layer E:** Phone-HCI (Filter aus) während AAIdrive-grün **oder** Lab-Etch-`deadbeef` an dest 4004 gegen F20/Dummy klassifizieren — HU pusht Etch nicht von allein.
+9. **P0 — Proxy-Pfad:** Analyzer hält WD 5001, App-Bytes auf 4004 durchreichen (B0.8-Vorstufe am Auto).
+10. **P1 — Admission 2×2 (M7)** für DM-Zellen; Positive = ACL+AUTH+ENCRYPT + WD.
+11. **P1 — Dummy v5 + Silent-HU + Faktorisierung + CLEANED-Ingest.** Field default: `--full-client --selectproto 2 --wd-interval 2.5 --wire-open5001`.
 11b. Lab Phone→Dummy BCL: `LAB_PHONE_BCL_*` + `LAB_FIELDPREP_20261114T095848Z` (SP(2), WD-Pong).
 11c. Kein B3 / kein ch5-als-BCL; kein blindes Wiederholen der Negativ-Matrix ohne State-Kontrolle.
 11d. **Bimmer-vs-Wire** / CoD / WD: unverändert (`BCL_BIMMER_VS_WIRE_*`, `LAB_COD_*`, `LAB_WD_PONG_*`).

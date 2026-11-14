@@ -324,7 +324,12 @@ def run_phone(
     sock.settimeout(0.2)
 
     sp = getattr(args, "selectproto", 3)
-    sess = None if observe_only else PhoneClientSession(selectproto=sp)
+    sess = None if observe_only else PhoneClientSession(
+        selectproto=sp,
+        wire_open5001=bool(getattr(args, "wire_open5001", False)),
+        open_etch=bool(getattr(args, "open_etch", False)),
+        etch_src=int(getattr(args, "etch_src", 10) or 10),
+    )
     sent = 0
     rx_raw = b""
     end = time.time() + args.seconds
@@ -524,6 +529,22 @@ def main() -> int:
         type=float,
         default=WATCHDOG_INTERVAL_S,
         help="watchdog ping interval seconds after OPEN 5001 (desk 5, lab-wire ~2.5)",
+    )
+    b2a_tx.add_argument(
+        "--wire-open5001",
+        action="store_true",
+        help="OPEN watchdog as src=dest=5001 (AAIdrive lab wire) instead of src=1",
+    )
+    b2a_tx.add_argument(
+        "--open-etch",
+        action="store_true",
+        help="after OPEN 5001 also OPEN Etch dest=4004 (lab: src=10)",
+    )
+    b2a_tx.add_argument(
+        "--etch-src",
+        type=int,
+        default=10,
+        help="BCL src port for OPEN 4004 (lab MyBMW used 10..12)",
     )
 
     args = ap.parse_args()

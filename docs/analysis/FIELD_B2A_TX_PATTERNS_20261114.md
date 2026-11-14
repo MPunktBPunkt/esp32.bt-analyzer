@@ -119,9 +119,13 @@ A/B-Alternation + parallele `result:1` Establish-Fails. Dummy hält Minuten wege
 
 ### M20 — HU WD-Echo ACTIVE nach OPEN 5001 **[FIELD FACT]**
 
-Mit Client-WD @ **2,5 s**: HU → DATAACK `0x0C` + DATA `13 37 13 37` (dest 5001), Minuten-fähig (90 s gemessen).  
-SP(2) und SP(3) **beide** OK — Diskriminator war fehlender WD-TX im ersten FULL-Lauf.  
-Evidence: `FIELD_B2A_TX_CH6_SP2_*`, `…SP3WD_*`.
+Client-WD @ **2,5 s**: HU → DATAACK `0x0C` + DATA `13 37 13 37`. SP2/SP3 beide OK.  
+Wire-OPEN `src=dst=5001`: HU-Echo ebenfalls 5001↔5001. Evidence: `…SP2_*`, `…SP3WD_*`, `…ETCH_*` (180 s).
+
+### M21 — OPEN 4004 ≠ Etch-Payload von der HU **[FIELD FACT]**
+
+Analyzer TX OPEN `src=10 dest=4004` → extra DATAACK `0x08`, aber **0** Frames/`deadbeef` von der HU in 180 s.  
+Etch/PKCS7 ist **App→HU** (Lab Phone↔Dummy), nicht HU-unsolicited.
 
 ### M17 — HS-Fingerprint peer-/versionsabhängig **[REPORTED]**
 
