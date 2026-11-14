@@ -35,7 +35,9 @@ verified: recount on reduced log 2026-11-14
 | H-C | MyBMW-State nötig | unverändert offen |
 | H-E | ch7–10 | UUID-Fetch nur ch6 · Analyzer-TX-Bypass **geschwächt** (`FIELD_B2A_TX_MATRIX_20261114`) |
 
-**Nachmittag-Update:** siehe `FIELD_B2A_TX_PATTERNS_20261114` (A2DP-OK≠SPP-Accept; Dummy BCL PASS).
+**Nachmittag-Update:** siehe `FIELD_B2A_TX_PATTERNS_20261114` (A2DP-OK≠SPP-Accept; Dummy BCL PASS; M6–M15).
+
+**Nachmittag-Logs:** `FIELD_PHONE_BTLOGS_20261114T1037Z` — SCN6 OPEN reproduziert; 0× DataInd dlci13; Typ-B Close **15,060 s** (M9 MEASURED); RFCOMM-Snoop-Filter an → `.cfa` leer; Hex weiter UNKNOWN.
 
 ## B2-A-Matrix (neu)
 
