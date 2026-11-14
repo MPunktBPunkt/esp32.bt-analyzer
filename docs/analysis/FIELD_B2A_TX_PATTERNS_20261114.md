@@ -113,13 +113,12 @@ A/B-Alternation + parallele `result:1` Establish-Fails. Dummy hält Minuten wege
 
 (a) Service-Autorisierung vs (b) App-Session (H-G). Log: oft `BTM_SUCCESS_NO_SECURITY` — zu dünn. btmon Security-Flags zum SABM.
 
-### M16 — Echte HU liefert BCL-HANDSHAKE v5 **[REPORTED / DECODE OK]**
+### M16 — Echte HU liefert BCL-HANDSHAKE v5 **[FIELD FACT]**
 
-Weiteres Log (~10:44–11:24, Grok): Session id 96, peer `e1:b5`:
-
-`00 04 … 00 08 00 05 00 0E 00 00 40 00` → HANDSHAKE **version=5**, **instanceId=0x0E (14)**, **bufferSize=0x4000**.
-
-Frühere Captures (083313/103731) hatten 0× DataInd dlci13 — kein Widerspruch, anderer State. Evidence: `FIELD_PHONE_HU_BCL_HS_V5_*` (CLEANED-Log noch PENDING ingest).
+`FIELD_B2A_TX_CH6_LIVE_20261114T1525Z` + `…FULL…1528Z`: `.87` → HU ch6 SABM→UA → INIT → HS  
+`00040000000000080005000e00004000` → **v5 / iid 14 / buf 0x4000**.  
+FULL: SP(3)+KNOCK+OPEN5001 → HU **DATAACK** `0x0A` + `0x08`.  
+Grok-Phone-Log war Vorläufer (REPORTED); Analyzer-Wire macht es **FACT**. Morgen-Matrix-DM = anderer Admission-State (M7).
 
 ### M17 — HS-Fingerprint peer-/versionsabhängig **[REPORTED]**
 
@@ -166,7 +165,7 @@ silent (083313/     HS v5 REPORTED
 
 | ID | Update |
 |----|--------|
-| **H-A** | **gestärkt (REPORTED):** echte HU kann BCL-HS senden (v5). Post-HS/Stabilität/Analyzer-Pfad weiter offen. Silent-Captures bleiben gültig für *deren* State |
+| **H-A** | **FIELD CONFIRMED** HS v5 via `.87` b2a-tx. Post-HS (WD/Etch/SP2) offen. Silent-/DM-Captures = andere States |
 | **H-E** | Explizite ch7–10 ändern DM-Negativ **nicht** (dieser State) |
 | **H-C** | MyBMW+Restart am Dummy = starker Eligibility-Hebel (Lab). Am Auto parallel unklar |
 | **H-G** | HU SPP-Accept hängt an **App-/Owner-State**, nicht nur ACL+A2DP — **[H]**; M6/M7/M10 stützen |
