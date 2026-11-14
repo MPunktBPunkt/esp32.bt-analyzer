@@ -2,7 +2,7 @@
 
 ```yaml
 goal: maximaler Wire-Erkenntnisgewinn in ≤60 min
-tx_policy: B2-A-TX Matrix ch6–10 (INIT 3s); observe after TX
+tx_policy: B2-A-TX Matrix DONE NEGATIVE 2026-11-14 (DM/refuse); next = isolierter Retry + Phone Snoop
 hu: D4:36:39:CF:E1:B5
 phone_esp: C8:C9:A3:CB:37:96 (.87)
 host: .108 via SSH
@@ -10,9 +10,11 @@ tools: tools/field_b1_b2.py · tools/lab_hfp_stack.py · tools/btsnoop_decode.py
 b1_sdp_state_a: PASS / MEASURED — docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z.md
 b2_state_a: DONE 2026-11-13 — docs/evidence/FIELD_B2_20261113T154728Z.md
 phone_hu_logcat: DONE 2026-11-14 — docs/evidence/FIELD_PHONE_HU_LOGCAT_20261114T0924Z.md (1101→SCN6 OPEN; HU silent ch6)
+b2a_tx_matrix: DONE NEGATIVE 2026-11-14 — docs/evidence/FIELD_B2A_TX_MATRIX_20261114.md
+lab_dummy_parallel: PASS — docs/evidence/LAB_FIELDPREP_20261114T095848Z.md
 lab_f20_sdp_mirror: PASS LAB_TEST — docs/evidence/LAB_F20_SDP_MIRROR_20261113T174006Z.md (ch5+ch6; ch7–10 BlueZ UUID limit)
-next: b2a-tx ch6–10 @ 3s, start ≥15s after ACL; optional HCI-Snoop for 4/56B hex
-note: "Phone app hits only first 0x1101 (=ch6); ch7–10 need explicit channel"
+next: Phone HCI-Snoop Hex · b2a-tx ohne paralleles Phone↔HU-A2DP · Silent-HU Lab
+note: "A2DP-OK ≠ SPP-Accept; ch7–10 halfen nicht gegen DM in AUDIOOK-State"
 ```
 
 ## Stand aus A6 (2026-11-13)

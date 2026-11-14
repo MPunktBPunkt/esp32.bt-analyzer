@@ -1,0 +1,82 @@
+{
+  "session_id": "FIELD_B2A_TX_CH10_AUDIOOK_20261114T1116Z",
+  "gate": "B2-A-TX",
+  "source": "field",
+  "origin": "f20",
+  "ts_utc": "20261114T101625Z",
+  "event_count": 2,
+  "events_head": [
+    {
+      "ts": 1794651385.48,
+      "event": "session_start",
+      "session_id": "FIELD_B2A_TX_CH10_AUDIOOK_20261114T1116Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": false,
+      "origin": "f20",
+      "source": "field",
+      "peer": "D4:36:39:CF:E1:B5",
+      "channel": 10
+    },
+    {
+      "ts": 1794651385.704,
+      "event": "rfcomm_connect_failed",
+      "error": "ConnectionRefusedError(111, 'Connection refused')",
+      "session_id": "FIELD_B2A_TX_CH10_AUDIOOK_20261114T1116Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": false,
+      "origin": "f20",
+      "source": "field",
+      "peer": "D4:36:39:CF:E1:B5",
+      "channel": 10
+    }
+  ],
+  "events_tail": [
+    {
+      "ts": 1794651385.48,
+      "event": "session_start",
+      "session_id": "FIELD_B2A_TX_CH10_AUDIOOK_20261114T1116Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": false,
+      "origin": "f20",
+      "source": "field",
+      "peer": "D4:36:39:CF:E1:B5",
+      "channel": 10
+    },
+    {
+      "ts": 1794651385.704,
+      "event": "rfcomm_connect_failed",
+      "error": "ConnectionRefusedError(111, 'Connection refused')",
+      "session_id": "FIELD_B2A_TX_CH10_AUDIOOK_20261114T1116Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": false,
+      "origin": "f20",
+      "source": "field",
+      "peer": "D4:36:39:CF:E1:B5",
+      "channel": 10
+    }
+  ],
+  "channel": 10,
+  "tx_allowed": true,
+  "bcl_tx_enabled": true,
+  "bcl_tx_mode": "controlled_init",
+  "init_count": 3,
+  "full_client": false,
+  "tx_bytes_events": 0,
+  "tx_blocked_events": 0
+}

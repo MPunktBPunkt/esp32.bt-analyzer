@@ -1,13 +1,15 @@
 # Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
 
 ```yaml
-status: active · A6/B1A/B2A done · Phone↔HU Logcat 2026-11-14 FIELD FACT (SPP 1101→SCN6 OPEN, HU silent ch6)
+status: active · B2-A-TX Matrix 2026-11-14 NEGATIVE (DM/refuse ch5–10) · Phone↔Dummy BCL PASS parallel · Phone↔HU silent FACT steht
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake / supra-idrive6-android-auto-2026-secondary]
 trigger: 2026-11-13 secondary NBT-AAD + RFCOMM two-mode review (initiator UNKNOWN · B2-A/B2-B)
-method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md
+method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md
 a6_evidence: docs/evidence/FIELD_A6_HU_20261113T062824Z
 b1_evidence: docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z
 b2_evidence: docs/evidence/FIELD_B2_20261113T154728Z
+b2a_tx_matrix: docs/evidence/FIELD_B2A_TX_MATRIX_20261114.md
+lab_fieldprep: docs/evidence/LAB_FIELDPREP_20261114T095848Z.md
 phone_hu_logcat: docs/evidence/FIELD_PHONE_HU_LOGCAT_20261114T0924Z.md
 phone_hu_analysis: docs/analysis/FIELD_PHONE_HU_SPP_20261114.md
 raw_full: docs/bluetooth_20261114_083313_01892.txt
@@ -56,35 +58,33 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
    - B2-B observe-only 180 s: **kein** HU-SABM inbound unter Control (Apps/HFP off)
 5. ~~**Phone↔HU Logcat (OnePlus, 2026-11-14)**~~ → **DONE** `FIELD_PHONE_HU_LOGCAT_20261114T0924Z`:
    UID 10479 → UUID `0x1101` → SDP **SCN 6** → RFCOMM OPEN (DLCI 13, MTU~666); **10** Opens; Phone TX 5×56 B + 24×4 B @ **3,0 s**; HU auf ch6 **0 RX** (`PORT_DataInd` nur dlci 8/HFP); ACL role=peripheral (HU pages). BCL-Bytes **UNKNOWN**.
-6. **B2-A-TX Matrix ch 6–10** (P0 jetzt) — `connectSocket(0x1101)` trifft **nur** ch6; Reserve ch7–10 nur mit explizitem Kanal. Pro Kanal: `field_b1_b2.py b2a-tx --channel N` mit INIT `12 34 56 78` im **3‑s-Takt**, Start **≥15 s nach ACL** (Feld: 5× DM vor erstem UA). Erfolg = UA + UIH-Klassifikation. HFP weiter OFF.
-   Engpass: **Trigger** (Apps-State?) × **Endpoint** (ch6 silent gemessen; ch7–10 offen).  
-   **ch5 `deca-fade` = Apple iAP2/MFi** — nicht BCL. A2DP/AVRCP ≠ BCL-Trigger.
+6. ~~**B2-A-TX Matrix ch 6–10**~~ → **DONE / NEGATIVE** `FIELD_B2A_TX_MATRIX_20261114` (+ AUDIOOK-Lauf): ch5–10 Socket refuse; Wire SABM→**DM**. A2DP „BT-Analyzer verbunden“ ändert Accept **nicht**. Analyse: `FIELD_B2A_TX_PATTERNS_20261114`.
+7. ~~**Phone↔Dummy BCL parallel**~~ → **PASS** `LAB_FIELDPREP_20261114T095848Z` (CoD `0x340408` + Alias + App-Restart; SP(2)+WD-Pong; AAIdrive grün).
 
-### Hypothesen nach B2 + Phone-HU-Logcat (Stand 2026-11-14)
+### Hypothesen nach B2-A-TX + Logcat + Dummy (Stand 2026-11-14 ~11:20)
 
 | ID | Hypothese | Status |
 |----|-----------|--------|
-| **H-A** | BCL auf ch6, HU antwortet auf Phone-INIT | **Transport ja / Antwort nein** (Logcat: HU silent ch6) — `b2a-tx` + State C weiter; Handshake weiter offen |
-| **H-B** | HU initiiert RFCOMM/BCL autonom | ACL+Mux **ja** (Phone peripheral); SPP-DLC **Phone-Client** (UID 10479) |
-| **H-C** | MyBMW/Connected aktiviert Apps-Kontext (Handshake-Annahme) | **parallel** — State mit App + ggf. A2DP-Stream |
-| **H-D** | ch5 `deca-fade` = Connected/BCL | **verworfen** — iAP2/MFi (öffentlich + `BCL_BT.md`) |
-| **H-E** | ch7–10 relevant | **P0** — ch6 silent; UUID-Fetch trifft nur ersten Record |
-| **H-F** | BCL nicht über RFCOMM/SPP | unwahrscheinlich, F20 offen |
+| **H-A** | BCL auf ch6, HU antwortet auf Phone/Analyzer-INIT | Phone: Transport ja / Antwort **nein**; Analyzer: DLC **DM** — Handshake F20 weiter **UNKNOWN** |
+| **H-B** | HU initiiert RFCOMM/BCL autonom | ACL+Mux **ja**; SPP-DLC Phone-Client (Logcat) |
+| **H-C** | MyBMW/Connected aktiviert Apps-Kontext | Lab Dummy: Restart-Hebel **gestärkt**; F20 parallel offen |
+| **H-D** | ch5 `deca-fade` = Connected/BCL | **verworfen** |
+| **H-E** | ch7–10 als Analyzer-TX-Bypass | **geschwächt** (Matrix: gleicher DM) · UUID-Fetch-only-ch6 steht |
+| **H-F** | BCL nicht über RFCOMM/SPP | unwahrscheinlich |
+| **H-G** | HU SPP-Accept braucht App-/Owner-State ≠ nur ACL+A2DP | **[H]** neu (M1/M2) |
 
 **B2-A scoped:** „UA + 0 Payload unter observe-only“ = BclCarLink-kompatibel (Client sendet INIT).  
 **B2-B scoped:** kein HU-SABM zu *unserem* SPP in State A — nicht „HU öffnet nie SPP“.
 
-### P1 — Lab (parallel / vor nächstem Feld)
+### P1 — Lab / nächstes Feld
 
-7. **Silent-HU-Modus** — Dummy ohne HS/Pong → Retry Typ A (~10 s/56 B) + Typ B (5×4 B @ 3 s); Pong-Modus ≠ F20-default (`FIELD_PHONE_HU_SPP_20261114`).
-8. **B2-B observe-only mode** auf bestehendem ProfileManager/Dummy-HU-Agent: SPP listen, Accept, Payload loggen, **BCL-TX hard-off**.
-9. **B0.7 Differential** — BclCarLink ↔ Dummy-HU: raw TX == Capture; version 3 **und** 4.
-10. **B0.8** — BclCarLink (+ optional AAIdrive) ↔ **Simulator** :4006. Epistemik: Simulator-Login ≠ Crypto-FACT.
-11. **Phone HCI-Snoop** — Hex der Feld-Writes (4/56 B); HU-RX ch6 bereits logcat-leer. Optional `deca-fade` ch5-Owner.
-11b. **Lab-Abend:** OnePlus→Dummy **BCL live** (`LAB_PHONE_BCL_*` + `_DECODE`) — Signatur eingefroren; SELECTPROTO(2); WD≈2,5 s.  
-11c. **Priorität:** (1) B2-A-TX Matrix ch6–10. (2) Silent-HU Lab. (3) optional HCI-Snoop Hex. (4) kein B3 / kein ch5-BCL.
-11d. **Bimmer-vs-Wire** (`BCL_BIMMER_VS_WIRE_20261113`): Pin `7cfd959`; SELECTPROTO(2)/WD2.5s = Wire≠Desk.  
-11e. **CoD-Gate** / **WD-Pong** / EOD: unverändert (`LAB_COD_*`, `LAB_WD_PONG_*`, `LAB_EOD_20261114T0030Z`).
+8. **Silent-HU-Modus** — Dummy ohne HS/Pong → Retry Typ A/B @ 3 s (`FIELD_PHONE_HU_SPP_20261114`).
+9. **Phone HCI-Snoop** am F20 (Hex 4/56 B) — P0 Epistemik; HU-RX ch6 logcat-leer.
+10. **b2a-tx Retry** nur ohne paralleles Phone↔HU-A2DP; HU-UI „verbunden“ allein unzureichend (M1).
+11. **B0.8** — BclCarLink (+ optional AAIdrive) ↔ Simulator :4006.
+11b. Lab Phone→Dummy BCL: `LAB_PHONE_BCL_*` + `LAB_FIELDPREP_20261114T095848Z` (SP(2), WD-Pong).
+11c. **Priorität:** (1) Phone HCI-Snoop F20. (2) Silent-HU Lab. (3) b2a-tx unter isoliertem `.87`↔HU. (4) kein B3 / kein ch5-BCL.
+11d. **Bimmer-vs-Wire** / CoD / WD: unverändert (`BCL_BIMMER_VS_WIRE_*`, `LAB_COD_*`, `LAB_WD_PONG_*`).
 
 ### P2 — Docs / Epistemik
 
@@ -95,7 +95,7 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 
 ### Explizit **nicht** tun
 
-- Weiter AAIdrive/MyBMW-alone gegen Dummy (NO_RFCOMM erwartet).
+- AAIdrive/MyBMW gegen Dummy **ohne** CoD `0x340408` / Alias BMW (NO_RFCOMM erwartet; mit Pin = PASS möglich).
 - Lab-Dummy-Channel 5 als BMW-Soll. (HU-Kanal 5 existiert, ist aber `deca-fade`, nicht SPP `0x1101` — zufällige Gleichheit der Nummer.)
 - B2 mit aktivem HFP-AG fahren (Kanal-13-Rauschen auf dem RFCOMM-Mux).
 - RFCOMM-Initiator am F20 voraussetzen (Phone→HU oder HU→Phone).
@@ -134,4 +134,4 @@ Analyzer: **kein** Multi-Wochen-Umbau. Minimal (done/in tree): Klassifikation + 
 
 ## One-liner
 
-**A6/B1A/B2A done. Phone↔HU Logcat: SPP 1101→SCN6 OPEN FACT, HU silent ch6. P0: B2-A-TX Matrix ch6–10 (3 s INIT, ≥15 s nach ACL) + Lab Silent-HU. B3 blocked.**
+**A6/B1A/B2A done. Logcat: HU silent ch6. B2-A-TX Matrix 2026-11-14: DM/refuse ch5–10 (auch bei A2DP-OK). Dummy BCL PASS parallel. P0: Phone HCI-Snoop + Silent-HU Lab; b2a-tx nur isoliert. B3 blocked.**

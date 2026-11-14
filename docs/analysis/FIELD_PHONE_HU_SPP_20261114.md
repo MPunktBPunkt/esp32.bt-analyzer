@@ -33,7 +33,9 @@ verified: recount on reduced log 2026-11-14
 | H-A | BCL auf ch6, HU antwortet auf Phone-INIT | Transport ja; **Antwort nein** in diesem State → H-A für *Handshake* geschwächt, nicht für *Kanalwahl* |
 | H-B | HU initiiert RFCOMM/BCL | **Mux/ACL ja**, SPP-DLC nein (Phone Client) |
 | H-C | MyBMW-State nötig | unverändert offen |
-| H-E | ch7–10 | **P0** — `0x1101` trifft immer nur ersten Record (ch6) |
+| H-E | ch7–10 | UUID-Fetch nur ch6 · Analyzer-TX-Bypass **geschwächt** (`FIELD_B2A_TX_MATRIX_20261114`) |
+
+**Nachmittag-Update:** siehe `FIELD_B2A_TX_PATTERNS_20261114` (A2DP-OK≠SPP-Accept; Dummy BCL PASS).
 
 ## B2-A-Matrix (neu)
 
