@@ -41,7 +41,7 @@ from lab_pair_agent import service_active  # noqa: E402
 
 EVIDENCE = ROOT / "docs" / "evidence"
 REMOTE_DIR = "/tmp/bcl_dummy"
-UPLOAD = ("bcl_framer.py", "bcl_dummy_hu.py", "bcl_dummy_hu_agent.py")
+UPLOAD = ("bcl_framer.py", "bcl_dummy_hu.py", "bcl_etch_stub.py", "bcl_dummy_hu_agent.py")
 NODES = {"131": PHONE, "87": HU_DUMMY}
 UUID_SPP = "00001101"
 UUID_A2DP_SINK = "0000110b"
@@ -65,7 +65,9 @@ def upload() -> None:
 
 def start_hu_agent(args: argparse.Namespace, hold: float) -> None:
     ready = f"{REMOTE_DIR}/hu.ready"
-    opts = f"--channel {args.channel} --hu-version {args.hu_version} --hold {hold}"
+    opts = f"--channel {args.channel} --hu-profile {args.hu_profile} --hold {hold}"
+    if args.hu_version is not None:
+        opts += f" --hu-version {args.hu_version}"
     if args.echo_watchdog:
         opts += " --echo-watchdog"
     ssh(f"pkill -f 'bcl_dummy_hu_agent.py hu' ; rm -f {ready} {REMOTE_DIR}/*.jsonl", timeout=15)
@@ -241,8 +243,19 @@ def main() -> int:
     ap.add_argument("--hu", choices=tuple(NODES), default="131")
     ap.add_argument("--seconds", type=float, default=30.0)
     ap.add_argument("--channel", type=int, default=5)
-    ap.add_argument("--hu-version", type=int, default=3, help=">3 makes the phone send SELECTPROTO(3)")
-    ap.add_argument("--echo-watchdog", action="store_true", help="echo watchdog DATA (HU pong layout UNKNOWN)")
+    ap.add_argument(
+        "--hu-profile",
+        choices=("legacy", "f20"),
+        default="f20",
+        help="f20=HS v5/iid14/0x4000+DATAACK+WD+Etch stub; legacy=v3 silent",
+    )
+    ap.add_argument(
+        "--hu-version",
+        type=int,
+        default=None,
+        help="override HS version (default from --hu-profile: f20→5, legacy→3)",
+    )
+    ap.add_argument("--echo-watchdog", action="store_true", help="force WD echo (f20 profile already enables)")
     ap.add_argument("--no-require-a2dp", action="store_true", help="synthetic: try RFCOMM even if the gate fails")
     ap.add_argument("--keep-pairing", action="store_true", help="synthetic: skip remove/re-pair")
     ap.add_argument("--no-evidence", action="store_true")
@@ -253,7 +266,9 @@ def main() -> int:
     require_a2dp = not args.no_require_a2dp
     result: dict = {
         "utc": utc_stamp(), "peer": args.peer, "hu": args.hu, "channel": args.channel,
-        "hu_version": args.hu_version, "echo_watchdog": args.echo_watchdog,
+        "hu_profile": args.hu_profile,
+        "hu_version": args.hu_version,  # None → agent uses profile
+        "echo_watchdog": args.echo_watchdog,
         "require_a2dp": require_a2dp, "gate": None,
         "epistemic": {"source": "synthetic" if args.peer == "synthetic" else "real_phone",
                       "evidence_level": "TEST", "claim": "Dummy-HU BCL; not BMW wire FACT"},

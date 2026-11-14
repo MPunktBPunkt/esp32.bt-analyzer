@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Runs on .108 next to bcl_framer.py / bcl_dummy_hu.py (uploaded by lab scripts).
+"""Runs on .108 next to bcl_framer.py / bcl_dummy_hu.py / bcl_etch_stub.py (lab upload).
 
   hu              Register SPP server via ProfileManager1, keep each RFCOMM fd open,
-                  answer session init with HANDSHAKE (lab B0.7), log frames as JSONL.
+                  answer INIT with HANDSHAKE; default --hu-profile f20 (DATAACK+WD+Etch stub).
   hu-observe / b2b
                   Same registration, but **never TX** (B2-B field). tx_allowed=false.
   phone           Synthetic BclCarLink-like RFCOMM client (sends INIT_MAGIC).
@@ -33,6 +33,7 @@ from bcl_dummy_hu import (  # noqa: E402
     DummyHuSession,
     ObserveOnlySession,
     PhoneClientSession,
+    apply_hu_profile,
 )
 from bcl_framer import INIT_MAGIC  # noqa: E402
 
@@ -167,12 +168,16 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
         def NewConnection(self, device, fd, properties):
             fd = fd.take()
             dev = device_from_path(device)
-            session = (
-                ObserveOnlySession()
-                if observe_only
-                else DummyHuSession(
-                    version=args.hu_version,
-                    echo_watchdog=args.echo_watchdog,
+            if observe_only:
+                session = ObserveOnlySession()
+            else:
+                session = DummyHuSession(
+                    version=int(args.hu_version),
+                    instance_id=int(args.hu_instance_id),
+                    buffer_size=int(args.hu_buffer_size),
+                    echo_watchdog=bool(args.echo_watchdog),
+                    send_dataack=bool(args.send_dataack),
+                    etch_stub=bool(args.etch_stub),
                     wd_pong_max=args.wd_pong_max,
                     wd_pong_skip_mod=args.wd_pong_skip_mod,
                     wd_pong_payload=(
@@ -181,7 +186,6 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                         else None
                     ),
                 )
-            )
             conns[fd] = {
                 "dev": dev,
                 "session": session,
@@ -236,8 +240,13 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
             "channel": args.channel,
             "name": args.name,
             "uuid": SPP_UUID,
+            "hu_profile": getattr(args, "hu_profile", "legacy"),
             "hu_version": args.hu_version,
+            "hu_instance_id": args.hu_instance_id,
+            "hu_buffer_size": args.hu_buffer_size,
             "echo_watchdog": args.echo_watchdog,
+            "send_dataack": args.send_dataack,
+            "etch_stub": args.etch_stub,
             "wd_pong_max": args.wd_pong_max,
             "wd_pong_skip_mod": args.wd_pong_skip_mod,
             "wd_pong_payload": args.wd_pong_payload or None,
@@ -450,11 +459,51 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     sub = ap.add_subparsers(dest="mode", required=True)
 
-    def add_hu(p: argparse.ArgumentParser) -> None:
+    def add_hu(p: argparse.ArgumentParser, *, default_profile: str = "legacy") -> None:
         p.add_argument("--channel", type=int, default=5)
         p.add_argument("--name", default="BMW Connected")
-        p.add_argument("--hu-version", type=int, default=3)
-        p.add_argument("--echo-watchdog", action="store_true")
+        p.add_argument(
+            "--hu-profile",
+            choices=sorted(("legacy", "f20")),
+            default=default_profile,
+            help="legacy=v3/iid1/0x8000; f20=v5/iid14/0x4000+DATAACK+WD+Etch stub",
+        )
+        p.add_argument(
+            "--hu-version",
+            type=int,
+            default=None,
+            help="override HS version (default from --hu-profile)",
+        )
+        p.add_argument(
+            "--hu-instance-id",
+            type=int,
+            default=None,
+            help="override HS instanceId (default from --hu-profile)",
+        )
+        p.add_argument(
+            "--hu-buffer-size",
+            type=lambda x: int(x, 0),
+            default=None,
+            help="override HS bufferSize (default from --hu-profile; accepts 0x4000)",
+        )
+        p.add_argument(
+            "--echo-watchdog",
+            action=argparse.BooleanOptionalAction,
+            default=None,
+            help="echo WD DATA 13371337 (default from --hu-profile)",
+        )
+        p.add_argument(
+            "--send-dataack",
+            action=argparse.BooleanOptionalAction,
+            default=None,
+            help="TX DATAACK(8+len) per RX frame like F20 (default from profile)",
+        )
+        p.add_argument(
+            "--etch-stub",
+            action=argparse.BooleanOptionalAction,
+            default=None,
+            help="minimal SAS challenge + CDS stub on dest 4004 (default from profile)",
+        )
         p.add_argument(
             "--wd-pong-max",
             type=int,
@@ -479,12 +528,12 @@ def main() -> int:
         p.add_argument("--origin", default="dummy_hu")
         p.add_argument("--source", default="lab")
 
-    hu = sub.add_parser("hu", help="lab Dummy-HU (answers HANDSHAKE)")
-    add_hu(hu)
+    hu = sub.add_parser("hu", help="lab Dummy-HU (answers HANDSHAKE); default profile f20")
+    add_hu(hu, default_profile="f20")
     b2b = sub.add_parser("b2b", help="B2-B observe-only SPP server (no BCL TX)")
-    add_hu(b2b)
+    add_hu(b2b, default_profile="legacy")
     b2b_alias = sub.add_parser("hu-observe", help="alias for b2b")
-    add_hu(b2b_alias)
+    add_hu(b2b_alias, default_profile="legacy")
 
     def add_phone(p: argparse.ArgumentParser) -> None:
         p.add_argument("--adapter-bd", required=True)
@@ -548,6 +597,26 @@ def main() -> int:
     )
 
     args = ap.parse_args()
+
+    def _resolve_hu_profile(ns: argparse.Namespace) -> None:
+        if not hasattr(ns, "hu_profile"):
+            return
+        prof = apply_hu_profile(ns.hu_profile)
+        if ns.hu_version is None:
+            ns.hu_version = int(prof["version"])
+        if ns.hu_instance_id is None:
+            ns.hu_instance_id = int(prof["instance_id"])
+        if ns.hu_buffer_size is None:
+            ns.hu_buffer_size = int(prof["buffer_size"])
+        if ns.echo_watchdog is None:
+            ns.echo_watchdog = bool(prof["echo_watchdog"])
+        if ns.send_dataack is None:
+            ns.send_dataack = bool(prof["send_dataack"])
+        if ns.etch_stub is None:
+            ns.etch_stub = bool(prof["etch_stub"])
+
+    _resolve_hu_profile(args)
+
     if args.mode == "hu":
         return run_hu(args, observe_only=False)
     if args.mode in ("b2b", "hu-observe"):

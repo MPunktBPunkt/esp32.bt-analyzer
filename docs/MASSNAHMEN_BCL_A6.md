@@ -1,11 +1,12 @@
 # Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
 
 ```yaml
-status: active · BCL+WD FIELD CONFIRMED · Grenze = SAS nach PKCS7 · Proxy P0
+status: active · BCL+WD FIELD CONFIRMED · Lab Dummy F20-profile+Etch stub shipped · Proxy P0
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake / supra-idrive6-android-auto-2026-secondary]
 trigger: 2026-11-13 secondary NBT-AAD + RFCOMM two-mode review (initiator UNKNOWN · B2-A/B2-B)
 method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md · docs/analysis/LAB_DUMMY_ETCH_DEEP_20261114.md · docs/analysis/FIELD_STAND_Grok_GPT_20261114.md
 lab_dummy_etch: docs/evidence/LAB_DUMMY_ETCH_20261114T1550Z.md
+lab_dummy_f20_profile: docs/evidence/LAB_DUMMY_F20_PROFILE_TEMPLATE.md
 stand_grok_gpt: docs/analysis/FIELD_STAND_Grok_GPT_20261114.md
 a6_evidence: docs/evidence/FIELD_A6_HU_20261113T062824Z
 b1_evidence: docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z
@@ -97,8 +98,8 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 9. **P0 — F20-Proxy (Erkenntnissprung):** WD 5001 halten; Phone-PKCS7 unverändert an dest 4004; **erwarte HU→SAS Challenge**, dann `sas_login` / `rhmi_getCapabilities`. OPEN+DATAACK `0x08` allein ≠ Etch-OK (M41).
 9b. **P0 — Wire-Client:** nach HS v5 SP4+KNOCK(UUID,1,7); WD 2.5 s; Echo erst nach OPEN 5001 (M29). Parallel: Phone HCI-Snoop + passiver Hold/btmon.
 10. **P1 — Admission 2×2 (M7/M33)** UA vs DM; Positive = ACL+AUTH+ENCRYPT + WD.
-11. **P1 — Dummy-Feldsignatur optional** (iid14/0x4000) — SP hängt an HS-version (M42). CLEANED-Ingest.
-11b. Lab: `LAB_PHONE_BCL_*` (v3/SP2) + `LAB_DUMMY_ETCH_*` (v5/SP4).
+11. ~~**P1 — Dummy-Feldsignatur**~~ → **SHIPPED** `--hu-profile f20` (v5/14/0x4000 + DATAACK + WD + Etch/SAS/CDS-Stub). Template: `LAB_DUMMY_F20_PROFILE_TEMPLATE`. Verify: Phone→Dummy jsonl auf `sas_challenge_tx` / `cds_property_*`.
+11b. Lab: `LAB_PHONE_BCL_*` (v3/SP2) + `LAB_DUMMY_ETCH_*` (v5/SP4) + F20-profile stub.
 11c. Kein B3 / kein ch5-als-BCL; keine Negativ-Matrix ohne State-Kontrolle.
 11d. Bimmer-vs-Wire / CoD / WD-Docs belassen.
 11e. **B0.8** Simulator :4006 nach Proxy-Bedarf (SAS-Stub), nicht vor Proxy-Feldtest.

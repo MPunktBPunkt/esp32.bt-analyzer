@@ -95,6 +95,7 @@ def ensure_remote_tools() -> None:
     for name in (
         "bcl_dummy_hu_agent.py",
         "bcl_dummy_hu.py",
+        "bcl_etch_stub.py",
         "bcl_framer.py",
         "bcl_classify.py",
         "bcl_sdp_probe.py",

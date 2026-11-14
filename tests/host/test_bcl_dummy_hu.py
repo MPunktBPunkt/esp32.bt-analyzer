@@ -6,16 +6,27 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
 
 from bcl_dummy_hu import (  # noqa: E402
+    CMD_DATAACK,
     CMD_HANDSHAKE,
     CMD_KNOCK,
     CMD_OPEN,
     CMD_SELECTPROTO,
     DummyHuSession,
+    HU_PROFILES,
     PhoneClientSession,
+    apply_hu_profile,
+    build_dataack,
     build_handshake,
     summarize,
 )
-from bcl_framer import DEST_WATCHDOG_DESK, INIT_MAGIC, BclFramer  # noqa: E402
+from bcl_etch_stub import wrap_etch_body  # noqa: E402
+from bcl_framer import (  # noqa: E402
+    DEST_ETCH_DESK,
+    DEST_WATCHDOG_DESK,
+    INIT_MAGIC,
+    BclFramer,
+    build_synthetic_frame,
+)
 
 
 def frames_of(chunks):
@@ -67,6 +78,49 @@ class TestDummyHu(unittest.TestCase):
         fr = frames_of([echo])[0]
         self.assertEqual((fr.src, fr.dest), (DEST_WATCHDOG_DESK, 1))
 
+    def test_f20_profile_handshake_fingerprint(self):
+        p = apply_hu_profile("f20")
+        hu = DummyHuSession(**{k: p[k] for k in (
+            "version", "instance_id", "buffer_size", "echo_watchdog",
+            "send_dataack", "etch_stub",
+        )})
+        (hs,) = hu.on_bytes(INIT_MAGIC)
+        self.assertEqual(hs, build_handshake(5, 14, 0x4000))
+        self.assertEqual(HU_PROFILES["f20"]["version"], 5)
+
+    def test_dataack_open_is_8(self):
+        hu = DummyHuSession(send_dataack=True)
+        open_fr = build_synthetic_frame(CMD_OPEN, 10, DEST_ETCH_DESK)
+        replies = hu.on_bytes(open_fr)
+        self.assertEqual(replies[0], build_dataack(8))
+        fr = frames_of(replies)[0]
+        self.assertEqual(fr.cmd, CMD_DATAACK)
+        self.assertEqual(fr.payload, b"\x00\x00\x00\x08")
+
+    def test_dataack_wd_then_echo(self):
+        hu = DummyHuSession(echo_watchdog=True, send_dataack=True)
+        ping = PhoneClientSession().watchdog_ping()
+        replies = hu.on_bytes(ping)
+        self.assertEqual(len(replies), 2)
+        ack, echo = frames_of(replies)
+        self.assertEqual(ack.cmd, CMD_DATAACK)
+        self.assertEqual(ack.payload, b"\x00\x00\x00\x0c")  # 8+4
+        self.assertEqual(echo.dest, 1)
+
+    def test_etch_stub_challenge_after_pkcs7(self):
+        hu = DummyHuSession(etch_stub=True, send_dataack=True)
+        pem = b"-----BEGIN PKCS7-----\nabc\n-----END PKCS7-----\n"
+        body = wrap_etch_body(b"\x00" * 16 + pem)
+        data = build_synthetic_frame(2, 10, DEST_ETCH_DESK, body)
+        replies = hu.on_bytes(data)
+        # DATAACK + etch challenge DATA
+        self.assertGreaterEqual(len(replies), 2)
+        frames = frames_of(replies)
+        self.assertEqual(frames[0].cmd, CMD_DATAACK)
+        etch_tx = [f for f in frames if f.cmd == 2 and f.src == DEST_ETCH_DESK]
+        self.assertEqual(len(etch_tx), 1)
+        self.assertTrue(any(e["event"] == "sas_challenge_tx" for e in hu.events))
+
 
 class TestPhoneClientOrder(unittest.TestCase):
     def test_version3_skips_selectproto(self):
@@ -85,6 +139,20 @@ class TestPhoneClientOrder(unittest.TestCase):
         for f in sent:
             hu.on_bytes(f.raw)
         self.assertEqual(hu.selected_proto, 3)
+
+    def test_version5_auto_sp4_and_wire_knock(self):
+        hu, phone = DummyHuSession(version=5, instance_id=14, buffer_size=0x4000), PhoneClientSession()
+        to_phone = hu.on_bytes(phone.session_init())
+        sent = frames_of(phone.on_bytes(to_phone[0]))
+        self.assertEqual(sent[0].cmd, CMD_SELECTPROTO)
+        self.assertEqual(sent[0].payload, b"\x00\x04")
+        self.assertEqual(sent[1].cmd, CMD_KNOCK)
+        self.assertGreater(sent[1].length, 12)  # UUID knock
+        for f in sent:
+            hu.on_bytes(f.raw)
+        self.assertEqual(hu.selected_proto, 4)
+        self.assertEqual(hu.last_knock.get("appType"), 1)
+        self.assertEqual(hu.last_knock.get("param1"), 7)
 
     def test_ignores_non_handshake_first(self):
         phone = PhoneClientSession()

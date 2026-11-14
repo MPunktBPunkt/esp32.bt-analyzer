@@ -14,6 +14,8 @@ Not: Bluetooth, SDP, RFCOMM, BCL handshake/watchdog, F20 capabilities, AV proof.
 
 Three lab worlds stay separate: **A** F20 field · **B** Dummy-HU/BclCarLink · **C** Simulator Etch.
 
+**2026-11-14:** Dummy `--hu-profile f20` adds in-process minimal Etch/SAS/CDS stub on BCL dest 4004 (`bcl_etch_stub.py`) — not a full Simulator, not BCL→:4006 gateway. Use for lab capture of phone cert→challenge→CDS probes; real Etch/RHMI still Simulator or F20.
+
 B0.8-direct (AAIdrive→:4006) = P1 later. BCL→Etch gateway = P2 only after need.
 
 ## Analyzer
