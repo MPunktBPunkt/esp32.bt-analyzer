@@ -5,9 +5,10 @@ evidence_matrix: docs/evidence/FIELD_B2A_TX_MATRIX_20261114.md
 dummy_session: docs/evidence/LAB_FIELDPREP_20261114T095848Z.md
 phone_hu_logcat: docs/evidence/FIELD_PHONE_HU_LOGCAT_20261114T0924Z.md
 phone_btlogs_pm: docs/evidence/FIELD_PHONE_BTLOGS_20261114T1037Z.md
+phone_hu_hs_v5: docs/evidence/FIELD_PHONE_HU_BCL_HS_V5_20261114T1113Z.md
 prior_b2: docs/evidence/FIELD_B2_20261113T154728Z.md
 massnahmen: docs/MASSNAHMEN_BCL_A6.md
-consensus: Mistral M6–M10 · GPT Accept≠Application · Grok M11–M15
+consensus: Mistral M6–M10 · GPT Accept≠Application · Grok M11–M15 · Grok M16–M19 (HS v5)
 ```
 
 ## Drei parallele Welten (nicht vermischen)
@@ -112,6 +113,31 @@ A/B-Alternation + parallele `result:1` Establish-Fails. Dummy hält Minuten wege
 
 (a) Service-Autorisierung vs (b) App-Session (H-G). Log: oft `BTM_SUCCESS_NO_SECURITY` — zu dünn. btmon Security-Flags zum SABM.
 
+### M16 — Echte HU liefert BCL-HANDSHAKE v5 **[REPORTED / DECODE OK]**
+
+Weiteres Log (~10:44–11:24, Grok): Session id 96, peer `e1:b5`:
+
+`00 04 … 00 08 00 05 00 0E 00 00 40 00` → HANDSHAKE **version=5**, **instanceId=0x0E (14)**, **bufferSize=0x4000**.
+
+Frühere Captures (083313/103731) hatten 0× DataInd dlci13 — kein Widerspruch, anderer State. Evidence: `FIELD_PHONE_HU_BCL_HS_V5_*` (CLEANED-Log noch PENDING ingest).
+
+### M17 — HS-Fingerprint peer-/versionsabhängig **[REPORTED]**
+
+| Quelle | version | instanceId | bufferSize |
+|--------|--------:|------------|------------|
+| Dummy `7b:0a` | 3 | 1 | 0x8000 |
+| Echte HU `e1:b5` | **5** | **0x0E** | **0x4000** |
+
+`version>3` → Desk SELECTPROTO(3)+KNOCK-Branch — Wire-Verhalten nach HU-v5 noch UNKNOWN.
+
+### M18 — HU-BCL-Session bleibt kurz **[REPORTED]**
+
+~25 s dann CLOSE; kein stabiler WD-Echo wie Dummy (212× WD im selben Log).
+
+### M19 — cmd 0x0006 HU→Phone = DATAACK **[REPORTED + Name korrigiert]**
+
+Grok: „OPEN/SELECTPROTO-Kandidat“. Framer: cmd **6 = DATAACK** (OPEN=1, SELECTPROTO=5). Payload-Beispiel `00 00 00 0A`. Semantik F20 offen; später + WD-Fragment roh prüfen.
+
 ## Zustandsmaschine (Stand heute)
 
 ```
@@ -125,18 +151,22 @@ SABM→UA   SABM→DM
   │
 RFCOMM open
   │
-Payload?
-  │
-Phone: leer (beobachtet)   Dummy: BCL
-  │
- ???  ← HCI-Snoop Hex
+  ┌────────┴────────┐
+  │                 │
+silent (083313/     HS v5 REPORTED
+ 103731)            (Session 96)
+  │                 │
+ ???                DATAACK? → kurz CLOSE
+                    │
+                 ??? post-HS / WD / Etch
+                    ← HCI-Snoop + CLEANED ingest
 ```
 
 ## Hypothesen-Update
 
 | ID | Update |
 |----|--------|
-| **H-A** | Handshake von **echter** HU weiter unproven; Phone silent + Analyzer DM. Dummy antwortet ≠ HU |
+| **H-A** | **gestärkt (REPORTED):** echte HU kann BCL-HS senden (v5). Post-HS/Stabilität/Analyzer-Pfad weiter offen. Silent-Captures bleiben gültig für *deren* State |
 | **H-E** | Explizite ch7–10 ändern DM-Negativ **nicht** (dieser State) |
 | **H-C** | MyBMW+Restart am Dummy = starker Eligibility-Hebel (Lab). Am Auto parallel unklar |
 | **H-G** | HU SPP-Accept hängt an **App-/Owner-State**, nicht nur ACL+A2DP — **[H]**; M6/M7/M10 stützen |
@@ -145,12 +175,14 @@ Phone: leer (beobachtet)   Dummy: BCL
 
 - MyBMW autorisiert RFCOMM (plausible Hypothese)
 - CoD `0x340408` alleiniges Gate
-- ch6 definitiv BCL der echten HU (stark indiziert; Payload-Hex fehlt)
-- HU sendet dem Phone *nie* BCL (nur: beobachteter RX-Pfad leer)
+- Stabiler BCL/WD/Etch zur echten HU (HS allein ≠ ACTIVE-Session)
+- Analyzer-`.87` erreicht denselben HS
+- Rohzeilen Session 96 (CLEANED noch nicht im Repo)
 
 ## Nächste Schritte (Priorität)
 
-1. **P0** Phone HCI-Snoop F20, RFCOMM-Filter **aus** — Hex 4/56 B, Richtung, INIT/HS/WD?
-2. **P0.5** 2×2-Feldmatrix (M7) + btmon Security-Flags (M6/M15)
-3. **P1** Silent-HU-Lab (M9) · Dummy-Faktorisierung (M8)
-4. Kein B3 / kein ch5-als-BCL
+1. **P0** `bluetooth_20261114_104405_CLEANED.log` ingestieren → REPORTED→FACT.
+2. **P0** Phone HCI-Snoop F20, RFCOMM-Filter **aus** — Wire um HS-v5-Fenster.
+3. **P0.5** 2×2-Feldmatrix (M7) + btmon Security-Flags (M6/M15)
+4. **P1** Dummy `--hu-version 5` / iid 14 · Silent-HU-Lab · Faktorisierung (M8)
+5. Kein B3 / kein ch5-als-BCL

@@ -1,7 +1,7 @@
 # Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
 
 ```yaml
-status: active · Admission-Gate Modell (M6–M15) · B2-A-TX Matrix NEGATIVE · Phone↔Dummy BCL PASS · Phone↔HU silent + Typ-B 15.06s MEASURED
+status: active · Admission-Gate (M6–M15) · HU BCL-HS v5 REPORTED (M16–M19) · B2-A-TX NEGATIVE · Dummy BCL PASS · silent Captures + Typ-B 15.06s stehen
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake / supra-idrive6-android-auto-2026-secondary]
 trigger: 2026-11-13 secondary NBT-AAD + RFCOMM two-mode review (initiator UNKNOWN · B2-A/B2-B)
 method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md
@@ -12,9 +12,11 @@ b2a_tx_matrix: docs/evidence/FIELD_B2A_TX_MATRIX_20261114.md
 lab_fieldprep: docs/evidence/LAB_FIELDPREP_20261114T095848Z.md
 phone_hu_logcat: docs/evidence/FIELD_PHONE_HU_LOGCAT_20261114T0924Z.md
 phone_btlogs_pm: docs/evidence/FIELD_PHONE_BTLOGS_20261114T1037Z.md
+phone_hu_hs_v5: docs/evidence/FIELD_PHONE_HU_BCL_HS_V5_20261114T1113Z.md
 phone_hu_analysis: docs/analysis/FIELD_PHONE_HU_SPP_20261114.md
 raw_full: docs/bluetooth_20261114_083313_01892.log
 raw_midday: docs/bluetooth_20261114_103731_10775.log
+raw_cleaned_pending: docs/bluetooth_20261114_104405_CLEANED.log
 raw_reduced: docs/bmw_aaidrive_field_reduced_20261114.txt
 hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 ```
@@ -63,12 +65,13 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 6. ~~**B2-A-TX Matrix ch 6–10**~~ → **DONE / NEGATIVE** `FIELD_B2A_TX_MATRIX_20261114` (+ AUDIOOK-Lauf): ch5–10 Socket refuse; Wire SABM→**DM**. A2DP „BT-Analyzer verbunden“ ändert Accept **nicht**. Analyse: `FIELD_B2A_TX_PATTERNS_20261114`.
 7. ~~**Phone↔Dummy BCL parallel**~~ → **PASS** `LAB_FIELDPREP_20261114T095848Z` (CoD `0x340408` + Alias + App-Restart; SP(2)+WD-Pong; AAIdrive grün).
 7b. ~~**Phone BT-Logs Nachmittag**~~ → **DONE** `FIELD_PHONE_BTLOGS_20261114T1037Z`: SCN6 OPEN×4; 0× DataInd dlci13; Typ-B **15,060 s** (M9); Snoop-Filter an / `.cfa` leer; Konsens M6–M15.
+7c. **Phone Log ~10:44–11:24 (Grok)** → **REPORTED** `FIELD_PHONE_HU_BCL_HS_V5_*`: HU→Phone HANDSHAKE **v5 / iid 0x0E / buf 0x4000**; cmd6=DATAACK; Session ~25 s. CLEANED-Log **noch nicht im Repo** — Ingest = nächster FACT-Gate.
 
-### Hypothesen nach B2-A-TX + Logcat + Dummy + M6–M15 (Stand 2026-11-14)
+### Hypothesen nach B2-A-TX + Logcat + Dummy + M6–M19 (Stand 2026-11-14)
 
 | ID | Hypothese | Status |
 |----|-----------|--------|
-| **H-A** | BCL auf ch6, HU antwortet auf Phone/Analyzer-INIT | Phone: Transport ja / Antwort **nein**; Analyzer: DLC **DM** — Handshake F20 weiter **UNKNOWN** |
+| **H-A** | BCL auf ch6, HU antwortet auf Phone/Analyzer-INIT | Phone: Transport ja; Silent-Captures 0 RX; **HS v5 von HU REPORTED** (M16) — Post-HS/Analyzer weiter offen |
 | **H-B** | HU initiiert RFCOMM/BCL autonom | ACL+Mux **ja**; SPP-DLC Phone-Client (Logcat) |
 | **H-C** | MyBMW/Connected aktiviert Apps-Kontext | Lab Dummy: Restart-Hebel **gestärkt**; F20 parallel offen |
 | **H-D** | ch5 `deca-fade` = Connected/BCL | **verworfen** |
@@ -83,10 +86,10 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 
 ### P0 / P0.5 / P1 — Priorität nach M6–M15
 
-8. **P0 — Phone HCI-Snoop** am F20: RFCOMM-Filter **aus**; Hex der UIH nach OPEN (4/56 B); Richtung; INIT/HS/WD? (`.cfa` vom Nachmittag war leer / Filter an).
-9. **P0.5 — 2×2-Feldmatrix (M7):** MyBMW ON/OFF × Phone-A2DP ON/OFF → `.87` `b2a-tx` ch6; Messwert SABM→**UA|DM**. btmon Security-Flags (M15) mitlaufen.
-10. **P1 — Silent-HU-Lab** — Dummy ohne HS/Pong; Erfolgskriterium M9 (Close @ 6. Tick, A/B, ~33 s).
-11. **P1 — Dummy-Faktorisierung (M8)** — CoD / Bounce / Restart einzeln.
+8. **P0 — CLEANED-Log ingest** `bluetooth_20261114_104405_CLEANED.log` → Session 96 recount → M16 FACT.
+9. **P0 — Phone HCI-Snoop** am F20: RFCOMM-Filter **aus**; Wire um HS-v5-Fenster (nicht nur Stack→App).
+10. **P0.5 — 2×2-Feldmatrix (M7):** MyBMW ON/OFF × Phone-A2DP ON/OFF → `.87` `b2a-tx` ch6; Messwert SABM→**UA|DM**. btmon Security-Flags (M15) mitlaufen.
+11. **P1 — Dummy v5-Fingerprint** (`--hu-version 5`, iid 14, buf `0x4000`) + Silent-HU-Lab (M9) + Faktorisierung (M8).
 11b. Lab Phone→Dummy BCL: `LAB_PHONE_BCL_*` + `LAB_FIELDPREP_20261114T095848Z` (SP(2), WD-Pong).
 11c. Kein B3 / kein ch5-als-BCL; kein blindes Wiederholen der Negativ-Matrix ohne State-Kontrolle.
 11d. **Bimmer-vs-Wire** / CoD / WD: unverändert (`BCL_BIMMER_VS_WIRE_*`, `LAB_COD_*`, `LAB_WD_PONG_*`).

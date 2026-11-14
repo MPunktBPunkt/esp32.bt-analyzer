@@ -39,6 +39,8 @@ verified: recount on reduced log 2026-11-14
 
 **Nachmittag-Logs:** `FIELD_PHONE_BTLOGS_20261114T1037Z` — SCN6 OPEN reproduziert; 0× DataInd dlci13; Typ-B Close **15,060 s** (M9 MEASURED); RFCOMM-Snoop-Filter an → `.cfa` leer; Hex weiter UNKNOWN.
 
+**Späteres Log (Grok, ~11:13):** `FIELD_PHONE_HU_BCL_HS_V5_*` — erstmals **HU→Phone HANDSHAKE v5** (iid `0x0E`, buf `0x4000`) **REPORTED**; Decode lokal OK; CLEANED-Rohdatei noch PENDING.
+
 ## B2-A-Matrix (neu)
 
 `connectSocket(0x1101)` kann ch7–10 nicht erreichen. Analyzer/`.87` muss Kanal **explizit** wählen:
