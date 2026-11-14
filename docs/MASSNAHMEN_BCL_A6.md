@@ -17,10 +17,17 @@ phone_hu_logcat: docs/evidence/FIELD_PHONE_HU_LOGCAT_20261114T0924Z.md
 phone_btlogs_pm: docs/evidence/FIELD_PHONE_BTLOGS_20261114T1037Z.md
 phone_hu_hs_v5: docs/evidence/FIELD_PHONE_HU_BCL_HS_V5_20261114T1113Z.md
 phone_hu_analysis: docs/analysis/FIELD_PHONE_HU_SPP_20261114.md
+lab_dummy_evening_btlogs: docs/evidence/LAB_PHONE_DUMMY_BTLOGS_20261114T1732Z.md
+lab_dummy_evening_analysis: docs/analysis/LAB_PHONE_DUMMY_SPP_EVENING_20261114.md
 raw_full: docs/bluetooth_20261114_083313_01892.log
 raw_midday: docs/bluetooth_20261114_103731_10775.log
 raw_cleaned_pending: docs/bluetooth_20261114_104405_CLEANED.log
 raw_reduced: docs/bmw_aaidrive_field_reduced_20261114.txt
+raw_evening:
+  - docs/bluetooth_20261114_173248_05337.log
+  - docs/bluetooth_20261114_173632_05287.log
+  - docs/bluetooth_20261114_173859_26210.log
+  - docs/bluetooth_20261114_174045_06218.log
 hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 ```
 
@@ -152,4 +159,4 @@ Analyzer: **kein** Multi-Wochen-Umbau. Minimal (done/in tree): Klassifikation + 
 
 ## One-liner
 
-**A6/B1A/B2A done. Logcat: HU silent ch6. B2-A-TX Matrix 2026-11-14: DM/refuse ch5–10 (auch bei A2DP-OK). Dummy BCL PASS parallel. P0: Phone HCI-Snoop + Silent-HU Lab; b2a-tx nur isoliert. B3 blocked.**
+**A6/B1A/B2A done. Logcat: HU silent ch6. Abend Phone↔Dummy BT-Logs: Grün = Certs + WD `12`@2,5 s + Dummy-RX (DLCI 12); Silent-Feld = `4`@3 s ohne RX. L4: 62 SPP-Retries bei totem HU-Agent. P0: F20-Proxy / HCI-Snoop Hex; Silent-HU Lab. B3 blocked.**
