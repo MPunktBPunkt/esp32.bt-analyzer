@@ -2,16 +2,17 @@
 
 ```yaml
 goal: maximaler Wire-Erkenntnisgewinn in ≤60 min
-tx_policy: kein BCL-TX (observe-only)
+tx_policy: B2-A-TX Matrix ch6–10 (INIT 3s); observe after TX
 hu: D4:36:39:CF:E1:B5
 phone_esp: C8:C9:A3:CB:37:96 (.87)
 host: .108 via SSH
 tools: tools/field_b1_b2.py · tools/lab_hfp_stack.py · tools/btsnoop_decode.py
 b1_sdp_state_a: PASS / MEASURED — docs/evidence/FIELD_B1_FROM_A6_20261113T062824Z.md
 b2_state_a: DONE 2026-11-13 — docs/evidence/FIELD_B2_20261113T154728Z.md
+phone_hu_logcat: DONE 2026-11-14 — docs/evidence/FIELD_PHONE_HU_LOGCAT_20261114T0924Z.md (1101→SCN6 OPEN; HU silent ch6)
 lab_f20_sdp_mirror: PASS LAB_TEST — docs/evidence/LAB_F20_SDP_MIRROR_20261113T174006Z.md (ch5+ch6; ch7–10 BlueZ UUID limit)
-next: state C ± b2a-tx ch6 (INIT→HANDSHAKE); ch5=iAP2 not BCL
-note: "B2-A empty = BclCarLink-expected; H-A open until b2a-tx on F20"
+next: b2a-tx ch6–10 @ 3s, start ≥15s after ACL; optional HCI-Snoop for 4/56B hex
+note: "Phone app hits only first 0x1101 (=ch6); ch7–10 need explicit channel"
 ```
 
 ## Stand aus A6 (2026-11-13)
@@ -49,12 +50,12 @@ python3 tools/field_b1_b2.py preflight            # darf keine HFP-AG-Warnung me
 |----:|---------|-----------------|
 | 0–3 | Preflight + btmon | `preflight` · `btmon-start` |
 | 3–8 | Ruhephase gekoppelt | nichts tun; prüft, dass HU ohne HFP **keinen** Kanal mehr öffnet |
-| 8–14 | **B2-A Kanal 6 observe** | `b2a --channel 6` — UA erwartet; **0 Payload unter BclCarLink-Modell erwartet** |
-| 14–22 | **B2-A-TX Kanal 6** | `b2a-tx --channel 6 --init-count 3` — `12 34 56 78`, warte HANDSHAKE (kein KNOCK) |
-| 22–28 | optional ch5 | nur iAP2-Referenz; nicht BCL |
-| 28–46 | **B2-B** | `b2b --hold 180` · State C: MyBMW ON |
-| 46–50 | Stop + pull + decode | `btmon-stop` → Tabelle pro RFCOMM-Sitzung |
-| 50–60 | Kurznotiz / Wiederholung | bei Unklarheit B2-A Kanal 7 als Kontrolle |
+| 8–12 | Ruhe ≥15 s nach ACL | Feld: 5× DM vor erstem UA — nicht zu früh TX |
+| 12–22 | **B2-A-TX ch 6** | `b2a-tx --channel 6` INIT @ **3 s**; UA erwartet; HU-RX auf ch6 im Logcat = 0 |
+| 22–40 | **Matrix ch 7–10** | je `b2a-tx --channel N` (explizit; UUID-Fetch trifft nur ch6) |
+| 40–46 | optional ch5 | nur iAP2-Referenz; nicht BCL |
+| 46–55 | Stop + pull + decode | `btmon-stop` → Klassifikation pro Kanal |
+| 55–60 | Kurznotiz | Silent vs HANDSHAKE; welcher Kanal antwortet |
 
 ```bash
 python3 tools/field_b1_b2.py btmon-start

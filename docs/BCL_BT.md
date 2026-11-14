@@ -1,15 +1,16 @@
 # BCL over Bluetooth — observe first, relay later (plan)
 
 ```yaml
-status: A6 PASS (FIELD) · B1 OPEN · B2 = B2-A+B2-B · runbook docs/CAR_A6_B1.md · evidence FIELD_A6_HU_20261113T062824Z
+status: A6/B1A/B2A PASS · Phone↔HU Logcat 2026-11-14 SPP 1101→SCN6 OPEN FACT · HU silent ch6 · BCL bytes UNKNOWN
 depends_on: HCI_TCP A1–A6 (docs/HCI_TCP.md) — A1–A5 MEASURED, A6 MEASURED 2026-11-13
 related: hu-probe Gate G2 "BCL wire" (USB AOA path, still open)
-claim_level: HYPOTHESIS — "BCL primarily over BT RFCOMM" is not proven for NBT Evo / F20 (SPP UUID on HU is MEASURED; channel/BCL/initiator still UNKNOWN)
-rfcomm_initiator: UNKNOWN  # BclCarLink Phone→HU = Desk-FACT; nbt-aad HU→Phone = Secondary; F20 unresolved
+claim_level: TRANSPORT FIELD FACT (SCN6 OPEN) · BCL payload HYPOTHESIS — HU silent on ch6 in measured state
+rfcomm_initiator: MIXED  # ACL+Mux HU→Phone; SPP DLC Phone-client (UID 10479) — docs/evidence/FIELD_PHONE_HU_LOGCAT_20261114T0924Z.md
 secondary: technology-audit audits/supra-idrive6-android-auto-2026-secondary @4f70751
-method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md
+method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_PHONE_HU_SPP_20261114.md
 architecture: controlled dual-leg HCI bridge — not passive Phone↔HU air sniff
 audit_reuse: technology-audit technologies/bmw-bcl + projects/esp32-bt-analyzer/applications/bmw-bcl.md
+next: B2-A-TX matrix ch6–10 @ 3s · Lab Silent-HU
 ```
 
 ## Why
