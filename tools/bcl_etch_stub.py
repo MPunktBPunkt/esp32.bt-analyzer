@@ -54,6 +54,16 @@ def build_sas_challenge_payload(challenge: bytes | None = None) -> bytes:
     return wrap_etch_body(_LAB_ETCH_HDR + ch + _LAB_ETCH_TRAILER)
 
 
+def fresh_sas_challenge() -> bytes:
+    """Non-zero lab challenge — zeros were ignored by Phone (LAB_LIVE_GREEN)."""
+    import os
+
+    while True:
+        ch = os.urandom(16)
+        if any(ch):
+            return ch
+
+
 def build_cds_property_payload(property_name: str, value_json: str) -> bytes:
     """Envelope carrying property name + JSON for lab observation / soft clients."""
     blob = property_name.encode("ascii") + b"\x00" + value_json.encode("utf-8")
@@ -103,7 +113,8 @@ class EtchSasCdsStub:
     """Per-connection stub state for dest 4004."""
 
     enabled: bool = True
-    challenge: bytes = field(default_factory=lambda: bytes(16))
+    # Non-zero by default — LAB_LIVE_GREEN showed Phone ignores all-zero challenge.
+    challenge: bytes = field(default_factory=fresh_sas_challenge)
     channels: dict[int, EtchChannelReassembler] = field(default_factory=dict)
     certs_seen: int = 0
     challenges_sent: int = 0

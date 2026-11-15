@@ -1,0 +1,124 @@
+{
+  "title": "FIELD_AAIDRIVE_BTLOG_20261115",
+  "peer": "d4:36:39:cf:e1:b5",
+  "app_uid": 10479,
+  "logs": {
+    "session_a_abort_retry": "docs/bluetooth_20261115_102033_30998.log",
+    "session_b_main": "docs/bluetooth_20261115_102058_28027.log",
+    "post_bt_restart": "docs/bluetooth_20261115_102217_29993.log"
+  },
+  "field_facts": [
+    "SPP UUID 0x1101 \u2192 RFCOMM; successful BCL on SCN 6 (session B) and briefly SCN 10 (session A)",
+    "HANDSHAKE HU\u2192Phone: version=5 instance_id=14 buffer=0x4000 (identical both sessions)",
+    "BCL DATA dest=0x0FA4 (4004) with DEADBEEF etch envelopes \u2014 FIELD CONFIRMED",
+    "CDS-like vehicle strings in etch payloads: sensors.SOCBattery, iva_MYV_LIGHT_INTERIOR*, _ENT_MTP_OFF",
+    "src=12 dominates HU\u2192Phone etch DATA (43/56 parsed headers) \u2014 matches lab cdsbaseapp src mapping"
+  ],
+  "coverage_limits": {
+    "session_b_scn6_uih_nonzero": 1088,
+    "session_b_scn6_uih_bytes": 137775,
+    "session_b_dumps": 82,
+    "session_b_hex_bytes_captured": 2280,
+    "hex_vs_uih_pct": 1.65,
+    "data_hex_cap_bytes": 32,
+    "note": "oplus data_hex truncates at 32 bytes; dumps heavily under-sample UIH traffic (48\u00d7667 UIH vs 3 dumps)"
+  },
+  "session_a": {
+    "connect_scn6": "rejected RFC_PORT_EVENT_DM / Start failed[12]",
+    "fallback_scn": 10,
+    "hs": "10:20:49.112",
+    "first_data_4004": "10:20:53.218 (in multi-frame dump with DATAACK)",
+    "uih_667_count": 44,
+    "disconnect_scn10": "10:20:45.321 (slot cleanup) \u2014 short session; dumps only to ~10:20:55"
+  },
+  "session_b_timeline": {
+    "connectSocket_1101": "10:21:25.087 uid/pid=10479/25263",
+    "SDP_remote_scn": 6,
+    "RFCOMM_up": "10:21:25.427",
+    "HS_v5_iid14": "10:21:28.459",
+    "first_DATAACK_count10": "10:21:31.471",
+    "first_DATA_src10_dest4004_len44": "10:21:31.972",
+    "first_667_uih": "10:21:32.115",
+    "cds_ascii_fragments_visible": "10:21:34.208+",
+    "silent_tx_window_s": 3.012,
+    "silent_tx_note": "HS\u2192first DATAACK: Phone\u2192HU INIT/OPEN/SAS likely; not in oplus_send_data_to_app dumps"
+  },
+  "etch": {
+    "envelope": "DEADBEEF | u32BE(body_len) | body",
+    "string_type": "0x93 | u8 len | ascii",
+    "dominant_type_id": "0386ae0d3d69",
+    "void_like_trailer": "0286eda8c9a687000001",
+    "data_src_hist": {
+      "10": 1,
+      "11": 1,
+      "12": 43,
+      "14": 1,
+      "17": 2,
+      "18": 7,
+      "19": 1
+    },
+    "cds_string_prefixes": [
+      {
+        "prefix": "en",
+        "lens": [
+          11,
+          13,
+          15,
+          18
+        ],
+        "guess": "entertainment*"
+      },
+      {
+        "prefix": "dr",
+        "lens": [
+          20
+        ],
+        "guess": "driving*"
+      },
+      {
+        "prefix": "se",
+        "lens": [
+          24
+        ],
+        "guess": "sensors.*"
+      },
+      {
+        "prefix": "ve",
+        "lens": [
+          12
+        ],
+        "guess": "vehicle*"
+      },
+      {
+        "prefix": "na",
+        "lens": [
+          26
+        ],
+        "guess": "navigation*"
+      }
+    ],
+    "confirmed_ascii": [
+      "_ENT_MTP_OFF",
+      "false",
+      "iva_MYV_LIGHT_INTERIOR*",
+      "sensors.SOCBatter*",
+      ":255.00}"
+    ]
+  },
+  "dataack": {
+    "model": "running byte/credit counter for BCL DATA flow (not only OPEN-ack)",
+    "notable_values": {
+      "8": "OPEN 8-byte frame ack (also seen session A)",
+      "10": "first post-HS ack",
+      "44": "matches small DATA payload size",
+      "4008": "0x0FA8 \u2014 recurring; 4004+4 candidate / channel-related"
+    }
+  },
+  "still_unknown": [
+    "Phone\u2192HU etch (sas_certificate / sas_login) \u2014 need btsnoop_hci",
+    "Full bodies of 667-byte frames (only mid-payload ASCII fragments in dumps)",
+    "Exact mapping of etch type-ids 0386******** to RHMI/CDS methods",
+    "Why SCN6 DM then SCN10 in session A; why SCN6 succeeds in session B"
+  ],
+  "next": "Capture btsnoop_hci.log for the same working MyBMW/AAIdrive session (both directions)."
+}
