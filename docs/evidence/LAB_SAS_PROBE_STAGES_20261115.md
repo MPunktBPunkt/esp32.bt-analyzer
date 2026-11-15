@@ -27,7 +27,7 @@ Stufe für Stufe. Bei Interesse **einfrieren**, JSONL sichern, dann erst nächst
 
 | Stage | CLI | Dummy on OPEN 4004 |
 |-------|-----|--------------------|
-| (i) | `--sas-probe none` | no etch DATA (WD/HS only) — Kontrollgruppe |
+| (i) | `--sas-probe none` | no etch DATA (WD/HS only) — Kontrollgruppe; **2026-11-15: AAIdrive trotzdem grün** ([LAB_SAS_NONE_GREEN](LAB_SAS_NONE_GREEN_20261115.md)) — VIN/Daten ≠ Dummy-TX |
 | (ii) | `--sas-probe dataack` | DATAACK only; stub silent |
 | (iii) | `--sas-probe challenge` | non-zero SAS-challenge |
 | (iv) | `--sas-probe challenge_rhmi` | challenge + RHMI stub |
