@@ -1,17 +1,17 @@
 # BCL over Bluetooth — observe first, relay later (plan)
 
 ```yaml
-status: A6/B1A/B2A PASS · 2026-11-15 AAIdrive golden session FIELD FACT to CDS (SCN6) · SAS/Phone→HU still UNKNOWN
+status: A6/B1A/B2A PASS · 2026-11-15 analyzer→F20 TRANSPORT FIELD FACT (SCN6 HS/WD) · Content gate after OPEN4004 · SAS still UNKNOWN
 depends_on: HCI_TCP A1–A6 (docs/HCI_TCP.md) — A1–A5 MEASURED, A6 MEASURED 2026-11-13
 related: hu-probe Gate G2 "BCL wire" (USB AOA path, still open)
-claim_level: TRANSPORT+ETCH/CDS FIELD FACT (working MyBMW session) · SAS/Phone→HU UNKNOWN without btsnoop
+claim_level: TRANSPORT FIELD FACT (.87 phone-client, no MyBMW) · Etch/SAS needs owner/UI (OPEN4004→ACK only) · MyBMW CDS = separate golden path
 rfcomm_initiator: MIXED  # ACL+Mux HU→Phone; SPP DLC Phone-client (UID 10479) — docs/evidence/FIELD_PHONE_HU_LOGCAT_20261114T0924Z.md
 secondary: technology-audit audits/supra-idrive6-android-auto-2026-secondary @4f70751
-method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/evidence/FIELD_AAIDRIVE_BTLOG_20261115.md
+method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/evidence/FIELD_AAIDRIVE_BTLOG_20261115.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
 architecture: controlled dual-leg HCI bridge — not passive Phone↔HU air sniff
 audit_reuse: technology-audit technologies/bmw-bcl + projects/esp32-bt-analyzer/applications/bmw-bcl.md
-next: P0 btsnoop_hci of working Session B (both directions) — then SAS isolate; proxy after that
-desk_vs_wire: BclCarLink WD 5s/20s TO and SP3/empty-Knock are DESK — F20 MyBMW wire is SP4+KNOCK(UUID,1,7), WD≈2.5s lab, HS iid14/buf 0x4000
+next: P1 KNOCK isolation (--knock none × SP2/SP4) when HU back · then MyBMW btsnoop / Modell-D UI hold — not OPEN4004 spam
+desk_vs_wire: BclCarLink WD 5s/20s TO and SP3/empty-Knock are DESK — F20 wire SP2|SP4+KNOCK(UUID,1,7) WD≈2.5s · DATAACK selective (M48: no ACK56 after KNOCK)
 ```
 
 ## Why
@@ -106,7 +106,7 @@ as candidates. A BMW/Connected service name upgrades the verdict to
 | Car behind hotspot NAT | as in HCI_TCP: needs dial-out/VPN, not for B1–B3 |
 | USB/ENET BCL vs BT-only | Desk **Contradiction/HYPOTHESIS** (EVID-BG-020) — not REJECTED; AOA+car can resolve |
 
-**Next (epistemic order):** **B1** SDP on bonded HU (`hu=D4:36:39:CF:E1:B5`, `-i hci2` — re-check mapping) states A→D · then **B2-A + B2-B**. Method [`BCL_RFCOMM_TWO_MODE_20261113.md`](analysis/BCL_RFCOMM_TWO_MODE_20261113.md) · Runbook [`CAR_A6_B1.md`](CAR_A6_B1.md) · Maßnahmen [`MASSNAHMEN_BCL_A6.md`](MASSNAHMEN_BCL_A6.md). Optional lab: **B0.7** BclCarLink↔Dummy, **B2-B observe-only mode** on ProfileManager, **B0.8** Simulator — not AAIdrive-alone.
+**Next (epistemic order):** **KNOCK isolation** (`--knock none` × SP2/SP4) on live F20 · then **MyBMW btsnoop / Modell-D UI hold** for content gate · Insights [`FIELD_VS_LAB_INSIGHTS_20261115.md`](evidence/FIELD_VS_LAB_INSIGHTS_20261115.md) · Maßnahmen [`MASSNAHMEN_BCL_A6.md`](MASSNAHMEN_BCL_A6.md). B3 only after classified Phone↔HU Etch.
 
 ## Decision rule
 

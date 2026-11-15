@@ -9,7 +9,7 @@ tests: `tests/host/test_bcl_dummy_hu.py` · `tests/host/test_bcl_etch_stub.py`
 | Layer | Verhalten |
 |-------|-----------|
 | HS | v5 / iid **14** / buf **0x4000** (F20-Fingerprint) |
-| DATAACK | `u32BE(8+len)` — FIELD: 10/44/4008 (=8+4000) bestätigt |
+| DATAACK | `u32BE(8+len)` per RX (Dummy stricter than F20) — FIELD when ACKed: 8/10/12; **M48:** no ACK56 after KNOCK |
 | WD | Echo `13371337` auf dest 5001 |
 | Etch 4004 | `--sas-probe none\|dataack\|challenge\|challenge_rhmi` (default challenge) |
 | CDS | inkl. Feld-Namen `sensors.SOCBattery`, `_ENT_MTP_OFF`, … |

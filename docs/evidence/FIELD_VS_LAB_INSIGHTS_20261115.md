@@ -9,6 +9,7 @@ artifacts:
   - FIELD_BURST_20261115 (SP2/SP4/ETCH10)
   - LAB_PAR_131_* / prior LAB_SAS_* / LAB_WD_MAX3_*
 hu_end: page-timeout / Host is down during SP3/Desk retries
+revised: GPT/Grok cross-check of Hold JSONL timestamps (KNOCK≠ACK56)
 ```
 
 ## Burst matrix (this session)
@@ -21,34 +22,57 @@ hu_end: page-timeout / Host is down during SP3/Desk retries
 | SP4 + OPEN4004 src12 | busy | — | — | — | — | inconclusive |
 | SP3 / Desk knock | busy / reset then **page-timeout** | — | — | — | — | HU powering down |
 
-## New FIELD facts (vs prior Lab)
+## FIELD FACTS
 
-1. **F20 speaks BCL on SCN 6 as server** when `.87` is phone-client: INIT→HS **v5/iid14/0x4000**→SP→KNOCK→OPEN5001→WD — confirmed live (not Dummy).
-2. **WD echo RTT** first real curve: Hold2 p50 **~159 ms**, p95 **~308 ms** (WiFi/HCI path); misses happen (abort after 3) — RF/range sensitive (`.87` RSSI ~−80).
-3. **HU DATAACK = `8+len` on WD**: dominant **12** (=8+4). Also **10** (SP u16) and **8** (empty OPEN / 0-payload). Formula holds; **8** is real on wire, not only 10/44/4008.
-4. **SP2 after HS v5 still yields stable WD** (n=1). SP4 not uniquely required for keepalive — tolerance **FIELD**, not yet n≥2.
-5. **Phone OPEN 4004 alone does not elicit SAS/Etch from F20** (18 s window, src10). HU ACKs the OPEN (`ack_n=8`) then silence on 4004 → **Modell A (auto HU→4004) not observed** without app/UI; **SAS challenge ≠ automatic on our OPEN**.
-6. **Hold ~2–3 min without iDrive: 0× `hu_unsolicited` 4004** — OPEN4004 not idle-automatic in this window.
-7. **No BCL relay yet**: parallel topology (Phone↔Dummy + `.87`↔F20) ≠ proxy; B3 still missing.
+1. **F20 is BCL server on SCN 6** (`.87` phone-client): INIT→HS **v5/iid14/0x4000**→SP→KNOCK→OPEN5001→WD. Reproducible across holds+burst.
+2. **Transport needs no MyBMW/AAIdrive** — analyzer-only session reaches WD.
+3. **HS latency analyzer-direct ≈ 0.3–0.5 s** (Hold2 ~304 ms; Hold1 ~507 ms) — distinct from ~3 s MyBMW/AAIdrive session timing (app/stack overhead, not pure HU INIT RTT).
+4. **WD RTT structured:** cluster ~150–165 ms + delayed ~240–360 ms then misses. p50~159 / p95~308 on Hold2. Exact HU WD timeout = **UNKNOWN** (prior miss tooling overwrote pending ping — fixed as FIFO+seq).
+5. **DATAACK selective (M48)** — *not* universal per BCL command:
+   - SP (10 B) → ACK **10**
+   - OPEN empty (8 B) → ACK **8**
+   - WD DATA (12 B) → ACK **12**
+   - **KNOCK (56 B) → no ACK 56** in any Hold/Burst JSONL today  
+   Corrected claim: *when the HU ACKs a frame, `ack_n` matches `8+payload_len`; KNOCK is an exception / different path.*
+6. **SP2 after HS v5 → stable WD** (n=1). SP4 not uniquely required for keepalive.
+7. **OPEN 4004**: BCL-accepted (ACK 8) but **no Etch/SAS/CDS** in 18 s — content gate **after** OPEN4004.
+8. **Hold without iDrive: 0× unsolicited 4004** — Modell A not idle-default.
+9. **Parallel Phone↔Dummy + `.87`↔F20 ≠ proxy**; B3 still missing.
 
-## Lab facts that still stand (not replaced)
+## REJECTED / corrected
+
+~~HU DATAACK = 8+len for every received BCL frame~~  
+
+→ **HU DATAACK values for observed *acked* frames match 8+payload_len; KNOCK has no corresponding 56 in these runs.**
+
+## Architecture (transport vs content)
+
+```text
+RFCOMM SCN6 → BCL bootstrap (INIT/HS/SP[/KNOCK?]/OPEN5001/WD)   FIELD FACT
+OPEN 4004 → ACK 8 → [content authorization UNKNOWN] → SAS/Etch/CDS
+```
+
+Dummy opens Etch after OPEN4004; F20 ACKs and stays silent. Lab green ≠ F20 content.
+
+## Next (highest value when HU is back)
+
+**KNOCK isolation** (tooling: `--knock none`):
+
+| SP | KNOCK | OPEN5001 | Goal |
+|----|-------|----------|------|
+| 2 | yes | yes | control |
+| 4 | yes | yes | control |
+| 2 | **no** | yes | decisive |
+| 4 | **no** | yes | decisive |
+
+Then: KNOCK-ACK semantics; MyBMW-owned btsnoop / Modell-D UI hold — not more OPEN4004 spam.
+
+## Lab facts that still stand
 
 | Lab | Still valid? |
 |-----|----------------|
-| AAIdrive green on Dummy with WD-only / challenge stubs | yes — green ≠ proof of real SAS to F20 |
-| Dummy `deadbeef`/PKCS7 Etch path | lab-only; **not** seen from F20 in this field burst |
-| WD-max3 Dummy keeps UI green | lab UX; F20 miss-limit aborts analyzer hold |
-| CoD `0x340408` + alias gate for phone→Dummy | unchanged |
-| SCN 6 first `0x1101`, failover 10 | SDP reconfirmed today (ch 6–10 SPP; ch5 iAP2) |
-
-## Architecture implications
-
-- **Relay vs Emulator:** Field shows F20 will do BCL transport + WD with a thin analyzer client, but **Etch/SAS content did not appear** from OPEN4004 alone. Emulating Dummy Etch is **not** how F20 answered us. Next high-value: MyBMW-owned session btsnoop, or UI-triggered hold (Modell D) while analyzer is passive mid-session — not more OPEN4004 spam.
-- **Proxy B3:** Still blocked on “classified phone↔HU Etch,” not on ACL/RFCOMM — transport P0 is green; content P0 is not.
-- **Frozen phone bootstrap** (`FIELD_P0_HOLD_FREEZE_20261115`) remains the default for future factor runs when HU is back.
-
-## Open (explicitly unsolved today)
-
-- SP3 / Desk-KNOCK / Etch src12/18 — **no clean trial** (RFCOMM busy → HU off)
-- WD-Pong ≠ `13371337`, DATAACK omit, WD timeout ladder — not run
-- Whether F20 ever HU-initiates 4004 (Modell A) under real MyBMW UI
+| AAIdrive green on Dummy with WD-only / challenge stubs | yes — ≠ F20 SAS |
+| Dummy `deadbeef`/PKCS7 Etch | lab-only; not from F20 this burst |
+| WD-max3 Dummy keeps UI green | lab UX ≠ F20 miss behavior |
+| CoD `0x340408` + alias gate | unchanged |
+| SCN 6 first `0x1101`, failover 10 | SDP reconfirmed |

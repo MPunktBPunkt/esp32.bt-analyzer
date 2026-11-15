@@ -564,9 +564,9 @@ def main() -> int:
     b2atx.add_argument("--etch-src", type=int, default=10, help="BCL src for OPEN 4004")
     b2atx.add_argument(
         "--knock",
-        choices=("wire_v5", "desk"),
+        choices=("wire_v5", "desk", "none"),
         default="wire_v5",
-        help="KNOCK: wire_v5 UUID+TouchCommand/7 (P0 freeze) or desk empty",
+        help="KNOCK: wire_v5 / desk / none (skip — P1 isolation)",
     )
     b2atx.add_argument(
         "--wd-miss-limit",

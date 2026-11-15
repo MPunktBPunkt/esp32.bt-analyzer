@@ -38,6 +38,7 @@ UI-Grün ≠ SAS/RHMI/CDS.
 | src10/11/12 = bmw/mini/j29 | **INFERENCE only** — Wire-CNs = ApplicationManager / SmartThings / **cdsbaseapp**. CarProber-Brand-Loop ist *ähnliche* Probe-Idee, Zuordnung nicht FACT |
 | cmd 0x0006 = OPEN/SP-Variante (älter Grok) | **REJECTED** — Framer: DATAACK (M19) |
 | DATAACK `0x08` nach OPEN 4004 = Etch-Accept | **REJECTED** — passt zu BclCarLink `DATAACK(8+payload)` bei OPEN len=0 → **0x08** (M41) |
+| DATAACK = 8+len für **jedes** BCL-Kommando | **REJECTED 2026-11-15 (M48)** — KNOCK 56 B ohne ACK56 in analyzer→F20 Holds; siehe `FIELD_VS_LAB_INSIGHTS_20261115` |
 | AAIdrive grün = App-Layer OK | **REJECTED** — nur BCL/WD-Eligibility (M31/M40) |
 | PKCS7 nur „irgendwelche Certs“ | **unterschätzt** — Capability-Landkarte im Cert (M39) ✓ GPT |
 
@@ -60,27 +61,23 @@ UI-Grün ≠ SAS/RHMI/CDS.
 | **M42** | SP-Pfad folgt HS-**version**; iid/buf = Fingerprint (beide v5→SP4) | LAB FACT |
 | **M43** | Official Knock TouchCommand/7 = Desk-Kommentarpfad, jetzt gemessen | LAB FACT |
 | **M44** | WD-Maintenance auf F20 **und** Dummy unabhängig | FIELD+LAB FACT |
+| **M48** | DATAACK selektiv: SP→10, OPEN→8, WD→12; **kein ACK56 nach KNOCK** (analyzer→F20 2026-11-15) | FIELD FACT |
+| **M49** | Transport-Plane ohne MyBMW; Content-Gate nach OPEN4004 (ACK≠Etch) | FIELD FACT |
 
-## Soll-Sequenz nächster Feld-/Proxy-Test
-
-```
-Phone BCL+Cert (App→4004 PKCS7)
-        → Proxy hält WD 5001 am F20
-        → unverändert Etch DATA an HU
-        → erwarten: HU SAS Challenge (nicht „irgend Etch“)
-        → Phone sas_login → rhmi_getCapabilities → CDS/RHMI
-```
-
-## Architektur (Stand)
+## Soll-Sequenz nächster Feldtest
 
 ```
-RFCOMM SCN6 → BCL (INIT→HS v5→SP4→KNOCK→OPEN5001)
+1) KNOCK isolation: SP2|SP4 × knock yes|none → OPEN5001 → WD?
+2) MyBMW-owned btsnoop / Modell-D UI hold (passive 4004 watch)
+3) Nicht: weiterer OPEN4004-Spam ohne Owner-Kontext
+```
+
+## Architektur (Stand 2026-11-15)
+
+```
+RFCOMM SCN6 → BCL bootstrap (INIT→HS v5→SP2|SP4→[KNOCK?]→OPEN5001→WD)  FIELD FACT
                  │
-            WD @ ~2.5s  (ACTIVE / Liveness)
+            OPEN 4004 → ACK 8 → [content authorization UNKNOWN] → SAS/Etch/CDS
                  │
-            OPEN 4004 → PKCS7 / App identity   [Lab gemessen; F20 nur OPEN+ACK]
-                 │
-            sas_certificate → Challenge → sas_login   [Desk; Feld next]
-                 │
-            rhmi_getCapabilities → RHMI / CDS
+            Dummy öffnet Etch hier künstlich; F20 bleibt still ohne Owner/UI
 ```

@@ -484,6 +484,7 @@ def run_phone(
     sp = getattr(args, "selectproto", 3)
     knock_arg = getattr(args, "knock", None)
     knock_payload: bytes | str | None = None
+    skip_knock = knock_arg == "none"
     if knock_arg == "wire_v5":
         knock_payload = "wire_v5"
     elif knock_arg == "desk":
@@ -495,6 +496,7 @@ def run_phone(
         open_etch=bool(getattr(args, "open_etch", False)),
         etch_src=int(getattr(args, "etch_src", 10) or 10),
         knock_payload=knock_payload,
+        skip_knock=skip_knock,
     )
     sent = 0
     rx_raw = b""
@@ -506,7 +508,9 @@ def run_phone(
     inits_sent = 0
     wd_interval = float(getattr(args, "wd_interval", WATCHDOG_INTERVAL_S) or WATCHDOG_INTERVAL_S)
     miss_limit = int(getattr(args, "wd_miss_limit", 3) or 3)
-    pending_ping_ts: float | None = None
+    # FIFO of outstanding pings: (seq, ping_ts). Never overwrite an open ping.
+    pending_pings: list[tuple[int, float]] = []
+    ping_seq = 0
     wd_misses = 0
     abort_reason: str | None = None
     from bcl_dummy_hu import (  # noqa: WPS433 — hold metrics only on phone path
@@ -546,14 +550,17 @@ def run_phone(
             and not observe_only
             and now >= next_ping
         ):
-            if pending_ping_ts is not None:
+            # Age out oldest outstanding ping before issuing the next.
+            if pending_pings:
+                old_seq, old_ts = pending_pings.pop(0)
                 wd_misses += 1
                 log.write(
                     {
                         "event": "watchdog_echo_missed",
                         "misses": wd_misses,
                         "miss_limit": miss_limit,
-                        "waited_s": round(now - pending_ping_ts, 3),
+                        "ping_seq": old_seq,
+                        "waited_s": round(now - old_ts, 3),
                         "session_id": session_id,
                     }
                 )
@@ -569,13 +576,15 @@ def run_phone(
                     )
                     break
             sock.sendall(sess.watchdog_ping())
-            pending_ping_ts = now
+            ping_seq += 1
+            pending_pings.append((ping_seq, now))
             log.write(
                 {
                     "event": "watchdog_ping",
                     "session_id": session_id,
                     "interval_s": wd_interval,
                     "ping_ts": now,
+                    "ping_seq": ping_seq,
                 }
             )
             next_ping = now + wd_interval
@@ -608,19 +617,20 @@ def run_phone(
                     and fr.src == 5001
                     and fr.dest == 5001
                     and fr.payload == WATCHDOG_PING
-                    and pending_ping_ts is not None
+                    and pending_pings
                 ):
                     echo_ts = time.time()
-                    rtt_ms = round((echo_ts - pending_ping_ts) * 1000.0, 1)
+                    seq, ping_ts = pending_pings.pop(0)
+                    rtt_ms = round((echo_ts - ping_ts) * 1000.0, 1)
                     log.write(
                         {
                             "event": "watchdog_echo_rtt",
                             "rtt_ms": rtt_ms,
+                            "ping_seq": seq,
                             "misses_reset_from": wd_misses,
                             "session_id": session_id,
                         }
                     )
-                    pending_ping_ts = None
                     wd_misses = 0
                 if fr.cmd == CMD_DATAACK and len(fr.payload) >= 4:
                     ack_n = int.from_bytes(fr.payload[:4], "big")
@@ -628,7 +638,8 @@ def run_phone(
                         {
                             "event": "hu_dataack",
                             "ack_n": ack_n,
-                            "expect_formula": "8+len",
+                            # Selective: SP/OPEN/DATA match 8+payload_len; KNOCK≠56 observed
+                            "note": "matches_8_plus_payload_len_when_acked",
                             "payload_hex": fr.payload.hex(),
                             "session_id": session_id,
                         }
@@ -899,10 +910,10 @@ def main() -> int:
     )
     b2a_tx.add_argument(
         "--knock",
-        choices=("wire_v5", "desk"),
+        choices=("wire_v5", "desk", "none"),
         default=None,
-        help="KNOCK payload: wire_v5=UUID+TouchCommand/7; desk=empty A4A; "
-        "default auto wire_v5 when SP≥4 / HS v5",
+        help="KNOCK: wire_v5=UUID+TouchCommand/7; desk=empty A4A; none=skip KNOCK "
+        "(isolation); default auto wire_v5 when SP≥4 / HS v5",
     )
     b2a_tx.add_argument(
         "--wd-miss-limit",

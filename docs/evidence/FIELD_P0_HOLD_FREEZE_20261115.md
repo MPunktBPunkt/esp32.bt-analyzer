@@ -30,10 +30,15 @@ claim_level: FREEZE for subsequent factor runs — one variable per later P1 tes
 
 ## Metrics logged (JSONL)
 
-- `watchdog_echo_rtt` → P50/P95 post-pass
-- `hu_dataack` (`ack_n`, expect `8+len` → 10 / 44 / 4008 pattern)
+- `watchdog_echo_rtt` (+ `ping_seq` FIFO — do not overwrite open pings)
+- `hu_dataack` (`ack_n`) — **selective**: SP→10, empty OPEN→8, WD→12; **no ACK 56 after KNOCK** in 2026-11-15 holds (M48)
 - `hu_unsolicited` (OPEN/DATA src 10/12/18 or dest 4004) → Modell A
 - btmon on `hci1` for full HCI evidence
+
+## Corrected DATAACK claim
+
+Not: “ACK every BCL frame with 8+len”.  
+Yes: “When HU ACKs, value matches 8+payload_len for SP/OPEN/DATA; KNOCK exception observed.”
 
 ## Modell D (operator)
 

@@ -1,10 +1,12 @@
 # Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
 
 ```yaml
-status: active · BCL+WD FIELD CONFIRMED · Lab Dummy F20-profile+Etch stub shipped · Proxy P0
+status: active · analyzer→F20 TRANSPORT FACT (2026-11-15 Hold/Burst) · Content gate after OPEN4004 · KNOCK isolation next
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake / supra-idrive6-android-auto-2026-secondary]
-trigger: 2026-11-13 secondary NBT-AAD + RFCOMM two-mode review (initiator UNKNOWN · B2-A/B2-B)
-method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md · docs/analysis/LAB_DUMMY_ETCH_DEEP_20261114.md · docs/analysis/FIELD_STAND_Grok_GPT_20261114.md
+trigger: 2026-11-15 field Hold/Burst + GPT/Grok DATAACK/KNOCK revision (M48)
+method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md · docs/analysis/LAB_DUMMY_ETCH_DEEP_20261114.md · docs/analysis/FIELD_STAND_Grok_GPT_20261114.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
+field_hold_insights: docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
+field_p0_freeze: docs/evidence/FIELD_P0_HOLD_FREEZE_20261115.md
 lab_dummy_etch: docs/evidence/LAB_DUMMY_ETCH_20261114T1550Z.md
 lab_dummy_f20_profile: docs/evidence/LAB_DUMMY_F20_PROFILE_TEMPLATE.md
 stand_grok_gpt: docs/analysis/FIELD_STAND_Grok_GPT_20261114.md
@@ -101,18 +103,20 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 
 **Forschungsfrage (Stand Nachmittag):** Welche Eligibility-/Session-Bedingung veranlasst die HU, genau diesen Peer für RFCOMM/BCL zuzulassen? (nicht nur „wie SPP ch6 starten“)
 
-### P0 / P0.5 / P1 — Priorität nach M6–M15
+### P0 / P0.5 / P1 — Priorität (Stand 2026-11-15 Hold/Burst)
 
-8. ~~**P0 — Etch/Layer E Lab**~~ → **DEEP** + Grok/GPT-Abgleich `FIELD_STAND_Grok_GPT_20261114`: SP4+KNOCK; sequenzielle Certs AM→SmartThings→cdsbaseapp; PKCS7-Permissions CDS/RHMI/APPID; M23–M44. UI-Grün ≠ SAS.
-9. **P0 — F20-Proxy (Erkenntnissprung):** WD 5001 halten; Phone-PKCS7 unverändert an dest 4004; **erwarte HU→SAS Challenge**, dann `sas_login` / `rhmi_getCapabilities`. OPEN+DATAACK `0x08` allein ≠ Etch-OK (M41).
-9b. **P0 — Wire-Client:** nach HS v5 SP4+KNOCK(UUID,1,7); WD 2.5 s; Echo erst nach OPEN 5001 (M29). Parallel: Phone HCI-Snoop + passiver Hold/btmon.
+7z. ~~**P0 — Analyzer→F20 Transport**~~ → **FIELD FACT** `FIELD_P0_HOLD_*` / `FIELD_BURST_20261115` / `FIELD_VS_LAB_INSIGHTS_20261115`: SCN6 INIT→HS v5/14/0x4000→SP2|SP4→KNOCK→OPEN5001→WD **ohne** MyBMW; OPEN4004→ACK8→Stille; 0× unsolicited 4004 im Hold; **M48** DATAACK selektiv (kein ACK56 nach KNOCK).
+8. ~~**P0 — Etch/Layer E Lab**~~ → **DEEP** `FIELD_STAND_Grok_GPT_20261114`. Dummy Etch ≠ F20 Content; UI-Grün ≠ SAS.
+9. **P0 — MyBMW-owned btsnoop / Modell-D UI-Hold:** SAS/Etch-Bodies. **Kein** weiterer OPEN4004-Spam ohne Owner-Kontext.
+9b. ~~**P0 — Wire-Client Freeze**~~ → **DONE** `FIELD_P0_HOLD_FREEZE_20261115`; `--knock none` ready.
+9c. **P1 — KNOCK-Isolation (nächster Feldlauf):** SP2/4 × KNOCK ja/nein → OPEN5001→WD? Dann KNOCK-ACK-Semantik.
 10. **P1 — Admission 2×2 (M7/M33)** UA vs DM; Positive = ACL+AUTH+ENCRYPT + WD.
-11. ~~**P1 — Dummy-Feldsignatur**~~ → **SHIPPED** `--hu-profile f20` (v5/14/0x4000 + DATAACK + WD + Etch/SAS/CDS-Stub). Template: `LAB_DUMMY_F20_PROFILE_TEMPLATE`. Verify: Phone→Dummy jsonl auf `sas_challenge_tx` / `cds_property_*`.
-11b. ~~**P1 — SAS-Probe-Stufen + DATAACK 8+len Wire**~~ → **SHIPPED** 2026-11-15: `--sas-probe none|dataack|challenge|challenge_rhmi`, `--handshake-delay`, Feld-CDS, KNOCK-Envelope. Docs: `LAB_SAS_PROBE_STAGES_20261115`. Deployed `/tmp/bcl_dummy` on `.108`.
-11b. Lab: `LAB_PHONE_BCL_*` (v3/SP2) + `LAB_DUMMY_ETCH_*` (v5/SP4) + F20-profile stub.
+11. ~~**P1 — Dummy-Feldsignatur**~~ → **SHIPPED** `--hu-profile f20`. Template: `LAB_DUMMY_F20_PROFILE_TEMPLATE`.
+11b. ~~**P1 — SAS-Probe-Stufen**~~ → **SHIPPED** `LAB_SAS_PROBE_STAGES_20261115`. **Korrektur:** DATAACK `8+len` für *quittierte* Frames; KNOCK-Ausnahme = M48.
 11c. Kein B3 / kein ch5-als-BCL; keine Negativ-Matrix ohne State-Kontrolle.
 11d. Bimmer-vs-Wire / CoD / WD-Docs belassen.
 11e. **B0.8** Simulator :4006 nach Proxy-Bedarf (SAS-Stub), nicht vor Proxy-Feldtest.
+11f. WD-RTT: Cluster ~155 ms + Schwanz ~250–360 ms; HU Miss-Timeout = UNKNOWN (Ping-FIFO+seq gefixt).
 
 ### P2 — Docs / Epistemik
 
@@ -162,4 +166,4 @@ Analyzer: **kein** Multi-Wochen-Umbau. Minimal (done/in tree): Klassifikation + 
 
 ## One-liner
 
-**A6/B1A/B2A done. Logcat: HU silent ch6. Abend Phone↔Dummy BT-Logs: Grün = Certs + WD `12`@2,5 s + Dummy-RX (DLCI 12); Silent-Feld = `4`@3 s ohne RX. L4: 62 SPP-Retries bei totem HU-Agent. P0: F20-Proxy / HCI-Snoop Hex; Silent-HU Lab. B3 blocked.**
+**Transport FACT (.87→F20 SCN6 HS/WD, no MyBMW). Content gate after OPEN4004 (ACK only). M48: no ACK56 after KNOCK. Next: KNOCK isolation + MyBMW btsnoop/Modell-D. B3 blocked. Dummy green ≠ F20 SAS.**

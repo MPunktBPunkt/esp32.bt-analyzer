@@ -491,6 +491,8 @@ class PhoneClientSession(_Session):
     etch_src: int = 10
     # knock: None → desk empty A4A; "wire_v5" → UUID TouchCommand/7; bytes → raw
     knock_payload: bytes | str | None = None
+    # True → skip CMD_KNOCK entirely (P1 isolation: SP→OPEN5001 without knock)
+    skip_knock: bool = False
 
     def session_init(self) -> bytes:
         self.events.append({"event": "session_init", "dir": "tx"})
@@ -529,7 +531,10 @@ class PhoneClientSession(_Session):
                 out.append(
                     build_synthetic_frame(CMD_SELECTPROTO, 0, 0, struct.pack(">H", int(sp)))
                 )
-            out.append(build_synthetic_frame(CMD_KNOCK, 0, 0, self._knock_bytes()))
+            if not self.skip_knock:
+                out.append(build_synthetic_frame(CMD_KNOCK, 0, 0, self._knock_bytes()))
+            else:
+                self.events.append({"event": "knock_skipped", "dir": "tx"})
             if self.wire_open5001:
                 out.append(
                     build_synthetic_frame(CMD_OPEN, DEST_WATCHDOG_DESK, DEST_WATCHDOG_DESK)

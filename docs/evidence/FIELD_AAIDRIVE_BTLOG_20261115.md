@@ -61,19 +61,23 @@ Session A timeline:
 
 Do **not** claim „SCN10 = second equal BCL endpoint“ without SDP from btsnoop.
 
-### M31 — DATAACK model
+### M31 — DATAACK model (revised 2026-11-15 / M48)
 
-**FIELD FACT:** `count = 8 + payload_len` per received BCL frame
-(BclCarLink `DataAck(8 + packet.data.size)`).
+**FIELD FACT (when HU ACKs):** `count = 8 + payload_len` for observed quittierte Frames
+(BclCarLink `DataAck(8 + packet.data.size)` — desk model).
 
 | count | meaning |
 |------:|---------|
-| 8 | OPEN |
+| 8 | empty OPEN |
 | 10 | 8+2 SELECTPROTO |
-| 44 | 8+36 KNOCK/small DATA |
+| 12 | 8+4 WD DATA (`13371337`) — Hold/Burst 2026-11-15 |
+| 44 | 8+36 small DATA (AAIdrive/MyBMW path; **not** seen as KNOCK-ACK in analyzer holds) |
 | 4008 | 8+4000 fragment limit |
 
-**REJECTED:** monotonic counter · per-reassembled-Etch-message ACK.
+**M48 FIELD FACT (analyzer→F20 Holds/Burst):** 56-B KNOCK is **not** followed by DATAACK 56.
+Do **not** claim universal per-command ACK. See [`FIELD_VS_LAB_INSIGHTS_20261115`](FIELD_VS_LAB_INSIGHTS_20261115.md).
+
+**REJECTED:** monotonic counter · per-reassembled-Etch-message ACK · „every BCL cmd gets 8+len ACK“.
 
 ## Coverage trap
 

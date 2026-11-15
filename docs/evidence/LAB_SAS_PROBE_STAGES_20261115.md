@@ -5,21 +5,28 @@
 Das Lab kann testen, **welche App-Layer-Antworten das Phone benötigt**.
 Es kann **nicht** aus sich heraus den echten SAS-/RHMI-Ablauf rekonstruieren.
 
-Bekannt (FIELD/LAB FACT): BCL INIT, HS v5/iid14/0x4000, SP4, KNOCK UUID/TouchCommand,
-DATAACK=`8+payload_len`, CDS-artige HU→Phone-Fragmente, Lab-BCL-Transport.
+Bekannt (FIELD/LAB FACT): BCL INIT, HS v5/iid14/0x4000, SP2|SP4, KNOCK UUID/TouchCommand,
+DATAACK=`8+payload_len` **für quittierte** Frames (SP/OPEN/WD), CDS-artige HU→Phone-Fragmente,
+Lab-BCL-Transport; analyzer→F20 Transport ohne MyBMW.
 
-**UNKNOWN:** SAS-Challenge-Struktur, Login-Antwort, RHMI-Capability-Wire, volle CDS-Messages.
+**M48:** KNOCK (56 B) erhält in analyzer→F20 Holds **kein** ACK 56 — Dummy ACKt weiter jedes RX-Frame.
+
+**UNKNOWN:** SAS-Challenge-Struktur, Login-Antwort, RHMI-Capability-Wire, volle CDS-Messages;
+ob KNOCK für OPEN5001/WD nötig ist (`--knock none`).
 Erwartung „formalen SAS-Handshake durchbekommen“ = **nicht** dokumentiert.
 
-## DATAACK = 8 + payload_len (FIELD FACT)
+## DATAACK = 8 + payload_len (when ACKed)
 
 | count | = 8+len | matches |
 |------:|---------|---------|
+| 8 | 8+0 | empty OPEN |
 | 10 | 8+2 | SELECTPROTO |
-| 44 | 8+36 | KNOCK body / small DATA |
+| 12 | 8+4 | WD DATA |
+| 44 | 8+36 | small DATA (MyBMW path) |
 | 4008 | 8+4000 | BCL `MAX_PAYLOAD` fragment |
+| ~~56~~ | — | **not observed** after 56-B KNOCK (M48) |
 
-Dummy: `dataack_count_for_frame` / `DATAACK(8+len)` per RX frame (not cumulative).
+Dummy: `dataack_count_for_frame` / `DATAACK(8+len)` per RX frame (not cumulative) — **stricter than F20**.
 
 ## SAS probe ladder (`--sas-probe`) — P0
 
