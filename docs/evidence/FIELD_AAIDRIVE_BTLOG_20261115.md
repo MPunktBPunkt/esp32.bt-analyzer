@@ -1,118 +1,115 @@
-# FIELD — AAIdrive Bluetooth logs 2026-11-15 (deep decode)
+# FIELD — AAIdrive Bluetooth logs 2026-11-15 (revised)
 
-Peer HU `d4:36:39:cf:e1:b5`, app uid **10479** (MyBMW/AAIdrive SPP client).
+Peer HU `d4:36:39:cf:e1:b5`, app uid **10479**.
+Cross-ref: [`LAB_SILENT_HU_INIT_KNOCK_20261115.md`](LAB_SILENT_HU_INIT_KNOCK_20261115.md),
+[`FIELD_AAIDRIVE_BTLOG_20261115_decode.json`](FIELD_AAIDRIVE_BTLOG_20261115_decode.json).
 
 | Log | Role |
 |-----|------|
-| `docs/bluetooth_20261115_102033_30998.log` | Session A: SCN6 rejected → SCN10 short Etch |
-| `docs/bluetooth_20261115_102058_28027.log` | Session B: SCN6 full Connected-App path |
-| `docs/bluetooth_20261115_102217_29993.log` | BT restart / bonded cache only — no BCL |
+| `docs/bluetooth_20261115_102033_30998.log` | Session A: SCN6 DM → SCN10 (2 attempts) |
+| `docs/bluetooth_20261115_102058_28027.log` | Session B: SCN6 golden path → CDS |
+| `docs/bluetooth_20261115_102217_29993.log` | BT restart / bond cache — no BCL |
 
-## FIELD FACT (extends prior analysis)
+## Verdict
 
-```
-Phone → SPP 0x1101 → RFCOMM SCN 6 (B) / 10 (A)
-  → BCL HANDSHAKE v5 / iid=14 / buf=0x4000
-  → DATAACK (running counter)
-  → DATA dest=0x0FA4 (4004) + DEADBEEF etch
-  → CDS-like vehicle properties (HU→Phone)
-```
+**Yes — vehicle/CDS data is visible**, but only through a keyhole (~1.65 % hex).
+**No — we do not have everything**; Phone→HU / SAS / full 667-B bodies need btsnoop.
 
-First Etch DATA (session B):
-
-```
-10:21:31.972  DATA src=10 dest=4004 plen=44
-  DEADBEEF 00000024 0386A6B0FFCA 0286EDA8C9A687000001
+```text
+MyBMW/AAIdrive → SPP 0x1101 → SCN 6 (or SCN 10 failover)
+  → BCL HS v5 / iid=14 / buf=0x4000
+  → [Phone→HU ~3.0 s — UNKNOWN in oplus logs]
+  → DATAACK + DATA dest=4004 + DEADBEEF
+  → Etch → CDS vehicle properties (HU→Phone fragments)
 ```
 
-## New details beyond the first pass
+## FIELD FACT
 
-### 1. Two RFCOMM attempts, not one
+- SPP `0x1101`, HS v5 / iid 14 / `0x4000`
+- Session B SCN6 end-to-end; Session A SCN10 carries BCL/Etch after SCN6 DM
+- DATA → `0x0FA4` + DEADBEEF etch
+- CDS property fragments: `sensors.SOCBatter*`, `:255.00}`, `_ENT_MTP_OFF`,
+  `iva_MYV_LIGHT_INTERIOR*`, `false`
+- src12 dominates (43/56) — aligns with lab `cdsbaseapp`
+- 667 UIH burst starts **143 ms** after first DATA→4004
+- Silent TX window HS→first DATAACK = **3.012 s** (contents still INFERENCE)
 
-Session A (`102033`):
+## Corrections (vs earlier decode / 14.11 field table)
 
-- `connectSocket` 0x1101 → SDP **SCN 6** → `RFC_PORT_EVENT_DM` / `Start failed[12]`
-- Retry → **SCN 10** connects; HS + Etch begin; **44× UIH len=667** already on SCN10
-- Slot cleanup ~8s after connect — short session
+### M29 — Silent-HU: 4-B = INIT, not WD
 
-Session B (`102058`): SCN 6 succeeds end-to-end (~47s of dumps).
+LAB FACT from Silent-HU hex: every 4-B chunk is `12345678` (INIT).
+56-B chunks carry KNOCK UUID-serial `0e9b90c4-…56619` inside a `deadbeef` envelope
+— **strong INFERENCE** KNOCK-related; **not** proven raw `BclPacket` cmd=8.
 
-### 2. Hex dumps are a tiny sample of the wire
+Silent-HU timing diverges from field → **not** a calibration of M9 timers.
 
-| Metric (session B, SCN6) | Value |
-|--------------------------|------:|
-| RFCOMM UIH nonzero | 1088 |
-| UIH payload bytes | 137775 |
-| `data_hex` dumps | 82 |
-| Hex bytes actually captured | 2280 (**~1.65%** of UIH) |
+### M30 — SCN6→SCN10 failover (carefully)
+
+Session A timeline:
+
+```text
+10:20:35.279  connect SCN6
+10:20:35.584  DM / Start failed[12]
+              (no prior SCN6 session in this log)
+10:20:37.089  SCN10 #1 → cleanup 10:20:45.321 (no HS dump)
+10:20:48.873  SCN10 #2 → HS 10:20:49.112 → Etch → close 10:20:56
+```
+
+**FIELD FACT:** after SCN6 DM, AAIdrive can build BCL/Etch on SCN10.  
+**UNKNOWN:** SDP meaning of SCN10; why SCN6 DM (stale-SCN6 hypothesis unsupported here).
+
+Do **not** claim „SCN10 = second equal BCL endpoint“ without SDP from btsnoop.
+
+### M31 — DATAACK model
+
+**REJECTED:** monotonic running counter (values fall back: 2695→8→…→4008→3255).
+
+**Best current model (Bimmer-backed, not fully proven on wire):**
+`DataAck(8 + packet.data.size)` = ACK of each received BCL frame size.
+Fits 8 (OPEN) and 44 (small DATA). Large values (559, 2695, 4008, …) —
+frame vs reassembled Etch — **decide in btsnoop**.
+
+## Coverage trap
+
+| Metric (Session B SCN6) | Value |
+|-------------------------|------:|
+| UIH nonzero | 1088 |
+| UIH bytes | 137775 |
+| Hex captured | 2280 (~1.65 %) |
 | UIH len=667 | 48 |
-| Dumps declaring len=667 | 3 |
+| Dumps declaring 667 | 3 |
 
-`data_hex` is hard-capped at **32 bytes**. Large Etch frames appear as mid-payload **FRAGMENT** dumps (`_ENT_MTP_OFF`, `sensors.SOCBatter…`) without BCL header in the visible window.
+`data_hex` hard-capped at 32 bytes. Large frames often appear as mid-payload
+FRAGMENT dumps without BCL header.
 
-### 3. 667-byte flood starts 143 ms after first DATA
+## Etch notes
 
-```
-10:21:31.972  first DATA → 4004
-10:21:32.115  first UIH 667   ← not 10:21:34
-```
+| Item | Status |
+|------|--------|
+| Type-id `0386ae0d3d69` @ src12 | dominant; method name UNKNOWN |
+| 44-B `0386…0286EDA8C9A687000001` | void/ack-shaped RPC completion — not SAS |
+| Prefixes `en/dr/se/ve/na…` | CDS namespace guesses |
 
-Early window 10:21:31–33 alone: **~17 KB** UIH (21×667). Capability/CDS bulk is already flowing before the first truncated 667 hex dump at 10:21:34.208.
+## Epistemic bar
 
-### 4. src=12 is the CDS workhorse
-
-Parsed DATA→4004 headers (session B):
-
-| src | count | notes |
-|----:|------:|-------|
-| 12 | 43 | dominant; type-id `0386ae0d3d69` |
-| 18 | 7 | small void-like `03869358a564…` |
-| 10 | 1 | first reply after OPEN window |
-| 11,14,17,19 | 1–2 each | other services |
-
-Lab dummy etch mapped **src 12 → cdsbaseapp** cert — field traffic shape matches.
-
-Etch string type **`0x93 | len | ascii`** prefixes on src12:
-
-| prefix | declared lens | likely CDS ns |
-|--------|---------------|---------------|
-| `en…` | 11/13/15/18 | entertainment* |
-| `dr…` | 20 | driving* |
-| `se…` | 24 | sensors.* |
-| `ve…` | 12 | vehicle* |
-| `na…` | 26 | navigation* |
-
-Confirmed plaintext fragments: `_ENT_MTP_OFF`, `iva_MYV_LIGHT_INTERIOR*`, `sensors.SOCBatter*`, `:255.00}`.
-
-### 5. Small 44-byte DATA = etch “void/ack” shape
-
-Body often:
-
-```
-0386 <type4> 0286EDA8C9A687000001
+```text
+Transport SCN6 / RFCOMM          ██████████  FIELD FACT
+BCL Handshake v5                 ██████████  FIELD FACT
+DATAACK + DATA→4004              ██████████  FIELD FACT
+Etch DEADBEEF + CDS fragments    ████████░░  FIELD FACT (partial)
+SCN10 failover works             ████████░░  FIELD FACT (SDP role UNKNOWN)
+4-B silent = INIT                ██████████  LAB FACT
+56-B = KNOCK-related UUID blob   ███████░░░  strong INFERENCE
+DATAACK = BCL frame size         ██████░░░░  Bimmer-backed INFERENCE
+Phone→HU / SAS                   ██░░░░░░░░  UNKNOWN
+Full Etch bodies / type→method   █░░░░░░░░░  UNKNOWN
 ```
 
-Same trailer across src 10/12/14/17/18/19 — not SAS challenge blobs; look like short RPC completions.
+## Next (priority)
 
-### 6. DATAACK is a live flow counter
-
-Not only `OPEN → ACK 8`. Observed values include 10, 44, 559, 2695, **4008 (0x0FA8)**, 3255, …  
-`0x0FA8` recurs often (4004+4 candidate / channel bookkeeping — still interpretive).
-
-### 7. Silent Phone→HU window is ~3.0 s
-
-```
-HS 10:21:28.459  →  first DATAACK 10:21:31.471
-```
-
-That gap is where INIT / OPEN 4004 / `sas_certificate` must live. These oplus logs only show **HU→app**.
-
-## Still UNKNOWN (needs btsnoop)
-
-- Phone→HU etch: `sas_certificate` → challenge → `sas_login`
-- Full 667-byte etch bodies
-- Exact method names behind type-ids `0386********`
-
-## Next capture
-
-Same working MyBMW/AAIdrive session with **`btsnoop_hci.log`** (both directions on RFCOMM SCN6).
+1. **P0** `btsnoop_hci` Session B — both directions, RFCOMM filter off  
+2. **P0b** same for Session A (DM + SCN10 + SDP)  
+3. Rebuild 667-B bodies → type-id mapping  
+4. Isolate SAS inside the 3.012 s window  
+5. Proxy / SAS-Replay only after that

@@ -53,7 +53,7 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 
 **Korrektur:** `OPEN 4004` ist **Consumer-triggered** (EtchProxy erst nach TCP auf :4007), **nicht** deterministischer Bootstrap. Fehlen von OPEN 4004 nach HANDSHAKE ≠ Fehler.
 
-**Watchdog:** Request `13 37 13 37` / dest 5001 / **Desk 5 s** — **Lab-Wire ≈ 2,5 s** (`LAB_PHONE_BCL_*`) — **Feld↔HU (silent) 4‑B-Writes @ 3,0 s** (`FIELD_PHONE_HU_LOGCAT_*`; Hex unproven). 20 s TO + Pong-Bytes = **UNKNOWN**.
+**Watchdog:** Request `13 37 13 37` / dest 5001 / **Desk 5 s** — **Lab-Wire ≈ 2,5 s** (`LAB_PHONE_BCL_*`). **Korrektur 2026-11-15:** Silent-HU / Feld-„4‑B @ 3 s“ = **INIT `12345678`**, nicht WD (`LAB_SILENT_HU_INIT_KNOCK_20261115`). 20 s TO + Pong-Bytes = **UNKNOWN**. Desk-WD-Werte ≠ Wire (MyBMW-Generation).
 
 ## Priorisierte Maßnahmen
 
@@ -72,8 +72,9 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
    - B2-A ch **6** + ch **5**: SABM local → **UA remote**, 0 Payload, DISC local; BCL **UNKNOWN** (negativ ≠ absent)
    - B2-B observe-only 180 s: **kein** HU-SABM inbound unter Control (Apps/HFP off)
 5. ~~**Phone↔HU Logcat (OnePlus, 2026-11-14)**~~ → **DONE** `FIELD_PHONE_HU_LOGCAT_20261114T0924Z`:
-   UID 10479 → UUID `0x1101` → SDP **SCN 6** → RFCOMM OPEN (DLCI 13, MTU~666); **10** Opens; Phone TX 5×56 B + 24×4 B @ **3,0 s**; HU auf ch6 **0 RX** (`PORT_DataInd` nur dlci 8/HFP); ACL role=peripheral (HU pages). BCL-Bytes **UNKNOWN**.
-6. ~~**B2-A-TX Matrix ch 6–10**~~ → **DONE / NEGATIVE** `FIELD_B2A_TX_MATRIX_20261114` (+ AUDIOOK-Lauf): ch5–10 Socket refuse; Wire SABM→**DM**. A2DP „BT-Analyzer verbunden“ ändert Accept **nicht**. Analyse: `FIELD_B2A_TX_PATTERNS_20261114`.
+   UID 10479 → UUID `0x1101` → SDP **SCN 6** → RFCOMM OPEN (DLCI 13, MTU~666); **10** Opens; Phone TX 5×56 B + 24×4 B @ **3,0 s**; HU auf ch6 **0 RX** (`PORT_DataInd` nur dlci 8/HFP); ACL role=peripheral (HU pages). BCL-Bytes damals UNKNOWN — **4‑B jetzt = INIT** (Silent-HU LAB FACT).
+5b. ~~**Phone BT-Logs AAIdrive golden (2026-11-15)**~~ → **DONE** `FIELD_AAIDRIVE_BTLOG_20261115*`: Session B SCN6 → HS v5 → DATA→4004 → CDS-Fragmente (`sensors.SOCBatter*`, …). Session A: SCN6 DM → SCN10 BCL/Etch. Hex-Coverage ~1,65 %. **P0 jetzt: btsnoop_hci Session B (+A)**.
+6. ~~**B2-A-TX Matrix ch 6–10**~~ → **DONE / NEGATIVE** `FIELD_B2A_TX_MATRIX_20261114` (+ AUDIOOK-Lauf): ch5–10 Socket refuse; Wire SABM→**DM**. A2DP „BT-Analyzer verbunden“ ändert Accept **nicht**. Analyse: `FIELD_B2A_TX_PATTERNS_20261114`. **M6 herabstufen:** DM ist transient/admission (Session A/B), nicht Peer-Auth-Diskriminierung.
 7. ~~**Phone↔Dummy BCL parallel**~~ → **PASS** `LAB_FIELDPREP_20261114T095848Z` (CoD `0x340408` + Alias + App-Restart; SP(2)+WD-Pong; AAIdrive grün).
 7b. ~~**Phone BT-Logs Nachmittag**~~ → **DONE** `FIELD_PHONE_BTLOGS_20261114T1037Z`: SCN6 OPEN×4; 0× DataInd dlci13; Typ-B **15,060 s** (M9); Snoop-Filter an / `.cfa` leer; Konsens M6–M15.
 7c. **Phone Log ~10:44–11:24 (Grok)** → **REPORTED** `FIELD_PHONE_HU_BCL_HS_V5_*`: HU→Phone HANDSHAKE **v5 / iid 0x0E / buf 0x4000**; cmd6=DATAACK; Session ~25 s. CLEANED-Log noch PENDING.

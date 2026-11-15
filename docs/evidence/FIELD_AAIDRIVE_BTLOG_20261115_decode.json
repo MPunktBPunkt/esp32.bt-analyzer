@@ -2,17 +2,27 @@
   "title": "FIELD_AAIDRIVE_BTLOG_20261115",
   "peer": "d4:36:39:cf:e1:b5",
   "app_uid": 10479,
+  "revised": "2026-11-15T12:00Z — M29/M30/M31 corrections after Silent-HU + multi-review",
   "logs": {
     "session_a_abort_retry": "docs/bluetooth_20261115_102033_30998.log",
     "session_b_main": "docs/bluetooth_20261115_102058_28027.log",
-    "post_bt_restart": "docs/bluetooth_20261115_102217_29993.log"
+    "post_bt_restart": "docs/bluetooth_20261115_102217_29993.log",
+    "silent_hu_crossref": "docs/evidence/LAB_SILENT_HU_result.json",
+    "silent_hu_decode": "docs/evidence/LAB_SILENT_HU_INIT_KNOCK_20261115.md"
   },
   "field_facts": [
-    "SPP UUID 0x1101 \u2192 RFCOMM; successful BCL on SCN 6 (session B) and briefly SCN 10 (session A)",
-    "HANDSHAKE HU\u2192Phone: version=5 instance_id=14 buffer=0x4000 (identical both sessions)",
-    "BCL DATA dest=0x0FA4 (4004) with DEADBEEF etch envelopes \u2014 FIELD CONFIRMED",
-    "CDS-like vehicle strings in etch payloads: sensors.SOCBattery, iva_MYV_LIGHT_INTERIOR*, _ENT_MTP_OFF",
-    "src=12 dominates HU\u2192Phone etch DATA (43/56 parsed headers) \u2014 matches lab cdsbaseapp src mapping"
+    "SPP UUID 0x1101 → RFCOMM; Session B holds BCL on SCN 6",
+    "Session A: SCN6 DM → SCN10 can carry BCL/Etch (failover) — not proof SCN10 is a second equal BCL SDP service",
+    "HANDSHAKE HU→Phone: version=5 instance_id=14 buffer=0x4000 (identical both sessions)",
+    "BCL DATA dest=0x0FA4 (4004) with DEADBEEF etch envelopes",
+    "CDS vehicle property traffic HU→Phone: sensors.SOCBattery*, iva_MYV_LIGHT_INTERIOR*, _ENT_MTP_OFF (fragments)",
+    "src=12 dominates DATA→4004 (43/56) — matches lab cdsbaseapp src mapping",
+    "HS→first DATAACK silent TX window = 3.012 s (Phone→HU invisible in oplus dumps)",
+    "667-byte UIH flood starts 143 ms after first DATA→4004"
+  ],
+  "lab_facts_crossref": [
+    "4-byte Phone TX against silent HU = 12345678 INIT (LAB FACT) — not Watchdog",
+    "56-byte Phone TX contains KNOCK UUID-serial 0e9b90c4-…56619 inside deadbeef envelope (strong INFERENCE: KNOCK-related; not BclPacket cmd=8 header)"
   ],
   "coverage_limits": {
     "session_b_scn6_uih_nonzero": 1088,
@@ -21,27 +31,30 @@
     "session_b_hex_bytes_captured": 2280,
     "hex_vs_uih_pct": 1.65,
     "data_hex_cap_bytes": 32,
-    "note": "oplus data_hex truncates at 32 bytes; dumps heavily under-sample UIH traffic (48\u00d7667 UIH vs 3 dumps)"
+    "note": "oplus data_hex truncates at 32 bytes; dumps heavily under-sample UIH traffic (48×667 UIH vs 3 dumps)"
   },
   "session_a": {
-    "connect_scn6": "rejected RFC_PORT_EVENT_DM / Start failed[12]",
+    "t0_connect_scn6": "10:20:35.279",
+    "scn6_dm": "10:20:35.584 RFC_PORT_EVENT_DM / Start failed[12]",
+    "scn6_prior_session": "NONE in this log — no SCN6 cleanup before DM (stale-session hypothesis unsupported here)",
+    "concurrent": "SCN4 RFCOMM traffic active; A2DP CLOSE ~1 s after DM",
+    "scn10_attempt1": "10:20:37.089 connect → 10:20:45.321 cleanup (~8 s) — no HS dump",
+    "scn10_attempt2": "10:20:48.873 connect → HS 10:20:49.112 → Etch dumps → cleanup 10:20:56.232",
     "fallback_scn": 10,
-    "hs": "10:20:49.112",
-    "first_data_4004": "10:20:53.218 (in multi-frame dump with DATAACK)",
-    "uih_667_count": 44,
-    "disconnect_scn10": "10:20:45.321 (slot cleanup) \u2014 short session; dumps only to ~10:20:55"
+    "uih_667_count_scn10": 44,
+    "claim": "FIELD FACT: after SCN6 DM, AAIdrive can open BCL/Etch on SCN10. UNKNOWN: SDP semantics of SCN10; why SCN6 DM."
   },
   "session_b_timeline": {
     "connectSocket_1101": "10:21:25.087 uid/pid=10479/25263",
     "SDP_remote_scn": 6,
     "RFCOMM_up": "10:21:25.427",
     "HS_v5_iid14": "10:21:28.459",
-    "first_DATAACK_count10": "10:21:31.471",
+    "first_DATAACK": "10:21:31.471 count=10",
     "first_DATA_src10_dest4004_len44": "10:21:31.972",
     "first_667_uih": "10:21:32.115",
     "cds_ascii_fragments_visible": "10:21:34.208+",
     "silent_tx_window_s": 3.012,
-    "silent_tx_note": "HS\u2192first DATAACK: Phone\u2192HU INIT/OPEN/SAS likely; not in oplus_send_data_to_app dumps"
+    "silent_tx_note": "FIELD FACT window only. Contents (INIT/SP/KNOCK/OPEN/SAS) = INFERENCE until btsnoop."
   },
   "etch": {
     "envelope": "DEADBEEF | u32BE(body_len) | body",
@@ -58,44 +71,11 @@
       "19": 1
     },
     "cds_string_prefixes": [
-      {
-        "prefix": "en",
-        "lens": [
-          11,
-          13,
-          15,
-          18
-        ],
-        "guess": "entertainment*"
-      },
-      {
-        "prefix": "dr",
-        "lens": [
-          20
-        ],
-        "guess": "driving*"
-      },
-      {
-        "prefix": "se",
-        "lens": [
-          24
-        ],
-        "guess": "sensors.*"
-      },
-      {
-        "prefix": "ve",
-        "lens": [
-          12
-        ],
-        "guess": "vehicle*"
-      },
-      {
-        "prefix": "na",
-        "lens": [
-          26
-        ],
-        "guess": "navigation*"
-      }
+      {"prefix": "en", "lens": [11, 13, 15, 18], "guess": "entertainment*"},
+      {"prefix": "dr", "lens": [20], "guess": "driving*"},
+      {"prefix": "se", "lens": [24], "guess": "sensors.*"},
+      {"prefix": "ve", "lens": [12], "guess": "vehicle*"},
+      {"prefix": "na", "lens": [26], "guess": "navigation*"}
     ],
     "confirmed_ascii": [
       "_ENT_MTP_OFF",
@@ -103,22 +83,51 @@
       "iva_MYV_LIGHT_INTERIOR*",
       "sensors.SOCBatter*",
       ":255.00}"
-    ]
+    ],
+    "cds_path_claim": "FIELD FACT: working session reaches CDS service path (property names + values). Full method/capability matrix still UNKNOWN."
   },
   "dataack": {
-    "model": "running byte/credit counter for BCL DATA flow (not only OPEN-ack)",
-    "notable_values": {
-      "8": "OPEN 8-byte frame ack (also seen session A)",
-      "10": "first post-HS ack",
-      "44": "matches small DATA payload size",
-      "4008": "0x0FA8 \u2014 recurring; 4004+4 candidate / channel-related"
-    }
+    "model": "UNKNOWN — values track received BCL unit sizes; not a monotonic running counter",
+    "bimmer_code_support": "BclCarLink DataAck(8 + packet.data.size) → ACK = full BCL frame size (header+payload)",
+    "fits_observed": {
+      "8": "OPEN 8-byte BCL frame",
+      "44": "8 + 36 etch body (small DATA plen=44)",
+      "10": "first post-HS — exact unit still open"
+    },
+    "open": [
+      "559 / 2695 / 3255 / 4008 — large BCL DATA sizes vs reassembled Etch message sizes (decide in btsnoop)",
+      "0x0FA8=4008 recurring — not proven as 4004+4 channel bookkeeping"
+    ],
+    "rejected_model": "cumulative/monotonic flow counter (values fall back)"
+  },
+  "patterns": {
+    "M29_silent_hu_timing": "Silent-HU INIT spacing irregular; cannot calibrate field M9 timers. 4-B=INIT LAB FACT.",
+    "M30_scn_failover": "SCN6 DM → SCN10 BCL/Etch possible. Not yet 'second equal BCL endpoint'.",
+    "M31_dataack": "Per-received-BCL-frame size ACK is best current model (Bimmer-backed); reassembly-ACK unproven.",
+    "M35_admission": "SCN6 vs SCN10 outcome is attempt/state dependent (same HU minutes apart).",
+    "M36_667_burst": "Capability/CDS bulk ~143 ms after first DATA→4004.",
+    "M37_src12": "src12 = CDS workhorse.",
+    "M38_44B_void": "0386….0286EDA8C9A687000001 = short RPC completion shape, not SAS challenge.",
+    "M40_silent_tx": "3.012 s HS→DATAACK is the Phone→HU bootstrap window."
   },
   "still_unknown": [
-    "Phone\u2192HU etch (sas_certificate / sas_login) \u2014 need btsnoop_hci",
-    "Full bodies of 667-byte frames (only mid-payload ASCII fragments in dumps)",
-    "Exact mapping of etch type-ids 0386******** to RHMI/CDS methods",
-    "Why SCN6 DM then SCN10 in session A; why SCN6 succeeds in session B"
+    "Phone→HU etch (sas_certificate / challenge / sas_login) — need btsnoop_hci",
+    "Full 667-byte etch bodies",
+    "Type-id 0386******** → method names",
+    "SDP record identity of SCN10",
+    "Why SCN6 returned DM in Session A (no prior SCN6 session in log)",
+    "DATAACK large-value semantics (frame vs reassembled message)"
   ],
-  "next": "Capture btsnoop_hci.log for the same working MyBMW/AAIdrive session (both directions)."
+  "rejected": [
+    "Silent-HU 4-B chunks = Watchdog",
+    "DATAACK = monotonic cumulative counter",
+    "Oplus text logs alone can recover SAS or full CDS trees"
+  ],
+  "next": {
+    "P0": "btsnoop_hci Session B (SCN6, both directions, filter off)",
+    "P0b": "btsnoop Session A (SCN6 DM + SCN10 failover + SDP context)",
+    "P1": "Reassemble full 667-B etch; map 0386 type-ids",
+    "P2": "Isolate SAS in the 3.012 s window",
+    "P3": "Proxy only after P0–P2"
+  }
 }
