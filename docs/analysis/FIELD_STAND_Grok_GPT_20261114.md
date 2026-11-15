@@ -67,10 +67,13 @@ UI-Grün ≠ SAS/RHMI/CDS.
 ## Soll-Sequenz nächster Feldtest
 
 ```
-1) KNOCK isolation: SP2|SP4 × knock yes|none → OPEN5001 → WD?
-2) MyBMW-owned btsnoop / Modell-D UI hold (passive 4004 watch)
-3) Nicht: weiterer OPEN4004-Spam ohne Owner-Kontext
+1) P0: btsnoop_hci MyBMW Session S-B (beide Richtungen, RFCOMM-Filter aus)
+      → blind ~3s Phone→HU / 56-B / OPEN / SAS / volle 667-B
+2) optional S-A (SCN6 DM → SCN10 + SDP)
+3) P1: KNOCK isolation / Modell-D — nach HCI
+4) Nicht: weiterer OPEN4004-Spam; HFP-als-Content depriorisieren
 ```
+Siehe `docs/evidence/FIELD_CONTENT_GATE_BOTTLENECK_20261115.md`.
 
 ## Architektur (Stand 2026-11-15)
 

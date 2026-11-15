@@ -1,9 +1,10 @@
 # Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
 
 ```yaml
-status: active · analyzer→F20 TRANSPORT FACT (2026-11-15 Hold/Burst) · Content gate after OPEN4004 · KNOCK isolation next
+status: active · TRANSPORT FACT · Content-gate locus = MyBMW ~3s Phone→HU after HS · P0 = btsnoop_hci S-B
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake / supra-idrive6-android-auto-2026-secondary]
-trigger: 2026-11-15 field Hold/Burst + GPT/Grok DATAACK/KNOCK revision (M48)
+trigger: 2026-11-15 OnePlus forensic + GPT bottleneck freeze (blind 3s / 56-B INFERENCE)
+content_gate_freeze: docs/evidence/FIELD_CONTENT_GATE_BOTTLENECK_20261115.md
 method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md · docs/analysis/LAB_DUMMY_ETCH_DEEP_20261114.md · docs/analysis/FIELD_STAND_Grok_GPT_20261114.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
 field_hold_insights: docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
 field_p0_freeze: docs/evidence/FIELD_P0_HOLD_FREEZE_20261115.md
@@ -110,10 +111,10 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 
 7z. ~~**P0 — Analyzer→F20 Transport**~~ → **FIELD FACT** `FIELD_P0_HOLD_*` / `FIELD_BURST_20261115` / `FIELD_VS_LAB_INSIGHTS_20261115`: SCN6 INIT→HS v5/14/0x4000→SP2|SP4→KNOCK→OPEN5001→WD **ohne** MyBMW; OPEN4004→ACK8→Stille; 0× unsolicited 4004 im Hold; **M48** DATAACK selektiv (kein ACK56 nach KNOCK).
 8. ~~**P0 — Etch/Layer E Lab**~~ → **DEEP** `FIELD_STAND_Grok_GPT_20261114`. Dummy Etch ≠ F20 Content; UI-Grün ≠ SAS.
-9. **P0 — MyBMW-owned btsnoop / Modell-D UI-Hold:** SAS/Etch-Bodies. **Kein** weiterer OPEN4004-Spam ohne Owner-Kontext. Oppo-Textlogs ersetzen HCI **nicht** (`ONEPLUS_BT_FORENSIC_20261115` §7/§20E) — `btsnoop_hci` Session S-B (+S-A) bleibt P0.
-9a. ~~**Phone BT-Logs 15.11. Abend+Vormittag Forensik**~~ → **DONE** `ONEPLUS_BT_FORENSIC_20261115` + `BMW_BT_CONNECTION_ANALYSIS_20261115`: HU page→ACL; ~3,0 s HS→DATAACK10; SCN6 golden / SCN10 nur S-A-Failover; 56 B Phone-TX vor ACK10; CDS 667 B ~+10 s ACL; SAS **NOT OBSERVED** in Textlogs.
+9. **P0 — `btsnoop_hci` MyBMW Session S-B** (beide Richtungen, RFCOMM-Filter **aus**); optional S-A. Einziger Weg, die ~3 s Phone→HU (56 B u. a.) und SAS zu sehen. Freeze: `FIELD_CONTENT_GATE_BOTTLENECK_20261115`. **Kein** weiterer OPEN4004-Spam.
+9a. ~~**Phone BT-Logs 15.11. Forensik**~~ → **DONE** `ONEPLUS_BT_FORENSIC_20261115`: Textlogs max. Ausbeute; 56 B = **STRONG INFERENCE** KNOCK (Länge/Timing), nicht FACT; HFP≠Content-Erklärung (keine Evidenz).
 9b. ~~**P0 — Wire-Client Freeze**~~ → **DONE** `FIELD_P0_HOLD_FREEZE_20261115`; `--knock none` ready.
-9c. **P1 — KNOCK-Isolation (nächster Feldlauf):** SP2/4 × KNOCK ja/nein → OPEN5001→WD? Dann KNOCK-ACK-Semantik.
+9c. **P1 — KNOCK-Isolation** (nach oder parallel zu HCI): SP2/4 × KNOCK ja/nein — **nicht** vor btsnoop priorisieren.
 10. **P1 — Admission 2×2 (M7/M33)** UA vs DM; Positive = ACL+AUTH+ENCRYPT + WD.
 11. ~~**P1 — Dummy-Feldsignatur**~~ → **SHIPPED** `--hu-profile f20`. Template: `LAB_DUMMY_F20_PROFILE_TEMPLATE`.
 11b. ~~**P1 — SAS-Probe-Stufen**~~ → **SHIPPED** `LAB_SAS_PROBE_STAGES_20261115`. **Korrektur:** DATAACK `8+len` für *quittierte* Frames; KNOCK-Ausnahme = M48.
@@ -170,4 +171,4 @@ Analyzer: **kein** Multi-Wochen-Umbau. Minimal (done/in tree): Klassifikation + 
 
 ## One-liner
 
-**Transport FACT (.87→F20 SCN6 HS/WD, no MyBMW). Content gate after OPEN4004 (ACK only). M48: no ACK56 after KNOCK. Next: KNOCK isolation + MyBMW btsnoop/Modell-D. B3 blocked. Dummy green ≠ F20 SAS.**
+**Transport FACT (.87). MyBMW: HS→~3s blind Phone→HU (56 B INFERENCE)→ACK10→Etch/CDS. Oppo logs exhausted. P0 = btsnoop_hci S-B. M48 KNOCK≠ACK56. No more OPEN4004 spam. B3 blocked.**

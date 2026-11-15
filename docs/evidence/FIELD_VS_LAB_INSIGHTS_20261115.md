@@ -62,24 +62,20 @@ Full corpus (8× `bluetooth_20261115_*.log`): [`ONEPLUS_BT_FORENSIC_20261115.md`
 |----------------|----------------------------|
 | HU pages Phone (incoming ACL) | n/a (we were phone-client on `.87`) |
 | HS→DATAACK10 silent ≈ **3.0 s** (Phone→HU blind) | Analyzer HS RTT ~0.3–0.5 s = **different plane** (no app stack) |
-| One `PORT_WriteDataCO: 56` before ACK10 | Matches wire_v5 KNOCK length (**INFERENCE** vs Lab envelope) |
-| SCN6 golden; SCN10 only S-A after DM | SDP ch6–10 still valid |
-| First HU DATA→4004 then 667 B CDS | Content opens under MyBMW — not under our OPEN4004-alone |
-| Textlogs ≠ HCI / SAS invisible | Reinforces P0 btsnoop |
+| One `PORT_WriteDataCO: 56` before ACK10 | Length+timing = **STRONG INFERENCE** KNOCK — **not** FACT (no hex) |
+| SCN6 golden; SCN10 only S-A after DM | equal endpoint still **UNKNOWN** |
+| First HU DATA→4004 then 667 B CDS | Content under MyBMW — not OPEN4004-alone |
+| Textlogs ≠ HCI / SAS invisible | Oppo corpus **exhausted** for Wire-Truth Phone→HU |
+| HFP explains content | **no evidence** — deprioritize |
 
-## Next (highest value when HU is back)
+**Bottleneck freeze:** [`FIELD_CONTENT_GATE_BOTTLENECK_20261115.md`](FIELD_CONTENT_GATE_BOTTLENECK_20261115.md) — transport ≠ content auth; locus = blind ~3 s after HS.
 
-1. **P0 btsnoop_hci** Session S-B (+S-A) — textlogs cannot replace Phone→HU bytes.  
-2. **KNOCK isolation** (tooling: `--knock none`):
+## Next (strict order)
 
-| SP | KNOCK | OPEN5001 | Goal |
-|----|-------|----------|------|
-| 2 | yes | yes | control |
-| 4 | yes | yes | control |
-| 2 | **no** | yes | decisive |
-| 4 | **no** | yes | decisive |
-
-3. Modell-D UI hold / MyBMW-owned capture — not more OPEN4004 spam.
+1. **P0 `btsnoop_hci` MyBMW S-B** (both dirs, RFCOMM filter off) — resolve INIT/SP/56-B/OPEN/SAS/667.  
+2. Optional S-A (SCN6 DM→SCN10 + SDP PDU).  
+3. **P1** KNOCK isolation (`--knock none`) / Modell-D — **after** HCI, not instead.  
+4. **Stop** OPEN4004-only analyzer spam.
 
 ## Lab facts that still stand
 
