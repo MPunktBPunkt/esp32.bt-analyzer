@@ -87,18 +87,19 @@
     "cds_path_claim": "FIELD FACT: working session reaches CDS service path (property names + values). Full method/capability matrix still UNKNOWN."
   },
   "dataack": {
-    "model": "UNKNOWN — values track received BCL unit sizes; not a monotonic running counter",
-    "bimmer_code_support": "BclCarLink DataAck(8 + packet.data.size) → ACK = full BCL frame size (header+payload)",
+    "model": "FIELD FACT — count = 8 + payload_len per received BCL frame (BclCarLink DataAck)",
+    "bimmer_code_support": "BclCarLink DataAck(8 + packet.data.size)",
     "fits_observed": {
-      "8": "OPEN 8-byte BCL frame",
-      "44": "8 + 36 etch body (small DATA plen=44)",
-      "10": "first post-HS — exact unit still open"
+      "8": "OPEN (len=0)",
+      "10": "8+2 SELECTPROTO",
+      "44": "8+36 KNOCK/small DATA",
+      "4008": "8+4000 BCL MAX_PAYLOAD fragment"
     },
-    "open": [
-      "559 / 2695 / 3255 / 4008 — large BCL DATA sizes vs reassembled Etch message sizes (decide in btsnoop)",
-      "0x0FA8=4008 recurring — not proven as 4004+4 channel bookkeeping"
-    ],
-    "rejected_model": "cumulative/monotonic flow counter (values fall back)"
+    "also_fits": "559/2695/3255 = 8 + large DATA payloads",
+    "rejected_models": [
+      "cumulative/monotonic flow counter",
+      "per-reassembled-Etch-message ACK"
+    ]
   },
   "patterns": {
     "M29_silent_hu_timing": "Silent-HU INIT spacing irregular; cannot calibrate field M9 timers. 4-B=INIT LAB FACT.",

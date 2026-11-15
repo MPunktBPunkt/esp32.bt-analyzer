@@ -63,12 +63,17 @@ Do **not** claim „SCN10 = second equal BCL endpoint“ without SDP from btsnoo
 
 ### M31 — DATAACK model
 
-**REJECTED:** monotonic running counter (values fall back: 2695→8→…→4008→3255).
+**FIELD FACT:** `count = 8 + payload_len` per received BCL frame
+(BclCarLink `DataAck(8 + packet.data.size)`).
 
-**Best current model (Bimmer-backed, not fully proven on wire):**
-`DataAck(8 + packet.data.size)` = ACK of each received BCL frame size.
-Fits 8 (OPEN) and 44 (small DATA). Large values (559, 2695, 4008, …) —
-frame vs reassembled Etch — **decide in btsnoop**.
+| count | meaning |
+|------:|---------|
+| 8 | OPEN |
+| 10 | 8+2 SELECTPROTO |
+| 44 | 8+36 KNOCK/small DATA |
+| 4008 | 8+4000 fragment limit |
+
+**REJECTED:** monotonic counter · per-reassembled-Etch-message ACK.
 
 ## Coverage trap
 

@@ -178,6 +178,10 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                     echo_watchdog=bool(args.echo_watchdog),
                     send_dataack=bool(args.send_dataack),
                     etch_stub=bool(args.etch_stub),
+                    sas_probe=str(getattr(args, "sas_probe", "challenge")),
+                    handshake_delay_s=float(
+                        getattr(args, "handshake_delay_s", 0.0) or 0.0
+                    ),
                     wd_pong_max=args.wd_pong_max,
                     wd_pong_skip_mod=args.wd_pong_skip_mod,
                     wd_pong_payload=(
@@ -247,6 +251,8 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
             "echo_watchdog": args.echo_watchdog,
             "send_dataack": args.send_dataack,
             "etch_stub": args.etch_stub,
+            "sas_probe": getattr(args, "sas_probe", None),
+            "handshake_delay_s": getattr(args, "handshake_delay_s", 0.0),
             "wd_pong_max": args.wd_pong_max,
             "wd_pong_skip_mod": args.wd_pong_skip_mod,
             "wd_pong_payload": args.wd_pong_payload or None,
@@ -505,6 +511,24 @@ def main() -> int:
             help="minimal SAS challenge + CDS stub on dest 4004 (default from profile)",
         )
         p.add_argument(
+            "--sas-probe",
+            choices=("none", "dataack", "challenge", "challenge_rhmi"),
+            default=None,
+            help=(
+                "adaptive Etch reply after OPEN 4004: "
+                "none=no etch; dataack=DATAACK only; "
+                "challenge=non-zero SAS challenge; "
+                "challenge_rhmi=challenge+RHMI stub (default from profile)"
+            ),
+        )
+        p.add_argument(
+            "--handshake-delay",
+            type=float,
+            default=None,
+            dest="handshake_delay_s",
+            help="seconds to wait before HS TX (field ~3.0; default 0 / profile)",
+        )
+        p.add_argument(
             "--wd-pong-max",
             type=int,
             default=0,
@@ -614,6 +638,10 @@ def main() -> int:
             ns.send_dataack = bool(prof["send_dataack"])
         if ns.etch_stub is None:
             ns.etch_stub = bool(prof["etch_stub"])
+        if getattr(ns, "sas_probe", None) is None:
+            ns.sas_probe = str(prof.get("sas_probe", "challenge"))
+        if getattr(ns, "handshake_delay_s", None) is None:
+            ns.handshake_delay_s = float(prof.get("handshake_delay_s", 0.0))
 
     _resolve_hu_profile(args)
 

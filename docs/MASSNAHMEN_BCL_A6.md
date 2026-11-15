@@ -108,6 +108,7 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 9b. **P0 — Wire-Client:** nach HS v5 SP4+KNOCK(UUID,1,7); WD 2.5 s; Echo erst nach OPEN 5001 (M29). Parallel: Phone HCI-Snoop + passiver Hold/btmon.
 10. **P1 — Admission 2×2 (M7/M33)** UA vs DM; Positive = ACL+AUTH+ENCRYPT + WD.
 11. ~~**P1 — Dummy-Feldsignatur**~~ → **SHIPPED** `--hu-profile f20` (v5/14/0x4000 + DATAACK + WD + Etch/SAS/CDS-Stub). Template: `LAB_DUMMY_F20_PROFILE_TEMPLATE`. Verify: Phone→Dummy jsonl auf `sas_challenge_tx` / `cds_property_*`.
+11b. ~~**P1 — SAS-Probe-Stufen + DATAACK 8+len Wire**~~ → **SHIPPED** 2026-11-15: `--sas-probe none|dataack|challenge|challenge_rhmi`, `--handshake-delay`, Feld-CDS, KNOCK-Envelope. Docs: `LAB_SAS_PROBE_STAGES_20261115`. Deployed `/tmp/bcl_dummy` on `.108`.
 11b. Lab: `LAB_PHONE_BCL_*` (v3/SP2) + `LAB_DUMMY_ETCH_*` (v5/SP4) + F20-profile stub.
 11c. Kein B3 / kein ch5-als-BCL; keine Negativ-Matrix ohne State-Kontrolle.
 11d. Bimmer-vs-Wire / CoD / WD-Docs belassen.

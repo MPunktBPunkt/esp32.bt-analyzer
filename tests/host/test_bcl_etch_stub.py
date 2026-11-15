@@ -71,6 +71,28 @@ class TestSasCdsStub(unittest.TestCase):
         self.assertEqual(len(replies), 1)
         self.assertEqual(stub.logins_seen, 1)
 
+    def test_open_probe_challenge_rhmi(self):
+        stub = EtchSasCdsStub(stage="challenge_rhmi")
+        replies = stub.on_etch_open(10)
+        self.assertEqual(len(replies), 2)
+        self.assertEqual(stub.challenges_sent, 1)
+        self.assertEqual(stub.rhmi_caps_sent, 1)
+
+    def test_stage_dataack_silent(self):
+        stub = EtchSasCdsStub(stage="dataack")
+        self.assertEqual(stub.on_etch_open(10), [])
+        pem = b"-----BEGIN PKCS7-----\nx\n-----END PKCS7-----\n"
+        msg = wrap_etch_body(pem)
+        self.assertEqual(stub.on_etch_data(10, msg), [])
+
+    def test_field_socbattery_cds(self):
+        stub = EtchSasCdsStub(stage="challenge")
+        stub.challenges_sent = 1
+        msg = wrap_etch_body(b"xxsensors.SOCBatteryyy")
+        replies = stub.on_etch_data(12, msg)
+        self.assertEqual(len(replies), 1)
+        self.assertIn("sensors.SOCBattery", stub.cds_hits)
+
 
 if __name__ == "__main__":
     unittest.main()

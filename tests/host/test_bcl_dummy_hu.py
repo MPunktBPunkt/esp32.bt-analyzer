@@ -17,13 +17,18 @@ from bcl_dummy_hu import (  # noqa: E402
     apply_hu_profile,
     build_dataack,
     build_handshake,
+    dataack_count_for_frame,
     summarize,
 )
-from bcl_etch_stub import wrap_etch_body  # noqa: E402
+from bcl_etch_stub import (  # noqa: E402
+    KNOCK_UUID_SERIAL,
+    wrap_etch_body,
+)
 from bcl_framer import (  # noqa: E402
     DEST_ETCH_DESK,
     DEST_WATCHDOG_DESK,
     INIT_MAGIC,
+    BclFrame,
     BclFramer,
     build_synthetic_frame,
 )
@@ -82,14 +87,14 @@ class TestDummyHu(unittest.TestCase):
         p = apply_hu_profile("f20")
         hu = DummyHuSession(**{k: p[k] for k in (
             "version", "instance_id", "buffer_size", "echo_watchdog",
-            "send_dataack", "etch_stub",
+            "send_dataack", "etch_stub", "sas_probe", "handshake_delay_s",
         )})
         (hs,) = hu.on_bytes(INIT_MAGIC)
         self.assertEqual(hs, build_handshake(5, 14, 0x4000))
         self.assertEqual(HU_PROFILES["f20"]["version"], 5)
 
     def test_dataack_open_is_8(self):
-        hu = DummyHuSession(send_dataack=True)
+        hu = DummyHuSession(send_dataack=True, sas_probe="dataack")
         open_fr = build_synthetic_frame(CMD_OPEN, 10, DEST_ETCH_DESK)
         replies = hu.on_bytes(open_fr)
         self.assertEqual(replies[0], build_dataack(8))
@@ -97,8 +102,29 @@ class TestDummyHu(unittest.TestCase):
         self.assertEqual(fr.cmd, CMD_DATAACK)
         self.assertEqual(fr.payload, b"\x00\x00\x00\x08")
 
+    def test_dataack_8_plus_len_wire_values(self):
+        # FIELD: 10=SP, 44=KNOCK-ish, 4008=8+4000 fragment limit
+        self.assertEqual(
+            dataack_count_for_frame(
+                BclFrame(5, 0, 0, 2, b"\x00\x04", b"")
+            ),
+            10,
+        )
+        self.assertEqual(
+            dataack_count_for_frame(
+                BclFrame(8, 0, 0, 36, bytes(36), b"")
+            ),
+            44,
+        )
+        self.assertEqual(
+            dataack_count_for_frame(
+                BclFrame(2, 12, DEST_ETCH_DESK, 4000, bytes(4000), b"")
+            ),
+            4008,
+        )
+
     def test_dataack_wd_then_echo(self):
-        hu = DummyHuSession(echo_watchdog=True, send_dataack=True)
+        hu = DummyHuSession(echo_watchdog=True, send_dataack=True, sas_probe="none")
         ping = PhoneClientSession().watchdog_ping()
         replies = hu.on_bytes(ping)
         self.assertEqual(len(replies), 2)
@@ -108,7 +134,7 @@ class TestDummyHu(unittest.TestCase):
         self.assertEqual(echo.dest, 1)
 
     def test_etch_stub_challenge_after_pkcs7(self):
-        hu = DummyHuSession(etch_stub=True, send_dataack=True)
+        hu = DummyHuSession(etch_stub=True, send_dataack=True, sas_probe="challenge")
         pem = b"-----BEGIN PKCS7-----\nabc\n-----END PKCS7-----\n"
         body = wrap_etch_body(b"\x00" * 16 + pem)
         data = build_synthetic_frame(2, 10, DEST_ETCH_DESK, body)
@@ -121,6 +147,42 @@ class TestDummyHu(unittest.TestCase):
         self.assertEqual(len(etch_tx), 1)
         self.assertTrue(any(e["event"] == "sas_challenge_tx" for e in hu.events))
 
+    def test_sas_probe_none_silent_on_open(self):
+        hu = DummyHuSession(send_dataack=True, sas_probe="none")
+        open_fr = build_synthetic_frame(CMD_OPEN, 10, DEST_ETCH_DESK)
+        replies = hu.on_bytes(open_fr)
+        self.assertEqual(replies, [build_dataack(8)])
+        self.assertFalse(any(e["event"] == "sas_challenge_tx" for e in hu.events))
+
+    def test_sas_probe_challenge_on_open(self):
+        hu = DummyHuSession(send_dataack=True, sas_probe="challenge")
+        open_fr = build_synthetic_frame(CMD_OPEN, 10, DEST_ETCH_DESK)
+        replies = hu.on_bytes(open_fr)
+        frames = frames_of(replies)
+        self.assertEqual(frames[0].cmd, CMD_DATAACK)
+        etch_tx = [f for f in frames if f.cmd == 2]
+        self.assertEqual(len(etch_tx), 1)
+        self.assertTrue(any(e["event"] == "sas_challenge_tx" for e in hu.events))
+
+    def test_sas_probe_challenge_rhmi_on_open(self):
+        hu = DummyHuSession(send_dataack=True, sas_probe="challenge_rhmi")
+        open_fr = build_synthetic_frame(CMD_OPEN, 10, DEST_ETCH_DESK)
+        frames = frames_of(hu.on_bytes(open_fr))
+        etch_tx = [f for f in frames if f.cmd == 2]
+        self.assertEqual(len(etch_tx), 2)
+        self.assertTrue(any(e["event"] == "rhmi_capabilities_tx" for e in hu.events))
+
+    def test_knock_envelope_accepted(self):
+        hu = DummyHuSession(sas_probe="none")
+        blob = (
+            bytes.fromhex("deadbeefdead010000002c0101")
+            + KNOCK_UUID_SERIAL
+            + b"\x00"
+            + bytes.fromhex("deadbeefbeef")
+        )
+        self.assertEqual(hu.on_bytes(blob), [])
+        self.assertTrue(hu.knocked)
+        self.assertTrue(any(e["event"] == "knock_envelope_rx" for e in hu.events))
 
 class TestPhoneClientOrder(unittest.TestCase):
     def test_version3_skips_selectproto(self):

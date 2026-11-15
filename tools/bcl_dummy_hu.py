@@ -13,15 +13,24 @@ Desk sequence (BclCarLink BclClientTransport, not own BMW wire FACT):
 
 Lab F20 profile (FIELD_STAND / M30–M44): HS v5/iid14/buf 0x4000, DATAACK on RX,
 WD echo, optional Etch/SAS/CDS stub on dest 4004.
+
+DATAACK (FIELD 2026-11-15 wire): count = 8 + payload_len per received BCL frame
+  (10=SP, 44=KNOCK-body, 4008=8+4000 fragment limit). Not a cumulative counter.
+SAS probe stages: none | dataack | challenge | challenge_rhmi (see bcl_etch_stub).
 """
 
 from __future__ import annotations
 
 import struct
+import time
 from dataclasses import dataclass, field
 from typing import Any
 
-from bcl_etch_stub import EtchSasCdsStub
+from bcl_etch_stub import (
+    SAS_PROBE_STAGES,
+    EtchSasCdsStub,
+    looks_like_knock_envelope,
+)
 from bcl_framer import (
     DEST_ETCH_DESK,
     DEST_WATCHDOG_DESK,
@@ -64,6 +73,8 @@ HU_PROFILES: dict[str, dict[str, Any]] = {
         "echo_watchdog": False,
         "send_dataack": False,
         "etch_stub": False,
+        "sas_probe": "none",
+        "handshake_delay_s": 0.0,
     },
     "f20": {
         "version": 5,
@@ -72,6 +83,8 @@ HU_PROFILES: dict[str, dict[str, Any]] = {
         "echo_watchdog": True,
         "send_dataack": True,
         "etch_stub": True,
+        "sas_probe": "challenge",
+        "handshake_delay_s": 0.0,
     },
 }
 
@@ -83,10 +96,19 @@ def build_handshake(version: int, instance_id: int, buffer_size: int) -> bytes:
 
 
 def build_dataack(byte_count: int) -> bytes:
-    """F20/BclCarLink: DATAACK src=0 dest=0 payload u32BE(8+payload_len)."""
+    """DATAACK src=0 dest=0 payload u32BE(count).
+
+    Wire/BclCarLink: count = 8 + packet.data.size (full BCL frame size).
+    Confirmed on F20: 10=8+2, 44=8+36, 4008=8+4000 (MAX_PAYLOAD).
+    """
     return build_synthetic_frame(
         CMD_DATAACK, 0, 0, struct.pack(">I", int(byte_count))
     )
+
+
+def dataack_count_for_frame(frame: BclFrame) -> int:
+    """Canonical ACK value for one received BCL frame."""
+    return 8 + len(frame.payload)
 
 
 def parse_handshake(frame: BclFrame) -> dict | None:
@@ -186,6 +208,10 @@ class DummyHuSession(_Session):
     echo_watchdog: bool = False
     send_dataack: bool = False
     etch_stub: bool = False
+    # SAS adaptive probe: none|dataack|challenge|challenge_rhmi
+    sas_probe: str = "challenge"
+    # Field HS arrives ~3.0 s after RFCOMM-up; 0 = immediate (unit tests).
+    handshake_delay_s: float = 0.0
     # C-L12 policies (only when echo_watchdog):
     #   wd_pong_max: stop echoing after N pongs (0 = unlimited)
     #   wd_pong_skip_mod: if >1, echo only when ping_index % mod == 1 (1-based)
@@ -204,10 +230,44 @@ class DummyHuSession(_Session):
     etch: EtchSasCdsStub | None = None
 
     def __post_init__(self) -> None:
-        if self.etch_stub and self.etch is None:
-            self.etch = EtchSasCdsStub(enabled=True)
+        stage = (self.sas_probe or "challenge").lower()
+        if stage not in SAS_PROBE_STAGES:
+            raise ValueError(
+                f"unknown sas_probe {self.sas_probe!r}; choose {list(SAS_PROBE_STAGES)}"
+            )
+        self.sas_probe = stage
+        # Stage none ⇒ no etch replies; dataack stage keeps stub for silent observe.
+        want_etch = self.etch_stub or stage in (
+            "dataack",
+            "challenge",
+            "challenge_rhmi",
+        )
+        if stage == "none":
+            want_etch = False
+        if want_etch and self.etch is None:
+            self.etch = EtchSasCdsStub(
+                enabled=True,
+                stage=stage if stage != "dataack" else "dataack",  # type: ignore[arg-type]
+            )
+        elif self.etch is not None:
+            self.etch.stage = stage if stage != "none" else "none"  # type: ignore[assignment]
+            self.etch.enabled = stage != "none"
+
+    def _note_knock_envelope(self, data: bytes) -> None:
+        if not looks_like_knock_envelope(data):
+            return
+        self.knocked = True
+        self.events.append(
+            {
+                "event": "knock_envelope_rx",
+                "n": len(data),
+                "hex": data[:64].hex(),
+                "note": "deadbeef+UUID serial — not BclPacket cmd=8",
+            }
+        )
 
     def on_bytes(self, data: bytes) -> list[bytes]:
+        self._note_knock_envelope(data)
         inits, frames = self._parse(data, "rx")
         if self.observe_only:
             self.events.append(
@@ -216,6 +276,8 @@ class DummyHuSession(_Session):
             return []
         replies: list[bytes] = []
         if inits and not self.handshake_sent:
+            if self.handshake_delay_s > 0:
+                time.sleep(float(self.handshake_delay_s))
             replies.append(
                 build_handshake(self.version, self.instance_id, self.buffer_size)
             )
@@ -226,18 +288,19 @@ class DummyHuSession(_Session):
                     "version": self.version,
                     "instance_id": self.instance_id,
                     "buffer_size": self.buffer_size,
+                    "delay_s": self.handshake_delay_s,
                 }
             )
         for fr in frames:
             if self.send_dataack and fr.cmd != CMD_DATAACK:
-                # Mirror F20/BclCarLink: ack header+payload byte count.
-                n = 8 + len(fr.payload)
+                n = dataack_count_for_frame(fr)
                 replies.append(build_dataack(n))
                 self.dataack_sent += 1
                 self.events.append(
                     {
                         "event": "dataack_tx",
                         "acked": n,
+                        "payload_len": len(fr.payload),
                         "for_cmd": fr.cmd,
                         "for_cmd_name": cmd_desk_name(fr.cmd),
                     }
@@ -246,6 +309,17 @@ class DummyHuSession(_Session):
                 self.knocked = True
                 self.last_knock = parse_knock(fr.payload)
                 self.events.append({"event": "knock_rx", **self.last_knock})
+            elif fr.cmd == CMD_DATA and looks_like_knock_envelope(fr.payload):
+                self.knocked = True
+                self.events.append(
+                    {
+                        "event": "knock_envelope_rx",
+                        "via": "DATA",
+                        "src": fr.src,
+                        "dest": fr.dest,
+                        "len": fr.length,
+                    }
+                )
             elif fr.cmd == CMD_SELECTPROTO and len(fr.payload) == 2:
                 self.selected_proto = struct.unpack(">H", fr.payload)[0]
                 self.events.append(
@@ -257,8 +331,28 @@ class DummyHuSession(_Session):
                         "event": "etch_open_rx",
                         "src": fr.src,
                         "dest": fr.dest,
+                        "sas_probe": self.sas_probe,
                     }
                 )
+                if self.etch is not None:
+                    for body in self.etch.on_etch_open(fr.src):
+                        replies.append(
+                            build_synthetic_frame(
+                                CMD_DATA, DEST_ETCH_DESK, fr.src, body
+                            )
+                        )
+                        self.events.append(
+                            {
+                                "event": "etch_data_tx",
+                                "src": DEST_ETCH_DESK,
+                                "dest": fr.src,
+                                "len": len(body),
+                                "payload_hex": body[:64].hex(),
+                                "reason": "open_probe",
+                            }
+                        )
+                    while self.etch.events:
+                        self.events.append(self.etch.events.pop(0))
             elif fr.cmd == CMD_CLOSE and fr.dest == DEST_ETCH_DESK:
                 self.events.append(
                     {"event": "etch_close_rx", "src": fr.src, "dest": fr.dest}
@@ -409,6 +503,9 @@ def summarize(events: list[dict]) -> dict:
             "dataack_tx",
             "sas_challenge_tx",
             "cds_property_tx",
+            "rhmi_capabilities_tx",
+            "knock_envelope_rx",
+            "etch_open_probe",
         ):
             out[ev["event"]] = out.get(ev["event"], 0) + 1
     return out
