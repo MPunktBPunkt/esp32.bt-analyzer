@@ -1,0 +1,1013 @@
+{
+  "session_id": "FIELD_B2A_TX_20261115T131825Z",
+  "gate": "B2-A-TX",
+  "source": "field",
+  "origin": "f20",
+  "ts_utc": "20261115T131911Z",
+  "event_count": 88,
+  "events_head": [
+    {
+      "ts": 1794748705.892,
+      "event": "session_start",
+      "session_id": "FIELD_B2A_TX_20261115T131825Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": true,
+      "origin": "f20",
+      "source": "field",
+      "peer": "D4:36:39:CF:E1:B5",
+      "channel": 6
+    },
+    {
+      "ts": 1794748706.389,
+      "event": "rfcomm_connected",
+      "session_id": "FIELD_B2A_TX_20261115T131825Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": true,
+      "origin": "f20",
+      "source": "field",
+      "peer": "D4:36:39:CF:E1:B5",
+      "channel": 6
+    },
+    {
+      "ts": 1794748706.39,
+      "event": "tx_bytes",
+      "n": 4,
+      "hex": "12345678",
+      "kind": "session_init",
+      "init_i": 1,
+      "session_id": "FIELD_B2A_TX_20261115T131825Z"
+    },
+    {
+      "ts": 1794748706.665,
+      "event": "rx_bytes",
+      "n": 16,
+      "hex": "00040000000000080005000e00004000",
+      "rx_total": 16,
+      "session_id": "FIELD_B2A_TX_20261115T131825Z"
+    },
+    {
+      "ts": 1794748706.665,
+      "event": "handshake_rx",
+      "version": 5,
+      "instance_id": 14,
+      "buffer_size": 16384,
+      "session_id": "FIELD_B2A_TX_20261115T131825Z"
+    }
+  ],
+  "events_tail": [
+    {
+      "ts": 1794748745.578,
+      "event": "frame",
+      "dir": "rx",
+      "cmd": 2,
+      "cmd_name": "DATA",
+      "src": 5001,
+      "dest": 5001,
+      "len": 4,
+      "payload_hex": "13371337",
+      "session_id": "FIELD_B2A_TX_20261115T131825Z"
+    },
+    {
+      "ts": 1794748747.982,
+      "event": "watchdog_ping",
+      "session_id": "FIELD_B2A_TX_20261115T131825Z",
+      "interval_s": 2.5
+    },
+    {
+      "ts": 1794748748.142,
+      "event": "rx_bytes",
+      "n": 24,
+      "hex": "00060000000000040000000c000213891389000413371337",
+      "rx_total": 448,
+      "session_id": "FIELD_B2A_TX_20261115T131825Z"
+    },
+    {
+      "ts": 1794748748.142,
+      "event": "frame",
+      "dir": "rx",
+      "cmd": 6,
+      "cmd_name": "DATAACK",
+      "src": 0,
+      "dest": 0,
+      "len": 4,
+      "payload_hex": "0000000c",
+      "session_id": "FIELD_B2A_TX_20261115T131825Z"
+    },
+    {
+      "ts": 1794748748.142,
+      "event": "frame",
+      "dir": "rx",
+      "cmd": 2,
+      "cmd_name": "DATA",
+      "src": 5001,
+      "dest": 5001,
+      "len": 4,
+      "payload_hex": "13371337",
+      "session_id": "FIELD_B2A_TX_20261115T131825Z"
+    },
+    {
+      "ts": 1794748750.545,
+      "event": "watchdog_ping",
+      "session_id": "FIELD_B2A_TX_20261115T131825Z",
+      "interval_s": 2.5
+    },
+    {
+      "ts": 1794748750.697,
+      "event": "rx_bytes",
+      "n": 24,
+      "hex": "00060000000000040000000c000213891389000413371337",
+      "rx_total": 472,
+      "session_id": "FIELD_B2A_TX_20261115T131825Z"
+    },
+    {
+      "ts": 1794748750.697,
+      "event": "frame",
+      "dir": "rx",
+      "cmd": 6,
+      "cmd_name": "DATAACK",
+      "src": 0,
+      "dest": 0,
+      "len": 4,
+      "payload_hex": "0000000c",
+      "session_id": "FIELD_B2A_TX_20261115T131825Z"
+    },
+    {
+      "ts": 1794748750.697,
+      "event": "frame",
+      "dir": "rx",
+      "cmd": 2,
+      "cmd_name": "DATA",
+      "src": 5001,
+      "dest": 5001,
+      "len": 4,
+      "payload_hex": "13371337",
+      "session_id": "FIELD_B2A_TX_20261115T131825Z"
+    },
+    {
+      "ts": 1794748751.499,
+      "event": "phone_done",
+      "active": true,
+      "handshake": true,
+      "handshake_fields": {
+        "version": 5,
+        "instance_id": 14,
+        "buffer_size": 16384
+      },
+      "inits_sent": 1,
+      "rx_silence_s": 1.0,
+      "rx_total": 472,
+      "bcl_classification": "BCL_FIELD_CONFIRMED",
+      "classification": {
+        "bcl_classification": "BCL_FIELD_CONFIRMED",
+        "magic_count": 0,
+        "magic_offsets": [],
+        "frames": [
+          {
+            "cmd": 4,
+            "cmd_name": "HANDSHAKE",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 8,
+            "payload_hex": "0005000e00004000",
+            "raw_hex": "00040000000000080005000e00004000"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000a",
+            "raw_hex": "00060000000000040000000a"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "00000008",
+            "raw_hex": "000600000000000400000008"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          },
+          {
+            "cmd": 6,
+            "cmd_name": "DATAACK",
+            "src": 0,
+            "dest": 0,
+            "dest_label": null,
+            "len": 4,
+            "payload_hex": "0000000c",
+            "raw_hex": "00060000000000040000000c"
+          },
+          {
+            "cmd": 2,
+            "cmd_name": "DATA",
+            "src": 5001,
+            "dest": 5001,
+            "dest_label": "Watchdog",
+            "len": 4,
+            "payload_hex": "13371337",
+            "raw_hex": "000213891389000413371337"
+          }
+        ],
+        "handshake": {
+          "version": 5,
+          "instance_id": 14,
+          "buffer_size": 16384,
+          "src": 0,
+          "dest": 0
+        },
+        "framer_error": null,
+        "incomplete": false,
+        "bytes_len": 472,
+        "payload_hex_head": "00040000000000080005000e0000400000060000000000040000000a00060000000000040000000800060000000000040000000c000213891389000413371337",
+        "session_inits_at_boundary": 0
+      },
+      "session_id": "FIELD_B2A_TX_20261115T131825Z",
+      "mode": "B2-A-TX",
+      "tx_allowed": true,
+      "bcl_tx_enabled": true,
+      "bcl_tx_mode": "controlled_init",
+      "init_count": 3,
+      "full_client": true,
+      "origin": "f20",
+      "source": "field",
+      "peer": "D4:36:39:CF:E1:B5",
+      "channel": 6
+    }
+  ],
+  "channel": 6,
+  "tx_allowed": true,
+  "bcl_tx_enabled": true,
+  "bcl_tx_mode": "controlled_init",
+  "init_count": 3,
+  "full_client": true,
+  "selectproto": 4,
+  "wd_interval": 2.5,
+  "wire_open5001": true,
+  "open_etch": false,
+  "etch_src": 10,
+  "bcl_classification": "BCL_FIELD_CONFIRMED",
+  "classification": {
+    "bcl_classification": "BCL_FIELD_CONFIRMED",
+    "magic_count": 0,
+    "magic_offsets": [],
+    "frames": [
+      {
+        "cmd": 4,
+        "cmd_name": "HANDSHAKE",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 8,
+        "payload_hex": "0005000e00004000",
+        "raw_hex": "00040000000000080005000e00004000"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000a",
+        "raw_hex": "00060000000000040000000a"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "00000008",
+        "raw_hex": "000600000000000400000008"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      },
+      {
+        "cmd": 6,
+        "cmd_name": "DATAACK",
+        "src": 0,
+        "dest": 0,
+        "dest_label": null,
+        "len": 4,
+        "payload_hex": "0000000c",
+        "raw_hex": "00060000000000040000000c"
+      },
+      {
+        "cmd": 2,
+        "cmd_name": "DATA",
+        "src": 5001,
+        "dest": 5001,
+        "dest_label": "Watchdog",
+        "len": 4,
+        "payload_hex": "13371337",
+        "raw_hex": "000213891389000413371337"
+      }
+    ],
+    "handshake": {
+      "version": 5,
+      "instance_id": 14,
+      "buffer_size": 16384,
+      "src": 0,
+      "dest": 0
+    },
+    "framer_error": null,
+    "incomplete": false,
+    "bytes_len": 472,
+    "payload_hex_head": "00040000000000080005000e0000400000060000000000040000000a00060000000000040000000800060000000000040000000c000213891389000413371337",
+    "session_inits_at_boundary": 0
+  },
+  "tx_bytes_events": 4,
+  "tx_blocked_events": 0
+}

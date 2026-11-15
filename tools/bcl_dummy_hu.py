@@ -518,9 +518,12 @@ class PhoneClientSession(_Session):
                 continue
             self.handshake = hs
             sp = self.selectproto
-            # Auto wire SP4 when HS v5+ and caller left desk default 3.
+            # Auto wire SP4+UUID knock when HS v5+ and caller left desk default 3.
             if sp == 3 and hs["version"] >= 5:
                 sp = 4
+                self.knock_payload = self.knock_payload or "wire_v5"
+            # Explicit SP4+ also gets wire knock unless caller overrode knock_payload.
+            elif sp is not None and int(sp) >= 4:
                 self.knock_payload = self.knock_payload or "wire_v5"
             if sp is not None and (hs["version"] > 3 or sp != 3):
                 out.append(

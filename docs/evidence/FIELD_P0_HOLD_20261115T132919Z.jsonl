@@ -1,0 +1,331 @@
+{"ts": 1794749361.852, "event": "session_start", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "mode": "B2-A-TX", "tx_allowed": true, "bcl_tx_enabled": true, "bcl_tx_mode": "controlled_init", "init_count": 3, "full_client": true, "origin": "f20", "source": "field", "peer": "D4:36:39:CF:E1:B5", "channel": 6}
+{"ts": 1794749362.341, "event": "rfcomm_connected", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "mode": "B2-A-TX", "tx_allowed": true, "bcl_tx_enabled": true, "bcl_tx_mode": "controlled_init", "init_count": 3, "full_client": true, "origin": "f20", "source": "field", "peer": "D4:36:39:CF:E1:B5", "channel": 6}
+{"ts": 1794749362.341, "event": "tx_bytes", "n": 4, "hex": "12345678", "kind": "session_init", "init_i": 1, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.645, "event": "rx_bytes", "n": 16, "hex": "00040000000000080005000e00004000", "rx_total": 16, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.646, "event": "handshake_rx", "version": 5, "instance_id": 14, "buffer_size": 16384, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.646, "event": "tx_bytes", "n": 10, "hex": "00050000000000020004", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.646, "event": "tx_bytes", "n": 56, "hex": "0008000000000030002430653962393063342d636265312d343734322d383238332d64333637653961353636313900000000000000010007", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.646, "event": "tx_bytes", "n": 8, "hex": "0001138913890000", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.646, "event": "frame", "dir": "rx", "cmd": 4, "cmd_name": "HANDSHAKE", "src": 0, "dest": 0, "len": 8, "payload_hex": "0005000e00004000", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.646, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749362.646031}
+{"ts": 1794749362.747, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000a", "rx_total": 28, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.748, "event": "hu_dataack", "ack_n": 10, "expect_formula": "8+len", "payload_hex": "0000000a", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.748, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000a", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.952, "event": "rx_bytes", "n": 12, "hex": "000600000000000400000008", "rx_total": 40, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.952, "event": "hu_dataack", "ack_n": 8, "expect_formula": "8+len", "payload_hex": "00000008", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.953, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "00000008", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.953, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 52, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.953, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.953, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.954, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 64, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.954, "event": "watchdog_echo_rtt", "rtt_ms": 308.4, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749362.954, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749365.158, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749365.1574726}
+{"ts": 1794749365.409, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 88, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749365.409, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749365.409, "event": "watchdog_echo_rtt", "rtt_ms": 252.0, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749365.409, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749365.409, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749367.813, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749367.8132107}
+{"ts": 1794749367.971, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 112, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749367.971, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749367.971, "event": "watchdog_echo_rtt", "rtt_ms": 157.4, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749367.971, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749367.971, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749370.374, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749370.373992}
+{"ts": 1794749370.53, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 136, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749370.53, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749370.53, "event": "watchdog_echo_rtt", "rtt_ms": 155.7, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749370.53, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749370.53, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749372.933, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749372.9328744}
+{"ts": 1794749373.097, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 160, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749373.097, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749373.097, "event": "watchdog_echo_rtt", "rtt_ms": 164.4, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749373.097, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749373.097, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749375.5, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749375.5003104}
+{"ts": 1794749375.652, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 172, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749375.652, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749375.652, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749375.655, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 184, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749375.655, "event": "watchdog_echo_rtt", "rtt_ms": 154.7, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749375.655, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749378.058, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749378.058038}
+{"ts": 1794749378.211, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 196, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749378.211, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749378.211, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749378.212, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 208, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749378.212, "event": "watchdog_echo_rtt", "rtt_ms": 154.0, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749378.212, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749380.615, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749380.6153631}
+{"ts": 1794749380.778, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 232, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749380.778, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749380.778, "event": "watchdog_echo_rtt", "rtt_ms": 162.9, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749380.778, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749380.778, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749383.181, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749383.1813993}
+{"ts": 1794749383.332, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 256, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749383.332, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749383.332, "event": "watchdog_echo_rtt", "rtt_ms": 150.7, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749383.332, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749383.332, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749385.735, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749385.735288}
+{"ts": 1794749385.896, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 280, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749385.896, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749385.896, "event": "watchdog_echo_rtt", "rtt_ms": 160.6, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749385.896, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749385.896, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749388.299, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749388.299021}
+{"ts": 1794749388.457, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 304, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749388.457, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749388.457, "event": "watchdog_echo_rtt", "rtt_ms": 158.4, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749388.457, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749388.457, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749390.861, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749390.860466}
+{"ts": 1794749391.012, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 328, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749391.012, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749391.012, "event": "watchdog_echo_rtt", "rtt_ms": 151.3, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749391.012, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749391.012, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749393.415, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749393.4149783}
+{"ts": 1794749393.578, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 340, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749393.578, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749393.578, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749393.578, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 352, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749393.578, "event": "watchdog_echo_rtt", "rtt_ms": 163.1, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749393.578, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749395.982, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749395.981717}
+{"ts": 1794749396.138, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 376, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749396.138, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749396.138, "event": "watchdog_echo_rtt", "rtt_ms": 156.6, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749396.138, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749396.138, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749398.542, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749398.5417695}
+{"ts": 1794749398.896, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 388, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749398.896, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749398.896, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749398.901, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 400, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749398.901, "event": "watchdog_echo_rtt", "rtt_ms": 358.9, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749398.901, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749401.104, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749401.1036987}
+{"ts": 1794749401.455, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 424, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749401.455, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749401.455, "event": "watchdog_echo_rtt", "rtt_ms": 350.9, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749401.455, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749401.455, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749403.657, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749403.6574616}
+{"ts": 1794749403.816, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 436, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749403.816, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749403.816, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749403.921, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 448, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749403.921, "event": "watchdog_echo_rtt", "rtt_ms": 263.9, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749403.921, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749406.324, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749406.3241587}
+{"ts": 1794749406.575, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 472, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749406.575, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749406.575, "event": "watchdog_echo_rtt", "rtt_ms": 250.8, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749406.575, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749406.575, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749408.978, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749408.9782763}
+{"ts": 1794749409.237, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 496, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749409.237, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749409.237, "event": "watchdog_echo_rtt", "rtt_ms": 258.7, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749409.237, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749409.237, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749411.64, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749411.6401813}
+{"ts": 1794749411.804, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 508, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749411.804, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749411.804, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749411.808, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 520, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749411.808, "event": "watchdog_echo_rtt", "rtt_ms": 167.9, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749411.808, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749414.211, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749414.210951}
+{"ts": 1794749414.362, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 532, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749414.362, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749414.362, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749414.362, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 544, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749414.362, "event": "watchdog_echo_rtt", "rtt_ms": 151.5, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749414.363, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749416.766, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749416.7657812}
+{"ts": 1794749416.922, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 556, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749416.922, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749416.922, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749416.926, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 568, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749416.926, "event": "watchdog_echo_rtt", "rtt_ms": 160.2, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749416.926, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749419.33, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749419.329473}
+{"ts": 1794749419.487, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 580, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749419.487, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749419.487, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749419.487, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 592, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749419.487, "event": "watchdog_echo_rtt", "rtt_ms": 157.7, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749419.487, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749421.89, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749421.8902087}
+{"ts": 1794749422.046, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 616, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749422.046, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749422.046, "event": "watchdog_echo_rtt", "rtt_ms": 155.9, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749422.046, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749422.046, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749424.449, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749424.4489768}
+{"ts": 1794749424.597, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 640, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749424.597, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749424.597, "event": "watchdog_echo_rtt", "rtt_ms": 147.9, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749424.597, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749424.597, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749427.001, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749427.000502}
+{"ts": 1794749427.165, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 664, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749427.165, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749427.165, "event": "watchdog_echo_rtt", "rtt_ms": 164.7, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749427.165, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749427.165, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749429.569, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749429.568578}
+{"ts": 1794749429.724, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 688, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749429.725, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749429.725, "event": "watchdog_echo_rtt", "rtt_ms": 156.1, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749429.725, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749429.725, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749432.128, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749432.1274793}
+{"ts": 1794749432.282, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 712, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749432.282, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749432.282, "event": "watchdog_echo_rtt", "rtt_ms": 154.8, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749432.282, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749432.282, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749434.685, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749434.685274}
+{"ts": 1794749434.848, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 724, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749434.848, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749434.848, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749434.849, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 736, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749434.849, "event": "watchdog_echo_rtt", "rtt_ms": 163.3, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749434.849, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749437.252, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749437.2516758}
+{"ts": 1794749437.399, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 760, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749437.4, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749437.4, "event": "watchdog_echo_rtt", "rtt_ms": 147.9, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749437.4, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749437.4, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749439.803, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749439.8030207}
+{"ts": 1794749439.969, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 772, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749439.969, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749439.969, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749439.972, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 784, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749439.972, "event": "watchdog_echo_rtt", "rtt_ms": 169.4, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749439.973, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749442.376, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749442.3759258}
+{"ts": 1794749442.528, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 808, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749442.528, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749442.528, "event": "watchdog_echo_rtt", "rtt_ms": 152.2, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749442.528, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749442.528, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749444.931, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749444.9313176}
+{"ts": 1794749445.085, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 832, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749445.085, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749445.085, "event": "watchdog_echo_rtt", "rtt_ms": 153.4, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749445.085, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749445.085, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749447.488, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749447.487769}
+{"ts": 1794749447.643, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 844, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749447.643, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749447.643, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749447.644, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 856, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749447.644, "event": "watchdog_echo_rtt", "rtt_ms": 156.1, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749447.644, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749450.047, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749450.0468013}
+{"ts": 1794749450.205, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 868, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749450.205, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749450.205, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749450.207, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 880, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749450.207, "event": "watchdog_echo_rtt", "rtt_ms": 160.3, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749450.207, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749452.61, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749452.6102097}
+{"ts": 1794749452.757, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 892, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749452.758, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749452.758, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749452.761, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 904, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749452.761, "event": "watchdog_echo_rtt", "rtt_ms": 150.5, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749452.761, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749455.164, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749455.1638305}
+{"ts": 1794749455.322, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 928, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749455.322, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749455.322, "event": "watchdog_echo_rtt", "rtt_ms": 158.5, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749455.322, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749455.322, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749457.725, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749457.725354}
+{"ts": 1794749457.885, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 952, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749457.885, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749457.885, "event": "watchdog_echo_rtt", "rtt_ms": 159.5, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749457.885, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749457.885, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749460.288, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749460.2879877}
+{"ts": 1794749460.444, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 976, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749460.444, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749460.444, "event": "watchdog_echo_rtt", "rtt_ms": 155.9, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749460.444, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749460.444, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749462.847, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749462.8472865}
+{"ts": 1794749463.002, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 988, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749463.002, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749463.002, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749463.003, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 1000, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749463.003, "event": "watchdog_echo_rtt", "rtt_ms": 155.8, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749463.003, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749465.407, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749465.4065042}
+{"ts": 1794749465.676, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 1024, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749465.676, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749465.676, "event": "watchdog_echo_rtt", "rtt_ms": 269.1, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749465.676, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749465.676, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749468.079, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749468.0787306}
+{"ts": 1794749468.22, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 1036, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749468.22, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749468.22, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749468.323, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 1048, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749468.323, "event": "watchdog_echo_rtt", "rtt_ms": 244.2, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749468.323, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749470.726, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749470.7262595}
+{"ts": 1794749470.882, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 1072, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749470.882, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749470.882, "event": "watchdog_echo_rtt", "rtt_ms": 156.0, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749470.882, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749470.882, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749473.285, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749473.2852297}
+{"ts": 1794749473.45, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 1096, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749473.45, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749473.45, "event": "watchdog_echo_rtt", "rtt_ms": 164.9, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749473.45, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749473.45, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749475.853, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749475.8532817}
+{"ts": 1794749476.113, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 1108, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749476.114, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749476.114, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749476.207, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 1120, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749476.207, "event": "watchdog_echo_rtt", "rtt_ms": 354.0, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749476.207, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749478.411, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749478.410561}
+{"ts": 1794749478.562, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 1132, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749478.562, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749478.562, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749478.665, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 1144, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749478.665, "event": "watchdog_echo_rtt", "rtt_ms": 254.1, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749478.665, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749481.069, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749481.0688539}
+{"ts": 1794749481.235, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 1156, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749481.235, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749481.235, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749481.238, "event": "rx_bytes", "n": 12, "hex": "000213891389000413371337", "rx_total": 1168, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749481.238, "event": "watchdog_echo_rtt", "rtt_ms": 169.3, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749481.238, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749483.642, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749483.641467}
+{"ts": 1794749483.79, "event": "rx_bytes", "n": 24, "hex": "00060000000000040000000c000213891389000413371337", "rx_total": 1192, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749483.79, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749483.79, "event": "watchdog_echo_rtt", "rtt_ms": 149.0, "misses_reset_from": 0, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749483.79, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749483.791, "event": "frame", "dir": "rx", "cmd": 2, "cmd_name": "DATA", "src": 5001, "dest": 5001, "len": 4, "payload_hex": "13371337", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749486.194, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749486.1937635}
+{"ts": 1794749488.798, "event": "watchdog_echo_missed", "misses": 1, "miss_limit": 3, "waited_s": 2.604, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749488.798, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749488.7979465}
+{"ts": 1794749491.402, "event": "watchdog_echo_missed", "misses": 2, "miss_limit": 3, "waited_s": 2.604, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749491.402, "event": "watchdog_ping", "session_id": "FIELD_P0_HOLD_20261115T132919Z", "interval_s": 2.5, "ping_ts": 1794749491.4017115}
+{"ts": 1794749491.669, "event": "rx_bytes", "n": 12, "hex": "00060000000000040000000c", "rx_total": 1204, "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749491.669, "event": "hu_dataack", "ack_n": 12, "expect_formula": "8+len", "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}
+{"ts": 1794749491.67, "event": "frame", "dir": "rx", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "len": 4, "payload_hex": "0000000c", "session_id": "FIELD_P0_HOLD_20261115T132919Z"}

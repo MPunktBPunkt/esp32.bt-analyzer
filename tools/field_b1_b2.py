@@ -98,6 +98,7 @@ def ensure_remote_tools() -> None:
         "bcl_etch_stub.py",
         "bcl_framer.py",
         "bcl_classify.py",
+        "bcl_phone_tx_classify.py",
         "bcl_sdp_probe.py",
     ):
         scp_to(ROOT / "tools" / name, f"{REMOTE_TOOLS}/{name}")
@@ -301,6 +302,11 @@ def cmd_b2a_tx(args: argparse.Namespace) -> int:
     if getattr(args, "open_etch", False):
         extra_flags += " --open-etch"
         extra_flags += f" --etch-src {int(getattr(args, 'etch_src', 10))}"
+    knock = getattr(args, "knock", None)
+    if knock:
+        extra_flags += f" --knock {shlex.quote(str(knock))}"
+    miss = int(getattr(args, "wd_miss_limit", 3))
+    extra_flags += f" --wd-miss-limit {miss}"
     cmd = (
         f"python3 {REMOTE_TOOLS}/{AGENT} b2a-tx "
         f"--adapter-bd {shlex.quote(PHONE_BD)} "
@@ -556,6 +562,18 @@ def main() -> int:
         help="also OPEN Etch dest=4004 after watchdog OPEN",
     )
     b2atx.add_argument("--etch-src", type=int, default=10, help="BCL src for OPEN 4004")
+    b2atx.add_argument(
+        "--knock",
+        choices=("wire_v5", "desk"),
+        default="wire_v5",
+        help="KNOCK: wire_v5 UUID+TouchCommand/7 (P0 freeze) or desk empty",
+    )
+    b2atx.add_argument(
+        "--wd-miss-limit",
+        type=int,
+        default=3,
+        help="abort after N consecutive missed WD echoes (hold criterion)",
+    )
     b2atx.add_argument(
         "--lab",
         action="store_true",

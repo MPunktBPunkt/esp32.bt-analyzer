@@ -1,0 +1,137 @@
+{
+  "session_id": "FIELD_B1_20261115T131624Z",
+  "gate": "B1",
+  "state": "D",
+  "source": "field",
+  "origin": "f20",
+  "tx_allowed": false,
+  "control": {
+    "mybmw": "OFF",
+    "aaidrive": "OFF",
+    "a2dp": "unknown"
+  },
+  "hci": "hci1",
+  "hu_bd": "D4:36:39:CF:E1:B5",
+  "verdict": "CANDIDATE: RFCOMM data service present (SPP or vendor UUID)",
+  "channels": [],
+  "rfcomm_services": [],
+  "probe": {
+    "ts": "2026-11-15T14:16:54",
+    "results": [
+      {
+        "label": "hu",
+        "source": "bluetoothctl info",
+        "verdict": "CANDIDATE: RFCOMM data service present (SPP or vendor UUID)",
+        "records": [
+          {
+            "name": "Vendor specific",
+            "handle": null,
+            "classes": [
+              "00000000-deca-fade-deca-deafdecacaff"
+            ],
+            "protocols": [],
+            "rfcomm": null,
+            "tags": [
+              "iap2"
+            ]
+          },
+          {
+            "name": "Serial Port",
+            "handle": null,
+            "classes": [
+              "0x1101"
+            ],
+            "protocols": [],
+            "rfcomm": null,
+            "tags": [
+              "spp"
+            ]
+          },
+          {
+            "name": "OBEX Object Push",
+            "handle": null,
+            "classes": [
+              "0x1105"
+            ],
+            "protocols": [],
+            "rfcomm": null,
+            "tags": []
+          },
+          {
+            "name": "Audio Sink",
+            "handle": null,
+            "classes": [
+              "0x110b"
+            ],
+            "protocols": [],
+            "rfcomm": null,
+            "tags": []
+          },
+          {
+            "name": "A/V Remote Control Target",
+            "handle": null,
+            "classes": [
+              "0x110c"
+            ],
+            "protocols": [],
+            "rfcomm": null,
+            "tags": []
+          },
+          {
+            "name": "Advanced Audio Distribu..",
+            "handle": null,
+            "classes": [
+              "0x110d"
+            ],
+            "protocols": [],
+            "rfcomm": null,
+            "tags": []
+          },
+          {
+            "name": "A/V Remote Control",
+            "handle": null,
+            "classes": [
+              "0x110e"
+            ],
+            "protocols": [],
+            "rfcomm": null,
+            "tags": []
+          },
+          {
+            "name": "Handsfree",
+            "handle": null,
+            "classes": [
+              "0x111e"
+            ],
+            "protocols": [],
+            "rfcomm": null,
+            "tags": []
+          },
+          {
+            "name": "Message Notification Se..",
+            "handle": null,
+            "classes": [
+              "0x1133"
+            ],
+            "protocols": [],
+            "rfcomm": null,
+            "tags": []
+          },
+          {
+            "name": "PnP Information",
+            "handle": null,
+            "classes": [
+              "0x1200"
+            ],
+            "protocols": [],
+            "rfcomm": null,
+            "tags": []
+          }
+        ],
+        "addr": "D4:36:39:CF:E1:B5",
+        "hci": "hci1",
+        "raw": "__error__ Command '['sdptool', '-i', 'hci1', 'records', 'D4:36:39:CF:E1:B5']' timed out after 30.0 seconds\nDevice D4:36:39:CF:E1:B5 (public)\n\tName: BMW 38304\n\tAlias: BMW 38304\n\tClass: 0x00340408 (3408904)\n\tIcon: audio-headset\n\tPaired: yes\n\tBonded: yes\n\tTrusted: yes\n\tBlocked: no\n\tConnected: yes\n\tLegacyPairing: no\n\tUUID: Vendor specific           (00000000-deca-fade-deca-deafdecacaff)\n\tUUID: Serial Port               (00001101-0000-1000-8000-00805f9b34fb)\n\tUUID: OBEX Object Push          (00001105-0000-1000-8000-00805f9b34fb)\n\tUUID: Audio Sink                (0000110b-0000-1000-8000-00805f9b34fb)\n\tUUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)\n\tUUID: Advanced Audio Distribu.. (0000110d-0000-1000-8000-00805f9b34fb)\n\tUUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)\n\tUUID: Handsfree                 (0000111e-0000-1000-8000-00805f9b34fb)\n\tUUID: Message Notification Se.. (00001133-0000-1000-8000-00805f9b34fb)\n\tUUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)\n\tModalias: bluetooth:v05EBp0116d0103\n"
+      }
+    ]
+  }
+}

@@ -28,8 +28,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from bcl_classify import classify_bytes  # noqa: E402
 from bcl_dummy_hu import (  # noqa: E402
+    KNOCK_DEFAULT_PAYLOAD,
     SESSION_INIT_INTERVAL_S,
     WATCHDOG_INTERVAL_S,
+    WATCHDOG_PING,
     DummyHuSession,
     ObserveOnlySession,
     PhoneClientSession,
@@ -480,11 +482,19 @@ def run_phone(
     sock.settimeout(0.2)
 
     sp = getattr(args, "selectproto", 3)
+    knock_arg = getattr(args, "knock", None)
+    knock_payload: bytes | str | None = None
+    if knock_arg == "wire_v5":
+        knock_payload = "wire_v5"
+    elif knock_arg == "desk":
+        # Pre-set bytes so SP4 auto wire_v5 does not override (truthy).
+        knock_payload = KNOCK_DEFAULT_PAYLOAD
     sess = None if observe_only else PhoneClientSession(
         selectproto=sp,
         wire_open5001=bool(getattr(args, "wire_open5001", False)),
         open_etch=bool(getattr(args, "open_etch", False)),
         etch_src=int(getattr(args, "etch_src", 10) or 10),
+        knock_payload=knock_payload,
     )
     sent = 0
     rx_raw = b""
@@ -495,7 +505,19 @@ def run_phone(
     hs_logged = False
     inits_sent = 0
     wd_interval = float(getattr(args, "wd_interval", WATCHDOG_INTERVAL_S) or WATCHDOG_INTERVAL_S)
-    while time.time() < end:
+    miss_limit = int(getattr(args, "wd_miss_limit", 3) or 3)
+    pending_ping_ts: float | None = None
+    wd_misses = 0
+    abort_reason: str | None = None
+    from bcl_dummy_hu import (  # noqa: WPS433 — hold metrics only on phone path
+        CMD_DATA,
+        CMD_DATAACK,
+        CMD_OPEN,
+    )
+    from bcl_framer import DEST_ETCH_DESK, BclFramer
+
+    rx_framer = BclFramer()
+    while time.time() < end and abort_reason is None:
         now = time.time()
         if controlled_init and sess is not None and sess.handshake is None:
             if inits_sent < init_count and now >= next_init:
@@ -524,12 +546,36 @@ def run_phone(
             and not observe_only
             and now >= next_ping
         ):
+            if pending_ping_ts is not None:
+                wd_misses += 1
+                log.write(
+                    {
+                        "event": "watchdog_echo_missed",
+                        "misses": wd_misses,
+                        "miss_limit": miss_limit,
+                        "waited_s": round(now - pending_ping_ts, 3),
+                        "session_id": session_id,
+                    }
+                )
+                if miss_limit > 0 and wd_misses >= miss_limit:
+                    abort_reason = "wd_echo_miss_limit"
+                    log.write(
+                        {
+                            "event": "hold_abort",
+                            "reason": abort_reason,
+                            "misses": wd_misses,
+                            "session_id": session_id,
+                        }
+                    )
+                    break
             sock.sendall(sess.watchdog_ping())
+            pending_ping_ts = now
             log.write(
                 {
                     "event": "watchdog_ping",
                     "session_id": session_id,
                     "interval_s": wd_interval,
+                    "ping_ts": now,
                 }
             )
             next_ping = now + wd_interval
@@ -555,6 +601,53 @@ def run_phone(
                     "session_id": session_id,
                 }
             )
+            # Hold metrics: WD RTT, HU DATAACK values, unsolicited OPEN/DATA→4004
+            for fr in rx_framer.feed(data).frames:
+                if (
+                    fr.cmd == CMD_DATA
+                    and fr.src == 5001
+                    and fr.dest == 5001
+                    and fr.payload == WATCHDOG_PING
+                    and pending_ping_ts is not None
+                ):
+                    echo_ts = time.time()
+                    rtt_ms = round((echo_ts - pending_ping_ts) * 1000.0, 1)
+                    log.write(
+                        {
+                            "event": "watchdog_echo_rtt",
+                            "rtt_ms": rtt_ms,
+                            "misses_reset_from": wd_misses,
+                            "session_id": session_id,
+                        }
+                    )
+                    pending_ping_ts = None
+                    wd_misses = 0
+                if fr.cmd == CMD_DATAACK and len(fr.payload) >= 4:
+                    ack_n = int.from_bytes(fr.payload[:4], "big")
+                    log.write(
+                        {
+                            "event": "hu_dataack",
+                            "ack_n": ack_n,
+                            "expect_formula": "8+len",
+                            "payload_hex": fr.payload.hex(),
+                            "session_id": session_id,
+                        }
+                    )
+                if fr.cmd in (CMD_OPEN, CMD_DATA) and (
+                    fr.dest == DEST_ETCH_DESK or fr.src in (10, 12, 18)
+                ):
+                    log.write(
+                        {
+                            "event": "hu_unsolicited",
+                            "cmd": fr.cmd,
+                            "src": fr.src,
+                            "dest": fr.dest,
+                            "len": len(fr.payload),
+                            "payload_hex": fr.payload[:64].hex(),
+                            "model_a_hint": fr.dest == DEST_ETCH_DESK,
+                            "session_id": session_id,
+                        }
+                    )
             if sess is not None and (controlled_init or not observe_only):
                 replies = sess.on_bytes(data)
                 if sess.handshake and not hs_logged:
@@ -589,6 +682,8 @@ def run_phone(
             "inits_sent": inits_sent if controlled_init else None,
             "rx_silence_s": round(time.time() - last_rx, 1),
             "rx_total": len(rx_raw),
+            "abort_reason": abort_reason,
+            "wd_misses": wd_misses,
             "bcl_classification": cls["bcl_classification"],
             "classification": cls,
             **meta,
@@ -801,6 +896,19 @@ def main() -> int:
         type=int,
         default=10,
         help="BCL src port for OPEN 4004 (lab MyBMW used 10..12)",
+    )
+    b2a_tx.add_argument(
+        "--knock",
+        choices=("wire_v5", "desk"),
+        default=None,
+        help="KNOCK payload: wire_v5=UUID+TouchCommand/7; desk=empty A4A; "
+        "default auto wire_v5 when SP≥4 / HS v5",
+    )
+    b2a_tx.add_argument(
+        "--wd-miss-limit",
+        type=int,
+        default=3,
+        help="abort hold after N consecutive missed WD echoes (0=never)",
     )
 
     args = ap.parse_args()
