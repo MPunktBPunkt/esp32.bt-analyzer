@@ -165,5 +165,8 @@ Die **AAIdrive-Pfad-Timings** (5 s bis SPP, ~10 s bis Etch) sind zwischen A 
 
 ## Verwandte Projekt-Dokumente
 
-- `/agent/repos/esp32.bt-analyzer/docs/evidence/FIELD_AAIDRIVE_BTLOG_20261115.md`
-- `/agent/repos/esp32.bt-analyzer/docs/bmw_aaidrive_field_reduced_20261114.txt`
+- `docs/analysis/ONEPLUS_BT_FORENSIC_20261115.md` (Gesamtforensik 8 Logs)
+- `docs/analysis/oneplus-bt-forensic-stats-20261115.json`
+- `docs/evidence/FIELD_AAIDRIVE_BTLOG_20261115.md`
+- `docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md`
+- `docs/bmw_aaidrive_field_reduced_20261114.txt`

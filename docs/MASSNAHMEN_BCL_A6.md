@@ -7,6 +7,9 @@ trigger: 2026-11-15 field Hold/Burst + GPT/Grok DATAACK/KNOCK revision (M48)
 method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md · docs/analysis/LAB_DUMMY_ETCH_DEEP_20261114.md · docs/analysis/FIELD_STAND_Grok_GPT_20261114.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
 field_hold_insights: docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
 field_p0_freeze: docs/evidence/FIELD_P0_HOLD_FREEZE_20261115.md
+oneplus_forensic: docs/analysis/ONEPLUS_BT_FORENSIC_20261115.md
+bmw_bt_evening: docs/analysis/BMW_BT_CONNECTION_ANALYSIS_20261115.md
+oneplus_forensic_stats: docs/analysis/oneplus-bt-forensic-stats-20261115.json
 lab_dummy_etch: docs/evidence/LAB_DUMMY_ETCH_20261114T1550Z.md
 lab_dummy_f20_profile: docs/evidence/LAB_DUMMY_F20_PROFILE_TEMPLATE.md
 stand_grok_gpt: docs/analysis/FIELD_STAND_Grok_GPT_20261114.md
@@ -107,7 +110,8 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 
 7z. ~~**P0 — Analyzer→F20 Transport**~~ → **FIELD FACT** `FIELD_P0_HOLD_*` / `FIELD_BURST_20261115` / `FIELD_VS_LAB_INSIGHTS_20261115`: SCN6 INIT→HS v5/14/0x4000→SP2|SP4→KNOCK→OPEN5001→WD **ohne** MyBMW; OPEN4004→ACK8→Stille; 0× unsolicited 4004 im Hold; **M48** DATAACK selektiv (kein ACK56 nach KNOCK).
 8. ~~**P0 — Etch/Layer E Lab**~~ → **DEEP** `FIELD_STAND_Grok_GPT_20261114`. Dummy Etch ≠ F20 Content; UI-Grün ≠ SAS.
-9. **P0 — MyBMW-owned btsnoop / Modell-D UI-Hold:** SAS/Etch-Bodies. **Kein** weiterer OPEN4004-Spam ohne Owner-Kontext.
+9. **P0 — MyBMW-owned btsnoop / Modell-D UI-Hold:** SAS/Etch-Bodies. **Kein** weiterer OPEN4004-Spam ohne Owner-Kontext. Oppo-Textlogs ersetzen HCI **nicht** (`ONEPLUS_BT_FORENSIC_20261115` §7/§20E) — `btsnoop_hci` Session S-B (+S-A) bleibt P0.
+9a. ~~**Phone BT-Logs 15.11. Abend+Vormittag Forensik**~~ → **DONE** `ONEPLUS_BT_FORENSIC_20261115` + `BMW_BT_CONNECTION_ANALYSIS_20261115`: HU page→ACL; ~3,0 s HS→DATAACK10; SCN6 golden / SCN10 nur S-A-Failover; 56 B Phone-TX vor ACK10; CDS 667 B ~+10 s ACL; SAS **NOT OBSERVED** in Textlogs.
 9b. ~~**P0 — Wire-Client Freeze**~~ → **DONE** `FIELD_P0_HOLD_FREEZE_20261115`; `--knock none` ready.
 9c. **P1 — KNOCK-Isolation (nächster Feldlauf):** SP2/4 × KNOCK ja/nein → OPEN5001→WD? Dann KNOCK-ACK-Semantik.
 10. **P1 — Admission 2×2 (M7/M33)** UA vs DM; Positive = ACL+AUTH+ENCRYPT + WD.

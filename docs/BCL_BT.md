@@ -7,11 +7,11 @@ related: hu-probe Gate G2 "BCL wire" (USB AOA path, still open)
 claim_level: TRANSPORT FIELD FACT (.87 phone-client, no MyBMW) · Etch/SAS needs owner/UI (OPEN4004→ACK only) · MyBMW CDS = separate golden path
 rfcomm_initiator: MIXED  # ACL+Mux HU→Phone; SPP DLC Phone-client (UID 10479) — docs/evidence/FIELD_PHONE_HU_LOGCAT_20261114T0924Z.md
 secondary: technology-audit audits/supra-idrive6-android-auto-2026-secondary @4f70751
-method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/evidence/FIELD_AAIDRIVE_BTLOG_20261115.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
+method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/evidence/FIELD_AAIDRIVE_BTLOG_20261115.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md · docs/analysis/ONEPLUS_BT_FORENSIC_20261115.md
 architecture: controlled dual-leg HCI bridge — not passive Phone↔HU air sniff
 audit_reuse: technology-audit technologies/bmw-bcl + projects/esp32-bt-analyzer/applications/bmw-bcl.md
-next: P1 KNOCK isolation (--knock none × SP2/SP4) when HU back · then MyBMW btsnoop / Modell-D UI hold — not OPEN4004 spam
-desk_vs_wire: BclCarLink WD 5s/20s TO and SP3/empty-Knock are DESK — F20 wire SP2|SP4+KNOCK(UUID,1,7) WD≈2.5s · DATAACK selective (M48: no ACK56 after KNOCK)
+next: P0 btsnoop_hci S-B (+S-A) — Oppo logs ≠ HCI · P1 KNOCK isolation when HU back · Modell-D UI hold — not OPEN4004 spam
+desk_vs_wire: BclCarLink WD 5s/20s TO and SP3/empty-Knock are DESK — F20 wire SP2|SP4+KNOCK(UUID,1,7) WD≈2.5s · DATAACK selective (M48: no ACK56 after KNOCK) · MyBMW silent HS→ACK10 ≈3.0s (Phone→HU blind in textlogs)
 ```
 
 ## Why

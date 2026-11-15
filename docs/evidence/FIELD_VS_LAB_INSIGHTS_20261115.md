@@ -54,9 +54,23 @@ OPEN 4004 → ACK 8 → [content authorization UNKNOWN] → SAS/Etch/CDS
 
 Dummy opens Etch after OPEN4004; F20 ACKs and stays silent. Lab green ≠ F20 content.
 
+## Cross-ref: OnePlus phone-stack forensic (same day)
+
+Full corpus (8× `bluetooth_20261115_*.log`): [`ONEPLUS_BT_FORENSIC_20261115.md`](../analysis/ONEPLUS_BT_FORENSIC_20261115.md) · evening slice [`BMW_BT_CONNECTION_ANALYSIS_20261115.md`](../analysis/BMW_BT_CONNECTION_ANALYSIS_20261115.md) · stats JSON.
+
+| Phone-log FACT | Aligns with analyzer Hold? |
+|----------------|----------------------------|
+| HU pages Phone (incoming ACL) | n/a (we were phone-client on `.87`) |
+| HS→DATAACK10 silent ≈ **3.0 s** (Phone→HU blind) | Analyzer HS RTT ~0.3–0.5 s = **different plane** (no app stack) |
+| One `PORT_WriteDataCO: 56` before ACK10 | Matches wire_v5 KNOCK length (**INFERENCE** vs Lab envelope) |
+| SCN6 golden; SCN10 only S-A after DM | SDP ch6–10 still valid |
+| First HU DATA→4004 then 667 B CDS | Content opens under MyBMW — not under our OPEN4004-alone |
+| Textlogs ≠ HCI / SAS invisible | Reinforces P0 btsnoop |
+
 ## Next (highest value when HU is back)
 
-**KNOCK isolation** (tooling: `--knock none`):
+1. **P0 btsnoop_hci** Session S-B (+S-A) — textlogs cannot replace Phone→HU bytes.  
+2. **KNOCK isolation** (tooling: `--knock none`):
 
 | SP | KNOCK | OPEN5001 | Goal |
 |----|-------|----------|------|
@@ -65,7 +79,7 @@ Dummy opens Etch after OPEN4004; F20 ACKs and stays silent. Lab green ≠ F20 co
 | 2 | **no** | yes | decisive |
 | 4 | **no** | yes | decisive |
 
-Then: KNOCK-ACK semantics; MyBMW-owned btsnoop / Modell-D UI hold — not more OPEN4004 spam.
+3. Modell-D UI hold / MyBMW-owned capture — not more OPEN4004 spam.
 
 ## Lab facts that still stand
 
