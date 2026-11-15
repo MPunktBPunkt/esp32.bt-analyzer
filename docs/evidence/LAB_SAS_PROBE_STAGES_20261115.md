@@ -31,7 +31,7 @@ Stufe für Stufe. Bei Interesse **einfrieren**, JSONL sichern, dann erst nächst
 | (ii) | `--sas-probe dataack` | DATAACK only; stub silent |
 | (iii) | `--sas-probe challenge` | non-zero SAS-challenge |
 | (iv) | `--sas-probe challenge_rhmi` | challenge + RHMI stub |
-| (v) | `--sas-probe adaptive` | challenge; RHMI erst nach Phone etch TX |
+| (v) | `--sas-probe adaptive` | challenge; RHMI erst nach Phone etch TX — **2026-11-15 done** ([LAB_SAS_ADAPTIVE](LAB_SAS_ADAPTIVE_20261115.md)); kein neuer Phone-TX jenseits Certs |
 
 Jede Phone-Reaktion vollständig erfassen. jsonl-Korrelation:
 
