@@ -172,6 +172,47 @@ class TestDummyHu(unittest.TestCase):
         self.assertEqual(len(etch_tx), 2)
         self.assertTrue(any(e["event"] == "rhmi_capabilities_tx" for e in hu.events))
 
+    def test_phone_tx_classified_on_every_frame(self):
+        hu = DummyHuSession(sas_probe="none")
+        open_fr = build_synthetic_frame(CMD_OPEN, 10, DEST_ETCH_DESK)
+        hu.on_bytes(open_fr)
+        cls = [e for e in hu.events if e.get("event") == "phone_tx_classified"]
+        self.assertEqual(len(cls), 1)
+        self.assertIn("OPEN_ETCH", cls[0]["tags"])
+
+    def test_sas_probe_adaptive_escalates_after_phone_etch(self):
+        hu = DummyHuSession(send_dataack=True, sas_probe="adaptive")
+        open_fr = build_synthetic_frame(CMD_OPEN, 10, DEST_ETCH_DESK)
+        frames = frames_of(hu.on_bytes(open_fr))
+        etch_tx = [f for f in frames if f.cmd == 2]
+        self.assertEqual(len(etch_tx), 1)  # challenge only
+        self.assertFalse(any(e["event"] == "rhmi_capabilities_tx" for e in hu.events))
+        # Phone etch TX after challenge → RHMI escalate
+        body = wrap_etch_body(b"Z" * 40)
+        data = build_synthetic_frame(2, 10, DEST_ETCH_DESK, body)
+        frames2 = frames_of(hu.on_bytes(data))
+        etch2 = [f for f in frames2 if f.cmd == 2]
+        self.assertGreaterEqual(len(etch2), 1)
+        self.assertTrue(any(e["event"] == "rhmi_capabilities_tx" for e in hu.events))
+
+    def test_hu_open_srcs_after_knock(self):
+        hu = DummyHuSession(sas_probe="none", hu_open_srcs=(10, 12))
+        knock = build_synthetic_frame(CMD_KNOCK, 0, 0, bytes(12))
+        frames = frames_of(hu.on_bytes(knock))
+        opens = [f for f in frames if f.cmd == CMD_OPEN]
+        self.assertEqual([(o.src, o.dest) for o in opens], [(10, DEST_ETCH_DESK), (12, DEST_ETCH_DESK)])
+        self.assertTrue(any(e["event"] == "hu_open_tx" for e in hu.events))
+
+    def test_etch_reply_src_field_shape(self):
+        hu = DummyHuSession(
+            send_dataack=True, sas_probe="challenge", etch_reply_src=12
+        )
+        open_fr = build_synthetic_frame(CMD_OPEN, 10, DEST_ETCH_DESK)
+        frames = frames_of(hu.on_bytes(open_fr))
+        etch_tx = [f for f in frames if f.cmd == 2]
+        self.assertEqual(len(etch_tx), 1)
+        self.assertEqual((etch_tx[0].src, etch_tx[0].dest), (12, DEST_ETCH_DESK))
+
     def test_knock_envelope_accepted(self):
         hu = DummyHuSession(sas_probe="none")
         blob = (

@@ -62,6 +62,38 @@ def device_from_path(path: str) -> dict:
     return {"adapter": adapter, "peer": dev[4:].replace("_", ":") or None}
 
 
+def _parse_hu_open_srcs(raw: str | None) -> tuple[int, ...]:
+    if not raw:
+        return ()
+    out: list[int] = []
+    for part in str(raw).replace(" ", "").split(","):
+        if not part:
+            continue
+        out.append(int(part, 0))
+    return tuple(out)
+
+
+def _make_dummy_session(args: argparse.Namespace) -> DummyHuSession:
+    return DummyHuSession(
+        version=int(args.hu_version),
+        instance_id=int(args.hu_instance_id),
+        buffer_size=int(args.hu_buffer_size),
+        echo_watchdog=bool(args.echo_watchdog),
+        send_dataack=bool(args.send_dataack),
+        etch_stub=bool(args.etch_stub),
+        sas_probe=str(getattr(args, "sas_probe", "challenge")),
+        handshake_delay_s=float(getattr(args, "handshake_delay_s", 0.0) or 0.0),
+        wd_pong_max=int(getattr(args, "wd_pong_max", 0) or 0),
+        wd_pong_skip_mod=int(getattr(args, "wd_pong_skip_mod", 0) or 0),
+        wd_pong_payload=(
+            bytes.fromhex(args.wd_pong_payload) if args.wd_pong_payload else None
+        ),
+        wd_pong_delay_s=float(getattr(args, "wd_pong_delay_s", 0.0) or 0.0),
+        etch_reply_src=getattr(args, "etch_reply_src", None),
+        hu_open_srcs=_parse_hu_open_srcs(getattr(args, "hu_open_srcs", None)),
+    )
+
+
 def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
     import dbus
     import dbus.mainloop.glib
@@ -75,6 +107,11 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
     loop = GLib.MainLoop()
     conns: dict[int, dict] = {}
     tx_forbidden = observe_only
+    refuse_channel = getattr(args, "channel_refuse", None)
+    if refuse_channel is not None:
+        refuse_channel = int(refuse_channel)
+        if refuse_channel == int(args.channel):
+            raise SystemExit("--channel-refuse must differ from --channel")
 
     meta = {
         "session_id": session_id,
@@ -89,6 +126,10 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
     def close(fd: int, reason: str) -> None:
         c = conns.pop(fd, None)
         if c is None:
+            try:
+                os.close(fd)
+            except OSError:
+                pass
             return
         raw = c.get("rx_raw", b"")
         cls = classify_bytes(raw)
@@ -96,6 +137,8 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
             {
                 "event": "rfcomm_closed",
                 "reason": reason,
+                "channel_role": c.get("channel_role"),
+                "rfcomm_channel": c.get("rfcomm_channel"),
                 "rx_total": len(raw),
                 "bcl_classification": cls["bcl_classification"],
                 "classification": cls,
@@ -128,10 +171,23 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                 "n": len(data),
                 "hex": data.hex(),
                 "rx_total": len(c["rx_raw"]),
+                "rfcomm_channel": c.get("rfcomm_channel"),
             },
             **c["dev"],
             session_id=session_id,
         )
+        if c.get("channel_role") == "refuse":
+            log.write(
+                {
+                    "event": "rfcomm_refuse_rx",
+                    "n": len(data),
+                    "note": "SCN refuse channel — closing (SCN failover probe)",
+                },
+                **c["dev"],
+                session_id=session_id,
+            )
+            close(fd, "refuse_channel")
+            return False
         replies = sess.on_bytes(data)
         c["sent"] = _flush_events(log, sess, c["sent"], **c["dev"], session_id=session_id)
         if replies and tx_forbidden:
@@ -159,117 +215,200 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                 return False
         return True
 
-    class Profile(dbus.service.Object):
-        @dbus.service.method("org.bluez.Profile1", in_signature="", out_signature="")
-        def Release(self):
-            log.write({"event": "profile_released", "session_id": session_id})
-
-        @dbus.service.method("org.bluez.Profile1", in_signature="oha{sv}", out_signature="")
-        def NewConnection(self, device, fd, properties):
-            fd = fd.take()
-            dev = device_from_path(device)
-            if observe_only:
-                session = ObserveOnlySession()
-            else:
-                session = DummyHuSession(
-                    version=int(args.hu_version),
-                    instance_id=int(args.hu_instance_id),
-                    buffer_size=int(args.hu_buffer_size),
-                    echo_watchdog=bool(args.echo_watchdog),
-                    send_dataack=bool(args.send_dataack),
-                    etch_stub=bool(args.etch_stub),
-                    sas_probe=str(getattr(args, "sas_probe", "challenge")),
-                    handshake_delay_s=float(
-                        getattr(args, "handshake_delay_s", 0.0) or 0.0
-                    ),
-                    wd_pong_max=args.wd_pong_max,
-                    wd_pong_skip_mod=args.wd_pong_skip_mod,
-                    wd_pong_payload=(
-                        bytes.fromhex(args.wd_pong_payload)
-                        if args.wd_pong_payload
-                        else None
-                    ),
-                )
-            conns[fd] = {
-                "dev": dev,
-                "session": session,
-                "sent": 0,
-                "rx_raw": b"",
-            }
+    def accept_connection(
+        device, fd, properties, *, channel: int, role: str
+    ) -> None:
+        fd = fd.take()
+        dev = device_from_path(device)
+        if role == "refuse":
+            # Immediate close ≈ Phone sees short-lived / refused SCN (failover probe).
+            # Not a true RFCOMM DM; epistemic LAB_TEST only.
             log.write(
                 {
                     "event": "rfcomm_connected",
-                    "tx_allowed": not observe_only,
+                    "tx_allowed": False,
+                    "channel_role": "refuse",
+                    "rfcomm_channel": channel,
                     "props": {str(k): str(v) for k, v in dict(properties).items()},
+                    "note": "LAB SCN refuse — close without BCL (not wire DM)",
                 },
                 **dev,
                 session_id=session_id,
             )
+            conns[fd] = {
+                "dev": dev,
+                "session": ObserveOnlySession(),
+                "sent": 0,
+                "rx_raw": b"",
+                "channel_role": "refuse",
+                "rfcomm_channel": channel,
+            }
             GLib.io_add_watch(fd, GLib.IO_IN | GLib.IO_HUP | GLib.IO_ERR, on_readable)
+
+            # Close ASAP so Phone can failover to accept SCN.
+            def _refuse_close(_fd=fd) -> bool:
+                close(_fd, "refuse_immediate")
+                return False
+
+            GLib.idle_add(_refuse_close)
+            return
+
+        if observe_only:
+            session = ObserveOnlySession()
+        else:
+            session = _make_dummy_session(args)
+        conns[fd] = {
+            "dev": dev,
+            "session": session,
+            "sent": 0,
+            "rx_raw": b"",
+            "channel_role": role,
+            "rfcomm_channel": channel,
+        }
+        log.write(
+            {
+                "event": "rfcomm_connected",
+                "tx_allowed": not observe_only,
+                "channel_role": role,
+                "rfcomm_channel": channel,
+                "props": {str(k): str(v) for k, v in dict(properties).items()},
+            },
+            **dev,
+            session_id=session_id,
+        )
+        GLib.io_add_watch(fd, GLib.IO_IN | GLib.IO_HUP | GLib.IO_ERR, on_readable)
+
+    class Profile(dbus.service.Object):
+        def __init__(self, bus, path, *, channel: int, role: str):
+            self._channel = channel
+            self._role = role
+            super().__init__(bus, path)
+
+        @dbus.service.method("org.bluez.Profile1", in_signature="", out_signature="")
+        def Release(self):
+            log.write(
+                {
+                    "event": "profile_released",
+                    "rfcomm_channel": self._channel,
+                    "channel_role": self._role,
+                    "session_id": session_id,
+                }
+            )
+
+        @dbus.service.method(
+            "org.bluez.Profile1", in_signature="oha{sv}", out_signature=""
+        )
+        def NewConnection(self, device, fd, properties):
+            accept_connection(
+                device, fd, properties, channel=self._channel, role=self._role
+            )
 
         @dbus.service.method("org.bluez.Profile1", in_signature="o", out_signature="")
         def RequestDisconnection(self, device):
             dev = device_from_path(device)
-            for fd, c in list(conns.items()):
+            for f, c in list(conns.items()):
                 if c["dev"] == dev:
-                    close(fd, "request_disconnection")
+                    close(f, "request_disconnection")
 
     try:
         bus.request_name("org.btanalyzer.BclDummyHu")
     except dbus.DBusException as exc:
         log.write({"event": "name_warn", "error": str(exc), "session_id": session_id})
-    path = "/org/bluez/bcl_dummy_hu"
-    Profile(bus, path)
-    pm = dbus.Interface(bus.get_object("org.bluez", "/org/bluez"), "org.bluez.ProfileManager1")
-    try:
-        pm.UnregisterProfile(path)
-    except dbus.DBusException:
-        pass
-    pm.RegisterProfile(
-        path,
-        SPP_UUID,
-        {
-            "Name": args.name,
-            "Service": SPP_UUID,
-            "Role": "server",
-            "Channel": dbus.UInt16(args.channel),
-            "RequireAuthentication": False,
-            "RequireAuthorization": False,
-            "AutoConnect": False,
-        },
+
+    pm = dbus.Interface(
+        bus.get_object("org.bluez", "/org/bluez"), "org.bluez.ProfileManager1"
     )
-    log.write(
-        {
-            "event": "profile_registered",
-            "channel": args.channel,
-            "name": args.name,
-            "uuid": SPP_UUID,
-            "hu_profile": getattr(args, "hu_profile", "legacy"),
-            "hu_version": args.hu_version,
-            "hu_instance_id": args.hu_instance_id,
-            "hu_buffer_size": args.hu_buffer_size,
-            "echo_watchdog": args.echo_watchdog,
-            "send_dataack": args.send_dataack,
-            "etch_stub": args.etch_stub,
-            "sas_probe": getattr(args, "sas_probe", None),
-            "handshake_delay_s": getattr(args, "handshake_delay_s", 0.0),
-            "wd_pong_max": args.wd_pong_max,
-            "wd_pong_skip_mod": args.wd_pong_skip_mod,
-            "wd_pong_payload": args.wd_pong_payload or None,
-            "observe_only": observe_only,
-            **meta,
-        }
-    )
+    profiles: list[tuple[str, Profile]] = []
+
+    def register_one(channel: int, role: str) -> bool:
+        path = f"/org/bluez/bcl_dummy_hu_{role}_ch{channel}"
+        try:
+            pm.UnregisterProfile(path)
+        except dbus.DBusException:
+            pass
+        # legacy path cleanup for single-channel runs
+        if role == "accept" and channel == int(args.channel):
+            try:
+                pm.UnregisterProfile("/org/bluez/bcl_dummy_hu")
+            except dbus.DBusException:
+                pass
+        prof = Profile(bus, path, channel=channel, role=role)
+        try:
+            pm.RegisterProfile(
+                path,
+                SPP_UUID,
+                {
+                    "Name": args.name if role == "accept" else f"{args.name} refuse",
+                    "Service": SPP_UUID,
+                    "Role": "server",
+                    "Channel": dbus.UInt16(channel),
+                    "RequireAuthentication": False,
+                    "RequireAuthorization": False,
+                    "AutoConnect": False,
+                },
+            )
+        except dbus.DBusException as exc:
+            log.write(
+                {
+                    "event": "profile_register_failed",
+                    "rfcomm_channel": channel,
+                    "channel_role": role,
+                    "error": str(exc),
+                    "session_id": session_id,
+                    "note": "BlueZ often allows only one 0x1101 registration",
+                }
+            )
+            return False
+        profiles.append((path, prof))
+        log.write(
+            {
+                "event": "profile_registered",
+                "channel": channel,
+                "rfcomm_channel": channel,
+                "channel_role": role,
+                "name": args.name,
+                "uuid": SPP_UUID,
+                "hu_profile": getattr(args, "hu_profile", "legacy"),
+                "hu_version": args.hu_version,
+                "hu_instance_id": args.hu_instance_id,
+                "hu_buffer_size": args.hu_buffer_size,
+                "echo_watchdog": args.echo_watchdog,
+                "send_dataack": args.send_dataack,
+                "etch_stub": args.etch_stub,
+                "sas_probe": getattr(args, "sas_probe", None),
+                "handshake_delay_s": getattr(args, "handshake_delay_s", 0.0),
+                "wd_pong_max": args.wd_pong_max,
+                "wd_pong_skip_mod": args.wd_pong_skip_mod,
+                "wd_pong_payload": args.wd_pong_payload or None,
+                "wd_pong_delay_s": getattr(args, "wd_pong_delay_s", 0.0),
+                "etch_reply_src": getattr(args, "etch_reply_src", None),
+                "hu_open_srcs": list(
+                    _parse_hu_open_srcs(getattr(args, "hu_open_srcs", None))
+                ),
+                "channel_refuse": refuse_channel,
+                "observe_only": observe_only,
+                **meta,
+            }
+        )
+        return True
+
+    ok_accept = register_one(int(args.channel), "accept")
+    if not ok_accept:
+        raise SystemExit(f"failed to register accept channel {args.channel}")
+    if refuse_channel is not None:
+        register_one(refuse_channel, "refuse")
+
     if args.ready:
         Path(args.ready).write_text("registered\n")
 
     def stop(*_a) -> bool:
         for fd in list(conns):
             close(fd, "agent_stop")
-        try:
-            pm.UnregisterProfile(path)
-        except dbus.DBusException:
-            pass
+        for path, _prof in profiles:
+            try:
+                pm.UnregisterProfile(path)
+            except dbus.DBusException:
+                pass
         log.write({"event": "agent_stopped", "session_id": session_id})
         loop.quit()
         return False
@@ -512,13 +651,15 @@ def main() -> int:
         )
         p.add_argument(
             "--sas-probe",
-            choices=("none", "dataack", "challenge", "challenge_rhmi"),
+            choices=("none", "dataack", "challenge", "challenge_rhmi", "adaptive"),
             default=None,
             help=(
-                "adaptive Etch reply after OPEN 4004: "
+                "Etch reply after OPEN 4004: "
                 "none=no etch; dataack=DATAACK only; "
                 "challenge=non-zero SAS challenge; "
-                "challenge_rhmi=challenge+RHMI stub (default from profile)"
+                "challenge_rhmi=challenge+RHMI stub; "
+                "adaptive=challenge then escalate on Phone TX "
+                "(default from profile)"
             ),
         )
         p.add_argument(
@@ -544,6 +685,37 @@ def main() -> int:
             "--wd-pong-payload",
             default="",
             help="hex override for WD pong payload (empty=mirror ping)",
+        )
+        p.add_argument(
+            "--wd-pong-delay",
+            type=float,
+            default=None,
+            dest="wd_pong_delay_s",
+            help="seconds to delay each WD pong (timeout probe; default 0)",
+        )
+        p.add_argument(
+            "--etch-reply-src",
+            type=lambda x: int(x, 0),
+            default=None,
+            help=(
+                "HU etch DATA as src=N dest=4004 (field-shaped); "
+                "omit for desk src=4004 dest=phone"
+            ),
+        )
+        p.add_argument(
+            "--hu-open-srcs",
+            default="",
+            help="comma ports: after KNOCK send HU OPEN src→4004 (e.g. 10,12,18)",
+        )
+        p.add_argument(
+            "--channel-refuse",
+            type=int,
+            default=None,
+            help=(
+                "also register this SCN and close immediately on connect "
+                "(SCN6 refuse → SCN10 accept failover probe; BlueZ may reject "
+                "second 0x1101)"
+            ),
         )
         p.add_argument("--hold", type=float, default=120.0)
         p.add_argument("--log", required=True)
@@ -642,6 +814,14 @@ def main() -> int:
             ns.sas_probe = str(prof.get("sas_probe", "challenge"))
         if getattr(ns, "handshake_delay_s", None) is None:
             ns.handshake_delay_s = float(prof.get("handshake_delay_s", 0.0))
+        if getattr(ns, "wd_pong_delay_s", None) is None:
+            ns.wd_pong_delay_s = float(prof.get("wd_pong_delay_s", 0.0))
+        if getattr(ns, "etch_reply_src", None) is None and "etch_reply_src" in prof:
+            ns.etch_reply_src = prof.get("etch_reply_src")
+        if not getattr(ns, "hu_open_srcs", None):
+            srcs = prof.get("hu_open_srcs") or ()
+            if srcs:
+                ns.hu_open_srcs = ",".join(str(x) for x in srcs)
 
     _resolve_hu_profile(args)
 

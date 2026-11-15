@@ -41,7 +41,14 @@ from lab_pair_agent import service_active  # noqa: E402
 
 EVIDENCE = ROOT / "docs" / "evidence"
 REMOTE_DIR = "/tmp/bcl_dummy"
-UPLOAD = ("bcl_framer.py", "bcl_dummy_hu.py", "bcl_etch_stub.py", "bcl_dummy_hu_agent.py")
+UPLOAD = (
+    "bcl_framer.py",
+    "bcl_dummy_hu.py",
+    "bcl_etch_stub.py",
+    "bcl_phone_tx_classify.py",
+    "bcl_classify.py",
+    "bcl_dummy_hu_agent.py",
+)
 NODES = {"131": PHONE, "87": HU_DUMMY}
 UUID_SPP = "00001101"
 UUID_A2DP_SINK = "0000110b"

@@ -78,6 +78,17 @@ class TestSasCdsStub(unittest.TestCase):
         self.assertEqual(stub.challenges_sent, 1)
         self.assertEqual(stub.rhmi_caps_sent, 1)
 
+    def test_adaptive_open_challenge_only(self):
+        stub = EtchSasCdsStub(stage="adaptive")
+        replies = stub.on_etch_open(10)
+        self.assertEqual(len(replies), 1)
+        self.assertEqual(stub.challenges_sent, 1)
+        self.assertEqual(stub.rhmi_caps_sent, 0)
+        more = stub.adaptive_escalate_rhmi(10)
+        self.assertEqual(len(more), 1)
+        self.assertEqual(stub.rhmi_caps_sent, 1)
+        self.assertEqual(stub.adaptive_escalate_rhmi(10), [])
+
     def test_stage_dataack_silent(self):
         stub = EtchSasCdsStub(stage="dataack")
         self.assertEqual(stub.on_etch_open(10), [])

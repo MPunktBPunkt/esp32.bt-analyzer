@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """Minimal lab Etch/SAS/CDS stub for Dummy-HU (not a full Apache Etch stack).
 
-SAS probe stages (adaptive, no crypto verification):
+SAS probe stages (no crypto verification — LAB experiment only):
   none            — no etch replies (transport/WD only)
   dataack         — outer DummyHu DATAACK only; stub silent
   challenge       — non-zero SAS-challenge on OPEN 4004 and after PKCS7
   challenge_rhmi  — challenge + stub RHMI/capabilities blob
+  adaptive        — challenge on OPEN; RHMI escalate after Phone etch TX
 
 Epistemic: LAB stub only — framing mirrors deadbeef + u32BE(len) from LAB_DUMMY_ETCH_*
 and field CDS ASCII from FIELD_AAIDRIVE_BTLOG_20261115.
+Does NOT reconstruct real SAS/RHMI; discovers what Phone needs to advance.
 """
 
 from __future__ import annotations
@@ -27,8 +29,16 @@ _LAB_ETCH_TRAILER = bytes.fromhex("866306b46887000001a1da8f000081")
 # Field-seen void/ack trailer shape (FIELD M38) — used in short completions.
 _FIELD_VOID_TRAILER = bytes.fromhex("0286eda8c9a687000001")
 
-SasProbeStage = Literal["none", "dataack", "challenge", "challenge_rhmi"]
-SAS_PROBE_STAGES: tuple[str, ...] = ("none", "dataack", "challenge", "challenge_rhmi")
+SasProbeStage = Literal[
+    "none", "dataack", "challenge", "challenge_rhmi", "adaptive"
+]
+SAS_PROBE_STAGES: tuple[str, ...] = (
+    "none",
+    "dataack",
+    "challenge",
+    "challenge_rhmi",
+    "adaptive",
+)
 
 # CDS property → JSON (BMWConnectedAnalysis + field fragments 2026-11-15).
 CDS_STUB_VALUES: dict[str, str] = {
@@ -171,7 +181,7 @@ class EtchSasCdsStub:
     events: list[dict] = field(default_factory=list)
 
     def on_etch_open(self, src: int) -> list[bytes]:
-        """Adaptive reply right after Phone OPEN dest=4004."""
+        """Reply right after Phone OPEN dest=4004 (static stages + adaptive)."""
         if not self.enabled or self.stage in ("none", "dataack"):
             return []
         self.opens_seen += 1
@@ -183,13 +193,18 @@ class EtchSasCdsStub:
                 "index": self.opens_seen,
             }
         )
-        return self._emit_challenge_stack(src, reason="open")
+        # adaptive: challenge first; escalate to RHMI only after phone TX evidence
+        if self.stage in ("challenge", "challenge_rhmi", "adaptive"):
+            include_rhmi = self.stage == "challenge_rhmi"
+            return self._emit_challenge_stack(
+                src, reason="open", include_rhmi=include_rhmi
+            )
+        return []
 
     def on_etch_data(self, src: int, payload: bytes) -> list[bytes]:
         if not self.enabled or self.stage == "none":
             return []
         if self.stage == "dataack":
-            # Observe only — outer DummyHu already sent DATAACK(8+len).
             ch = self.channels.setdefault(src, EtchChannelReassembler())
             for msg in ch.feed(payload):
                 self.events.append(
@@ -208,7 +223,9 @@ class EtchSasCdsStub:
             replies.extend(self._handle_msg(src, msg))
         return replies
 
-    def _emit_challenge_stack(self, src: int, *, reason: str) -> list[bytes]:
+    def _emit_challenge_stack(
+        self, src: int, *, reason: str, include_rhmi: bool | None = None
+    ) -> list[bytes]:
         out: list[bytes] = []
         out.append(build_sas_challenge_payload(self.challenge))
         self.challenges_sent += 1
@@ -222,7 +239,12 @@ class EtchSasCdsStub:
                 "stage": self.stage,
             }
         )
-        if self.stage == "challenge_rhmi":
+        want_rhmi = (
+            include_rhmi
+            if include_rhmi is not None
+            else self.stage == "challenge_rhmi"
+        )
+        if want_rhmi:
             out.append(build_rhmi_capabilities_stub())
             self.rhmi_caps_sent += 1
             self.events.append(
@@ -233,6 +255,23 @@ class EtchSasCdsStub:
                     "stage": self.stage,
                 }
             )
+        return out
+
+    def adaptive_escalate_rhmi(self, src: int) -> list[bytes]:
+        """After Phone post-challenge TX in adaptive mode — one RHMI stub."""
+        if self.stage != "adaptive" or self.rhmi_caps_sent > 0:
+            return []
+        out = [build_rhmi_capabilities_stub()]
+        self.rhmi_caps_sent += 1
+        self.events.append(
+            {
+                "event": "rhmi_capabilities_tx",
+                "src": src,
+                "index": self.rhmi_caps_sent,
+                "stage": "adaptive",
+                "reason": "phone_tx_after_challenge",
+            }
+        )
         return out
 
     def _handle_msg(self, src: int, msg: bytes) -> list[bytes]:
@@ -297,10 +336,17 @@ class EtchSasCdsStub:
                     "src": src,
                     "len": len(msg),
                     "index": self.logins_seen,
+                    "note": "LAB heuristic — not proven SAS-login wire format",
                 }
             )
             out.append(build_sas_login_ok_payload())
             self.events.append({"event": "sas_login_ok_tx", "src": src})
             if self.stage == "challenge_rhmi" and self.rhmi_caps_sent == 0:
-                out.extend(self._emit_challenge_stack(src, reason="post_login")[1:])
+                out.extend(
+                    self._emit_challenge_stack(
+                        src, reason="post_login", include_rhmi=True
+                    )[1:]
+                )
+            elif self.stage == "adaptive":
+                out.extend(self.adaptive_escalate_rhmi(src))
         return out

@@ -16,7 +16,8 @@ WD echo, optional Etch/SAS/CDS stub on dest 4004.
 
 DATAACK (FIELD 2026-11-15 wire): count = 8 + payload_len per received BCL frame
   (10=SP, 44=KNOCK-body, 4008=8+4000 fragment limit). Not a cumulative counter.
-SAS probe stages: none | dataack | challenge | challenge_rhmi (see bcl_etch_stub).
+SAS probe stages: none | dataack | challenge | challenge_rhmi | adaptive
+  (see bcl_etch_stub). adaptive = challenge on OPEN, escalate on Phone TX.
 """
 
 from __future__ import annotations
@@ -40,6 +41,7 @@ from bcl_framer import (
     build_synthetic_frame,
     cmd_desk_name,
 )
+from bcl_phone_tx_classify import classify_phone_frame
 
 CMD_OPEN = 1
 CMD_DATA = 2
@@ -75,6 +77,9 @@ HU_PROFILES: dict[str, dict[str, Any]] = {
         "etch_stub": False,
         "sas_probe": "none",
         "handshake_delay_s": 0.0,
+        "wd_pong_delay_s": 0.0,
+        "etch_reply_src": None,
+        "hu_open_srcs": (),
     },
     "f20": {
         "version": 5,
@@ -85,6 +90,9 @@ HU_PROFILES: dict[str, dict[str, Any]] = {
         "etch_stub": True,
         "sas_probe": "challenge",
         "handshake_delay_s": 0.0,
+        "wd_pong_delay_s": 0.0,
+        "etch_reply_src": None,
+        "hu_open_srcs": (),
     },
 }
 
@@ -208,7 +216,7 @@ class DummyHuSession(_Session):
     echo_watchdog: bool = False
     send_dataack: bool = False
     etch_stub: bool = False
-    # SAS adaptive probe: none|dataack|challenge|challenge_rhmi
+    # SAS probe: none|dataack|challenge|challenge_rhmi|adaptive
     sas_probe: str = "challenge"
     # Field HS arrives ~3.0 s after RFCOMM-up; 0 = immediate (unit tests).
     handshake_delay_s: float = 0.0
@@ -216,9 +224,16 @@ class DummyHuSession(_Session):
     #   wd_pong_max: stop echoing after N pongs (0 = unlimited)
     #   wd_pong_skip_mod: if >1, echo only when ping_index % mod == 1 (1-based)
     #   wd_pong_payload: override echo payload (None = mirror ping)
+    #   wd_pong_delay_s: sleep before each pong (WD timeout probe)
     wd_pong_max: int = 0
     wd_pong_skip_mod: int = 0
     wd_pong_payload: bytes | None = None
+    wd_pong_delay_s: float = 0.0
+    # Etch TX shape: None → src=4004 dest=phone_src (desk);
+    # set → src=etch_reply_src dest=4004 (field-shaped experiment).
+    etch_reply_src: int | None = None
+    # After first KNOCK, HU-initiated OPEN src→4004 for each port (lab probe).
+    hu_open_srcs: tuple[int, ...] | list[int] = ()
     observe_only: bool = False
     handshake_sent: bool = False
     knocked: bool = False
@@ -227,6 +242,7 @@ class DummyHuSession(_Session):
     wd_ping_seen: int = 0
     wd_pong_sent: int = 0
     dataack_sent: int = 0
+    hu_opens_sent: bool = False
     etch: EtchSasCdsStub | None = None
 
     def __post_init__(self) -> None:
@@ -236,22 +252,69 @@ class DummyHuSession(_Session):
                 f"unknown sas_probe {self.sas_probe!r}; choose {list(SAS_PROBE_STAGES)}"
             )
         self.sas_probe = stage
-        # Stage none ⇒ no etch replies; dataack stage keeps stub for silent observe.
+        if isinstance(self.hu_open_srcs, list):
+            self.hu_open_srcs = tuple(int(x) for x in self.hu_open_srcs)
+        # Stage none ⇒ no etch replies; dataack/adaptive keep stub for observe/react.
         want_etch = self.etch_stub or stage in (
             "dataack",
             "challenge",
             "challenge_rhmi",
+            "adaptive",
         )
         if stage == "none":
             want_etch = False
         if want_etch and self.etch is None:
             self.etch = EtchSasCdsStub(
                 enabled=True,
-                stage=stage if stage != "dataack" else "dataack",  # type: ignore[arg-type]
+                stage=stage,  # type: ignore[arg-type]
             )
         elif self.etch is not None:
             self.etch.stage = stage if stage != "none" else "none"  # type: ignore[assignment]
             self.etch.enabled = stage != "none"
+
+    def _etch_tx_ports(self, phone_src: int) -> tuple[int, int]:
+        """Return (src, dest) for HU→Phone etch DATA frames."""
+        if self.etch_reply_src is not None:
+            return int(self.etch_reply_src), DEST_ETCH_DESK
+        return DEST_ETCH_DESK, int(phone_src)
+
+    def _append_etch_tx(
+        self, replies: list[bytes], phone_src: int, body: bytes, *, reason: str
+    ) -> None:
+        src, dest = self._etch_tx_ports(phone_src)
+        replies.append(build_synthetic_frame(CMD_DATA, src, dest, body))
+        self.events.append(
+            {
+                "event": "etch_data_tx",
+                "src": src,
+                "dest": dest,
+                "len": len(body),
+                "payload_hex": body[:64].hex(),
+                "reason": reason,
+                "etch_reply_mode": (
+                    "field_src_dest4004"
+                    if self.etch_reply_src is not None
+                    else "desk_4004_to_phone"
+                ),
+            }
+        )
+
+    def _maybe_hu_open(self, replies: list[bytes]) -> None:
+        if self.hu_opens_sent or not self.hu_open_srcs:
+            return
+        self.hu_opens_sent = True
+        for src in self.hu_open_srcs:
+            replies.append(
+                build_synthetic_frame(CMD_OPEN, int(src), DEST_ETCH_DESK)
+            )
+            self.events.append(
+                {
+                    "event": "hu_open_tx",
+                    "src": int(src),
+                    "dest": DEST_ETCH_DESK,
+                    "note": "LAB HU-initiated OPEN — not proven F20 wire order",
+                }
+            )
 
     def _note_knock_envelope(self, data: bytes) -> None:
         if not looks_like_knock_envelope(data):
@@ -292,6 +355,9 @@ class DummyHuSession(_Session):
                 }
             )
         for fr in frames:
+            self.events.append(
+                classify_phone_frame(fr.cmd, fr.src, fr.dest, fr.payload)
+            )
             if self.send_dataack and fr.cmd != CMD_DATAACK:
                 n = dataack_count_for_frame(fr)
                 replies.append(build_dataack(n))
@@ -309,6 +375,7 @@ class DummyHuSession(_Session):
                 self.knocked = True
                 self.last_knock = parse_knock(fr.payload)
                 self.events.append({"event": "knock_rx", **self.last_knock})
+                self._maybe_hu_open(replies)
             elif fr.cmd == CMD_DATA and looks_like_knock_envelope(fr.payload):
                 self.knocked = True
                 self.events.append(
@@ -320,6 +387,7 @@ class DummyHuSession(_Session):
                         "len": fr.length,
                     }
                 )
+                self._maybe_hu_open(replies)
             elif fr.cmd == CMD_SELECTPROTO and len(fr.payload) == 2:
                 self.selected_proto = struct.unpack(">H", fr.payload)[0]
                 self.events.append(
@@ -336,20 +404,8 @@ class DummyHuSession(_Session):
                 )
                 if self.etch is not None:
                     for body in self.etch.on_etch_open(fr.src):
-                        replies.append(
-                            build_synthetic_frame(
-                                CMD_DATA, DEST_ETCH_DESK, fr.src, body
-                            )
-                        )
-                        self.events.append(
-                            {
-                                "event": "etch_data_tx",
-                                "src": DEST_ETCH_DESK,
-                                "dest": fr.src,
-                                "len": len(body),
-                                "payload_hex": body[:64].hex(),
-                                "reason": "open_probe",
-                            }
+                        self._append_etch_tx(
+                            replies, fr.src, body, reason="open_probe"
                         )
                     while self.etch.events:
                         self.events.append(self.etch.events.pop(0))
@@ -375,6 +431,8 @@ class DummyHuSession(_Session):
                         }
                     )
                 else:
+                    if self.wd_pong_delay_s > 0:
+                        time.sleep(float(self.wd_pong_delay_s))
                     payload = (
                         self.wd_pong_payload
                         if self.wd_pong_payload is not None
@@ -390,6 +448,7 @@ class DummyHuSession(_Session):
                             "ping_index": idx,
                             "pong_index": self.wd_pong_sent,
                             "payload_hex": payload.hex(),
+                            "delay_s": self.wd_pong_delay_s,
                         }
                     )
             elif (
@@ -397,23 +456,19 @@ class DummyHuSession(_Session):
                 and fr.cmd == CMD_DATA
                 and fr.dest == DEST_ETCH_DESK
             ):
-                etch_payloads = self.etch.on_etch_data(fr.src, fr.payload)
-                # flush stub events into session log
+                etch_payloads = list(self.etch.on_etch_data(fr.src, fr.payload))
+                # adaptive: first Phone etch TX after challenge → escalate RHMI once
+                if (
+                    self.sas_probe == "adaptive"
+                    and self.etch.challenges_sent > 0
+                    and self.etch.rhmi_caps_sent == 0
+                ):
+                    etch_payloads.extend(self.etch.adaptive_escalate_rhmi(fr.src))
                 while self.etch.events:
                     self.events.append(self.etch.events.pop(0))
                 for body in etch_payloads:
-                    # HU→Phone: swap ports (etch dest → phone src)
-                    replies.append(
-                        build_synthetic_frame(CMD_DATA, DEST_ETCH_DESK, fr.src, body)
-                    )
-                    self.events.append(
-                        {
-                            "event": "etch_data_tx",
-                            "src": DEST_ETCH_DESK,
-                            "dest": fr.src,
-                            "len": len(body),
-                            "payload_hex": body[:64].hex(),
-                        }
+                    self._append_etch_tx(
+                        replies, fr.src, body, reason="etch_reply"
                     )
         return replies
 
