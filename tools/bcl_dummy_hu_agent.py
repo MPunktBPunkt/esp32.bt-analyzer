@@ -91,6 +91,7 @@ def _make_dummy_session(args: argparse.Namespace) -> DummyHuSession:
         wd_pong_delay_s=float(getattr(args, "wd_pong_delay_s", 0.0) or 0.0),
         etch_reply_src=getattr(args, "etch_reply_src", None),
         hu_open_srcs=_parse_hu_open_srcs(getattr(args, "hu_open_srcs", None)),
+        cds_push=bool(getattr(args, "cds_push", False)),
     )
 
 
@@ -385,6 +386,7 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                 "hu_open_srcs": list(
                     _parse_hu_open_srcs(getattr(args, "hu_open_srcs", None))
                 ),
+                "cds_push": bool(getattr(args, "cds_push", False)),
                 "channel_refuse": refuse_channel,
                 "observe_only": observe_only,
                 **meta,
@@ -715,6 +717,15 @@ def main() -> int:
                 "also register this SCN and close immediately on connect "
                 "(SCN6 refuse → SCN10 accept failover probe; BlueZ may reject "
                 "second 0x1101)"
+            ),
+        )
+        p.add_argument(
+            "--cds-push",
+            action=argparse.BooleanOptionalAction,
+            default=False,
+            help=(
+                "after OPEN challenge, push unsolicited field-like CDS once "
+                "(SOCBattery / iva_MYV_LIGHT_INTERIOR / VIN stub)"
             ),
         )
         p.add_argument("--hold", type=float, default=120.0)

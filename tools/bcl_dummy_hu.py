@@ -234,6 +234,8 @@ class DummyHuSession(_Session):
     etch_reply_src: int | None = None
     # After first KNOCK, HU-initiated OPEN src→4004 for each port (lab probe).
     hu_open_srcs: tuple[int, ...] | list[int] = ()
+    # After OPEN challenge, push field-like CDS (VIN/SOC/…) once (lab probe).
+    cds_push: bool = False
     observe_only: bool = False
     handshake_sent: bool = False
     knocked: bool = False
@@ -267,10 +269,12 @@ class DummyHuSession(_Session):
             self.etch = EtchSasCdsStub(
                 enabled=True,
                 stage=stage,  # type: ignore[arg-type]
+                cds_push=bool(self.cds_push),
             )
         elif self.etch is not None:
             self.etch.stage = stage if stage != "none" else "none"  # type: ignore[assignment]
             self.etch.enabled = stage != "none"
+            self.etch.cds_push = bool(self.cds_push)
 
     def _etch_tx_ports(self, phone_src: int) -> tuple[int, int]:
         """Return (src, dest) for HU→Phone etch DATA frames."""

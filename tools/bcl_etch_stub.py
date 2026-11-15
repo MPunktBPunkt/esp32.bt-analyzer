@@ -19,7 +19,7 @@ import json
 import re
 import struct
 from dataclasses import dataclass, field
-from typing import Literal
+from typing import ClassVar, Literal
 
 ETCH_MAGIC = b"\xde\xad\xbe\xef"
 # 16-byte prefix observed before PEM in lab Phone→HU cert msgs (src10).
@@ -178,7 +178,17 @@ class EtchSasCdsStub:
     opens_seen: int = 0
     rhmi_caps_sent: int = 0
     cds_hits: list[str] = field(default_factory=list)
+    # LAB: after OPEN challenge, also push a few field-like CDS values (unsolicited).
+    cds_push: bool = False
+    cds_push_sent: int = 0
     events: list[dict] = field(default_factory=list)
+
+    # Minimal field-seen set for unsolicited push experiments.
+    CDS_PUSH_NAMES: ClassVar[tuple[str, ...]] = (
+        "sensors.SOCBattery",
+        "iva_MYV_LIGHT_INTERIOR",
+        "vehicle.VIN",
+    )
 
     def on_etch_open(self, src: int) -> list[bytes]:
         """Reply right after Phone OPEN dest=4004 (static stages + adaptive)."""
@@ -196,10 +206,34 @@ class EtchSasCdsStub:
         # adaptive: challenge first; escalate to RHMI only after phone TX evidence
         if self.stage in ("challenge", "challenge_rhmi", "adaptive"):
             include_rhmi = self.stage == "challenge_rhmi"
-            return self._emit_challenge_stack(
+            out = self._emit_challenge_stack(
                 src, reason="open", include_rhmi=include_rhmi
             )
+            out.extend(self._emit_cds_push(src, reason="open"))
+            return out
         return []
+
+    def _emit_cds_push(self, src: int, *, reason: str) -> list[bytes]:
+        if not self.cds_push or self.cds_push_sent > 0:
+            return []
+        out: list[bytes] = []
+        for name in self.CDS_PUSH_NAMES:
+            val = CDS_STUB_VALUES.get(name)
+            if val is None:
+                continue
+            out.append(build_cds_property_payload(name, val))
+            self.cds_hits.append(name)
+            self.events.append(
+                {
+                    "event": "cds_property_tx",
+                    "src": src,
+                    "property": name,
+                    "reason": f"cds_push_{reason}",
+                    "note": "LAB unsolicited CDS — not proven F20 order",
+                }
+            )
+        self.cds_push_sent += 1
+        return out
 
     def on_etch_data(self, src: int, payload: bytes) -> list[bytes]:
         if not self.enabled or self.stage == "none":

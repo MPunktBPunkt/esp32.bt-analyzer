@@ -89,6 +89,19 @@ class TestSasCdsStub(unittest.TestCase):
         self.assertEqual(stub.rhmi_caps_sent, 1)
         self.assertEqual(stub.adaptive_escalate_rhmi(10), [])
 
+    def test_cds_push_on_open_once(self):
+        stub = EtchSasCdsStub(stage="challenge", cds_push=True)
+        replies = stub.on_etch_open(10)
+        # challenge + 3 CDS
+        self.assertEqual(len(replies), 4)
+        self.assertEqual(stub.cds_push_sent, 1)
+        self.assertEqual(
+            sum(1 for e in stub.events if e["event"] == "cds_property_tx"), 3
+        )
+        # second open: challenge only, no second CDS batch
+        self.assertEqual(len(stub.on_etch_open(12)), 1)
+        self.assertEqual(stub.cds_push_sent, 1)
+
     def test_stage_dataack_silent(self):
         stub = EtchSasCdsStub(stage="dataack")
         self.assertEqual(stub.on_etch_open(10), [])
