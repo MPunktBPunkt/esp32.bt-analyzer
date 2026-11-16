@@ -213,6 +213,17 @@ class TestDummyHu(unittest.TestCase):
         self.assertEqual(len(etch_tx), 1)
         self.assertEqual((etch_tx[0].src, etch_tx[0].dest), (12, DEST_ETCH_DESK))
 
+    def test_f20_profile_mirrors_phone_src_on_etch_reply(self):
+        from bcl_dummy_hu import apply_hu_profile
+
+        prof = apply_hu_profile("f20")
+        hu = DummyHuSession(**prof)
+        for ch_src in (10, 15):
+            frames = frames_of(hu.on_bytes(build_synthetic_frame(CMD_OPEN, ch_src, DEST_ETCH_DESK)))
+            etch_tx = [f for f in frames if f.cmd == 2]
+            self.assertEqual(len(etch_tx), 1)
+            self.assertEqual((etch_tx[0].src, etch_tx[0].dest), (ch_src, DEST_ETCH_DESK))
+
     def test_knock_envelope_accepted(self):
         hu = DummyHuSession(sas_probe="none")
         blob = (

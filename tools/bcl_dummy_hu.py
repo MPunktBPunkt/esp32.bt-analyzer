@@ -91,7 +91,21 @@ HU_PROFILES: dict[str, dict[str, Any]] = {
         "sas_probe": "challenge",
         "handshake_delay_s": 0.0,
         "wd_pong_delay_s": 0.0,
-        "etch_reply_src": None,
+        # 0 = mirror phone_src -> (phone_src, 4004) as on real F20 wire + BclMultiplexer Pair(src,dest)
+        "etch_reply_src": 0,
+        "hu_open_srcs": (),
+    },
+    "f20_sim": {
+        "version": 5,
+        "instance_id": 14,
+        "buffer_size": 0x4000,
+        "echo_watchdog": True,
+        "send_dataack": True,
+        "etch_stub": True,
+        "sas_probe": "f20_full",
+        "handshake_delay_s": 0.0,
+        "wd_pong_delay_s": 0.0,
+        "etch_reply_src": 0,
         "hu_open_srcs": (),
     },
 }
@@ -262,6 +276,7 @@ class DummyHuSession(_Session):
             "challenge",
             "challenge_rhmi",
             "adaptive",
+            "f20_full",
         )
         if stage == "none":
             want_etch = False
@@ -277,9 +292,15 @@ class DummyHuSession(_Session):
             self.etch.cds_push = bool(self.cds_push)
 
     def _etch_tx_ports(self, phone_src: int) -> tuple[int, int]:
-        """Return (src, dest) for HU→Phone etch DATA frames."""
+        """Return (src, dest) for HU→Phone etch DATA frames.
+
+        None → legacy desk guess (4004, phone_src);
+        0    → F20 wire / BclMultiplexer tuple-invariant (phone_src, 4004);
+        >0   → explicit fixed src (etch_reply_src, 4004).
+        """
         if self.etch_reply_src is not None:
-            return int(self.etch_reply_src), DEST_ETCH_DESK
+            src = int(phone_src) if int(self.etch_reply_src) == 0 else int(self.etch_reply_src)
+            return src, DEST_ETCH_DESK
         return DEST_ETCH_DESK, int(phone_src)
 
     def _append_etch_tx(

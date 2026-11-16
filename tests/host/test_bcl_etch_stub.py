@@ -6,10 +6,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
 
 from bcl_etch_stub import (  # noqa: E402
     CDS_STUB_VALUES,
+    ETCH_MAGIC,
+    ETCH_TYPE_RESULT_SAS_CERTIFICATE,
+    ETCH_TYPE_RESULT_SAS_LOGIN,
+    ETCH_TYPE_SAS_LOGIN,
     EtchChannelReassembler,
     EtchSasCdsStub,
-    ETCH_MAGIC,
     build_sas_challenge_payload,
+    build_sas_login_ok_payload,
+    etch_sdbm_hash,
+    extract_etch_message_id,
+    extract_etch_type_hash,
     wrap_etch_body,
 )
 
@@ -22,10 +29,26 @@ class TestEtchEnvelope(unittest.TestCase):
         self.assertEqual(int.from_bytes(msg[4:8], "big"), 3)
         self.assertEqual(msg[8:], body)
 
-    def test_challenge_payload_16(self):
-        msg = build_sas_challenge_payload(bytes(range(16)))
+    def test_challenge_payload_16_matches_f20_wire_layout(self):
+        msg = build_sas_challenge_payload(bytes(range(16)), in_reply_to=0x1A1DA8F0000, msg_id=1)
         self.assertTrue(msg.startswith(ETCH_MAGIC))
+        self.assertEqual(len(msg), 67)  # 8B deadbeef+len(59) + 59B Etch body = 67B BCL payload (E-553)
+        self.assertEqual(extract_etch_type_hash(msg), ETCH_TYPE_RESULT_SAS_CERTIFICATE)
         self.assertIn(bytes(range(16)), msg)
+
+    def test_login_ok_matches_f20_wire_layout(self):
+        msg = build_sas_login_ok_payload(in_reply_to=7, msg_id=2)
+        self.assertEqual(len(msg), 44)  # 8B deadbeef+len(36) + 36B Etch body = 44B BCL payload (S-B)
+        self.assertEqual(extract_etch_type_hash(msg), ETCH_TYPE_RESULT_SAS_LOGIN)
+        self.assertEqual(extract_etch_message_id(msg), 2)
+
+    def test_sdbm_hashes_match_bmw_remoting(self):
+        self.assertEqual(etch_sdbm_hash("de.bmw.idrive.BMWRemoting.sas_certificate"), 0x304BA8BB)
+        self.assertEqual(etch_sdbm_hash("de.bmw.idrive.BMWRemoting._result_sas_certificate"), 0x9C6372B8)
+        self.assertEqual(etch_sdbm_hash("de.bmw.idrive.BMWRemoting.sas_login"), ETCH_TYPE_SAS_LOGIN)
+        self.assertEqual(etch_sdbm_hash("de.bmw.idrive.BMWRemoting._result_sas_login"), 0xA6B0FFCA)
+        self.assertEqual(etch_sdbm_hash("de.bmw.idrive.BMWRemoting._result_rhmi_getCapabilities"), 0x19481364)
+        self.assertEqual(etch_sdbm_hash("de.bmw.idrive.BMWRemoting.cds_onPropertyChangedEvent"), 0xAE0D3D69)
 
 
 class TestReassembler(unittest.TestCase):

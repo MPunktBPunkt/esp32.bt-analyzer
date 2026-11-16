@@ -1,4 +1,4 @@
-# HCI over TCP — D1 Mini as a BlueZ controller (0.3.19)
+# HCI over TCP — D1 Mini as a BlueZ controller (0.3.20)
 
 ```yaml
 status: a1_a5_measured
@@ -54,7 +54,7 @@ can be flashed back to `analyzer-esp32` the same way. Legacy heartbeat WDT is of
 in this env (no hub in the car must not reset live links).
 
 `GET /api/status` → `hciAgent{ready, bdAddr, client, sessions, toCtrlPkts/Bytes,
-toHostPkts/Bytes, drops, framingErrors, ringBytes, ringUsed, ringPeak,
+toHostPkts/Bytes, drops, framingErrors, writeRetries, ringBytes, ringUsed, ringPeak,
 rttLastUs, rttMaxUs, rttSamples, wifiPs, coex, coexErr}`.
 
 WiFi power save live toggle (default `min` for stable Classic ACL):
@@ -72,9 +72,9 @@ not raise ACL — coex/PS limit. `ringPeak` ≪ 24 KiB, drops=0. After `none`,
 prior ~62 kB/s not reproduced as sustained or ≥55 kB/s 2 s window; accept ~41–45
 (`none`) as current coex budget (earlier sweeps ~36–39).
 
-Coex mode (0.3.19, untested on HW): `GET|POST /api/hci/coex` `mode=default|a2dp|prefer_bt`.
+Coex mode (`0.3.20` boots into **`prefer_bt`** by default; `hci_tcp_bridge.py --coex prefer_bt` also applies it over HTTP on connect so even `0.3.19` nodes benefit): `GET|POST /api/hci/coex` `mode=default|a2dp|prefer_bt`.
 `a2dp` sets the A2DP-streaming coex status that Bluedroid would set; BlueZ on
-Linux cannot. A/B with `tools/lab_hci_coex_ab.py`; A2DP bit-rate budget and relay
+Linux cannot. `0.3.20` also adds a 400 ms `writeAll` retry loop (`writeRetries` counter instead of immediate `write_fail` + `HCI_Reset` on transient WiFi stalls) and wakes the pump task via `xTaskNotifyGive` from both `onControllerPacket` and `onSendAvailable`. A/B with `tools/lab_hci_coex_ab.py`; A2DP bit-rate budget and relay
 plan in [`A2DP_RELAY.md`](A2DP_RELAY.md).
 
 ## Attach
@@ -126,7 +126,7 @@ CT100 → `.108` SSH key that `lab_bt_host_ssh.py` already uses.
 | A5 | Unplug WiFi / stop bridge | phone shows disconnect ≤ 15 s; bridge reconnects, `hciN` back |
 | A6 | Same for `.87`, BMW HU pairs | HU lists the ESP controller as phone |
 
-**A1–A5: MEASURED** (evidence above). **A6: OPEN.**
+**A1–A6: MEASURED** (`FIELD_A6_HU_20261113T062824Z`, `FIELD_P0_HOLD_20261115T132501Z`).
 
 A4/A6 need a default pairing agent on `.108` (`bt-pair-agent`, DisplayYesNo):
 the remote side starts pairing and BlueZ asks that agent. See `docs/PAIRING.md`.

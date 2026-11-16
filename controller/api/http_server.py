@@ -14,11 +14,12 @@ from urllib.parse import parse_qs, urlparse
 
 from controller import agent_view, pairing
 from controller import session as btac_session
+from controller.bmw_lab import bmw_lab
 from controller.btmon_live import live as btmon_live
 
 WEB_ROOT = Path(__file__).resolve().parents[2] / "web"
 STARTED = time.time()
-VERSION = "0.3.19"
+VERSION = "0.3.20"
 
 # Poll-proxy lab nodes (OBSERVE) — no HELLO required yet
 LAB_NODES = [
@@ -231,6 +232,10 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json(200, pairing.status())
             return
 
+        if path == "/api/v1/bmw/state":
+            self._send_json(200, bmw_lab.snapshot())
+            return
+
         if path == "/api/v1/btmon":
             qs = parse_qs(parsed.query)
             since_arg = (qs.get("since") or ["0"])[0]
@@ -326,15 +331,97 @@ class Handler(BaseHTTPRequestHandler):
         ctype = self.headers.get("Content-Type") or ""
 
         fields: dict[str, str] = {}
+        json_obj: dict[str, Any] = {}
         if "application/json" in ctype and raw:
             try:
                 obj = json.loads(raw.decode("utf-8"))
                 if isinstance(obj, dict):
-                    fields = {str(k): str(v) for k, v in obj.items()}
+                    json_obj = obj
+                    fields = {str(k): ("" if v is None else str(v)) for k, v in obj.items()}
             except json.JSONDecodeError:
                 fields = {}
         else:
             fields = {k: (v[0] if v else "") for k, v in parse_qs(raw.decode("utf-8", errors="replace")).items()}
+
+        if path.startswith("/api/v1/bmw/"):
+            sub = path[len("/api/v1/bmw/") :]
+            if sub == "mode":
+                res = bmw_lab.set_auth_mode(fields.get("mode", ""))
+                self._send_json(200 if res.get("ok") else 400, res)
+                return
+            if sub == "cds/set":
+                val = json_obj.get("value", fields.get("value", ""))
+                res = bmw_lab.update_cds_value(fields.get("propertyName", ""), val)
+                self._send_json(200 if res.get("ok") else 400, res)
+                return
+            if sub == "cds/query":
+                res = bmw_lab.build_active_cds_query(
+                    fields.get("propertyName", ""),
+                    src=int(fields.get("src") or 12),
+                    handle=int(fields.get("handle") or 12),
+                    subscribe=str(json_obj.get("subscribe", fields.get("subscribe", "true"))).lower() != "false",
+                )
+                self._send_json(200 if res.get("ok") else 400, res)
+                return
+            if sub == "rhmi/load":
+                res = bmw_lab.check_or_load_rhmi_package(
+                    cert_name_or_pem=str(json_obj.get("cert", fields.get("cert", ""))),
+                    xml_text=str(json_obj.get("xml", fields.get("xml", ""))),
+                    src=int(fields.get("src") or 19),
+                    app_id=fields.get("appId") or "custom.pidrive.app",
+                    app_title=fields.get("title") or "PiDrive Custom App",
+                )
+                self._send_json(200 if res.get("ok") else 403, res)
+                return
+            if sub == "rhmi/set-data":
+                res = bmw_lab.rhmi_set_data(
+                    handle=int(fields.get("handle") or 1),
+                    model_id=int(fields.get("modelId") or 101),
+                    value=json_obj.get("value", fields.get("value", "")),
+                    src=int(fields.get("src") or 19),
+                )
+                self._send_json(200 if res.get("ok") else 400, res)
+                return
+            if sub == "rhmi/set-property":
+                raw_val = json_obj.get("value", fields.get("value", "true"))
+                if isinstance(raw_val, str) and raw_val.lower() in ("true", "false"):
+                    raw_val = raw_val.lower() == "true"
+                res = bmw_lab.rhmi_set_property(
+                    handle=int(fields.get("handle") or 1),
+                    component_id=int(fields.get("componentId") or 300),
+                    property_id=int(fields.get("propertyId") or 3),
+                    value=raw_val,
+                    src=int(fields.get("src") or 19),
+                )
+                self._send_json(200 if res.get("ok") else 400, res)
+                return
+            if sub == "rhmi/action":
+                res = bmw_lab.trigger_idrive_action(
+                    handle=int(fields.get("handle") or 1),
+                    component_id=int(fields.get("componentId") or 301),
+                    action_id=int(fields.get("actionId") or 200),
+                )
+                self._send_json(200 if res.get("ok") else 400, res)
+                return
+            if sub == "ingest-hex":
+                res = bmw_lab.ingest_wire_hex(
+                    fields.get("hex", ""),
+                    direction=fields.get("dir") or "wire",
+                )
+                self._send_json(200 if res.get("ok") else 400, res)
+                return
+
+        if path == "/api/v1/agents/coex":
+            mode = fields.get("mode") or "prefer_bt"
+            results = []
+            for meta in PROXY_CONTROLLERS:
+                try:
+                    code, txt = _post_form(f"http://{meta['ip']}/api/hci/coex", {"mode": mode}, timeout=2.5)
+                    results.append({"ip": meta["ip"], "ok": code == 200, "response": txt})
+                except Exception as exc:  # noqa: BLE001
+                    results.append({"ip": meta["ip"], "ok": False, "error": str(exc)})
+            self._send_json(200, {"ok": True, "mode": mode, "results": results})
+            return
 
         if path == "/api/v1/btmon/start":
             self._send_json(200, btmon_live.start())

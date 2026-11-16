@@ -23,6 +23,11 @@ class TestPhoneTxClassify(unittest.TestCase):
         ev = classify_phone_frame(2, 1, DEST_WATCHDOG_DESK, b"\x13\x37\x13\x37")
         self.assertIn("WD_PING", ev["tags"])
 
+    def test_sas_login_type_hash_detected(self):
+        payload = bytes.fromhex("deadbeef0000021f03867e002a4d02866306b468870000000000000001")
+        ev = classify_phone_frame(2, 10, DEST_ETCH_DESK, payload)
+        self.assertIn("SAS_LOGIN_CALL", ev["tags"])
+
 
 if __name__ == "__main__":
     unittest.main()

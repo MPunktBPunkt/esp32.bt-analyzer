@@ -111,11 +111,13 @@ void HciTcpAgent::begin() {
   }
   ready_ = true;
   setWifiPs("min");
+  setCoex("prefer_bt");
   xTaskCreatePinnedToCore(&HciTcpAgent::taskEntry, "hci_agent", 4096, this, 3,
-                          nullptr, 1);
-  DiagLog::printf("[hci_agent] ready port=%u heap=%u wifi_ps=%s\n",
+                          &task_, 1);
+  DiagLog::printf("[hci_agent] ready port=%u heap=%u wifi_ps=%s coex=%s\n",
                   static_cast<unsigned>(HCI_AGENT_PORT),
-                  static_cast<unsigned>(ESP.getFreeHeap()), wifi_ps_name_);
+                  static_cast<unsigned>(ESP.getFreeHeap()), wifi_ps_name_,
+                  coex_name_);
 }
 
 bool HciTcpAgent::setWifiPs(const char *mode) {
@@ -322,8 +324,18 @@ int HciTcpAgent::onControllerPacket(uint8_t *data, uint16_t len) {
     self->overflow_ = true;
   } else {
     self->noteRingEnqueue(len);
+    if (self->task_) {
+      xTaskNotifyGive(self->task_);
+    }
   }
   return 0;
+}
+
+void HciTcpAgent::onSendAvailable() {
+  HciTcpAgent *self = g_agent;
+  if (self && self->task_) {
+    xTaskNotifyGive(self->task_);
+  }
 }
 
 void HciTcpAgent::taskEntry(void *self) {
@@ -361,9 +373,10 @@ void HciTcpAgent::run() {
       dropClient("peer_closed");
       continue;
     }
-    const bool moved = pumpToController();
-    if (client_active_) {
-      pumpToHost(moved ? 0 : pdMS_TO_TICKS(2));
+    const bool moved_ctrl = pumpToController();
+    const bool moved_host = client_active_ ? pumpToHost() : false;
+    if (!moved_ctrl && !moved_host && client_active_) {
+      ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(2));
     }
   }
 }
@@ -466,7 +479,33 @@ bool HciTcpAgent::pumpToController() {
   return moved;
 }
 
-bool HciTcpAgent::pumpToHost(TickType_t wait) {
+bool HciTcpAgent::writeAll(const uint8_t *buf, size_t len) {
+  size_t off = 0;
+  const uint32_t start_ms = millis();
+  while (off < len) {
+    if (!client_.connected()) {
+      dropClient("peer_closed");
+      return false;
+    }
+    const size_t w = client_.write(buf + off, len - off);
+    if (w > 0) {
+      off += w;
+      if (off < len) {
+        write_retries_++;
+      }
+      continue;
+    }
+    if (millis() - start_ms >= kWriteRetryTimeoutMs) {
+      dropClient("write_timeout");
+      return false;
+    }
+    write_retries_++;
+    vTaskDelay(pdMS_TO_TICKS(2));
+  }
+  return true;
+}
+
+bool HciTcpAgent::pumpToHost() {
   bool moved = false;
   uint8_t batch[kToHostBatchBytes];
   size_t batch_len = 0;
@@ -474,9 +513,7 @@ bool HciTcpAgent::pumpToHost(TickType_t wait) {
     if (batch_len == 0) {
       return true;
     }
-    const size_t w = client_.write(batch, batch_len);
-    if (w != batch_len) {
-      dropClient("write_fail");
+    if (!writeAll(batch, batch_len)) {
       return false;
     }
     to_host_bytes_ += batch_len;
@@ -486,8 +523,7 @@ bool HciTcpAgent::pumpToHost(TickType_t wait) {
   };
   for (size_t i = 0; i < kMaxItemsPerPump; i++) {
     size_t n = 0;
-    auto *item = static_cast<uint8_t *>(
-        xRingbufferReceive(to_host_, &n, i == 0 ? wait : 0));
+    auto *item = static_cast<uint8_t *>(xRingbufferReceive(to_host_, &n, 0));
     if (!item) {
       break;
     }
@@ -497,11 +533,10 @@ bool HciTcpAgent::pumpToHost(TickType_t wait) {
         vRingbufferReturnItem(to_host_, item);
         return moved;
       }
-      const size_t w = client_.write(item, n);
+      const bool ok = writeAll(item, n);
       vRingbufferReturnItem(to_host_, item);
       noteRingDequeue(n);
-      if (w != n) {
-        dropClient("write_fail");
+      if (!ok) {
         return moved;
       }
       to_host_pkts_++;
@@ -550,6 +585,7 @@ void HciTcpAgent::appendStatusJson(String &json) {
   json += ",\"toHostBytes\":" + String(to_host_bytes_);
   json += ",\"drops\":" + String(drops_);
   json += ",\"framingErrors\":" + String(framing_errors_);
+  json += ",\"writeRetries\":" + String(write_retries_);
   json += ",\"ringBytes\":" + String(static_cast<unsigned>(kToHostRingBytes));
   json += ",\"ringUsed\":" + String(ring_used_);
   json += ",\"ringPeak\":" + String(ring_peak_);

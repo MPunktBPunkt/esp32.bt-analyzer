@@ -97,7 +97,26 @@ def log(msg: str) -> None:
     print(time.strftime("%H:%M:%S"), msg, flush=True)
 
 
-def run_session(host: str, port: int) -> None:
+def apply_agent_coex(host: str, mode: str = "prefer_bt") -> None:
+    """Best-effort HTTP POST /api/hci/coex so even 0.3.19 nodes prioritize BT."""
+    if not mode or mode == "keep":
+        return
+    import urllib.request
+
+    try:
+        req = urllib.request.Request(
+            f"http://{host}/api/hci/coex",
+            data=f"mode={mode}".encode("ascii"),
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=2.0):
+            log(f"set {host} coex={mode}")
+    except Exception as exc:  # noqa: BLE001
+        log(f"coex={mode} skipped on {host}: {exc}")
+
+
+def run_session(host: str, port: int, coex: str = "prefer_bt") -> None:
+    apply_agent_coex(host, coex)
     sock = connect_agent(host, port)
     try:
         fd, index = open_vhci()
@@ -154,6 +173,12 @@ def main() -> int:
     ap.add_argument("host", help="hci-agent ESP IP, e.g. 192.168.178.131")
     ap.add_argument("--port", type=int, default=9754)
     ap.add_argument("--once", action="store_true", help="exit after the first session")
+    ap.add_argument(
+        "--coex",
+        default="prefer_bt",
+        choices=("prefer_bt", "a2dp", "default", "keep"),
+        help="ESP BT/WiFi coex policy to apply on connect (default: prefer_bt)",
+    )
     args = ap.parse_args()
 
     if not os.path.exists(VHCI_PATH):
@@ -164,7 +189,7 @@ def main() -> int:
     while True:
         started = time.monotonic()
         try:
-            run_session(args.host, args.port)
+            run_session(args.host, args.port, args.coex)
         except KeyboardInterrupt:
             return 0
         except (OSError, ConnectionError, RuntimeError, ValueError) as exc:

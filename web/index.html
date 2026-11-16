@@ -38,6 +38,8 @@
     <div class="mono" id="agent-now" style="margin-top:8px">—</div>
     <div class="row" style="margin-top:4px">
       <button type="button" class="secondary" id="btn-agent-clear">Grafik leeren</button>
+      <button type="button" class="secondary" id="btn-coex-prefer-bt">Coex: prefer_bt (.131+.87)</button>
+      <button type="button" class="secondary" id="btn-coex-a2dp">Coex: a2dp</button>
     </div>
     <div class="muted" style="margin-left:0;margin-top:4px">kB/s je Richtung, Abfrage jede Sekunde: zum Controller = BlueZ sendet (Befehle, ACL TX) · zum Host = Controller meldet (Events, ACL RX). Nach 5 s ohne Verkehr friert die Kurve ein, der letzte Datenstoß bleibt stehen.</div>
   </div>
@@ -71,6 +73,72 @@
     </div>
     <pre id="pair-events" class="mono btmon" style="max-height:220px">(keine Ereignisse)</pre>
     <div class="muted" style="margin-left:0;margin-top:4px">Der Agent bestätigt unsere Seite automatisch (DisplayYesNo). Die Zahl muss am Handy bzw. im iDrive verglichen und dort bestätigt werden. Regel <b>window</b>: nur bei offenem Fenster.</div>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <h2>BMW Connected Lab - CDS Fahrzeugdaten &amp; F20 HU-Simulator (BCL / Etch / RHMI)</h2>
+    <div class="row" style="margin-top:0;align-items:center">
+      <span id="bmw-auth-badge" class="auth-sim">SIMULATED_AUTHORIZATION</span>
+      <select id="bmw-auth-mode">
+        <option value="SIMULATED_AUTHORIZATION">SIMULATED_AUTHORIZATION (freie XMLs erlaubt)</option>
+        <option value="F20_STRICT_WHITELIST">F20_STRICT_WHITELIST (echte Cert-SHA256-Prüfung)</option>
+      </select>
+      <button type="button" id="btn-bmw-refresh" class="secondary">Aktualisieren</button>
+      <span class="mono" id="bmw-cap-summary" style="margin-left:auto;color:#8b949e">Capabilities: …</span>
+    </div>
+    <div class="bmw-split">
+      <div>
+        <h3>CDS Fahrzeuginformationen (wie AAIdrive CarInfo)</h3>
+        <div class="row" style="margin-top:6px;margin-bottom:8px">
+          <select id="bmw-cds-prop"></select>
+          <input type="text" id="bmw-cds-val" placeholder="Neuer Wert / JSON (z. B. 1450 oder {&quot;VIN&quot;:&quot;…&quot;})">
+          <button type="button" id="btn-bmw-cds-query">Abfragen (getPropertyAsync)</button>
+          <button type="button" class="secondary" id="btn-bmw-cds-set">Im Sim setzen &amp; pushen</button>
+        </div>
+        <div style="max-height:300px;overflow:auto;border:1px solid #21262d;border-radius:6px">
+          <table class="cds-table">
+            <thead><tr><th>ID</th><th>Property</th><th>Wert</th><th>Quelle</th><th>Aktion</th></tr></thead>
+            <tbody id="bmw-cds-rows"></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3>Virtuelles iDrive-Menü (RHMI Preview &amp; Events)</h3>
+        <div id="bmw-idrive-screen" class="idrive-screen">(lade RHMI-Modell…)</div>
+        <div class="row">
+          <input type="text" id="bmw-rhmi-model-id" value="101" style="max-width:80px" placeholder="ModelID">
+          <input type="text" id="bmw-rhmi-model-val" value="Sender: Rock Antenne (DAB+)" placeholder="rhmi_setData Text">
+          <button type="button" id="btn-bmw-set-data">rhmi_setData</button>
+        </div>
+        <div class="row">
+          <input type="text" id="bmw-rhmi-comp-id" value="301" style="max-width:80px" placeholder="CompID">
+          <select id="bmw-rhmi-prop-id">
+            <option value="3">VISIBLE (3)</option>
+            <option value="1">ENABLED (1)</option>
+            <option value="2">SELECTABLE (2)</option>
+          </select>
+          <select id="bmw-rhmi-prop-val">
+            <option value="true">true</option>
+            <option value="false">false</option>
+          </select>
+          <button type="button" class="secondary" id="btn-bmw-set-prop">rhmi_setProperty</button>
+        </div>
+      </div>
+    </div>
+    <details style="margin-top:12px">
+      <summary class="mono" style="cursor:pointer;color:#58a6ff">RHMI Whitelist-Tester (.p7b Zertifikat + ui_description.xml) &amp; Wire-Hex-Decoder öffnen</summary>
+      <div class="row" style="margin-top:8px">
+        <select id="bmw-cert-select"><option value="">(kein .p7b gewählt)</option></select>
+        <input type="text" id="bmw-app-title" value="PiDrive Custom Menü" placeholder="App-Titel">
+        <button type="button" id="btn-bmw-load-xml">XML prüfen &amp; im Simulator laden</button>
+      </div>
+      <textarea id="bmw-xml-input" rows="6" style="margin-top:6px" placeholder="Optional: eigene RHMI ui_description.xml (leer = PiDrive-Demo-XML)"></textarea>
+      <div id="bmw-whitelist-verdict" class="mono" style="margin-top:6px;color:#8b949e">—</div>
+      <div class="row" style="margin-top:8px">
+        <input type="text" id="bmw-wire-hex" placeholder="BCL- oder Etch-Hex einfügen (z. B. 0002000A0FA4002CDEADBEEF000000240386A6B0FFCA0286EDA8C9A687000001866306B46887000000000000000181)">
+        <button type="button" class="secondary" id="btn-bmw-decode-hex">Hex dekodieren</button>
+      </div>
+    </details>
+    <pre id="bmw-rpc-log" class="mono btmon" style="max-height:200px;margin-top:10px">(noch keine Etch/BCL-Ereignisse)</pre>
   </div>
   <div class="card" style="margin-bottom:14px">
     <h2>Live rates (kB/s)</h2>

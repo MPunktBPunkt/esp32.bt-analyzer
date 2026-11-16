@@ -1,9 +1,10 @@
-# Maßnahmen — BCL Lab → A6 (Stand 2026-11-12)
+# Maßnahmen — BCL Lab → A6 (Stand 2026-11-16)
 
 ```yaml
-status: active · TRANSPORT FACT · Content-gate locus = MyBMW ~3s Phone→HU after HS · P0 = btsnoop_hci S-B
+status: active · TRANSPORT + ETCH/SAS/RHMI/CDS FIELD FACT · 3s-Fenster & SAS-Gate aufgelöst (DEEP_FORENSIC_ETCH_SAS_20261116)
 depends_on: [docs/BCL_BT.md, docs/CAR_A6_B1.md, technology-audit bmw-bcl / bmw-bcl-rfcomm / bmw-bcl-handshake / supra-idrive6-android-auto-2026-secondary]
-trigger: 2026-11-15 OnePlus forensic + GPT bottleneck freeze (blind 3s / 56-B INFERENCE)
+trigger: 2026-11-16 Apache-Etch-sdbm-Auflösung + WriteDataCO-Arithmetik + Fix Dummy-SAS-Reply
+deep_forensic_1116: docs/analysis/DEEP_FORENSIC_ETCH_SAS_20261116.md
 content_gate_freeze: docs/evidence/FIELD_CONTENT_GATE_BOTTLENECK_20261115.md
 method: docs/analysis/BCL_RFCOMM_TWO_MODE_20261113.md · docs/analysis/FIELD_B2A_TX_PATTERNS_20261114.md · docs/analysis/LAB_DUMMY_ETCH_DEEP_20261114.md · docs/analysis/FIELD_STAND_Grok_GPT_20261114.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
 field_hold_insights: docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
@@ -117,7 +118,9 @@ hfp_analysis: docs/analysis/HFP_SLC_A6_20261113.md
 9c. **P1 — KNOCK-Isolation** (nach oder parallel zu HCI): SP2/4 × KNOCK ja/nein — **nicht** vor btsnoop priorisieren.
 10. **P1 — Admission 2×2 (M7/M33)** UA vs DM; Positive = ACL+AUTH+ENCRYPT + WD.
 11. ~~**P1 — Dummy-Feldsignatur**~~ → **SHIPPED** `--hu-profile f20`. Template: `LAB_DUMMY_F20_PROFILE_TEMPLATE`.
-11b. ~~**P1 — SAS-Probe-Stufen**~~ → **SHIPPED** `LAB_SAS_PROBE_STAGES_20261115`. **Korrektur:** DATAACK `8+len` für *quittierte* Frames; KNOCK-Ausnahme = M48.
+11b. ~~**P1 — SAS-Probe-Stufen**~~ → **SHIPPED + FIXED 2026-11-16** `LAB_SAS_PROBE_STAGES_20261115` + `DEEP_FORENSIC_ETCH_SAS_20261116.md`: `bcl_etch_stub.py` sendet jetzt echtes `_result_sas_certificate` (`0x9c6372b8`, 16 B Challenge + `_inReplyTo`) und `HU_PROFILES["f20"]` spiegelt `(phone_src, 4004)` statt `(4004, phone_src)`.
+11c. **P0 Lab (daheim sofort testbar):** `bcl_dummy_hu_agent.py hu --hu-profile f20 --sas-probe challenge` gegen OnePlus laufen lassen — Erwartung: Phone antwortet statt mit `CLOSE` erstmals mit **`559 B` `sas_login` (`SAS_LOGIN_CALL`)**, Dummy bestätigt mit `52 B` `_result_sas_login`!
+11d. **P1 B3 RFCOMM-Relay (`.131`↔`.87`):** Da das OnePlus kein `btsnoop_hci` exportiert (`is_oplus_btsnoop_enabled=0`), ist das transparente 1:1-RFCOMM-Relay zwischen Handy und F20 der direkte Weg, die vollständigen 5306-B-`rhmi_getCapabilities`- und CDS-Bodies ohne Handy-Root mitzuschneiden.
 11c. Kein B3 / kein ch5-als-BCL; keine Negativ-Matrix ohne State-Kontrolle.
 11d. Bimmer-vs-Wire / CoD / WD-Docs belassen.
 11e. **B0.8** Simulator :4006 nach Proxy-Bedarf (SAS-Stub), nicht vor Proxy-Feldtest.

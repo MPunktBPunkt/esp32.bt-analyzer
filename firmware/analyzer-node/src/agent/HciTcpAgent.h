@@ -36,7 +36,9 @@ private:
   // Batch controller→host H4 into ~one TCP segment (BT+WiFi coex hates tiny writes).
   static constexpr size_t kToHostBatchBytes = 1200;
   static constexpr int kSockBufBytes = 32 * 1024;
+  static constexpr uint32_t kWriteRetryTimeoutMs = 400;
 
+  TaskHandle_t task_ = nullptr;
   RingbufHandle_t to_host_ = nullptr;
   WiFiServer server_{HCI_AGENT_PORT};
   WiFiClient client_;
@@ -60,6 +62,7 @@ private:
   volatile uint32_t to_host_bytes_ = 0;
   volatile uint32_t drops_ = 0;
   volatile uint32_t framing_errors_ = 0;
+  volatile uint32_t write_retries_ = 0;
   // Self-tracked ring occupancy (NOSPLIT free-size is contiguous-only).
   volatile uint32_t ring_used_ = 0;
   volatile uint32_t ring_peak_ = 0;
@@ -75,7 +78,8 @@ private:
   void adoptClient(WiFiClient &fresh);
   void dropClient(const char *why);
   bool pumpToController();
-  bool pumpToHost(TickType_t wait);
+  bool pumpToHost();
+  bool writeAll(const uint8_t *buf, size_t len);
   void sendControllerReset();
   bool setWifiPs(const char *mode);  // "none"|"min"|"max"
   const char *wifiPsName() const { return wifi_ps_name_; }
@@ -88,7 +92,7 @@ private:
   void registerRoutes(WebServer &server) override;
 
   static int onControllerPacket(uint8_t *data, uint16_t len);
-  static void onSendAvailable() {}
+  static void onSendAvailable();
   static void taskEntry(void *self);
 
   // Default matches pre-0.3.16-opt behavior (modem sleep). "none" helps TCP

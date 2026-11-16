@@ -43,6 +43,7 @@ EVIDENCE = ROOT / "docs" / "evidence"
 REMOTE_DIR = "/tmp/bcl_dummy"
 UPLOAD = (
     "bcl_framer.py",
+    "etch_codec.py",
     "bcl_dummy_hu.py",
     "bcl_etch_stub.py",
     "bcl_phone_tx_classify.py",
@@ -252,9 +253,9 @@ def main() -> int:
     ap.add_argument("--channel", type=int, default=5)
     ap.add_argument(
         "--hu-profile",
-        choices=("legacy", "f20"),
-        default="f20",
-        help="f20=HS v5/iid14/0x4000+DATAACK+WD+Etch stub; legacy=v3 silent",
+        choices=("legacy", "f20", "f20_sim"),
+        default="f20_sim",
+        help="f20_sim=full F20 BMWRemoting server (SAS+AM+RHMI+CDS+AV); f20=challenge probe; legacy=v3 silent",
     )
     ap.add_argument(
         "--hu-version",

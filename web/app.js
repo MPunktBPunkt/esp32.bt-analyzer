@@ -305,7 +305,7 @@
             `${esc(a.id)} ${esc(a.ip)} ${esc(g.bdAddr)} ready=${esc(g.ready)} ${client} · ` +
             `→ctrl ${esc(r.toCtrlBytesPs)} B/s ${esc(r.toCtrlPktsPs)} pkt/s · ` +
             `→host ${esc(r.toHostBytesPs)} B/s ${esc(r.toHostPktsPs)} pkt/s · ` +
-            `drops=${esc(g.drops)} framing=${esc(g.framingErrors)} sess=${esc(g.sessions)}`
+            `coex=${esc(g.coex || "?")} ps=${esc(g.wifiPs || "?")} wRetry=${esc(g.writeRetries || 0)} drops=${esc(g.drops)} framing=${esc(g.framingErrors)} sess=${esc(g.sessions)}`
           );
         })
         .join("<br>");
@@ -350,6 +350,10 @@
     clearHist(agentHist);
     drawAgentChart();
   };
+  document.getElementById("btn-coex-prefer-bt").onclick = () =>
+    jpost("/api/v1/agents/coex", { mode: "prefer_bt" }).then(refreshAgents);
+  document.getElementById("btn-coex-a2dp").onclick = () =>
+    jpost("/api/v1/agents/coex", { mode: "a2dp" }).then(refreshAgents);
 
   const btmon = { seq: 0, blocks: [], timer: null };
   const BTMON_KEEP = 400;
@@ -620,4 +624,192 @@
   refreshNodes().catch((e) => {
     logEl.textContent = String(e);
   });
+
+  // --- BMW Connected Lab (CDS vehicle data + F20 HU Simulator) ---
+  let bmwActiveHandle = 1;
+
+  function renderBmwState(st) {
+    if (!st || !st.ok) return;
+    const badge = document.getElementById("bmw-auth-badge");
+    const modeSel = document.getElementById("bmw-auth-mode");
+    badge.textContent = st.auth_mode;
+    badge.className = st.auth_mode === "F20_STRICT_WHITELIST" ? "auth-strict" : "auth-sim";
+    if (modeSel.value !== st.auth_mode) modeSel.value = st.auth_mode;
+
+    const caps = st.capabilities || {};
+    document.getElementById("bmw-cap-summary").textContent =
+      `Capabilities: ${st.capabilities_count || 0} (${caps["hmi.type"] || "?"} · ${caps["vehicle.type"] || "?"} · USB-Cover=${caps["iva_ENT_USB_COVER_ART_IPOD"] || "?"})`;
+
+    const propSel = document.getElementById("bmw-cds-prop");
+    const prevProp = propSel.value;
+    const cds = st.cds || [];
+    propSel.innerHTML = cds
+      .map((r) => `<option value="${esc(r.name)}">${esc(r.ident)}: ${esc(r.name)}</option>`)
+      .join("");
+    if (prevProp && cds.some((r) => r.name === prevProp)) propSel.value = prevProp;
+
+    const tbody = document.getElementById("bmw-cds-rows");
+    tbody.innerHTML = cds
+      .filter((r) => r.value !== null && r.value !== undefined)
+      .map((r) => {
+        const valTxt = typeof r.value === "object" ? JSON.stringify(r.value) : String(r.value);
+        return (
+          `<tr>` +
+          `<td class="mono" style="width:46px">${esc(r.ident)}</td>` +
+          `<td class="mono" style="width:34%">${esc(r.name)}</td>` +
+          `<td class="mono" style="color:#e6edf3">${esc(valTxt)}</td>` +
+          `<td style="width:90px;color:#8b949e">${esc(r.source)}</td>` +
+          `<td style="width:76px"><button type="button" class="secondary" style="padding:3px 8px;font-size:11px" data-cds-q="${esc(r.name)}">Read</button></td>` +
+          `</tr>`
+        );
+      })
+      .join("");
+    tbody.querySelectorAll("[data-cds-q]").forEach((btn) => {
+      btn.onclick = () =>
+        jpost("/api/v1/bmw/cds/query", { propertyName: btn.getAttribute("data-cds-q") }).then(refreshBmw);
+    });
+
+    const certSel = document.getElementById("bmw-cert-select");
+    const prevCert = certSel.value;
+    const certs = st.lab_certs_available || [];
+    certSel.innerHTML =
+      `<option value="">(kein .p7b gewählt)</option>` +
+      certs.map((c) => `<option value="${esc(c)}">${esc(c)}</option>`).join("");
+    if (prevCert) certSel.value = prevCert;
+
+    // Render active RHMI virtual iDrive screen
+    const apps = st.rhmi_apps || {};
+    const keys = Object.keys(apps);
+    const screenEl = document.getElementById("bmw-idrive-screen");
+    if (!keys.length) {
+      screenEl.textContent = "(keine RHMI-App geladen)";
+    } else {
+      const app = apps[keys[keys.length - 1]];
+      bmwActiveHandle = app.handle || 1;
+      const models = app.models || {};
+      const comps = app.components || {};
+      const states = Object.values(app.states || {});
+      const firstSt = states[0] || { title: app.name, components: Object.keys(comps) };
+      const titleTxt =
+        (firstSt.titleModel && models[firstSt.titleModel] && models[firstSt.titleModel].value) ||
+        firstSt.title ||
+        app.name;
+      const compHtml = (firstSt.components || [])
+        .map((cid) => {
+          const c = comps[String(cid)];
+          if (!c) return "";
+          const p = c.properties || {};
+          if (p.VISIBLE === false) {
+            return `<div class="idrive-comp muted">[#${esc(c.id)} ${esc(c.type)} — unsichtbar (VISIBLE=false)]</div>`;
+          }
+          const m = c.model != null ? models[String(c.model)] : null;
+          const mval = m ? m.value : "";
+          const disabled = p.ENABLED === false ? "disabled style='opacity:.45'" : "";
+          if (c.type === "button" || c.type === "toolbarButton" || c.type === "entryButton") {
+            return (
+              `<div class="idrive-comp">` +
+              `<button type="button" data-rhmi-act="${esc(c.action || 0)}" data-rhmi-cid="${esc(c.id)}" ${disabled}>` +
+              `▶ ${esc(mval || c.type)} (#${esc(c.id)})` +
+              `</button></div>`
+            );
+          }
+          if (c.type === "list" && Array.isArray(mval)) {
+            const rows = mval
+              .map(
+                (row) =>
+                  `<tr>${(Array.isArray(row) ? row : [row])
+                    .map((cell) => `<td class="mono" style="color:#c9d1d9">${esc(cell)}</td>`)
+                    .join("")}</tr>`
+              )
+              .join("");
+            return `<div class="idrive-comp"><table>${rows}</table></div>`;
+          }
+          return `<div class="idrive-comp"><span class="mono" style="color:#8b949e">#${esc(c.id)} ${esc(c.type)}:</span> <b>${esc(mval)}</b></div>`;
+        })
+        .join("");
+      screenEl.innerHTML =
+        `<div class="idrive-title"><span>${esc(titleTxt)}</span>` +
+        `<span class="${app.auth_badge === "F20_WHITELIST_MATCH" ? "auth-strict" : "auth-sim"}">${esc(app.auth_badge)} · h=${esc(app.handle)}</span></div>` +
+        compHtml;
+      screenEl.querySelectorAll("[data-rhmi-cid]").forEach((b) => {
+        b.onclick = () =>
+          jpost("/api/v1/bmw/rhmi/action", {
+            handle: bmwActiveHandle,
+            componentId: Number(b.getAttribute("data-rhmi-cid")),
+            actionId: Number(b.getAttribute("data-rhmi-act")),
+          }).then(refreshBmw);
+      });
+    }
+
+    const logBox = document.getElementById("bmw-rpc-log");
+    const rpcs = st.rpc_log || [];
+    logBox.textContent = rpcs.length
+      ? rpcs
+          .slice()
+          .reverse()
+          .map(
+            (e) =>
+              `#${String(e.seq).padStart(3, " ")} [${e.dir}] src=${e.src} ${e.method} ` +
+              `${JSON.stringify(e.detail)}` +
+              (e.bcl_hex_head ? ` · hex=${e.bcl_hex_head}…(${e.bcl_len}B)` : "")
+          )
+          .join("\n")
+      : "(noch keine Etch/BCL-Ereignisse)";
+  }
+
+  async function refreshBmw() {
+    try {
+      renderBmwState(await jget("/api/v1/bmw/state"));
+    } catch (e) {
+      document.getElementById("bmw-rpc-log").textContent = String(e);
+    }
+  }
+
+  document.getElementById("btn-bmw-refresh").onclick = refreshBmw;
+  document.getElementById("bmw-auth-mode").onchange = (ev) =>
+    jpost("/api/v1/bmw/mode", { mode: ev.target.value }).then(refreshBmw);
+  document.getElementById("btn-bmw-cds-query").onclick = () =>
+    jpost("/api/v1/bmw/cds/query", {
+      propertyName: document.getElementById("bmw-cds-prop").value,
+    }).then(refreshBmw);
+  document.getElementById("btn-bmw-cds-set").onclick = () =>
+    jpost("/api/v1/bmw/cds/set", {
+      propertyName: document.getElementById("bmw-cds-prop").value,
+      value: document.getElementById("bmw-cds-val").value,
+    }).then(refreshBmw);
+  document.getElementById("btn-bmw-set-data").onclick = () =>
+    jpost("/api/v1/bmw/rhmi/set-data", {
+      handle: bmwActiveHandle,
+      modelId: Number(document.getElementById("bmw-rhmi-model-id").value || 101),
+      value: document.getElementById("bmw-rhmi-model-val").value,
+    }).then(refreshBmw);
+  document.getElementById("btn-bmw-set-prop").onclick = () =>
+    jpost("/api/v1/bmw/rhmi/set-property", {
+      handle: bmwActiveHandle,
+      componentId: Number(document.getElementById("bmw-rhmi-comp-id").value || 301),
+      propertyId: Number(document.getElementById("bmw-rhmi-prop-id").value || 3),
+      value: document.getElementById("bmw-rhmi-prop-val").value === "true",
+    }).then(refreshBmw);
+  document.getElementById("btn-bmw-load-xml").onclick = async () => {
+    const res = await jpost("/api/v1/bmw/rhmi/load", {
+      cert: document.getElementById("bmw-cert-select").value,
+      title: document.getElementById("bmw-app-title").value,
+      xml: document.getElementById("bmw-xml-input").value,
+    });
+    const vEl = document.getElementById("bmw-whitelist-verdict");
+    if (res.accepted) {
+      vEl.innerHTML = `<span class="ok">AKZEPTIERT (${esc(res.auth_badge)})</span> · handle=${esc(res.handle)} · xml_sha256=${esc(res.xml_sha256)}`;
+    } else {
+      vEl.innerHTML = `<span class="bad">ABGELEHNT</span> · ${esc(res.reason || res.error)} · xml_sha256=${esc(res.xml_sha256 || "—")} · erlaubt=${esc((res.allowed_rhmi_sha256 || []).join(",") || "keine")}`;
+    }
+    refreshBmw();
+  };
+  document.getElementById("btn-bmw-decode-hex").onclick = async () => {
+    const hx = document.getElementById("bmw-wire-hex").value.trim();
+    const res = await jpost("/api/v1/bmw/ingest-hex", { hex: hx, dir: "manual_hex" });
+    document.getElementById("bmw-whitelist-verdict").textContent = JSON.stringify(res);
+    refreshBmw();
+  };
+
+  refreshBmw();
 })();

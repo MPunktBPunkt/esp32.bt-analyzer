@@ -94,6 +94,7 @@ def ensure_remote_tools() -> None:
     ssh(f"mkdir -p {REMOTE_TOOLS}", timeout=15)
     for name in (
         "bcl_dummy_hu_agent.py",
+        "etch_codec.py",
         "bcl_dummy_hu.py",
         "bcl_etch_stub.py",
         "bcl_framer.py",

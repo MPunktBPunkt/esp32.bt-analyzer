@@ -1,13 +1,14 @@
 # esp32.bt-analyzer
 
-![Version](https://img.shields.io/badge/version-0.3.19-blue)
+![Version](https://img.shields.io/badge/version-0.3.20-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Gate](https://img.shields.io/badge/gate-BT18%20GATT-yellow)](docs/GATES.md)
 
 ESP **on-chip Bluetooth HCI analyzer** (VHCI): Controller ↔ Host über die Board-Radio, Capture nach Debian.  
 **Kein USB-Dongle nötig** (Topologie **F_ONCHIP**).
 
-> **v0.3.19 (Coex-API ungetestet auf HW)** — `GET|POST /api/hci/coex` (`default`/`a2dp`/`prefer_bt`) · A2DP-Bitraten-Budget `tools/a2dp_budget.py` · A/B `tools/lab_hci_coex_ab.py` → [`docs/A2DP_RELAY.md`](docs/A2DP_RELAY.md).  
+> **v0.3.20** — `hci-agent-esp32` gehärtet (`writeAll` 400-ms-Retry statt `HCI_Reset` bei kurzem WLAN-Stall, `xTaskNotifyGive` in `onSendAvailable`/`onControllerPacket`, Boot-Default `coex=prefer_bt` + Auto-Apply in `hci_tcp_bridge.py`) · Apache-Etch-Codec `tools/etch_codec.py` · `:8081` **BMW Connected Lab** (`controller/bmw_lab.py`: CDS-Fahrzeugdaten-Liste & `cds_getPropertyAsync`-Abfrage, F20-HU-Simulator mit `SIMULATED_AUTHORIZATION` vs. `F20_STRICT_WHITELIST` SHA-256-Cert-Check) + Bluetooth-Vollprofil `--hu-profile f20_sim` · F20-Tiefenforensik [`docs/analysis/DEEP_FORENSIC_ETCH_SAS_20261116.md`](docs/analysis/DEEP_FORENSIC_ETCH_SAS_20261116.md) & Forensik-Leitfaden [`docs/METHODIK_LOG_FORENSIK.md`](docs/METHODIK_LOG_FORENSIK.md).  
+> **v0.3.19** — `GET|POST /api/hci/coex` (`default`/`a2dp`/`prefer_bt`) · A2DP-Bitraten-Budget `tools/a2dp_budget.py` · A/B `tools/lab_hci_coex_ab.py` → [`docs/A2DP_RELAY.md`](docs/A2DP_RELAY.md).  
 > **v0.3.16–0.3.18 MEASURED** — HCI über TCP A1–A5 **PASS** ([`docs/HCI_TCP.md`](docs/HCI_TCP.md)) · A2DP Handy → `.131` stabil · Relay Handy → `.131` → BlueZ → `.87` → Kopfhörer **hörbar, abgehackt** (Coex) · dauerhaft ~4 kB/s (`wifi_ps=min`) / ~36–45 kB/s (`none`) pro D1 · BCL synthetisch über RFCOMM + Dummy-HU-SDP **PASS** ([`docs/BCL_BT.md`](docs/BCL_BT.md)) · Auto (A6/B1) offen: WLAN am Fahrzeug zu schwach.  
 > **v0.3.16** — `hci-agent-esp32`: D1 als BlueZ-Controller über TCP `:9754` · Lab-UI `:8081` mit Agent-Datenrate und btmon-Live-Liste.  
 > **v0.3.13** — Real Hammer FTMS PASS · Classic inquiry `0x22` · HD 4.40 seen on `.87` · [`FINDINGS_LAB_20261105.md`](docs/FINDINGS_LAB_20261105.md).  

@@ -6,7 +6,15 @@ Does not claim SAS/RHMI wire FACT — heuristic tags for jsonl correlation.
 
 from __future__ import annotations
 
-from bcl_etch_stub import ETCH_MAGIC, KNOCK_UUID_SERIAL, looks_like_knock_envelope
+from bcl_etch_stub import (
+    ETCH_MAGIC,
+    ETCH_TYPE_RHMI_GET_CAPS,
+    ETCH_TYPE_SAS_CERTIFICATE,
+    ETCH_TYPE_SAS_LOGIN,
+    KNOCK_UUID_SERIAL,
+    extract_etch_type_hash,
+    looks_like_knock_envelope,
+)
 from bcl_framer import DEST_ETCH_DESK, DEST_WATCHDOG_DESK, cmd_desk_name
 
 CMD_OPEN = 1
@@ -58,6 +66,13 @@ def classify_phone_frame(cmd: int, src: int, dest: int, payload: bytes) -> dict:
             tags.append("ETCH_DATA")
             if payload.startswith(ETCH_MAGIC):
                 tags.append("DEADBEEF")
+                th = extract_etch_type_hash(payload)
+                if th == ETCH_TYPE_SAS_CERTIFICATE:
+                    tags.append("SAS_CERT_CALL")
+                elif th == ETCH_TYPE_SAS_LOGIN:
+                    tags.append("SAS_LOGIN_CALL")
+                elif th == ETCH_TYPE_RHMI_GET_CAPS:
+                    tags.append("RHMI_GET_CAPS_CALL")
             if b"-----BEGIN" in payload and b"PKCS7" in payload:
                 tags.append("SAS_CERT_CANDIDATE")
             if b"sas_" in payload.lower() or b"SAS" in payload:

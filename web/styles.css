@@ -27,4 +27,13 @@ select{background:#0d1117;border:1px solid #30363d;color:#e6edf3;padding:8px 10p
 pre.btmon{max-height:420px;margin-top:10px;color:#c9d1d9}
 .bt-tx{color:#e3b341}.bt-rx{color:#58a6ff}.bt-mgmt,.bt-note{color:#8b949e}
 .bt-proto{color:#3fb950;font-weight:600}.bt-det{color:#6e7681}.bt-meta{color:#484f58}
+.bmw-split{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:10px}
+@media(max-width:860px){.bmw-split{grid-template-columns:1fr}}
+.idrive-screen{background:linear-gradient(180deg,#141a24 0%,#0b0f16 100%);border:1px solid #388bfd55;border-radius:8px;padding:14px}
+.idrive-title{font-size:15px;font-weight:700;color:#f0f6fc;border-bottom:1px solid #30363d;padding-bottom:8px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.idrive-comp{margin:6px 0;padding:6px 8px;border-radius:6px;background:#161b22;border:1px solid #21262d}
+.auth-sim{background:rgba(210,153,34,.16);color:#e3b341;border:1px solid rgba(210,153,34,.45);padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600}
+.auth-strict{background:rgba(63,185,80,.16);color:#3fb950;border:1px solid rgba(63,185,80,.45);padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600}
+textarea{width:100%;background:#0d1117;border:1px solid #30363d;color:#e6edf3;padding:8px 10px;border-radius:6px;font-family:ui-monospace,monospace;font-size:12px}
+.cds-table th{color:#8b949e;text-align:left;padding:6px 8px;border-bottom:1px solid #30363d;font-size:12px}
 footer{padding:16px 20px;color:#8b949e;font-size:12px;border-top:1px solid #21262d;margin-top:24px}

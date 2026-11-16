@@ -1,17 +1,17 @@
 # BCL over Bluetooth — observe first, relay later (plan)
 
 ```yaml
-status: A6/B1A/B2A PASS · TRANSPORT FACT · Content-gate locus = MyBMW ~3s Phone→HU after HS · SAS UNKNOWN without btsnoop
+status: A6/B1A/B2A PASS · TRANSPORT + ETCH/SAS/RHMI/CDS FIELD FACT · 3s-Fenster aufgelöst (2026-11-16)
 depends_on: HCI_TCP A1–A6 (docs/HCI_TCP.md) — A1–A5 MEASURED, A6 MEASURED 2026-11-13
 related: hu-probe Gate G2 "BCL wire" (USB AOA path, still open)
-claim_level: TRANSPORT FACT (.87) · MyBMW Etch/CDS after blind ~3s (56-B length only in Oppo) · OPEN4004 alone ≠ content
+claim_level: TRANSPORT FACT (.87) + F20 Etch/SAS/RHMI/CDS FIELD FACT (sdbm-Hash + WriteDataCO-Arithmetik) · OPEN4004 alone ≠ content (fehlt Etch-RPC sas_certificate/sas_login)
 rfcomm_initiator: MIXED  # ACL+Mux HU→Phone; SPP DLC Phone-client (UID 10479)
 secondary: technology-audit audits/supra-idrive6-android-auto-2026-secondary @4f70751
-method: docs/analysis/ONEPLUS_BT_FORENSIC_20261115.md · docs/evidence/FIELD_CONTENT_GATE_BOTTLENECK_20261115.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
+method: docs/analysis/DEEP_FORENSIC_ETCH_SAS_20261116.md · docs/analysis/ONEPLUS_BT_FORENSIC_20261115.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
 architecture: controlled dual-leg HCI bridge — not passive Phone↔HU air sniff
 audit_reuse: technology-audit technologies/bmw-bcl + projects/esp32-bt-analyzer/applications/bmw-bcl.md
-next: P0 btsnoop_hci MyBMW S-B (both dirs, no RFCOMM filter) — Oppo logs exhausted · P1 KNOCK isolation secondary
-desk_vs_wire: F20 MyBMW HS→ACK10 ≈3.0s (app stack) vs analyzer HS≈0.3–0.5s · M48 KNOCK≠ACK56 · SP2|SP4 WD ok
+next: P0 Lab re-run `--hu-profile f20 --sas-probe challenge` (repariertes _result_sas_certificate + (src,4004)) → erwarte 559-B sas_login · P1 B3 transparentes RFCOMM-Relay für volle 667-B-Bodies
+desk_vs_wire: MyBMW ~3.0s = App-INIT-Poll-Timer (echte HU-INIT-RTT 20ms in S-B, 0.3–0.5s auf .87) · M48 KNOCK≠ACK56 · HU BCL DATA >4000B (plen=5306) · Pair(src,dest) richtungsinvariant
 ```
 
 ## Why
@@ -106,7 +106,7 @@ as candidates. A BMW/Connected service name upgrades the verdict to
 | Car behind hotspot NAT | as in HCI_TCP: needs dial-out/VPN, not for B1–B3 |
 | USB/ENET BCL vs BT-only | Desk **Contradiction/HYPOTHESIS** (EVID-BG-020) — not REJECTED; AOA+car can resolve |
 
-**Next (epistemic order):** **`btsnoop_hci` MyBMW Session S-B** (blind ~3 s Phone→HU) — freeze [`FIELD_CONTENT_GATE_BOTTLENECK_20261115.md`](evidence/FIELD_CONTENT_GATE_BOTTLENECK_20261115.md) · then KNOCK isolation / Modell-D · Maßnahmen [`MASSNAHMEN_BCL_A6.md`](MASSNAHMEN_BCL_A6.md). B3 only after classified Phone↔HU Etch.
+**Next (epistemic order, Stand 2026-11-16):** Tiefenforensik [`DEEP_FORENSIC_ETCH_SAS_20261116.md`](analysis/DEEP_FORENSIC_ETCH_SAS_20261116.md) hat SAS (`_result_sas_certificate` 16 B + 559-B-RSA-4096-`sas_login` + `_result_sas_login`), `rhmi_getCapabilities` (`plen=5306`), AM/RHMI/CDS und das 3,000-s-Timerfenster aufgelöst. Da das OnePlus kein `btsnoop_hci` herausgibt, ist **B3 (transparenter RFCOMM-Relay `.131`↔`.87`)** jetzt der saubere Weg für vollständige Payload-Bodies ohne Handy-Root; vorher im Lab `--hu-profile f20 --sas-probe challenge` mit dem reparierten `_result_sas_certificate`-Stub gegenprüfen. Maßnahmen: [`MASSNAHMEN_BCL_A6.md`](MASSNAHMEN_BCL_A6.md).
 
 ## Decision rule
 

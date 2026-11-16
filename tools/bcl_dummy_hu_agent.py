@@ -717,9 +717,9 @@ def main() -> int:
         p.add_argument("--name", default="BMW Connected")
         p.add_argument(
             "--hu-profile",
-            choices=sorted(("legacy", "f20")),
+            choices=sorted(("legacy", "f20", "f20_sim")),
             default=default_profile,
-            help="legacy=v3/iid1/0x8000; f20=v5/iid14/0x4000+DATAACK+WD+Etch stub",
+            help="legacy=v3/iid1/0x8000; f20=v5/iid14/0x4000+challenge probe; f20_sim=full F20 BMWRemoting server (SAS+AM+RHMI+CDS+AV)",
         )
         p.add_argument(
             "--hu-version",
@@ -759,7 +759,7 @@ def main() -> int:
         )
         p.add_argument(
             "--sas-probe",
-            choices=("none", "dataack", "challenge", "challenge_rhmi", "adaptive"),
+            choices=("none", "dataack", "challenge", "challenge_rhmi", "adaptive", "f20_full"),
             default=None,
             help=(
                 "Etch reply after OPEN 4004: "
