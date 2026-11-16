@@ -1,0 +1,264 @@
+{
+  "session_ids": [
+    "LAB_RHMI_BROWSE_20261116T2002Z",
+    "LAB_RHMI_DECODE_20261116T1914Z"
+  ],
+  "lines": 4364,
+  "hu_jsonl_bytes": 3607019,
+  "hu_jsonl_sha256": "8b6677f3fed01485c17d2b53e6c374c0e76d9df85834f87de3bda46b8938b5bc",
+  "events": [
+    [
+      "tx_bytes",
+      825
+    ],
+    [
+      "rx_bytes",
+      759
+    ],
+    [
+      "frame",
+      513
+    ],
+    [
+      "phone_tx_classified",
+      513
+    ],
+    [
+      "dataack_tx",
+      513
+    ],
+    [
+      "etch_data_tx",
+      286
+    ],
+    [
+      "f20_rpc_rx",
+      281
+    ],
+    [
+      "framer_error",
+      114
+    ],
+    [
+      "etch_open_rx",
+      77
+    ],
+    [
+      "etch_open_probe",
+      77
+    ],
+    [
+      "sas_challenge_tx",
+      64
+    ],
+    [
+      "sas_login_ok_tx",
+      58
+    ],
+    [
+      "handle_created",
+      50
+    ],
+    [
+      "etch_decode_partial",
+      45
+    ],
+    [
+      "inject_rhmi_request",
+      31
+    ],
+    [
+      "watchdog_echo",
+      28
+    ],
+    [
+      "rhmi_capabilities_tx",
+      22
+    ],
+    [
+      "rfcomm_connected",
+      16
+    ],
+    [
+      "cds_property_tx",
+      13
+    ],
+    [
+      "rfcomm_closed",
+      12
+    ],
+    [
+      "session_init",
+      9
+    ],
+    [
+      "handshake_sent",
+      9
+    ],
+    [
+      "selectproto_rx",
+      9
+    ],
+    [
+      "knock_rx",
+      9
+    ],
+    [
+      "etch_close_rx",
+      8
+    ],
+    [
+      "knock_envelope_rx",
+      7
+    ],
+    [
+      "cds_subscribed",
+      6
+    ],
+    [
+      "inject_cds_request",
+      3
+    ],
+    [
+      "session_start",
+      2
+    ],
+    [
+      "profile_registered",
+      2
+    ],
+    [
+      "inject_watch",
+      2
+    ],
+    [
+      "agent_stopped",
+      1
+    ]
+  ],
+  "rpc_methods": [
+    [
+      "sas_certificate",
+      64
+    ],
+    [
+      "sas_login",
+      58
+    ],
+    [
+      "rhmi_create",
+      24
+    ],
+    [
+      "rhmi_checkResource",
+      24
+    ],
+    [
+      "rhmi_getCapabilities",
+      22
+    ],
+    [
+      "am_create",
+      16
+    ],
+    [
+      "am_addAppEventHandler",
+      15
+    ],
+    [
+      "info_getSystemInfo",
+      10
+    ],
+    [
+      "cds_create",
+      10
+    ],
+    [
+      "cds_addPropertyChangedEventHandler",
+      8
+    ],
+    [
+      "rhmi_setResource",
+      8
+    ],
+    [
+      "am_registerApp",
+      6
+    ],
+    [
+      "am_showLoadingHint",
+      4
+    ],
+    [
+      "am_showLoadedSuccessHint",
+      4
+    ],
+    [
+      "ver_getVersion",
+      4
+    ],
+    [
+      "cds_getPropertyAsync",
+      4
+    ]
+  ],
+  "setData": 0,
+  "initialize": 0,
+  "action_handlers": 0,
+  "rfcomm_connected": 16,
+  "rfcomm_closed": 12,
+  "inject_rhmi": 31,
+  "inject_rhmi_open_conns": [
+    [
+      0,
+      30
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "rhmi_action_tx": 0,
+  "inject_cds": 3,
+  "am_registerApp": 6,
+  "rhmi_setResource": 8,
+  "resources": [
+    {
+      "name": "src12_h10_tEtchStruct(type_name='RHMIResourceType', fields={'DESCRIPTION': True}, type_hash=3711895132)_13598.bin",
+      "bytes": 13598,
+      "sha256": "3cf4795378d3cd7dfba139d8035c9ac5f6c1cacf8421e8044063d0824208b164"
+    },
+    {
+      "name": "src13_h10_tEtchStruct(type_name='RHMIResourceType', fields={'DESCRIPTION': True}, type_hash=3711895132)_13598.bin",
+      "bytes": 13598,
+      "sha256": "3cf4795378d3cd7dfba139d8035c9ac5f6c1cacf8421e8044063d0824208b164"
+    },
+    {
+      "name": "src15_h13_tEtchStruct(type_name='RHMIResourceType', fields={'DESCRIPTION': True}, type_hash=3711895132)_13943.bin",
+      "bytes": 13943,
+      "sha256": "a8abc5655b6cba3343e1df90c08fd036aaf2733475567e4062860cae6a84c745"
+    },
+    {
+      "name": "src15_h14_tEtchStruct(type_name='RHMIResourceType', fields={'DESCRIPTION': True}, type_hash=3711895132)_13943.bin",
+      "bytes": 13943,
+      "sha256": "a8abc5655b6cba3343e1df90c08fd036aaf2733475567e4062860cae6a84c745"
+    },
+    {
+      "name": "src16_h14_tEtchStruct(type_name='RHMIResourceType', fields={'DESCRIPTION': True}, type_hash=3711895132)_13598.bin",
+      "bytes": 13598,
+      "sha256": "3cf4795378d3cd7dfba139d8035c9ac5f6c1cacf8421e8044063d0824208b164"
+    },
+    {
+      "name": "src16_h14_tEtchStruct(type_name='RHMIResourceType', fields={'DESCRIPTION': True}, type_hash=3711895132)_13943.bin",
+      "bytes": 13943,
+      "sha256": "a8abc5655b6cba3343e1df90c08fd036aaf2733475567e4062860cae6a84c745"
+    }
+  ],
+  "verdict": {
+    "spotify_a2dp_alone": true,
+    "rhmi_music_description": false,
+    "setData_observed": false,
+    "action_flood_killed_rfcomm": true,
+    "inject_mostly_open0": true
+  }
+}

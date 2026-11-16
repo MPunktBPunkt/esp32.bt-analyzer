@@ -562,15 +562,41 @@ class EtchSasCdsStub:
         except Exception as exc:  # noqa: BLE001
             self.events.append({"event": "etch_decode_partial", "src": src, "method": method, "err": str(exc)})
 
-        self.events.append(
-            {
-                "event": "f20_rpc_rx",
-                "src": src,
-                "method": method,
-                "req_msg_id": reply_to,
-                "len": len(msg),
-            }
-        )
+        rpc_ev: dict[str, Any] = {
+            "event": "f20_rpc_rx",
+            "src": src,
+            "method": method,
+            "req_msg_id": reply_to,
+            "len": len(msg),
+        }
+        # Promote decoded RHMI fields so NP/menu analysis does not need payload_hex reassembly.
+        if method == "rhmi_setData":
+            rpc_ev["handle"] = raw_fields.get("handle")
+            rpc_ev["modelId"] = raw_fields.get("modelId")
+            val = raw_fields.get("value")
+            if isinstance(val, (str, int, float, bool)) or val is None:
+                rpc_ev["value"] = val
+            elif isinstance(val, (bytes, bytearray)):
+                rpc_ev["value_len"] = len(val)
+                rpc_ev["value_hex_prefix"] = bytes(val)[:64].hex()
+            else:
+                # EtchStruct / tables / maps — compact type tag only
+                tname = getattr(val, "type_name", None) or type(val).__name__
+                rpc_ev["value_type"] = tname
+                if hasattr(val, "fields") and isinstance(val.fields, dict):
+                    data = val.fields.get("data")
+                    if isinstance(data, list):
+                        rpc_ev["value_rows"] = len(data)
+        elif method == "rhmi_setProperty":
+            rpc_ev["handle"] = raw_fields.get("handle")
+            rpc_ev["componentId"] = raw_fields.get("componentId")
+            rpc_ev["propertyId"] = raw_fields.get("propertyId")
+            rpc_ev["values"] = raw_fields.get("values")
+        elif method == "am_registerApp":
+            for k in ("handle", "id", "name", "category", "appId", "appName"):
+                if k in raw_fields:
+                    rpc_ev[k] = raw_fields.get(k)
+        self.events.append(rpc_ev)
         out: list[bytes] = []
 
         if method == "sas_certificate":
@@ -755,12 +781,33 @@ class EtchSasCdsStub:
         if method == "rhmi_setResource":
             self.resources_rx += 1
             data_b = raw_fields.get("data")
+            rtype = raw_fields.get("type")
+            rhash = raw_fields.get("hash")
+            nbytes = len(data_b) if isinstance(data_b, (bytes, bytearray)) else None
+            saved = None
+            if isinstance(data_b, (bytes, bytearray)) and data_b:
+                # Persist for rhmi_db / cover offline parse (LAB only).
+                try:
+                    from pathlib import Path
+
+                    out_dir = Path("/tmp/bcl_dummy/resources")
+                    out_dir.mkdir(parents=True, exist_ok=True)
+                    fname = f"src{src}_h{raw_fields.get('handle')}_t{rtype}_{nbytes}.bin"
+                    path = out_dir / fname
+                    if not path.exists():
+                        path.write_bytes(bytes(data_b))
+                    saved = str(path)
+                except OSError:
+                    saved = None
             self.events.append(
                 {
                     "event": "rhmi_resource_rx",
                     "src": src,
                     "handle": raw_fields.get("handle"),
-                    "bytes": len(data_b) if isinstance(data_b, (bytes, bytearray)) else None,
+                    "type": rtype,
+                    "hash": rhash if isinstance(rhash, (str, int)) else None,
+                    "bytes": nbytes,
+                    "saved": saved,
                 }
             )
 

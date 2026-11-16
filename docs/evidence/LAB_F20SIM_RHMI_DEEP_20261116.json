@@ -1,0 +1,31 @@
+{
+  "decoded_msgs": 20,
+  "methods": {
+    "rhmi_initialize": 6,
+    "rhmi_setData": 11,
+    "cds_getPropertyAsync": 1,
+    "cds_create": 1,
+    "am_create": 1
+  },
+  "setData_models": {
+    "168": 2,
+    "176": 1,
+    "184": 1,
+    "569": 1,
+    "512": 1,
+    "384": 1,
+    "399": 1,
+    "526": 1,
+    "188": 1,
+    "445": 1
+  },
+  "setProperty": 0,
+  "setResource": 0,
+  "np_models_hypothesis": {
+    "445": "artist/primary text (Scorpions, HIM observed)",
+    "446": "secondary text (Best observed)",
+    "451": "time left-ish placeholder",
+    "452": "duration mm:ss",
+    "462": "progress fraction string"
+  }
+}

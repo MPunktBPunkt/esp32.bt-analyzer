@@ -519,6 +519,18 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                         except OSError as exc:
                             close(fd, f"inject_write_error:{exc.errno}")
                             break
+                # Default pacing avoids same-ms action floods that correlated with RFCOMM drops.
+                # Override per line: {"_rhmi_action":{...},"_pace_ms":0} or env RHMI_ACTION_PACE_MS.
+                try:
+                    pace_ms = float(
+                        updates.get("_pace_ms")
+                        if updates.get("_pace_ms") is not None
+                        else rhmi.get("pace_ms", os.environ.get("RHMI_ACTION_PACE_MS", "80"))
+                    )
+                except (TypeError, ValueError):
+                    pace_ms = 80.0
+                if pace_ms > 0:
+                    time.sleep(pace_ms / 1000.0)
                 continue
 
             cds_updates = {k: v for k, v in updates.items() if not str(k).startswith("_")}
