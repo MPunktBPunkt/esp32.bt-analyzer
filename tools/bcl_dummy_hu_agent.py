@@ -631,13 +631,15 @@ def run_phone(
     elif knock_arg == "desk":
         # Pre-set bytes so SP4 auto wire_v5 does not override (truthy).
         knock_payload = KNOCK_DEFAULT_PAYLOAD
+    mybmw_sim = bool(getattr(args, "mybmw_sim", False))
     sess = None if observe_only else PhoneClientSession(
         selectproto=sp,
-        wire_open5001=bool(getattr(args, "wire_open5001", False)),
-        open_etch=bool(getattr(args, "open_etch", False)),
+        wire_open5001=bool(getattr(args, "wire_open5001", False)) or mybmw_sim,
+        open_etch=bool(getattr(args, "open_etch", False)) or mybmw_sim,
         etch_src=int(getattr(args, "etch_src", 10) or 10),
         knock_payload=knock_payload,
         skip_knock=skip_knock,
+        mybmw_sim=mybmw_sim,
     )
     sent = 0
     rx_raw = b""
@@ -733,6 +735,30 @@ def run_phone(
             data = sock.recv(4096)
         except socket.timeout:
             data = None
+            # Drain any deferred MyBMW Etch TX even on idle polls.
+            if sess is not None and getattr(sess, "mybmw_sim", False):
+                for out in sess.drain_tx():
+                    try:
+                        sock.sendall(out)
+                        log.write(
+                            {
+                                "event": "tx_bytes",
+                                "n": len(out),
+                                "hex": out.hex()[:128],
+                                "kind": "mybmw_deferred",
+                                "session_id": session_id,
+                            }
+                        )
+                    except OSError as exc:
+                        log.write(
+                            {
+                                "event": "rfcomm_closed",
+                                "reason": repr(exc),
+                                "session_id": session_id,
+                            }
+                        )
+                        abort_reason = "tx_error"
+                        break
         except OSError as exc:
             log.write({"event": "rfcomm_closed", "reason": repr(exc), "session_id": session_id})
             break
@@ -999,8 +1025,63 @@ def main() -> int:
         p.add_argument("--origin", default="bclcarlink")
         p.add_argument("--source", default="lab")
 
+    def add_phone_client_opts(p: argparse.ArgumentParser) -> None:
+        p.add_argument(
+            "--full-client",
+            action="store_true",
+            help="after HANDSHAKE continue SELECTPROTO/KNOCK/OPEN (lab only by default)",
+        )
+        p.add_argument(
+            "--selectproto",
+            type=int,
+            default=3,
+            help="SELECTPROTO payload u16 after HS version>3 (desk=3, Dummy-wire=2)",
+        )
+        p.add_argument(
+            "--wd-interval",
+            type=float,
+            default=WATCHDOG_INTERVAL_S,
+            help="watchdog ping interval seconds after OPEN 5001 (desk 5, lab-wire ~2.5)",
+        )
+        p.add_argument(
+            "--wire-open5001",
+            action="store_true",
+            help="OPEN watchdog as src=dest=5001 (AAIdrive lab wire) instead of src=1",
+        )
+        p.add_argument(
+            "--open-etch",
+            action="store_true",
+            help="after OPEN 5001 also OPEN Etch dest=4004 (lab: src=10)",
+        )
+        p.add_argument(
+            "--etch-src",
+            type=int,
+            default=10,
+            help="BCL src port for OPEN 4004 (lab MyBMW used 10..12)",
+        )
+        p.add_argument(
+            "--knock",
+            choices=("wire_v5", "desk", "none"),
+            default=None,
+            help="KNOCK: wire_v5=UUID+TouchCommand/7; desk=empty A4A; none=skip KNOCK "
+            "(isolation); default auto wire_v5 when SP≥4 / HS v5",
+        )
+        p.add_argument(
+            "--wd-miss-limit",
+            type=int,
+            default=3,
+            help="abort hold after N consecutive missed WD echoes (0=never)",
+        )
+        p.add_argument(
+            "--mybmw-sim",
+            action="store_true",
+            help="simulate MyBMW/AAIdrive Etch client after OPEN 4004 "
+            "(sas_certificate→login→CDS/RHMI/AM/AV); implies --open-etch --wire-open5001",
+        )
+
     ph = sub.add_parser("phone", help="lab BclCarLink-like client (sends INIT)")
     add_phone(ph)
+    add_phone_client_opts(ph)
     b2a = sub.add_parser("b2a", help="B2-A RFCOMM connect, recv-only (no BCL TX)")
     add_phone(b2a)
     b2a_alias = sub.add_parser("phone-observe", help="alias for b2a")
@@ -1016,52 +1097,7 @@ def main() -> int:
         default=3,
         help="how many INIT_MAGIC bursts (1 s apart) before observe-only",
     )
-    b2a_tx.add_argument(
-        "--full-client",
-        action="store_true",
-        help="after HANDSHAKE continue SELECTPROTO/KNOCK/OPEN (lab only by default)",
-    )
-    b2a_tx.add_argument(
-        "--selectproto",
-        type=int,
-        default=3,
-        help="SELECTPROTO payload u16 after HS version>3 (desk=3, Dummy-wire=2)",
-    )
-    b2a_tx.add_argument(
-        "--wd-interval",
-        type=float,
-        default=WATCHDOG_INTERVAL_S,
-        help="watchdog ping interval seconds after OPEN 5001 (desk 5, lab-wire ~2.5)",
-    )
-    b2a_tx.add_argument(
-        "--wire-open5001",
-        action="store_true",
-        help="OPEN watchdog as src=dest=5001 (AAIdrive lab wire) instead of src=1",
-    )
-    b2a_tx.add_argument(
-        "--open-etch",
-        action="store_true",
-        help="after OPEN 5001 also OPEN Etch dest=4004 (lab: src=10)",
-    )
-    b2a_tx.add_argument(
-        "--etch-src",
-        type=int,
-        default=10,
-        help="BCL src port for OPEN 4004 (lab MyBMW used 10..12)",
-    )
-    b2a_tx.add_argument(
-        "--knock",
-        choices=("wire_v5", "desk", "none"),
-        default=None,
-        help="KNOCK: wire_v5=UUID+TouchCommand/7; desk=empty A4A; none=skip KNOCK "
-        "(isolation); default auto wire_v5 when SP≥4 / HS v5",
-    )
-    b2a_tx.add_argument(
-        "--wd-miss-limit",
-        type=int,
-        default=3,
-        help="abort hold after N consecutive missed WD echoes (0=never)",
-    )
+    add_phone_client_opts(b2a_tx)
 
     args = ap.parse_args()
 

@@ -553,6 +553,33 @@ class DummyHuSession(_Session):
         return replies
 
 
+# Lab stub PKCS7 blob — not a real cert; f20_sim accepts any sas_certificate bytes.
+_STUB_PKCS7 = (
+    b"-----BEGIN PKCS7-----\n"
+    b"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0Z3VS5JJcds3xfnLABSIM\n"
+    b"-----END PKCS7-----\n"
+)
+
+# CDS props MyBMW/AAIdrive typically subscribe after cds_create (subset of CDS_STUB_VALUES).
+MYBMW_CDS_PROPS: tuple[str, ...] = (
+    "vehicle.VIN",
+    "vehicle.language",
+    "vehicle.time",
+    "engine.RPMSpeed",
+    "engine.info",
+    "sensors.battery",
+    "sensors.fuel",
+    "sensors.temperatureExterior",
+    "driving.speedActual",
+    "driving.speedDisplayed",
+    "driving.odometer",
+    "driving.gear",
+    "driving.keyPosition",
+    "navigation.GPSExtendedInfo",
+    "controls.lights",
+)
+
+
 @dataclass
 class PhoneClientSession(_Session):
     """Phone role in BclCarLink order; the caller repeats session_init() until handshake."""
@@ -569,10 +596,22 @@ class PhoneClientSession(_Session):
     knock_payload: bytes | str | None = None
     # True → skip CMD_KNOCK entirely (P1 isolation: SP→OPEN5001 without knock)
     skip_knock: bool = False
+    # Full MyBMW/AAIdrive Etch client after OPEN 4004 (LAB sim — not real crypto).
+    mybmw_sim: bool = False
+    _msg_id: int = 1000
+    _etch_stage: str = "idle"
+    _challenge: bytes | None = None
+    _handles: dict = field(default_factory=dict)
+    _pending_tx: list = field(default_factory=list)
+    _cds_props_queued: bool = False
 
     def session_init(self) -> bytes:
         self.events.append({"event": "session_init", "dir": "tx"})
         return INIT_MAGIC
+
+    def _next_msg(self) -> int:
+        self._msg_id += 1
+        return self._msg_id
 
     def _knock_bytes(self) -> bytes:
         kp = self.knock_payload
@@ -584,44 +623,227 @@ class PhoneClientSession(_Session):
             return bytes(kp)
         raise TypeError("knock_payload must be None, 'wire_v5', or bytes")
 
+    def _etch_data(self, body: bytes) -> bytes:
+        return build_synthetic_frame(CMD_DATA, int(self.etch_src), DEST_ETCH_DESK, body)
+
+    def _queue_rpc(self, type_name: str, fields: dict) -> None:
+        from etch_codec import encode_etch_packet
+
+        body = encode_etch_packet(type_name, fields)
+        self._pending_tx.append(self._etch_data(body))
+        self.events.append(
+            {
+                "event": "mybmw_rpc_tx",
+                "method": type_name,
+                "msg_id": fields.get("_messageId"),
+                "len": len(body),
+            }
+        )
+
+    def _start_mybmw(self) -> None:
+        if not self.mybmw_sim or self._etch_stage != "idle":
+            return
+        self._etch_stage = "sas_cert"
+        self._queue_rpc(
+            "sas_certificate",
+            {"_messageId": self._next_msg(), "data": _STUB_PKCS7},
+        )
+        self.events.append({"event": "mybmw_sim_start", "etch_src": self.etch_src})
+
+    def _queue_bootstrap(self) -> None:
+        mid = self._next_msg
+        self._queue_rpc("ver_getVersion", {"_messageId": mid()})
+        self._queue_rpc("info_getSystemInfo", {"_messageId": mid()})
+        self._queue_rpc(
+            "rhmi_getCapabilities",
+            {"_messageId": mid(), "hash": "", "capabilities": 255},
+        )
+        self._queue_rpc("cds_create", {"_messageId": mid()})
+        self._queue_rpc("am_create", {"_messageId": mid()})
+        self._queue_rpc("rhmi_create", {"_messageId": mid()})
+        self._queue_rpc("av_create", {"_messageId": mid()})
+        self._etch_stage = "bootstrap"
+
+    def _queue_cds_and_apps(self) -> None:
+        if self._cds_props_queued:
+            return
+        cds_h = int(self._handles.get("cds_create") or 10)
+        am_h = int(self._handles.get("am_create") or 11)
+        rhmi_h = int(self._handles.get("rhmi_create") or 12)
+        av_h = int(self._handles.get("av_create") or 13)
+        for prop in MYBMW_CDS_PROPS:
+            self._queue_rpc(
+                "cds_addPropertyChangedEventHandler",
+                {
+                    "_messageId": self._next_msg(),
+                    "handle": cds_h,
+                    "ident": "0",
+                    "propertyName": prop,
+                    "intervalLimit": 0,
+                },
+            )
+            self._queue_rpc(
+                "cds_getPropertyAsync",
+                {
+                    "_messageId": self._next_msg(),
+                    "handle": cds_h,
+                    "ident": "0",
+                    "propertyName": prop,
+                },
+            )
+        self._queue_rpc(
+            "am_registerApp",
+            {
+                "_messageId": self._next_msg(),
+                "handle": am_h,
+                "id": "net.basarsoft.a4a",
+                "name": "AAIdrive",
+                "category": "Multimedia",
+            },
+        )
+        self._queue_rpc(
+            "rhmi_checkResource",
+            {
+                "_messageId": self._next_msg(),
+                "handle": rhmi_h,
+                "hash": "lab_sim",
+                "type": 0,
+            },
+        )
+        self._queue_rpc(
+            "av_requestConnection",
+            {
+                "_messageId": self._next_msg(),
+                "handle": av_h,
+                "connectionType": 0,
+            },
+        )
+        self._cds_props_queued = True
+        self._etch_stage = "apps"
+        self.events.append(
+            {
+                "event": "mybmw_apps_queued",
+                "handles": dict(self._handles),
+                "cds_props": list(MYBMW_CDS_PROPS),
+            }
+        )
+
+    def drain_tx(self) -> list[bytes]:
+        """Return and clear queued MyBMW Etch DATA frames (caller sends on RFCOMM)."""
+        out = list(self._pending_tx)
+        self._pending_tx.clear()
+        return out
+
     def on_bytes(self, data: bytes) -> list[bytes]:
         _, frames = self._parse(data, "rx")
         out: list[bytes] = []
         for fr in frames:
-            if self.handshake is not None:
+            if self.handshake is None:
+                hs = parse_handshake(fr)
+                if hs is None:
+                    self.events.append({"event": "unexpected_before_handshake", "cmd": fr.cmd})
+                    continue
+                self.handshake = hs
+                sp = self.selectproto
+                # Auto wire SP4+UUID knock when HS v5+ and caller left desk default 3.
+                if sp == 3 and hs["version"] >= 5:
+                    sp = 4
+                    self.knock_payload = self.knock_payload or "wire_v5"
+                # Explicit SP4+ also gets wire knock unless caller overrode knock_payload.
+                elif sp is not None and int(sp) >= 4:
+                    self.knock_payload = self.knock_payload or "wire_v5"
+                if sp is not None and (hs["version"] > 3 or sp != 3):
+                    out.append(
+                        build_synthetic_frame(CMD_SELECTPROTO, 0, 0, struct.pack(">H", int(sp)))
+                    )
+                if not self.skip_knock:
+                    out.append(build_synthetic_frame(CMD_KNOCK, 0, 0, self._knock_bytes()))
+                else:
+                    self.events.append({"event": "knock_skipped", "dir": "tx"})
+                if self.wire_open5001:
+                    out.append(
+                        build_synthetic_frame(CMD_OPEN, DEST_WATCHDOG_DESK, DEST_WATCHDOG_DESK)
+                    )
+                else:
+                    out.append(build_synthetic_frame(CMD_OPEN, PHONE_SRC, DEST_WATCHDOG_DESK))
+                if self.open_etch or self.mybmw_sim:
+                    self.open_etch = True
+                    out.append(
+                        build_synthetic_frame(CMD_OPEN, int(self.etch_src), DEST_ETCH_DESK)
+                    )
+                self.active = True
+                if self.mybmw_sim:
+                    # Start Etch after OPEN 4004 is on the wire (next poll drains).
+                    self._start_mybmw()
                 continue
-            hs = parse_handshake(fr)
-            if hs is None:
-                self.events.append({"event": "unexpected_before_handshake", "cmd": fr.cmd})
+
+            # Post-handshake: MyBMW Etch reply handling
+            if not self.mybmw_sim or fr.cmd != CMD_DATA:
                 continue
-            self.handshake = hs
-            sp = self.selectproto
-            # Auto wire SP4+UUID knock when HS v5+ and caller left desk default 3.
-            if sp == 3 and hs["version"] >= 5:
-                sp = 4
-                self.knock_payload = self.knock_payload or "wire_v5"
-            # Explicit SP4+ also gets wire knock unless caller overrode knock_payload.
-            elif sp is not None and int(sp) >= 4:
-                self.knock_payload = self.knock_payload or "wire_v5"
-            if sp is not None and (hs["version"] > 3 or sp != 3):
-                out.append(
-                    build_synthetic_frame(CMD_SELECTPROTO, 0, 0, struct.pack(">H", int(sp)))
+            # F20 mirrors replies on (phone_src, 4004); accept Etch either way.
+            if DEST_ETCH_DESK not in (fr.src, fr.dest) and fr.src != int(self.etch_src):
+                continue
+            try:
+                from etch_codec import decode_etch_message
+
+                dec = decode_etch_message(fr.payload)
+            except Exception as exc:  # noqa: BLE001
+                self.events.append(
+                    {
+                        "event": "mybmw_etch_decode_err",
+                        "err": str(exc),
+                        "len": len(fr.payload),
+                    }
                 )
-            if not self.skip_knock:
-                out.append(build_synthetic_frame(CMD_KNOCK, 0, 0, self._knock_bytes()))
-            else:
-                self.events.append({"event": "knock_skipped", "dir": "tx"})
-            if self.wire_open5001:
-                out.append(
-                    build_synthetic_frame(CMD_OPEN, DEST_WATCHDOG_DESK, DEST_WATCHDOG_DESK)
+                continue
+            method = dec.get("method") or ""
+            fields = dec.get("raw_fields") or {}
+            self.events.append(
+                {
+                    "event": "mybmw_rpc_rx",
+                    "method": method,
+                    "len": len(fr.payload),
+                }
+            )
+            if method == "_result_sas_certificate":
+                chal = fields.get("result")
+                if isinstance(chal, (bytes, bytearray)):
+                    self._challenge = bytes(chal)
+                self._etch_stage = "sas_login"
+                sig = (self._challenge or bytes(16)) + bytes(496)
+                self._queue_rpc(
+                    "sas_login",
+                    {"_messageId": self._next_msg(), "data": sig[:512]},
                 )
-            else:
-                out.append(build_synthetic_frame(CMD_OPEN, PHONE_SRC, DEST_WATCHDOG_DESK))
-            if self.open_etch:
-                out.append(
-                    build_synthetic_frame(CMD_OPEN, int(self.etch_src), DEST_ETCH_DESK)
+            elif method == "_result_sas_login":
+                self._etch_stage = "bootstrap"
+                self._queue_bootstrap()
+            elif method.startswith("_result_") and method.endswith(
+                ("_create", "_create_version")
+            ):
+                base = method[len("_result_") :]
+                if isinstance(fields.get("result"), int):
+                    self._handles[base] = int(fields["result"])
+                    self.events.append(
+                        {
+                            "event": "mybmw_handle",
+                            "method": base,
+                            "handle": int(fields["result"]),
+                        }
+                    )
+                # When we have cds+am+rhmi+av, queue subscriptions
+                need = ("cds_create", "am_create", "rhmi_create", "av_create")
+                if all(k in self._handles for k in need):
+                    self._queue_cds_and_apps()
+            elif method == "cds_onPropertyChangedEvent":
+                self.events.append(
+                    {
+                        "event": "mybmw_cds_event",
+                        "property": fields.get("propertyName"),
+                        "value": fields.get("propertyValue"),
+                    }
                 )
-            self.active = True
+        out.extend(self.drain_tx())
         return out
 
     def watchdog_ping(self) -> bytes:
