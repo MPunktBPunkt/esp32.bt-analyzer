@@ -420,6 +420,147 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
     GLib.timeout_add_seconds(max(1, int(args.hold)), stop)
     signal.signal(signal.SIGTERM, lambda *_a: GLib.idle_add(stop))
     signal.signal(signal.SIGINT, lambda *_a: GLib.idle_add(stop))
+
+    # Live CDS inject: append JSON lines to /tmp/bcl_dummy/inject_cds.jsonl
+    # e.g. {"engine.RPMSpeed": 4321, "sensors.fuel": {"range": 99, "reserve": 0, "tanklevel": 11}}
+    inject_path = Path(getattr(args, "inject_cds", "/tmp/bcl_dummy/inject_cds.jsonl") or "")
+    inject_offset = 0
+    if inject_path:
+        inject_path.parent.mkdir(parents=True, exist_ok=True)
+        inject_path.touch(exist_ok=True)
+        inject_offset = inject_path.stat().st_size
+        log.write(
+            {
+                "event": "inject_watch",
+                "path": str(inject_path),
+                "session_id": session_id,
+            }
+        )
+
+    def poll_inject() -> bool:
+        nonlocal inject_offset
+        if not inject_path or observe_only or tx_forbidden:
+            return True
+        try:
+            data = inject_path.read_bytes()
+        except OSError:
+            return True
+        # File was truncated/rewritten — rescan from start.
+        if len(data) < inject_offset:
+            inject_offset = 0
+        if len(data) <= inject_offset:
+            return True
+        chunk = data[inject_offset:]
+        inject_offset = len(data)
+        for ln in chunk.decode("utf-8", errors="replace").splitlines():
+            ln = ln.strip()
+            if not ln.startswith("{"):
+                continue
+            try:
+                updates = json.loads(ln)
+            except json.JSONDecodeError as exc:
+                log.write(
+                    {
+                        "event": "inject_error",
+                        "error": str(exc),
+                        "line": ln[:200],
+                        "session_id": session_id,
+                    }
+                )
+                continue
+            if not isinstance(updates, dict) or not updates:
+                continue
+            # RHMI iDrive action inject: {"_rhmi_action":{"src":19,"handle":17,"actionId":541,"args":{"0":0}}}
+            rhmi = updates.get("_rhmi_action")
+            if isinstance(rhmi, dict):
+                log.write(
+                    {
+                        "event": "inject_rhmi_request",
+                        "action": rhmi,
+                        "open_conns": len(conns),
+                        "session_id": session_id,
+                    }
+                )
+                for fd, c in list(conns.items()):
+                    sess = c.get("session")
+                    if not isinstance(sess, DummyHuSession):
+                        continue
+                    args_map = rhmi.get("args") or {0: 0}
+                    # JSON keys are str — coerce numeric keys
+                    coerced: dict = {}
+                    for k, v in dict(args_map).items():
+                        try:
+                            coerced[int(k)] = v
+                        except (TypeError, ValueError):
+                            coerced[k] = v
+                    replies = sess.inject_rhmi_action(
+                        src=int(rhmi.get("src") or 19),
+                        handle=int(rhmi.get("handle") or 0),
+                        action_id=int(rhmi.get("actionId") or rhmi.get("action_id") or 0),
+                        args=coerced,
+                        ident=rhmi.get("ident", 0),
+                    )
+                    c["sent"] = _flush_events(
+                        log, sess, c["sent"], **c["dev"], session_id=session_id
+                    )
+                    for r in replies:
+                        try:
+                            os.write(fd, r)
+                            log.write(
+                                {
+                                    "event": "tx_bytes",
+                                    "n": len(r),
+                                    "hex": r.hex(),
+                                    "reason": "inject_rhmi_action",
+                                },
+                                **c["dev"],
+                                session_id=session_id,
+                            )
+                        except OSError as exc:
+                            close(fd, f"inject_write_error:{exc.errno}")
+                            break
+                continue
+
+            cds_updates = {k: v for k, v in updates.items() if not str(k).startswith("_")}
+            if not cds_updates:
+                continue
+            log.write(
+                {
+                    "event": "inject_cds_request",
+                    "updates": cds_updates,
+                    "open_conns": len(conns),
+                    "session_id": session_id,
+                }
+            )
+            for fd, c in list(conns.items()):
+                sess = c.get("session")
+                if not isinstance(sess, DummyHuSession):
+                    continue
+                replies = sess.inject_cds(cds_updates)
+                c["sent"] = _flush_events(
+                    log, sess, c["sent"], **c["dev"], session_id=session_id
+                )
+                for r in replies:
+                    try:
+                        os.write(fd, r)
+                        log.write(
+                            {
+                                "event": "tx_bytes",
+                                "n": len(r),
+                                "hex": r.hex(),
+                                "reason": "inject_cds",
+                            },
+                            **c["dev"],
+                            session_id=session_id,
+                        )
+                    except OSError as exc:
+                        close(fd, f"inject_write_error:{exc.errno}")
+                        break
+        return True
+
+    if inject_path and not observe_only:
+        GLib.timeout_add(400, poll_inject)
+
     loop.run()
     return 0
 

@@ -324,6 +324,61 @@ class DummyHuSession(_Session):
             }
         )
 
+    def inject_cds(self, updates: dict[str, Any]) -> list[bytes]:
+        """Live HU→Phone CDS push for an already-open Dummy-HU session."""
+        if self.etch is None:
+            return []
+        replies: list[bytes] = []
+        for phone_src, body in self.etch.inject_cds_updates(updates):
+            self._append_etch_tx(replies, phone_src, body, reason="inject_cds")
+            if self.send_dataack:
+                # No RX frame to ACK — skip DATAACK for unsolicited inject
+                pass
+        while self.etch.events:
+            self.events.append(self.etch.events.pop(0))
+        return replies
+
+    def inject_rhmi_action(
+        self,
+        *,
+        src: int,
+        handle: int,
+        action_id: int,
+        args: dict[Any, Any] | None = None,
+        ident: str | int = 0,
+    ) -> list[bytes]:
+        """Live HU→Phone iDrive action (rhmi_onActionEvent), e.g. Spotify skip/list select."""
+        if self.etch is None:
+            return []
+        from etch_codec import encode_etch_packet
+
+        mid = self.etch._next_msg_id()
+        ev_args = dict(args) if args is not None else {0: 0}
+        body = encode_etch_packet(
+            "rhmi_onActionEvent",
+            {
+                "_messageId": mid,
+                "handle": int(handle),
+                "ident": ident,
+                "actionId": int(action_id),
+                "args": ev_args,
+            },
+        )
+        replies: list[bytes] = []
+        self._append_etch_tx(replies, int(src), body, reason="inject_rhmi_action")
+        self.events.append(
+            {
+                "event": "rhmi_action_tx",
+                "src": int(src),
+                "handle": int(handle),
+                "actionId": int(action_id),
+                "args": ev_args,
+                "ident": ident,
+                "reason": "inject",
+            }
+        )
+        return replies
+
     def _maybe_hu_open(self, replies: list[bytes]) -> None:
         if self.hu_opens_sent or not self.hu_open_srcs:
             return

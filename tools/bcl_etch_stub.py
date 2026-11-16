@@ -19,7 +19,7 @@ import json
 import re
 import struct
 from dataclasses import dataclass, field
-from typing import ClassVar, Literal
+from typing import Any, ClassVar, Literal
 
 ETCH_MAGIC = b"\xde\xad\xbe\xef"
 
@@ -325,6 +325,8 @@ class EtchSasCdsStub:
     msg_seq: int = 200
     resources_rx: int = 0
     events: list[dict] = field(default_factory=list)
+    # Active CDS subscriptions from Phone (src, handle, propertyName) for live inject.
+    subscriptions: list[dict] = field(default_factory=list)
 
     # Minimal field-seen set for unsolicited push experiments.
     CDS_PUSH_NAMES: ClassVar[tuple[str, ...]] = (
@@ -332,6 +334,65 @@ class EtchSasCdsStub:
         "iva_MYV_LIGHT_INTERIOR",
         "vehicle.VIN",
     )
+
+    def inject_cds_updates(self, updates: dict[str, Any]) -> list[tuple[int, bytes]]:
+        """Build HU→Phone cds_onPropertyChangedEvent payloads for live inject.
+
+        Returns list of (phone_src, etch_body) for each matching subscription.
+        Unknown properties still update CDS_STUB_VALUES for the next getPropertyAsync.
+        """
+        from etch_codec import CDS_BY_NAME, encode_etch_packet
+
+        out: list[tuple[int, bytes]] = []
+        for prop, value in updates.items():
+            if isinstance(value, str):
+                # Accept raw JSON string or plain string
+                try:
+                    json.loads(value)
+                    val_json = value
+                except json.JSONDecodeError:
+                    leaf = str(prop).split(".")[-1]
+                    val_json = json.dumps({leaf: value})
+            else:
+                leaf = str(prop).split(".")[-1]
+                if isinstance(value, dict):
+                    val_json = json.dumps(value)
+                else:
+                    val_json = json.dumps({leaf: value})
+            CDS_STUB_VALUES[str(prop)] = val_json
+            matched = [s for s in self.subscriptions if s.get("property") == prop]
+            if not matched:
+                # Fan-out to every known CDS channel so Phone still sees an event
+                matched = [
+                    {"src": s["src"], "handle": s["handle"], "property": prop}
+                    for s in { (x["src"], x["handle"]): x for x in self.subscriptions }.values()
+                ]
+            for sub in matched:
+                src = int(sub["src"])
+                handle = int(sub["handle"])
+                ident = str(CDS_BY_NAME.get(prop, "0"))
+                pkt = encode_etch_packet(
+                    "cds_onPropertyChangedEvent",
+                    {
+                        "_messageId": self._next_msg_id(),
+                        "handle": handle,
+                        "ident": ident,
+                        "propertyName": prop,
+                        "propertyValue": val_json,
+                    },
+                )
+                out.append((src, pkt))
+                self.events.append(
+                    {
+                        "event": "cds_property_tx",
+                        "src": src,
+                        "property": prop,
+                        "value_json": val_json,
+                        "reason": "inject",
+                        "handle": handle,
+                    }
+                )
+        return out
 
     def on_etch_open(self, src: int) -> list[bytes]:
         """Reply right after Phone OPEN dest=4004 (static stages + adaptive; f20_full stays silent like real F20!)."""
@@ -644,6 +705,18 @@ class EtchSasCdsStub:
             ident = str(raw_fields.get("ident") or CDS_BY_NAME.get(pname, "0"))
             if pname:
                 self.cds_hits.append(pname)
+                if method == "cds_addPropertyChangedEventHandler":
+                    self.subscriptions.append(
+                        {"src": src, "handle": handle, "property": pname}
+                    )
+                    self.events.append(
+                        {
+                            "event": "cds_subscribed",
+                            "src": src,
+                            "handle": handle,
+                            "property": pname,
+                        }
+                    )
                 leaf = pname.split(".")[-1]
                 val_json = CDS_STUB_VALUES.get(pname) or json.dumps({leaf: 0})
                 ev_pkt = encode_etch_packet(
