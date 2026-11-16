@@ -6,18 +6,20 @@
 - **setResource** blobs → `/tmp/bcl_dummy/resources/`
 - RHMI action inject default pace **80 ms** (`RHMI_ACTION_PACE_MS`, override `_pace_ms`)
 
-## Browse outcome (evening)
-OnePlus **Connected**, Spotify via **A2DP**. Wire: SAS/RHMI create + calendar/News DESCRIPTION; **`setData=0`**, music DESCRIPTION absent.  
-Inject burst: **31** requests, **30× `open_conns:0`**, **`rhmi_action_tx=0`** — RFCOMM killed by action flood, not a policy block.
+## Browse outcome = Test A (confirmed)
+OnePlus Connected, Spotify via **A2DP only**. Wire: calendar/News DESCRIPTION; **Music DESCRIPTION / initialize / setData = 0**.  
+Flood is a **second** problem (inject `open_conns:0`), not the cause of missing Music RHMI.
 
 Full eval: [`LAB_RHMI_BROWSE_20261116T2002Z.md`](./LAB_RHMI_BROWSE_20261116T2002Z.md)
 
-## Next live gate
-BT Connected + AAIdrive green → **Music/Spotify in Connected/HU öffnen** (nicht nur Phone-A2DP) → watch setData → paced actions on **one** `(src,handle)`.
+## Test B (next — observe only)
+1. Stable Connected.
+2. Open **Spotify inside Connected/iDrive** (not phone A2DP alone).
+3. No injects. Watch:
 
 ```bash
-grep 'rhmi_setData' /tmp/bcl_dummy/hu.jsonl | tail -20
-ls /tmp/bcl_dummy/resources | head
-# gentle (default 80ms pace) — do NOT flood
-printf '%s\n' '{"_rhmi_action":{"src":16,"handle":12,"actionId":1,"args":{"0":0}}}' >> /tmp/bcl_dummy/inject_cds.jsonl
+scp tools/rhmi_test_b_watch.py root@192.168.178.108:/tmp/
+ssh root@192.168.178.108 'python3 /tmp/rhmi_test_b_watch.py'
 ```
+
+Expect: Music DESCRIPTION → `initialize` → `setData`. Only then one paced action.
