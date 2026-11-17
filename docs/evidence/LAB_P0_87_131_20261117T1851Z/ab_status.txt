@@ -1,0 +1,34 @@
+=== 192.168.178.131 ===
+  version: 0.3.20
+  uptime: 40min 47s
+  heap: 65592
+  resetReason: panic
+  bootGen: 24
+  rssi: -42
+  hci.ready: True
+  hci.client: 192.168.178.108
+  hci.sessions: 2
+  hci.drops: 91
+  hci.framingErrors: 0
+  hci.bdAddr: c8:c9:a3:cb:7b:0a
+  hci.toHostBytes: 35484206
+  hci.toCtrlBytes: 394387
+=== 192.168.178.87 ===
+  version: 0.3.20
+  uptime: 5h 59min
+  heap: 65612
+  resetReason: software
+  bootGen: 2
+  rssi: -48
+  hci.ready: True
+  hci.client: 192.168.178.108
+  hci.sessions: 3
+  hci.drops: 0
+  hci.framingErrors: 0
+  hci.bdAddr: c8:c9:a3:cb:37:96
+  hci.toHostBytes: 45437
+  hci.toCtrlBytes: 30709
+
+=== after RFCOMM attempt ===
+192.168.178.131 uptime 41min 24s boot 24 rr panic drops 91 heap 65288
+192.168.178.87 uptime 6h 0min boot 2 rr software drops 0 heap 65228

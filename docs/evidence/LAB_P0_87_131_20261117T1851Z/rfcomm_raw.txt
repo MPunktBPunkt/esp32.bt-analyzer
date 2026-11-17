@@ -1,0 +1,9 @@
+hcitool cc
+con2 Connections:
+	< ACL C8:C9:A3:CB:7B:0A handle 3840 state 2 lm CENTRAL 
+
+con1 Connections:
+	> ACL C8:C9:A3:CB:37:96 handle 128 state 1 lm PERIPHERAL 
+
+RFCOMM FAIL BlockingIOError(114, 'Operation already in progress')
+{"ok": false, "error": "BlockingIOError(114, 'Operation already in progress')"}

@@ -1,0 +1,13 @@
+{
+  "ok": false,
+  "hold": 0.3,
+  "sent": 0,
+  "rx": 0,
+  "send_err": "OSError(107, 'Transport endpoint is not connected')",
+  "esp_samples": 0,
+  "esp_deltas": [],
+  "esp_first": null,
+  "esp_last": null,
+  "hu_events": {},
+  "hu_key": []
+}

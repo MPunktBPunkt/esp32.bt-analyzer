@@ -300,7 +300,12 @@ def build_report(
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--hu", type=Path, help="HU agent jsonl")
-    ap.add_argument("--esp", default="", help="ESP IP for /api/status (optional)")
+    ap.add_argument(
+        "--esp",
+        action="append",
+        default=[],
+        help="ESP IP for /api/status (repeatable; first used for live watch)",
+    )
     ap.add_argument("--watch", type=float, default=0.0, help="live watch seconds")
     ap.add_argument("--out", type=Path, help="write JSON report")
     ap.add_argument("--md", type=Path, help="optional markdown summary")
@@ -310,12 +315,18 @@ def main(argv: list[str] | None = None) -> int:
         ap.error("need --hu and/or --esp with --watch")
 
     events = load_jsonl(args.hu) if args.hu else []
-    esp_once = esp_snapshot(fetch_esp(args.esp)) if args.esp else None
+    esp_hosts = list(args.esp or [])
+    esp_once = {h: esp_snapshot(fetch_esp(h)) for h in esp_hosts} if esp_hosts else None
+    if esp_once and len(esp_once) == 1:
+        esp_once = next(iter(esp_once.values()))
     live = None
-    if args.esp and args.watch > 0:
+    if esp_hosts and args.watch > 0:
         if not args.hu:
             ap.error("--watch requires --hu jsonl to tail")
-        live = watch_live(args.hu, args.esp, seconds=args.watch)
+        live = watch_live(args.hu, esp_hosts[0], seconds=args.watch)
+        if len(esp_hosts) > 1:
+            live["esp_hosts"] = esp_hosts
+            live["esp_once_all"] = {h: esp_snapshot(fetch_esp(h)) for h in esp_hosts}
 
     report = build_report(hu=args.hu, events=events, live=live, esp_once=esp_once)
     text = json.dumps(report, indent=2, ensure_ascii=False)

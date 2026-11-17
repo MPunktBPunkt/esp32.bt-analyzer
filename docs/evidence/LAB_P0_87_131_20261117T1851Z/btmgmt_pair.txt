@@ -1,0 +1,12 @@
+Pairing with C8:C9:A3:CB:7B:0A (BR/EDR)
+hci1 class of device changed: 0x340408
+hci1 class of device changed: 0x340408
+hci1 C8:C9:A3:CB:37:96 type BR/EDR connected eir_len 24
+hci2 C8:C9:A3:CB:7B:0A type BR/EDR connected eir_len 16
+hci1 class of device changed: 0x340408
+hci2 type 6 discovering off
+hci1 class of device changed: 0x340408
+hci1 class of device changed: 0x340408
+hci1 C8:C9:A3:CB:37:96 auth failed with status 0x05 (Authentication Failed)
+[0;91mPairing with C8:C9:A3:CB:7B:0A (BR/EDR) failed. status 0x05 (Authentication Failed)
+[0m

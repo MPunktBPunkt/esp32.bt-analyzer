@@ -40,7 +40,8 @@ WINDOW_FILE = os.environ.get("BT_PAIR_WINDOW", "/run/bt-analyzer/pair_window")
 SERVICE = "bt-pair-agent"
 
 AGENT_PATH = "/org/btanalyzer/pairagent"
-CAPABILITY = "DisplayYesNo"
+# Default for phone↔BMW Numeric Comparison. Lab ESP↔ESP use --capability NoInputNoOutput.
+CAPABILITY_DEFAULT = "DisplayYesNo"
 EVENTS_KEEP = 60
 
 # Class of Device: major/minor class plus service bits a real device of that kind sets.
@@ -271,9 +272,10 @@ def _build_agent_class(dbus, dbus_service):
 
 
 class AgentService:
-    def __init__(self, adapters: list[dict], mode: str):
+    def __init__(self, adapters: list[dict], mode: str, capability: str = CAPABILITY_DEFAULT):
         self.cfg = {a["bd"]: a for a in adapters}
         self.mode = mode
+        self.capability = capability or CAPABILITY_DEFAULT
         self.bus = None
         self.events: list[dict] = []
         self.count = 0
@@ -383,7 +385,7 @@ class AgentService:
         try:
             _write_json_atomic(STATE_FILE, {
                 "running": True, "pid": os.getpid(), "started_ts": self.started,
-                "ts": round(time.time(), 3), "mode": self.mode, "capability": CAPABILITY,
+                "ts": round(time.time(), 3), "mode": self.mode, "capability": self.capability,
                 "configured": [{k: v for k, v in a.items() if k != "cls"} for a in self.cfg.values()],
                 "adapters": adapters, "event_count": self.count,
             })
@@ -422,13 +424,20 @@ class AgentService:
         agent = _build_agent_class(dbus, dbus.service)(self.bus, AGENT_PATH, self)  # noqa: F841
         mgr = dbus.Interface(self.bus.get_object("org.bluez", "/org/bluez"), "org.bluez.AgentManager1")
         try:
-            mgr.RegisterAgent(AGENT_PATH, CAPABILITY)
+            mgr.UnregisterAgent(AGENT_PATH)
+        except dbus.DBusException:
+            pass
+        try:
+            mgr.RegisterAgent(AGENT_PATH, self.capability)
         except dbus.DBusException as e:
             if "AlreadyExists" not in str(e):
                 raise
         # An interactive `bluetoothctl` with `default-agent` takes this role over until it exits.
         mgr.RequestDefaultAgent(AGENT_PATH)
-        _log(f"agent {AGENT_PATH} capability={CAPABILITY} rule={self.mode} adapters={list(self.cfg)}")
+        _log(
+            f"agent {AGENT_PATH} capability={self.capability} "
+            f"rule={self.mode} adapters={list(self.cfg)}"
+        )
 
         self.bus.add_signal_receiver(self._on_added, dbus_interface="org.freedesktop.DBus.ObjectManager",
                                      signal_name="InterfacesAdded", bus_name="org.bluez")
@@ -459,6 +468,12 @@ def main(argv=None) -> int:
                     help=f"configured adapter; ROLE in {', '.join(CLASS_BY_ROLE)}, none")
     ap.add_argument("--mode", default=os.environ.get("BT_PAIR_CONFIRM", "always"),
                     choices=("always", "window", "never"))
+    ap.add_argument(
+        "--capability",
+        default=os.environ.get("BT_PAIR_CAPABILITY", CAPABILITY_DEFAULT),
+        choices=("DisplayYesNo", "NoInputNoOutput", "KeyboardDisplay", "DisplayOnly", "KeyboardOnly"),
+        help="BlueZ agent capability (lab ESP↔ESP: NoInputNoOutput / Just Works)",
+    )
     ap.add_argument("--open-window", type=int, metavar="SECONDS")
     ap.add_argument("--status", action="store_true", help="print JSON status and exit")
     ap.add_argument("-f", "--foreground", action="store_true", help="accepted for unit-file symmetry")
@@ -471,7 +486,11 @@ def main(argv=None) -> int:
         until = open_window(args.open_window)
         print(json.dumps({"ok": True, "until": until, "window_s": args.open_window}))
         return 0
-    AgentService([parse_adapter_spec(s) for s in args.adapter], args.mode).run()
+    AgentService(
+        [parse_adapter_spec(s) for s in args.adapter],
+        args.mode,
+        capability=args.capability,
+    ).run()
     return 0
 
 

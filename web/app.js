@@ -9,6 +9,61 @@
   // Idle samples kept after a burst before the chart freezes, so the last burst stays visible.
   const IDLE_KEEP = 5;
 
+  function setPill(id, text, cls) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = text;
+    el.className = "pill" + (cls ? " " + cls : "");
+  }
+
+  function activateTab(name) {
+    document.querySelectorAll(".tabs .tab").forEach((btn) => {
+      const on = btn.getAttribute("data-tab") === name;
+      btn.classList.toggle("active", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    document.querySelectorAll(".tab-panel").forEach((panel) => {
+      const on = panel.id === "panel-" + name;
+      panel.classList.toggle("active", on);
+      if (on) panel.removeAttribute("hidden");
+      else panel.setAttribute("hidden", "");
+    });
+    try {
+      localStorage.setItem("btlab_tab", name);
+    } catch (_) {}
+  }
+
+  function activateBmwSub(name) {
+    document.querySelectorAll("#bmw-subtabs .subtab").forEach((btn) => {
+      btn.classList.toggle("active", btn.getAttribute("data-sub") === name);
+    });
+    ["cds", "rhmi", "tools", "rpc"].forEach((sub) => {
+      const panel = document.getElementById("bmw-sub-" + sub);
+      if (!panel) return;
+      const on = sub === name;
+      panel.classList.toggle("active", on);
+      if (on) panel.removeAttribute("hidden");
+      else panel.setAttribute("hidden", "");
+    });
+    try {
+      localStorage.setItem("btlab_bmw_sub", name);
+    } catch (_) {}
+  }
+
+  document.querySelectorAll(".tabs .tab").forEach((btn) => {
+    btn.addEventListener("click", () => activateTab(btn.getAttribute("data-tab")));
+  });
+  document.querySelectorAll("#bmw-subtabs .subtab").forEach((btn) => {
+    btn.addEventListener("click", () => activateBmwSub(btn.getAttribute("data-sub")));
+  });
+  try {
+    activateTab(localStorage.getItem("btlab_tab") || "overview");
+    activateBmwSub(localStorage.getItem("btlab_bmw_sub") || "cds");
+  } catch (_) {
+    activateTab("overview");
+    activateBmwSub("cds");
+  }
+
   function makeHist(keys) {
     return { keys, data: Object.fromEntries(keys.map((k) => [k, []])), idleRun: 0, lastActive: null, peak: 0 };
   }
@@ -291,6 +346,13 @@
     try {
       const data = await jget("/api/v1/agents");
       const agents = data.agents || [];
+      const up = agents.filter((a) => a.ok && a.is_agent);
+      const bridged = up.filter((a) => a.agent && a.agent.client);
+      setPill(
+        "pill-agents",
+        `Agents ${bridged.length}/${up.length || agents.length} bridged`,
+        bridged.length >= 2 ? "on" : bridged.length ? "warn" : "bad"
+      );
       el.innerHTML = agents
         .map((a) => {
           if (!a.ok) return `${esc(a.id)} ${esc(a.ip)} <span class="bad">down</span>`;
@@ -440,12 +502,19 @@
     const stateEl = document.getElementById("pair-state");
     if (!d.ok) {
       stateEl.innerHTML = `<span class="bad">nicht erreichbar</span> · ${esc(d.ssh || "")} · ${esc(d.error || "")}`;
+      setPill("pill-pair", "Pair down", "bad");
       return;
     }
     const svc = d.service === "active" ? '<span class="ok">aktiv</span>' : `<span class="bad">${esc(d.service || "?")}</span>`;
+    const winOpen = d.window_s > 0;
+    setPill(
+      "pill-pair",
+      winOpen ? `Pair ${Math.round(d.window_s)}s` : `Pair ${d.service || "?"}`,
+      d.service === "active" ? (winOpen ? "warn" : "on") : "bad"
+    );
     stateEl.innerHTML =
       `Dienst ${svc} · Regel ${esc(d.mode || "?")} · ${esc(d.capability || "")}` +
-      ` · Fenster ${d.window_s > 0 ? Math.round(d.window_s) + " s offen" : "zu"} · ${esc(d.ssh)}`;
+      ` · Fenster ${winOpen ? Math.round(d.window_s) + " s offen" : "zu"} · ${esc(d.ssh)}`;
 
     const events = d.events || [];
     const pk = [...events].reverse().find((e) => e.method === "RequestConfirmation" || e.method === "DisplayPasskey");
@@ -511,7 +580,14 @@
       ? '<span class="ok">ok</span>'
       : '<span class="bad">fail</span>';
     document.getElementById("c-uptime").textContent = (h.uptime_s || 0) + " s";
-    renderSession(h.session || {});
+    setPill("pill-health", h.ok ? "Health ok" : "Health fail", h.ok ? "on" : "bad");
+    const sess = h.session || {};
+    setPill(
+      "pill-session",
+      sess.active ? "BTAC live" : "BTAC idle",
+      sess.active ? "on" : ""
+    );
+    renderSession(sess);
   }
 
   async function refreshNodes() {

@@ -8,109 +8,189 @@
 </head>
 <body>
 <header>
-  <h1>bt-analyzer</h1>
-  <span class="badge" id="svc-ver">…</span>
-  <span class="muted">Debian Lab UI · Port <b>8081</b> · BTAC :9753 · rates live</span>
+  <div class="hdr-brand">
+    <h1>bt-analyzer</h1>
+    <span class="badge" id="svc-ver">…</span>
+  </div>
+  <div class="hdr-status">
+    <span class="pill" id="pill-health">Health …</span>
+    <span class="pill" id="pill-session">BTAC idle</span>
+    <span class="pill" id="pill-agents">Agents …</span>
+    <span class="pill" id="pill-pair">Pair …</span>
+  </div>
+  <div class="hdr-actions">
+    <button type="button" id="btn-refresh">Refresh</button>
+    <button type="button" class="secondary" id="btn-auto">Auto 1s: off</button>
+  </div>
 </header>
+
+<nav class="tabs" id="main-tabs" role="tablist" aria-label="Lab-Bereiche">
+  <button type="button" class="tab active" role="tab" aria-selected="true" data-tab="overview">Übersicht</button>
+  <button type="button" class="tab" role="tab" aria-selected="false" data-tab="hci">HCI / Proxy</button>
+  <button type="button" class="tab" role="tab" aria-selected="false" data-tab="btmon">btmon</button>
+  <button type="button" class="tab" role="tab" aria-selected="false" data-tab="pairing">Pairing</button>
+  <button type="button" class="tab" role="tab" aria-selected="false" data-tab="bmw">BMW Lab</button>
+  <button type="button" class="tab" role="tab" aria-selected="false" data-tab="capture">Capture / BTAC</button>
+  <button type="button" class="tab" role="tab" aria-selected="false" data-tab="nodes">Nodes / Peer</button>
+</nav>
+
 <div class="content">
-  <div class="card" style="margin-bottom:14px">
-    <h2>Controller</h2>
-    <table>
-      <tr><td>Health</td><td id="c-health">…</td></tr>
-      <tr><td>Uptime</td><td id="c-uptime">…</td></tr>
-      <tr><td>Ports</td><td class="mono">UI :8081 · control :9751 · ESP BTAC :9753</td></tr>
-      <tr><td>BTAC session</td><td class="mono" id="c-session">idle</td></tr>
-    </table>
-    <div class="row">
-      <button type="button" id="btn-refresh">Refresh nodes</button>
-      <button type="button" class="secondary" id="btn-auto">Auto 1s: off</button>
+
+  <!-- ========== OVERVIEW ========== -->
+  <section class="tab-panel active" id="panel-overview" role="tabpanel">
+    <div class="help">
+      <strong>Wozu dieser Tab?</strong> Schnellstatus und typische Lab-Abläufe ohne zu scrollen.
+      PROXY-Pfad = D1 hci-agent (`.131` / `.87`) → TCP :9754 → BlueZ auf dem Host → hier die UI (:8081).
     </div>
-  </div>
-  <div class="card" style="margin-bottom:14px">
-    <h2>PROXY controllers (P0)</h2>
-    <div class="muted">Network HCI · Classic D1s only · hci-agent → BlueZ (docs/HCI_TCP.md)</div>
-    <div class="mono" id="proxy-ctl" style="margin-top:8px">…</div>
-  </div>
-  <div class="card" style="margin-bottom:14px">
-    <h2>HCI agents (TCP :9754 → BlueZ)</h2>
-    <div class="mono" id="agents">…</div>
-    <canvas id="agent-chart" width="960" height="140" class="chart"></canvas>
-    <div class="mono" id="agent-now" style="margin-top:8px">—</div>
-    <div class="row" style="margin-top:4px">
-      <button type="button" class="secondary" id="btn-agent-clear">Grafik leeren</button>
-      <button type="button" class="secondary" id="btn-coex-prefer-bt">Coex: prefer_bt (.131+.87)</button>
-      <button type="button" class="secondary" id="btn-coex-a2dp">Coex: a2dp</button>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Controller</h2>
+        <table>
+          <tr><td>Health</td><td id="c-health">…</td></tr>
+          <tr><td>Uptime</td><td id="c-uptime">…</td></tr>
+          <tr><td>Ports</td><td class="mono">UI :8081 · control :9751 · ESP BTAC :9753</td></tr>
+          <tr><td>BTAC session</td><td class="mono" id="c-session">idle</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h2>PROXY controllers (P0)</h2>
+        <p class="hint">Network HCI · Classic D1s · hci-agent → BlueZ (<code>docs/HCI_TCP.md</code>)</p>
+        <div class="mono" id="proxy-ctl">…</div>
+      </div>
     </div>
-    <div class="muted" style="margin-left:0;margin-top:4px">kB/s je Richtung, Abfrage jede Sekunde: zum Controller = BlueZ sendet (Befehle, ACL TX) · zum Host = Controller meldet (Events, ACL RX). Nach 5 s ohne Verkehr friert die Kurve ein, der letzte Datenstoß bleibt stehen.</div>
-  </div>
-  <div class="card" style="margin-bottom:14px">
-    <h2>btmon live (BlueZ-Host, per SSH)</h2>
-    <div class="row">
-      <button type="button" id="btn-btmon-start">Start</button>
-      <button type="button" class="secondary" id="btn-btmon-stop">Stop</button>
-      <button type="button" class="secondary" id="btn-btmon-clear">Leeren</button>
-      <select id="btmon-hci">
-        <option value="">alle hci</option>
-        <option value="0">hci0</option>
-        <option value="1">hci1</option>
-        <option value="2">hci2</option>
-        <option value="3">hci3</option>
-      </select>
-      <input type="text" id="btmon-filter" placeholder="Filter: AVRCP, ATT, SDP, Handle 11, BD-Adresse …">
-      <label class="muted" style="margin-left:0"><input type="checkbox" id="btmon-details" checked> Details</label>
+    <div class="card" style="margin-top:14px">
+      <h2>Typische Abläufe</h2>
+      <ol class="howto">
+        <li><b>Bridges prüfen</b> → Tab <em>HCI / Proxy</em>: beide Agents <span class="ok">ready</span>, Client = Lab-Host, Coex <code>prefer_bt</code>.</li>
+        <li><b>Pairing Handy↔BMW</b> → Tab <em>Pairing</em>: Fenster öffnen, am Gerät bestätigen (DisplayYesNo).</li>
+        <li><b>Air-Trace</b> → Tab <em>btmon</em>: HCI wählen, Start, Filter z.&nbsp;B. <code>RFCOMM</code> / BD-Adresse.</li>
+        <li><b>F20 / CDS / RHMI</b> → Tab <em>BMW Lab</em>: Auth-Mode wählen, CDS setzen, iDrive-Preview bedienen.</li>
+        <li><b>HCI aufzeichnen</b> → Tab <em>Capture / BTAC</em>: Target wählen, Start BTAC oder PROXY dual.</li>
+      </ol>
+      <p class="hint">On-Chip-Topologie (`.88`/`.89`) und Drain/Inject liegen unter <em>Nodes / Peer</em> bzw. Capture.</p>
     </div>
-    <div class="mono" id="btmon-state" style="margin-top:6px;color:#8b949e">gestoppt</div>
-    <pre id="btmon-list" class="mono btmon">(Start drücken — btmon läuft auf dem BlueZ-Host)</pre>
-  </div>
-  <div class="card" style="margin-bottom:14px">
-    <h2>Pairing (BlueZ-Agent auf dem Host)</h2>
-    <div class="mono" id="pair-state" style="color:#8b949e">…</div>
-    <div class="mono" id="pair-passkey" style="display:none;margin-top:8px;padding:8px;border:1px solid #d29922;border-radius:6px;font-size:15px"></div>
-    <div class="mono" id="pair-adapters" style="margin-top:8px">—</div>
-    <div class="row" style="margin-top:4px">
-      <button type="button" id="btn-pair-window">Pairing-Fenster 5 min</button>
-      <button type="button" class="secondary" id="btn-pair-refresh">Aktualisieren</button>
+  </section>
+
+  <!-- ========== HCI / PROXY ========== -->
+  <section class="tab-panel" id="panel-hci" role="tabpanel" hidden>
+    <div class="help">
+      <strong>HCI-Agents</strong> sind die ESP32-D1s als BlueZ-Controller über TCP :9754.
+      Kurve: <em>zum Controller</em> = Host→ESP (Befehle/ACL TX), <em>zum Host</em> = ESP→Host (Events/ACL RX).
+      Nach 5&nbsp;s ohne Verkehr friert die Kurve ein (letzter Burst bleibt sichtbar).
     </div>
-    <pre id="pair-events" class="mono btmon" style="max-height:220px">(keine Ereignisse)</pre>
-    <div class="muted" style="margin-left:0;margin-top:4px">Der Agent bestätigt unsere Seite automatisch (DisplayYesNo). Die Zahl muss am Handy bzw. im iDrive verglichen und dort bestätigt werden. Regel <b>window</b>: nur bei offenem Fenster.</div>
-  </div>
-  <div class="card" style="margin-bottom:14px">
-    <h2>BMW Connected Lab - CDS Fahrzeugdaten &amp; F20 HU-Simulator (BCL / Etch / RHMI)</h2>
-    <div class="row" style="margin-top:0;align-items:center">
-      <span id="bmw-auth-badge" class="auth-sim">SIMULATED_AUTHORIZATION</span>
-      <select id="bmw-auth-mode">
-        <option value="SIMULATED_AUTHORIZATION">SIMULATED_AUTHORIZATION (freie XMLs erlaubt)</option>
-        <option value="F20_STRICT_WHITELIST">F20_STRICT_WHITELIST (echte Cert-SHA256-Prüfung)</option>
-      </select>
-      <button type="button" id="btn-bmw-refresh" class="secondary">Aktualisieren</button>
-      <span class="mono" id="bmw-cap-summary" style="margin-left:auto;color:#8b949e">Capabilities: …</span>
+    <div class="card">
+      <h2>HCI agents (TCP :9754 → BlueZ)</h2>
+      <div class="mono" id="agents">…</div>
+      <canvas id="agent-chart" width="960" height="140" class="chart"></canvas>
+      <div class="mono" id="agent-now" style="margin-top:8px">—</div>
+      <div class="row" style="margin-top:4px">
+        <button type="button" class="secondary" id="btn-agent-clear">Grafik leeren</button>
+        <button type="button" class="secondary" id="btn-coex-prefer-bt">Coex: prefer_bt (.131+.87)</button>
+        <button type="button" class="secondary" id="btn-coex-a2dp">Coex: a2dp</button>
+      </div>
     </div>
-    <div class="bmw-split">
-      <div>
+  </section>
+
+  <!-- ========== BTMON ========== -->
+  <section class="tab-panel" id="panel-btmon" role="tabpanel" hidden>
+    <div class="help">
+      <strong>btmon</strong> läuft per SSH auf dem BlueZ-Host und streamt HCI-Events hierher.
+      Tipp: erst Pairing/Session starten, dann hier mitschneiden. Filter ist substring (Protokoll, Handle, BD).
+    </div>
+    <div class="card">
+      <h2>btmon live (BlueZ-Host)</h2>
+      <div class="row">
+        <button type="button" id="btn-btmon-start">Start</button>
+        <button type="button" class="secondary" id="btn-btmon-stop">Stop</button>
+        <button type="button" class="secondary" id="btn-btmon-clear">Leeren</button>
+        <select id="btmon-hci" title="HCI-Index">
+          <option value="">alle hci</option>
+          <option value="0">hci0</option>
+          <option value="1">hci1</option>
+          <option value="2">hci2</option>
+          <option value="3">hci3</option>
+        </select>
+        <input type="text" id="btmon-filter" placeholder="Filter: AVRCP, ATT, SDP, Handle 11, BD-Adresse …">
+        <label class="chk"><input type="checkbox" id="btmon-details" checked> Details</label>
+      </div>
+      <div class="mono" id="btmon-state" style="margin-top:6px;color:#8b949e">gestoppt</div>
+      <pre id="btmon-list" class="mono btmon">(Start drücken — btmon läuft auf dem BlueZ-Host)</pre>
+    </div>
+  </section>
+
+  <!-- ========== PAIRING ========== -->
+  <section class="tab-panel" id="panel-pairing" role="tabpanel" hidden>
+    <div class="help">
+      <strong>BlueZ-Agent</strong> auf dem Host bestätigt unsere Seite automatisch (DisplayYesNo).
+      Die Vergleichszahl musst du am Handy bzw. iDrive bestätigen. Regel <b>window</b>: nur bei offenem Pairing-Fenster.
+      Lab ESP↔ESP Just-Works: Agent mit Capability <code>NoInputNoOutput</code> (CLI), nicht diese UI.
+    </div>
+    <div class="card">
+      <h2>Pairing (BlueZ-Agent)</h2>
+      <div class="mono" id="pair-state" style="color:#8b949e">…</div>
+      <div class="mono" id="pair-passkey" style="display:none;margin-top:8px;padding:8px;border:1px solid #d29922;border-radius:6px;font-size:15px"></div>
+      <div class="mono" id="pair-adapters" style="margin-top:8px">—</div>
+      <div class="row" style="margin-top:4px">
+        <button type="button" id="btn-pair-window">Pairing-Fenster 5 min</button>
+        <button type="button" class="secondary" id="btn-pair-refresh">Aktualisieren</button>
+      </div>
+      <pre id="pair-events" class="mono btmon" style="max-height:280px">(keine Ereignisse)</pre>
+    </div>
+  </section>
+
+  <!-- ========== BMW LAB ========== -->
+  <section class="tab-panel" id="panel-bmw" role="tabpanel" hidden>
+    <div class="help">
+      <strong>BMW Connected Lab</strong> = CDS-Fahrzeugdaten + F20-HU-Simulator (BCL / Etch / RHMI) im Controller.
+      Auth-Mode: <code>SIMULATED_AUTHORIZATION</code> erlaubt freie XMLs; <code>F20_STRICT_WHITELIST</code> prüft Cert-SHA256 wie im Feld.
+    </div>
+    <div class="card">
+      <h2>BMW Connected Lab</h2>
+      <div class="row" style="margin-top:0;align-items:center">
+        <span id="bmw-auth-badge" class="auth-sim">SIMULATED_AUTHORIZATION</span>
+        <select id="bmw-auth-mode" title="Auth-Mode">
+          <option value="SIMULATED_AUTHORIZATION">SIMULATED_AUTHORIZATION (freie XMLs)</option>
+          <option value="F20_STRICT_WHITELIST">F20_STRICT_WHITELIST (Cert-SHA256)</option>
+        </select>
+        <button type="button" id="btn-bmw-refresh" class="secondary">Aktualisieren</button>
+        <span class="mono" id="bmw-cap-summary" style="margin-left:auto;color:#8b949e">Capabilities: …</span>
+      </div>
+
+      <div class="subtabs" id="bmw-subtabs" role="tablist" aria-label="BMW Unterbereiche">
+        <button type="button" class="subtab active" data-sub="cds">CDS Fahrzeugdaten</button>
+        <button type="button" class="subtab" data-sub="rhmi">iDrive / RHMI</button>
+        <button type="button" class="subtab" data-sub="tools">Whitelist &amp; Hex</button>
+        <button type="button" class="subtab" data-sub="rpc">RPC-Log</button>
+      </div>
+
+      <div class="subpanel active" id="bmw-sub-cds">
         <h3>CDS Fahrzeuginformationen (wie AAIdrive CarInfo)</h3>
+        <p class="hint">Property wählen → <em>Abfragen</em> simuliert getPropertyAsync; <em>Setzen</em> schreibt in den Sim und pusht an Listener.</p>
         <div class="row" style="margin-top:6px;margin-bottom:8px">
           <select id="bmw-cds-prop"></select>
-          <input type="text" id="bmw-cds-val" placeholder="Neuer Wert / JSON (z. B. 1450 oder {&quot;VIN&quot;:&quot;…&quot;})">
-          <button type="button" id="btn-bmw-cds-query">Abfragen (getPropertyAsync)</button>
-          <button type="button" class="secondary" id="btn-bmw-cds-set">Im Sim setzen &amp; pushen</button>
+          <input type="text" id="bmw-cds-val" placeholder='Neuer Wert / JSON (z. B. 1450 oder {"VIN":"…"})'>
+          <button type="button" id="btn-bmw-cds-query">Abfragen</button>
+          <button type="button" class="secondary" id="btn-bmw-cds-set">Setzen &amp; pushen</button>
         </div>
-        <div style="max-height:300px;overflow:auto;border:1px solid #21262d;border-radius:6px">
+        <div class="table-wrap">
           <table class="cds-table">
             <thead><tr><th>ID</th><th>Property</th><th>Wert</th><th>Quelle</th><th>Aktion</th></tr></thead>
             <tbody id="bmw-cds-rows"></tbody>
           </table>
         </div>
       </div>
-      <div>
+
+      <div class="subpanel" id="bmw-sub-rhmi" hidden>
         <h3>Virtuelles iDrive-Menü (RHMI Preview &amp; Events)</h3>
+        <p class="hint">Buttons im Preview feuern <code>rhmi_onActionEvent</code>. Darunter manuell setData / setProperty.</p>
         <div id="bmw-idrive-screen" class="idrive-screen">(lade RHMI-Modell…)</div>
         <div class="row">
-          <input type="text" id="bmw-rhmi-model-id" value="101" style="max-width:80px" placeholder="ModelID">
+          <input type="text" id="bmw-rhmi-model-id" value="101" style="max-width:80px" placeholder="ModelID" title="Model ID">
           <input type="text" id="bmw-rhmi-model-val" value="Sender: Rock Antenne (DAB+)" placeholder="rhmi_setData Text">
           <button type="button" id="btn-bmw-set-data">rhmi_setData</button>
         </div>
         <div class="row">
-          <input type="text" id="bmw-rhmi-comp-id" value="301" style="max-width:80px" placeholder="CompID">
+          <input type="text" id="bmw-rhmi-comp-id" value="301" style="max-width:80px" placeholder="CompID" title="Component ID">
           <select id="bmw-rhmi-prop-id">
             <option value="3">VISIBLE (3)</option>
             <option value="1">ENABLED (1)</option>
@@ -123,74 +203,98 @@
           <button type="button" class="secondary" id="btn-bmw-set-prop">rhmi_setProperty</button>
         </div>
       </div>
-    </div>
-    <details style="margin-top:12px">
-      <summary class="mono" style="cursor:pointer;color:#58a6ff">RHMI Whitelist-Tester (.p7b Zertifikat + ui_description.xml) &amp; Wire-Hex-Decoder öffnen</summary>
-      <div class="row" style="margin-top:8px">
-        <select id="bmw-cert-select"><option value="">(kein .p7b gewählt)</option></select>
-        <input type="text" id="bmw-app-title" value="PiDrive Custom Menü" placeholder="App-Titel">
-        <button type="button" id="btn-bmw-load-xml">XML prüfen &amp; im Simulator laden</button>
+
+      <div class="subpanel" id="bmw-sub-tools" hidden>
+        <h3>RHMI Whitelist-Tester &amp; Wire-Hex-Decoder</h3>
+        <p class="hint">`.p7b` + optional eigene <code>ui_description.xml</code> laden. Strict-Mode akzeptiert nur Whitelist-Hashes.</p>
+        <div class="row" style="margin-top:8px">
+          <select id="bmw-cert-select"><option value="">(kein .p7b gewählt)</option></select>
+          <input type="text" id="bmw-app-title" value="PiDrive Custom Menü" placeholder="App-Titel">
+          <button type="button" id="btn-bmw-load-xml">XML prüfen &amp; laden</button>
+        </div>
+        <textarea id="bmw-xml-input" rows="6" style="margin-top:6px" placeholder="Optional: eigene RHMI ui_description.xml (leer = PiDrive-Demo-XML)"></textarea>
+        <div id="bmw-whitelist-verdict" class="mono" style="margin-top:6px;color:#8b949e">—</div>
+        <div class="row" style="margin-top:8px">
+          <input type="text" id="bmw-wire-hex" placeholder="BCL- oder Etch-Hex einfügen">
+          <button type="button" class="secondary" id="btn-bmw-decode-hex">Hex dekodieren</button>
+        </div>
       </div>
-      <textarea id="bmw-xml-input" rows="6" style="margin-top:6px" placeholder="Optional: eigene RHMI ui_description.xml (leer = PiDrive-Demo-XML)"></textarea>
-      <div id="bmw-whitelist-verdict" class="mono" style="margin-top:6px;color:#8b949e">—</div>
-      <div class="row" style="margin-top:8px">
-        <input type="text" id="bmw-wire-hex" placeholder="BCL- oder Etch-Hex einfügen (z. B. 0002000A0FA4002CDEADBEEF000000240386A6B0FFCA0286EDA8C9A687000001866306B46887000000000000000181)">
-        <button type="button" class="secondary" id="btn-bmw-decode-hex">Hex dekodieren</button>
+
+      <div class="subpanel" id="bmw-sub-rpc" hidden>
+        <h3>Etch / BCL RPC-Log</h3>
+        <pre id="bmw-rpc-log" class="mono btmon" style="max-height:420px;margin-top:0">(noch keine Etch/BCL-Ereignisse)</pre>
       </div>
-    </details>
-    <pre id="bmw-rpc-log" class="mono btmon" style="max-height:200px;margin-top:10px">(noch keine Etch/BCL-Ereignisse)</pre>
-  </div>
-  <div class="card" style="margin-bottom:14px">
-    <h2>Live rates (kB/s)</h2>
-    <div class="mono" id="rate-legend">App TX/RX · HCI ACL TX/RX · BTAC fwd · session fps when live — nur On-Chip-Topologie (.88), braucht „Auto 1s“</div>
-    <canvas id="rate-chart" width="960" height="180" style="width:100%;max-width:960px;height:180px;background:#0d1117;border:1px solid #30363d;border-radius:6px;margin-top:8px"></canvas>
-    <div class="mono" id="rate-now" style="margin-top:8px">—</div>
-    <div class="mono" id="sess-rate" style="margin-top:4px;color:#8b949e">session: idle</div>
-  </div>
-  <div class="grid" id="nodes"></div>
-  <div class="card" style="margin-top:14px">
-    <h2>BTAC live session</h2>
-    <div class="row">
-      <select id="target"></select>
-      <button type="button" id="btn-sess-start">Start BTAC</button>
-      <button type="button" class="secondary" id="btn-sess-stop">Stop</button>
-      <button type="button" id="btn-proxy-sess">PROXY dual BTAC</button>
-      <button type="button" class="secondary" id="btn-proxy-sess-stop">PROXY stop</button>
-      <a id="btn-sess-dl" href="/api/v1/session/download" style="display:none">Download .btac</a>
     </div>
-    <div class="muted" style="margin-top:8px">HCI stream only — not RF/Air. PROXY dual = .131+.87 Network HCI.</div>
-    <div class="mono" id="proxy-sess" style="margin-top:6px;color:#8b949e">proxy session: idle</div>
-    <pre id="frame-list" class="mono" style="margin-top:10px;max-height:280px;overflow:auto;font-size:11px;background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:8px">(no frames — start BTAC)</pre>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h2>Scan / Connect / Peer</h2>
-    <div class="row">
-      <button type="button" id="btn-adv">Advertise .89</button>
-      <button type="button" id="btn-scan">BLE Scan .88</button>
-      <button type="button" id="btn-inquiry">Classic Inquiry .87</button>
-      <button type="button" id="btn-connect">Connect .88</button>
-      <button type="button" class="secondary" id="btn-gatt">GATT read name</button>
-      <button type="button" id="btn-thr-n">Thr notify</button>
-      <button type="button" id="btn-thr-w">Thr write</button>
-      <button type="button" class="secondary" id="btn-thr-stop">Thr stop</button>
-      <button type="button" class="secondary" id="btn-disco">Classic discoverable</button>
-      <button type="button" class="secondary" id="btn-devs">Refresh devices</button>
+  </section>
+
+  <!-- ========== CAPTURE / BTAC ========== -->
+  <section class="tab-panel" id="panel-capture" role="tabpanel" hidden>
+    <div class="help">
+      <strong>BTAC</strong> = HCI-Stream-Capture (kein RF/Air). PROXY dual = beide D1s (`.131`+`.87`) parallel.
+      Live-Rates unten brauchen Auto-Refresh und beziehen sich vor allem auf On-Chip (`.88`).
     </div>
-    <input type="text" id="peer-addr" placeholder="peer BD_ADDR aa:bb:…">
-    <div id="lab-devs" class="mono" style="margin-top:8px;font-size:12px;color:#8b949e">—</div>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h2>Capture drain / inject</h2>
-    <div class="row">
-      <button type="button" id="btn-drain">Drain JSONL</button>
-      <input type="text" id="hex" value="040e0401030c00" placeholder="hex payload">
-      <button type="button" id="btn-inject">Inject</button>
+    <div class="card">
+      <h2>BTAC live session</h2>
+      <div class="row">
+        <select id="target"></select>
+        <button type="button" id="btn-sess-start">Start BTAC</button>
+        <button type="button" class="secondary" id="btn-sess-stop">Stop</button>
+        <button type="button" id="btn-proxy-sess">PROXY dual BTAC</button>
+        <button type="button" class="secondary" id="btn-proxy-sess-stop">PROXY stop</button>
+        <a id="btn-sess-dl" class="btn secondary" href="/api/v1/session/download" style="display:none">Download .btac</a>
+      </div>
+      <div class="mono" id="proxy-sess" style="margin-top:6px;color:#8b949e">proxy session: idle</div>
+      <pre id="frame-list" class="mono" style="margin-top:10px;max-height:280px;overflow:auto;font-size:11px;background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:8px">(no frames — start BTAC)</pre>
     </div>
-    <pre id="log">(empty)</pre>
-  </div>
+    <div class="card" style="margin-top:14px">
+      <h2>Live rates (kB/s)</h2>
+      <div class="mono" id="rate-legend">App TX/RX · HCI ACL TX/RX · BTAC fwd · session fps — nur On-Chip (`.88`), braucht „Auto 1s“</div>
+      <canvas id="rate-chart" width="960" height="180" style="width:100%;max-width:960px;height:180px;background:#0d1117;border:1px solid #30363d;border-radius:6px;margin-top:8px"></canvas>
+      <div class="mono" id="rate-now" style="margin-top:8px">—</div>
+      <div class="mono" id="sess-rate" style="margin-top:4px;color:#8b949e">session: idle</div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h2>Capture drain / inject</h2>
+      <p class="hint">JSONL vom Node leeren bzw. Roh-HCI-Hex injizieren (Debug).</p>
+      <div class="row">
+        <button type="button" id="btn-drain">Drain JSONL</button>
+        <input type="text" id="hex" value="040e0401030c00" placeholder="hex payload">
+        <button type="button" id="btn-inject">Inject</button>
+      </div>
+      <pre id="log">(empty)</pre>
+    </div>
+  </section>
+
+  <!-- ========== NODES / PEER ========== -->
+  <section class="tab-panel" id="panel-nodes" role="tabpanel" hidden>
+    <div class="help">
+      <strong>Nodes</strong> = bekannte Lab-Geräte (Status-Karten). Scan/Connect richtet sich vor allem an On-Chip / Classic-Lab.
+      Peer-Adresse manuell setzen, wenn Auto-Discovery nicht greift.
+    </div>
+    <div class="card">
+      <h2>Scan / Connect / Peer</h2>
+      <div class="row">
+        <button type="button" id="btn-adv">Advertise .89</button>
+        <button type="button" id="btn-scan">BLE Scan .88</button>
+        <button type="button" id="btn-inquiry">Classic Inquiry .87</button>
+        <button type="button" id="btn-connect">Connect .88</button>
+        <button type="button" class="secondary" id="btn-gatt">GATT read name</button>
+        <button type="button" id="btn-thr-n">Thr notify</button>
+        <button type="button" id="btn-thr-w">Thr write</button>
+        <button type="button" class="secondary" id="btn-thr-stop">Thr stop</button>
+        <button type="button" class="secondary" id="btn-disco">Classic discoverable</button>
+        <button type="button" class="secondary" id="btn-devs">Refresh devices</button>
+      </div>
+      <input type="text" id="peer-addr" placeholder="peer BD_ADDR aa:bb:…">
+      <div id="lab-devs" class="mono" style="margin-top:8px;font-size:12px;color:#8b949e">—</div>
+    </div>
+    <div class="grid" id="nodes" style="margin-top:14px"></div>
+  </section>
+
 </div>
+
 <footer>
-  Topology F_ONCHIP · L1 HCI · L2 ATT throughput probe · BT15 RF deferred · BT16 rates on :8081
+  Debian Lab UI · Port <b>8081</b> · BTAC :9753 · Topology F_ONCHIP · L1 HCI · PROXY hci-agent
 </footer>
 <script src="/app.js"></script>
 </body>

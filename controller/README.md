@@ -4,7 +4,7 @@ Lab control plane for **bt-analyzer**, parallel to usb-analyzer.
 
 | Service | Port | Notes |
 |---------|------|-------|
-| Lab Web UI + HTTP API | **8081** | `http://192.168.178.187:8081/` |
+| Lab Web UI + HTTP API | **8081** | `http://192.168.178.187:8081/` — themed tabs: Übersicht · HCI/Proxy · btmon · Pairing · BMW Lab · Capture · Nodes |
 | Control TCP (HELLO later) | **9751** | placeholder accept loop |
 | Capture BTAC (on ESP) | **9753** | Debian → `tools/btac_recv.py <ip>` |
 | usb-analyzer (other project) | 8080 / 9750 | must not collide |

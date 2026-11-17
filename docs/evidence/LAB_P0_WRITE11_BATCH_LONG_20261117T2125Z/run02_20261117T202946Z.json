@@ -1,0 +1,28 @@
+{
+  "bond": {
+    "device_path": "/org/bluez/hci1/dev_C8_C9_A3_CB_7B_0A",
+    "paired": false,
+    "error": "DBusException('Page Timeout')",
+    "phone_adapter": "/org/bluez/hci1",
+    "hu_adapter": "/org/bluez/hci2"
+  },
+  "adapters": {
+    "hu": "/org/bluez/hci2",
+    "phone": "/org/bluez/hci1"
+  },
+  "hold": {
+    "channel": 6,
+    "hold_s_requested": 180.0,
+    "mode": "bcl_bond_failed",
+    "rfcomm_connect_ok": false,
+    "connect_error": "DBusException('Page Timeout')",
+    "hold_s": 0.0,
+    "sent": 0,
+    "rx": 0,
+    "send_err": "bond_required:DBusException('Page Timeout')",
+    "ok": false
+  },
+  "esp_sample_count": 0,
+  "esp_first": null,
+  "esp_last": null
+}

@@ -1,0 +1,3 @@
+=== FINAL A/B ===
+192.168.178.131: uptime=42min 55s reset=panic bootGen=24 drops=91 heap=64668 sessions=2
+192.168.178.87: uptime=6h 2min reset=software bootGen=2 drops=0 heap=64900 sessions=3

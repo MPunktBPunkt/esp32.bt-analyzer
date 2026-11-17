@@ -1,0 +1,214 @@
+{
+  "bond": {
+    "device_path": "/org/bluez/hci1/dev_C8_C9_A3_CB_7B_0A",
+    "paired": true,
+    "error": null,
+    "phone_adapter": "/org/bluez/hci1",
+    "hu_adapter": "/org/bluez/hci2",
+    "trusted": true
+  },
+  "adapters": {
+    "hu": "/org/bluez/hci2",
+    "phone": "/org/bluez/hci1"
+  },
+  "hold": {
+    "channel": 6,
+    "hold_s_requested": 120.0,
+    "mode": "bcl_phone",
+    "rfcomm_connect_ok": true,
+    "connect_error": null,
+    "phone_events": {
+      "session_start": 1,
+      "rfcomm_connected": 1,
+      "rx_bytes": 133,
+      "handshake_rx": 1,
+      "tx_bytes": 59,
+      "session_init": 1,
+      "frame": 191,
+      "mybmw_rpc_tx": 52,
+      "mybmw_sim_start": 1,
+      "watchdog_ping": 24,
+      "hu_dataack": 83,
+      "hu_unsolicited": 83,
+      "mybmw_rpc_rx": 83,
+      "watchdog_echo_rtt": 24,
+      "mybmw_rhmi_state": 9,
+      "mybmw_handle": 4,
+      "mybmw_apps_queued": 1,
+      "mybmw_rhmi_plan": 1,
+      "mybmw_check_resource_tx": 3,
+      "mybmw_cds_event": 30,
+      "mybmw_check_resource_rx": 3,
+      "mybmw_set_resource_tx": 1,
+      "mybmw_set_resource_skipped": 2,
+      "mybmw_menu_upload_queued": 1,
+      "mybmw_setdata_service_exception": 1,
+      "phone_done": 1
+    },
+    "phone_returncode": 0,
+    "rhmi_state": "RUNTIME_ACTIVE",
+    "rx_total": 8339,
+    "abort_reason": null,
+    "wait_class": null,
+    "hold_s": 124.19,
+    "sent": 0,
+    "rx": 0,
+    "send_err": null,
+    "ok": true
+  },
+  "esp_sample_count": 34,
+  "esp_deltas": [],
+  "esp_first": {
+    "ts": 1794947598.2470853,
+    "131": {
+      "ts": 1794947599.0285614,
+      "ip": "192.168.178.131",
+      "uptime": "1h 16min",
+      "heap": 63324,
+      "resetReason": "panic",
+      "bootGen": 25,
+      "drops": 0,
+      "sessions": 1,
+      "toHostBytes": 135078,
+      "toCtrlBytes": 87110,
+      "client": "192.168.178.108",
+      "ready": true
+    },
+    "87": {
+      "ts": 1794947599.7481132,
+      "ip": "192.168.178.87",
+      "uptime": "1h 16min",
+      "heap": 61496,
+      "resetReason": "panic",
+      "bootGen": 3,
+      "drops": 0,
+      "sessions": 1,
+      "toHostBytes": 135993,
+      "toCtrlBytes": 202735,
+      "client": "192.168.178.108",
+      "ready": true
+    }
+  },
+  "esp_last": {
+    "ts": 1794947718.193832,
+    "131": {
+      "ts": 1794947719.439603,
+      "ip": "192.168.178.131",
+      "uptime": "1h 18min",
+      "heap": 62984,
+      "resetReason": "panic",
+      "bootGen": 25,
+      "drops": 0,
+      "sessions": 1,
+      "toHostBytes": 157113,
+      "toCtrlBytes": 98194,
+      "client": "192.168.178.108",
+      "ready": true
+    },
+    "87": {
+      "ts": 1794947720.192024,
+      "ip": "192.168.178.87",
+      "uptime": "1h 18min",
+      "heap": 57624,
+      "resetReason": "panic",
+      "bootGen": 3,
+      "drops": 0,
+      "sessions": 1,
+      "toHostBytes": 148684,
+      "toCtrlBytes": 223813,
+      "client": "192.168.178.108",
+      "ready": true
+    }
+  },
+  "esp_diag_pre": {
+    "131": {
+      "bootGen": 25,
+      "resetReason": "panic",
+      "uptime": "1h 16min",
+      "drops": 0
+    },
+    "87": {
+      "bootGen": 3,
+      "resetReason": "panic",
+      "uptime": "1h 16min",
+      "drops": 0
+    }
+  },
+  "esp_diag_post": {
+    "131": {
+      "bootGen": 25,
+      "resetReason": "panic",
+      "uptime": "1h 18min",
+      "drops": 0,
+      "status_error": null,
+      "boot_error": null
+    },
+    "87": {
+      "bootGen": 3,
+      "resetReason": "panic",
+      "uptime": "1h 18min",
+      "drops": 0,
+      "status_error": null,
+      "boot_error": null
+    }
+  },
+  "hu_events": {
+    "agent_stopped": 1,
+    "session_start": 1,
+    "profile_registered": 1,
+    "inject_watch": 1,
+    "rfcomm_connected": 1,
+    "rx_bytes": 81,
+    "session_init": 1,
+    "handshake_sent": 1,
+    "tx_bytes": 191,
+    "frame": 83,
+    "phone_tx_classified": 83,
+    "dataack_tx": 83,
+    "selectproto_rx": 1,
+    "knock_rx": 1,
+    "etch_open_rx": 1,
+    "etch_open_probe": 1,
+    "f20_rpc_rx": 52,
+    "sas_challenge_tx": 1,
+    "etch_data_tx": 83,
+    "watchdog_echo": 24,
+    "sas_login_ok_tx": 1,
+    "rhmi_capabilities_tx": 1,
+    "handle_created": 4,
+    "cds_subscribed": 15,
+    "cds_property_tx": 30,
+    "rhmi_check_resource": 3,
+    "rhmi_resource_rx": 1,
+    "rhmi_setdata_reject": 1,
+    "rfcomm_closed": 1
+  },
+  "hu_key_events": [
+    {
+      "ts": 1794947600.934,
+      "event": "rfcomm_connected",
+      "peer": "C8:C9:A3:CB:37:96",
+      "session_id": "LAB_AB_87_131"
+    },
+    {
+      "ts": 1794947601.366,
+      "event": "session_init",
+      "peer": "C8:C9:A3:CB:37:96",
+      "session_id": "LAB_AB_87_131"
+    },
+    {
+      "ts": 1794947601.366,
+      "event": "handshake_sent",
+      "peer": "C8:C9:A3:CB:37:96",
+      "session_id": "LAB_AB_87_131"
+    },
+    {
+      "ts": 1794947721.383,
+      "event": "rfcomm_closed",
+      "reason": "eof",
+      "peer": "C8:C9:A3:CB:37:96",
+      "session_id": "LAB_AB_87_131"
+    }
+  ],
+  "phone_proc": 0
+}
