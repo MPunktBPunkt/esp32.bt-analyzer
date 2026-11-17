@@ -45,8 +45,13 @@ Debian Lab UI `:8081` reorganized into topic tabs + BMW subtabs + sticky status 
 - btmon still shows RFCOMM credits ~30 near fail → prefer socket/queue/bridge-drain over air-credit=0.
 - Details: `LAB_P0_WRITE11_CAP_20261117T2156Z/ANALYSIS.md`
 
+## Single-ESP A/B (`LAB_P0_WRITE11_CAP_SINGLE_20261117T2200Z`)
+
+USB phone (`hci0`) ↔ ESP HU `.131`: **same EAGAIN fingerprint** as Dual (89 B / 5250 B / 93 frames / CDS flood).  
+→ Phone-side ESP / dual-proxy **not** required for the bug. See that dir’s `ANALYSIS.md`.
+
 ## Next (protocol, not panic)
 
-1. Single-ESP A/B with the same instrumented capture.  
-2. Optional CDS-TX pacing probe.  
-Field `WATCHDOG_MISS_NO_ETCH_REPLY` = missing replies after RFCOMM already died on EAGAIN — still not W0 Fall A.
+1. HU write policy probe: retry/poll on EAGAIN instead of immediate close.  
+2. Optional USB↔USB (no ESP) if second dongle available.  
+Field `WATCHDOG_MISS_NO_ETCH_REPLY` = aftermath of RFCOMM EAGAIN — still not W0 Fall A.

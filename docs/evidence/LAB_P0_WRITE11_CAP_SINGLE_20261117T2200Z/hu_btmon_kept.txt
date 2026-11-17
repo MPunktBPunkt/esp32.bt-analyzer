@@ -1,0 +1,1281 @@
+          Discoverable
+@ MGMT Command: Set Discoverable (0x0006) plen 3       {0x0001} [hci2] 3.133221
+        Discoverable: General (0x01)
+      Set Discoverable (0x0006) plen 4
+          Discoverable
+        Handle: 129
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+          Channel quality driven data rate (CQDDR)
+          Inquiry TX Power Level
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+< ACL Data TX: Handle 129 flags 0x00 dlen 10               #16 [hci2] 11.785726
+      L2CAP: Information Request (0x0a) ident 1 len 2
+> HCI Event: Number of Completed Packets (0x13) plen 5     #18 [hci2] 11.886466
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 10               #32 [hci2] 13.115356
+      L2CAP: Information Request (0x0a) ident 1 len 2
+> ACL Data RX: Handle 129 flags 0x02 dlen 16               #33 [hci2] 13.115366
+      L2CAP: Information Response (0x0b) ident 1 len 8
+          Fixed Channels
+< ACL Data TX: Handle 129 flags 0x00 dlen 16               #34 [hci2] 13.115402
+      L2CAP: Information Response (0x0b) ident 1 len 8
+          Fixed Channels
+< ACL Data TX: Handle 129 flags 0x00 dlen 10               #35 [hci2] 13.115408
+      L2CAP: Information Request (0x0a) ident 2 len 2
+        Type: Fixed channels supported (0x0003)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #36 [hci2] 13.218695
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #37 [hci2] 13.218704
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 10               #38 [hci2] 13.218706
+      L2CAP: Information Request (0x0a) ident 2 len 2
+        Type: Fixed channels supported (0x0003)
+> ACL Data RX: Handle 129 flags 0x02 dlen 20               #39 [hci2] 13.218707
+      L2CAP: Information Response (0x0b) ident 2 len 12
+        Type: Fixed channels supported (0x0003)
+        Channels: 0x0000000000000006
+          L2CAP Signaling (BR/EDR)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20               #40 [hci2] 13.218761
+      L2CAP: Information Response (0x0b) ident 2 len 12
+        Type: Fixed channels supported (0x0003)
+        Channels: 0x0000000000000006
+          L2CAP Signaling (BR/EDR)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #41 [hci2] 13.319885
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 12               #42 [hci2] 13.422026
+      L2CAP: Connection Request (0x02) ident 3 len 4
+< ACL Data TX: Handle 129 flags 0x00 dlen 16               #43 [hci2] 13.422084
+      L2CAP: Connection Response (0x03) ident 3 len 8
+< ACL Data TX: Handle 129 flags 0x00 dlen 23               #44 [hci2] 13.422090
+      L2CAP: Configure Request (0x04) ident 3 len 15
+          TX window size: 0
+> HCI Event: Number of Completed Packets (0x13) plen 5     #45 [hci2] 13.525527
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #46 [hci2] 13.525537
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 23               #47 [hci2] 13.525539
+      L2CAP: Configure Request (0x04) ident 4 len 15
+          TX window size: 0
+> ACL Data RX: Handle 129 flags 0x02 dlen 18               #48 [hci2] 13.525541
+      L2CAP: Configure Response (0x05) ident 3 len 10
+< ACL Data TX: Handle 129 flags 0x00 dlen 18               #49 [hci2] 13.525595
+      L2CAP: Configure Response (0x05) ident 4 len 10
+> HCI Event: Number of Completed Packets (0x13) plen 5     #50 [hci2] 13.630535
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 24               #51 [hci2] 13.634523
+      Channel: 64 len 20 [PSM 1 mode Basic (0x00)] {chan 0}
+              L2CAP (0x0100)
+< ACL Data TX: Handle 129 flags 0x00 dlen 676              #52 [hci2] 13.634689
+      Channel: 64 len 672 [PSM 1 mode Basic (0x00)] {chan 0}
+> HCI Event: Number of Completed Packets (0x13) plen 5     #53 [hci2] 13.728873
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 64 [PSM 1 mode Basic (0x00)] {chan 0}
+        Channel Latency: 94 msec (94-94 msec ~94 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 32               #54 [hci2] 13.834450
+      Channel: 64 len 28 [PSM 1 mode Basic (0x00)] {chan 0}
+              L2CAP (0x0100)
+< ACL Data TX: Handle 129 flags 0x00 dlen 330              #55 [hci2] 13.834707
+      Channel: 64 len 326 [PSM 1 mode Basic (0x00)] {chan 0}
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                    L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                    L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                  RFCOMM (0x0003)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                  RFCOMM (0x0003)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #56 [hci2] 13.933573
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 64 [PSM 1 mode Basic (0x00)] {chan 0}
+        Channel Latency: 98 msec (94-98 msec ~96 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 24               #57 [hci2] 14.036166
+      Channel: 64 len 20 [PSM 1 mode Basic (0x00)] {chan 0}
+< ACL Data TX: Handle 129 flags 0x00 dlen 88               #58 [hci2] 14.036640
+      Channel: 64 len 84 [PSM 1 mode Basic (0x00)] {chan 0}
+            Attribute: Service Record Handle (0x0000) [len 2]
+> HCI Event: Number of Completed Packets (0x13) plen 5     #59 [hci2] 14.139151
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 64 [PSM 1 mode Basic (0x00)] {chan 0}
+        Channel Latency: 102 msec (94-102 msec ~99 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 12               #60 [hci2] 14.149370
+      L2CAP: Connection Request (0x02) ident 4 len 4
+        TX power: -12 dBm
+> HCI Event: Number of Completed Packets (0x13) plen 5     #64 [hci2] 14.243103
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 16               #65 [hci2] 14.243722
+      L2CAP: Connection Response (0x03) ident 4 len 8
+< ACL Data TX: Handle 129 flags 0x00 dlen 23               #66 [hci2] 14.243761
+      L2CAP: Configure Request (0x04) ident 5 len 15
+          TX window size: 0
+        TX power: -12 dBm
+> HCI Event: Number of Completed Packets (0x13) plen 5     #69 [hci2] 14.343801
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 23               #70 [hci2] 14.343813
+      L2CAP: Configure Request (0x04) ident 5 len 15
+          TX window size: 0
+< ACL Data TX: Handle 129 flags 0x00 dlen 18               #71 [hci2] 14.343877
+      L2CAP: Configure Response (0x05) ident 5 len 10
+> ACL Data RX: Handle 129 flags 0x02 dlen 18               #72 [hci2] 14.345673
+      L2CAP: Configure Response (0x05) ident 5 len 10
+< ACL Data TX: Handle 129 flags 0x00 dlen 24               #73 [hci2] 14.345768
+      Channel: 65 len 20 [PSM 1 mode Basic (0x00)] {chan 1}
+              L2CAP (0x0100)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #75 [hci2] 14.444777
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #76 [hci2] 14.446074
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 65 [PSM 1 mode Basic (0x00)] {chan 1}
+        Channel Latency: 100 msec (100-100 msec ~100 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 676              #77 [hci2] 14.559163
+      Channel: 65 len 672 [PSM 1 mode Basic (0x00)] {chan 1}
+< ACL Data TX: Handle 129 flags 0x00 dlen 32               #78 [hci2] 14.559537
+      Channel: 65 len 28 [PSM 1 mode Basic (0x00)] {chan 1}
+              L2CAP (0x0100)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #79 [hci2] 14.660701
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 65 [PSM 1 mode Basic (0x00)] {chan 1}
+        Channel Latency: 101 msec (100-101 msec ~100 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 330              #80 [hci2] 14.664311
+      Channel: 65 len 326 [PSM 1 mode Basic (0x00)] {chan 1}
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                  RFCOMM (0x0003)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                    L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                    L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                  RFCOMM (0x0003)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+< ACL Data TX: Handle 129 flags 0x00 dlen 24               #81 [hci2] 14.686844
+      Channel: 65 len 20 [PSM 1 mode Basic (0x00)] {chan 1}
+> HCI Event: Number of Completed Packets (0x13) plen 5     #82 [hci2] 14.757195
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 65 [PSM 1 mode Basic (0x00)] {chan 1}
+        Channel Latency: 70 msec (70-101 msec ~85 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 88               #83 [hci2] 14.768165
+      Channel: 65 len 84 [PSM 1 mode Basic (0x00)] {chan 1}
+            Attribute: Service Record Handle (0x0000) [len 2]
+> ACL Data RX: Handle 129 flags 0x02 dlen 12               #84 [hci2] 15.571435
+      L2CAP: Connection Request (0x02) ident 6 len 4
+< ACL Data TX: Handle 129 flags 0x00 dlen 16               #85 [hci2] 15.571514
+      L2CAP: Connection Response (0x03) ident 6 len 8
+< ACL Data TX: Handle 129 flags 0x00 dlen 27               #86 [hci2] 15.571519
+      L2CAP: Configure Request (0x04) ident 6 len 19
+          TX window size: 0
+> HCI Event: Number of Completed Packets (0x13) plen 5     #87 [hci2] 15.677206
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #88 [hci2] 15.677214
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 27               #89 [hci2] 15.678625
+      L2CAP: Configure Request (0x04) ident 7 len 19
+          TX window size: 0
+< ACL Data TX: Handle 129 flags 0x00 dlen 18               #90 [hci2] 15.678650
+      L2CAP: Configure Response (0x05) ident 7 len 10
+> ACL Data RX: Handle 129 flags 0x02 dlen 18               #91 [hci2] 15.680762
+      L2CAP: Configure Response (0x05) ident 6 len 10
+> HCI Event: Number of Completed Packets (0x13) plen 5     #92 [hci2] 15.780732
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 8                #93 [hci2] 15.782003
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Set Async Balance Mode (SABM) (0x2f)
+< ACL Data TX: Handle 129 flags 0x00 dlen 8                #94 [hci2] 15.782107
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Ack (UA) (0x63)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #95 [hci2] 15.879078
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 96 msec (96-96 msec ~96 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 18               #96 [hci2] 15.879792
+      Channel: 66 len 14 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+           ack_timer 0 frame_size 1016 max_retrans 0 credits 7
+< ACL Data TX: Handle 129 flags 0x00 dlen 18               #97 [hci2] 15.879828
+      Channel: 66 len 14 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+           ack_timer 0 frame_size 1016 max_retrans 0 credits 7
+> HCI Event: Number of Completed Packets (0x13) plen 5     #98 [hci2] 15.980486
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 100 msec (96-100 msec ~98 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 8                #99 [hci2] 16.082591
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Set Async Balance Mode (SABM) (0x2f)
+< ACL Data TX: Handle 129 flags 0x00 dlen 8               #100 [hci2] 16.082695
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Ack (UA) (0x63)
+< ACL Data TX: Handle 129 flags 0x00 dlen 12              #101 [hci2] 16.082710
+      Channel: 66 len 8 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 12              #102 [hci2] 16.187176
+      L2CAP: Disconnection Request (0x06) ident 8 len 4
+> HCI Event: Number of Completed Packets (0x13) plen 5    #103 [hci2] 16.187182
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 104 msec (96-104 msec ~101 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #104 [hci2] 16.187184
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 104 msec (96-104 msec ~103 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 12              #105 [hci2] 16.187226
+      L2CAP: Disconnection Response (0x07) ident 8 len 4
+> ACL Data RX: Handle 129 flags 0x02 dlen 12              #106 [hci2] 16.189102
+      Channel: 66 len 8 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 12              #107 [hci2] 16.189139
+      Channel: 66 len 8 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 12              #108 [hci2] 16.198056
+      Channel: 66 len 8 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 9               #109 [hci2] 16.198133
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 33
+> HCI Event: Number of Completed Packets (0x13) plen 5    #110 [hci2] 16.288317
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #111 [hci2] 16.289444
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 100 msec (96-104 msec ~101 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #112 [hci2] 16.293622
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 95 msec (95-104 msec ~98 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 9               #113 [hci2] 16.390327
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 33
+> ACL Data RX: Handle 129 flags 0x02 dlen 12              #114 [hci2] 16.398355
+      Channel: 66 len 8 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 24              #115 [hci2] 16.398817
+      Channel: 66 len 20 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #116 [hci2] 16.492911
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 94 msec (94-104 msec ~96 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 18              #117 [hci2] 16.497775
+      Channel: 66 len 14 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #118 [hci2] 16.498229
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 64              #119 [hci2] 16.594926
+      Channel: 66 len 60 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #120 [hci2] 16.595384
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #121 [hci2] 16.599230
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 101 msec (94-104 msec ~98 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 16              #122 [hci2] 16.599239
+      Channel: 66 len 12 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 16              #123 [hci2] 16.599240
+      Channel: 66 len 12 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 163             #124 [hci2] 16.599242
+      Channel: 66 len 159 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 20              #125 [hci2] 16.601151
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #126 [hci2] 16.604096
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #127 [hci2] 16.604120
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #128 [hci2] 16.604181
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 83              #129 [hci2] 16.604189
+      Channel: 66 len 79 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #130 [hci2] 16.604381
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #131 [hci2] 16.604410
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #132 [hci2] 16.697347
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 101 msec (94-104 msec ~100 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #133 [hci2] 16.698658
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 94 msec (94-104 msec ~97 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #134 [hci2] 16.703525
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 99 msec (94-104 msec ~98 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #135 [hci2] 16.703535
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 99 msec (94-104 msec ~98 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #136 [hci2] 16.704749
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 100 msec (94-104 msec ~99 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #137 [hci2] 16.707261
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 102 msec (94-104 msec ~101 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #138 [hci2] 16.711016
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 106 msec (94-106 msec ~103 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 568             #139 [hci2] 16.712632
+      Channel: 66 len 564 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #140 [hci2] 16.713456
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #141 [hci2] 16.713525
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #142 [hci2] 16.800107
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 86 msec (86-106 msec ~95 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #143 [hci2] 16.804174
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 90 msec (86-106 msec ~92 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 46              #144 [hci2] 16.807494
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #145 [hci2] 16.810440
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 91              #146 [hci2] 16.810476
+      Channel: 66 len 87 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #147 [hci2] 16.900512
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 90 msec (86-106 msec ~91 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 46              #148 [hci2] 16.902156
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #149 [hci2] 16.902166
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 91 msec (86-106 msec ~91 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #150 [hci2] 16.902807
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 102             #151 [hci2] 16.902872
+      Channel: 66 len 98 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 60              #152 [hci2] 16.908918
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #153 [hci2] 16.909627
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 509             #154 [hci2] 16.909684
+      Channel: 66 len 505 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 46              #155 [hci2] 16.909987
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 46              #156 [hci2] 16.909992
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #157 [hci2] 16.910620
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 66              #158 [hci2] 16.910660
+      Channel: 66 len 62 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #159 [hci2] 16.910685
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 66              #160 [hci2] 16.910703
+      Channel: 66 len 62 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 46              #161 [hci2] 16.919125
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #162 [hci2] 16.919760
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 46              #163 [hci2] 16.920182
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #164 [hci2] 17.003328
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 100 msec (86-106 msec ~96 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 66              #165 [hci2] 17.003400
+      Channel: 66 len 62 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #166 [hci2] 17.008127
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 105 msec (86-106 msec ~100 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #167 [hci2] 17.008202
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #168 [hci2] 17.010196
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 100 msec (86-106 msec ~100 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 66              #169 [hci2] 17.010257
+      Channel: 66 len 62 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #170 [hci2] 17.014443
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 104 msec (86-106 msec ~102 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #171 [hci2] 17.022862
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 112 msec (86-112 msec ~107 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #172 [hci2] 17.024166
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 113 msec (86-113 msec ~110 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #173 [hci2] 17.033544
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 122 msec (86-122 msec ~116 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #174 [hci2] 17.034751
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 124 msec (86-124 msec ~120 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #175 [hci2] 17.039407
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 119 msec (86-124 msec ~120 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #176 [hci2] 17.105973
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 102 msec (86-124 msec ~111 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #177 [hci2] 17.109613
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 101 msec (86-124 msec ~106 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #178 [hci2] 17.115610
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 105 msec (86-124 msec ~105 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 12              #179 [hci2] 17.136808
+      L2CAP: Disconnection Request (0x06) ident 7 len 4
+> ACL Data RX: Handle 129 flags 0x02 dlen 84              #180 [hci2] 17.214184
+      Channel: 66 len 80 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #181 [hci2] 17.214862
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #182 [hci2] 17.214906
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 113             #183 [hci2] 17.214913
+      Channel: 66 len 109 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #184 [hci2] 17.229214
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 78              #185 [hci2] 17.239626
+      Channel: 66 len 74 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #186 [hci2] 17.240180
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #187 [hci2] 17.240204
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 113             #188 [hci2] 17.240226
+      Channel: 66 len 109 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 89              #189 [hci2] 17.244077
+      Channel: 66 len 85 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #190 [hci2] 17.244528
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #191 [hci2] 17.244557
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 105             #192 [hci2] 17.244671
+      Channel: 66 len 101 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 83              #193 [hci2] 17.248794
+      Channel: 66 len 79 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 85              #194 [hci2] 17.258778
+      Channel: 66 len 81 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 79              #195 [hci2] 17.268346
+      Channel: 66 len 75 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 88              #196 [hci2] 17.269788
+      Channel: 66 len 84 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 82              #197 [hci2] 17.319856
+      Channel: 66 len 78 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 84              #198 [hci2] 17.327959
+      Channel: 66 len 80 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #199 [hci2] 17.332751
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 117 msec (86-124 msec ~111 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #200 [hci2] 17.332785
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 78              #201 [hci2] 17.334325
+      Channel: 66 len 74 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #202 [hci2] 17.348492
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 133 msec (86-133 msec ~122 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #203 [hci2] 17.348545
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 88              #204 [hci2] 17.361337
+      Channel: 66 len 84 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #205 [hci2] 17.361344
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 146 msec (86-146 msec ~134 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 82              #206 [hci2] 17.361345
+      Channel: 66 len 78 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #207 [hci2] 17.361347
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 121 msec (86-146 msec ~127 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 85              #208 [hci2] 17.361348
+      Channel: 66 len 81 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #209 [hci2] 17.361350
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 121 msec (86-146 msec ~124 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 79              #210 [hci2] 17.361351
+      Channel: 66 len 75 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #211 [hci2] 17.361353
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 121 msec (86-146 msec ~122 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 100             #212 [hci2] 17.361354
+      Channel: 66 len 96 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #213 [hci2] 17.361355
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 116 msec (86-146 msec ~119 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 94              #214 [hci2] 17.361357
+      Channel: 66 len 90 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #215 [hci2] 17.361358
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 116 msec (86-146 msec ~118 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 92              #216 [hci2] 17.361360
+      Channel: 66 len 88 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #217 [hci2] 17.361361
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 116 msec (86-146 msec ~117 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 86              #218 [hci2] 17.361362
+      Channel: 66 len 82 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 95              #219 [hci2] 17.361364
+      Channel: 66 len 91 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 89              #220 [hci2] 17.361365
+      Channel: 66 len 85 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 105             #221 [hci2] 17.361416
+      Channel: 66 len 101 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #222 [hci2] 17.362840
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #223 [hci2] 17.362856
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 176             #224 [hci2] 17.362859
+      Channel: 66 len 172 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 9               #225 [hci2] 17.362861
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 35
+> HCI Event: Number of Completed Packets (0x13) plen 5    #226 [hci2] 17.413302
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 80 msec (80-146 msec ~99 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 89              #227 [hci2] 17.416007
+      Channel: 66 len 85 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #228 [hci2] 17.416014
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 67 msec (67-146 msec ~83 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 83              #229 [hci2] 17.421819
+      Channel: 66 len 79 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #230 [hci2] 17.421824
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 60 msec (60-146 msec ~71 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 85              #231 [hci2] 17.423617
+      Channel: 66 len 81 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #232 [hci2] 17.423622
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 60 msec (60-146 msec ~66 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 79              #233 [hci2] 17.424741
+      Channel: 66 len 75 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #234 [hci2] 17.431044
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 68 msec (60-146 msec ~67 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 92              #235 [hci2] 17.432345
+      Channel: 66 len 88 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #236 [hci2] 17.432350
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 69 msec (60-146 msec ~68 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 12              #237 [hci2] 17.433167
+      L2CAP: Disconnection Response (0x07) ident 7 len 4
+> HCI Event: Number of Completed Packets (0x13) plen 5    #238 [hci2] 17.433171
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 70 msec (60-146 msec ~69 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 9               #239 [hci2] 17.437944
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 30
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #240 [hci2] 17.438024
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #241 [hci2] 17.438032
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 176             #242 [hci2] 17.438035
+      Channel: 66 len 172 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #243 [hci2] 17.438039
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #244 [hci2] 17.438041
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 106             #245 [hci2] 17.438044
+      Channel: 66 len 102 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #246 [hci2] 17.438046
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #247 [hci2] 17.438049
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 106             #248 [hci2] 17.438051
+      Channel: 66 len 102 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 86              #249 [hci2] 17.520713
+      Channel: 66 len 82 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #250 [hci2] 17.523720
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 85 msec (60-146 msec ~77 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 99              #251 [hci2] 17.523724
+      Channel: 66 len 95 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #252 [hci2] 17.523726
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 85 msec (60-146 msec ~81 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 93              #253 [hci2] 17.523727
+      Channel: 66 len 89 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #254 [hci2] 17.523729
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 85 msec (60-146 msec ~83 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 88              #255 [hci2] 17.523731
+      Channel: 66 len 84 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #256 [hci2] 17.523732
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 85 msec (60-146 msec ~84 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #257 [hci2] 17.523766
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #258 [hci2] 17.523770
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 149             #259 [hci2] 17.523773
+      Channel: 66 len 145 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #260 [hci2] 17.523776
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 82              #261 [hci2] 17.536605
+      Channel: 66 len 78 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #262 [hci2] 17.536610
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 98 msec (60-146 msec ~91 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #263 [hci2] 17.536634
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 148             #264 [hci2] 17.538720
+      Channel: 66 len 144 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #265 [hci2] 17.538728
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 100 msec (60-146 msec ~96 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 149             #266 [hci2] 17.538766
+      Channel: 66 len 145 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 184             #267 [hci2] 17.540651
+      Channel: 66 len 180 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #268 [hci2] 17.540660
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 102 msec (60-146 msec ~99 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #269 [hci2] 17.540701
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 202             #270 [hci2] 17.551258
+      Channel: 66 len 198 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #271 [hci2] 17.551266
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 113 msec (60-146 msec ~106 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #272 [hci2] 17.551307
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 230             #273 [hci2] 17.552024
+      Channel: 66 len 226 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #274 [hci2] 17.552029
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 113 msec (60-146 msec ~110 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 104             #275 [hci2] 17.552049
+      Channel: 66 len 100 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 58              #276 [hci2] 17.563787
+      Channel: 66 len 54 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 114             #277 [hci2] 17.569559
+      Channel: 66 len 110 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #278 [hci2] 17.618590
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 94 msec (60-146 msec ~102 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #279 [hci2] 17.618637
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #280 [hci2] 17.620048
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 96 msec (60-146 msec ~99 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #281 [hci2] 17.620054
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 96 msec (60-146 msec ~97 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #282 [hci2] 17.620072
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 104             #283 [hci2] 17.620079
+      Channel: 66 len 100 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #284 [hci2] 17.621989
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 98 msec (60-146 msec ~98 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #285 [hci2] 17.622007
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #286 [hci2] 17.626600
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 89 msec (60-146 msec ~93 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #287 [hci2] 17.626616
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #288 [hci2] 17.628984
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 90 msec (60-146 msec ~92 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 143             #289 [hci2] 17.628996
+      Channel: 66 len 139 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #290 [hci2] 17.630328
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 89 msec (60-146 msec ~90 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #291 [hci2] 17.630342
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #292 [hci2] 17.640302
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 88 msec (60-146 msec ~89 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #293 [hci2] 17.640306
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 88 msec (60-146 msec ~89 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #294 [hci2] 17.640318
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 143             #295 [hci2] 17.640323
+      Channel: 66 len 139 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #296 [hci2] 17.721743
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 103 msec (60-146 msec ~96 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #297 [hci2] 17.721773
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #298 [hci2] 17.722443
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 102 msec (60-146 msec ~99 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #299 [hci2] 17.722469
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 9               #300 [hci2] 17.729138
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 30
+> HCI Event: Number of Completed Packets (0x13) plen 5    #301 [hci2] 17.729142
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 109 msec (60-146 msec ~104 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 130             #302 [hci2] 17.729162
+      Channel: 66 len 126 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #303 [hci2] 17.731222
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 109 msec (60-146 msec ~106 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #304 [hci2] 17.731236
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #305 [hci2] 17.742369
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 115 msec (60-146 msec ~111 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #306 [hci2] 17.742373
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 113 msec (60-146 msec ~112 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #307 [hci2] 17.742375
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 112 msec (60-146 msec ~112 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #308 [hci2] 17.742394
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 130             #309 [hci2] 17.742401
+      Channel: 66 len 126 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #310 [hci2] 17.742404
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #311 [hci2] 17.748988
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 108 msec (60-146 msec ~110 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #312 [hci2] 17.749024
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #313 [hci2] 17.750930
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 110 msec (60-146 msec ~110 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 111             #314 [hci2] 17.750956
+      Channel: 66 len 107 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #315 [hci2] 17.824250
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 102 msec (60-146 msec ~106 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #316 [hci2] 17.824282
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #317 [hci2] 17.829788
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 107 msec (60-146 msec ~106 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #318 [hci2] 17.829811
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #319 [hci2] 17.835513
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 106 msec (60-146 msec ~106 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 111             #320 [hci2] 17.835561
+      Channel: 66 len 107 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #321 [hci2] 17.837274
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 106 msec (60-146 msec ~106 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #322 [hci2] 17.837302
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #323 [hci2] 17.840698
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 98 msec (60-146 msec ~102 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #324 [hci2] 17.840738
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #325 [hci2] 17.841255
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 98 msec (60-146 msec ~100 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 117             #326 [hci2] 17.841275
+      Channel: 66 len 113 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #327 [hci2] 17.842186
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 99 msec (60-146 msec ~100 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #328 [hci2] 17.842207
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #329 [hci2] 17.848965
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 99 msec (60-146 msec ~100 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #330 [hci2] 17.849008
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #331 [hci2] 17.849481
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 98 msec (60-146 msec ~99 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 117             #332 [hci2] 17.849503
+      Channel: 66 len 113 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #333 [hci2] 17.926672
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 102 msec (60-146 msec ~100 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #334 [hci2] 17.926713
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #335 [hci2] 17.929995
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 100 msec (60-146 msec ~100 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #336 [hci2] 17.930012
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #337 [hci2] 17.931263
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 95 msec (60-146 msec ~98 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 110             #338 [hci2] 17.931275
+      Channel: 66 len 106 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #339 [hci2] 17.937233
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 99 msec (60-146 msec ~99 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #340 [hci2] 17.937251
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #341 [hci2] 17.941902
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 101 msec (60-146 msec ~100 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #342 [hci2] 17.941918
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #343 [hci2] 17.943486
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 102 msec (60-146 msec ~101 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #344 [hci2] 17.943490
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 101 msec (60-146 msec ~101 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 110             #345 [hci2] 17.943505
+      Channel: 66 len 106 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 129 flags 0x00 dlen 20              #346 [hci2] 17.943509
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #347 [hci2] 18.042478
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 193 msec (60-193 msec ~147 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #348 [hci2] 18.042484
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 192 msec (60-193 msec ~170 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #349 [hci2] 18.042487
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 115 msec (60-193 msec ~142 msec)
+< ACL Data TX: Handle 129 flags 0x00 dlen 60              #350 [hci2] 18.042521
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #351 [hci2] 18.044468
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 114 msec (60-193 msec ~128 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #352 [hci2] 18.044473
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 113 msec (60-193 msec ~120 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #353 [hci2] 18.044483
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 107 msec (60-193 msec ~114 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #354 [hci2] 18.130296
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 188 msec (60-193 msec ~151 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #355 [hci2] 18.130304
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 186 msec (60-193 msec ~169 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #356 [hci2] 18.130306
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 186 msec (60-193 msec ~177 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 9               #357 [hci2] 18.132300
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 31
+> HCI Event: Number of Completed Packets (0x13) plen 5    #358 [hci2] 18.132304
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 89 msec (60-193 msec ~133 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 20              #359 [hci2] 21.526590
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 20              #360 [hci2] 26.625534
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 20              #361 [hci2] 31.543513
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 129 flags 0x02 dlen 8               #362 [hci2] 36.559282
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Disconnect (DISC) (0x43)
+< ACL Data TX: Handle 129 flags 0x00 dlen 8               #363 [hci2] 36.559348
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Ack (UA) (0x63)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #364 [hci2] 36.661109
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 101 msec (60-193 msec ~117 msec)
+> ACL Data RX: Handle 129 flags 0x02 dlen 8               #365 [hci2] 36.761824
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Disconnect (DISC) (0x43)
+< ACL Data TX: Handle 129 flags 0x00 dlen 8               #366 [hci2] 36.761916
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Ack (UA) (0x63)
+< ACL Data TX: Handle 129 flags 0x00 dlen 12              #367 [hci2] 36.761934
+      L2CAP: Disconnection Request (0x06) ident 8 len 4
+> HCI Event: Number of Completed Packets (0x13) plen 5    #368 [hci2] 36.857789
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 95 msec (60-193 msec ~106 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #369 [hci2] 36.865525
+        Num handles: 1
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+> ACL Data RX: Handle 129 flags 0x02 dlen 12              #370 [hci2] 36.867801
+      L2CAP: Disconnection Response (0x07) ident 8 len 4
+> HCI Event: Disconnect Complete (0x05) plen 4            #371 [hci2] 39.114691
+        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)
+@ MGMT Event: Device Disconnected (0x000c) plen 8     {0x0001} [hci2] 39.114723
+          Discoverable
+@ MGMT Command: Set Discoverable (0x0006) plen 3      {0x0001} [hci2] 41.508316
+        Discoverable: General (0x01)
+      Set Discoverable (0x0006) plen 4
+          Discoverable

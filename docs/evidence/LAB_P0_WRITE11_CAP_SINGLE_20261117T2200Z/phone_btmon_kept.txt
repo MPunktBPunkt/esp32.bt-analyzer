@@ -1,0 +1,1112 @@
+@ MGMT Command: Set Discoverable (0x0006) plen 3       {0x0001} [hci0] 3.306555
+        Discoverable: General (0x01)
+      Set Discoverable (0x0006) plen 4
+          Discoverable
+          Discoverable
+@ MGMT Command: Start Discovery (0x0023) plen 1        {0x0001} [hci0] 6.530058
+@ MGMT Event: Discovering (0x0013) plen 2              {0x0001} [hci0] 6.606471
+        Discovery: Enabled (0x01)
+      Start Discovery (0x0023) plen 1
+          TX power: 127 dBm
+          LE General Discoverable Mode
+        TX power: 12 dBm
+        TX power: -12 dBm
+        TX power: -12 dBm
+@ MGMT Command: Stop Discovery (0x0024) plen 1        {0x0001} [hci0] 10.225340
+      Stop Discovery (0x0024) plen 1
+@ MGMT Event: Discovering (0x0013) plen 2             {0x0001} [hci0] 10.242632
+        Discovery: Disabled (0x00)
+        Handle: 256
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Handle: 256
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+          Channel quality driven data rate (CQDDR)
+          Inquiry TX Power Level
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> ACL Data RX: Handle 256 flags 0x02 dlen 10               #47 [hci0] 11.857436
+      L2CAP: Information Request (0x0a) ident 1 len 2
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+< ACL Data TX: Handle 256 flags 0x00 dlen 10               #60 [hci0] 12.997633
+      L2CAP: Information Request (0x0a) ident 1 len 2
+< ACL Data TX: Handle 256 flags 0x00 dlen 16               #61 [hci0] 12.997659
+      L2CAP: Information Response (0x0b) ident 1 len 8
+          Fixed Channels
+> HCI Event: Number of Completed Packets (0x13) plen 5     #62 [hci0] 13.083586
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #63 [hci0] 13.084573
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> ACL Data RX: Handle 256 flags 0x02 dlen 16               #64 [hci0] 13.185438
+      L2CAP: Information Response (0x0b) ident 1 len 8
+          Fixed Channels
+< ACL Data TX: Handle 256 flags 0x00 dlen 10               #65 [hci0] 13.185484
+      L2CAP: Information Request (0x0a) ident 2 len 2
+        Type: Fixed channels supported (0x0003)
+> ACL Data RX: Handle 256 flags 0x02 dlen 10               #66 [hci0] 13.189457
+      L2CAP: Information Request (0x0a) ident 2 len 2
+        Type: Fixed channels supported (0x0003)
+< ACL Data TX: Handle 256 flags 0x00 dlen 20               #67 [hci0] 13.189507
+      L2CAP: Information Response (0x0b) ident 2 len 12
+        Type: Fixed channels supported (0x0003)
+        Channels: 0x0000000000000006
+          L2CAP Signaling (BR/EDR)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #68 [hci0] 13.191553
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #69 [hci0] 13.194562
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20               #70 [hci0] 13.297446
+      L2CAP: Information Response (0x0b) ident 2 len 12
+        Type: Fixed channels supported (0x0003)
+        Channels: 0x0000000000000006
+          L2CAP Signaling (BR/EDR)
+< ACL Data TX: Handle 256 flags 0x00 dlen 12               #71 [hci0] 13.297480
+      L2CAP: Connection Request (0x02) ident 3 len 4
+> HCI Event: Number of Completed Packets (0x13) plen 5     #72 [hci0] 13.397566
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> ACL Data RX: Handle 256 flags 0x02 dlen 16               #73 [hci0] 13.493441
+      L2CAP: Connection Response (0x03) ident 3 len 8
+> ACL Data RX: Handle 256 flags 0x02 dlen 23               #74 [hci0] 13.493445
+      L2CAP: Configure Request (0x04) ident 3 len 15
+          TX window size: 0
+< ACL Data TX: Handle 256 flags 0x00 dlen 23               #75 [hci0] 13.493511
+      L2CAP: Configure Request (0x04) ident 4 len 15
+          TX window size: 0
+< ACL Data TX: Handle 256 flags 0x00 dlen 18               #76 [hci0] 13.493532
+      L2CAP: Configure Response (0x05) ident 3 len 10
+> HCI Event: Number of Completed Packets (0x13) plen 5     #77 [hci0] 13.498563
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #78 [hci0] 13.499553
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> ACL Data RX: Handle 256 flags 0x02 dlen 18               #79 [hci0] 13.596434
+      L2CAP: Configure Response (0x05) ident 4 len 10
+< ACL Data TX: Handle 256 flags 0x00 dlen 24               #80 [hci0] 13.597512
+      Channel: 64 len 20 [PSM 1 mode Basic (0x00)] {chan 0}
+              L2CAP (0x0100)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #81 [hci0] 13.702571
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 64 [PSM 1 mode Basic (0x00)] {chan 0}
+        Channel Latency: 105 msec (105-105 msec ~105 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 344              #82 [hci0] 13.703045
+> ACL Data RX: Handle 256 flags 0x01 dlen 332              #83 [hci0] 13.703047
+      Channel: 64 len 672 [PSM 1 mode Basic (0x00)] {chan 0}
+< ACL Data TX: Handle 256 flags 0x00 dlen 32               #84 [hci0] 13.703522
+      Channel: 64 len 28 [PSM 1 mode Basic (0x00)] {chan 0}
+              L2CAP (0x0100)
+> HCI Event: Number of Completed Packets (0x13) plen 5     #85 [hci0] 13.799563
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 64 [PSM 1 mode Basic (0x00)] {chan 0}
+        Channel Latency: 96 msec (96-105 msec ~100 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 330              #86 [hci0] 13.905446
+      Channel: 64 len 326 [PSM 1 mode Basic (0x00)] {chan 0}
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                    L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                    L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                  RFCOMM (0x0003)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                  RFCOMM (0x0003)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+< ACL Data TX: Handle 256 flags 0x00 dlen 24               #87 [hci0] 13.925463
+      Channel: 64 len 20 [PSM 1 mode Basic (0x00)] {chan 0}
+> HCI Event: Number of Completed Packets (0x13) plen 5     #88 [hci0] 14.005609
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 64 [PSM 1 mode Basic (0x00)] {chan 0}
+        Channel Latency: 80 msec (80-105 msec ~90 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 88               #89 [hci0] 14.109433
+      Channel: 64 len 84 [PSM 1 mode Basic (0x00)] {chan 0}
+            Attribute: Service Record Handle (0x0000) [len 2]
+        TX power: 12 dBm
+> ACL Data RX: Handle 256 flags 0x02 dlen 12               #94 [hci0] 14.211445
+      L2CAP: Connection Request (0x02) ident 4 len 4
+< ACL Data TX: Handle 256 flags 0x00 dlen 16               #95 [hci0] 14.211555
+      L2CAP: Connection Response (0x03) ident 4 len 8
+< ACL Data TX: Handle 256 flags 0x00 dlen 23               #96 [hci0] 14.211591
+      L2CAP: Configure Request (0x04) ident 5 len 15
+          TX window size: 0
+        TX power: 12 dBm
+> HCI Event: Number of Completed Packets (0x13) plen 5     #98 [hci0] 14.312564
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> ACL Data RX: Handle 256 flags 0x02 dlen 23               #99 [hci0] 14.312726
+      L2CAP: Configure Request (0x04) ident 5 len 15
+          TX window size: 0
+< ACL Data TX: Handle 256 flags 0x00 dlen 18              #100 [hci0] 14.312747
+      L2CAP: Configure Response (0x05) ident 5 len 10
+> HCI Event: Number of Completed Packets (0x13) plen 5    #101 [hci0] 14.313561
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> ACL Data RX: Handle 256 flags 0x02 dlen 18              #103 [hci0] 14.423431
+      L2CAP: Configure Response (0x05) ident 5 len 10
+> ACL Data RX: Handle 256 flags 0x02 dlen 24              #104 [hci0] 14.423434
+      Channel: 65 len 20 [PSM 1 mode Basic (0x00)] {chan 1}
+              L2CAP (0x0100)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #105 [hci0] 14.423565
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+< ACL Data TX: Handle 256 flags 0x00 dlen 676             #106 [hci0] 14.423763
+      Channel: 65 len 672 [PSM 1 mode Basic (0x00)] {chan 1}
+> HCI Event: Number of Completed Packets (0x13) plen 5    #107 [hci0] 14.522576
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 65 [PSM 1 mode Basic (0x00)] {chan 1}
+        Channel Latency: 98 msec (98-98 msec ~98 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 32              #108 [hci0] 14.619439
+      Channel: 65 len 28 [PSM 1 mode Basic (0x00)] {chan 1}
+              L2CAP (0x0100)
+< ACL Data TX: Handle 256 flags 0x00 dlen 330             #109 [hci0] 14.619626
+      Channel: 65 len 326 [PSM 1 mode Basic (0x00)] {chan 1}
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                  RFCOMM (0x0003)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                    L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                    L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+                  RFCOMM (0x0003)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+            Attribute: Service Record Handle (0x0000) [len 2]
+                  L2CAP (0x0100)
+> ACL Data RX: Handle 256 flags 0x02 dlen 24              #110 [hci0] 14.722429
+      Channel: 65 len 20 [PSM 1 mode Basic (0x00)] {chan 1}
+< ACL Data TX: Handle 256 flags 0x00 dlen 88              #111 [hci0] 14.722616
+      Channel: 65 len 84 [PSM 1 mode Basic (0x00)] {chan 1}
+            Attribute: Service Record Handle (0x0000) [len 2]
+> HCI Event: Number of Completed Packets (0x13) plen 5    #112 [hci0] 14.723566
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 65 [PSM 1 mode Basic (0x00)] {chan 1}
+        Channel Latency: 103 msec (98-103 msec ~101 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #113 [hci0] 14.824579
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 65 [PSM 1 mode Basic (0x00)] {chan 1}
+        Channel Latency: 101 msec (98-103 msec ~101 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 12              #114 [hci0] 15.553296
+      L2CAP: Connection Request (0x02) ident 6 len 4
+> HCI Event: Number of Completed Packets (0x13) plen 5    #115 [hci0] 15.562598
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> ACL Data RX: Handle 256 flags 0x02 dlen 16              #116 [hci0] 15.642432
+      L2CAP: Connection Response (0x03) ident 6 len 8
+> ACL Data RX: Handle 256 flags 0x02 dlen 27              #117 [hci0] 15.642434
+      L2CAP: Configure Request (0x04) ident 6 len 19
+          TX window size: 0
+< ACL Data TX: Handle 256 flags 0x00 dlen 27              #118 [hci0] 15.642489
+      L2CAP: Configure Request (0x04) ident 7 len 19
+          TX window size: 0
+< ACL Data TX: Handle 256 flags 0x00 dlen 18              #119 [hci0] 15.642511
+      L2CAP: Configure Response (0x05) ident 6 len 10
+> HCI Event: Number of Completed Packets (0x13) plen 5    #120 [hci0] 15.648586
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #121 [hci0] 15.649581
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> ACL Data RX: Handle 256 flags 0x02 dlen 18              #122 [hci0] 15.744428
+      L2CAP: Configure Response (0x05) ident 7 len 10
+< ACL Data TX: Handle 256 flags 0x00 dlen 8               #123 [hci0] 15.744483
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Set Async Balance Mode (SABM) (0x2f)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #124 [hci0] 15.773602
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 29 msec (29-29 msec ~29 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 8               #125 [hci0] 15.847442
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Ack (UA) (0x63)
+< ACL Data TX: Handle 256 flags 0x00 dlen 18              #126 [hci0] 15.847558
+      Channel: 66 len 14 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+           ack_timer 0 frame_size 1016 max_retrans 0 credits 7
+> ACL Data RX: Handle 256 flags 0x02 dlen 18              #127 [hci0] 15.957466
+      Channel: 66 len 14 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+           ack_timer 0 frame_size 1016 max_retrans 0 credits 7
+> HCI Event: Number of Completed Packets (0x13) plen 5    #128 [hci0] 15.957603
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 110 msec (29-110 msec ~69 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 8               #129 [hci0] 15.958283
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Set Async Balance Mode (SABM) (0x2f)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #130 [hci0] 16.052597
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 94 msec (29-110 msec ~81 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 12              #131 [hci0] 16.136555
+      L2CAP: Disconnection Request (0x06) ident 8 len 4
+> ACL Data RX: Handle 256 flags 0x02 dlen 8               #132 [hci0] 16.153434
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Ack (UA) (0x63)
+> ACL Data RX: Handle 256 flags 0x02 dlen 12              #133 [hci0] 16.153438
+      Channel: 66 len 8 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 12              #134 [hci0] 16.153531
+      Channel: 66 len 8 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 12              #135 [hci0] 16.153556
+      Channel: 66 len 8 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #136 [hci0] 16.153593
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #137 [hci0] 16.157628
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 4 msec (4-110 msec ~43 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #138 [hci0] 16.158604
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 5 msec (4-110 msec ~24 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 12              #139 [hci0] 16.255435
+      L2CAP: Disconnection Response (0x07) ident 8 len 4
+> ACL Data RX: Handle 256 flags 0x02 dlen 12              #140 [hci0] 16.258432
+      Channel: 66 len 8 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 9               #141 [hci0] 16.258434
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 33
+< ACL Data TX: Handle 256 flags 0x00 dlen 9               #142 [hci0] 16.258490
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 33
+< ACL Data TX: Handle 256 flags 0x00 dlen 12              #143 [hci0] 16.258520
+      Channel: 66 len 8 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #144 [hci0] 16.358607
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 100 msec (4-110 msec ~62 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #145 [hci0] 16.362595
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 104 msec (4-110 msec ~83 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 24              #146 [hci0] 16.462445
+      Channel: 66 len 20 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 18              #147 [hci0] 16.467083
+      Channel: 66 len 14 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 64              #148 [hci0] 16.467144
+      Channel: 66 len 60 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 16              #149 [hci0] 16.467154
+      Channel: 66 len 12 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 16              #150 [hci0] 16.467159
+      Channel: 66 len 12 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #151 [hci0] 16.489597
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 22 msec (4-110 msec ~52 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 163             #152 [hci0] 16.489619
+      Channel: 66 len 159 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #153 [hci0] 16.563435
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #154 [hci0] 16.564622
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 97 msec (4-110 msec ~75 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 20              #155 [hci0] 16.564663
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #156 [hci0] 16.565613
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 98 msec (4-110 msec ~86 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #157 [hci0] 16.566611
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 99 msec (4-110 msec ~93 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #158 [hci0] 16.568626
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 79 msec (4-110 msec ~86 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #159 [hci0] 16.569604
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 4 msec (4-110 msec ~45 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #160 [hci0] 16.665490
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #161 [hci0] 16.665493
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #162 [hci0] 16.668439
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #163 [hci0] 16.668441
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 83              #164 [hci0] 16.670430
+      Channel: 66 len 79 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 568             #165 [hci0] 16.670653
+      Channel: 66 len 564 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #166 [hci0] 16.672427
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #167 [hci0] 16.672428
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #168 [hci0] 16.679599
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 8 msec (4-110 msec ~27 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #169 [hci0] 16.770432
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #170 [hci0] 16.770434
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 46              #171 [hci0] 16.771088
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 46              #172 [hci0] 16.771317
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 60              #173 [hci0] 16.771337
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 46              #174 [hci0] 16.771344
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #175 [hci0] 16.871441
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 91              #176 [hci0] 16.871458
+      Channel: 66 len 87 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #177 [hci0] 16.871606
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 100 msec (4-110 msec ~63 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 46              #178 [hci0] 16.871632
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #179 [hci0] 16.873607
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 102 msec (4-110 msec ~83 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 46              #180 [hci0] 16.873839
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #181 [hci0] 16.874604
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 103 msec (4-110 msec ~93 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 46              #182 [hci0] 16.875480
+      Channel: 66 len 42 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #183 [hci0] 16.875629
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 104 msec (4-110 msec ~98 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #184 [hci0] 16.877603
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 5 msec (4-110 msec ~52 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #185 [hci0] 16.878602
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 4 msec (4-110 msec ~28 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #186 [hci0] 16.879601
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 4 msec (4-110 msec ~16 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #187 [hci0] 16.979442
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 102             #188 [hci0] 16.981428
+      Channel: 66 len 98 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #189 [hci0] 16.983428
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 344             #190 [hci0] 16.987428
+> ACL Data RX: Handle 256 flags 0x01 dlen 165             #191 [hci0] 16.987429
+      Channel: 66 len 505 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #192 [hci0] 16.987430
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 66              #193 [hci0] 16.987430
+      Channel: 66 len 62 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #194 [hci0] 16.989441
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 66              #195 [hci0] 16.989442
+      Channel: 66 len 62 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #196 [hci0] 16.993425
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 66              #197 [hci0] 17.074428
+      Channel: 66 len 62 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #198 [hci0] 17.074430
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 66              #199 [hci0] 17.077431
+      Channel: 66 len 62 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 84              #200 [hci0] 17.079611
+      Channel: 66 len 80 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 78              #201 [hci0] 17.079645
+      Channel: 66 len 74 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 89              #202 [hci0] 17.079668
+      Channel: 66 len 85 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 83              #203 [hci0] 17.079689
+      Channel: 66 len 79 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 12              #204 [hci0] 17.177435
+      L2CAP: Disconnection Request (0x06) ident 7 len 4
+> HCI Event: Number of Completed Packets (0x13) plen 5    #205 [hci0] 17.179608
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 99 msec (4-110 msec ~58 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 85              #206 [hci0] 17.179624
+      Channel: 66 len 81 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #207 [hci0] 17.185606
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 105 msec (4-110 msec ~82 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 79              #208 [hci0] 17.185621
+      Channel: 66 len 75 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #209 [hci0] 17.188618
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 108 msec (4-110 msec ~95 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 88              #210 [hci0] 17.188662
+      Channel: 66 len 84 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #211 [hci0] 17.189606
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 109 msec (4-110 msec ~102 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 82              #212 [hci0] 17.189628
+      Channel: 66 len 78 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #213 [hci0] 17.192616
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 12 msec (4-110 msec ~57 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 84              #214 [hci0] 17.192648
+      Channel: 66 len 80 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #215 [hci0] 17.195623
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 10 msec (4-110 msec ~33 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 78              #216 [hci0] 17.195658
+      Channel: 66 len 74 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #217 [hci0] 17.198617
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 9 msec (4-110 msec ~21 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 88              #218 [hci0] 17.198649
+      Channel: 66 len 84 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #219 [hci0] 17.202620
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 12 msec (4-110 msec ~17 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 82              #220 [hci0] 17.202662
+      Channel: 66 len 78 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #221 [hci0] 17.279439
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #222 [hci0] 17.280605
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 87 msec (4-110 msec ~52 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 85              #223 [hci0] 17.280635
+      Channel: 66 len 81 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #224 [hci0] 17.282447
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 113             #225 [hci0] 17.282449
+      Channel: 66 len 109 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #226 [hci0] 17.282611
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 86 msec (4-110 msec ~69 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 79              #227 [hci0] 17.282639
+      Channel: 66 len 75 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #228 [hci0] 17.285606
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 86 msec (4-110 msec ~78 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 100             #229 [hci0] 17.285649
+      Channel: 66 len 96 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #230 [hci0] 17.287443
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #231 [hci0] 17.287447
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #232 [hci0] 17.287623
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 84 msec (4-110 msec ~81 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 94              #233 [hci0] 17.287954
+      Channel: 66 len 90 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #234 [hci0] 17.289604
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 8 msec (4-110 msec ~45 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 92              #235 [hci0] 17.289628
+      Channel: 66 len 88 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 113             #236 [hci0] 17.292426
+      Channel: 66 len 109 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #237 [hci0] 17.292427
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #238 [hci0] 17.292604
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 9 msec (4-110 msec ~27 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 86              #239 [hci0] 17.292625
+      Channel: 66 len 82 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #240 [hci0] 17.294606
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 8 msec (4-110 msec ~18 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 95              #241 [hci0] 17.294637
+      Channel: 66 len 91 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #242 [hci0] 17.295434
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #243 [hci0] 17.297604
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 9 msec (4-110 msec ~13 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 89              #244 [hci0] 17.297631
+      Channel: 66 len 85 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 105             #245 [hci0] 17.299457
+      Channel: 66 len 101 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #246 [hci0] 17.300616
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 10 msec (4-110 msec ~12 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 89              #247 [hci0] 17.300646
+      Channel: 66 len 85 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #248 [hci0] 17.303610
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 10 msec (4-110 msec ~11 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 83              #249 [hci0] 17.303638
+      Channel: 66 len 79 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #250 [hci0] 17.305608
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 10 msec (4-110 msec ~11 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 85              #251 [hci0] 17.305626
+      Channel: 66 len 81 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #252 [hci0] 17.382444
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #253 [hci0] 17.383606
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 85 msec (4-110 msec ~48 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 79              #254 [hci0] 17.383626
+      Channel: 66 len 75 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #255 [hci0] 17.384431
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #256 [hci0] 17.386605
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 85 msec (4-110 msec ~67 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 92              #257 [hci0] 17.386620
+      Channel: 66 len 88 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 105             #258 [hci0] 17.388443
+      Channel: 66 len 101 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #259 [hci0] 17.388444
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #260 [hci0] 17.388606
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 84 msec (4-110 msec ~76 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 12              #261 [hci0] 17.388621
+      L2CAP: Disconnection Response (0x07) ident 7 len 4
+> HCI Event: Number of Completed Packets (0x13) plen 5    #262 [hci0] 17.390606
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 84 msec (4-110 msec ~80 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 9               #263 [hci0] 17.390623
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 30
+> HCI Event: Number of Completed Packets (0x13) plen 5    #264 [hci0] 17.392605
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 8 msec (4-110 msec ~44 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #265 [hci0] 17.393426
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 176             #266 [hci0] 17.393426
+      Channel: 66 len 172 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #267 [hci0] 17.396609
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 9 msec (4-110 msec ~27 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #268 [hci0] 17.397609
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #269 [hci0] 17.398611
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 7 msec (4-110 msec ~17 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 9               #270 [hci0] 17.398619
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 35
+< ACL Data TX: Handle 256 flags 0x00 dlen 86              #271 [hci0] 17.398671
+      Channel: 66 len 82 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 99              #272 [hci0] 17.398690
+      Channel: 66 len 95 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 93              #273 [hci0] 17.398696
+      Channel: 66 len 89 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 88              #274 [hci0] 17.398701
+      Channel: 66 len 84 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #275 [hci0] 17.484429
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #276 [hci0] 17.485612
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 86 msec (4-110 msec ~52 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 82              #277 [hci0] 17.485645
+      Channel: 66 len 78 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #278 [hci0] 17.487431
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #279 [hci0] 17.488618
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 89 msec (4-110 msec ~71 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 148             #280 [hci0] 17.488643
+      Channel: 66 len 144 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 176             #281 [hci0] 17.490432
+      Channel: 66 len 172 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #282 [hci0] 17.492611
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 93 msec (4-110 msec ~82 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 184             #283 [hci0] 17.492643
+      Channel: 66 len 180 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #284 [hci0] 17.493454
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #285 [hci0] 17.494607
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 95 msec (4-110 msec ~89 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 202             #286 [hci0] 17.494639
+      Channel: 66 len 198 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #287 [hci0] 17.495433
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #288 [hci0] 17.496621
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 10 msec (4-110 msec ~50 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 230             #289 [hci0] 17.496661
+      Channel: 66 len 226 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 106             #290 [hci0] 17.498440
+      Channel: 66 len 102 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #291 [hci0] 17.499617
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 10 msec (4-110 msec ~30 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 58              #292 [hci0] 17.500188
+      Channel: 66 len 54 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #293 [hci0] 17.500443
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #294 [hci0] 17.502612
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 9 msec (4-110 msec ~20 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 114             #295 [hci0] 17.502666
+      Channel: 66 len 110 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #296 [hci0] 17.503445
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #297 [hci0] 17.504608
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 9 msec (4-110 msec ~15 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 106             #298 [hci0] 17.506445
+      Channel: 66 len 102 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #299 [hci0] 17.508643
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 11 msec (4-110 msec ~13 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #300 [hci0] 17.509629
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 9 msec (4-110 msec ~11 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #301 [hci0] 17.512626
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 9 msec (4-110 msec ~10 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #302 [hci0] 17.586429
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #303 [hci0] 17.588430
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 149             #304 [hci0] 17.590428
+      Channel: 66 len 145 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #305 [hci0] 17.590429
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #306 [hci0] 17.593433
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 149             #307 [hci0] 17.595446
+      Channel: 66 len 145 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #308 [hci0] 17.595447
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #309 [hci0] 17.599434
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 104             #310 [hci0] 17.599437
+      Channel: 66 len 100 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #311 [hci0] 17.689436
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #312 [hci0] 17.689438
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 9               #313 [hci0] 17.689787
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 30
+> ACL Data RX: Handle 256 flags 0x02 dlen 104             #314 [hci0] 17.693444
+      Channel: 66 len 100 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #315 [hci0] 17.694609
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 4 msec (4-110 msec ~7 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #316 [hci0] 17.695436
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #317 [hci0] 17.699441
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 143             #318 [hci0] 17.699444
+      Channel: 66 len 139 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #319 [hci0] 17.699444
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #320 [hci0] 17.702441
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 143             #321 [hci0] 17.702444
+      Channel: 66 len 139 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #322 [hci0] 17.791441
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #323 [hci0] 17.793426
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 130             #324 [hci0] 17.793427
+      Channel: 66 len 126 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #325 [hci0] 17.797429
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #326 [hci0] 17.797432
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 130             #327 [hci0] 17.799449
+      Channel: 66 len 126 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #328 [hci0] 17.801425
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #329 [hci0] 17.803426
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 111             #330 [hci0] 17.803427
+      Channel: 66 len 107 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #331 [hci0] 17.895430
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #332 [hci0] 17.895433
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 111             #333 [hci0] 17.899445
+      Channel: 66 len 107 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #334 [hci0] 17.899447
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #335 [hci0] 17.899447
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 117             #336 [hci0] 17.902440
+      Channel: 66 len 113 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #337 [hci0] 17.904452
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #338 [hci0] 17.995428
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 117             #339 [hci0] 17.999435
+      Channel: 66 len 113 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #340 [hci0] 17.999437
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #341 [hci0] 17.999438
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 110             #342 [hci0] 18.002441
+      Channel: 66 len 106 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #343 [hci0] 18.004454
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #344 [hci0] 18.098438
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 110             #345 [hci0] 18.098441
+      Channel: 66 len 106 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+< ACL Data TX: Handle 256 flags 0x00 dlen 9               #346 [hci0] 18.098516
+      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+         Credits: 31
+> ACL Data RX: Handle 256 flags 0x02 dlen 20              #347 [hci0] 18.101440
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> ACL Data RX: Handle 256 flags 0x02 dlen 60              #348 [hci0] 18.103451
+      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #349 [hci0] 18.103625
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 5 msec (4-110 msec ~6 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 20              #350 [hci0] 21.508466
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #351 [hci0] 21.520700
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 12 msec (4-110 msec ~9 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 20              #352 [hci0] 26.515866
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #353 [hci0] 26.591766
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 75 msec (4-110 msec ~42 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 20              #354 [hci0] 31.523363
+      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #355 [hci0] 31.531843
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 8 msec (4-110 msec ~25 msec)
+< ACL Data TX: Handle 256 flags 0x00 dlen 8               #356 [hci0] 36.531670
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Disconnect (DISC) (0x43)
+> ACL Data RX: Handle 256 flags 0x02 dlen 8               #357 [hci0] 36.621431
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Ack (UA) (0x63)
+< ACL Data TX: Handle 256 flags 0x00 dlen 8               #358 [hci0] 36.621493
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Disconnect (DISC) (0x43)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #359 [hci0] 36.621907
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 90 msec (4-110 msec ~57 msec)
+> HCI Event: Number of Completed Packets (0x13) plen 5    #360 [hci0] 36.725937
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}
+        Channel Latency: 104 msec (4-110 msec ~81 msec)
+> ACL Data RX: Handle 256 flags 0x02 dlen 8               #361 [hci0] 36.826906
+      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}
+      RFCOMM: Unnumbered Ack (UA) (0x63)
+> ACL Data RX: Handle 256 flags 0x02 dlen 12              #362 [hci0] 36.826908
+      L2CAP: Disconnection Request (0x06) ident 8 len 4
+< ACL Data TX: Handle 256 flags 0x00 dlen 12              #363 [hci0] 36.826954
+      L2CAP: Disconnection Response (0x07) ident 8 len 4
+> HCI Event: Number of Completed Packets (0x13) plen 5    #364 [hci0] 36.927927
+        Num handles: 1
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+< HCI Command: Disconnect (0x01|0x0006) plen 3            #365 [hci0] 38.887489
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+      Disconnect (0x01|0x0006) ncmd 1
+> HCI Event: Disconnect Complete (0x05) plen 4            #367 [hci0] 39.017971
+        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)
+@ MGMT Event: Device Disconnected (0x000c) plen 8     {0x0001} [hci0] 39.018013

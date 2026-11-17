@@ -26,6 +26,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SSH = "root@192.168.178.108"
 HU_BD = "C8:C9:A3:CB:7B:0A"
 PHONE_BD = "C8:C9:A3:CB:37:96"
+USB_PHONE_BD = "C0:B8:83:34:F4:62"
 
 
 def utc_stamp() -> str:
@@ -324,31 +325,49 @@ def main() -> int:
     ap.add_argument("--window", type=float, default=0.5, help="seconds before/after write11")
     ap.add_argument("--ssh", default=DEFAULT_SSH)
     ap.add_argument("--out-dir", type=Path)
+    ap.add_argument(
+        "--single-esp",
+        action="store_true",
+        help=f"phone=USB {USB_PHONE_BD}, HU=ESP .131 (A/B vs dual-ESP)",
+    )
     args = ap.parse_args()
 
     stamp = utc_stamp()
-    out_dir = args.out_dir or (ROOT / "docs" / "evidence" / f"LAB_P0_WRITE11_CAP_{stamp}")
+    mode_tag = "SINGLE" if args.single_esp else "DUAL"
+    out_dir = args.out_dir or (ROOT / "docs" / "evidence" / f"LAB_P0_WRITE11_CAP_{mode_tag}_{stamp}")
     out_dir.mkdir(parents=True, exist_ok=True)
     remote_dir = f"/tmp/bcl_dummy/p0_write11_cap_{stamp}"
     host = args.ssh
+    phone_bd = USB_PHONE_BD if args.single_esp else PHONE_BD
 
     # Deploy instrumented HU agent
     scp_to(ROOT / "tools" / "bcl_dummy_hu_agent.py", "/tmp/bcl_dummy/bcl_dummy_hu_agent.py", host=host)
 
+    # For single-ESP: park .87 bridge so only one ESP is on air as HU peer
+    bridge87_cmd = None
+    if args.single_esp:
+        p = ssh("pgrep -af 'hci_tcp_bridge.py 192.168.178.87' || true", host=host)
+        bridge87_cmd = (p.stdout or "").strip()
+        ssh("pkill -f 'hci_tcp_bridge.py 192.168.178.87' || true", host=host, timeout=20)
+        time.sleep(1.0)
+        (out_dir / "bridge87_paused.txt").write_text(bridge87_cmd + "\n")
+
     hci_map = resolve_hci_map(host)
     hu_hci = hci_map.get(HU_BD.upper())
-    phone_hci = hci_map.get(PHONE_BD.upper())
-    (out_dir / "hci_map.json").write_text(json.dumps(hci_map, indent=2) + "\n")
+    phone_hci = hci_map.get(phone_bd.upper())
+    (out_dir / "hci_map.json").write_text(
+        json.dumps({"map": hci_map, "mode": mode_tag, "phone_bd": phone_bd}, indent=2) + "\n"
+    )
     if not hu_hci or not phone_hci:
-        print("missing HU/phone HCI", hci_map, file=sys.stderr)
+        print("missing HU/phone HCI", hci_map, phone_bd, file=sys.stderr)
         return 2
 
-    print(f"HCI map HU=hci{hu_hci} phone=hci{phone_hci}", flush=True)
+    print(f"HCI map mode={mode_tag} HU=hci{hu_hci} phone=hci{phone_hci} ({phone_bd})", flush=True)
     # pin aliases by BD (indices can flip / drift)
     ssh(
         "python3 - <<'PY'\n"
         "import dbus\n"
-        f"WANT={{'{HU_BD.upper()}':'BMW 38304','{PHONE_BD.upper()}':'BT-Analyzer-Phone'}}\n"
+        f"WANT={{'{HU_BD.upper()}':'BMW 38304','{phone_bd.upper()}':'BT-Analyzer-Phone'}}\n"
         "bus=dbus.SystemBus()\n"
         "om=dbus.Interface(bus.get_object('org.bluez','/'),'org.freedesktop.DBus.ObjectManager')\n"
         "for pth, ifaces in om.GetManagedObjects().items():\n"
@@ -373,22 +392,33 @@ def main() -> int:
 
     hold_out = out_dir / f"hold_{stamp}.json"
     print(f"running BCL hold {args.hold}s -> {hold_out}", flush=True)
-    hold_rc = subprocess.run(
-        [
-            "python3",
-            str(ROOT / "tools" / "lab_p0_dual_esp_hold.py"),
-            "--hold",
-            str(args.hold),
-            "--out",
-            str(hold_out),
-            "--ssh",
-            host,
-        ],
-        cwd=str(ROOT),
-    ).returncode
+    hold_cmd = [
+        "python3",
+        str(ROOT / "tools" / "lab_p0_dual_esp_hold.py"),
+        "--hold",
+        str(args.hold),
+        "--out",
+        str(hold_out),
+        "--ssh",
+        host,
+    ]
+    if args.single_esp:
+        hold_cmd.append("--single-esp")
+    hold_rc = subprocess.run(hold_cmd, cwd=str(ROOT)).returncode
 
     for c in caps:
         stop_btmon(host, c["hci"])
+
+    if args.single_esp and bridge87_cmd and "hci_tcp_bridge.py" in bridge87_cmd:
+        # restart parked .87 bridge (best-effort; use known command)
+        ssh(
+            "nohup python3 /tmp/hci_tcp_bridge.py 192.168.178.87 --port 9754 "
+            "--local-name BT-Analyzer-Phone >/tmp/hci_bridge_87.log 2>&1 </dev/null & "
+            "echo $!; disown || true",
+            host=host,
+            timeout=30,
+        )
+        print("restored .87 bridge", flush=True)
 
     # Pull remote hold artifacts + btsnoop
     # dual_esp_hold prints remote OUT; recover from latest p0_hold_* if needed

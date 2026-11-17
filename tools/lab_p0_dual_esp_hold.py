@@ -30,6 +30,7 @@ HU_IP = "192.168.178.131"
 PHONE_IP = "192.168.178.87"
 HU_BD = "C8:C9:A3:CB:7B:0A"
 PHONE_BD = "C8:C9:A3:CB:37:96"
+USB_PHONE_BD = "C0:B8:83:34:F4:62"  # .108 USB hci0 — single-ESP A/B phone side
 
 
 def utc_stamp() -> str:
@@ -113,7 +114,9 @@ def esp_diag(ip):
         out["status_error"] = str(e)
     return out
 
-pre_diag = {"131": esp_diag(HU_IP), "87": esp_diag(PHONE_IP)}
+pre_diag = {"131": esp_diag(HU_IP)}
+if PHONE_IP:
+    pre_diag["87"] = esp_diag(PHONE_IP)
 open(f"{OUT}/esp_diag_pre.json", "w").write(json.dumps(pre_diag, indent=2) + "\n")
 print("PRE_DIAG", json.dumps({
     k: {
@@ -122,6 +125,7 @@ print("PRE_DIAG", json.dumps({
         "uptime": (v.get("status") or {}).get("uptime"),
     } for k, v in pre_diag.items()
 }), flush=True)
+print("MODE", json.dumps({"hu_bd": HU_BD, "phone_bd": PHONE_BD, "hu_ip": HU_IP, "phone_ip": PHONE_IP or None}), flush=True)
 
 # --- pair agent Just Works ---
 subprocess.run(["systemctl", "stop", "bt-pair-agent.service"], capture_output=True)
@@ -269,7 +273,10 @@ prev = {}
 def poll_esp():
     while not stop.is_set():
         row = {"ts": time.time()}
-        for ip, tag in ((HU_IP, "131"), (PHONE_IP, "87")):
+        targets = [(HU_IP, "131")]
+        if PHONE_IP:
+            targets.append((PHONE_IP, "87"))
+        for ip, tag in targets:
             try:
                 snap = esp_snap(ip)
                 row[tag] = snap
@@ -488,9 +495,18 @@ if os.path.exists(hu_log):
             hu_flaps.append({k: o.get(k) for k in ("ts", "event", "reason", "peer", "session_id") if k in o or k == "event"})
 
 deltas = [r for r in esp_rows if r.get("delta")]
-post_diag = {"131": esp_diag(HU_IP), "87": esp_diag(PHONE_IP)}
+post_diag = {"131": esp_diag(HU_IP)}
+if PHONE_IP:
+    post_diag["87"] = esp_diag(PHONE_IP)
 open(f"{OUT}/esp_diag_post.json", "w").write(json.dumps(post_diag, indent=2) + "\n")
 result = {
+    "mode": {
+        "hu_bd": HU_BD,
+        "phone_bd": PHONE_BD,
+        "hu_ip": HU_IP,
+        "phone_ip": PHONE_IP or None,
+        "single_esp": not bool(PHONE_IP),
+    },
     "bond": bond,
     "adapters": adapters,
     "hold": {
@@ -557,14 +573,30 @@ def main() -> int:
     ap.add_argument("--hold", type=float, default=300.0, help="RFCOMM hold seconds (default 300)")
     ap.add_argument("--channel", type=int, default=6)
     ap.add_argument("--no-bcl-phone", action="store_true", help="skip parallel mybmw-sim phone client")
+    ap.add_argument(
+        "--single-esp",
+        action="store_true",
+        help=f"phone on USB hci0 ({USB_PHONE_BD}), HU remains ESP .131 — A/B vs dual-ESP",
+    )
+    ap.add_argument("--phone-bd", default="", help="override phone BD (implies no phone ESP poll if not .87)")
     ap.add_argument("--out", type=Path, help="local evidence JSON path")
     ap.add_argument("--ssh", default=DEFAULT_SSH)
     args = ap.parse_args()
     host = args.ssh
 
+    phone_bd = USB_PHONE_BD if args.single_esp else (args.phone_bd or PHONE_BD)
+    phone_ip = "" if (args.single_esp or (args.phone_bd and args.phone_bd.upper() != PHONE_BD.upper())) else PHONE_IP
+    if args.phone_bd and not args.single_esp:
+        phone_bd = args.phone_bd
+        if phone_bd.upper() == PHONE_BD.upper():
+            phone_ip = PHONE_IP
+        else:
+            phone_ip = ""
+
     stamp = utc_stamp()
     remote_out = f"/tmp/bcl_dummy/p0_hold_{stamp}"
-    local_out = args.out or (ROOT / "docs" / "evidence" / f"LAB_P0_87_131_HOLD_{stamp}.json")
+    tag = "SINGLE" if (args.single_esp or not phone_ip) else "87_131"
+    local_out = args.out or (ROOT / "docs" / "evidence" / f"LAB_P0_{tag}_HOLD_{stamp}.json")
 
     # upload pair agent + remote runner
     scp_to(ROOT / "tools" / "bt_pair_agent.py", "/tmp/bt_pair_agent_jw.py", host=host)
@@ -577,7 +609,7 @@ def main() -> int:
         tmp.unlink(missing_ok=True)
 
     env = (
-        f"HU_BD={HU_BD} PHONE_BD={PHONE_BD} HU_IP={HU_IP} PHONE_IP={PHONE_IP} "
+        f"HU_BD={HU_BD} PHONE_BD={phone_bd} HU_IP={HU_IP} PHONE_IP={phone_ip} "
         f"RFCOMM_CHANNEL={args.channel} HOLD_S={args.hold} OUT_DIR={remote_out} "
         f"BCL_PHONE={'0' if args.no_bcl_phone else '1'}"
     )

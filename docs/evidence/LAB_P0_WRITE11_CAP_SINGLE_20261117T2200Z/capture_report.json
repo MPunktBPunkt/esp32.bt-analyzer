@@ -1,0 +1,4911 @@
+{
+  "hold": {
+    "ok": false,
+    "send_err": "hold_abort:wd_echo_miss_limit",
+    "wait_class": "WATCHDOG_MISS_NO_ETCH_REPLY",
+    "abort_reason": "wd_echo_miss_limit",
+    "hold_s": 22.83,
+    "phone_events": {
+      "session_start": 1,
+      "rfcomm_connected": 1,
+      "rx_bytes": 63,
+      "handshake_rx": 1,
+      "tx_bytes": 49,
+      "session_init": 1,
+      "frame": 93,
+      "mybmw_rpc_tx": 45,
+      "mybmw_sim_start": 1,
+      "watchdog_ping": 4,
+      "hu_dataack": 37,
+      "hu_unsolicited": 54,
+      "mybmw_rpc_rx": 54,
+      "watchdog_echo_rtt": 1,
+      "mybmw_rhmi_state": 4,
+      "mybmw_handle": 4,
+      "mybmw_apps_queued": 1,
+      "mybmw_rhmi_plan": 1,
+      "mybmw_check_resource_tx": 1,
+      "mybmw_cds_event": 22,
+      "watchdog_echo_missed": 3,
+      "hold_abort": 1,
+      "phone_done": 1
+    }
+  },
+  "center_ts": 1794949218.424,
+  "window_s": 1.0,
+  "tx_write_failed": {
+    "ts": 1794949218.424,
+    "event": "tx_write_failed",
+    "errno": 11,
+    "errno_name": "EAGAIN",
+    "bytes_attempted": 89,
+    "tx_total": 5250,
+    "tx_frames": 93,
+    "tx_max": 500,
+    "rx_total": 2884,
+    "seconds_since_last_rx": 0.0004,
+    "seconds_since_last_tx_ok": 0.0,
+    "hex_head": "0002000a0fa40051deadbeef000000490386ae0d3d6905866306b46887000000",
+    "adapter": "hci2",
+    "peer": "C0:B8:83:34:F4:62",
+    "session_id": "LAB_AB_87_131"
+  },
+  "rfcomm_closed": {
+    "ts": 1794949218.424,
+    "event": "rfcomm_closed",
+    "reason": "write_error:11",
+    "channel_role": "accept",
+    "rfcomm_channel": 6,
+    "rx_total": 2884,
+    "bcl_classification": "STRONG_BCL_CANDIDATE",
+    "classification": {
+      "bcl_classification": "STRONG_BCL_CANDIDATE",
+      "magic_count": 1,
+      "magic_offsets": [
+        0
+      ],
+      "frames": [
+        {
+          "cmd": 5,
+          "cmd_name": "SELECTPROTO",
+          "src": 0,
+          "dest": 0,
+          "dest_label": null,
+          "len": 2,
+          "payload_hex": "0004",
+          "raw_hex": "00050000000000020004"
+        },
+        {
+          "cmd": 8,
+          "cmd_name": "KNOCK",
+          "src": 0,
+          "dest": 0,
+          "dest_label": null,
+          "len": 48,
+          "payload_hex": "002430653962393063342d636265312d343734322d383238332d64333637653961353636313900000000000000010007",
+          "raw_hex": "0008000000000030002430653962393063342d636265312d343734322d383238332d64333637653961353636313900000000000000010007"
+        },
+        {
+          "cmd": 1,
+          "cmd_name": "OPEN",
+          "src": 5001,
+          "dest": 5001,
+          "dest_label": "Watchdog",
+          "len": 0,
+          "payload_hex": "",
+          "raw_hex": "0001138913890000"
+        },
+        {
+          "cmd": 1,
+          "cmd_name": "OPEN",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 0,
+          "payload_hex": "",
+          "raw_hex": "0001000a0fa40000"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 146,
+          "payload_hex": "deadbeef0000008a0386304ba8bb02866306b4688700000000000003e986144a776f8b846c2d2d2d2d2d424547494e20504b4353372d2d2d2d2d0a4d494942496a414e42676b71686b6947397730424151454641414f43415138414d49494243674b4341514541305a335653354a4a6364733378666e4c414253494d0a2d2d2d2d2d454e4420504b4353372d2d2d2d2d0a81",
+          "raw_hex": "0002000a0fa40092deadbeef0000008a0386304ba8bb02866306b4688700000000000003e986144a776f8b846c2d2d2d2d2d424547494e20504b4353372d2d2d2d2d0a4d494942496a414e42676b71686b6947397730424151454641414f43415138414d49494243674b4341514541305a335653354a4a6364733378666e4c414253494d0a2d2d2d2d2d454e4420504b4353372d2d2d2d2d0a81"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 5001,
+          "dest": 5001,
+          "dest_label": "Watchdog",
+          "len": 4,
+          "payload_hex": "13371337",
+          "raw_hex": "000213891389000413371337"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 551,
+          "payload_hex": "deadbeef0000021f03867e002a4d02866306b4688700000000000003ea86144a776f8b850200041d2b5fd4b83d9b08024d01bc370df30000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000081",
+          "raw_hex": "0002000a0fa40227deadbeef0000021f03867e002a4d02866306b4688700000000000003ea86144a776f8b850200041d2b5fd4b83d9b08024d01bc370df30000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 30,
+          "payload_hex": "deadbeef000000160386b13c1d8001866306b4688700000000000003eb81",
+          "raw_hex": "0002000a0fa4001edeadbeef000000160386b13c1d8001866306b4688700000000000003eb81"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 30,
+          "payload_hex": "deadbeef0000001603864a7f208401866306b4688700000000000003ec81",
+          "raw_hex": "0002000a0fa4001edeadbeef0000001603864a7f208401866306b4688700000000000003ec81"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 44,
+          "payload_hex": "deadbeef0000002403860668812103866306b4688700000000000003ed86ce64ba339286718d257b8500ff81",
+          "raw_hex": "0002000a0fa4002cdeadbeef0000002403860668812103866306b4688700000000000003ed86ce64ba339286718d257b8500ff81"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 30,
+          "payload_hex": "deadbeef0000001603863376152b01866306b4688700000000000003ee81",
+          "raw_hex": "0002000a0fa4001edeadbeef0000001603863376152b01866306b4688700000000000003ee81"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 30,
+          "payload_hex": "deadbeef000000160386abb8be4d01866306b4688700000000000003ef81",
+          "raw_hex": "0002000a0fa4001edeadbeef000000160386abb8be4d01866306b4688700000000000003ef81"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 30,
+          "payload_hex": "deadbeef000000160386722a4d6701866306b4688700000000000003f081",
+          "raw_hex": "0002000a0fa4001edeadbeef000000160386722a4d6701866306b4688700000000000003f081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 30,
+          "payload_hex": "deadbeef0000001603866757fe0401866306b4688700000000000003f181",
+          "raw_hex": "0002000a0fa4001edeadbeef0000001603866757fe0401866306b4688700000000000003f181"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 68,
+          "payload_hex": "deadbeef0000003c03869f806ebd05866306b4688700000000000003f286a29699ed0a864d9eccab930130860e3999e5930b76656869636c652e56494e86dbb306d10081",
+          "raw_hex": "0002000a0fa40044deadbeef0000003c03869f806ebd05866306b4688700000000000003f286a29699ed0a864d9eccab930130860e3999e5930b76656869636c652e56494e86dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 62,
+          "payload_hex": "deadbeef000000360386baa6a20004866306b4688700000000000003f386a29699ed0a864d9eccab930130860e3999e5930b76656869636c652e56494e81",
+          "raw_hex": "0002000a0fa4003edeadbeef000000360386baa6a20004866306b4688700000000000003f386a29699ed0a864d9eccab930130860e3999e5930b76656869636c652e56494e81"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 73,
+          "payload_hex": "deadbeef0000004103869f806ebd05866306b4688700000000000003f486a29699ed0a864d9eccab930130860e3999e5931076656869636c652e6c616e677561676586dbb306d10081",
+          "raw_hex": "0002000a0fa40049deadbeef0000004103869f806ebd05866306b4688700000000000003f486a29699ed0a864d9eccab930130860e3999e5931076656869636c652e6c616e677561676586dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 67,
+          "payload_hex": "deadbeef0000003b0386baa6a20004866306b4688700000000000003f586a29699ed0a864d9eccab930130860e3999e5931076656869636c652e6c616e677561676581",
+          "raw_hex": "0002000a0fa40043deadbeef0000003b0386baa6a20004866306b4688700000000000003f586a29699ed0a864d9eccab930130860e3999e5931076656869636c652e6c616e677561676581"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 69,
+          "payload_hex": "deadbeef0000003d03869f806ebd05866306b4688700000000000003f686a29699ed0a864d9eccab930130860e3999e5930c76656869636c652e74696d6586dbb306d10081",
+          "raw_hex": "0002000a0fa40045deadbeef0000003d03869f806ebd05866306b4688700000000000003f686a29699ed0a864d9eccab930130860e3999e5930c76656869636c652e74696d6586dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 63,
+          "payload_hex": "deadbeef000000370386baa6a20004866306b4688700000000000003f786a29699ed0a864d9eccab930130860e3999e5930c76656869636c652e74696d6581",
+          "raw_hex": "0002000a0fa4003fdeadbeef000000370386baa6a20004866306b4688700000000000003f786a29699ed0a864d9eccab930130860e3999e5930c76656869636c652e74696d6581"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 72,
+          "payload_hex": "deadbeef0000004003869f806ebd05866306b4688700000000000003f886a29699ed0a864d9eccab930130860e3999e5930f656e67696e652e52504d537065656486dbb306d10081",
+          "raw_hex": "0002000a0fa40048deadbeef0000004003869f806ebd05866306b4688700000000000003f886a29699ed0a864d9eccab930130860e3999e5930f656e67696e652e52504d537065656486dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 66,
+          "payload_hex": "deadbeef0000003a0386baa6a20004866306b4688700000000000003f986a29699ed0a864d9eccab930130860e3999e5930f656e67696e652e52504d537065656481",
+          "raw_hex": "0002000a0fa40042deadbeef0000003a0386baa6a20004866306b4688700000000000003f986a29699ed0a864d9eccab930130860e3999e5930f656e67696e652e52504d537065656481"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 68,
+          "payload_hex": "deadbeef0000003c03869f806ebd05866306b4688700000000000003fa86a29699ed0a864d9eccab930130860e3999e5930b656e67696e652e696e666f86dbb306d10081",
+          "raw_hex": "0002000a0fa40044deadbeef0000003c03869f806ebd05866306b4688700000000000003fa86a29699ed0a864d9eccab930130860e3999e5930b656e67696e652e696e666f86dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 62,
+          "payload_hex": "deadbeef000000360386baa6a20004866306b4688700000000000003fb86a29699ed0a864d9eccab930130860e3999e5930b656e67696e652e696e666f81",
+          "raw_hex": "0002000a0fa4003edeadbeef000000360386baa6a20004866306b4688700000000000003fb86a29699ed0a864d9eccab930130860e3999e5930b656e67696e652e696e666f81"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 72,
+          "payload_hex": "deadbeef0000004003869f806ebd05866306b4688700000000000003fc86a29699ed0a864d9eccab930130860e3999e5930f73656e736f72732e6261747465727986dbb306d10081",
+          "raw_hex": "0002000a0fa40048deadbeef0000004003869f806ebd05866306b4688700000000000003fc86a29699ed0a864d9eccab930130860e3999e5930f73656e736f72732e6261747465727986dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 66,
+          "payload_hex": "deadbeef0000003a0386baa6a20004866306b4688700000000000003fd86a29699ed0a864d9eccab930130860e3999e5930f73656e736f72732e6261747465727981",
+          "raw_hex": "0002000a0fa40042deadbeef0000003a0386baa6a20004866306b4688700000000000003fd86a29699ed0a864d9eccab930130860e3999e5930f73656e736f72732e6261747465727981"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 69,
+          "payload_hex": "deadbeef0000003d03869f806ebd05866306b4688700000000000003fe86a29699ed0a864d9eccab930130860e3999e5930c73656e736f72732e6675656c86dbb306d10081",
+          "raw_hex": "0002000a0fa40045deadbeef0000003d03869f806ebd05866306b4688700000000000003fe86a29699ed0a864d9eccab930130860e3999e5930c73656e736f72732e6675656c86dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 63,
+          "payload_hex": "deadbeef000000370386baa6a20004866306b4688700000000000003ff86a29699ed0a864d9eccab930130860e3999e5930c73656e736f72732e6675656c81",
+          "raw_hex": "0002000a0fa4003fdeadbeef000000370386baa6a20004866306b4688700000000000003ff86a29699ed0a864d9eccab930130860e3999e5930c73656e736f72732e6675656c81"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 84,
+          "payload_hex": "deadbeef0000004c03869f806ebd05866306b46887000000000000040086a29699ed0a864d9eccab930130860e3999e5931b73656e736f72732e74656d70657261747572654578746572696f7286dbb306d10081",
+          "raw_hex": "0002000a0fa40054deadbeef0000004c03869f806ebd05866306b46887000000000000040086a29699ed0a864d9eccab930130860e3999e5931b73656e736f72732e74656d70657261747572654578746572696f7286dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 78,
+          "payload_hex": "deadbeef000000460386baa6a20004866306b46887000000000000040186a29699ed0a864d9eccab930130860e3999e5931b73656e736f72732e74656d70657261747572654578746572696f7281",
+          "raw_hex": "0002000a0fa4004edeadbeef000000460386baa6a20004866306b46887000000000000040186a29699ed0a864d9eccab930130860e3999e5931b73656e736f72732e74656d70657261747572654578746572696f7281"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 76,
+          "payload_hex": "deadbeef0000004403869f806ebd05866306b46887000000000000040286a29699ed0a864d9eccab930130860e3999e5931364726976696e672e737065656441637475616c86dbb306d10081",
+          "raw_hex": "0002000a0fa4004cdeadbeef0000004403869f806ebd05866306b46887000000000000040286a29699ed0a864d9eccab930130860e3999e5931364726976696e672e737065656441637475616c86dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 70,
+          "payload_hex": "deadbeef0000003e0386baa6a20004866306b46887000000000000040386a29699ed0a864d9eccab930130860e3999e5931364726976696e672e737065656441637475616c81",
+          "raw_hex": "0002000a0fa40046deadbeef0000003e0386baa6a20004866306b46887000000000000040386a29699ed0a864d9eccab930130860e3999e5931364726976696e672e737065656441637475616c81"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 79,
+          "payload_hex": "deadbeef0000004703869f806ebd05866306b46887000000000000040486a29699ed0a864d9eccab930130860e3999e5931664726976696e672e7370656564446973706c6179656486dbb306d10081",
+          "raw_hex": "0002000a0fa4004fdeadbeef0000004703869f806ebd05866306b46887000000000000040486a29699ed0a864d9eccab930130860e3999e5931664726976696e672e7370656564446973706c6179656486dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 73,
+          "payload_hex": "deadbeef000000410386baa6a20004866306b46887000000000000040586a29699ed0a864d9eccab930130860e3999e5931664726976696e672e7370656564446973706c6179656481",
+          "raw_hex": "0002000a0fa40049deadbeef000000410386baa6a20004866306b46887000000000000040586a29699ed0a864d9eccab930130860e3999e5931664726976696e672e7370656564446973706c6179656481"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 73,
+          "payload_hex": "deadbeef0000004103869f806ebd05866306b46887000000000000040686a29699ed0a864d9eccab930130860e3999e5931064726976696e672e6f646f6d6574657286dbb306d10081",
+          "raw_hex": "0002000a0fa40049deadbeef0000004103869f806ebd05866306b46887000000000000040686a29699ed0a864d9eccab930130860e3999e5931064726976696e672e6f646f6d6574657286dbb306d10081"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 67,
+          "payload_hex": "deadbeef0000003b0386baa6a20004866306b46887000000000000040786a29699ed0a864d9eccab930130860e3999e5931064726976696e672e6f646f6d6574657281",
+          "raw_hex": "0002000a0fa40043deadbeef0000003b0386baa6a20004866306b46887000000000000040786a29699ed0a864d9eccab930130860e3999e5931064726976696e672e6f646f6d6574657281"
+        },
+        {
+          "cmd": 2,
+          "cmd_name": "DATA",
+          "src": 10,
+          "dest": 4004,
+          "dest_label": "Etch",
+          "len": 69,
+          "payload_hex": "deadbeef0000003d03869f806ebd05866306b46887000000000000040886a29699ed0a864d9eccab930130860e3999e5930c64726976696e672e6765617286dbb306d10081",
+          "raw_hex": "0002000a0fa40045deadbeef0000003d03869f806ebd05866306b46887000000000000040886a29699ed0a864d9eccab930130860e3999e5930c64726976696e672e6765617286dbb306d10081"
+        }
+      ],
+      "handshake": null,
+      "framer_error": null,
+      "incomplete": false,
+      "bytes_len": 2884,
+      "payload_hex_head": "12345678000500000000000200040008000000000030002430653962393063342d636265312d343734322d383238332d64333637653961353636313900000000",
+      "session_inits_at_boundary": 1
+    },
+    "adapter": "hci2",
+    "peer": "C0:B8:83:34:F4:62",
+    "session_id": "LAB_AB_87_131"
+  },
+  "hu_session_tx": {
+    "tx_frames": 93,
+    "tx_bytes": 5250,
+    "tx_max": 500,
+    "rx_frames": 26,
+    "rx_bytes": 2884,
+    "mean_tx_gap_s": 0.0111,
+    "min_tx_gap_s": 0.0,
+    "last_methods": [
+      "cds_getPropertyAsync",
+      "cds_addPropertyChangedEventHandler",
+      "cds_getPropertyAsync",
+      "cds_addPropertyChangedEventHandler",
+      "cds_getPropertyAsync",
+      "cds_addPropertyChangedEventHandler",
+      "cds_getPropertyAsync",
+      "cds_addPropertyChangedEventHandler",
+      "cds_getPropertyAsync",
+      "cds_addPropertyChangedEventHandler",
+      "cds_getPropertyAsync",
+      "cds_addPropertyChangedEventHandler"
+    ]
+  },
+  "phone_session_tx": {
+    "tx_frames": 49,
+    "tx_bytes": 4315,
+    "tx_max": 559,
+    "rx_frames": 63,
+    "rx_bytes": 5250,
+    "mean_tx_gap_s": 0.0128,
+    "min_tx_gap_s": 0.0,
+    "last_methods": [
+      "cds_onPropertyChangedEvent",
+      "_result_cds_getPropertyAsync",
+      "cds_onPropertyChangedEvent",
+      "_result_cds_addPropertyChangedEventHandler",
+      "cds_onPropertyChangedEvent",
+      "_result_cds_getPropertyAsync",
+      "cds_onPropertyChangedEvent",
+      "_result_cds_addPropertyChangedEventHandler",
+      "cds_onPropertyChangedEvent",
+      "_result_cds_getPropertyAsync",
+      "cds_onPropertyChangedEvent",
+      "_result_cds_addPropertyChangedEventHandler"
+    ]
+  },
+  "hu_window_events": [
+    {
+      "ts": 1794949217.498,
+      "event": "rx_bytes",
+      "n": 10
+    },
+    {
+      "ts": 1794949217.498,
+      "event": "frame",
+      "cmd_name": "SELECTPROTO",
+      "src": 0,
+      "dest": 0
+    },
+    {
+      "ts": 1794949217.498,
+      "event": "phone_tx_classified",
+      "cmd_name": "SELECTPROTO",
+      "src": 0,
+      "dest": 0
+    },
+    {
+      "ts": 1794949217.498,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.498,
+      "event": "selectproto_rx"
+    },
+    {
+      "ts": 1794949217.498,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 28,
+      "tx_frames": 2
+    },
+    {
+      "ts": 1794949217.595,
+      "event": "rx_bytes",
+      "n": 56
+    },
+    {
+      "ts": 1794949217.595,
+      "event": "frame",
+      "cmd_name": "KNOCK",
+      "src": 0,
+      "dest": 0
+    },
+    {
+      "ts": 1794949217.595,
+      "event": "phone_tx_classified",
+      "cmd_name": "KNOCK",
+      "src": 0,
+      "dest": 0
+    },
+    {
+      "ts": 1794949217.595,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.595,
+      "event": "knock_rx"
+    },
+    {
+      "ts": 1794949217.595,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 40,
+      "tx_frames": 3
+    },
+    {
+      "ts": 1794949217.6,
+      "event": "rx_bytes",
+      "n": 170
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "frame",
+      "cmd_name": "OPEN",
+      "src": 5001,
+      "dest": 5001
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "frame",
+      "cmd_name": "OPEN",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "phone_tx_classified",
+      "cmd_name": "OPEN",
+      "src": 5001,
+      "dest": 5001
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "phone_tx_classified",
+      "cmd_name": "OPEN",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "etch_open_rx",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "etch_open_probe",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "f20_rpc_rx",
+      "method": "sas_certificate",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "sas_challenge_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 52,
+      "tx_frames": 4
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 64,
+      "tx_frames": 5
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 76,
+      "tx_frames": 6
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "tx_bytes",
+      "n": 75,
+      "tx_total": 151,
+      "tx_frames": 7
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 5001,
+      "dest": 5001
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 5001,
+      "dest": 5001
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "watchdog_echo"
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 163,
+      "tx_frames": 8
+    },
+    {
+      "ts": 1794949217.604,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 175,
+      "tx_frames": 9
+    },
+    {
+      "ts": 1794949217.713,
+      "event": "rx_bytes",
+      "n": 559
+    },
+    {
+      "ts": 1794949217.713,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.713,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.713,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.713,
+      "event": "f20_rpc_rx",
+      "method": "sas_login",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.713,
+      "event": "sas_login_ok_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.713,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.713,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 187,
+      "tx_frames": 10
+    },
+    {
+      "ts": 1794949217.713,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 239,
+      "tx_frames": 11
+    },
+    {
+      "ts": 1794949217.81,
+      "event": "rx_bytes",
+      "n": 38
+    },
+    {
+      "ts": 1794949217.81,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.81,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.81,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.81,
+      "event": "f20_rpc_rx",
+      "method": "ver_getVersion",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.81,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.81,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 251,
+      "tx_frames": 12
+    },
+    {
+      "ts": 1794949217.81,
+      "event": "tx_bytes",
+      "n": 83,
+      "tx_total": 334,
+      "tx_frames": 13
+    },
+    {
+      "ts": 1794949217.902,
+      "event": "rx_bytes",
+      "n": 38
+    },
+    {
+      "ts": 1794949217.903,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.903,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.903,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.903,
+      "event": "f20_rpc_rx",
+      "method": "info_getSystemInfo",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.903,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.903,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 346,
+      "tx_frames": 14
+    },
+    {
+      "ts": 1794949217.903,
+      "event": "tx_bytes",
+      "n": 94,
+      "tx_total": 440,
+      "tx_frames": 15
+    },
+    {
+      "ts": 1794949217.909,
+      "event": "rx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949217.909,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "f20_rpc_rx",
+      "method": "rhmi_getCapabilities",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "rhmi_capabilities_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 452,
+      "tx_frames": 16
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "tx_bytes",
+      "n": 500,
+      "tx_total": 952,
+      "tx_frames": 17
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "rx_bytes",
+      "n": 76
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "f20_rpc_rx",
+      "method": "cds_create",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.91,
+      "event": "handle_created",
+      "method": "cds_create",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.911,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.911,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.911,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.911,
+      "event": "f20_rpc_rx",
+      "method": "am_create",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.911,
+      "event": "handle_created",
+      "method": "am_create",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.911,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.911,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 964,
+      "tx_frames": 18
+    },
+    {
+      "ts": 1794949217.911,
+      "event": "tx_bytes",
+      "n": 58,
+      "tx_total": 1022,
+      "tx_frames": 19
+    },
+    {
+      "ts": 1794949217.911,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 1034,
+      "tx_frames": 20
+    },
+    {
+      "ts": 1794949217.911,
+      "event": "tx_bytes",
+      "n": 58,
+      "tx_total": 1092,
+      "tx_frames": 21
+    },
+    {
+      "ts": 1794949217.919,
+      "event": "rx_bytes",
+      "n": 38
+    },
+    {
+      "ts": 1794949217.92,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.92,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.92,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.92,
+      "event": "f20_rpc_rx",
+      "method": "rhmi_create",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.92,
+      "event": "handle_created",
+      "method": "rhmi_create",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.92,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.92,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 1104,
+      "tx_frames": 22
+    },
+    {
+      "ts": 1794949217.92,
+      "event": "tx_bytes",
+      "n": 58,
+      "tx_total": 1162,
+      "tx_frames": 23
+    },
+    {
+      "ts": 1794949217.92,
+      "event": "rx_bytes",
+      "n": 38
+    },
+    {
+      "ts": 1794949217.92,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.921,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.921,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949217.921,
+      "event": "f20_rpc_rx",
+      "method": "av_create",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.921,
+      "event": "handle_created",
+      "method": "av_create",
+      "src": 10
+    },
+    {
+      "ts": 1794949217.921,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949217.921,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 1174,
+      "tx_frames": 24
+    },
+    {
+      "ts": 1794949217.921,
+      "event": "tx_bytes",
+      "n": 58,
+      "tx_total": 1232,
+      "tx_frames": 25
+    },
+    {
+      "ts": 1794949218.214,
+      "event": "rx_bytes",
+      "n": 76
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 1244,
+      "tx_frames": 26
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 1296,
+      "tx_frames": 27
+    },
+    {
+      "ts": 1794949218.215,
+      "event": "tx_bytes",
+      "n": 105,
+      "tx_total": 1401,
+      "tx_frames": 28
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "rx_bytes",
+      "n": 70
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 1413,
+      "tx_frames": 29
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 1465,
+      "tx_frames": 30
+    },
+    {
+      "ts": 1794949218.24,
+      "event": "tx_bytes",
+      "n": 105,
+      "tx_total": 1570,
+      "tx_frames": 31
+    },
+    {
+      "ts": 1794949218.244,
+      "event": "rx_bytes",
+      "n": 81
+    },
+    {
+      "ts": 1794949218.244,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.244,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.244,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.244,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.244,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.244,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.244,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.244,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.245,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 1582,
+      "tx_frames": 32
+    },
+    {
+      "ts": 1794949218.245,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 1634,
+      "tx_frames": 33
+    },
+    {
+      "ts": 1794949218.245,
+      "event": "tx_bytes",
+      "n": 97,
+      "tx_total": 1731,
+      "tx_frames": 34
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "rx_bytes",
+      "n": 75
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 1743,
+      "tx_frames": 35
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 1795,
+      "tx_frames": 36
+    },
+    {
+      "ts": 1794949218.249,
+      "event": "tx_bytes",
+      "n": 97,
+      "tx_total": 1892,
+      "tx_frames": 37
+    },
+    {
+      "ts": 1794949218.259,
+      "event": "rx_bytes",
+      "n": 77
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 1904,
+      "tx_frames": 38
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 1956,
+      "tx_frames": 39
+    },
+    {
+      "ts": 1794949218.26,
+      "event": "tx_bytes",
+      "n": 167,
+      "tx_total": 2123,
+      "tx_frames": 40
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "rx_bytes",
+      "n": 71
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 2135,
+      "tx_frames": 41
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 2187,
+      "tx_frames": 42
+    },
+    {
+      "ts": 1794949218.269,
+      "event": "tx_bytes",
+      "n": 167,
+      "tx_total": 2354,
+      "tx_frames": 43
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "rx_bytes",
+      "n": 80
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 2366,
+      "tx_frames": 44
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 2418,
+      "tx_frames": 45
+    },
+    {
+      "ts": 1794949218.27,
+      "event": "tx_bytes",
+      "n": 98,
+      "tx_total": 2516,
+      "tx_frames": 46
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "rx_bytes",
+      "n": 74
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 2528,
+      "tx_frames": 47
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 2580,
+      "tx_frames": 48
+    },
+    {
+      "ts": 1794949218.32,
+      "event": "tx_bytes",
+      "n": 98,
+      "tx_total": 2678,
+      "tx_frames": 49
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "rx_bytes",
+      "n": 76
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 2690,
+      "tx_frames": 50
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 2742,
+      "tx_frames": 51
+    },
+    {
+      "ts": 1794949218.328,
+      "event": "tx_bytes",
+      "n": 140,
+      "tx_total": 2882,
+      "tx_frames": 52
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "rx_bytes",
+      "n": 70
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 2894,
+      "tx_frames": 53
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 2946,
+      "tx_frames": 54
+    },
+    {
+      "ts": 1794949218.335,
+      "event": "tx_bytes",
+      "n": 140,
+      "tx_total": 3086,
+      "tx_frames": 55
+    },
+    {
+      "ts": 1794949218.362,
+      "event": "rx_bytes",
+      "n": 810
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 3098,
+      "tx_frames": 56
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 3150,
+      "tx_frames": 57
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "tx_bytes",
+      "n": 96,
+      "tx_total": 3246,
+      "tx_frames": 58
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 3258,
+      "tx_frames": 59
+    },
+    {
+      "ts": 1794949218.363,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 3310,
+      "tx_frames": 60
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 96,
+      "tx_total": 3406,
+      "tx_frames": 61
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 3418,
+      "tx_frames": 62
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 3470,
+      "tx_frames": 63
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 134,
+      "tx_total": 3604,
+      "tx_frames": 64
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 3616,
+      "tx_frames": 65
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 3668,
+      "tx_frames": 66
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 134,
+      "tx_total": 3802,
+      "tx_frames": 67
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 3814,
+      "tx_frames": 68
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 3866,
+      "tx_frames": 69
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 122,
+      "tx_total": 3988,
+      "tx_frames": 70
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 4000,
+      "tx_frames": 71
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 4052,
+      "tx_frames": 72
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 122,
+      "tx_total": 4174,
+      "tx_frames": 73
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 4186,
+      "tx_frames": 74
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 4238,
+      "tx_frames": 75
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 103,
+      "tx_total": 4341,
+      "tx_frames": 76
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 4353,
+      "tx_frames": 77
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 4405,
+      "tx_frames": 78
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 103,
+      "tx_total": 4508,
+      "tx_frames": 79
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 4520,
+      "tx_frames": 80
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 4572,
+      "tx_frames": 81
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 109,
+      "tx_total": 4681,
+      "tx_frames": 82
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 4693,
+      "tx_frames": 83
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 4745,
+      "tx_frames": 84
+    },
+    {
+      "ts": 1794949218.364,
+      "event": "tx_bytes",
+      "n": 109,
+      "tx_total": 4854,
+      "tx_frames": 85
+    },
+    {
+      "ts": 1794949218.416,
+      "event": "rx_bytes",
+      "n": 81
+    },
+    {
+      "ts": 1794949218.416,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.416,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.417,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.417,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.417,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.417,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.417,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.417,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.417,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 4866,
+      "tx_frames": 86
+    },
+    {
+      "ts": 1794949218.417,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 4918,
+      "tx_frames": 87
+    },
+    {
+      "ts": 1794949218.417,
+      "event": "tx_bytes",
+      "n": 102,
+      "tx_total": 5020,
+      "tx_frames": 88
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "rx_bytes",
+      "n": 75
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "f20_rpc_rx",
+      "method": "cds_getPropertyAsync",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 5032,
+      "tx_frames": 89
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 5084,
+      "tx_frames": 90
+    },
+    {
+      "ts": 1794949218.422,
+      "event": "tx_bytes",
+      "n": 102,
+      "tx_total": 5186,
+      "tx_frames": 91
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "rx_bytes",
+      "n": 77
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "frame",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "phone_tx_classified",
+      "cmd_name": "DATA",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "dataack_tx"
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "f20_rpc_rx",
+      "method": "cds_addPropertyChangedEventHandler",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "cds_subscribed",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "cds_property_tx",
+      "src": 10
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "etch_data_tx",
+      "reason": "etch_reply",
+      "src": 10,
+      "dest": 4004
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "tx_bytes",
+      "n": 12,
+      "tx_total": 5198,
+      "tx_frames": 92
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "tx_bytes",
+      "n": 52,
+      "tx_total": 5250,
+      "tx_frames": 93
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "tx_write_failed",
+      "errno": 11,
+      "errno_name": "EAGAIN",
+      "bytes_attempted": 89,
+      "tx_total": 5250,
+      "tx_frames": 93,
+      "seconds_since_last_rx": 0.0004,
+      "seconds_since_last_tx_ok": 0.0
+    },
+    {
+      "ts": 1794949218.424,
+      "event": "rfcomm_closed",
+      "reason": "write_error:11"
+    }
+  ],
+  "phone_window_events": [
+    {
+      "ts": 1794949217.463,
+      "event": "rx_bytes",
+      "n": 16
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "handshake_rx"
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "tx_bytes",
+      "n": 10
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "tx_bytes",
+      "n": 56
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "tx_bytes",
+      "n": 8
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "tx_bytes",
+      "n": 8
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "tx_bytes",
+      "n": 154
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "session_init"
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "mybmw_rpc_tx",
+      "method": "sas_certificate"
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "mybmw_sim_start"
+    },
+    {
+      "ts": 1794949217.467,
+      "event": "watchdog_ping"
+    },
+    {
+      "ts": 1794949217.564,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949217.564,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.564,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.666,
+      "event": "rx_bytes",
+      "n": 24
+    },
+    {
+      "ts": 1794949217.667,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.667,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.667,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.667,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.669,
+      "event": "rx_bytes",
+      "n": 24
+    },
+    {
+      "ts": 1794949217.669,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.669,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.669,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.669,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.67,
+      "event": "rx_bytes",
+      "n": 75
+    },
+    {
+      "ts": 1794949217.67,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949217.671,
+      "event": "tx_bytes",
+      "n": 559
+    },
+    {
+      "ts": 1794949217.671,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.671,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_sas_certificate"
+    },
+    {
+      "ts": 1794949217.671,
+      "event": "mybmw_rpc_tx",
+      "method": "sas_login"
+    },
+    {
+      "ts": 1794949217.672,
+      "event": "rx_bytes",
+      "n": 24
+    },
+    {
+      "ts": 1794949217.673,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.673,
+      "event": "watchdog_echo_rtt"
+    },
+    {
+      "ts": 1794949217.673,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.673,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "rx_bytes",
+      "n": 64
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "tx_bytes",
+      "n": 38
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "tx_bytes",
+      "n": 38
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "tx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "tx_bytes",
+      "n": 38
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "tx_bytes",
+      "n": 38
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "tx_bytes",
+      "n": 38
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "tx_bytes",
+      "n": 38
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_sas_login"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "mybmw_rhmi_state",
+      "rhmi_state": "SAS_AUTHENTICATED"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "mybmw_rpc_tx",
+      "method": "ver_getVersion"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "mybmw_rpc_tx",
+      "method": "info_getSystemInfo"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "mybmw_rpc_tx",
+      "method": "rhmi_getCapabilities"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_create"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "mybmw_rpc_tx",
+      "method": "am_create"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "mybmw_rpc_tx",
+      "method": "rhmi_create"
+    },
+    {
+      "ts": 1794949217.771,
+      "event": "mybmw_rpc_tx",
+      "method": "av_create"
+    },
+    {
+      "ts": 1794949217.872,
+      "event": "rx_bytes",
+      "n": 95
+    },
+    {
+      "ts": 1794949217.872,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.872,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949217.872,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.872,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.872,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_ver_getVersion"
+    },
+    {
+      "ts": 1794949217.98,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949217.98,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.98,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.981,
+      "event": "rx_bytes",
+      "n": 94
+    },
+    {
+      "ts": 1794949217.981,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949217.982,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.982,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_info_getSystemInfo"
+    },
+    {
+      "ts": 1794949217.983,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949217.983,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.984,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.988,
+      "event": "rx_bytes",
+      "n": 570
+    },
+    {
+      "ts": 1794949217.988,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949217.988,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.988,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949217.988,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.988,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.988,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.988,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_rhmi_getCapabilities"
+    },
+    {
+      "ts": 1794949217.988,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_create"
+    },
+    {
+      "ts": 1794949217.988,
+      "event": "mybmw_handle",
+      "method": "cds_create"
+    },
+    {
+      "ts": 1794949217.989,
+      "event": "rx_bytes",
+      "n": 70
+    },
+    {
+      "ts": 1794949217.99,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.99,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949217.99,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.99,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949217.99,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_am_create"
+    },
+    {
+      "ts": 1794949217.99,
+      "event": "mybmw_handle",
+      "method": "am_create"
+    },
+    {
+      "ts": 1794949217.993,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949217.994,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949217.994,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.075,
+      "event": "rx_bytes",
+      "n": 70
+    },
+    {
+      "ts": 1794949218.075,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.075,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.075,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.075,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.075,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_rhmi_create"
+    },
+    {
+      "ts": 1794949218.075,
+      "event": "mybmw_handle",
+      "method": "rhmi_create"
+    },
+    {
+      "ts": 1794949218.075,
+      "event": "mybmw_rhmi_state",
+      "rhmi_state": "RHMI_CREATED"
+    },
+    {
+      "ts": 1794949218.077,
+      "event": "rx_bytes",
+      "n": 58
+    },
+    {
+      "ts": 1794949218.078,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 76
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 70
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 81
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 75
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 77
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 71
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 80
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 74
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 76
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 70
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 80
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 74
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 77
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 71
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 92
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 86
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 84
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 78
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 87
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 81
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 81
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 75
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 77
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 71
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 84
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 78
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 91
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 85
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 80
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 74
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 139
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 175
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 193
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 221
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 50
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "tx_bytes",
+      "n": 106
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_av_create"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_handle",
+      "method": "av_create"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "am_registerApp"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "am_registerApp"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "am_registerApp"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "am_registerApp"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "av_requestConnection"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rhmi_state",
+      "rhmi_state": "AM_REGISTERED"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_apps_queued"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rhmi_plan"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rhmi_state",
+      "rhmi_state": "RESOURCE_CHECKING"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_rpc_tx",
+      "method": "rhmi_checkResource"
+    },
+    {
+      "ts": 1794949218.08,
+      "event": "mybmw_check_resource_tx",
+      "rhmi_state": "RESOURCE_CHECKING"
+    },
+    {
+      "ts": 1794949218.28,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949218.28,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.28,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.283,
+      "event": "rx_bytes",
+      "n": 157
+    },
+    {
+      "ts": 1794949218.283,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.283,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.283,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.283,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.283,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.283,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.283,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.288,
+      "event": "rx_bytes",
+      "n": 64
+    },
+    {
+      "ts": 1794949218.288,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.288,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.288,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.288,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.288,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.292,
+      "event": "rx_bytes",
+      "n": 117
+    },
+    {
+      "ts": 1794949218.293,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.293,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.293,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.293,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.293,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.293,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.296,
+      "event": "rx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949218.296,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.296,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.296,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.3,
+      "event": "rx_bytes",
+      "n": 97
+    },
+    {
+      "ts": 1794949218.3,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.3,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.3,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.3,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.383,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949218.383,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.383,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.384,
+      "event": "rx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949218.385,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.385,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.385,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.388,
+      "event": "rx_bytes",
+      "n": 109
+    },
+    {
+      "ts": 1794949218.389,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.389,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.389,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.389,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.389,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.389,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.393,
+      "event": "rx_bytes",
+      "n": 219
+    },
+    {
+      "ts": 1794949218.394,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.394,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.394,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.394,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.394,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.394,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.394,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.485,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949218.485,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.485,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.488,
+      "event": "rx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949218.488,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.488,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.488,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.491,
+      "event": "rx_bytes",
+      "n": 167
+    },
+    {
+      "ts": 1794949218.491,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.491,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.491,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.491,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.494,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949218.494,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.494,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.496,
+      "event": "rx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949218.496,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.496,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.496,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.499,
+      "event": "rx_bytes",
+      "n": 98
+    },
+    {
+      "ts": 1794949218.5,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.5,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.5,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.5,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.501,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949218.501,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.501,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.504,
+      "event": "rx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949218.504,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.504,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.504,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.507,
+      "event": "rx_bytes",
+      "n": 98
+    },
+    {
+      "ts": 1794949218.507,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.507,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.507,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.507,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.587,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949218.587,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.587,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.588,
+      "event": "rx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949218.589,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.589,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.589,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.59,
+      "event": "rx_bytes",
+      "n": 152
+    },
+    {
+      "ts": 1794949218.591,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.591,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.591,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.591,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.591,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.591,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.593,
+      "event": "rx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949218.594,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.594,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.594,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.596,
+      "event": "rx_bytes",
+      "n": 152
+    },
+    {
+      "ts": 1794949218.596,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.596,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.596,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.596,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.596,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.596,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.6,
+      "event": "rx_bytes",
+      "n": 148
+    },
+    {
+      "ts": 1794949218.6,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.6,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.6,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.6,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.6,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.6,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.6,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.69,
+      "event": "rx_bytes",
+      "n": 64
+    },
+    {
+      "ts": 1794949218.69,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.69,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.69,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.69,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.69,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.693,
+      "event": "rx_bytes",
+      "n": 96
+    },
+    {
+      "ts": 1794949218.694,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.694,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.694,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.694,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.695,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949218.696,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.696,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.7,
+      "event": "rx_bytes",
+      "n": 198
+    },
+    {
+      "ts": 1794949218.7,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.7,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.7,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.7,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.7,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.7,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.7,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.7,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.7,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.703,
+      "event": "rx_bytes",
+      "n": 186
+    },
+    {
+      "ts": 1794949218.703,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.703,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.703,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.703,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.703,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.703,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.703,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.792,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949218.792,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.792,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.793,
+      "event": "rx_bytes",
+      "n": 174
+    },
+    {
+      "ts": 1794949218.794,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.794,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.794,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.794,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.794,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.794,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.794,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.797,
+      "event": "rx_bytes",
+      "n": 64
+    },
+    {
+      "ts": 1794949218.798,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.798,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.798,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.798,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.798,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.799,
+      "event": "rx_bytes",
+      "n": 122
+    },
+    {
+      "ts": 1794949218.8,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.8,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.8,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.8,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.801,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949218.801,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.802,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.803,
+      "event": "rx_bytes",
+      "n": 155
+    },
+    {
+      "ts": 1794949218.803,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.804,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.804,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.804,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.804,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.804,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.804,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.896,
+      "event": "rx_bytes",
+      "n": 64
+    },
+    {
+      "ts": 1794949218.896,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.896,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.896,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.896,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.896,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949218.9,
+      "event": "rx_bytes",
+      "n": 167
+    },
+    {
+      "ts": 1794949218.9,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.9,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.9,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.9,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.9,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.9,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.9,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.9,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.9,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949218.903,
+      "event": "rx_bytes",
+      "n": 109
+    },
+    {
+      "ts": 1794949218.903,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.903,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.903,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949218.903,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949218.905,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949218.905,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949218.905,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.996,
+      "event": "rx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949218.996,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949218.996,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949218.996,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949219.0,
+      "event": "rx_bytes",
+      "n": 173
+    },
+    {
+      "ts": 1794949219.0,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949219.0,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949219.0,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949219.0,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949219.0,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949219.0,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949219.0,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949219.0,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949219.0,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    },
+    {
+      "ts": 1794949219.003,
+      "event": "rx_bytes",
+      "n": 102
+    },
+    {
+      "ts": 1794949219.003,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949219.003,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949219.003,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949219.003,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949219.005,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949219.005,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949219.005,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949219.099,
+      "event": "rx_bytes",
+      "n": 154
+    },
+    {
+      "ts": 1794949219.099,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949219.099,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949219.099,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949219.099,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949219.099,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_getPropertyAsync"
+    },
+    {
+      "ts": 1794949219.099,
+      "event": "mybmw_rpc_rx",
+      "method": "cds_onPropertyChangedEvent"
+    },
+    {
+      "ts": 1794949219.099,
+      "event": "mybmw_cds_event"
+    },
+    {
+      "ts": 1794949219.102,
+      "event": "rx_bytes",
+      "n": 12
+    },
+    {
+      "ts": 1794949219.102,
+      "event": "hu_dataack"
+    },
+    {
+      "ts": 1794949219.102,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949219.104,
+      "event": "rx_bytes",
+      "n": 52
+    },
+    {
+      "ts": 1794949219.104,
+      "event": "hu_unsolicited"
+    },
+    {
+      "ts": 1794949219.104,
+      "event": "frame"
+    },
+    {
+      "ts": 1794949219.104,
+      "event": "mybmw_rpc_rx",
+      "method": "_result_cds_addPropertyChangedEventHandler"
+    }
+  ],
+  "btmon_line_counts": {
+    "hu": 1281,
+    "phone": 1112
+  },
+  "btmon_tail": {
+    "hu": [
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #352 [hci2] 18.044473",
+      "        Num handles: 1",
+      "        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 113 msec (60-193 msec ~120 msec)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #353 [hci2] 18.044483",
+      "        Num handles: 1",
+      "        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 107 msec (60-193 msec ~114 msec)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #354 [hci2] 18.130296",
+      "        Num handles: 1",
+      "        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 188 msec (60-193 msec ~151 msec)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #355 [hci2] 18.130304",
+      "        Num handles: 1",
+      "        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 186 msec (60-193 msec ~169 msec)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #356 [hci2] 18.130306",
+      "        Num handles: 1",
+      "        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 186 msec (60-193 msec ~177 msec)",
+      "> ACL Data RX: Handle 129 flags 0x02 dlen 9               #357 [hci2] 18.132300",
+      "      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "         Credits: 31",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #358 [hci2] 18.132304",
+      "        Num handles: 1",
+      "        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 89 msec (60-193 msec ~133 msec)",
+      "> ACL Data RX: Handle 129 flags 0x02 dlen 20              #359 [hci2] 21.526590",
+      "      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "> ACL Data RX: Handle 129 flags 0x02 dlen 20              #360 [hci2] 26.625534",
+      "      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "> ACL Data RX: Handle 129 flags 0x02 dlen 20              #361 [hci2] 31.543513",
+      "      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "> ACL Data RX: Handle 129 flags 0x02 dlen 8               #362 [hci2] 36.559282",
+      "      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Disconnect (DISC) (0x43)",
+      "< ACL Data TX: Handle 129 flags 0x00 dlen 8               #363 [hci2] 36.559348",
+      "      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Ack (UA) (0x63)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #364 [hci2] 36.661109",
+      "        Num handles: 1",
+      "        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 101 msec (60-193 msec ~117 msec)",
+      "> ACL Data RX: Handle 129 flags 0x02 dlen 8               #365 [hci2] 36.761824",
+      "      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Disconnect (DISC) (0x43)",
+      "< ACL Data TX: Handle 129 flags 0x00 dlen 8               #366 [hci2] 36.761916",
+      "      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Ack (UA) (0x63)",
+      "< ACL Data TX: Handle 129 flags 0x00 dlen 12              #367 [hci2] 36.761934",
+      "      L2CAP: Disconnection Request (0x06) ident 8 len 4",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #368 [hci2] 36.857789",
+      "        Num handles: 1",
+      "        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 95 msec (60-193 msec ~106 msec)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #369 [hci2] 36.865525",
+      "        Num handles: 1",
+      "        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)",
+      "> ACL Data RX: Handle 129 flags 0x02 dlen 12              #370 [hci2] 36.867801",
+      "      L2CAP: Disconnection Response (0x07) ident 8 len 4",
+      "> HCI Event: Disconnect Complete (0x05) plen 4            #371 [hci2] 39.114691",
+      "        Handle: 129 Address: C0:B8:83:34:F4:62 (Intel Corporate)",
+      "@ MGMT Event: Device Disconnected (0x000c) plen 8     {0x0001} [hci2] 39.114723",
+      "          Discoverable",
+      "@ MGMT Command: Set Discoverable (0x0006) plen 3      {0x0001} [hci2] 41.508316",
+      "        Discoverable: General (0x01)",
+      "      Set Discoverable (0x0006) plen 4",
+      "          Discoverable"
+    ],
+    "phone": [
+      "> ACL Data RX: Handle 256 flags 0x02 dlen 60              #344 [hci0] 18.098438",
+      "      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "> ACL Data RX: Handle 256 flags 0x02 dlen 110             #345 [hci0] 18.098441",
+      "      Channel: 66 len 106 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "< ACL Data TX: Handle 256 flags 0x00 dlen 9               #346 [hci0] 18.098516",
+      "      Channel: 66 len 5 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "         Credits: 31",
+      "> ACL Data RX: Handle 256 flags 0x02 dlen 20              #347 [hci0] 18.101440",
+      "      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "> ACL Data RX: Handle 256 flags 0x02 dlen 60              #348 [hci0] 18.103451",
+      "      Channel: 66 len 56 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #349 [hci0] 18.103625",
+      "        Num handles: 1",
+      "        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 5 msec (4-110 msec ~6 msec)",
+      "< ACL Data TX: Handle 256 flags 0x00 dlen 20              #350 [hci0] 21.508466",
+      "      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #351 [hci0] 21.520700",
+      "        Num handles: 1",
+      "        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 12 msec (4-110 msec ~9 msec)",
+      "< ACL Data TX: Handle 256 flags 0x00 dlen 20              #352 [hci0] 26.515866",
+      "      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #353 [hci0] 26.591766",
+      "        Num handles: 1",
+      "        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 75 msec (4-110 msec ~42 msec)",
+      "< ACL Data TX: Handle 256 flags 0x00 dlen 20              #354 [hci0] 31.523363",
+      "      Channel: 66 len 16 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #355 [hci0] 31.531843",
+      "        Num handles: 1",
+      "        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 8 msec (4-110 msec ~25 msec)",
+      "< ACL Data TX: Handle 256 flags 0x00 dlen 8               #356 [hci0] 36.531670",
+      "      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Disconnect (DISC) (0x43)",
+      "> ACL Data RX: Handle 256 flags 0x02 dlen 8               #357 [hci0] 36.621431",
+      "      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Ack (UA) (0x63)",
+      "< ACL Data TX: Handle 256 flags 0x00 dlen 8               #358 [hci0] 36.621493",
+      "      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Disconnect (DISC) (0x43)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #359 [hci0] 36.621907",
+      "        Num handles: 1",
+      "        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 90 msec (4-110 msec ~57 msec)",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #360 [hci0] 36.725937",
+      "        Num handles: 1",
+      "        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)",
+      "        Channel: 66 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "        Channel Latency: 104 msec (4-110 msec ~81 msec)",
+      "> ACL Data RX: Handle 256 flags 0x02 dlen 8               #361 [hci0] 36.826906",
+      "      Channel: 66 len 4 [PSM 3 mode Basic (0x00)] {chan 2}",
+      "      RFCOMM: Unnumbered Ack (UA) (0x63)",
+      "> ACL Data RX: Handle 256 flags 0x02 dlen 12              #362 [hci0] 36.826908",
+      "      L2CAP: Disconnection Request (0x06) ident 8 len 4",
+      "< ACL Data TX: Handle 256 flags 0x00 dlen 12              #363 [hci0] 36.826954",
+      "      L2CAP: Disconnection Response (0x07) ident 8 len 4",
+      "> HCI Event: Number of Completed Packets (0x13) plen 5    #364 [hci0] 36.927927",
+      "        Num handles: 1",
+      "        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)",
+      "< HCI Command: Disconnect (0x01|0x0006) plen 3            #365 [hci0] 38.887489",
+      "        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)",
+      "      Disconnect (0x01|0x0006) ncmd 1",
+      "> HCI Event: Disconnect Complete (0x05) plen 4            #367 [hci0] 39.017971",
+      "        Handle: 256 Address: C8:C9:A3:CB:7B:0A (Espressif Inc.)",
+      "@ MGMT Event: Device Disconnected (0x000c) plen 8     {0x0001} [hci0] 39.018013"
+    ]
+  },
+  "hypothesis_hints": [
+    "HU os.write failed with errno 11 (EAGAIN/EWOULDBLOCK) \u2014 transport not ready at write()",
+    "phone classified abort as WATCHDOG_MISS_NO_ETCH_REPLY"
+  ],
+  "hold_rc": 0,
+  "remote_hold": "/tmp/bcl_dummy/p0_hold_20261117T210002Z",
+  "btmon": [
+    {
+      "hci": "2",
+      "tag": "hu",
+      "btsnoop": "/tmp/bcl_dummy/p0_write11_cap_20261117T205958Z/hu_hci2.btsnoop",
+      "log": "/tmp/bcl_dummy/p0_write11_cap_20261117T205958Z/hu_btmon.log",
+      "pid": "535861",
+      "local": "docs/evidence/LAB_P0_WRITE11_CAP_SINGLE_20261117T2200Z/hu_hci2.btsnoop"
+    },
+    {
+      "hci": "0",
+      "tag": "phone",
+      "btsnoop": "/tmp/bcl_dummy/p0_write11_cap_20261117T205958Z/phone_hci0.btsnoop",
+      "log": "/tmp/bcl_dummy/p0_write11_cap_20261117T205958Z/phone_btmon.log",
+      "pid": "535917",
+      "local": "docs/evidence/LAB_P0_WRITE11_CAP_SINGLE_20261117T2200Z/phone_hci0.btsnoop"
+    }
+  ]
+}

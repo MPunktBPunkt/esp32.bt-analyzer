@@ -1,0 +1,3 @@
+139625 python3 /tmp/hci_tcp_bridge.py 192.168.178.87 --port 9754 --local-name BT-Analyzer-Phone
+535668 ssh -o BatchMode=yes -o ConnectTimeout=8 root@192.168.178.108 pgrep -af 'hci_tcp_bridge.py 192.168.178.87' || true
+535684 bash -c pgrep -af 'hci_tcp_bridge.py 192.168.178.87' || true
