@@ -1,0 +1,182 @@
+{
+  "date": "2026-11-17",
+  "methodik": "docs/METHODIK_LOG_FORENSIK.md",
+  "report": "docs/analysis/FIELD_RHMI_BROWSE_20261117.md",
+  "peer": "d4:36:39:cf:e1:b5",
+  "files": {
+    "bluetooth_20261117_072945_12974.log": {
+      "t0": "07:29:45.183",
+      "t1": "07:30:02.248",
+      "adapter": [
+        [
+          "07:30:01.848",
+          "TURNING_OFF"
+        ],
+        [
+          "07:30:01.982",
+          "BLE_ON"
+        ],
+        [
+          "07:30:01.992",
+          "BLE_TURNING_OFF"
+        ]
+      ],
+      "tx_writes": 456,
+      "tx_bytes": 295849,
+      "tx_666": 440,
+      "tx_559_sas_login": 0,
+      "rx_dumps_e1": 26,
+      "etch_hits_prefix_resolved": {
+        "_result_rhmi_setData": 2,
+        "cds_onPropertyChangedEvent": 1
+      },
+      "rhmi_setData_results": 2,
+      "rhmi_onActionEvent": 0,
+      "rhmi_ackActionEvent": 0,
+      "uih_667": 0,
+      "uih_645": 0,
+      "caps_clusters_5314": 0,
+      "setdata_timestamps": [
+        "07:29:48.915",
+        "07:29:52.790"
+      ],
+      "action_timestamps": []
+    },
+    "bluetooth_20261117_073003_19188.log": {
+      "t0": "07:30:03.442",
+      "t1": "07:32:48.765",
+      "adapter": [
+        [
+          "07:30:03.452",
+          "OFF"
+        ],
+        [
+          "07:30:03.651",
+          "BLE_TURNING_ON"
+        ],
+        [
+          "07:30:03.756",
+          "BLE_ON"
+        ],
+        [
+          "07:30:14.612",
+          "TURNING_ON"
+        ],
+        [
+          "07:30:14.805",
+          "ON"
+        ],
+        [
+          "07:32:48.053",
+          "TURNING_OFF"
+        ],
+        [
+          "07:32:48.187",
+          "BLE_ON"
+        ],
+        [
+          "07:32:48.219",
+          "BLE_TURNING_OFF"
+        ]
+      ],
+      "tx_writes": 1740,
+      "tx_bytes": 929162,
+      "tx_666": 1308,
+      "tx_559_sas_login": 2,
+      "rx_dumps_e1": 174,
+      "etch_hits_prefix_resolved": {
+        "_result_rhmi_setData": 19,
+        "cds_onPropertyChangedEvent": 11,
+        "_result_ver_getVersion": 5,
+        "_result_am_registerApp": 3,
+        "result": 3,
+        "_result_rhmi_setProperty": 2,
+        "rhmi_onActionEvent": 2,
+        "_result_am_showLoadingHint": 1,
+        "_result_am_addAppEventHandler": 1,
+        "_result_rhmi_checkResource": 1,
+        "_result_rhmi_ackActionEvent": 1
+      },
+      "rhmi_setData_results": 19,
+      "rhmi_onActionEvent": 2,
+      "rhmi_ackActionEvent": 1,
+      "uih_667": 49,
+      "uih_645": 5,
+      "caps_clusters_5314": 4,
+      "setdata_timestamps": [
+        "07:31:08.316",
+        "07:31:09.340",
+        "07:31:09.844",
+        "07:31:10.352",
+        "07:31:16.800",
+        "07:31:19.771",
+        "07:31:35.871",
+        "07:31:59.536",
+        "07:32:06.795",
+        "07:32:07.300",
+        "07:32:13.864",
+        "07:32:20.457",
+        "07:32:23.474",
+        "07:32:24.441",
+        "07:32:33.431",
+        "07:32:34.452",
+        "07:32:39.552",
+        "07:32:40.496",
+        "07:32:42.429"
+      ],
+      "action_timestamps": [
+        [
+          "07:31:42.522",
+          "rhmi_onActionEvent"
+        ],
+        [
+          "07:31:58.946",
+          "_result_rhmi_ackActionEvent"
+        ],
+        [
+          "07:32:07.827",
+          "rhmi_onActionEvent"
+        ]
+      ]
+    },
+    "bluetooth_20261117_073249_22237.log": {
+      "t0": "07:32:49.649",
+      "t1": "07:34:40.154",
+      "adapter": [
+        [
+          "07:32:49.666",
+          "OFF"
+        ],
+        [
+          "07:32:49.865",
+          "BLE_TURNING_ON"
+        ],
+        [
+          "07:32:49.977",
+          "BLE_ON"
+        ]
+      ],
+      "tx_writes": 0,
+      "tx_bytes": 0,
+      "tx_666": 0,
+      "tx_559_sas_login": 0,
+      "rx_dumps_e1": 0,
+      "etch_hits_prefix_resolved": {},
+      "rhmi_setData_results": 0,
+      "rhmi_onActionEvent": 0,
+      "rhmi_ackActionEvent": 0,
+      "uih_667": 0,
+      "uih_645": 0,
+      "caps_clusters_5314": 0,
+      "setdata_timestamps": [],
+      "action_timestamps": []
+    }
+  },
+  "cross": {
+    "sum_setData_results": 21,
+    "sum_onAction": 2,
+    "sum_sas_login_tx": 2,
+    "sum_caps_5314": 4,
+    "verdict": "FIELD FACT: RHMI setData+onAction while Spotify A2DP; opposite of LAB_RHMI_BROWSE_20261116T2002Z"
+  }
+}
