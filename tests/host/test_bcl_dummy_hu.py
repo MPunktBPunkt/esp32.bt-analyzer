@@ -275,6 +275,44 @@ class TestPhoneClientOrder(unittest.TestCase):
         self.assertFalse(phone.active)
 
 
+class TestPiDriveActionSink(unittest.TestCase):
+    def test_menu_test_action_sets_selected_action(self):
+        phone = PhoneClientSession(mybmw_sim=True, rhmi_pidrive_seq=True)
+        phone._rhmi_state = "RUNTIME_ACTIVE"
+        phone._handles["rhmi_create"] = 12
+        phone._dispatch_pidrive_action(
+            {"actionId": 200, "handle": 12, "_messageId": 99, "ident": 0}
+        )
+        self.assertEqual(phone.selected_action, "PI_DRIVE_TEST")
+        sink = [e for e in phone.events if e.get("event") == "pidrive_action_sink"]
+        self.assertEqual(len(sink), 1)
+        self.assertEqual(sink[0]["selected_action"], "PI_DRIVE_TEST")
+        # Echo setData onto model 101
+        self.assertTrue(
+            any(
+                e.get("event") == "mybmw_soak_setData" and e.get("modelId") == 101
+                for e in phone.events
+            )
+        )
+
+    def test_seq_setdata_then_complete(self):
+        import time
+
+        phone = PhoneClientSession(mybmw_sim=True, rhmi_pidrive_seq=True)
+        phone._rhmi_state = "RUNTIME_ACTIVE"
+        phone._handles["rhmi_create"] = 12
+        t0 = time.time()
+        phone.tick_rhmi_pidrive_seq(t0)
+        self.assertEqual(phone._seq_phase, "stabilize")
+        phone.tick_rhmi_pidrive_seq(t0 + 15.1)
+        self.assertTrue(phone._seq_setdata_done)
+        self.assertEqual(phone._seq_phase, "await_action")
+        phone._dispatch_pidrive_action({"actionId": 200, "handle": 12})
+        phone.tick_rhmi_pidrive_seq(t0 + 20.0)
+        self.assertEqual(phone._seq_phase, "complete")
+        self.assertTrue(any(e.get("event") == "pidrive_seq_complete" for e in phone.events))
+
+
 class TestLabVerdict(unittest.TestCase):
     def setUp(self):
         from lab_bcl_dummy_hu_a2dp import verdict

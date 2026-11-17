@@ -35,7 +35,7 @@
 
 ## Next
 
-1. **P1:** minimale eigene UI-Sequenz (`setData("PiDrive")` → Action → Event → interne Aktion) verdichten.  
+1. ~~**P1:** minimale UI-Sequenz~~ → **PASS** see `LAB_P0_RHMI_PIDRIVE_SEQ_PASS_20261117.md`.  
 2. **P1:** modelId 4 / 213 separat.  
 3. **P2:** EAGAIN-Histogramm.  
-4. **P3:** kontrollierter F20-Feldversuch — erst nach stabiler Lab-UI-Sequenz.
+4. **P3:** kontrollierter F20-Feldversuch.

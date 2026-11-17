@@ -1,0 +1,42 @@
+{
+  "pass": true,
+  "hold_s": 93.92,
+  "rhmi_state": "RUNTIME_ACTIVE",
+  "abort_reason": null,
+  "selected_action": "PI_DRIVE_TEST",
+  "seq_phase": "complete",
+  "counts": {
+    "setData_PiDrive": 2,
+    "action_tx": 1,
+    "action_rx": 1,
+    "acks": 1,
+    "sinks": 1,
+    "complete": 1
+  },
+  "inject": {
+    "injected": 1,
+    "actionId": 200,
+    "handle": 12,
+    "t_rel_s": 25.0
+  },
+  "hu_closes_fatal": [],
+  "criteria": {
+    "hold_ge_60s": true,
+    "runtime_active": true,
+    "no_abort": true,
+    "no_hu_close_fatal": true,
+    "setData_PiDrive": true,
+    "action_tx_menu_test": true,
+    "action_rx_menu_test": true,
+    "action_ack": true,
+    "pidrive_sink_PI_DRIVE_TEST": true,
+    "selected_action_done": true
+  },
+  "chain": [
+    "setData(100, PiDrive)",
+    "HU MENU_TEST_ACTION(200)",
+    "phone onActionEvent",
+    "ack",
+    "pidrive_action_sink \u2192 PI_DRIVE_TEST"
+  ]
+}

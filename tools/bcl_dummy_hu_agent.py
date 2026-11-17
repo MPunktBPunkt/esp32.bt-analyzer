@@ -790,6 +790,9 @@ def run_phone(
     rhmi_soak = bool(getattr(args, "rhmi_soak", False)) or (
         os.environ.get("BCL_RHMI_SOAK", "").strip() in ("1", "true", "yes")
     )
+    rhmi_pidrive_seq = bool(getattr(args, "rhmi_pidrive_seq", False)) or (
+        os.environ.get("BCL_RHMI_PIDRIVE_SEQ", "").strip() in ("1", "true", "yes")
+    )
     sess = None if observe_only else PhoneClientSession(
         selectproto=sp,
         wire_open5001=bool(getattr(args, "wire_open5001", False)) or mybmw_sim,
@@ -798,7 +801,8 @@ def run_phone(
         knock_payload=knock_payload,
         skip_knock=skip_knock,
         mybmw_sim=mybmw_sim,
-        rhmi_soak=rhmi_soak and mybmw_sim,
+        rhmi_soak=rhmi_soak and mybmw_sim and not rhmi_pidrive_seq,
+        rhmi_pidrive_seq=rhmi_pidrive_seq and mybmw_sim,
     )
     if sess is not None and getattr(sess, "rhmi_soak", False):
         log.write(
@@ -806,6 +810,15 @@ def run_phone(
                 "event": "rhmi_soak_enabled",
                 "session_id": session_id,
                 "note": "phased setData/setProperty after RUNTIME_ACTIVE",
+            }
+        )
+    if sess is not None and getattr(sess, "rhmi_pidrive_seq", False):
+        log.write(
+            {
+                "event": "rhmi_pidrive_seq_enabled",
+                "session_id": session_id,
+                "menu_test_action": int(getattr(sess, "MENU_TEST_ACTION", 200)),
+                "note": "setData(PiDrive) → MENU_TEST_ACTION → PI_DRIVE_TEST sink",
             }
         )
     sent = 0
@@ -854,19 +867,25 @@ def run_phone(
             if sess.handshake is None and now >= next_init:
                 sock.sendall(sess.session_init())
                 next_init = now + SESSION_INIT_INTERVAL_S
-        # Phased RHMI soak: queue setData/setProperty after RUNTIME_ACTIVE.
+        # Phased RHMI soak or minimal PiDrive UI sequence after RUNTIME_ACTIVE.
         if (
             sess is not None
-            and getattr(sess, "rhmi_soak", False)
             and getattr(sess, "mybmw_sim", False)
             and not observe_only
+            and (
+                getattr(sess, "rhmi_soak", False)
+                or getattr(sess, "rhmi_pidrive_seq", False)
+            )
         ):
             try:
-                sess.tick_rhmi_soak(now)  # type: ignore[attr-defined]
+                if getattr(sess, "rhmi_pidrive_seq", False):
+                    sess.tick_rhmi_pidrive_seq(now)  # type: ignore[attr-defined]
+                else:
+                    sess.tick_rhmi_soak(now)  # type: ignore[attr-defined]
             except Exception as exc:  # noqa: BLE001
                 log.write(
                     {
-                        "event": "rhmi_soak_tick_error",
+                        "event": "rhmi_tick_error",
                         "error": repr(exc),
                         "session_id": session_id,
                     }
@@ -879,7 +898,7 @@ def run_phone(
                             "event": "tx_bytes",
                             "n": len(out),
                             "hex": out.hex()[:128],
-                            "kind": "rhmi_soak",
+                            "kind": "rhmi_seq" if getattr(sess, "rhmi_pidrive_seq", False) else "rhmi_soak",
                             "session_id": session_id,
                         }
                     )
@@ -1092,6 +1111,8 @@ def run_phone(
             "soak_phase": snap.get("soak_phase"),
             "soak_counts": snap.get("soak_counts"),
             "soak_elapsed_s": snap.get("soak_elapsed_s"),
+            "selected_action": snap.get("selected_action"),
+            "seq_phase": snap.get("seq_phase"),
             "bcl_classification": cls["bcl_classification"],
             "classification": cls,
             **meta,
@@ -1265,6 +1286,11 @@ def main() -> int:
             "--rhmi-soak",
             action="store_true",
             help="after RUNTIME_ACTIVE run phased setData/setProperty soak (also BCL_RHMI_SOAK=1)",
+        )
+        p.add_argument(
+            "--rhmi-pidrive-seq",
+            action="store_true",
+            help="minimal UI seq: setData(PiDrive)→MENU_TEST_ACTION→PI_DRIVE_TEST (BCL_RHMI_PIDRIVE_SEQ=1)",
         )
         p.add_argument(
             "--selectproto",

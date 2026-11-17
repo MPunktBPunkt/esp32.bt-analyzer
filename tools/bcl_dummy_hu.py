@@ -628,6 +628,15 @@ class PhoneClientSession(_Session):
     _soak_next_t: float = 0.0
     _soak_i: int = 0
     _soak_counts: dict = field(default_factory=dict)
+    # Minimal PiDrive UI sequence (setData → Action → internal sink).
+    # MENU_TEST_ACTION=200 aligns with controller DEMO_PIDRIVE_XML raAction ids.
+    rhmi_pidrive_seq: bool = False
+    selected_action: str | None = None
+    _seq_t0: float | None = None
+    _seq_phase: str = ""
+    _seq_setdata_done: bool = False
+    MENU_TEST_ACTION: int = 200
+    PI_DRIVE_TEST: str = "PI_DRIVE_TEST"
 
     def session_init(self) -> bytes:
         self.events.append({"event": "session_init", "dir": "tx"})
@@ -678,6 +687,8 @@ class PhoneClientSession(_Session):
             "soak_elapsed_s": (
                 None if self._soak_t0 is None else round(time.time() - self._soak_t0, 1)
             ),
+            "selected_action": self.selected_action,
+            "seq_phase": self._seq_phase or None,
         }
 
     def _knock_bytes(self) -> bytes:
@@ -1132,6 +1143,36 @@ class PhoneClientSession(_Session):
             }
         )
 
+    def _dispatch_pidrive_action(self, fields: dict) -> None:
+        """Lab PiDrive sink: MENU_TEST_ACTION → selected_action=PI_DRIVE_TEST."""
+        try:
+            action_id = int(fields.get("actionId") if fields.get("actionId") is not None else -1)
+        except (TypeError, ValueError):
+            action_id = -1
+        if action_id != int(self.MENU_TEST_ACTION):
+            self.events.append(
+                {
+                    "event": "pidrive_action_ignored",
+                    "actionId": action_id,
+                    "expected": int(self.MENU_TEST_ACTION),
+                }
+            )
+            return
+        self.selected_action = str(self.PI_DRIVE_TEST)
+        self._seq_phase = "pidrive_internal"
+        self._soak_counts["pidrive_sink"] = int(self._soak_counts.get("pidrive_sink") or 0) + 1
+        self.events.append(
+            {
+                "event": "pidrive_action_sink",
+                "actionId": action_id,
+                "selected_action": self.selected_action,
+                "handle": fields.get("handle"),
+                "note": "MENU_TEST_ACTION → PI_DRIVE_TEST",
+            }
+        )
+        # Echo measurable UI state back onto known-good model 101.
+        self.queue_set_data(101, self.selected_action, reason="pidrive_sink_echo")
+
     def _ack_action_event(self, fields: dict) -> None:
         """Acknowledge HU→phone rhmi_onActionEvent (product interaction path)."""
         rhmi_h = int(fields.get("handle") or self._handles.get("rhmi_create") or 12)
@@ -1155,9 +1196,59 @@ class PhoneClientSession(_Session):
                 "handle": rhmi_h,
                 "actionId": action_id,
                 "ident": ident,
-                "phase": self._soak_phase or None,
+                "phase": self._soak_phase or self._seq_phase or None,
             }
         )
+
+    def tick_rhmi_pidrive_seq(self, now: float) -> None:
+        """Minimal UI sequence after RUNTIME_ACTIVE.
+
+        0–15s stabilize → setData(100,\"PiDrive\") once → wait for MENU_TEST_ACTION sink.
+        """
+        if not self.rhmi_pidrive_seq or self._rhmi_state != "RUNTIME_ACTIVE":
+            return
+        if self._seq_t0 is None:
+            self._seq_t0 = now
+            self._seq_phase = "stabilize"
+            self.events.append(
+                {
+                    "event": "pidrive_seq_start",
+                    "phase": "stabilize",
+                    "menu_test_action": int(self.MENU_TEST_ACTION),
+                }
+            )
+            return
+        elapsed = now - self._seq_t0
+        if not self._seq_setdata_done and elapsed >= 15.0:
+            self.queue_set_data(100, "PiDrive", reason="pidrive_seq")
+            self._seq_setdata_done = True
+            self._seq_phase = "setData_done"
+            self.events.append(
+                {
+                    "event": "pidrive_seq_setData",
+                    "modelId": 100,
+                    "value": "PiDrive",
+                    "elapsed_s": round(elapsed, 1),
+                }
+            )
+            self._seq_phase = "await_action"
+            self.events.append(
+                {
+                    "event": "pidrive_seq_phase",
+                    "phase": "await_action",
+                    "elapsed_s": round(elapsed, 1),
+                    "note": "waiting for HU MENU_TEST_ACTION inject",
+                }
+            )
+        elif self.selected_action == str(self.PI_DRIVE_TEST) and self._seq_phase != "complete":
+            self._seq_phase = "complete"
+            self.events.append(
+                {
+                    "event": "pidrive_seq_complete",
+                    "selected_action": self.selected_action,
+                    "elapsed_s": round(elapsed, 1),
+                }
+            )
 
     def tick_rhmi_soak(self, now: float) -> None:
         """Drive phased post-RUNTIME_ACTIVE RHMI traffic (setData / setProperty).
@@ -1438,10 +1529,12 @@ class PhoneClientSession(_Session):
                         "ident": fields.get("ident"),
                         "args": fields.get("args"),
                         "msg_id": fields.get("_messageId"),
-                        "phase": self._soak_phase or None,
+                        "phase": self._soak_phase or self._seq_phase or None,
                     }
                 )
                 self._soak_counts["actionRx"] = int(self._soak_counts.get("actionRx") or 0) + 1
+                # Decode → PiDrive handler → internal state (lab product chain).
+                self._dispatch_pidrive_action(fields)
                 self._ack_action_event(fields)
             elif method == "cds_onPropertyChangedEvent":
                 self.events.append(
