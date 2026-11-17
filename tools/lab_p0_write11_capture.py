@@ -194,6 +194,8 @@ def analyze_capture(
         ),
         None,
     )
+    eagain_events = [e for e in hu_events if e.get("event") == "tx_write_eagain"]
+    eagain_recovered = [e for e in hu_events if e.get("event") == "tx_write_eagain_recovered"]
     center = None
     if fail and isinstance(fail.get("ts"), (int, float)):
         center = float(fail["ts"])
@@ -216,6 +218,16 @@ def analyze_capture(
         "window_s": window_s,
         "tx_write_failed": fail,
         "rfcomm_closed": close,
+        "eagain": {
+            "events": len(eagain_events),
+            "recovered": len(eagain_recovered),
+            "recovered_wait_s_max": max(
+                (float(e.get("eagain_waited_s") or 0) for e in eagain_recovered), default=0
+            ),
+            "recovered_retries_max": max(
+                (int(e.get("eagain_retries") or 0) for e in eagain_recovered), default=0
+            ),
+        },
         "hu_session_tx": summarize_tx(hu_events),
         "phone_session_tx": summarize_tx(phone_events),
         "hu_window_events": [
@@ -268,6 +280,15 @@ def analyze_capture(
     hints = report["hypothesis_hints"]
     if fail and fail.get("errno") == 11:
         hints.append("HU os.write failed with errno 11 (EAGAIN/EWOULDBLOCK) — transport not ready at write()")
+    if fail and fail.get("note") == "eagain_budget_exhausted":
+        hints.append(
+            f"EAGAIN budget exhausted after {fail.get('eagain_retries')} retries / "
+            f"{fail.get('eagain_waited_s')}s waited"
+        )
+    if eagain_recovered and not fail:
+        hints.append(
+            f"EAGAIN recovered without close ({len(eagain_recovered)}×) — write-policy mitigation held"
+        )
     if fail and (fail.get("seconds_since_last_rx") or 0) > 1.0:
         hints.append(
             f"last RX was {fail.get('seconds_since_last_rx')}s before failed write — RX stall before TX fail"
@@ -276,8 +297,10 @@ def analyze_capture(
         hints.append(f"session saw large HU TX frame(s) up to {report['hu_session_tx']['tx_max']} B")
     if (hold.get("hold") or {}).get("wait_class") == "WATCHDOG_MISS_NO_ETCH_REPLY":
         hints.append("phone classified abort as WATCHDOG_MISS_NO_ETCH_REPLY")
-    if not center:
+    if not center and not eagain_recovered:
         hints.append("no write_error:11 / tx_write_failed found — capture may be bond-fail or eof path")
+    elif not center and eagain_recovered:
+        hints.append("no terminal write_error:11 — session survived EAGAIN via retry/poll")
 
     return report
 
@@ -296,6 +319,7 @@ def write_md(report: dict, path: Path) -> None:
         f"attempted={fail.get('bytes_attempted')} tx_total={fail.get('tx_total')} "
         f"since_rx={fail.get('seconds_since_last_rx')}s",
         f"- rfcomm_closed: `{close.get('reason')}`",
+        f"- eagain: `{json.dumps(report.get('eagain'))}`",
         "",
         "## Session TX",
         "",
@@ -307,6 +331,14 @@ def write_md(report: dict, path: Path) -> None:
     ]
     for h in report.get("hypothesis_hints") or []:
         lines.append(f"- {h}")
+    eg = report.get("eagain") or {}
+    if eg.get("recovered"):
+        lines.append(
+            f"- EAGAIN recovered {eg.get('recovered')}× "
+            f"(max wait {eg.get('recovered_wait_s_max')}s / retries {eg.get('recovered_retries_max')})"
+        )
+    if not fail and not close and (report.get("hold") or {}).get("ok") is not False:
+        lines.append("- no write_error:11 in this capture (mitigation may be holding)")
     lines += ["", "## HU window (compact)", "", "```json"]
     lines.append(json.dumps(report.get("hu_window_events"), indent=2)[:6000])
     lines += ["```", "", "## btmon kept-line tails", ""]

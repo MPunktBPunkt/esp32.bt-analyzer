@@ -15,8 +15,10 @@ Needs python3-gi + python3-dbus for hu modes. Epistemic: TEST/field capture only
 from __future__ import annotations
 
 import argparse
+import errno
 import json
 import os
+import select
 import signal
 import socket
 import sys
@@ -25,6 +27,133 @@ import uuid
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# P0 write11 mitigation probe: poll/retry on EAGAIN instead of immediate RFCOMM close.
+# Override via env for lab A/B (set BCL_WRITE_EAGAIN_S=0 to restore old fail-fast).
+_WRITE_EAGAIN_S = float(os.environ.get("BCL_WRITE_EAGAIN_S", "2.0"))
+_WRITE_EAGAIN_POLL_S = float(os.environ.get("BCL_WRITE_EAGAIN_POLL_S", "0.02"))
+
+
+def rfcomm_write_all(
+    fd: int,
+    payload: bytes,
+    *,
+    log: "JsonlLog",
+    conn: dict,
+    session_id: str,
+    event_prefix: str = "tx",
+) -> tuple[bool, dict | None]:
+    """Write payload to RFCOMM fd; retry/poll on EAGAIN/EWOULDBLOCK.
+
+    Returns (ok, fail_info). fail_info is set when giving up (for close reason logging).
+    """
+    offset = 0
+    eagain_n = 0
+    waited_s = 0.0
+    t0 = time.time()
+    deadline = t0 + max(0.0, _WRITE_EAGAIN_S)
+    while offset < len(payload):
+        try:
+            n = os.write(fd, payload[offset:])
+            if n <= 0:
+                raise OSError(errno.EAGAIN, "write returned 0")
+            offset += n
+            continue
+        except OSError as exc:
+            if exc.errno not in (errno.EAGAIN, errno.EWOULDBLOCK) or _WRITE_EAGAIN_S <= 0:
+                since_rx = None
+                if conn.get("last_rx_ts") is not None:
+                    since_rx = round(time.time() - float(conn["last_rx_ts"]), 4)
+                since_tx = None
+                if conn.get("last_tx_ts") is not None:
+                    since_tx = round(time.time() - float(conn["last_tx_ts"]), 4)
+                info = {
+                    "event": f"{event_prefix}_write_failed",
+                    "errno": exc.errno,
+                    "errno_name": errno.errorcode.get(exc.errno, "?"),
+                    "bytes_attempted": len(payload),
+                    "bytes_written": offset,
+                    "eagain_retries": eagain_n,
+                    "eagain_waited_s": round(waited_s, 4),
+                    "tx_total": int(conn.get("tx_total") or 0),
+                    "tx_frames": int(conn.get("tx_frames") or 0),
+                    "tx_max": int(conn.get("tx_max") or 0),
+                    "rx_total": len(conn.get("rx_raw") or b""),
+                    "seconds_since_last_rx": since_rx,
+                    "seconds_since_last_tx_ok": since_tx,
+                    "hex_head": payload[:32].hex(),
+                }
+                log.write(info, **conn.get("dev") or {}, session_id=session_id)
+                return False, info
+            eagain_n += 1
+            now = time.time()
+            if now >= deadline:
+                since_rx = None
+                if conn.get("last_rx_ts") is not None:
+                    since_rx = round(now - float(conn["last_rx_ts"]), 4)
+                since_tx = None
+                if conn.get("last_tx_ts") is not None:
+                    since_tx = round(now - float(conn["last_tx_ts"]), 4)
+                info = {
+                    "event": f"{event_prefix}_write_failed",
+                    "errno": errno.EAGAIN,
+                    "errno_name": "EAGAIN",
+                    "bytes_attempted": len(payload),
+                    "bytes_written": offset,
+                    "eagain_retries": eagain_n,
+                    "eagain_waited_s": round(waited_s, 4),
+                    "eagain_budget_s": _WRITE_EAGAIN_S,
+                    "tx_total": int(conn.get("tx_total") or 0),
+                    "tx_frames": int(conn.get("tx_frames") or 0),
+                    "tx_max": int(conn.get("tx_max") or 0),
+                    "rx_total": len(conn.get("rx_raw") or b""),
+                    "seconds_since_last_rx": since_rx,
+                    "seconds_since_last_tx_ok": since_tx,
+                    "hex_head": payload[:32].hex(),
+                    "note": "eagain_budget_exhausted",
+                }
+                log.write(info, **conn.get("dev") or {}, session_id=session_id)
+                return False, info
+            if eagain_n == 1 or eagain_n % 25 == 0:
+                log.write(
+                    {
+                        "event": f"{event_prefix}_write_eagain",
+                        "errno": exc.errno,
+                        "bytes_attempted": len(payload),
+                        "bytes_written": offset,
+                        "eagain_retries": eagain_n,
+                        "eagain_waited_s": round(waited_s, 4),
+                    },
+                    **conn.get("dev") or {},
+                    session_id=session_id,
+                )
+            # Wait until writable (or budget slice), then retry.
+            slice_s = min(_WRITE_EAGAIN_POLL_S, max(0.0, deadline - now))
+            t_poll = time.time()
+            try:
+                select.select([], [fd], [], slice_s)
+            except (ValueError, OSError):
+                time.sleep(slice_s)
+            waited_s += time.time() - t_poll
+
+    conn["tx_total"] = int(conn.get("tx_total") or 0) + len(payload)
+    conn["tx_frames"] = int(conn.get("tx_frames") or 0) + 1
+    conn["tx_max"] = max(int(conn.get("tx_max") or 0), len(payload))
+    conn["last_tx_ts"] = time.time()
+    if eagain_n:
+        conn["eagain_total"] = int(conn.get("eagain_total") or 0) + eagain_n
+        log.write(
+            {
+                "event": f"{event_prefix}_write_eagain_recovered",
+                "eagain_retries": eagain_n,
+                "eagain_waited_s": round(waited_s, 4),
+                "n": len(payload),
+                "tx_total": conn["tx_total"],
+            },
+            **conn.get("dev") or {},
+            session_id=session_id,
+        )
+    return True, None
 
 from bcl_classify import classify_bytes  # noqa: E402
 from bcl_dummy_hu import (  # noqa: E402
@@ -207,52 +336,25 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
             close(fd, "tx_blocked_observe_only")
             return False
         for r in replies:
-            try:
-                os.write(fd, r)
-                c["tx_total"] = int(c.get("tx_total") or 0) + len(r)
-                c["tx_frames"] = int(c.get("tx_frames") or 0) + 1
-                c["tx_max"] = max(int(c.get("tx_max") or 0), len(r))
-                c["last_tx_ts"] = time.time()
-                log.write(
-                    {
-                        "event": "tx_bytes",
-                        "n": len(r),
-                        "hex": r.hex(),
-                        "tx_total": c["tx_total"],
-                        "tx_frames": c["tx_frames"],
-                    },
-                    **c["dev"],
-                    session_id=session_id,
-                )
-            except OSError as exc:
-                # errno 11 == EAGAIN/EWOULDBLOCK on Linux — key for P0 write11 workstream
-                import errno as _errno
-
-                since_rx = None
-                if c.get("last_rx_ts") is not None:
-                    since_rx = round(time.time() - float(c["last_rx_ts"]), 4)
-                since_tx = None
-                if c.get("last_tx_ts") is not None:
-                    since_tx = round(time.time() - float(c["last_tx_ts"]), 4)
-                log.write(
-                    {
-                        "event": "tx_write_failed",
-                        "errno": exc.errno,
-                        "errno_name": _errno.errorcode.get(exc.errno, "?"),
-                        "bytes_attempted": len(r),
-                        "tx_total": int(c.get("tx_total") or 0),
-                        "tx_frames": int(c.get("tx_frames") or 0),
-                        "tx_max": int(c.get("tx_max") or 0),
-                        "rx_total": len(c.get("rx_raw") or b""),
-                        "seconds_since_last_rx": since_rx,
-                        "seconds_since_last_tx_ok": since_tx,
-                        "hex_head": r[:32].hex(),
-                    },
-                    **c["dev"],
-                    session_id=session_id,
-                )
-                close(fd, f"write_error:{exc.errno}")
+            ok, fail = rfcomm_write_all(
+                fd, r, log=log, conn=c, session_id=session_id, event_prefix="tx"
+            )
+            if not ok:
+                errn = (fail or {}).get("errno") or errno.EAGAIN
+                close(fd, f"write_error:{errn}")
                 return False
+            log.write(
+                {
+                    "event": "tx_bytes",
+                    "n": len(r),
+                    "hex": r.hex(),
+                    "tx_total": c["tx_total"],
+                    "tx_frames": c["tx_frames"],
+                    "eagain_total": int(c.get("eagain_total") or 0),
+                },
+                **c["dev"],
+                session_id=session_id,
+            )
         return True
 
     def accept_connection(
@@ -541,21 +643,23 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                         log, sess, c["sent"], **c["dev"], session_id=session_id
                     )
                     for r in replies:
-                        try:
-                            os.write(fd, r)
-                            log.write(
-                                {
-                                    "event": "tx_bytes",
-                                    "n": len(r),
-                                    "hex": r.hex(),
-                                    "reason": "inject_rhmi_action",
-                                },
-                                **c["dev"],
-                                session_id=session_id,
-                            )
-                        except OSError as exc:
-                            close(fd, f"inject_write_error:{exc.errno}")
+                        ok, fail = rfcomm_write_all(
+                            fd, r, log=log, conn=c, session_id=session_id, event_prefix="inject"
+                        )
+                        if not ok:
+                            close(fd, f"inject_write_error:{(fail or {}).get('errno')}")
                             break
+                        log.write(
+                            {
+                                "event": "tx_bytes",
+                                "n": len(r),
+                                "hex": r.hex(),
+                                "reason": "inject_rhmi_action",
+                                "tx_total": c.get("tx_total"),
+                            },
+                            **c["dev"],
+                            session_id=session_id,
+                        )
                 # Default pacing avoids same-ms action floods that correlated with RFCOMM drops.
                 # Override per line: {"_rhmi_action":{...},"_pace_ms":0} or env RHMI_ACTION_PACE_MS.
                 try:
@@ -590,21 +694,23 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                     log, sess, c["sent"], **c["dev"], session_id=session_id
                 )
                 for r in replies:
-                    try:
-                        os.write(fd, r)
-                        log.write(
-                            {
-                                "event": "tx_bytes",
-                                "n": len(r),
-                                "hex": r.hex(),
-                                "reason": "inject_cds",
-                            },
-                            **c["dev"],
-                            session_id=session_id,
-                        )
-                    except OSError as exc:
-                        close(fd, f"inject_write_error:{exc.errno}")
+                    ok, fail = rfcomm_write_all(
+                        fd, r, log=log, conn=c, session_id=session_id, event_prefix="inject"
+                    )
+                    if not ok:
+                        close(fd, f"inject_write_error:{(fail or {}).get('errno')}")
                         break
+                    log.write(
+                        {
+                            "event": "tx_bytes",
+                            "n": len(r),
+                            "hex": r.hex(),
+                            "reason": "inject_cds",
+                            "tx_total": c.get("tx_total"),
+                        },
+                        **c["dev"],
+                        session_id=session_id,
+                    )
         return True
 
     if inject_path and not observe_only:

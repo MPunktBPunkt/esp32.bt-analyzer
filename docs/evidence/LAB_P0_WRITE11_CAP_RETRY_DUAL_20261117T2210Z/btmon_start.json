@@ -1,0 +1,16 @@
+[
+  {
+    "hci": "2",
+    "tag": "hu",
+    "btsnoop": "/tmp/bcl_dummy/p0_write11_cap_20261117T210402Z/hu_hci2.btsnoop",
+    "log": "/tmp/bcl_dummy/p0_write11_cap_20261117T210402Z/hu_btmon.log",
+    "pid": "548829"
+  },
+  {
+    "hci": "1",
+    "tag": "phone",
+    "btsnoop": "/tmp/bcl_dummy/p0_write11_cap_20261117T210402Z/phone_hci1.btsnoop",
+    "log": "/tmp/bcl_dummy/p0_write11_cap_20261117T210402Z/phone_btmon.log",
+    "pid": "548886"
+  }
+]

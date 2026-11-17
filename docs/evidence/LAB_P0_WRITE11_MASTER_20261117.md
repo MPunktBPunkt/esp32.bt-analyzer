@@ -50,8 +50,19 @@ Debian Lab UI `:8081` reorganized into topic tabs + BMW subtabs + sticky status 
 USB phone (`hci0`) ↔ ESP HU `.131`: **same EAGAIN fingerprint** as Dual (89 B / 5250 B / 93 frames / CDS flood).  
 → Phone-side ESP / dual-proxy **not** required for the bug. See that dir’s `ANALYSIS.md`.
 
-## Next (protocol, not panic)
+## Mitigation: EAGAIN retry/poll (`…CAP_RETRY_{DUAL,SINGLE}_…`)
 
-1. HU write policy probe: retry/poll on EAGAIN instead of immediate close.  
-2. Optional USB↔USB (no ESP) if second dongle available.  
-Field `WATCHDOG_MISS_NO_ETCH_REPLY` = aftermath of RFCOMM EAGAIN — still not W0 Fall A.
+`rfcomm_write_all` in `bcl_dummy_hu_agent.py`: poll/retry on EAGAIN (budget 2s).
+
+| | baseline | retry |
+|-|----------|-------|
+| Dual | write11 ~1.5s → WATCHDOG | **90s+ `RUNTIME_ACTIVE`**, EAGAIN recovered 2× |
+| Single | same fail | **same success** |
+
+→ Transient RFCOMM not-ready is real; **fail-fast close** was what produced lab WATCHDOG_MISS.
+
+## Next
+
+1. Keep retry as lab HU default; document knobs `BCL_WRITE_EAGAIN_S` / `_POLL_S`.  
+2. Optional: longer soak / field-stack comparison (does real BclCarLink retry?).  
+Field `WATCHDOG_MISS_NO_ETCH_REPLY` in this lab path = aftermath of closing on EAGAIN — still not W0 Fall A.
