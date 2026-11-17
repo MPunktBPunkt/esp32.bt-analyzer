@@ -1,0 +1,2454 @@
+Hier das Ergebnis von GPT und Grok:
+# Geänderte Dateien
+Pfade relativ zu `DataAnalysis`. Alle Dateien strikt LF.
+## 2026-11-17 — esp32.bt-analyzer: Tiefenforensik 17.11. + Etch-Tiny-Int-Decode-Fix
+| Datei | Änderung | SHA-256 (12) |
+|-------|----------|--------------|
+| `esp32.bt-analyzer-main/tools/etch_codec.py` | Fix Apache-Etch-Tiny-Int-Decode: `read_intread_type_or_field_idread_value` auf vollen Bereich `0x00–0x7F` / `0xC0–0xFF` (statt `0x00–0x1F` / `0xE0–0xFF`); schaltet vollen `rhmi_setData`-Decode frei | `61e869f7c46d` |
+| `esp32.bt-analyzer-main/tests/host/test_bmw_lab_and_etch.py` | neu: Regressionstest `test_tiny_int_decode_full_etch_range` (122/122 OK) | `a32e0108eb35` |
+| `esp32.bt-analyzer-main/docs/analysis/DEEP_FORENSIC_RHMI_SCREENMIRROR_20261117.md` | neu: Tiefenforensik 17.11. — ein Connect-Zyklus Spotify→YouTube→Screen-Mirror, `ServiceException`-Decode (src17), App-Frame-Rosetta, Codec-Fix-Wirkung, Lab-Auswertung, Metadaten-Negativbeweis | `3e4112a80eee` |
+| `esp32.bt-analyzer-main/docs/analysis/FIELD_RHMI_BROWSE_20261117.md` | Errata: YouTube doch vorhanden; ein Zyklus Spotify→YouTube→Screen-Mirror; `plen=99`-setData = `ServiceException` | `a19db29decc1` |
+| `esp32.bt-analyzer-main/docs/evidence/LAB_F20SIM_SESSION_EVAL_20261116.md` | len-only-Lücke als CLOSED markiert (Codec-Fix → 40 Modelle / 0 Fehler / 80 Tracks) | `c00dc2e04b0a` |
+| `esp32.bt-analyzer-main/docs/BCL_BT.md` | `method:` um `DEEP_FORENSIC_RHMI_SCREENMIRROR_20261117.md` ergänzt | `7ff12e5c9c91` |
+Host-Tests: **122/122 OK** `python -m pytest tests/host -q`).
+## 2026-11-17 — pidrive: HU-Technical-Facts §10.6 (Feld F20 RHMI/YouTube/Screen-Mirror)
+| Datei | Änderung | SHA-256 (12) |
+|-------|----------|--------------|
+| `pidrive-main/docs/fahrzeug/HU-Technical-Facts.md` | neu §10.6: Feld F20 17.11. RHMI/YouTube/Screen-Mirror — C-BT47…C-BT51 + C-L17 (Etch-Tiny-Int-Fix) | `c5abedca93c4` |
+Ablauf daheim:
+1. Beide Ordner aus `update/` in die Repos zurückspielen.
+2. Host-Tests prüfen: `cd esp32.bt-analyzer-main && python -m pytest tests/host -q`.
+3. Neuen Report lesen: `docs/analysis/DEEP_FORENSIC_RHMI_SCREENMIRROR_20261117.md`.
+# Zusammenfassung der neuesten Untersuchungen
+## 1. Gesamtfazit
+Die Untersuchungen vom 16./17.11. bringen den Connected-/RHMI-Pfad deutlich weiter. Der aktuelle Stand ist:
+```text
+Bluetooth SCN 6
+    ↓
+BCL
+    ↓
+Etch / SAS
+    ↓
+AM
+    ↓
+RHMI
+    ↓
+CDS
+    ↓
+Spotify / YouTube / Screen-Mirror / Fahrzeugdaten
+```
+Der komplette Bluetooth-Connected-Stack ist am echten F20 inzwischen als Feldbefund belegt: BCL-Handshake v5, `OPEN 4004`, SAS-Challenge/Login, RHMI, AM und CDS [1][2].
+Neu hinzugekommen ist vor allem:
+- **YouTube ist im Connected-Stack tatsächlich aktiv belegt.**
+- **Spotify und YouTube laufen innerhalb eines einzigen Bluetooth-Connect-Zyklus.**
+- **AAIdrive registriert mehrere Apps über AM.**
+- **RHMI-Aktionen und `rhmi_setData` laufen während A2DP-Wiedergabe.**
+- **Ein Screen-Mirror-artiger Bildburst wurde während YouTube beobachtet.**
+- **Zwei `rhmi_setData`-Aufrufe wurden von der HU mit `BMWRemoting.ServiceException` abgelehnt.**
+- Der Etch-Decoder wurde korrigiert und kann nun im Labor vollständige RHMI-Modelle und Trackdaten dekodieren [8][9][11][12].
+Damit ist ein eigenes Connected-Menü nicht mehr nur theoretisch. Der nächste Engpass ist jetzt die kontrollierte Nutzung bereits autorisierter RHMI-Ressourcen und die Übertragung dieser Erkenntnisse in einen stabilen eigenen Client.
+---
+# 2. Feldsession: Spotify → YouTube → Screen-Mirror
+Die wichtigste neue Feldsession ist Log `19188`.
+Es handelt sich nicht um mehrere unabhängige Läufe, sondern um **einen einzigen Bluetooth-Connected-Zyklus**:
+```text
+07:30:03  Bluetooth/Connected-Session beginnt
+07:30:14  Spotify aktiv
+07:30:47  BCL INIT
+07:30:48  HU HANDSHAKE
+07:30:51  SELECTPROTO/KNOCK/SAS
+07:31:04  mehrere Apps werden registriert
+07:31:32  YouTube wird aktive Media-Session
+07:32:08  großer Bildburst / Screen-Mirror-Kandidat
+07:32:48  Bluetooth OFF
+```
+## Feldbelegte Apps
+Im Connected-Stack wurden unter anderem registriert:
+- Spotify,
+- YouTube,
+- Alexa,
+- Notification Readout,
+- `com.android.bluetooth`,
+- Google Assistant,
+- Screen-Mirror-Komponente.
+YouTube ist damit nicht nur als Android-Media-Session, sondern auch als `am_registerApp`-Eintrag im BMW-Connected-Stack belegt [9].
+---
+# 3. BCL- und SAS-Ablauf der neuen Session
+Der Bootstrap entspricht dem inzwischen bekannten F20-Verhalten:
+```text
+INIT
+    ↓
+HANDSHAKE v5
+    ↓
+SELECTPROTO
+    ↓
+KNOCK
+    ↓
+SAS
+    ↓
+RHMI / AM / CDS
+```
+Beobachtete Größen:
+```text
+INIT:             4 Byte
+HANDSHAKE:        16 Byte
+SELECTPROTO:      10 Byte
+KNOCK:            56 Byte
+SAS Login:        559 Byte
+Capabilities:     5306 Byte logische Payload
+```
+Die HU antwortet auf das gültige INIT sehr schnell. Die etwa dreisekündige Pause zwischen Handshake und SELECTPROTO stammt weiterhin vom Phone-/MyBMW-3-Sekunden-Polltimer und nicht von einer langen HU-Handshake-Latenz [1][8].
+Der SAS-Ablauf bleibt:
+```text
+sas_certificate
+    ↓
+16-Byte-Challenge
+    ↓
+559-Byte-sas_login mit 512-Byte-RSA-4096-Signatur
+    ↓
+_result_sas_login
+```
+Die Etch-Type-IDs werden über den Apache-Etch-sdbm-Hash mit Seed `5381` aufgelöst [8][12].
+---
+# 4. RHMI-Feldverkehr ist jetzt konkreter
+In der Session wurden direkt beobachtet:
+```text
+rhmi_getCapabilities
+rhmi_setData
+rhmi_setProperty
+rhmi_onActionEvent
+_result_rhmi_ackActionEvent
+am_registerApp
+am_addAppEventHandler
+```
+Die F20-HU hat damit nicht nur eine Connected-App akzeptiert, sondern tatsächlich:
+- RHMI-Daten verarbeitet,
+- iDrive-/HMI-Aktionen zurückgemeldet,
+- Anwendungen registriert,
+- Laufzeitdaten aktualisiert.
+Die Feldsession enthielt insgesamt ungefähr:
+```text
+19 × _result_rhmi_setData
+2 × rhmi_onActionEvent
+1 × _result_rhmi_ackActionEvent
+```
+Zusammen mit weiteren Logs ergibt sich ein konsistenter Nachweis der RHMI-Kommunikation [9][10].
+## Bedeutung
+Damit ist FIELD-MEASURED:
+```text
+RHMI-Datenfluss
+RHMI-Aktionsrückweg
+AM-App-Registration
+```
+Noch nicht vollständig rekonstruiert sind die eigentlichen Phone→HU-RHMI-Payloads, weil die OnePlus-Logs diese Richtung oft nur als Länge und nicht als vollständige Hexdaten enthalten. Der transparente RFCOMM-Relay bleibt deshalb wichtig.
+---
+# 5. Zwei RHMI-Aufrufe wurden von der HU abgelehnt
+Die beiden `rhmi_setData`-Antworten mit `plen=99` enthalten:
+```text
+de.bmw.idrive.BMWRemoting.ServiceException
+```
+Der Exception-Type-Hash ist:
+```text
+0x5A6F115C
+```
+Die HU hat damit zwei konkrete `rhmi_setData`-Aufrufe nicht akzeptiert.
+Der genaue Fehlercode und die Detailnachricht liegen wegen der gekürzten Feld-Dumps nicht vollständig vor. Aus dem Laborvergleich ist jedoch plausibel, dass es um einen nicht akzeptierten Bild-/Image-Wert beziehungsweise einen ungültigen `ImageID`-Pfad geht.
+Saubere Einstufung:
+| Aussage | Status |
+|---|---|
+| HU lehnt zwei `rhmi_setData`-Aufrufe ab | FIELD FACT |
+| Fehler ist `BMWRemoting.ServiceException` | FIELD FACT |
+| Ursache ist ImageID-/Cover-/Bildwert `0` | STRONG INFERENCE |
+| exakter BMW-Fehlercode `213` und Detailtext | nur Lab-/Code-Korrelation |
+Das ist für dein eigenes Menü wichtig: Der RHMI-Stack funktioniert, aber nicht jede Datenkombination wird von der Serien-HU akzeptiert.
+---
+# 6. Screen-Mirror-Befund
+Nach dem zweiten `rhmi_onActionEvent` während der YouTube-Wiedergabe wurde ein großer Datenburst beobachtet:
+```text
+ca. 216 KiB
+324 × 666 Byte + Rest
+```
+Dieser Burst passt stark zu einem Screen-Mirror-/Bildübertragungspfad und zum bekannten:
+```text
+io.bimmergestalt.idriveconnectaddons.screenmirror
+```
+Die Einordnung lautet:
+```text
+Screen-Mirror-Burst: FIELD-MEASURED
+Screen-Mirror-App als beteiligte Komponente: stark belegt
+vollständiger Nachweis jedes Bildframes: noch nicht vollständig
+```
+Es wurde kein Miracast-Protokoll nachgewiesen. Der wahrscheinlichere Mechanismus ist eine RHMI-/Etch-basierte Übertragung von Bilddaten beziehungsweise Screenshots.
+---
+# 7. YouTube: Was genau bewiesen ist
+## Bewiesen
+```text
+com.google.android.youtube
+```
+ist:
+- eine aktive Media-Session,
+- im Connected-Stack registriert,
+- Bestandteil desselben F20-Bluetooth-Zyklus wie Spotify,
+- während der Session tatsächlich aktiv.
+## Nicht bewiesen
+Der konkrete YouTube-Videotitel ist aus den Logs nicht rekonstruierbar.
+Grund:
+- Das OnePlus ist A2DP-Quelle.
+- Android protokolliert in dieser Rolle keine verwertbaren Titel-/Artist-/Albumwerte.
+- Die Phone→HU-RHMI-Payloads sind in den Oppo-Logs meist nur als Längen vorhanden.
+- Die HU→Phone-Dumps sind teilweise gekürzt.
+Damit gilt:
+```text
+YouTube-Playeridentität: FIELD-MEASURED
+YouTube-Videotitel: UNKNOWN
+Coverbild: UNKNOWN
+```
+---
+# 8. Korrektur des RHMI-Verständnisses
+Die neuen Untersuchungen bestätigen nochmals:
+```text
+rhmi_getCapabilities()
+```
+liefert keinen Widget- oder Screen-Baum.
+Die Antwort ist eine flache Map mit ungefähr 149 HU-/System-Capabilities, beispielsweise:
+```text
+hmi.type
+vehicle.type
+navi
+tts
+iva_ENT_USB_COVER_ART_IPOD
+_ENT_MTP_OFF
+```
+Das Widget-/Komponentenmodell liegt in `IDriveConnectKit` und umfasst unter anderem:
+- 12 RHMI-Komponenten,
+- 26 Properties,
+- `rhmi_create`,
+- `rhmi_setResource`,
+- `rhmi_initialize`,
+- `rhmi_setData`,
+- `rhmi_setProperty`,
+- Action-/HMI-Events [1][8][12].
+Die Capability-Map beschreibt also die **Fähigkeiten der HU**; sie ist nicht das Menü selbst.
+---
+# 9. Etch-Decoder wurde wesentlich verbessert
+Der Decoder hatte einen wichtigen Apache-Etch-Tiny-Integer-Bug.
+## Fehler vorher
+Es wurden nur enge Wertebereiche unterstützt:
+```text
+0x00–0x1F
+0xE0–0xFF
+```
+Apache Etch verwendet aber:
+```text
+0x00–0x7F für 0–127
+0xC0–0xFF für -64–-1
+```
+Dadurch brach der Decoder bei RHMI-Modellen und kleinen Integern mitten in Nachrichten ab.
+## Korrektur
+`read_int()`, `read_value()` und `read_type_or_field_id()` akzeptieren jetzt den vollständigen Bereich.
+Die Host-Tests sind:
+```text
+122/122 PASS
+```
+Im Lab konnte dadurch aus dem vollständigen RHMI-Datenstrom dekodiert werden:
+```text
+40 RHMI-Modelle
+80 Track-/Metadaten-Einträge
+0 Decode-Fehler
+```
+Dabei wurden im Labor unter anderem vollständige Testdaten wie:
+```text
+Scorpions – Best – Still Loving You
+HIM – Greatest Love Songs Vol. 666 – Wicked Game
+Disturbed – Ten Thousand Fists – Land of Confusion
+```
+rekonstruiert [9][11][12].
+Das ist ein wichtiger Fortschritt für den eigenen Menü-/RHMI-Simulator.
+---
+# 10. Lab-F20-Simulator: deutlich mehr als nur ein Protokolltest
+Der eigene `f20_sim` beziehungsweise die Lab-Umgebung kann inzwischen den wesentlichen Connected-Lifecycle abbilden:
+```text
+SAS
+CDS
+AM
+RHMI
+setData
+setProperty
+Action Events
+A2DP-Kopplung
+```
+Gemessene Lab-Statistik:
+```text
+3776 BMWRemoting-RPCs
+2896 rhmi_setData
+219 rhmi_setProperty
+114 cds_addPropertyChangedEventHandler
+110 cds_getPropertyAsync
+47 rhmi_setResource
+42 sas_certificate
+42 sas_login
+22 rhmi_create
+19 am_registerApp
+19 rhmi_initialize
+```
+Zusätzlich wurden CDS-Werte injiziert und auf dem Phone sichtbar bestätigt:
+```text
+speed = 99
+RPM = 5555
+battery = 77
+odometer = 114321
+```
+Das beweist nicht, dass der echte F20 beliebige eigene Daten akzeptiert. Es zeigt aber, dass dein Simulator mittlerweile als brauchbares Entwicklungs- und Regressionstestbett für:
+- CDS,
+- RHMI,
+- AM,
+- SAS-Stub,
+- Etch,
+- BCL-Multiplexing
+geeignet ist [11][13].
+---
+# 11. Lab-Limitierungen
+Der Lab-F20-Simulator ist noch nicht vollständig stabil.
+Offen beziehungsweise instabil:
+- AVRCP↔RHMI-Regelkreis nach Action-Flut,
+- frische NowPlaying-Updates nach Reconnect,
+- manche RHMI-Daten bleiben stale,
+- A2DP kann weiterlaufen, obwohl `rhmi_setData` nicht aktualisiert wird,
+- Dual-ESP-RFCOMM-Relay war mit alter `.87`-Firmware nicht erfolgreich,
+- Browse-only mit reinem A2DP erzeugt keine RHMI-Daten.
+Wichtig:
+```text
+A2DP allein ≠ RHMI-Aktivierung
+```
+Die Feldlogs zeigen jedoch, dass bei aktiviertem Connected-/Browse-Kontext RHMI-Daten parallel zu A2DP laufen können [10][11].
+---
+# 12. Neue Verbindung zwischen A2DP, Connected und RHMI
+Der aktuelle Stand ergibt:
+```text
+A2DP-Audio
+    +
+Connected/BCL/Etch
+    ↓
+RHMI-/AM-/CDS-Updates
+```
+Aber:
+```text
+A2DP allein
+    ≠
+RHMI
+```
+Das wurde im Lab explizit bestätigt:
+| Szenario | A2DP | RHMI-SetData |
+|---|---:|---:|
+| Browse-only / A2DP-only | aktiv | 0 |
+| Connected-/AAIdrive-Session | aktiv | viele |
+| Spotify/YouTube innerhalb Connected | aktiv | beobachtet |
+Damit ist der bisherige Hybridansatz bestätigt:
+```text
+Audio:
+    A2DP oder USB-MSC
+Menü/Metadaten:
+    Connected → BCL → Etch → RHMI/CDS
+```
+---
+# 13. Bedeutung für ein eigenes Menü
+Du kannst jetzt realistisch zwei Entwicklungsziele verfolgen.
+## Ziel A: eigenes natives MSC-Menü
+```text
+USB-MSC
+  ↓
+FAT/Directory
+  ↓
+BMW Media Browser
+```
+Dieser Weg ist weiterhin autonom und benötigt keine BMW-SAS-Credentials.
+Offen bleiben:
+- GATE-01 Play-Intent,
+- BUSY-Pacing über eine ganze Datei,
+- Dateien ab 8 MiB.
+## Ziel B: eigenes Connected-RHMI-Menü
+Der Protokollstack ist jetzt weitgehend verfügbar:
+```text
+BCL
+Etch
+SAS-Struktur
+AM
+RHMI
+CDS
+Action Events
+```
+Für einen ersten Proof solltest du nicht mit einem komplett neuen XML-Layout starten, sondern mit:
+```text
+autorisierter RHMI-Ressource
++
+eigene setData-Werte
++
+eigene setProperty-Werte
++
+ein Action Event
+```
+Die Ressourcen-Whitelist bleibt aktiv:
+```text
+freie XML/ImageDB/TextDB
+    → auf Serien-HU nicht automatisch akzeptiert
+```
+Die neue Feldsession zeigt, dass die HU RHMI-Daten akzeptiert und auch einzelne `setData`-Aufrufe ablehnen kann. Deshalb ist der erste Menütest zugleich ein Authorization-/Resource-Test.
+---
+# 14. Neue Prioritäten
+## P0 — jetzt
+1. **Etch-Tiny-Integer-Fix in alle Decoderpfade übernehmen.**
+2. **Lab-F20-Simulator als Golden-Test verwenden.**
+3. **B3-RFCOMM-Relay bauen**, um vollständige Phone→HU-RHMI-Payloads zu erfassen.
+4. **Eine autorisierte RHMI-Ressource auswählen.**
+5. **Ein minimales eigenes `setDatasetProperty`-Experiment vorbereiten.**
+## P1
+6. `rhmi_setData`-ServiceException gezielt untersuchen:
+   - gültige versus ungültige ImageIDs,
+   - Cover-/Resource-Modelle,
+   - Verhalten mit `ImageID=0`.
+7. `rhmi_onActionEvent` und Response vollständig korrelieren.
+8. Screen-Mirror-Burst mit Bild-/Zeitmarkern untersuchen.
+9. vollständige 149er-Capability-Map über Relay sichern.
+10. YouTube-/Spotify-Connected-Daten mit RHMI-Model-IDs korrelieren.
+## Parallel für PiDrive
+11. GATE-01 mit CDS-Entertainment-Observer weiterführen.
+12. A2DP-Stack auf SBC 44,1 kHz beziehungsweise Bitpool ≤35 testen.
+13. MSC-Live-Slot und BUSY-Pacing nicht zugunsten des RHMI-Pfads vernachlässigen.
+---
+# 15. Aktualisierte Gesamtbewertung
+## Neu als FIELD FACT
+- Spotify und YouTube im selben Connected-Zyklus.
+- YouTube als AM-registrierte Connected-App.
+- RHM`setData` und Action-Events im realen F20-Verkehr.
+- Zwei HU-seitige `ServiceException`-Antworten.
+- Screen-Mirror-artiger Bildburst während YouTube.
+- vollständige Etch-Hash-Auflösung für die beobachteten Nachrichten.
+- korrigierter Etch-Tiny-Integer-Decoder.
+- vollständige RHMI-/CDS-Simulation im Labor.
+## Weiterhin offen
+- konkreter Inhalt aller Phone→HU-RHMI-Payloads am F20 ohne Relay,
+- genaue Ursache der `ServiceException`,
+- vollständiger Screen-Mirror-Nachweis,
+- Akzeptanz eines eigenen freien RHMI-Layouts auf der Serien-HU,
+- stabiler eigener App-/Resource-Kontext,
+- autonomer Linux-/ESP32-Client mit BMW-SAS-Signatur.
+## Wichtigster Schluss
+> **Das Problem ist nicht mehr, ob der F20 Connected-RHMI grundsätzlich beherrscht. Das ist am Wire und im Labor bewiesen. Die nächste praktische Aufgabe ist, eine autorisierte RHMI-Ressource mit eigenen Daten zu verwenden und einen stabilen Action-/Event-Rückweg nachzuweisen.**
+Für dein Projekt ist deshalb jetzt die sinnvollste Architektur:
+```text
+Autonomer Ton:
+    USB-MSC oder Bluetooth A2DP
+OEM-nahes Menü:
+    Bluetooth Connected
+      → BCL
+      → Etch/SAS
+      → AM/RHMI/CDS
+Entwicklung:
+    f20_sim + Etch-Codec + Golden Captures
+```
+Der B3-Relay ist der nächste zentrale Schritt, weil er die bislang fehlenden vollständigen Phone→HU-RHMI-Payloads sichtbar machen kann, ohne Root-Zugriff auf das OnePlus zu benötigen.
+GPT:
+Ja. Nach Durchsicht des neuen Tiefenforensik-Reports und der aktualisierten Decoder-/Lab-Daten sehe ich einige zusätzliche, ziemlich wichtige Details, die in deiner Zusammenfassung noch nicht vollständig herausgearbeitet sind.
+1. Der stärkste neue Befund ist eigentlich nicht YouTube, sondern der RHMI-Lifecycle im Feld
+Die Feldsequenz ist jetzt wesentlich enger:
+`INIT`
+`→ HANDSHAKE`
+`→ SELECTPROTO`
+`→ KNOCK`
+`→ SAS`
+`→ rhmi_getCapabilities`
+`→ AM register/addHandler`
+`→ rhmi_checkResource`
+`→ rhmi_setData`
+`→ CDS events`
+`→ rhmi_onActionEvent`
+`→ ackActionEvent`
+`→ weitere setData`
+Besonders wichtig ist:
+`rhmi_checkResource → result=true` bei 07:31:06.739, src=18.
+Das ist ein viel stärkerer Hinweis auf einen tatsächlich aufgebauten RHMI-Kontext als lediglich `setData`.
+Denn damit sehen wir im echten F20 nicht nur „irgendwelche RHMI-RPCs“, sondern den Übergang:
+`Ressource wird geprüft`
+        `↓`
+`HU akzeptiert sie`
+        `↓`
+`Laufzeitdaten werden gesetzt`
+        `↓`
+`HMI liefert Aktionen zurück`
+Das ist genau die Architektur, die wir für einen eigenen Connected-Client brauchen.
+Status: FIELD FACT.
+2. Noch interessanter: Die zwei `ServiceException`s sind ein positiver Befund
+Auf den ersten Blick sind zwei abgelehnte `setData` negativ. Forensisch sind sie aber sehr wertvoll.
+Wir wissen jetzt:
+`Phone → HU`
+`rhmi_setData(...)`
+        `↓`
+`HU verarbeitet RPC`
+        `↓`
+`HU erzeugt BMWRemoting.ServiceException`
+        `↓`
+`HU → Phone`
+`_result_rhmi_setData(result=ServiceException)`
+Das beweist, dass die HU den `setData`-Aufruf semantisch verarbeitet hat.
+Das ist stärker als ein bloßes „kein ACK“.
+Noch wichtiger:
+`plen=99`
+`ServiceException`
+`src=17`
+gegenüber:
+`plen=44`
+`void result`
+Damit haben wir bereits einen HU-seitigen Validierungsmechanismus für RHMI-Daten im Wire-Protokoll.
+Das eröffnet einen sehr guten nächsten Test:
+`gültiger setData-Wert`
+        `↓`
+`ServiceException?`
+        `↓`
+`gleicher modelId`
+        `↓`
+`anderer Wert`
+        `↓`
+`ServiceException?`
+Damit könnte man schrittweise herausfinden, welche RHMI-Modelle typ- und wertseitig validiert werden.
+3. `src=17` wird damit noch interessanter
+Die beiden Exceptions kommen beide über:
+`BCL src=17 → dest=4004`
+Das passt zu dem bereits erkannten RHMI/App-Kanal.
+Wir hatten vorher nur die funktionale Vermutung:
+`src10 = Discovery/SAS/RHMI capabilities`
+`src11–13 = CDS`
+`src14 = AM/CDS`
+`src15 = App/SAS`
+`src17–19 = RHMI`
+Jetzt gibt es einen zusätzlichen echten Feldanker für `src17`:
+`src17`
+  `→ rhmi_setData result`
+  `→ ServiceException`
+Das macht die Kanalzuordnung deutlich belastbarer.
+Nicht bewiesen ist dagegen noch, welche konkrete AAIdrive-App hinter src17 steckt. Dafür brauchen wir die vollständigen `OPEN`-/Etch-Payloads oder den Relay.
+4. Die 666-Byte-Serien sind vermutlich der eigentliche Schatz
+Das würde ich momentan sogar vor Screen-Mirror priorisieren.
+Du hast mehrere sehr charakteristische Phone→HU-Blöcke:
+`~41 KiB`
+`~106 KiB`
+`~175 KiB`
+`~216 KiB`
+mit:
+`666 B`
+`666 B`
+`666 B`
+`...`
+`Rest`
+Das ist exakt das Muster, das wir durch das RFCOMM/BCL-MTU-Verhalten erwarten.
+Die wichtige Frage ist also nicht mehr:
+„Wurde ein RHMI-Resource-Upload gemacht?“
+sondern:
+Welcher Etch-RPC liegt am Anfang und Ende jedes 666-Burst-Clusters?
+Wenn B3 den vollständigen Phone→HU-Strom liefert, können wir wahrscheinlich direkt rekonstruieren:
+`Cluster A`
+  `→ rhmi_setResource`
+  `→ DESCRIPTION`
+  `→ hash X`
+  `→ size Y`
+`Cluster B`
+  `→ rhmi_setResource`
+  `→ IMAGEDB`
+  `→ hash X`
+  `→ size Y`
+`Cluster C`
+  `→ rhmi_setResource`
+  `→ TEXTDB`
+  `→ hash X`
+  `→ size Y`
+Damit könnten wir die Feld-Ressourcen bytegenau mit den sieben bekannten AAIdrive-Signatur-Slots vergleichen.
+Das wäre ein massiver Schritt.
+5. Der `rhmi_checkResource=true`-Befund könnte genau diese Hypothese absichern
+Wir haben jetzt:
+`rhmi_checkResource`
+       `↓`
+`result = true`
+und danach große Datenübertragungen.
+Das ist eine interessante Reihenfolge.
+Wenn wir im B3-Trace feststellen:
+`checkResource(hash A) → true`
+und anschließend:
+`setResource(hash A, ...)`
+können wir erstmals live am F20 eine konkrete Whitelist-Ressource mit ihrem tatsächlichen Transfer korrelieren.
+Dann wäre die Aussage
+„AAIdrive benutzt autorisierte BMW-Ressourcen“
+nicht mehr nur aus APK/PKCS7-Analyse abgeleitet, sondern Feld-Wire + Ressource + Hash.
+6. Der Tiny-Int-Fix ist größer als zunächst gedacht
+Der Fix ist nicht lediglich ein Parser-Bugfix.
+Vorher konnte z. B. ein völlig legitimer:
+`0x20`
+`0x21`
+`...`
+`0x7f`
+nicht als Tiny Integer interpretiert werden.
+Das bedeutet:
+`Etch-Frame`
+   `↓`
+`Integer 32+`
+   `↓`
+`alter Decoder: Fehler`
+   `↓`
+`gesamte Struktur abgebrochen`
+Damit war die bisherige Aussage
+„Phone→HU-RHMI-Payloads sind nur len-only“
+zu pauschal.
+Zumindest im Lab-Full-Wire war ein Teil dieser scheinbaren Intransparenz tatsächlich unser Decoder.
+Das ist epistemisch wichtig:
+Vorher
+`RHMI setData`
+`→ Inhalt UNKNOWN`
+Jetzt
+`Lab:`
+`RHMI setData`
+`→ vollständig dekodierbar`
+`→ 40 Modelle`
+`→ 80 Track-Einträge`
+Feld
+bleibt:
+`Phone→HU Payload`
+`→ Oppo-Logging beschneidet Hex`
+`→ weiterhin UNKNOWN`
+Das trennt jetzt sehr sauber Decoder-Limit und Capture-Limit.
+7. Dadurch haben wir jetzt einen extrem guten B3-Orakelvergleich
+Das ist vermutlich der wichtigste praktische Punkt.
+Wir haben:
+A. Feld
+`F20`
+`→ Phone`
+`→ BCL/RFCOMM`
+`→ gekürzte Payload`
+und:
+B. Lab
+`AAIdrive/MyBMW`
+`→ f20_sim`
+`→ vollständige Payload`
+`→ Etch decode`
+Damit kann B3 jetzt nicht einfach nur „Hex sammeln“.
+Wir können gezielt testen:
+`Feld:`
+`Frame-Größe = X`
+`Zeitpunkt = T`
+`src = 17`
+`result = ServiceException`
+`Lab:`
+`Frame-Größe = X`
+`src = 17`
+`messageId = Y`
+`method = rhmi_setData`
+`modelId = Z`
+`value = ...`
+Wenn Größen und Sequenz korrelieren, bekommen wir einen Cross-Transport-/Cross-Run Fingerprint.
+Das ist wesentlich stärker als reine Pattern Recognition.
+8. Der Screen-Mirror-Burst ist noch nicht als Screen-Mirror bewiesen — aber er ist jetzt sehr gut testbar
+Ich würde den Status sogar noch etwas konservativer formulieren:
+`216 KiB Burst`
+        `+`
+`YouTube aktiv`
+        `+`
+`2. rhmi_onActionEvent`
+        `+`
+`bekannte screenmirror-App`
+        `+`
+`Lab kennt JPEG/RaImageModel-Pfad`
+ergibt:
+STRONG, aber noch kein FIELD FACT „dies sind 324 JPEG-Frames“.
+Der entscheidende nächste Test ist:
+`B3 vollständiger TX`
+        `↓`
+`Etch decode`
+        `↓`
+`rhmi_setData`
+        `↓`
+`modelId`
+        `↓`
+`value`
+        `↓`
+`Bytes`
+Wenn dort tatsächlich JPEG-Signaturen auftauchen:
+`FF D8 FF ...`
+oder entsprechend eingebettete JPEG-Daten,
+dann wird aus:
+`Screen-Mirror-Kandidat`
+praktisch:
+`FIELD FACT: JPEG/Bilddaten werden über RHMI übertragen`
+und wir können sogar noch den Frame-Takt bestimmen.
+9. Die 2× `rhmi_onActionEvent` sind wahrscheinlich der beste zeitliche Anker
+Wir haben:
+`Action #1`
+`07:31:42.522`
+`ACK`
+`07:31:58.946`
+`Action #2`
+`07:32:07.827`
+`216 KiB Burst`
+`07:32:08.605`
+Der Abstand zwischen Action #2 und Burst ist nur ungefähr:
+778 ms.
+Das ist auffällig kurz.
+Wenn der Burst tatsächlich vom Action-Event ausgelöst wurde, hätten wir:
+`iDrive action`
+      `↓ 778 ms`
+`HU/Phone resource transfer`
+Das ist wesentlich interessanter als nur die Koinzidenz „YouTube lief“.
+Der B3-Trace kann hier einen eindeutigen Causal Chain Test liefern:
+`onActionEvent(actionId=X)`
+       `↓`
+`Phone RPC`
+       `↓`
+`setData / setResource`
+       `↓`
+`~216 KiB transfer`
+Wenn das gelingt, haben wir den Screen-Mirror-Mechanismus praktisch offen.
+10. Der 15,8-Sekunden-Abstand zwischen Action #1 und ACK ist ebenfalls interessant
+`Action #1  07:31:42.522`
+`ACK        07:31:58.946`
+`Δ          ≈16.424 s`
+Das würde ich nicht vorschnell als Protokolltimer interpretieren.
+Es könnte sein:
+App-seitige Verarbeitung,
+UI-Navigation,
+weiterer RPC-Verkehr,
+A2DP/Media-Zustandsänderung,
+oder tatsächlich ein HMI-Workflow.
+Aber genau deshalb sollte B3 `_messageId` und `_inReplyTo` vollständig erfassen.
+Dann können wir feststellen:
+`onActionEvent messageId=1632`
+       `↓`
+`welcher RPC?`
+       `↓`
+`welche Antwort?`
+       `↓`
+`wann?`
+Das ist viel aussagekräftiger als reine Wall-Clock-Korrelation.
+11. YouTube ist damit für uns jetzt ein sehr guter Testfall
+Spotify war bislang der dominierende Fall.
+YouTube liefert jetzt einen wichtigen Kontrast:
+`Spotify`
+`→ A2DP`
+`→ Connected`
+`→ RHMI`
+`YouTube`
+`→ A2DP`
+`→ Connected`
+`→ RHMI`
+`→ Action`
+`→ großer Bildtransfer`
+Damit können wir die Architektur auseinanderziehen:
+`Media Player`
+      `│`
+      `├── A2DP → Audio`
+      `│`
+      `└── Connected`
+             `├── AM`
+             `├── RHMI`
+             `└── CDS`
+Und möglicherweise:
+`YouTube`
+   `└── ScreenMirror`
+          `└── RHMI image transport`
+Das wäre für PiDrive/Connected extrem interessant, weil es zeigt, dass der Connected-Kanal nicht lediglich ein Metadatenkanal ist.
+12. Ein Punkt in deiner Prioritätenliste würde ich ändern
+Ich würde B3 nicht nur auf „Payloads sichtbar machen“ reduzieren.
+B3 sollte ein bidirektionaler transaktionaler Recorder werden:
+`timestamp`
+`direction`
+`RFCOMM frame`
+`BCL src`
+`BCL dest`
+`BCL cmd`
+`BCL payload length`
+`Etch method`
+`_messageId`
+`_inReplyTo`
+`modelId`
+`componentId`
+`propertyId`
+`value`
+`raw bytes`
+Und vor allem:
+`TX request`
+       `↕`
+`RX result`
+als eine Transaktion korrelieren.
+Dann können wir später automatisch sagen:
+`TX:`
+`rhmi_setData`
+`src=17`
+`messageId=...`
+`RX:`
+`_result_rhmi_setData`
+`src=17`
+`inReplyTo=...`
+`status:`
+`OK / ServiceException`
+Das wäre die Grundlage für einen echten RHMI Wire Oracle.
+Mein aktueller Gesamtstand
+Ich würde die Beweiskette jetzt so darstellen:
+                         `F20 FIELD`
+                            `│`
+                 `┌──────────┴──────────┐`
+                 `│                     │`
+              `A2DP                  Connected`
+                 `│                     │`
+              `Audio              BCL / RFCOMM`
+                                       `│`
+                                    `Etch/SAS`
+                                       `│`
+                              `┌────────┼────────┐`
+                              `│        │        │`
+                              `AM      RHMI     CDS`
+                              `│        │        │`
+                           `Apps     setData   vehicle`
+                                       `│`
+                              `┌────────┴────────┐`
+                              `│                 │`
+                           `Actions          Resources`
+                              `│                 │`
+                           `iDrive          Images/UI`
+                              `│                 │`
+                              `└──────┬──────────┘`
+                                     `│`
+                              `Screen-Mirror?`
+Die entscheidende Unsicherheit liegt inzwischen nicht mehr auf Protokollebene. Sie liegt bei den konkreten Payload-Inhalten, Resource-Hashes, Model-IDs und App-/Channel-Zuordnungen.
+Und genau dafür ist der B3-Relay jetzt der richtige nächste Schritt.
+Besonders wertvoll wäre danach ein erster kontrollierter Feldversuch:
+Nur Connected + Spotify → eine einzige iDrive-Navigation → vollständigen B3-Trace → anschließend YouTube → dieselbe Navigation → Vergleich.
+Damit könnten wir sehr sauber unterscheiden, was generisches RHMI-Menü, was Media-Browsing und was YouTube/Screen-Mirror-spezifisch ist.
+bekommst du noch weitere Details?
+  
+**Ja – und die Details sind noch schärfer als in der Zusammenfassung.**
+Ich habe den neuen Report `DEEP_FORENSIC_RHMI_SCREENMIRROR_20261117.md` und die zugehörigen Änderungen (Codec-Fix, Errata, Lab-Eval, pidrive §10.6) gelesen. Hier die zusätzlichen, besonders wertvollen Punkte, die in deiner Zusammenfassung und dem GPT-Kommentar noch etwas untergehen oder noch präziser gefasst werden können:
+### 1. `rhmi_checkResource → result=true` ist der stärkste Lifecycle-Beweis
+Das ist der entscheidende Übergang, den GPT zu Recht hochzieht:
+```
+checkResource (src=18) → true   @ 07:31:06.739
+```
+Danach kommen die setData-Flut und die Actions. Das ist nicht nur „irgendwelche RHMI-RPCs“, sondern der echte Übergang **Ressource akzeptiert → Laufzeitdaten → HMI-Aktionen zurück**. Das ist genau die Architektur, die wir für einen eigenen Client brauchen.
+### 2. Die beiden `ServiceException`s sind Gold wert
+Härter dekodiert als zuvor:
+- Typ-Hash `0x5A6F115C` = `de.bmw.idrive.BMWRemoting.ServiceException` (aus den ersten 32 Bytes eindeutig)
+- Beide über **src=17**, dest=4004, plen=99
+- Die übrigen setData-Ergebnisse sind void-OK (plen=44)
+Lab-Korrelation (stark, aber noch nicht FIELD): entspricht dem Mock-Pfad `ServiceException(213, "SetData was not successful.")` beim Setzen eines ImageID-Modells auf 0.
+Das gibt uns den ersten echten HU-seitigen Validierungsmechanismus auf dem Wire. Der nächste kontrollierte Test (gleicher modelId, anderer Wert) wird extrem aufschlussreich.
+### 3. App-Rosetta ist jetzt feldseitig belastbar
+Exakte Frame-Summen aus dem Lab-Wire wurden im Feld wiedergefunden:
+| App | BCL-Größe | Feld-Treffer |
+|-----|----------:|--------------|
+| YouTube | 1123 | 07:31:08.69 ✅ |
+| Alexa | 2409 | 07:31:04.78 ✅ |
+| Notification Readout | 1874 | 07:31:07.70 / 07:31:11.58 ✅ |
+| com.android.bluetooth | 3255 | 07:31:08.48 ✅ |
+| ScreenMirror | 1332 | (nicht isoliert, aber Burst passt) |
+YouTube ist damit nicht nur Media-Session, sondern **AM-registrierte Connected-App** im selben Zyklus.
+### 4. Codec-Fix ist epistemisch größer als ein Parser-Bug
+Vorher: viele `rhmi_setData` brachen mitten im Integer ab → len-only.  
+Jetzt (voller Etch-Bereich `0x00–0x7F` / `0xC0–0xFF`):
+- Lab: **40 Modelle** + **80 Track-Einträge** + **0 Decode-Fehler**
+- Die „len-only-Lücke“ ist geschlossen – sie war zum Teil unser Decoder, nicht nur das Oppo-Logging.
+Das trennt jetzt sauber:
+- **Lab** = vollständig dekodierbar
+- **Feld Phone→HU** = weiterhin Capture-Limit (Oppo loggt nur Länge)
+### 5. 666-Bursts sollten vor Screen-Mirror priorisiert werden
+Die charakteristischen Cluster (~41 / 106 / 175 / 216 KiB) sind der eigentliche Schatz. Wenn B3 den Anfang und das Ende jedes Clusters liefert, können wir sehr wahrscheinlich direkt sehen:
+```
+setResource(DESCRIPTION / IMAGEDB / TEXTDB, hash, size)
+```
+und die Feld-Ressourcen bytegenau gegen die bekannten AAIdrive-Signatur-Slots legen. Das wäre der größte nächste Sprung.
+### 6. Screen-Mirror bleibt STRONG (nicht FACT)
+Der 216-KiB-Burst kommt **778 ms** nach dem 2. `onActionEvent` während YouTube. Das Timing ist auffällig, und die App ist im Lab bekannt. Aber ohne den vollständigen TX-Decode (JPEG-Signaturen / modelId / RaImageModel) bleibt es STRONG. B3 kann das in einem Lauf klären.
+### 7. Action↔ACK-Abstand (~16,4 s)
+Action #1 → ACK hat Δ ≈ 16,4 s. Das ist kein trivialer Poll-Timer. B3 mit `_messageId` / `_inReplyTo` wird hier den echten kausalen Pfad zeigen.
+---
+**Kurzfassung des aktuellen Standes (nach dem Report):**
+```text
+A2DP allein          ≠  RHMI
+Connected + Browse   →  RHMI setData + Actions + AM + CDS
+Spotify + YouTube    →  im selben Connect-Zyklus
+checkResource=true   →  Ressourcen-Kontext steht
+ServiceException     →  HU validiert setData semantisch
+Codec-Fix            →  Lab jetzt voll dekodierbar (40 Modelle / 80 Tracks)
+```
+Der nächste Engpass ist nicht mehr „funktioniert Connected-RHMI überhaupt?“, sondern:
+1. **B3-RFCOMM-Relay** (bidirektional, transaktional, mit messageId-Korrelation)
+2. Eine **autorisierte RHMI-Ressource** mit eigenen setData/setProperty-Werten testen
+3. Die 666-Bursts + ServiceException-Ursache gezielt aufklären
+Die GPT-Punkte zu checkResource, ServiceException als positivem Orakel und der Priorisierung der 666-Bursts sind richtig und sollten in die nächste Maßnahmenliste aufgenommen werden.
+Willst du, dass ich daraus eine aktualisierte, priorisierte P0/P1-Liste (mit konkreten Experimenten) formuliere, oder soll ich zuerst den B3-Relay-Entwurf / die Experiment-Spezifikation für den ServiceException-Test skizzieren?
+  
+Fasse alle Details zusammen
+
+# Gesamtzusammenfassung der neuesten Untersuchungen
+
+## 1. Gesamturteil
+
+Der Connected-/RHMI-Pfad des BMW F20 ist inzwischen am echten Fahrzeug weitgehend nachgewiesen:
+
+```text
+Bluetooth RFCOMM SCN 6
+        ↓
+BCL
+        ↓
+Etch / BMWRemoting
+        ↓
+SAS
+        ↓
+AM
+        ↓
+RHMI
+        ↓
+CDS
+```
+
+Die neuesten Untersuchungen haben zusätzlich gezeigt:
+
+- Spotify und YouTube laufen innerhalb **derselben** Connected-Session.
+- YouTube wird sowohl als Android-Media-Session als auch als Connected-App registriert.
+- `rhmi_checkResource → result=true` wurde im Feld beobachtet.
+- `rhmi_setData`, `rhmi_setProperty` und `rhmi_onActionEvent` sind am F20 nachgewiesen.
+- Die HU validiert RHMI-Daten semantisch und weist einzelne `setData`-Aufrufe mit `BMWRemoting.ServiceException` zurück.
+- Ein großer Bilddaten-Burst während YouTube deutet stark auf Screen-Mirroring beziehungsweise Bildübertragung über RHMI/Etch hin.
+- Der Etch-Tiny-Integer-Decoder wurde korrigiert; dadurch sind die Lab-RHMI-Daten jetzt vollständig dekodierbar.
+- Der F20-Simulator kann den Connected-Lifecycle inzwischen umfangreich nachbilden.
+
+Der entscheidende Restblocker ist daher nicht mehr das grundlegende Protokollwissen, sondern:
+
+```text
+B3-Vollcapture
++
+autorisierte RHMI-Ressource
++
+eigene setData/setProperty-Werte
++
+stabiler Action-/Event-Rückweg
+```
+
+---
+
+# 2. Feldsession `19188`: Spotify → YouTube → Screen-Mirror
+
+Die wichtigste neue Feldsession ist kein Zusammenschnitt mehrerer unabhängiger Läufe, sondern ein zusammenhängender Bluetooth-Connected-Zyklus:
+
+```text
+07:30:03  Connected-Session beginnt
+07:30:14  Spotify aktiv
+07:30:47  BCL INIT
+07:30:48  HU HANDSHAKE
+07:30:51  SELECTPROTO/KNOCK/SAS
+07:31:04  Apps werden registriert
+07:31:32  YouTube wird aktive Media-Session
+07:32:08  großer Bilddaten-Burst
+07:32:48  Bluetooth OFF
+```
+
+Damit ist die frühere Interpretation „Spotify-Lauf und YouTube-Lauf“ korrigiert.
+
+## Im Feld registrierte Apps
+
+Beobachtet wurden unter anderem:
+
+- Spotify,
+- YouTube,
+- Alexa,
+- Notification Readout,
+- `com.android.bluetooth`,
+- Google Assistant,
+- Screen-Mirror-Komponente.
+
+YouTube ist dadurch auf zwei Ebenen belegt:
+
+```text
+Android MediaSession:
+    com.google.android.youtube
+
+BMW Connected:
+    am_registerApp(com.google.android.youtube)
+```
+
+Die App-Registrierung von YouTube hat im Feld eine BCL-Gesamtgröße von ungefähr 1123 Byte und wurde mit dem bekannten Lab-App-Muster korreliert [9].
+
+---
+
+# 3. Vollständiger Feld-Lifecycle
+
+Der beobachtete Connected-Ablauf lautet:
+
+```text
+INIT
+  ↓
+HANDSHAKE v5
+  ↓
+SELECTPROTO
+  ↓
+KNOCK
+  ↓
+OPEN 5001
+  ↓
+Watchdog
+  ↓
+OPEN 4004
+  ↓
+sas_certificate
+  ↓
+16-Byte-Challenge
+  ↓
+sas_login
+  ↓
+_result_sas_login
+  ↓
+rhmi_getCapabilities
+  ↓
+rhmi_checkResource
+  ↓
+AM-Registration
+  ↓
+rhmi_initialize
+  ↓
+rhmi_setData / rhmi_setProperty
+  ↓
+rhmi_onActionEvent
+  ↓
+_result_rhmi_ackActionEvent
+  ↓
+CDS-Events
+```
+
+Damit ist der Connected-Stack nicht nur auf Transport- und Handshake-Ebene, sondern bis zur tatsächlichen interaktiven RHMI-Nutzung nachgewiesen [1][2].
+
+---
+
+# 4. `rhmi_checkResource → result=true`: stärkster RHMI-Lifecycle-Beweis
+
+Im Feld wurde beobachtet:
+
+```text
+rhmi_checkResource
+    ↓
+result = true
+```
+
+Anschließend folgten:
+
+```text
+rhmi_setData
+rhmi_setProperty
+rhmi_onActionEvent
+```
+
+Das ist ein besonders wichtiger Nachweis, weil damit die Reihenfolge:
+
+```text
+Ressource geprüft und akzeptiert
+    ↓
+Laufzeitdaten gesetzt
+    ↓
+HMI-Aktion zurückgeliefert
+```
+
+direkt am Fahrzeug sichtbar ist.
+
+Das ist deutlich stärker als ein bloßes Auftreten von `rhmi_setData`. Es zeigt, dass die HU den Ressourcen-/RHMI-Kontext aufgebaut und anschließend interaktiv genutzt hat.
+
+## Status
+
+| Aussage | Status |
+|---|---|
+| RHMI-Ressource wird am F20 geprüft | FIELD-MEASURED |
+| HU akzeptiert mindestens eine Ressource | FIELD-MEASURED |
+| Laufzeitdaten werden danach verarbeitet | FIELD-MEASURED |
+| HMI-Aktionen gelangen zurück zum Phone | FIELD-MEASURED |
+| beliebige eigene Ressource wird akzeptiert | weiterhin offen |
+
+Die Ressourcen-Whitelist bleibt bestehen: Freie XML-/ImageDB-/TextDB-Inhalte sind nicht automatisch zulässig. Die HU akzeptiert nur Ressourcen, deren Hashes zum APP-Zertifikat passen [2][4].
+
+---
+
+# 5. RHMI-Datenfluss und Action-Rückweg
+
+In der Feldsession wurden ungefähr beobachtet:
+
+```text
+19 × _result_rhmi_setData
+2 × rhmi_onActionEvent
+1 × _result_rhmi_ackActionEvent
+```
+
+Zusätzlich:
+
+```text
+am_registerApp
+am_addAppEventHandler
+rhmi_initialize
+rhmi_setProperty
+cds_onPropertyChangedEvent
+```
+
+Damit sind am F20 FIELD-MEASURED:
+
+- RHMI-Datenfluss,
+- AM-App-Registrierung,
+- RHMI-Initialisierung,
+- Property-Änderungen,
+- iDrive-/HMI-Aktionsrückweg,
+- Aktion-Acknowledgement.
+
+Noch nicht vollständig zugänglich sind die Phone→HU-RHMI-Payloads, weil das OnePlus diese in den Oppo-Logs häufig nur als Länge protokolliert. Die HU→Phone-Richtung ist teilweise ebenfalls gekürzt. Der transparente B3-RFCOMM-Relay bleibt deshalb für die vollständige Rekonstruktion notwendig [9][10].
+
+---
+
+# 6. Die beiden `ServiceException`s
+
+Zwei `rhmi_setData`-Aufrufe wurden von der HU abgelehnt:
+
+```text
+BCL src=17
+dest=4004
+plen=99
+```
+
+Der Etch-Type-Hash:
+
+```text
+0x5A6F115C
+```
+
+wurde eindeutig aufgelöst als:
+
+```text
+de.bmw.idrive.BMWRemoting.ServiceException
+```
+
+Die übrigen `rhmi_setData`-Antworten waren typische Void-Responses mit ungefähr 44 Byte.
+
+## Sicherer Feldbefund
+
+```text
+Die HU verarbeitet rhmi_setData semantisch
+und kann einzelne Werte mit ServiceException ablehnen.
+```
+
+Das ist kein bloßes „kein ACK“. Die HU hat den RPC dekodiert, geprüft und eine strukturierte Fehlerantwort erzeugt.
+
+## Wahrscheinliche Ursache
+
+Die Lab-Korrelation deutet auf einen ungültigen Bild-/Image-Wert hin, insbesondere:
+
+```text
+ImageID = 0
+```
+
+beziehungsweise einen nicht verfügbaren Cover-/Bildpfad.
+
+Die folgende Aussage ist dagegen noch nicht FIELD-MEASURED:
+
+```text
+BMW-Fehlercode = 213
+Detailtext = "SetData was not successful."
+```
+
+Das stammt aus dem Lab-/Mock-Server-Pfad und ist lediglich eine starke Korrelation.
+
+## Bedeutung für dein eigenes Menü
+
+Die HU akzeptiert nicht automatisch jede beliebige Kombination aus:
+
+```text
+modelId
+value
+ImageID
+Resource
+```
+
+Ein eigenes Menü muss daher zunächst mit sicheren Datentypen getestet werden:
+
+1. String-Label,
+2. Integer-Wert,
+3. Boolean-Property,
+4. Sichtbarkeit,
+5. erst danach Bild-/Cover-Modelle.
+
+---
+
+# 7. `src=17` als RHMI-Kanal
+
+Die beiden Exceptions kamen beide über:
+
+```text
+src=17
+dst=4004
+```
+
+Das stützt die bereits beobachtete Zuordnung:
+
+```text
+src=17–19
+    → RHMI-/UI-Instanzen
+```
+
+Die genaue App-Zuordnung von `src=17` ist noch nicht vollständig bewiesen. Dafür fehlen die vollständigen `OPEN`- und Etch-Request-Payloads. Funktional ist der Kanal aber deutlich als RHMI-relevant verankert.
+
+Aktuelle funktionale Zuordnung:
+
+| Source | Funktion |
+|---:|---|
+| 10 | Discovery, SAS, Capability |
+| 11–13 | CDS |
+| 14 | AM und CDS |
+| 15 | App-SAS |
+| 17–19 | RHMI/UI |
+
+Diese Zuordnung ist FIELD-OBSERVED, aber nicht jede Source-Bedeutung ist als dauerhaft universell bewiesen [1][8].
+
+---
+
+# 8. App-Frame-Rosetta
+
+Die Lab-Session liefert eine Referenz zwischen App-ID, erwarteter BCL-Größe und Feld-Frame.
+
+| App | BCL-Gesamtgröße | Feldbefund |
+|---|---:|---|
+| Alexa | ca. 2409 B | im Feld gefunden |
+| Notification Readout | ca. 1874 B | im Feld gefunden |
+| `com.android.bluetooth` | ca. 3255 B | im Feld gefunden |
+| YouTube | ca. 1123 B | im Feld gefunden |
+| Google Assistant | ca. 2362 B | teilweise koalesziert |
+| Screen-Mirror | ca. 1332 B | noch nicht isoliert |
+
+Damit ist besonders YouTube stärker belegt als zuvor:
+
+```text
+Player-Identität
++
+AM-Registration
++
+korrelierte Feld-Frame-Größe
+```
+
+Der konkrete Video- oder Songtitel bleibt dagegen unbekannt.
+
+---
+
+# 9. Die großen 666-Byte-Cluster
+
+Mehrere Phone→HU-Übertragungen bestehen aus langen Serien:
+
+```text
+~41 KiB
+~106 KiB
+~175 KiB
+~216 KiB
+```
+
+mit:
+
+```text
+666-Byte-RFCOMM-TX-Segmenten
++
+Restfragment
+```
+
+Diese Cluster sind besonders wertvoll, weil sie wahrscheinlich `rhmi_setResource`-Transfers enthalten:
+
+```text
+DESCRIPTION
+IMAGEDB
+TEXTDB
+WIDGETDB
+```
+
+Die entscheidende offene Frage ist nicht mehr:
+
+```text
+Wurde RHMI-Content übertragen?
+```
+
+sondern:
+
+```text
+Welcher Etch-RPC steht am Anfang und Ende jedes Clusters?
+Welche Ressource wird übertragen?
+Welcher Hash und welche Größe gehören dazu?
+```
+
+Mit einem vollständigen B3-Relay kann man vermutlich direkt korrelieren:
+
+```text
+rhmi_checkResource(hash)
+    ↓
+result=true
+    ↓
+rhmi_setResource(type, size, bytes)
+```
+
+Damit ließe sich die konkrete F20-Ressource bytegenau gegen die AAIdrive-/PKCS7-Signatur-Slots vergleichen.
+
+Das ist derzeit der wahrscheinlich größte Erkenntnisgewinn des Relays.
+
+---
+
+# 10. Screen-Mirror-Befund
+
+Während YouTube-Wiedergabe wurde nach dem zweiten `rhmi_onActionEvent` ein großer Burst beobachtet:
+
+```text
+ca. 216 KiB
+324 × 666 Byte + Rest
+```
+
+Zeitlicher Ablauf:
+
+```text
+rhmi_onActionEvent #2
+    07:32:07.827
+        ↓ ca. 778 ms
+großer Burst
+    07:32:08.605
+```
+
+Zusätzlich bekannt:
+
+```text
+io.bimmergestalt.idriveconnectaddons.screenmirror
+```
+
+ist als Connected-App-Komponente im Lab bekannt.
+
+## Aktuelle Bewertung
+
+| Aussage | Status |
+|---|---|
+| großer Bild-/Asset-Burst im Feld | FIELD-MEASURED |
+| Burst während YouTube | FIELD-MEASURED |
+| Burst folgt auf ein HMI-Action-Event | FIELD-MEASURED |
+| Screen-Mirror-Komponente im Stack | stark belegt |
+| Burst enthält tatsächlich JPEG-Bildframes | STRONG, noch nicht endgültig bewiesen |
+| vollständiger Screen-Mirror-Mechanismus | offen |
+
+Für den endgültigen Nachweis muss der B3-Relay die Payload-Inhalte liefern. Gesucht werden dann:
+
+```text
+JPEG-Signaturen FF D8 FF
+RaImageModel
+rhmi_setData
+modelId
+Frame-Größe
+Frame-Rate
+```
+
+Erst dann kann aus:
+
+```text
+Screen-Mirror-Kandidat
+```
+
+ein:
+
+```text
+FIELD FACT: Bilddaten werden über RHMI/Etch übertragen
+```
+
+werden.
+
+Ein Miracast-Protokoll wurde nicht beobachtet. Die derzeit wahrscheinlichere Erklärung ist eine RHMI-/Etch-basierte Bildübertragung.
+
+---
+
+# 11. `rhmi_onActionEvent` und zeitliche Korrelation
+
+Beobachtet:
+
+```text
+Action #1: 07:31:42.522
+ACK:       07:31:58.946
+Action #2: 07:32:07.827
+Bildburst: 07:32:08.605
+```
+
+## Action #2
+
+Die zeitliche Differenz:
+
+```text
+ca. 778 ms
+```
+
+zwischen Action #2 und dem Bildburst ist auffällig und macht eine kausale Kette plausibel:
+
+```text
+iDrive-Aktion
+    ↓
+Phone verarbeitet Event
+    ↓
+RHMI-/Screen-Mirror-Transfer
+```
+
+Noch nicht bewiesen ist, dass der Burst ausschließlich durch diese Aktion ausgelöst wurde. Der B3-Recorder muss dafür:
+
+- `_messageId`,
+- `_inReplyTo`,
+- `actionId`,
+- `componentId`,
+- nachfolgende RPCs,
+- Payload-Inhalte
+
+korrelieren.
+
+## Action #1
+
+Der Abstand:
+
+```text
+07:31:42.522 → 07:31:58.946
+≈ 16,4 s
+```
+
+ist kein offensichtlicher Standardtimer. Mögliche Ursachen:
+
+- App-seitige Verarbeitung,
+- weiterer RPC-Verkehr,
+- HMI-State-Änderung,
+- Media-/YouTube-Transition,
+- nicht sichtbare Phone→HU-Kommunikation.
+
+Dieser Abstand darf nicht als Protokollkonstante interpretiert werden.
+
+---
+
+# 12. Etch-Tiny-Integer-Fix
+
+Der Decoder hatte vorher einen echten Apache-Etch-Bug.
+
+## Falsch
+
+```text
+0x00–0x1F
+0xE0–0xFF
+```
+
+## Richtig
+
+```text
+0x00–0x7F = 0…127
+0xC0–0xFF = -64…-1
+```
+
+Dadurch brach der Decoder vorher bei legalen Werten wie:
+
+```text
+0x20
+0x64
+0x7F
+```
+
+mitten in RHMI-Strukturen ab.
+
+## Korrektur
+
+Geändert wurden:
+
+```text
+read_int()
+read_value()
+read_type_or_field_id()
+```
+
+Regressionstest:
+
+```text
+122/122 PASS
+```
+
+## Wirkung
+
+Im vollständigen Lab-Datensatz:
+
+```text
+vorher:
+    setData nur len-only
+    keine Modelle
+
+nachher:
+    40 RHMI-Modelle
+    80 Track-/Metadateneinträge
+    0 Decode-Fehler
+```
+
+Beispieldaten:
+
+```text
+Scorpions – Best – Still Loving You
+HIM – Greatest Love Songs Vol. 666 – Wicked Game
+Disturbed – Ten Thousand Fists – Land of Confusion
+```
+
+Das ist ein wichtiger epistemischer Fortschritt:
+
+```text
+Lab:
+    Payload vollständig dekodierbar
+
+Feld Phone→HU:
+    Payload weiterhin durch Oppo-Logging gekürzt
+```
+
+Die bisherige Aussage „RHMI-Payload ist unbekannt“ muss deshalb präzisiert werden. Ein Teil der früheren Intransparenz war ein Decoderfehler; der verbleibende Feldmangel ist jetzt primär ein Capture-Problem.
+
+---
+
+# 13. Lab-F20-Simulator
+
+Der `f20_sim` ist inzwischen ein brauchbares Connected-Regressionstestbett.
+
+## Gemessene Lab-Statistik
+
+```text
+3776 BMWRemoting-RPCs
+2896 rhmi_setData
+219 rhmi_setProperty
+114 cds_addPropertyChangedEventHandler
+110 cds_getPropertyAsync
+47 rhmi_setResource
+42 sas_certificate
+42 sas_login
+22 rhmi_create
+19 am_registerApp
+19 rhmi_initialize
+```
+
+## Im Lab bestätigt
+
+- SAS-Stub-Lifecycle,
+- AM-Registrierung,
+- RHMI-Create/Initialize,
+- RHMI-Resource-Handling,
+- `setData`,
+- `setProperty`,
+- Action Events,
+- CDS-Subscription,
+- CDS-Injection,
+- A2DP-Kopplung,
+- Cover-/Icon-Handling.
+
+CDS-Werte konnten injiziert und auf dem Phone sichtbar bestätigt werden:
+
+```text
+speed = 99
+RPM = 5555
+battery = 77
+odometer = 114321
+```
+
+Das beweist nicht, dass der echte F20 alle eigenen Werte akzeptiert. Es beweist aber, dass die eigene Entwicklungs- und Testumgebung den Connected-Lifecycle sehr weit abbilden kann [11][13].
+
+## Lab-Limitierungen
+
+Noch instabil:
+
+- AVRCP↔RHMI-Regelkreis nach Action-Flut,
+- frische NowPlaying-Daten nach Reconnect,
+- stale RHMI-Daten,
+- A2DP läuft weiter, obwohl `rhmi_setData` nicht aktualisiert wird,
+- Dual-ESP-RFCOMM-Relay mit alter `.87`-Firmware,
+- Browse-only/A2DP-only erzeugt keine RHMI-Daten.
+
+Bestätigt:
+
+```text
+A2DP allein ≠ RHMI
+```
+
+RHMI-Aktivität setzt einen Connected-/Browse-/App-Kontext voraus.
+
+---
+
+# 14. Was jetzt wirklich als Feldfakt gilt
+
+## FIELD-MEASURED
+
+- ein Connected-Zyklus mit Spotify und YouTube;
+- YouTube als MediaSession;
+- YouTube als AM-registrierte App;
+- RHMI-Resource-Check mit `result=true`;
+- `rhmi_setData`;
+- `rhmi_setProperty`;
+- `rhmi_onActionEvent`;
+- `_result_rhmi_ackActionEvent`;
+- zwei `ServiceException`-Antworten;
+- AM-Registrierungen mehrerer Apps;
+- CDS-Events;
+- großer Bild-/Asset-Burst während YouTube;
+- Etch-Type-ID-Auflösung für die beobachteten Nachrichten;
+- BCL/Etch/SAS/RHMI/AM/CDS-Stack am Bluetooth-F20-Pfad.
+
+## STRONG INFERENCE
+
+- die zwei Exceptions hängen mit einem ungültigen Image-/Cover-/`ImageID`-Wert zusammen;
+- der 216-KiB-Burst ist Screen-Mirroring;
+- der Burst wird durch Action #2 ausgelöst;
+- bestimmte 666-Byte-Cluster sind konkrete `rhmi_setResource`-Uploads;
+- `src=17` ist einer konkreten Screen-/RHMI-App zugeordnet.
+
+## Weiterhin UNKNOWN
+
+- voller Inhalt der Phone→HU-RHMI-Payloads im Feld;
+- konkrete Ressource je Cluster;
+- Hash-/Resource-Zuordnung am Feld;
+- exakter Fehlercode und Detailtext der `ServiceException`;
+- vollständige JPEG-/Bildframe-Dekodierung;
+- konkrete YouTube-Titel und Cover;
+- eigener freier RHMI-Layout-Upload am Serien-F20;
+- vollständige App-/Channel-Zuordnung;
+- stabiler autonomer Linux-/ESP32-Client.
+
+---
+
+# 15. Konsequenz für ein eigenes Menü
+
+Du bist jetzt beim Connected-Menü sehr weit.
+
+## Bereits gelöst
+
+```text
+BCL-Transport
+Etch
+SAS-Struktur
+AM
+RHMI-Objektmodell
+CDS
+Action Events
+Resource-Check
+```
+
+## Erster sinnvoller Menü-Proof
+
+Nicht sofort ein komplett eigenes XML bauen.
+
+Besser:
+
+```text
+autorisierte RHMI-Ressource
+    ↓
+result=true bei checkResource
+    ↓
+rhmi_setData mit eigenem Text
+    ↓
+rhmi_setProperty
+    ↓
+ein Button/Event
+```
+
+Die Reihenfolge sollte sein:
+
+1. bestehende autorisierte Ressource verwenden;
+2. einen einfachen Stringwert ändern;
+3. Sichtbarkeit oder `ENABLED` verändern;
+4. eine Liste aktualisieren;
+5. einen Button betätigen;
+6. `rhmi_onActionEvent` auswerten;
+7. erst danach Bild-/Cover-Modelle testen;
+8. eigene XML-/Resource-Hashes separat untersuchen.
+
+---
+
+# 16. B3-Relay: Zielarchitektur
+
+Der nächste Relay sollte nicht nur Rohbytes weiterleiten, sondern transaktional dekodieren.
+
+## Pflichtfelder pro Ereignis
+
+```text
+timestamp
+direction
+RFCOMM frame
+DLCI
+BCL src
+BCL dest
+BCL command
+BCL payload length
+Etch type hash
+Etch method
+messageId
+inReplyTo
+modelId
+componentId
+propertyId
+value
+raw bytes
+```
+
+## Transaktionskorrelation
+
+Beispiel:
+
+```text
+TX:
+  rhmi_setData
+  src=17
+  messageId=123
+  modelId=456
+  value=...
+
+RX:
+  _result_rhmi_setData
+  src=17
+  inReplyTo=123
+  status=OK
+```
+
+Oder:
+
+```text
+TX:
+  rhmi_setData
+  src=17
+  messageId=124
+
+RX:
+  _result_rhmi_setData
+  src=17
+  inReplyTo=124
+  result=ServiceException
+```
+
+Damit erhältst du einen echten:
+
+```text
+RHMI Wire Oracle
+```
+
+---
+
+# 17. Priorisierte Maßnahmen
+
+## P0 — B3-Relay
+
+1. `.131 ↔ .87` transparent verbinden.
+2. Keine Bytes verändern.
+3. SAS end-to-end belassen.
+4. Beide Richtungen vollständig speichern.
+5. BCL- und Etch-Layer dekodieren.
+6. `_messageId`/`_inReplyTo` korrelieren.
+7. große 666-Byte-Cluster rekonstruieren.
+8. `rhmi_checkResource` und `rhmi_setResource` zuordnen.
+9. Phone→HU-RHMI-Payloads vollständig sichern.
+
+## P0 — autorisierte RHMI-Ressource
+
+1. `checkResource(result=true)`-Ressource identifizieren.
+2. Hash mit APP-Zertifikat vergleichen.
+3. DESCRIPTION/IMAGEDB/TEXTDB-Zuordnung herstellen.
+4. vorhandenes Layout nicht verändern.
+5. eigenen `setData`-String injizieren.
+6. `setProperty(VISIBLE/ENABLED)` testen.
+7. Action Event testen.
+
+## P1 — ServiceException
+
+Kontrollierte Matrix:
+
+| Test | Wert |
+|---|---|
+| String-Modell | gültiger String |
+| Integer-Modell | `0`, `1`, `100`, `127` |
+| Boolean-Modell | `true`, `false` |
+| Image-Modell | gültige ImageID |
+| Image-Modell | `0` |
+| fremde ImageID | ungültig |
+| Cover-Daten | gültige/ungültige Ressource |
+
+Ziel:
+
+```text
+welche Werte akzeptiert die HU?
+welche Werte erzeugen ServiceException?
+```
+
+## P1 — Screen-Mirror
+
+1. Bildburst per Relay extrahieren.
+2. JPEG-Signaturen suchen.
+3. `modelId` und `componentId` erfassen.
+4. Action #2 mit dem ersten Bildtransfer korrelieren.
+5. Frame-Takt und Bildgröße bestimmen.
+6. YouTube gegen Spotify vergleichen.
+
+## P1 — Feld-/Lab-Differential
+
+Zwei kontrollierte Sessions:
+
+```text
+Spotify:
+    Connected + A2DP + Navigation
+
+YouTube:
+    Connected + A2DP + Navigation
+```
+
+Vergleichen:
+
+- AM-Registration,
+- RHMI-Resource-Set,
+- `setData`,
+- Action Events,
+- Bildtransfer,
+- CDS,
+- Audiofokus.
+
+## Parallel: PiDrive
+
+Die neuen RHMI-Erkenntnisse ändern den MSC-Pfad nicht:
+
+- `GATE-01` bleibt offen;
+- BUSY-Pacing über die ganze Datei bleibt P0;
+- ≥8-MiB-Test bleibt offen;
+- CDS-Entertainment-Observer weiterführen;
+- A2DP auf SBC 44,1 kHz beziehungsweise Bitpool ≤35 optimieren [1][3][5].
+
+---
+
+# 18. Aktualisierte Gesamtarchitektur
+
+```text
+BMW F20
+│
+├── Storage Plane
+│   └── USB MSC
+│       ├── FAT12/FAT16
+│       ├── Media Browser
+│       ├── ID3/APIC
+│       ├── Cache
+│       └── Audio
+│
+├── Bluetooth Media Plane
+│   ├── A2DP → Audio
+│   ├── AVRCP → Steuerung/Metadaten
+│   └── HFP → Telefonie/Sprache
+│
+└── Connected Control Plane
+    └── RFCOMM SCN 6
+        └── BCL
+            └── Etch dst=4004
+                ├── SAS
+                ├── AM
+                ├── RHMI
+                │   ├── Ressourcen
+                │   ├── setData
+                │   ├── setProperty
+                │   └── Action Events
+                └── CDS
+```
+
+Für YouTube kommt wahrscheinlich hinzu:
+
+```text
+YouTube
+  ├── A2DP → Audio
+  ├── AM → App-Registration
+  ├── RHMI → UI
+  └── möglicher Screen-Mirror-Bildpfad
+```
+
+---
+
+# Schlussfazit
+
+Der aktuelle Erkenntnisstand ist:
+
+> **Der F20 Connected-RHMI-Stack ist nicht mehr nur prinzipiell verstanden, sondern im Feld bis zur Ressourcenprüfung, zu Laufzeitdaten, HMI-Aktionen und strukturierten Fehlerantworten beobachtet.**
+
+Die wichtigsten neuen Details sind:
+
+1. `rhmi_checkResource → true` ist der stärkste Beleg für einen akzeptierten RHMI-Ressourcenkontext.
+2. `ServiceException` zeigt, dass die HU `setData` semantisch validiert.
+3. `src=17` ist durch die Exceptions als RHMI-Kanal verankert.
+4. Die großen 666-Byte-Cluster sind der wahrscheinlich wichtigste Rohdatenfund für die Ressourcenrekonstruktion.
+5. Der 216-KiB-Burst ist ein starker Screen-Mirror-Kandidat, aber ohne vollständige Payload noch kein endgültiger JPEG-Feldfakt.
+6. Der Tiny-Int-Fix trennt jetzt echte Capture-Lücken von früheren Decoderfehlern.
+7. Der Lab-Simulator ist als Connected-/RHMI-Regressionstestbett bereits sehr leistungsfähig.
+8. Der nächste zentrale Schritt ist ein **bidirektionaler, transaktionaler B3-RFCOMM-Relay**.
+
+Für dein eigenes Menü bedeutet das:
+
+```text
+Protokollwissen: weitgehend vorhanden
+RHMI-Modell: vorhanden
+F20-RHMI-Nutzung: FIELD-MEASURED
+Autorisierte Ressource: teilweise identifiziert
+eigene Laufzeitdaten: nächster Proof
+eigene freie Ressource: weiterhin nicht bewiesen
+autonomer Linux-/ESP32-Client: Security-/Session-Frage offen
+```
+
+Die sinnvollste nächste Reihenfolge ist daher:
+
+```text
+B3-Relay
+  ↓
+Resource-/Hash-Zuordnung
+  ↓
+autorisierte Ressource auswählen
+  ↓
+eigener String per rhmi_setData
+  ↓
+setProperty
+  ↓
+Button-/Action-Event
+  ↓
+erst danach Bilder, Screen-Mirror und eigenes Layout
+```
+
+Die Forschung verschiebt sich damit endgültig von „Kann die HU Connected/RHMI?“ zu:
+
+> **Welche autorisierten Ressourcen und Laufzeitmodelle können wir kontrolliert mit eigenen Daten und Events nutzen?**
+
+Ja. Mit dieser erweiterten Zusammenfassung wird die Beweislage noch klarer. Ich würde aber **zwei Dinge gegenüber der bisherigen Darstellung bewusst enger formulieren**:
+
+1. `rhmi_checkResource → true` ist ein sehr starker RHMI-Lifecycle-Befund, aber daraus folgt noch nicht automatisch, dass die **konkrete Ressource frei von jeder weiteren Einschränkung** nutzbar ist.
+2. Der 216-KiB-Burst bleibt bis zum B3-Vollcapture ein **Screen-Mirror-Kandidat**, nicht bereits ein Feldfakt „RHMI überträgt JPEG-Frames“.
+
+Darüber hinaus sehe ich einige neue Konsequenzen.
+
+### 1. Wir haben jetzt praktisch einen RHMI-„Authorization Boundary“
+
+Die interessanteste Sequenz ist:
+
+```text
+rhmi_checkResource(hash)
+        ↓
+       true
+        ↓
+rhmi_setData(...)
+        ↓
+       OK
+```
+
+gegenüber:
+
+```text
+rhmi_checkResource(...)
+        ↓
+       true
+        ↓
+rhmi_setData(...)
+        ↓
+ServiceException
+```
+
+Das bedeutet: **Resource Authorization und Runtime-Data Validation sind zwei unterschiedliche Ebenen.**
+
+Das ist für dein eigenes Menü enorm wichtig.
+
+Wir müssen nicht mehr nur fragen:
+
+> „Ist diese Ressource autorisiert?“
+
+sondern:
+
+> „Welche Runtime-Modelle innerhalb einer autorisierten Ressource akzeptiert die HU mit welchen Werten?“
+
+Damit ergibt sich ein zweistufiges Testmodell:
+
+```text
+GATE A
+Resource accepted?
+        ↓
+GATE B
+Model/value accepted?
+        ↓
+GATE C
+Action accepted?
+```
+
+Das ist wesentlich sauberer als der bisherige pauschale Begriff „RHMI funktioniert“.
+
+---
+
+### 2. Die `ServiceException` könnte sogar unser erstes HU-seitiges Fuzzing-Orakel werden
+
+Das würde ich sehr hoch priorisieren.
+
+Wir haben bereits:
+
+```text
+gültiger setData
+→ Void result
+```
+
+und:
+
+```text
+problematischer setData
+→ ServiceException
+```
+
+Damit besitzt die Serien-HU einen binären Beobachter:
+
+```text
+ACCEPT
+REJECT
+```
+
+Wenn B3 die vollständigen Payloads liefert, können wir kontrolliert einzelne Parameter variieren:
+
+```text
+modelId = konstant
+componentId = konstant
+property = konstant
+
+value:
+    "A"
+    "ABC"
+    ""
+    0
+    1
+    127
+    128
+    false
+    true
+```
+
+und jeweils messen:
+
+```text
+HU → OK
+HU → ServiceException
+HU → timeout
+HU → disconnect
+```
+
+Das wäre kein blindes Fuzzing, sondern **strukturierter Protokollvergleich**.
+
+Und dank des Tiny-Int-Fixes können wir die Werte jetzt auch korrekt dekodieren.
+
+---
+
+### 3. Das macht `ImageID=0` als Hypothese besonders interessant
+
+Die aktuelle Kette ist:
+
+```text
+ServiceException
++
+Lab-Korrelation
++
+RHMI-Bildmodell
+```
+
+Aber:
+
+```text
+ImageID=0 → Fehler
+```
+
+ist noch nicht FIELD FACT.
+
+Deshalb wäre mein erster gezielter Test **nicht** Screen-Mirror, sondern:
+
+```text
+gleiches modelId
+gleiches componentId
+gleiches Event
+
+ImageID:
+    0
+    1
+    bekannte gültige ID
+    unbekannte ID
+```
+
+Wenn die HU reproduzierbar nur bei `0`/unbekannt mit `ServiceException` antwortet, haben wir eine sehr saubere Semantik.
+
+---
+
+### 4. Die 666-Byte-Cluster sollten nicht einfach als „Resource Uploads“ bezeichnet werden
+
+Hier würde ich die Evidenzdisziplin sogar etwas verschärfen.
+
+Derzeit wissen wir:
+
+```text
+lange TX-Cluster
++
+666-B-Serien
++
+Connected/RHMI-Kontext
+```
+
+Das macht `rhmi_setResource` **plausibel**.
+
+Aber ohne den Anfang des Etch-RPCs fehlt noch der Beweis.
+
+Die richtige Klassifizierung ist daher:
+
+> **STRONG CANDIDATE für Resource-/Image-/DB-Transfer.**
+
+Erst wenn B3 zeigt:
+
+```text
+method = rhmi_setResource
+```
+
+können wir daraus FIELD FACT machen.
+
+Das ist wichtig, weil 216 KiB beispielsweise auch aus mehreren anderen BMWRemoting-Nutzdaten bestehen könnten.
+
+---
+
+### 5. Genau deshalb ist B3 inzwischen wichtiger als weitere APK-Forensik
+
+Wir haben mittlerweile sehr viel Desk-Wissen:
+
+```text
+Etch
+BCL
+SAS
+AM
+RHMI
+CDS
+Resource whitelist
+App IDs
+Modelle
+Hashing
+```
+
+und zusätzlich:
+
+```text
+F20 FIELD:
+Transport
+Handshake
+SAS
+AM
+RHMI
+CDS
+Actions
+Errors
+```
+
+Der Informationsgewinn weiterer statischer Analyse nimmt deshalb ab.
+
+Der Engpass ist jetzt:
+
+```text
+Phone → HU
+vollständige Bytes
+```
+
+B3 schließt genau diese Lücke.
+
+Ich würde deshalb **keine größere neue Reverse-Engineering-Baustelle vor B3 beginnen**.
+
+---
+
+## 6. B3 sollte unbedingt „transparent“ bleiben
+
+Das ist wichtig für die Beweiskette.
+
+Nicht:
+
+```text
+Phone
+ ↓
+B3 dekodiert
+ ↓
+B3 erzeugt neues Paket
+ ↓
+HU
+```
+
+sondern:
+
+```text
+Phone
+ ↕
+B3
+ ↕
+HU
+```
+
+mit:
+
+```text
+raw capture
++
+passive decode
+```
+
+Damit kann ein späterer Vergleich sagen:
+
+```text
+Wire byte N = byte N
+```
+
+und wir müssen nicht diskutieren, ob der Relay selbst das Verhalten verändert hat.
+
+Die Dekodierung sollte **side-band** passieren:
+
+```text
+RFCOMM bytes
+      │
+      ├──► HU
+      │
+      └──► recorder/decoder
+```
+
+Das ist forensisch wesentlich sauberer.
+
+---
+
+## 7. Die `_messageId`/`_inReplyTo`-Korrelation ist der eigentliche Schlüssel
+
+Damit können wir aus einem Strom erstmals einen Graphen machen:
+
+```text
+Action
+ │
+ └─► messageId 0x1234
+          │
+          ├─► RPC A
+          │
+          └─► result/inReplyTo 0x1234
+                    │
+                    └─► next RPC
+```
+
+Dann können wir beispielsweise beweisen:
+
+```text
+Action #2
+  ↓
+messageId X
+  ↓
+rhmi_setData
+  ↓
+messageId Y
+  ↓
+216 KiB transfer
+```
+
+und erst dann von Kausalität sprechen.
+
+Das wäre wesentlich stärker als die derzeitige reine Zeitkorrelation von ~778 ms.
+
+---
+
+## 8. Der YouTube-Befund wird dadurch zu einem perfekten Differentialtest
+
+Ich würde die nächsten beiden Feldläufe möglichst identisch machen:
+
+### Lauf A
+
+```text
+Bluetooth ON
+AAIdrive Connected
+Spotify
+ein definierter iDrive-Menüpfad
+```
+
+### Lauf B
+
+```text
+Bluetooth ON
+AAIdrive Connected
+YouTube
+derselbe Menüpfad
+```
+
+Dann vergleichen:
+
+```text
+AM registration
+RHMI resources
+setData
+setProperty
+actions
+image transfers
+CDS
+A2DP
+```
+
+Der Vorteil:
+
+**Spotify ist deine Baseline. YouTube ist der Treatment-Fall.**
+
+Alles, was nur in YouTube auftaucht, wird automatisch interessant.
+
+Insbesondere:
+
+```text
+JPEG
+RaImageModel
+große setData
+screenmirror
+```
+
+---
+
+## 9. Ein besonders interessanter Test wäre YouTube ohne Screen-Mirror
+
+Falls reproduzierbar möglich:
+
+```text
+YouTube starten
+→ keine Screen-Mirror-Aktion
+→ nur Browse
+```
+
+und anschließend:
+
+```text
+YouTube
+→ Screen-Mirror/Aktion
+```
+
+Dann:
+
+```text
+A − B
+```
+
+Wenn der 216-KiB-Transfer ausschließlich in B auftaucht, wird die Screen-Mirror-Hypothese sehr stark.
+
+Noch besser:
+
+```text
+Action #2
+→ Bildburst
+
+Action #2 nicht auslösen
+→ kein Burst
+```
+
+Dann hätten wir einen echten Trigger.
+
+---
+
+## 10. Der Lab-Simulator ist jetzt genau richtig für die nächste Phase
+
+Die Reihenfolge sollte sein:
+
+```text
+F20 FIELD
+     │
+     │ vollständiger B3-Trace
+     ▼
+Golden Capture
+     │
+     ▼
+Etch decoder
+     │
+     ▼
+f20_sim
+     │
+     ├── replay
+     ├── mutation
+     └── response comparison
+```
+
+Damit können wir einen **Field→Lab→Field-Zyklus** etablieren.
+
+Zum Beispiel:
+
+```text
+Feld:
+rhmi_setData(model=123,value="Spotify")
+
+        ↓
+
+Lab:
+decode
+modify value → "TEST"
+
+        ↓
+
+f20_sim:
+expected response = OK
+
+        ↓
+
+Feld:
+same structure, TEST
+```
+
+Das wäre dann der erste echte kontrollierte Proof-of-Concept für ein eigenes RHMI-Menü.
+
+---
+
+# Was ich jetzt als „nächsten Meilenstein“ definieren würde
+
+Nicht:
+
+> „Eigenes BMW-Menü läuft.“
+
+Sondern zunächst:
+
+### **RHMI-M1 — autorisierte Ressource + eigener Runtime-Wert**
+
+```text
+F20 FIELD
+    │
+    ├── checkResource(hash) → true
+    │
+    └── autorisierte Ressource identifiziert
+              │
+              ▼
+          B3 replay
+              │
+              ▼
+        rhmi_setData
+        model = known
+        value = TEST
+              │
+              ▼
+          F20 accepts
+              │
+              ▼
+        visible change
+```
+
+Wenn dieser Test gelingt, ist der entscheidende Sprung geschafft.
+
+Danach:
+
+```text
+M2: setProperty
+M3: Button
+M4: ActionEvent
+M5: dynamische Liste
+M6: Bild
+M7: eigenes Resource-Paket
+```
+
+---
+
+## Meine aktualisierte Einschätzung
+
+Ich würde den Projektstatus momentan ungefähr so bewerten:
+
+| Bereich | Stand |
+|---|---|
+| RFCOMM/BCL | **FIELD sehr stark** |
+| Etch | **FIELD + vollständiger Lab-Decoder** |
+| SAS-Struktur | **FIELD sehr stark** |
+| AM | **FIELD** |
+| RHMI-Lifecycle | **FIELD sehr stark** |
+| Resource authorization | **FIELD, mindestens eine Ressource akzeptiert** |
+| `setData` | **FIELD** |
+| `setProperty` | **FIELD** |
+| Action → Phone | **FIELD** |
+| ServiceException | **FIELD** |
+| Runtime-Modellsemantik | **teilweise offen** |
+| Resource-Zuordnung | **teilweise offen** |
+| Screen-Mirror | **STRONG, Payload-Nachweis offen** |
+| eigenes autorisiertes Menü | **noch nicht bewiesen** |
+| eigenes freies Resource-Paket | **UNKNOWN** |
+| autonomer Client | **technisch weit, SAS-Authentisierung offen** |
+
+**Der zentrale Engpass ist jetzt wirklich der Capture-Punkt und nicht mehr das Verständnis des Protokolls.**
+
+Wenn B3 sauber funktioniert, würde ich danach nicht mehr breit forschen, sondern sehr gezielt **eine einzige autorisierte Ressource vom F20 vollständig rekonstruieren und einen einzigen String per `rhmi_setData` verändern**. Das wäre der kürzeste Weg von Reverse Engineering zu einem tatsächlich eigenen Connected-HMI-PoC.
+
