@@ -97,6 +97,48 @@ def log(msg: str) -> None:
     print(time.strftime("%H:%M:%S"), msg, flush=True)
 
 
+# HCI Write Local Name (OGF 0x03 / OCF 0x0013) · Read Local Name OCF 0x0014.
+_HCI_OP_WRITE_LOCAL_NAME = 0x0C13
+_HCI_OP_READ_LOCAL_NAME = 0x0C14
+
+
+def _padded_local_name(name: str, size: int = 248) -> bytes:
+    raw = name.encode("utf-8", errors="replace")[: size - 1]
+    return raw + b"\x00" * (size - len(raw))
+
+
+def rewrite_hci_local_name(pkt: bytes, pinned: str) -> bytes:
+    """Force a fixed local name on Write Local Name and Read Local Name complete.
+
+    Lab ESPs default to names like ``BT-Analyzer-.87`` after panic/reinit; BlueZ
+    then mirrors that into Adapter.Alias and the phone stops treating the peer
+    as a BMW. Pinning on the bridge keeps the air name stable without relying
+    on userspace pin races.
+    """
+    if not pinned or len(pkt) < 4:
+        return pkt
+    # Host → controller command
+    if pkt[0] == 0x01 and len(pkt) >= 4:
+        opcode = pkt[1] | (pkt[2] << 8)
+        if opcode == _HCI_OP_WRITE_LOCAL_NAME:
+            body = _padded_local_name(pinned, 248)
+            return bytes([0x01, 0x13, 0x0C, 248]) + body
+        return pkt
+    # Controller → host event: Command Complete (0x0e) for Read Local Name
+    if pkt[0] == 0x04 and len(pkt) >= 7 and pkt[1] == 0x0E:
+        # H4 evt, evtcode, plen, ncmd(1), opcode(2), status(1), name...
+        opcode = pkt[4] | (pkt[5] << 8)
+        if opcode == _HCI_OP_READ_LOCAL_NAME and len(pkt) >= 7:
+            plen = pkt[2]
+            # Keep ncmd + opcode + status, replace name tail with pad to plen-4
+            if plen >= 4:
+                status = pkt[6] if len(pkt) > 6 else 0
+                name_len = plen - 4
+                name = _padded_local_name(pinned, name_len) if name_len > 0 else b""
+                return bytes([0x04, 0x0E, plen, pkt[3], 0x14, 0x0C, status]) + name
+    return pkt
+
+
 def apply_agent_coex(host: str, mode: str = "prefer_bt") -> None:
     """Best-effort HTTP POST /api/hci/coex so even 0.3.19 nodes prioritize BT."""
     if not mode or mode == "keep":
@@ -115,7 +157,9 @@ def apply_agent_coex(host: str, mode: str = "prefer_bt") -> None:
         log(f"coex={mode} skipped on {host}: {exc}")
 
 
-def run_session(host: str, port: int, coex: str = "prefer_bt") -> None:
+def run_session(
+    host: str, port: int, coex: str = "prefer_bt", local_name: str | None = None
+) -> None:
     apply_agent_coex(host, coex)
     sock = connect_agent(host, port)
     try:
@@ -123,9 +167,11 @@ def run_session(host: str, port: int, coex: str = "prefer_bt") -> None:
     except Exception:
         sock.close()
         raise
-    log(f"hci{index} <-> {host}:{port}")
-    stats = {"to_ctrl": 0, "to_host": 0}
+    pin = (local_name or "").strip()
+    log(f"hci{index} <-> {host}:{port}" + (f" pin_name={pin!r}" if pin else ""))
+    stats = {"to_ctrl": 0, "to_host": 0, "name_pin": 0}
     buf = bytearray()
+    host_buf = bytearray()
     try:
         while True:
             ready, _, _ = select.select([sock, fd], [], [])
@@ -134,9 +180,7 @@ def run_session(host: str, port: int, coex: str = "prefer_bt") -> None:
                 pkt = os.read(fd, 4096)
                 if not pkt:
                     raise ConnectionError("vhci closed")
-                if pkt[0] in HOST_TO_CONTROLLER:
-                    out += pkt
-                    stats["to_ctrl"] += 1
+                host_buf += pkt
                 # Drain anything already queued without waiting.
                 os.set_blocking(fd, False)
                 try:
@@ -147,11 +191,19 @@ def run_session(host: str, port: int, coex: str = "prefer_bt") -> None:
                             break
                         if not pkt:
                             raise ConnectionError("vhci closed")
-                        if pkt[0] in HOST_TO_CONTROLLER:
-                            out += pkt
-                            stats["to_ctrl"] += 1
+                        host_buf += pkt
                 finally:
                     os.set_blocking(fd, True)
+                for pkt in split_h4(host_buf):
+                    if pkt[0] not in HOST_TO_CONTROLLER:
+                        continue
+                    if pin:
+                        new = rewrite_hci_local_name(pkt, pin)
+                        if new != pkt:
+                            stats["name_pin"] += 1
+                        pkt = new
+                    out += pkt
+                    stats["to_ctrl"] += 1
                 if out:
                     sock.sendall(out)
             if sock in ready:
@@ -160,12 +212,20 @@ def run_session(host: str, port: int, coex: str = "prefer_bt") -> None:
                     raise ConnectionError("agent closed the connection")
                 buf += data
                 for pkt in split_h4(buf):
+                    if pin:
+                        new = rewrite_hci_local_name(pkt, pin)
+                        if new != pkt:
+                            stats["name_pin"] += 1
+                        pkt = new
                     os.write(fd, pkt)
                     stats["to_host"] += 1
     finally:
         os.close(fd)
         sock.close()
-        log(f"hci{index} removed (to_ctrl={stats['to_ctrl']} to_host={stats['to_host']})")
+        log(
+            f"hci{index} removed (to_ctrl={stats['to_ctrl']} "
+            f"to_host={stats['to_host']} name_pin={stats['name_pin']})"
+        )
 
 
 def main() -> int:
@@ -179,6 +239,11 @@ def main() -> int:
         choices=("prefer_bt", "a2dp", "default", "keep"),
         help="ESP BT/WiFi coex policy to apply on connect (default: prefer_bt)",
     )
+    ap.add_argument(
+        "--local-name",
+        default=os.environ.get("HCI_PIN_LOCAL_NAME", ""),
+        help="pin HCI local name (e.g. 'BMW 38304'); also HCI_PIN_LOCAL_NAME env",
+    )
     args = ap.parse_args()
 
     if not os.path.exists(VHCI_PATH):
@@ -189,7 +254,7 @@ def main() -> int:
     while True:
         started = time.monotonic()
         try:
-            run_session(args.host, args.port, args.coex)
+            run_session(args.host, args.port, args.coex, args.local_name or None)
         except KeyboardInterrupt:
             return 0
         except (OSError, ConnectionError, RuntimeError, ValueError) as exc:

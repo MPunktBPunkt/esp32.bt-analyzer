@@ -1,0 +1,3 @@
+bytes 48411492
+events [('inject_cds_request', 1)]
+methods []
