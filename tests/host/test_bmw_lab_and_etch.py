@@ -37,6 +37,20 @@ class TestEtchCodec(unittest.TestCase):
         self.assertEqual(dec["raw_fields"]["_inReplyTo"], 7)
         self.assertEqual(dec["raw_fields"]["result"], caps)
 
+    def test_tiny_int_decode_full_etch_range(self):
+        # Apache Etch encodes single-byte ints as 0x00-0x7F (0..127) and
+        # 0xC0-0xFF (-64..-1). The decoder must accept the full range, not a
+        # narrow 0x00-0x1F / 0xE0-0xFF subset (field logs from the real HU use
+        # model IDs and values up to 127, e.g. RHMI model 100+ and tiny values).
+        from etch_codec import _Reader  # noqa: WPS433
+
+        for raw, expected in ((0x00, 0), (0x1F, 31), (0x20, 32), (0x64, 100), (0x7F, 127)):
+            self.assertEqual(_Reader(bytes([raw])).read_int(), expected)
+            self.assertEqual(_Reader(bytes([raw])).read_value(), expected)
+        for raw, expected in ((0xFF, -1), (0xE0, -32), (0xCE, -50), (0xC0, -64)):
+            self.assertEqual(_Reader(bytes([raw])).read_int(), expected)
+            self.assertEqual(_Reader(bytes([raw])).read_value(), expected)
+
     def test_cds_get_and_event_roundtrip(self):
         q = build_cds_get_property_call(12, "vehicle.VIN", msg_id=42)
         dq = decode_etch_message(q)

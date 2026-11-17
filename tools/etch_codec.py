@@ -537,9 +537,9 @@ class _Reader:
 
     def read_int(self) -> int:
         tag = self.u8()
-        if tag <= 0x1F:
+        if tag <= 0x7F:
             return tag
-        if 0xE0 <= tag <= 0xFF:
+        if 0xC0 <= tag <= 0xFF:
             return tag - 256
         if tag == TC_BYTE:
             return struct.unpack(">b", self.take(1))[0]
@@ -555,15 +555,15 @@ class _Reader:
         tag = self.u8()
         if tag == TC_INT:
             return struct.unpack(">I", self.take(4))[0]
-        if tag <= 0x1F:
+        if tag <= 0x7F:
             return tag
         raise ValueError(f"expected id tag 0x86, got 0x{tag:02x}")
 
     def read_value(self) -> Any:
         tag = self.u8()
-        if tag <= 0x1F:
+        if tag <= 0x7F:
             return tag
-        if 0xE0 <= tag <= 0xFF:
+        if 0xC0 <= tag <= 0xFF:
             return tag - 256
         if tag == TC_NULL:
             return None

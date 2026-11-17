@@ -54,5 +54,12 @@
 
 ## Open gaps
 - Reliable AVRCP ↔ RHMI control loop without RFCOMM drop after action flood
-- Fresh NowPlaying `setData` after BT reconnect (Muse audible, NP not refreshed); `rhmi_setData` logged without decoded args (len-only)
+- Fresh NowPlaying `setData` after BT reconnect (Muse audible, NP not refreshed)
 - BFMV track path: not confirmed on wire this session
+
+## Update 2026-11-17 — len-only gap CLOSED
+Das `rhmi_setData`-„logged without decoded args (len-only)" lag am Etch-Tiny-Int-Decode-Bug in
+`tools/etch_codec.py` (nur `0x00–0x1F`/`0xE0–0xFF` statt `0x00–0x7F`/`0xC0–0xFF`). Nach dem Fix
+(Host-Tests 122/122) dekodiert die volle Reassemblierung von `LIVE_1741`:
+**40 setData-Modelle** (445/446/447/451/452/458/462/456…), **0 Decode-Fehler**, **80-Einträge-Track-Timeline**
+(z. B. `Scorpions – Best – Still Loving You`). Details: `docs/analysis/DEEP_FORENSIC_RHMI_SCREENMIRROR_20261117.md` §5/§7.

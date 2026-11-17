@@ -1,5 +1,10 @@
 # Feld — RHMI-Browse mit Spotify auf HU (2026-11-17)
 
+> **ERRATA 2026-11-17** (s. `DEEP_FORENSIC_RHMI_SCREENMIRROR_20261117.md`):
+> 1. **YouTube war doch im Log.** `19188` enthält `com.google.android.youtube` als aktive Media-Session (07:31:32–07:32:15) **und** als AAIdrive-`am_registerApp` (1123 B @07:31:08.69). Die Aussage in §6 „kein YouTube" ist falsch.
+> 2. `19188` ist **ein** Connect-Zyklus mit **Spotify → YouTube → Screen-Mirror**, nicht nur „Spotify-Browse".
+> 3. Der `plen=99`-`setData` (src17) ist eine **`ServiceException`** (Typ-Hash `0x5A6F115C`), kein normaler Wert — zwei Ablehnungen 07:31:08.316 & 07:31:10.352.
+
 **claim_level:** FIELD FACT (Wire aus OnePlus `bluetooth_*.log`)  
 **Quellen:**  
 - `docs/bluetooth_20261117_072945_12974.log` (Schwanz-Session)  
@@ -164,7 +169,7 @@ Gefragt: Artist, Album, Song, Cover-Aussehen, YouTube-Titel.
 |--------|--------|------------|
 | Artist/Album/Titel | **nicht vorhanden** | nur `tried to update with no new data` (z. B. L19433); `metadata tags size: 0` |
 | Cover | **nicht vorhanden** | HU `cover art supported false` L9468; kein JPEG/PNG in Dumps |
-| YouTube | **nicht vorhanden** | kein `youtube` / `com.google.android.youtube` im Log |
+| YouTube | **vorhanden** (ERRATA) — App/Player ja, Titel nein | `com.google.android.youtube` L63142/L74130; `am_registerApp` 1123 B @07:31:08.69 |
 | Was da ist | Player-Paket | `com.spotify.music` L8117 / L19436 |
 
 Oppo loggt Phone→HU nur als Länge; HU-Dumps oft nach ~32–64 Hexzeichen mit `...` abgeschnitten. Deshalb: Mechanismus **ja**, Inhalt **nein**.

@@ -7,7 +7,7 @@ related: hu-probe Gate G2 "BCL wire" (USB AOA path, still open)
 claim_level: TRANSPORT FACT (.87) + F20 Etch/SAS/RHMI/CDS FIELD FACT (sdbm-Hash + WriteDataCO-Arithmetik) · OPEN4004 alone ≠ content (fehlt Etch-RPC sas_certificate/sas_login)
 rfcomm_initiator: MIXED  # ACL+Mux HU→Phone; SPP DLC Phone-client (UID 10479)
 secondary: technology-audit audits/supra-idrive6-android-auto-2026-secondary @4f70751
-method: docs/analysis/DEEP_FORENSIC_ETCH_SAS_20261116.md · docs/analysis/ONEPLUS_BT_FORENSIC_20261115.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
+method: docs/analysis/DEEP_FORENSIC_RHMI_SCREENMIRROR_20261117.md (Feld RHMI/YouTube/Screen-Mirror + ServiceException-Decode + Etch-Tiny-Int-Fix) · docs/analysis/DEEP_FORENSIC_ETCH_SAS_20261116.md · docs/analysis/ONEPLUS_BT_FORENSIC_20261115.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
 architecture: controlled dual-leg HCI bridge — not passive Phone↔HU air sniff
 audit_reuse: technology-audit technologies/bmw-bcl + projects/esp32-bt-analyzer/applications/bmw-bcl.md
 next: P0 Lab re-run `--hu-profile f20 --sas-probe challenge` (repariertes _result_sas_certificate + (src,4004)) → erwarte 559-B sas_login · P1 B3 transparentes RFCOMM-Relay für volle 667-B-Bodies
