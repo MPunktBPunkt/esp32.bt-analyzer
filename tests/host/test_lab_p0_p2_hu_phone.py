@@ -195,15 +195,6 @@ class TestPhoneHuLoopbackMenu(unittest.TestCase):
         """Fall A: checkResource(true) must not force setResource (audit 2026-11-17)."""
         import os
 
-        desc_path = (
-            Path(__file__).resolve().parents[2]
-            / "tools"
-            / "fixtures"
-            / "rhmi_description_lab_13598.xml"
-        )
-        desc = desc_path.read_bytes() if desc_path.is_file() else b"<pluginApps>lab</pluginApps>\n"
-        digest = hashlib.sha256(desc).hexdigest()
-
         hu = DummyHuSession(
             version=5,
             instance_id=14,
@@ -215,7 +206,6 @@ class TestPhoneHuLoopbackMenu(unittest.TestCase):
             etch_reply_src=0,
         )
         assert hu.etch is not None
-        hu.etch.known_digests.add(digest)
 
         prev = os.environ.get("BCL_RHMI_CACHE_HIT")
         os.environ["BCL_RHMI_CACHE_HIT"] = "1"
@@ -228,6 +218,9 @@ class TestPhoneHuLoopbackMenu(unittest.TestCase):
                 knock_payload="wire_v5",
                 mybmw_sim=True,
             )
+            # Seed HU with the same DESCRIPTION bytes PhoneClientSession will check.
+            desc = phone._load_lab_description()
+            hu.etch.known_digests.add(hashlib.sha256(desc).hexdigest())
             tx = [phone.session_init()]
             saw_menu = False
             for _ in range(80):

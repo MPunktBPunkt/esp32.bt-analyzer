@@ -1,0 +1,293 @@
+{
+  "ts_utc": "2026-11-17T15:04:16.798345+00:00",
+  "claim_level": "LAB RETEST after resource-lifecycle audit (7c1cd11+)",
+  "fw": {
+    "192.168.178.131": {
+      "version": "0.3.20",
+      "sketchUsed": 1919808,
+      "uptime": "23h 41min"
+    },
+    "192.168.178.87": {
+      "version": "0.3.20",
+      "sketchUsed": 1919808,
+      "uptime": "2h 2min"
+    }
+  },
+  "unittest": "PASS (6/6 on .108 after fixture-seed fix)",
+  "inprocess": {
+    "miss": {
+      "checks": [
+        {
+          "type": "DESCRIPTION",
+          "cache": "miss",
+          "result": false
+        },
+        {
+          "type": "TEXTDB",
+          "cache": "miss",
+          "result": false
+        },
+        {
+          "type": "IMAGEDB",
+          "cache": "miss",
+          "result": false
+        }
+      ],
+      "uploads": [
+        {
+          "type": "DESCRIPTION",
+          "bytes": 13598
+        }
+      ],
+      "skips": [
+        "TEXTDB",
+        "IMAGEDB"
+      ],
+      "menu": {
+        "event": "mybmw_menu_upload_queued",
+        "description_bytes": 13598,
+        "sha256": "3cf4795378d3cd7dfba139d8035c9ac5f6c1cacf8421e8044063d0824208b164",
+        "uploads": 1,
+        "cache_hits": 0,
+        "note": "initialize after check sequence; setResource only on misses"
+      },
+      "exc": {
+        "event": "mybmw_setdata_service_exception",
+        "errorCode": 213,
+        "detailMessage": "SetData was not successful."
+      }
+    },
+    "hit": {
+      "checks": [
+        {
+          "type": "DESCRIPTION",
+          "cache": "hit",
+          "result": true
+        },
+        {
+          "type": "TEXTDB",
+          "cache": "miss",
+          "result": false
+        },
+        {
+          "type": "IMAGEDB",
+          "cache": "miss",
+          "result": false
+        }
+      ],
+      "uploads": [],
+      "menu": {
+        "event": "mybmw_menu_upload_queued",
+        "description_bytes": 13598,
+        "sha256": "3cf4795378d3cd7dfba139d8035c9ac5f6c1cacf8421e8044063d0824208b164",
+        "uploads": 0,
+        "cache_hits": 1,
+        "note": "initialize after check sequence; setResource only on misses"
+      }
+    }
+  },
+  "air_usb": {
+    "status": "PARTIAL",
+    "peer": "C0:B8:83:34:F4:62 -> C8:C9:A3:CB:7B:0A SCN6",
+    "events_focus": {
+      "rfcomm_connected": 1,
+      "mybmw_apps_queued": 1,
+      "mybmw_rhmi_plan": 1,
+      "mybmw_check_resource_tx": 1,
+      "mybmw_check_resource_rx": null,
+      "mybmw_set_resource_tx": null,
+      "mybmw_menu_upload_queued": null,
+      "mybmw_setdata_service_exception": null,
+      "hold_abort": null,
+      "phone_done": 1,
+      "watchdog_echo_missed": 27
+    },
+    "tx_methods": {
+      "sas_certificate": 1,
+      "sas_login": 1,
+      "ver_getVersion": 1,
+      "info_getSystemInfo": 1,
+      "rhmi_getCapabilities": 1,
+      "cds_create": 1,
+      "am_create": 1,
+      "rhmi_create": 1,
+      "av_create": 1,
+      "cds_addPropertyChangedEventHandler": 15,
+      "cds_getPropertyAsync": 15,
+      "am_registerApp": 4,
+      "av_requestConnection": 1,
+      "rhmi_checkResource": 1
+    },
+    "rx_methods": {
+      "_result_sas_certificate": 1,
+      "_result_sas_login": 1,
+      "_result_ver_getVersion": 1,
+      "_result_info_getSystemInfo": 1,
+      "_result_rhmi_getCapabilities": 1,
+      "_result_cds_create": 1,
+      "_result_am_create": 1,
+      "_result_rhmi_create": 1,
+      "_result_av_create": 1,
+      "_result_cds_addPropertyChangedEventHandler": 12,
+      "cds_onPropertyChangedEvent": 22,
+      "_result_cds_getPropertyAsync": 11
+    },
+    "key": [
+      {
+        "event": "rfcomm_connected",
+        "peer": "C8:C9:A3:CB:7B:0A",
+        "channel": 6
+      },
+      {
+        "event": "handshake_rx"
+      },
+      {
+        "event": "mybmw_sim_start"
+      },
+      {
+        "event": "mybmw_apps_queued",
+        "am_apps": 4
+      },
+      {
+        "event": "mybmw_rhmi_plan",
+        "types": [
+          "DESCRIPTION",
+          "TEXTDB",
+          "IMAGEDB"
+        ]
+      },
+      {
+        "event": "mybmw_check_resource_tx",
+        "type": "DESCRIPTION"
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 1
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 2
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 3
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 4
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 5
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 6
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 7
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 8
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 9
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 10
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 11
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 12
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 13
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 14
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 15
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 16
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 17
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 18
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 19
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 20
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 21
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 22
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 23
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 24
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 25
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 26
+      },
+      {
+        "event": "watchdog_echo_missed",
+        "misses": 27
+      },
+      {
+        "event": "phone_done",
+        "peer": "C8:C9:A3:CB:7B:0A",
+        "channel": 6
+      }
+    ],
+    "hu_focus": {
+      "rfcomm_connected": 1,
+      "handshake_sent": 1,
+      "rhmi_check_resource": null,
+      "rhmi_resource_rx": null,
+      "watchdog_echo": 1,
+      "f20_rpc_rx": 32
+    }
+  },
+  "air_dual": {
+    "status": "FAIL",
+    "events": {
+      "session_start": 1,
+      "rfcomm_connect_failed": 1
+    }
+  }
+}
