@@ -40,6 +40,60 @@ def _loop(hu: DummyHuSession, phone: PhoneClientSession, *, until_menu: bool = T
 
 
 class TestW0Forensic(unittest.TestCase):
+    def test_stop_after_description_check_no_init(self):
+        import os
+
+        prev = os.environ.get("BCL_RHMI_STOP_AFTER")
+        os.environ["BCL_RHMI_STOP_AFTER"] = "description_check"
+        try:
+            hu = DummyHuSession(
+                version=5,
+                instance_id=14,
+                buffer_size=0x4000,
+                echo_watchdog=True,
+                send_dataack=True,
+                etch_stub=True,
+                sas_probe="f20_full",
+                etch_reply_src=0,
+            )
+            phone = PhoneClientSession(
+                selectproto=4,
+                wire_open5001=True,
+                open_etch=True,
+                etch_src=10,
+                knock_payload="wire_v5",
+                mybmw_sim=True,
+            )
+            tx = [phone.session_init()]
+            saw_hold = False
+            for _ in range(100):
+                rx_all: list[bytes] = []
+                for chunk in tx:
+                    rx_all.extend(hu.on_bytes(chunk))
+                tx = []
+                for chunk in rx_all:
+                    tx.extend(phone.on_bytes(chunk))
+                if not tx and phone.active:
+                    tx.append(phone.watchdog_ping())
+                if any(e.get("event") == "mybmw_rhmi_hold_after_check" for e in phone.events):
+                    saw_hold = True
+                    break
+        finally:
+            if prev is None:
+                os.environ.pop("BCL_RHMI_STOP_AFTER", None)
+            else:
+                os.environ["BCL_RHMI_STOP_AFTER"] = prev
+        self.assertTrue(saw_hold)
+        self.assertFalse(
+            any(e.get("event") == "mybmw_menu_upload_queued" for e in phone.events)
+        )
+        checks = [e for e in phone.events if e.get("event") == "mybmw_check_resource_tx"]
+        self.assertEqual([c["type"] for c in checks], ["DESCRIPTION"])
+        self.assertEqual(
+            [e for e in phone.events if e.get("event") == "mybmw_set_resource_tx"],
+            [],
+        )
+
     def test_snapshot_wait_class_none_after_runtime(self):
         hu = DummyHuSession(
             version=5,

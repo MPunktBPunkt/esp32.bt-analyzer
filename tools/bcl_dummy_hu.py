@@ -618,7 +618,9 @@ class PhoneClientSession(_Session):
     _rhmi_state: str = "DISCONNECTED"
     # messageId → open Etch transaction (request awaiting reply).
     _open_txns: dict = field(default_factory=dict)
-
+    # W0 isolate: after first DESCRIPTION check, wait for reply only (no TEXTDB/init/setData).
+    # Env BCL_RHMI_STOP_AFTER=description_check | off (default).
+    rhmi_stop_after: str = ""
     def session_init(self) -> bytes:
         self.events.append({"event": "session_init", "dir": "tx"})
         return INIT_MAGIC
@@ -737,11 +739,15 @@ class PhoneClientSession(_Session):
     def _queue_cds_and_apps(self) -> None:
         if self._cds_props_queued:
             return
+        stop = (self.rhmi_stop_after or os.environ.get("BCL_RHMI_STOP_AFTER", "")).strip().lower()
+        self.rhmi_stop_after = stop
         cds_h = int(self._handles.get("cds_create") or 10)
         am_h = int(self._handles.get("am_create") or 11)
         rhmi_h = int(self._handles.get("rhmi_create") or 12)
         av_h = int(self._handles.get("av_create") or 13)
-        for prop in MYBMW_CDS_PROPS:
+        # W0: skip CDS flood so checkResource TX is unambiguous on the wire.
+        cds_props = () if stop in ("description_check", "check", "w0") else MYBMW_CDS_PROPS
+        for prop in cds_props:
             self._queue_rpc(
                 "cds_addPropertyChangedEventHandler",
                 {
@@ -761,16 +767,21 @@ class PhoneClientSession(_Session):
                     "propertyName": prop,
                 },
             )
-        # Multi-app AM wave mirroring field 17.11 (YouTube / ScreenMirror / BT / AAIdrive).
-        for app_id, app_name in (
-            ("net.basarsoft.a4a", "AAIdrive"),
-            ("androidautoidrive.com.spotify.music", "Spotify"),
-            ("androidautoidrive.com.google.android.youtube", "YouTube"),
-            (
-                "io.bimmergestalt.idriveconnectaddons.screenmirror",
-                "Screen Mirroring",
-            ),
-        ):
+        # Multi-app AM wave mirroring field 17.11; W0 uses single AAIdrive only.
+        am_apps = (
+            (("net.basarsoft.a4a", "AAIdrive"),)
+            if stop in ("description_check", "check", "w0")
+            else (
+                ("net.basarsoft.a4a", "AAIdrive"),
+                ("androidautoidrive.com.spotify.music", "Spotify"),
+                ("androidautoidrive.com.google.android.youtube", "YouTube"),
+                (
+                    "io.bimmergestalt.idriveconnectaddons.screenmirror",
+                    "Screen Mirroring",
+                ),
+            )
+        )
+        for app_id, app_name in am_apps:
             self._queue_rpc(
                 "am_registerApp",
                 {
@@ -783,23 +794,25 @@ class PhoneClientSession(_Session):
                     "appName": app_name,
                 },
             )
-        self._queue_rpc(
-            "av_requestConnection",
-            {
-                "_messageId": self._next_msg(),
-                "handle": av_h,
-                "connectionType": 0,
-            },
-        )
+        if stop not in ("description_check", "check", "w0"):
+            self._queue_rpc(
+                "av_requestConnection",
+                {
+                    "_messageId": self._next_msg(),
+                    "handle": av_h,
+                    "connectionType": 0,
+                },
+            )
         self._cds_props_queued = True
         self._etch_stage = "apps"
-        self._set_rhmi_state("AM_REGISTERED", am_apps=4)
+        self._set_rhmi_state("AM_REGISTERED", am_apps=len(am_apps))
         self.events.append(
             {
                 "event": "mybmw_apps_queued",
                 "handles": dict(self._handles),
-                "cds_props": list(MYBMW_CDS_PROPS),
-                "am_apps": 4,
+                "cds_props": list(cds_props),
+                "am_apps": len(am_apps),
+                "stop_after": stop or None,
             }
         )
         # Start RHMI resource lifecycle (check per type; upload only on miss).
@@ -850,6 +863,8 @@ class PhoneClientSession(_Session):
             desc_hash = "lab_sim_unknown_digest"
             desc_data = desc
             prefer_hit = False
+        stop = (self.rhmi_stop_after or os.environ.get("BCL_RHMI_STOP_AFTER", "")).strip().lower()
+        self.rhmi_stop_after = stop
         # TEXTDB/IMAGEDB: no lab fixtures yet — check with stable digests; on miss
         # skip upload (log) rather than inventing F20-compatible DBs.
         self._rhmi_plan = [
@@ -862,25 +877,30 @@ class PhoneClientSession(_Session):
                 "sha256": desc_sha,
                 "prefer_hit": prefer_hit,
             },
-            {
-                "type_name": "TEXTDB",
-                "hash": "lab_textdb_absent",
-                "size": 0,
-                "name": "",
-                "data": None,
-                "sha256": None,
-                "prefer_hit": False,
-            },
-            {
-                "type_name": "IMAGEDB",
-                "hash": "lab_imagedb_absent",
-                "size": 0,
-                "name": "",
-                "data": None,
-                "sha256": None,
-                "prefer_hit": False,
-            },
         ]
+        if stop not in ("description_check", "check", "w0"):
+            self._rhmi_plan.extend(
+                [
+                    {
+                        "type_name": "TEXTDB",
+                        "hash": "lab_textdb_absent",
+                        "size": 0,
+                        "name": "",
+                        "data": None,
+                        "sha256": None,
+                        "prefer_hit": False,
+                    },
+                    {
+                        "type_name": "IMAGEDB",
+                        "hash": "lab_imagedb_absent",
+                        "size": 0,
+                        "name": "",
+                        "data": None,
+                        "sha256": None,
+                        "prefer_hit": False,
+                    },
+                ]
+            )
         self._rhmi_plan_i = 0
         self._pending_check_mid = None
         self._uploads_done = 0
@@ -890,11 +910,29 @@ class PhoneClientSession(_Session):
                 "event": "mybmw_rhmi_plan",
                 "types": [p["type_name"] for p in self._rhmi_plan],
                 "cache_hit_mode": prefer_hit,
+                "stop_after": stop or None,
             }
         )
 
     def _queue_next_rhmi_check(self) -> None:
         if self._rhmi_plan_i >= len(self._rhmi_plan):
+            # W0 isolate: after DESCRIPTION check (+ optional miss upload), hold — no init/setData.
+            if self.rhmi_stop_after in ("description_check", "check", "w0"):
+                self._set_rhmi_state(
+                    "RESOURCE_CHECKING",
+                    note="stop_after_description_check_waiting_reply_or_hold",
+                )
+                self.events.append(
+                    {
+                        "event": "mybmw_rhmi_hold_after_check",
+                        "stop_after": self.rhmi_stop_after,
+                        "uploads": self._uploads_done,
+                        "cache_hits": self._cache_hits,
+                        "pending_check_mid": self._pending_check_mid,
+                        "open_txns": list(self._open_txns),
+                    }
+                )
+                return
             self._queue_rhmi_initialize_and_runtime()
             return
         item = self._rhmi_plan[self._rhmi_plan_i]
@@ -974,7 +1012,17 @@ class PhoneClientSession(_Session):
             self._cache_hits += 1
         else:
             data = item.get("data")
-            if isinstance(data, (bytes, bytearray)) and data:
+            # W0 isolate: observe reply only — do not auto-upload even on miss.
+            if self.rhmi_stop_after in ("description_check", "check", "w0"):
+                self.events.append(
+                    {
+                        "event": "mybmw_set_resource_skipped",
+                        "type": item["type_name"],
+                        "reason": "stop_after_no_upload",
+                        "cache": "miss",
+                    }
+                )
+            elif isinstance(data, (bytes, bytearray)) and data:
                 self._set_rhmi_state("RESOURCE_UPLOAD", type=item["type_name"])
                 rhmi_h = int(self._handles.get("rhmi_create") or 12)
                 digest = item.get("sha256") or hashlib.sha256(bytes(data)).hexdigest()
