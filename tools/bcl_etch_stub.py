@@ -756,8 +756,8 @@ class EtchSasCdsStub:
             return out
 
         if method == "rhmi_checkResource":
-            # Digest whitelist: known → True (skip upload); unknown → False (force setResource).
-            # Matches F20 behaviour once SAS.Digests.RHMIDescriptions is satisfied.
+            # Cache probe only: known → True (client may skip setResource); unknown → False.
+            # Authorization (SAS.Digests.*) is a separate layer — see AUDIT_RHMI_RESOURCE_LIFECYCLE.
             raw_hash = raw_fields.get("hash")
             digest = ""
             if isinstance(raw_hash, str):

@@ -607,6 +607,13 @@ class PhoneClientSession(_Session):
     _handles: dict = field(default_factory=dict)
     _pending_tx: list = field(default_factory=list)
     _cds_props_queued: bool = False
+    # RHMI resource plan (AAIdrive: DESCRIPTION → TEXTDB → IMAGEDB → initialize).
+    # checkResource = cache probe; setResource only on miss — never auto-forced on hit.
+    _rhmi_plan: list = field(default_factory=list)
+    _rhmi_plan_i: int = 0
+    _pending_check_mid: int | None = None
+    _uploads_done: int = 0
+    _cache_hits: int = 0
 
     def session_init(self) -> bytes:
         self.events.append({"event": "session_init", "dir": "tx"})
@@ -723,16 +730,6 @@ class PhoneClientSession(_Session):
                     "appName": app_name,
                 },
             )
-        # Unknown digest → HU checkResource False → we upload DESCRIPTION (P1).
-        self._queue_rpc(
-            "rhmi_checkResource",
-            {
-                "_messageId": self._next_msg(),
-                "handle": rhmi_h,
-                "hash": "lab_sim_unknown_digest",
-                "type": 0,
-            },
-        )
         self._queue_rpc(
             "av_requestConnection",
             {
@@ -751,6 +748,9 @@ class PhoneClientSession(_Session):
                 "am_apps": 4,
             }
         )
+        # Start RHMI resource lifecycle (check per type; upload only on miss).
+        self._build_rhmi_resource_plan()
+        self._queue_next_rhmi_check()
 
     def _load_lab_description(self) -> bytes:
         """Load calendar/News DESCRIPTION fixture (lab-authorized size class ~13.6 KiB)."""
@@ -770,34 +770,184 @@ class PhoneClientSession(_Session):
             b'text="lab_menu" applicationWeight="1"></pluginApp></pluginApps>\n'
         )
 
-    def _queue_rhmi_menu_upload(self) -> None:
-        """After checkResource=False: setResource(DESCRIPTION) → initialize → setData Apps/Browse."""
-        if self._etch_stage == "menu_upload":
+    def _rtype(self, name: str):
+        from etch_codec import EtchStruct
+
+        return EtchStruct(
+            "de.bmw.idrive.BMWRemoting.RHMIResourceType",
+            {str(name): True},
+        )
+
+    def _build_rhmi_resource_plan(self) -> None:
+        """AAIdrive order: DESCRIPTION → TEXTDB → IMAGEDB; then initialize.
+
+        Env BCL_RHMI_CACHE_HIT=1: DESCRIPTION hash pre-known to HU → expect
+        checkResource=true and no setResource (Fall A). Default: unknown digest
+        → miss → setResource (Fall B).
+        """
+        desc = self._load_lab_description()
+        desc_sha = hashlib.sha256(desc).hexdigest()
+        if os.environ.get("BCL_RHMI_CACHE_HIT", "").strip() in ("1", "true", "yes"):
+            desc_hash = desc_sha  # HU whitelist after prior persist, or seed
+            desc_data: bytes | None = desc  # keep payload for optional force
+            prefer_hit = True
+        else:
+            desc_hash = "lab_sim_unknown_digest"
+            desc_data = desc
+            prefer_hit = False
+        # TEXTDB/IMAGEDB: no lab fixtures yet — check with stable digests; on miss
+        # skip upload (log) rather than inventing F20-compatible DBs.
+        self._rhmi_plan = [
+            {
+                "type_name": "DESCRIPTION",
+                "hash": desc_hash,
+                "size": len(desc),
+                "name": "",
+                "data": desc_data,
+                "sha256": desc_sha,
+                "prefer_hit": prefer_hit,
+            },
+            {
+                "type_name": "TEXTDB",
+                "hash": "lab_textdb_absent",
+                "size": 0,
+                "name": "",
+                "data": None,
+                "sha256": None,
+                "prefer_hit": False,
+            },
+            {
+                "type_name": "IMAGEDB",
+                "hash": "lab_imagedb_absent",
+                "size": 0,
+                "name": "",
+                "data": None,
+                "sha256": None,
+                "prefer_hit": False,
+            },
+        ]
+        self._rhmi_plan_i = 0
+        self._pending_check_mid = None
+        self._uploads_done = 0
+        self._cache_hits = 0
+        self.events.append(
+            {
+                "event": "mybmw_rhmi_plan",
+                "types": [p["type_name"] for p in self._rhmi_plan],
+                "cache_hit_mode": prefer_hit,
+            }
+        )
+
+    def _queue_next_rhmi_check(self) -> None:
+        if self._rhmi_plan_i >= len(self._rhmi_plan):
+            self._queue_rhmi_initialize_and_runtime()
+            return
+        item = self._rhmi_plan[self._rhmi_plan_i]
+        rhmi_h = int(self._handles.get("rhmi_create") or 12)
+        mid = self._next_msg()
+        self._pending_check_mid = mid
+        fields = {
+            "_messageId": mid,
+            "handle": rhmi_h,
+            "hash": item["hash"],
+            "type": self._rtype(item["type_name"]),
+        }
+        if item.get("size") is not None:
+            fields["size"] = int(item["size"])
+        if item.get("name") is not None:
+            fields["name"] = str(item["name"])
+        self._queue_rpc("rhmi_checkResource", fields)
+        self.events.append(
+            {
+                "event": "mybmw_check_resource_tx",
+                "type": item["type_name"],
+                "hash": item["hash"],
+                "size": item.get("size"),
+                "msg_id": mid,
+                "plan_i": self._rhmi_plan_i,
+            }
+        )
+
+    def _on_check_resource_result(self, *, result: object, in_reply_to: object) -> None:
+        """Cache hit → next type / initialize. Cache miss → setResource only if we have data."""
+        if (
+            self._pending_check_mid is not None
+            and in_reply_to is not None
+            and int(in_reply_to) != int(self._pending_check_mid)
+        ):
+            self.events.append(
+                {
+                    "event": "mybmw_check_resource_orphan",
+                    "inReplyTo": in_reply_to,
+                    "expected": self._pending_check_mid,
+                }
+            )
+            return
+        if self._rhmi_plan_i >= len(self._rhmi_plan):
+            return
+        item = self._rhmi_plan[self._rhmi_plan_i]
+        known = result is True
+        self.events.append(
+            {
+                "event": "mybmw_check_resource_rx",
+                "type": item["type_name"],
+                "hash": item["hash"],
+                "result": result,
+                "cache": "hit" if known else "miss",
+                "inReplyTo": in_reply_to,
+                "plan_i": self._rhmi_plan_i,
+            }
+        )
+        if known:
+            self._cache_hits += 1
+        else:
+            data = item.get("data")
+            if isinstance(data, (bytes, bytearray)) and data:
+                rhmi_h = int(self._handles.get("rhmi_create") or 12)
+                digest = item.get("sha256") or hashlib.sha256(bytes(data)).hexdigest()
+                self._queue_rpc(
+                    "rhmi_setResource",
+                    {
+                        "_messageId": self._next_msg(),
+                        "handle": rhmi_h,
+                        "hash": digest,
+                        "type": self._rtype(item["type_name"]),
+                        "data": bytes(data),
+                    },
+                )
+                self._uploads_done += 1
+                self.events.append(
+                    {
+                        "event": "mybmw_set_resource_tx",
+                        "type": item["type_name"],
+                        "bytes": len(data),
+                        "sha256": digest,
+                    }
+                )
+            else:
+                # Miss without local payload: do not invent F20 DBs; advance (lab).
+                self.events.append(
+                    {
+                        "event": "mybmw_set_resource_skipped",
+                        "type": item["type_name"],
+                        "reason": "cache_miss_no_local_payload",
+                    }
+                )
+        self._rhmi_plan_i += 1
+        self._pending_check_mid = None
+        self._queue_next_rhmi_check()
+
+    def _queue_rhmi_initialize_and_runtime(self) -> None:
+        """After full check sequence: initialize → setData shell + ImageID←0 probe."""
+        if self._etch_stage in ("menu_upload", "rhmi_runtime"):
             return
         from etch_codec import EtchStruct
 
         rhmi_h = int(self._handles.get("rhmi_create") or 12)
-        desc = self._load_lab_description()
-        digest = hashlib.sha256(desc).hexdigest()
-        rtype = EtchStruct(
-            "de.bmw.idrive.BMWRemoting.RHMIResourceType",
-            {"DESCRIPTION": True},
-        )
-        self._queue_rpc(
-            "rhmi_setResource",
-            {
-                "_messageId": self._next_msg(),
-                "handle": rhmi_h,
-                "hash": digest,
-                "type": rtype,
-                "data": desc,
-            },
-        )
         self._queue_rpc(
             "rhmi_initialize",
             {"_messageId": self._next_msg(), "handle": rhmi_h},
         )
-        # Same shell labels AAIdrive uses for Spotify/YouTube (de: Apps / Durchsuchen).
         for model_id, text in ((100, "Apps"), (101, "Durchsuchen")):
             self._queue_rpc(
                 "rhmi_setData",
@@ -808,7 +958,6 @@ class PhoneClientSession(_Session):
                     "value": text,
                 },
             )
-        # Probe ImageID←0 → expect ServiceException(213) from improved f20_sim.
         self._queue_rpc(
             "rhmi_setData",
             {
@@ -821,12 +970,19 @@ class PhoneClientSession(_Session):
                 ),
             },
         )
-        self._etch_stage = "menu_upload"
+        self._etch_stage = "rhmi_runtime"
+        desc_item = next(
+            (p for p in self._rhmi_plan if p["type_name"] == "DESCRIPTION"),
+            None,
+        )
         self.events.append(
             {
                 "event": "mybmw_menu_upload_queued",
-                "description_bytes": len(desc),
-                "sha256": digest,
+                "description_bytes": (desc_item or {}).get("size"),
+                "sha256": (desc_item or {}).get("sha256"),
+                "uploads": self._uploads_done,
+                "cache_hits": self._cache_hits,
+                "note": "initialize after check sequence; setResource only on misses",
             }
         )
 
@@ -938,16 +1094,11 @@ class PhoneClientSession(_Session):
                 if all(k in self._handles for k in need):
                     self._queue_cds_and_apps()
             elif method == "_result_rhmi_checkResource":
-                # False → upload DESCRIPTION + initialize + setData (menu shell).
-                if fields.get("result") is False:
-                    self._queue_rhmi_menu_upload()
-                else:
-                    self.events.append(
-                        {
-                            "event": "mybmw_check_resource_known",
-                            "result": fields.get("result"),
-                        }
-                    )
+                # Cache hit → next type / initialize. Miss → setResource only if payload.
+                self._on_check_resource_result(
+                    result=fields.get("result"),
+                    in_reply_to=fields.get("_inReplyTo"),
+                )
             elif method == "_result_rhmi_setData":
                 res = fields.get("result")
                 from etch_codec import EtchStruct

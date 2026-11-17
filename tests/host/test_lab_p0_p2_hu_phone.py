@@ -180,6 +180,88 @@ class TestPhoneHuLoopbackMenu(unittest.TestCase):
         assert hu.etch is not None
         self.assertGreaterEqual(hu.etch.resources_rx, 1)
         self.assertGreaterEqual(hu.etch.setdata_reject, 1)
+        # Full check sequence: DESCRIPTION + TEXTDB + IMAGEDB
+        checks = [e for e in phone.events if e.get("event") == "mybmw_check_resource_tx"]
+        self.assertEqual([c["type"] for c in checks], ["DESCRIPTION", "TEXTDB", "IMAGEDB"])
+        uploads = [e for e in phone.events if e.get("event") == "mybmw_set_resource_tx"]
+        self.assertEqual(len(uploads), 1)
+        self.assertEqual(uploads[0]["type"], "DESCRIPTION")
+        skips = [e for e in phone.events if e.get("event") == "mybmw_set_resource_skipped"]
+        self.assertEqual(len(skips), 2)
+        menu = next(e for e in phone.events if e.get("event") == "mybmw_menu_upload_queued")
+        self.assertEqual(menu.get("uploads"), 1)
+
+    def test_cache_hit_skips_setresource_then_initialize(self):
+        """Fall A: checkResource(true) must not force setResource (audit 2026-11-17)."""
+        import os
+
+        desc_path = (
+            Path(__file__).resolve().parents[2]
+            / "tools"
+            / "fixtures"
+            / "rhmi_description_lab_13598.xml"
+        )
+        desc = desc_path.read_bytes() if desc_path.is_file() else b"<pluginApps>lab</pluginApps>\n"
+        digest = hashlib.sha256(desc).hexdigest()
+
+        hu = DummyHuSession(
+            version=5,
+            instance_id=14,
+            buffer_size=0x4000,
+            echo_watchdog=True,
+            send_dataack=True,
+            etch_stub=True,
+            sas_probe="f20_full",
+            etch_reply_src=0,
+        )
+        assert hu.etch is not None
+        hu.etch.known_digests.add(digest)
+
+        prev = os.environ.get("BCL_RHMI_CACHE_HIT")
+        os.environ["BCL_RHMI_CACHE_HIT"] = "1"
+        try:
+            phone = PhoneClientSession(
+                selectproto=4,
+                wire_open5001=True,
+                open_etch=True,
+                etch_src=10,
+                knock_payload="wire_v5",
+                mybmw_sim=True,
+            )
+            tx = [phone.session_init()]
+            saw_menu = False
+            for _ in range(80):
+                rx_all: list[bytes] = []
+                for chunk in tx:
+                    rx_all.extend(hu.on_bytes(chunk))
+                tx = []
+                for chunk in rx_all:
+                    tx.extend(phone.on_bytes(chunk))
+                if not tx and phone.active:
+                    tx.append(phone.watchdog_ping())
+                if any(e.get("event") == "mybmw_menu_upload_queued" for e in phone.events):
+                    saw_menu = True
+                    break
+        finally:
+            if prev is None:
+                os.environ.pop("BCL_RHMI_CACHE_HIT", None)
+            else:
+                os.environ["BCL_RHMI_CACHE_HIT"] = prev
+
+        self.assertTrue(saw_menu, msg=phone.events[-20:])
+        uploads = [e for e in phone.events if e.get("event") == "mybmw_set_resource_tx"]
+        self.assertEqual(uploads, [], msg="cache hit must not setResource DESCRIPTION")
+        desc_rx = [
+            e
+            for e in phone.events
+            if e.get("event") == "mybmw_check_resource_rx" and e.get("type") == "DESCRIPTION"
+        ]
+        self.assertTrue(desc_rx)
+        self.assertEqual(desc_rx[0].get("cache"), "hit")
+        self.assertEqual(hu.etch.resources_rx, 0)
+        menu = next(e for e in phone.events if e.get("event") == "mybmw_menu_upload_queued")
+        self.assertEqual(menu.get("uploads"), 0)
+        self.assertGreaterEqual(menu.get("cache_hits"), 1)
 
 
 if __name__ == "__main__":

@@ -662,7 +662,9 @@ def run_phone(
     hs_logged = False
     inits_sent = 0
     wd_interval = float(getattr(args, "wd_interval", WATCHDOG_INTERVAL_S) or WATCHDOG_INTERVAL_S)
-    miss_limit = int(getattr(args, "wd_miss_limit", 3) or 3)
+    # 0 = never abort on miss (must not use `x or 3` — 0 is falsy).
+    _raw_miss = getattr(args, "wd_miss_limit", 3)
+    miss_limit = 3 if _raw_miss is None else int(_raw_miss)
     # FIFO of outstanding pings: (seq, ping_ts). Never overwrite an open ping.
     pending_pings: list[tuple[int, float]] = []
     ping_seq = 0
