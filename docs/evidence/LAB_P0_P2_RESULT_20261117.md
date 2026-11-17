@@ -55,3 +55,5 @@ Same transport ceiling as `LAB_DUAL_MYBMW_SIM_20261116T1901Z` — protocol path 
 - **YES:** Unknown digest forces DESCRIPTION upload; upload seeds whitelist + disk blob.
 - **YES:** Phone-Sim menu shell (Apps/Durchsuchen) + 4× AM register against f20_sim.
 - **NO tonight:** end-to-end BCL/Etch over RFCOMM between the two D1s.
+
+**Retest after FW align:** → [`LAB_P0P2_FW0320_RESULT_20261117.md`](LAB_P0P2_FW0320_RESULT_20261117.md) (beide 0.3.20).

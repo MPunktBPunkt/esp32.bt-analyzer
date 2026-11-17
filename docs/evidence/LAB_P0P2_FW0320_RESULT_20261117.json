@@ -1,0 +1,150 @@
+{
+  "fw": {
+    "192.168.178.131": {
+      "version": "0.3.20",
+      "sketchUsed": 1919808,
+      "uptime": "21h 41min",
+      "mac": "C8C9A3CB7B08"
+    },
+    "192.168.178.87": {
+      "version": "0.3.20",
+      "sketchUsed": 1919808,
+      "uptime": "1min 54s",
+      "mac": "C8C9A3CB3794"
+    }
+  },
+  "inprocess": {
+    "inprocess": "PASS",
+    "menu": {
+      "event": "mybmw_menu_upload_queued",
+      "description_bytes": 13598,
+      "sha256": "3cf4795378d3cd7dfba139d8035c9ac5f6c1cacf8421e8044063d0824208b164"
+    },
+    "exc": {
+      "event": "mybmw_setdata_service_exception",
+      "errorCode": 213,
+      "detailMessage": "SetData was not successful."
+    },
+    "resources_rx": 1,
+    "setdata_reject": 1,
+    "am_registerApp": 4,
+    "persisted": [
+      [
+        "src10_h12_sha3cf4795378d3_13598.bin",
+        13598
+      ]
+    ]
+  },
+  "air": {
+    "status": "FAIL",
+    "events": {
+      "phone_fw0320.jsonl": {
+        "session_start": 1,
+        "rfcomm_connect_failed": 1
+      },
+      "hu_fw0320.jsonl": {
+        "session_start": 1,
+        "profile_registered": 1,
+        "inject_watch": 1
+      }
+    },
+    "key": {
+      "phone_fw0320.jsonl": [
+        {
+          "event": "rfcomm_connect_failed",
+          "error": "TimeoutError('timed out')",
+          "peer": "C8:C9:A3:CB:7B:0A"
+        }
+      ],
+      "hu_fw0320.jsonl": []
+    },
+    "retry_b": true,
+    "events_b": {
+      "session_start": 1,
+      "rfcomm_connect_failed": 1
+    },
+    "dual_esp": "FAIL",
+    "usb_hci0_to_131": {
+      "status": "PARTIAL",
+      "rfcomm_connected": true,
+      "handshake": "v5/14/0x4000",
+      "am_registerApp": 4,
+      "rhmi_checkResource_tx": true,
+      "menu_upload": false,
+      "abort": "wd_echo_miss_limit",
+      "logs": [
+        "LAB_P0P2_FW0320_USB_phone_20261117.jsonl",
+        "LAB_P0P2_FW0320_USB_hu_20261117.jsonl"
+      ]
+    }
+  },
+  "air_retry_b": {
+    "phone": {
+      "events": {
+        "session_start": 1,
+        "rfcomm_connect_failed": 1
+      },
+      "key": [
+        {
+          "ts": 1794920677.824,
+          "event": "rfcomm_connect_failed",
+          "error": "PermissionError(13, 'Permission denied')",
+          "session_id": "LAB_P0P2_FW0320B",
+          "mode": "lab_phone",
+          "tx_allowed": true,
+          "bcl_tx_enabled": true,
+          "bcl_tx_mode": "full_client",
+          "init_count": null,
+          "full_client": true,
+          "origin": "bclcarlink",
+          "source": "lab",
+          "peer": "C8:C9:A3:CB:7B:0A",
+          "channel": 6
+        }
+      ]
+    },
+    "hu": {
+      "events": {
+        "session_start": 1,
+        "profile_registered": 1,
+        "inject_watch": 1
+      },
+      "key": [
+        {
+          "ts": 1794920632.254,
+          "event": "profile_registered",
+          "channel": 6,
+          "rfcomm_channel": 6,
+          "channel_role": "accept",
+          "name": "BMW 38304",
+          "uuid": "00001101-0000-1000-8000-00805f9b34fb",
+          "hu_profile": "f20_sim",
+          "hu_version": 5,
+          "hu_instance_id": 14,
+          "hu_buffer_size": 16384,
+          "echo_watchdog": true,
+          "send_dataack": true,
+          "etch_stub": true,
+          "sas_probe": "f20_full",
+          "handshake_delay_s": 0.0,
+          "wd_pong_max": 0,
+          "wd_pong_skip_mod": 0,
+          "wd_pong_payload": null,
+          "wd_pong_delay_s": 0.0,
+          "etch_reply_src": 0,
+          "hu_open_srcs": [],
+          "cds_push": false,
+          "channel_refuse": null,
+          "observe_only": false,
+          "session_id": "LAB_P0P2_FW0320B",
+          "mode": "lab_hu",
+          "tx_allowed": true,
+          "bcl_tx_enabled": true,
+          "origin": "dummy_hu",
+          "source": "lab"
+        }
+      ]
+    }
+  },
+  "fw_align": "PASS"
+}
