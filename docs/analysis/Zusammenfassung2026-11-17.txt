@@ -2452,3 +2452,604 @@ Ich würde den Projektstatus momentan ungefähr so bewerten:
 
 Wenn B3 sauber funktioniert, würde ich danach nicht mehr breit forschen, sondern sehr gezielt **eine einzige autorisierte Ressource vom F20 vollständig rekonstruieren und einen einzigen String per `rhmi_setData` verändern**. Das wäre der kürzeste Weg von Reverse Engineering zu einem tatsächlich eigenen Connected-HMI-PoC.
 
+Ich ziehe den neuen Tiefenforensik-Bericht und suche nach Details, die in der Zusammenfassung noch fehlen:
+
+Ich habe den Deep-Forensic-Bericht vollständig gelesen und mit dem Feld-JSON und den Logs vom Morgen abgeglichen. Der Bericht ist sauber — und ich habe tatsächlich **acht Details gefunden, die in der Zusammenfassung fehlen oder sie schärfen**:
+
+## 1. Die Multimedia-DESCRIPTION ist der Schlüssel — und sie war schon am 16.11. auf dem Wire
+
+Im Lab-Teil des Berichts steht sie beiläufig: **`Multimedia` DESCRIPTION = 92.085 B** alongside calendar (13.598 B) und News_1 (13.943 B). Das ist genau die \~92-kB-Resource, die ich im KEY-Log vom 16.11. als `rhmi_resource_rx` (src 15, handle 15) gesehen hatte. Damit ist die Kette fast geschlossen:
+
+Für Ziel B (eigenes Menü) ist das die **konkrete autorisierte Ressource**, nach der der Bericht sucht — sie hat einen belegten Hash-Pfad und wurde im Feld mit `result=true` akzeptiert. Die sollte im Repo als Binary liegen (resources.tgz), bevor irgendwas Eigenes gebaut wird.
+
+## 2. Lauf 1 (`12974`) war schon eine volle RHMI-Session — das ändert die Zählung
+
+Aus dem JSON: `12974` hat **456 TX-Writes / 295.849 Bytes, davon 440× 666-B** (\~276 KiB Upload in \~17 s!) **plus 2× `_result_rhmi_setData`** (07:29:48.9 / 07:29:52.7). Die Σ21-setData-Zählung im Bericht stimmt nur, wenn man beide Logs addiert — aber wichtiger: **bereits vor dem Haupt-Zyklus war die RHMI-Schicht aktiv und es flossen \~276 KiB an Ressourcen.** Das ist ein weiterer Beleg, dass die Resource-Uploads pro Session (oder pro App-Fokus) erneut übertragen werden — relevant für Timing/Bandbreite eines eigenen Clients.
+
+## 3. Neuer RPC im Feld: `_result_am_showLoadingHint` (1×)
+
+Im Feld-JSON steht er unaufgelöst zwischen den Treffern — in keinem der Berichte erwähnt. Die HU meldet also einen Loading-Hint-Zustand während der App-Registrierung zurück. Für den eigenen Client später: Es gibt einen sichtbaren „lädt"-Pfad, den man bedienen oder vermeiden kann.
+
+## 4. Wichtige Korrektur, die untergegangen ist: die 114 `framer_error` waren ein Artefakt
+
+§7 des Deep-Berichts revidiert den Freeze vom 16.11.: Die 114 framer_errors im Browse-Lauf waren **kein echtes Wire-Problem**, sondern ein Nicht-Resync des Offline-Framers (resiliente Reassemblierung: 32 Resyncs, 1 Restfehler). Der Freeze-Dokument-Satz „framer_error 114 (real)" sollte nachgezogen werden, sonst kursieren zwei widersprüchliche Einstufungen.
+
+## 5. Die konkreten Model-IDs sind jetzt bekannt — das ist der Startpunkt für den eigenen setData-Test
+
+Aus dem Fix-Decode: **445/446/447 = Artist/Album/Titel (NowPlaying), 456 = Cover-JPEG**, dazu 451/452/458/462. Der im Bericht vorgeschlagene „erste eigene String" hat damit eine Adresse: z. B. Modell 447 (Titel) mit einem Test-String — und die Exception-Matrix (§P1) genau dort fahren.
+
+## 6. B3-Relay: der konkrete Blocker steht im Bericht, aber nicht in deiner Zusammenfassung
+
+„Dual-ESP-Luft-RFCOMM `.87↔.131` **FAIL** — `.87` noch auf FW 0.3.19" (`LAB_DUAL_MYBMW_SIM_20261116T1901Z`). Das Relay ist P0, scheitert aber schlicht an einem Firmware-Update auf `.87` (0.3.19 → 0.3.20). Das ist eine 5-Minuten-Aufgabe, die den wichtigsten P0 entblockt.
+
+## 7. Offene Kleinigkeiten, die ich zusätzlich verzeichnet hätte
+
+- **sas_login 559 B (Feld) vs. 551 B (Lab):** 8 B Differenz, nirgends erklärt. Kandidaten: VIN/Ländereinstellung/Unit-Name im Login-Payload. Über den Relay in 2 Minuten beantwortbar.
+- **3 unaufgelöste Etch-Dumps** (JSON: `"result": 3`) — Hash-Registry erweitern.
+- **Action #1 → ACK = 16,4 s:** der Bericht stuft das richtig als „keine Protokollkonstante" ein — aber die Hypothese „ACK kommt erst nach dem nächsten setData-Zyklus" liesse sich mit `_messageId`/`_inReplyTo`-Korrelation im Relay direkt prüfen.
+- **Field-Burst-Größen passen noch nicht auf Lab-Ressourcen:** 41 KiB / 106 KiB / 175 KiB / 216 KiB vs. Lab: 13,6 / 13,9 / 92 / 162,5 kB. Entweder andere Ressourcen oder komprimiert/gesplittet — die Cluster-Rekonstruktion (§9 des Berichts) ist genau der richtige nächste Schritt.
+
+## Fazit
+
+Die Zusammenfassung stimmt im Kern; die zwei Dinge, die ich am stärksten nach oben ziehen würde: **(a)** die Multimedia-DESCRIPTION (92 kB) ist die identifizierte autorisierte Ressource und damit der Startpunkt für den ersten eigenen setData-Test — sie muss gesichert und gehasht werden, bevor irgendein eigenes Layout gebaut wird; **(b)** das B3-Relay hängt nur am `.87`-Firmware-Update — danach sind die 666-Cluster, die SAS-559/551-Frage und die Exception-Ursache in einem einzigen Lauf beantwortbar.
+
+
+
+Ja. Die zusätzlichen Details schärfen den nächsten Schritt erheblich. Der wichtigste neue Punkt ist:\
+\
+\> \*\*Wir sollten jetzt nicht allgemein „ein Menü bauen“, sondern zuerst eine bereits autorisierte Multimedia-RHMI-Ressource feldseitig identifizieren und anschließend gezielt nur deren Laufzeitmodelle mit \`rhmi_setData\` verändern.\*\*\
+\
+\## 1. Multimedia-Ressource als konkreter Einstieg\
+\
+Im Lab wurden mehrere RHMI-Resources übertragen:\
+\
+\| Ressource | Größe |\
+\|---|---:|\
+\| \`calendar\` | ca. 13,6 KiB |\
+\| \`News_1\` | ca. 13,9 KiB |\
+\| \`Multimedia\` | \*\*92.085 B\*\* |\
+\| ImageDB | bis ca. 162.483 B |\
+\| TextDB | separat |\
+\
+Die Multimedia-DESCRIPTION ist deshalb ein sehr guter Kandidat für den ersten eigenen RHMI-Test. Sie ist aber noch nicht automatisch als „die konkrete am F20 autorisierte Ressource“ bewiesen. Dafür muss der B3-Relay die folgenden Beziehungen zeigen:\
+\
+\`\`\`text\
+rhmi_checkResource(hash)\
+&#x20;   ↓ result=true\
+rhmi_setResource(DESCRIPTION, data)\
+&#x20;   ↓\
+rhmi_initialize\
+&#x20;   ↓\
+rhmi_setData(modelId, value)\
+\`\`\`\
+\
+Erst wenn Hash, Ressourcentyp, Payload und Feldakzeptanz zusammengeführt sind, ist die Ressource eindeutig zugeordnet. Das Lab zeigt, dass der Simulator die Ressource verarbeiten kann; der Feldnachweis muss über die vollständigen Phone→HU-Payloads erfolgen [9][11].\
+\
+\## 2. Lauf 1 war bereits eine RHMI-Session\
+\
+Die Session \`12974\` darf nicht nur als „Vorlauf“ betrachtet werden. Sie enthielt laut der Zusatzanalyse:\
+\
+\`\`\`text\
+456 Phone→HU-Writes\
+295.849 Byte\
+440 × 666-Byte-Segmente\
+ca. 276 KiB Upload\
+2 × rhmi_setData\
+\`\`\`\
+\
+Damit war die RHMI-Schicht bereits vor dem Hauptlauf \`19188\` aktiv. Die richtige Zusammenfassung lautet daher:\
+\
+\`\`\`text\
+Session 12974:\
+&#x20;   Connected/RHMI aktiv\
+&#x20;   Ressource beziehungsweise Asset-Transfer\
+&#x20;   setData-Aktivität\
+\
+Session 19188:\
+&#x20;   vollständiger Zyklus\
+&#x20;   Spotify → YouTube → Screen-Mirror\
+\`\`\`\
+\
+Die bisherige Gesamtzählung von 21 \`setData\`-Responses ist nur korrekt, wenn beide Logs gemeinsam ausgewertet werden [9][10].\
+\
+Das ist für einen eigenen Client wichtig: Ein kompletter Ressourcentransfer kann mehrere hundert KiB umfassen und muss bei jedem neuen Connected-/App-Kontext möglicherweise erneut übertragen werden.\
+\
+\## 3. Neuer Feld-RPC: \`am_showLoadingHint\`\
+\
+Zusätzlich wurde ein weiterer Rückgabepfad identifiziert:\
+\
+\`\`\`text\
+\_result_am_showLoadingHint\
+\`\`\`\
+\
+Dieser RPC wurde einmal im Feld beobachtet. Damit existiert im AM-Lifecycle offenbar ein expliziter Lade-/Fortschrittszustand.\
+\
+Für den eigenen Client ergeben sich zwei Optionen:\
+\
+\`\`\`text\
+am_showLoadingHint\
+&#x20;   → während Resource-/RHMI-Aufbau verwenden\
+\`\`\`\
+\
+oder:\
+\
+\`\`\`text\
+bewusst vermeiden,\
+wenn der eigene Aufbau schnell genug ist\
+\`\`\`\
+\
+Er sollte in die Etch-Registry und den Simulator aufgenommen werden. Der Status ist FIELD-MEASURED, die genaue UI-Darstellung des Loading-Hints ist aber noch nicht vollständig untersucht.\
+\
+\## 4. Die 114 \`framer_error\` waren kein Feldproblem\
+\
+Die frühere Bewertung des Browse-Laufs muss korrigiert werden.\
+\
+Die \`114 framer_error\` entstanden durch einen fehlerhaften Offline-Framer ohne ausreichende Resynchronisation. Die robuste Reassemblierung kommt auf:\
+\
+\`\`\`text\
+32 Resynchronisationen\
+1 Restfehler\
+\`\`\`\
+\
+Damit gilt:\
+\
+\`\`\`text\
+Framer-Fehler 114:\
+&#x20;   Tool-/Offline-Artefakt\
+\
+echte RHMI-/Wire-Fehler:\
+&#x20;   nicht daraus ableiten\
+\`\`\`\
+\
+Das ist epistemisch wichtig: Der ursprüngliche Freeze „114 echte Framerfehler“ sollte aus den Maßnahmen- und Lab-Dokumenten entfernt oder als REJECTED markiert werden. Die Feldlogs haben weiterhin Capture-Lücken, aber nicht wegen dieses ursprünglichen Parserfehlers [9][11].\
+\
+\## 5. Konkrete Model-IDs für den ersten eigenen Test\
+\
+Durch den Tiny-Integer-Fix sind im Lab nun konkrete RHMI-Modelle bekannt:\
+\
+\`\`\`text\
+445 / 446 / 447   NowPlaying Artist / Album / Titel\
+456               Cover-/Image-Modell\
+451 / 452 / 458 / 462   weitere Modelle\
+\`\`\`\
+\
+Damit kann der erste eigene \`setData\`-Test gezielt und klein werden:\
+\
+\`\`\`text\
+rhmi_setData(handle, modelId=447, "PiDrive Test")\
+\`\`\`\
+\
+Danach:\
+\
+\`\`\`text\
+rhmi_setData(handle, modelId=445, "PiDrive")\
+rhmi_setData(handle, modelId=446, "Connected")\
+\`\`\`\
+\
+Wichtig: Diese Model-ID-Zuordnung stammt zunächst aus dem vollständigen Lab-Wire. Sie muss nicht automatisch für jede Ressource und jede F20-App identisch sein. Deshalb:\
+\
+1\. zuerst autorisierte Multimedia-Ressource,\
+2\. dann bekannter \`modelId\`,\
+3\. dann einfacher String,\
+4\. erst danach Properties und Bilder.\
+\
+\`modelId=456\` sollte nicht der erste Test sein, weil die Feld-\`ServiceException\`s sehr wahrscheinlich aus einem ungültigen Image-/Cover-Wert resultieren [9][11].\
+\
+\## 6. \`ServiceException\` als positives Validierungsorakel\
+\
+Die zwei Fehlerantworten sind nicht nur ein Problem:\
+\
+\`\`\`text\
+rhmi_setData\
+&#x20;   ↓\
+ServiceException\
+\`\`\`\
+\
+zeigt, dass die HU:\
+\
+1\. den RPC empfangen,\
+2\. Etch dekodieren,\
+3\. Modell und Wert prüfen,\
+4\. eine strukturierte Fehlerantwort erzeugen kann.\
+\
+Der nächste Test sollte deshalb eine kontrollierte Wertematrix verwenden:\
+\
+\| Modelltyp | Testwerte |\
+\|---|---|\
+\| String | kurzer ASCII-Text |\
+\| Integer | \`0\`, \`1\`, \`32\`, \`100\`, \`127\` |\
+\| Boolean | \`true\`, \`false\` |\
+\| Sichtbarkeit | \`VISIBLE=true/false\` |\
+\| Bild | bekannte gültige Image-ID |\
+\| Bild | \`0\` |\
+\| Bild | unbekannte Image-ID |\
+\
+Dabei müssen jeweils protokolliert werden:\
+\
+\`\`\`text\
+modelId\
+value type\
+value\
+src\
+messageId\
+\_inReplyTo\
+Response\
+ServiceException\
+\`\`\`\
+\
+Die Ursache „ImageID 0“ bleibt STRONG INFERENCE, nicht FIELD FACT. Der Exception-Typ selbst ist eindeutig feldgemessen [9].\
+\
+\## 7. Das B3-Relay ist der zentrale Blocker\
+\
+Der Relay muss mehr können als nur Bytes weiterkopieren. Er sollte ein \*\*transaktionaler RHMI-Recorder\*\* werden:\
+\
+\`\`\`text\
+RFCOMM segment\
+&#x20;   ↓\
+BCL frame\
+&#x20;   ↓\
+Etch message\
+&#x20;   ↓\
+RPC transaction\
+\`\`\`\
+\
+Pflichtfelder:\
+\
+\`\`\`text\
+timestamp\
+direction\
+SCN/DLCI\
+BCL src\
+BCL dest\
+BCL command\
+BCL payload length\
+Etch method/hash\
+messageId\
+inReplyTo\
+modelId\
+componentId\
+propertyId\
+value\
+raw payload\
+\`\`\`\
+\
+Beispiel:\
+\
+\`\`\`text\
+TX:\
+&#x20; rhmi_setData\
+&#x20; src=17\
+&#x20; messageId=123\
+&#x20; modelId=447\
+&#x20; value="PiDrive Test"\
+\
+RX:\
+&#x20; \_result_rhmi_setData\
+&#x20; src=17\
+&#x20; inReplyTo=123\
+&#x20; result=OK\
+\`\`\`\
+\
+Oder:\
+\
+\`\`\`text\
+RX:\
+&#x20; result=ServiceException\
+\`\`\`\
+\
+Erst damit kannst du zuverlässig unterscheiden:\
+\
+\`\`\`text\
+Ressource akzeptiert\
+\`\`\`\
+\
+von:\
+\
+\`\`\`text\
+Ressource nur im Lab simuliert\
+\`\`\`\
+\
+und:\
+\
+\`\`\`text\
+Laufzeitdaten akzeptiert\
+\`\`\`\
+\
+von:\
+\
+\`\`\`text\
+Wert vom HU-Validator abgelehnt\
+\`\`\`\
+\
+\## 8. Firmware-Update für \`.87\` blockiert den Relay\
+\
+Der Dual-ESP-RFCOMM-Relay ist laut Lab-Report mit alter \`.87\`-Firmware fehlgeschlagen:\
+\
+\`\`\`text\
+.87 = Firmware 0.3.19\
+\`\`\`\
+\
+Der notwendige praktische Schritt ist daher:\
+\
+\`\`\`text\
+.87:\
+&#x20;   0.3.19 → 0.3.20 oder aktueller kompatibler Stand\
+\`\`\`\
+\
+Danach:\
+\
+1\. \`.87\` und \`.131\` neu flashen beziehungsweise synchronisieren;\
+2\. HCI-Mapping nach Bridge-Restart neu prüfen;\
+3\. transparenten Relay starten;\
+4\. zunächst ohne aktive Manipulation testen;\
+5\. erst danach Etch-Decoding aktivieren.\
+\
+Das ist wahrscheinlich ein deutlich kleinerer Blocker als die bisherige Formulierung „Relay muss noch entwickelt werden“ vermuten ließ.\
+\
+\## 9. \`sas_login\`: Feld 559 B versus Lab 551 B\
+\
+Die Zusatzanalyse weist auf eine offene Größenabweichung hin:\
+\
+\`\`\`text\
+Feld:\
+&#x20;   sas_login ≈ 559 B\
+\
+Lab:\
+&#x20;   offenbar ≈ 551 B\
+\`\`\`\
+\
+Die Differenz beträgt:\
+\
+\`\`\`text\
+8 Byte\
+\`\`\`\
+\
+Mögliche Ursachen:\
+\
+\- äußerer BCL-Header in einer Zählung enthalten und in der anderen nicht;\
+\- unterschiedlicher Etch-Struct-Aufbau;\
+\- abweichende Feldanzahl;\
+\- \`inReplyTo\`-/Message-ID-Struktur;\
+\- Zertifikat-/Session-Kontext;\
+\- Logger zählt Payload versus Gesamtframe unterschiedlich.\
+\
+Das darf nicht durch eine pauschale Annahme erklärt werden. Der Relay muss beide Ebenen getrennt ausgeben:\
+\
+\`\`\`text\
+RFCOMM bytes\
+BCL frame bytes\
+BCL payload length\
+Etch payload length\
+RSA signature length\
+\`\`\`\
+\
+Dann ist die Abweichung schnell auflösbar.\
+\
+\## 10. Drei noch nicht registrierte Etch-IDs ergänzen\
+\
+Im JSON wurden offenbar drei Ergebnisse noch nicht vollständig in der Hash-Registry aufgelöst:\
+\
+\`\`\`text\
+result = 3\
+\`\`\`\
+\
+Das ist wahrscheinlich kein Wire-Problem, sondern eine unvollständige Registry oder ein fehlender Enum-/Struct-Eintrag.\
+\
+Vorgehen:\
+\
+1\. unbekannte IDs extrahieren;\
+2\. gegen \`BMWRemoting.etch\` und \`IDriveConnectKit\` hashen;\
+3\. als:\
+&#x20;  \`\`\`text\
+&#x20;  method\
+&#x20;  enum\
+&#x20;  field\
+&#x20;  result value\
+&#x20;  \`\`\`\
+&#x20;  klassifizieren;\
+4\. Unit-Tests ergänzen;\
+5\. nicht automatisch als neue F20-Funktion interpretieren.\
+\
+Der vorhandene Etch-Hash-Mechanismus funktioniert bereits reproduzierbar und hat die untersuchten F20-Header praktisch vollständig aufgelöst [8][12].\
+\
+\## 11. Action #1 → ACK: 16,4 Sekunden\
+\
+Beobachtet:\
+\
+\`\`\`text\
+Action #1: 07:31:42.522\
+ACK:        07:31:58.946\
+Δ:          ca. 16,4 s\
+\`\`\`\
+\
+Das ist keine erkennbare Protokollkonstante.\
+\
+Mögliche Ursachen:\
+\
+\- App-seitige Verarbeitung,\
+\- zwischenliegende RHMI-/Media-RPCs,\
+\- YouTube-/Spotify-Zustandswechsel,\
+\- fehlende beziehungsweise verspätete Antwort,\
+\- Event-Queue im Phone.\
+\
+Die korrekte Untersuchung erfolgt über:\
+\
+\`\`\`text\
+rhmi_onActionEvent.messageId\
+&#x20;   ↓\
+nachfolgende Phone→HU-RPCs\
+&#x20;   ↓\
+\_result / \_inReplyTo\
+&#x20;   ↓\
+ACK\
+\`\`\`\
+\
+Der B3-Relay muss daher nicht nur Wall-Clock-Deltas, sondern Etch-Transaktionen korrelieren.\
+\
+\## 12. Große Feld-Bursts sind noch nicht vollständig den Lab-Ressourcen zugeordnet\
+\
+Feldseitig beobachtet:\
+\
+\`\`\`text\
+ca. 41 KiB\
+ca. 106 KiB\
+ca. 175 KiB\
+ca. 216 KiB\
+\`\`\`\
+\
+Labseitig:\
+\
+\`\`\`text\
+calendar:       ca. 13,6 KiB\
+News_1:         ca. 13,9 KiB\
+Multimedia:     ca. 92,1 KiB\
+ImageDB:        bis ca. 162,5 KiB\
+\`\`\`\
+\
+Die Größen passen noch nicht direkt zusammen. Mögliche Erklärungen:\
+\
+\- unterschiedliche App-/Ressourcen-Slots;\
+\- mehrere Ressourcen in einem Cluster;\
+\- Fragmentierung und Koaleszenz;\
+\- komprimierte beziehungsweise gepackte Payloads;\
+\- Feldcluster enthalten zusätzlich Etch-/BCL-Strukturen;\
+\- Feld- und Lab-Versionen nutzen unterschiedliche Layouts.\
+\
+Der B3-Relay muss deshalb für jeden Cluster den Beginn und das Ende markieren:\
+\
+\`\`\`text\
+Cluster start\
+first Etch method\
+resource type\
+hash\
+declared size\
+cluster end\
+\`\`\`\
+\
+Erst danach darf man behaupten:\
+\
+\`\`\`text\
+41 KiB = Ressource X\
+\`\`\`\
+\
+\---\
+\
+\# Aktualisierte Priorisierung\
+\
+\## P0 — unmittelbar\
+\
+\### 1. \`.87\` aktualisieren\
+\
+\`\`\`text\
+Firmware 0.3.19 → 0.3.20 beziehungsweise kompatibler aktueller Stand\
+\`\`\`\
+\
+Danach Dual-ESP-RFCOMM-Relay erneut testen.\
+\
+\### 2. B3-Relay als transaktionalen Recorder ausführen\
+\
+Ziel:\
+\
+\`\`\`text\
+vollständige Phone→HU-RHMI-Payloads\
+Ressourcen-Hash\
+Ressourcentyp\
+Model-IDs\
+ServiceException\
+Action/ACK-Korrelation\
+\`\`\`\
+\
+\### 3. Multimedia-DESCRIPTION sichern\
+\
+Für die im Lab beobachtete Ressource dokumentieren:\
+\
+\`\`\`text\
+Datei\
+SHA-256\
+Ressourcentyp\
+Größe\
+zugehöriges APP-Zertifikat\
+SAS.Digests-Eintrag\
+\`\`\`\
+\
+Noch nicht als F20-authorized markieren, bis \`rhmi_checkResource(result=true)\` und die Ressource am Feld zusammengeführt sind.\
+\
+\## P1 — eigener Menü-Proof\
+\
+1\. autorisierte Multimedia-Ressource verwenden;\
+2\. \`rhmi_checkResource → true\` bestätigen;\
+3\. \`modelId=447\` mit einfachem Text testen;\
+4\. \`modelId=445/446\` testen;\
+5\. \`VISIBLE\` oder \`ENABLED\` setzen;\
+6\. ein Action Event auslösen;\
+7\. erst danach \`modelId=456\` und Bilder testen.\
+\
+\## P1 — Decoder und Registry\
+\
+\- drei unbekannte \`result=3\`-Einträge auflösen;\
+\- \`am_showLoadingHint\` ergänzen;\
+\- \`ServiceException\`-Struktur weiter dekodieren;\
+\- Feld/Lab-Ressourcen-Cluster vergleichen;\
+\- \`sas_login\` 559/551 exakt normalisieren.\
+\
+\## P2 — Screen-Mirror\
+\
+Erst nach vollständigem Relay:\
+\
+\`\`\`text\
+216 KiB-Burst\
+&#x20;   ↓\
+Etch-RPC\
+&#x20;   ↓\
+modelId\
+&#x20;   ↓\
+Image/RaImageModel\
+&#x20;   ↓\
+JPEG-Signaturen\
+\`\`\`\
+\
+Bis dahin bleibt der Status:\
+\
+\`\`\`text\
+Screen-Mirror-Burst = FIELD-MEASURED\
+JPEG-Screen-Mirror = STRONG, nicht endgültig bewiesen\
+\`\`\`\
+\
+\---\
+\
+\# Aktualisierter Schluss\
+\
+Die neuen Details bestätigen, dass der nächste Sprung sehr klein und konkret geworden ist:\
+\
+\`\`\`text\
+Transport: gelöst\
+BCL: gelöst\
+Etch: gelöst\
+SAS-Struktur: gelöst\
+RHMI-Modell: vorhanden\
+Ressourcenstrategie: bekannt\
+\`\`\`\
+\
+Der praktische Weg zum eigenen Menü ist jetzt:\
+\
+\`\`\`text\
+.87-Firmware aktualisieren\
+&#x20;   ↓\
+B3-Relay stabilisieren\
+&#x20;   ↓\
+Multimedia-Ressource + Hash eindeutig zuordnen\
+&#x20;   ↓\
+checkResource(result=true)\
+&#x20;   ↓\
+setData(modelId=447, eigener String)\
+&#x20;   ↓\
+setProperty\
+&#x20;   ↓\
+Action Event\
+\`\`\`\
+\
+Die wichtigste verbleibende Unsicherheit ist nicht mehr, \*\*ob\*\* der F20 Connected-RHMI kann, sondern:\
+\
+\> \*\*Welche autorisierte Ressource und welche Model-/Component-IDs können wir mit eigenen Laufzeitdaten sicher verwenden?\*\*\
+\
+Das lässt sich mit einem aktualisierten \`.87\`, einem vollständigen B3-Relay und einer kleinen \`setData\`-Testmatrix gezielt beantworten.
