@@ -1,0 +1,1023 @@
+{
+  "claim_level": "LAB P0 CORRELATION",
+  "hu": "docs/evidence/LAB_HOME_CONT8_20261117T1809Z_hu.jsonl",
+  "event_count": 26684,
+  "esp_once": null,
+  "correlation": {
+    "flap_count": 7,
+    "by_class": {
+      "eof_rehandshake": 5,
+      "tx_pressure_during_etch_reply": 2
+    },
+    "by_reason": {
+      "eof": 5,
+      "write_error:11": 2
+    },
+    "flaps": [
+      {
+        "ts": 1794938214.749,
+        "reason": "eof",
+        "peer": "AC:C0:48:5E:CB:20",
+        "rfcomm_channel": 6,
+        "session_id": "LAB_RECOVER_175618",
+        "class": "eof_rehandshake",
+        "reconnect_s": 33.651,
+        "last_tx": {
+          "ts": 1794938204.557,
+          "event": "tx_bytes",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618",
+          "n": 12
+        },
+        "last_rx": {
+          "ts": 1794938204.568,
+          "event": "rx_bytes",
+          "peer": "AC:C0:48:5E:CB:20",
+          "rfcomm_channel": 6,
+          "session_id": "LAB_RECOVER_175618",
+          "n": 990
+        },
+        "last_etch_tx": null,
+        "last_rpc_or_check": {
+          "ts": 1794938204.557,
+          "event": "phone_tx_classified",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618",
+          "cmd_name": "DATA"
+        },
+        "before": [
+          {
+            "ts": 1794938204.472,
+            "event": "phone_tx_classified",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "cmd_name": "DATA"
+          },
+          {
+            "ts": 1794938204.472,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938204.477,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 990
+          },
+          {
+            "ts": 1794938204.48,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 990
+          },
+          {
+            "ts": 1794938204.556,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 2970
+          },
+          {
+            "ts": 1794938204.557,
+            "event": "phone_tx_classified",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "cmd_name": "DATA"
+          },
+          {
+            "ts": 1794938204.557,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938204.568,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 990
+          }
+        ],
+        "after": [
+          {
+            "ts": 1794938248.4,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938248.696,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 4
+          },
+          {
+            "ts": 1794938248.696,
+            "event": "session_init",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938248.696,
+            "event": "handshake_sent",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938248.696,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 16
+          },
+          {
+            "ts": 1794938251.656,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 10
+          },
+          {
+            "ts": 1794938251.656,
+            "event": "phone_tx_classified",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "cmd_name": "SELECTPROTO"
+          },
+          {
+            "ts": 1794938251.656,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          }
+        ]
+      },
+      {
+        "ts": 1794938273.697,
+        "reason": "write_error:11",
+        "peer": "AC:C0:48:5E:CB:20",
+        "rfcomm_channel": 6,
+        "session_id": "LAB_RECOVER_175618",
+        "class": "tx_pressure_during_etch_reply",
+        "reconnect_s": 38.034,
+        "last_tx": {
+          "ts": 1794938273.693,
+          "event": "tx_bytes",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618",
+          "n": 52
+        },
+        "last_rx": null,
+        "last_etch_tx": {
+          "ts": 1794938273.693,
+          "event": "etch_data_tx",
+          "reason": "etch_reply",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618"
+        },
+        "last_rpc_or_check": {
+          "ts": 1794938273.693,
+          "event": "f20_rpc_rx",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618",
+          "method": "rhmi_setProperty",
+          "handle": 14
+        },
+        "before": [
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 52
+          },
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 52
+          },
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 52
+          },
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 52
+          },
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 52
+          }
+        ],
+        "after": [
+          {
+            "ts": 1794938311.731,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938312.046,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 56
+          },
+          {
+            "ts": 1794938312.046,
+            "event": "knock_envelope_rx",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 56
+          },
+          {
+            "ts": 1794938321.044,
+            "event": "rfcomm_closed",
+            "reason": "eof",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938326.882,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938327.198,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 4
+          },
+          {
+            "ts": 1794938327.198,
+            "event": "session_init",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938327.198,
+            "event": "handshake_sent",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          }
+        ]
+      },
+      {
+        "ts": 1794938321.044,
+        "reason": "eof",
+        "peer": "AC:C0:48:5E:CB:20",
+        "rfcomm_channel": 6,
+        "session_id": "LAB_RECOVER_175618",
+        "class": "eof_rehandshake",
+        "reconnect_s": 5.838,
+        "last_tx": {
+          "ts": 1794938273.693,
+          "event": "tx_bytes",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618",
+          "n": 52
+        },
+        "last_rx": {
+          "ts": 1794938312.046,
+          "event": "rx_bytes",
+          "peer": "AC:C0:48:5E:CB:20",
+          "rfcomm_channel": 6,
+          "session_id": "LAB_RECOVER_175618",
+          "n": 56
+        },
+        "last_etch_tx": null,
+        "last_rpc_or_check": null,
+        "before": [
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 52
+          },
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 52
+          },
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938273.693,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 52
+          },
+          {
+            "ts": 1794938273.697,
+            "event": "rfcomm_closed",
+            "reason": "write_error:11",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938311.731,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938312.046,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 56
+          },
+          {
+            "ts": 1794938312.046,
+            "event": "knock_envelope_rx",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 56
+          }
+        ],
+        "after": [
+          {
+            "ts": 1794938326.882,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938327.198,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 4
+          },
+          {
+            "ts": 1794938327.198,
+            "event": "session_init",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938327.198,
+            "event": "handshake_sent",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938327.198,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 16
+          },
+          {
+            "ts": 1794938330.048,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 86
+          },
+          {
+            "ts": 1794938330.048,
+            "event": "phone_tx_classified",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "cmd_name": "SELECTPROTO"
+          }
+        ]
+      },
+      {
+        "ts": 1794938504.551,
+        "reason": "eof",
+        "peer": "AC:C0:48:5E:CB:20",
+        "rfcomm_channel": 6,
+        "session_id": "LAB_RECOVER_175618",
+        "class": "eof_rehandshake",
+        "reconnect_s": 34.958,
+        "last_tx": {
+          "ts": 1794938495.929,
+          "event": "tx_bytes",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618",
+          "n": 83
+        },
+        "last_rx": {
+          "ts": 1794938495.928,
+          "event": "rx_bytes",
+          "peer": "AC:C0:48:5E:CB:20",
+          "rfcomm_channel": 6,
+          "session_id": "LAB_RECOVER_175618",
+          "n": 38
+        },
+        "last_etch_tx": {
+          "ts": 1794938495.929,
+          "event": "etch_data_tx",
+          "reason": "etch_reply",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618"
+        },
+        "last_rpc_or_check": {
+          "ts": 1794938495.929,
+          "event": "f20_rpc_rx",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618",
+          "method": "ver_getVersion"
+        },
+        "before": [
+          {
+            "ts": 1794938495.433,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938495.433,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938495.928,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 38
+          },
+          {
+            "ts": 1794938495.929,
+            "event": "phone_tx_classified",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "cmd_name": "DATA"
+          },
+          {
+            "ts": 1794938495.929,
+            "event": "f20_rpc_rx",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "method": "ver_getVersion"
+          },
+          {
+            "ts": 1794938495.929,
+            "event": "etch_data_tx",
+            "reason": "etch_reply",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938495.929,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938495.929,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 83
+          }
+        ],
+        "after": [
+          {
+            "ts": 1794938539.509,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938539.717,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 4
+          },
+          {
+            "ts": 1794938539.718,
+            "event": "session_init",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938539.718,
+            "event": "handshake_sent",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938539.718,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 16
+          },
+          {
+            "ts": 1794938542.682,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 66
+          },
+          {
+            "ts": 1794938542.683,
+            "event": "phone_tx_classified",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "cmd_name": "SELECTPROTO"
+          }
+        ]
+      },
+      {
+        "ts": 1794938633.208,
+        "reason": "eof",
+        "peer": "AC:C0:48:5E:CB:20",
+        "rfcomm_channel": 6,
+        "session_id": "LAB_RECOVER_175618",
+        "class": "eof_rehandshake",
+        "reconnect_s": 5.232,
+        "last_tx": null,
+        "last_rx": {
+          "ts": 1794938633.025,
+          "event": "rx_bytes",
+          "peer": "AC:C0:48:5E:CB:20",
+          "rfcomm_channel": 6,
+          "session_id": "LAB_RECOVER_175618",
+          "n": 8
+        },
+        "last_etch_tx": null,
+        "last_rpc_or_check": null,
+        "before": [
+          {
+            "ts": 1794938625.631,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938625.631,
+            "event": "framer_error",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938628.188,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938628.188,
+            "event": "framer_error",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938630.553,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938630.553,
+            "event": "framer_error",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938633.025,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 8
+          },
+          {
+            "ts": 1794938633.025,
+            "event": "framer_error",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          }
+        ],
+        "after": [
+          {
+            "ts": 1794938638.44,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938638.839,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 56
+          },
+          {
+            "ts": 1794938638.839,
+            "event": "knock_envelope_rx",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 56
+          },
+          {
+            "ts": 1794938647.235,
+            "event": "rfcomm_closed",
+            "reason": "eof",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938652.765,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938653.177,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 4
+          },
+          {
+            "ts": 1794938653.177,
+            "event": "session_init",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938653.178,
+            "event": "handshake_sent",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          }
+        ]
+      },
+      {
+        "ts": 1794938647.235,
+        "reason": "eof",
+        "peer": "AC:C0:48:5E:CB:20",
+        "rfcomm_channel": 6,
+        "session_id": "LAB_RECOVER_175618",
+        "class": "eof_rehandshake",
+        "reconnect_s": 5.53,
+        "last_tx": null,
+        "last_rx": {
+          "ts": 1794938638.839,
+          "event": "rx_bytes",
+          "peer": "AC:C0:48:5E:CB:20",
+          "rfcomm_channel": 6,
+          "session_id": "LAB_RECOVER_175618",
+          "n": 56
+        },
+        "last_etch_tx": null,
+        "last_rpc_or_check": null,
+        "before": [
+          {
+            "ts": 1794938630.553,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938630.553,
+            "event": "framer_error",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938633.025,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 8
+          },
+          {
+            "ts": 1794938633.025,
+            "event": "framer_error",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938633.208,
+            "event": "rfcomm_closed",
+            "reason": "eof",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938638.44,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938638.839,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 56
+          },
+          {
+            "ts": 1794938638.839,
+            "event": "knock_envelope_rx",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 56
+          }
+        ],
+        "after": [
+          {
+            "ts": 1794938652.765,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938653.177,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 4
+          },
+          {
+            "ts": 1794938653.177,
+            "event": "session_init",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938653.178,
+            "event": "handshake_sent",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938653.178,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 16
+          },
+          {
+            "ts": 1794938655.955,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 10
+          },
+          {
+            "ts": 1794938655.955,
+            "event": "phone_tx_classified",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "cmd_name": "SELECTPROTO"
+          },
+          {
+            "ts": 1794938655.955,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          }
+        ]
+      },
+      {
+        "ts": 1794938762.868,
+        "reason": "write_error:11",
+        "peer": "AC:C0:48:5E:CB:20",
+        "rfcomm_channel": 6,
+        "session_id": "LAB_RECOVER_175618",
+        "class": "tx_pressure_during_etch_reply",
+        "reconnect_s": 87.223,
+        "last_tx": {
+          "ts": 1794938762.863,
+          "event": "tx_bytes",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618",
+          "n": 52
+        },
+        "last_rx": null,
+        "last_etch_tx": {
+          "ts": 1794938762.863,
+          "event": "etch_data_tx",
+          "reason": "etch_reply",
+          "peer": "AC:C0:48:5E:CB:20",
+          "session_id": "LAB_RECOVER_175618"
+        },
+        "last_rpc_or_check": null,
+        "before": [
+          {
+            "ts": 1794938762.863,
+            "event": "etch_data_tx",
+            "reason": "etch_reply",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938762.863,
+            "event": "etch_data_tx",
+            "reason": "etch_reply",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938762.863,
+            "event": "etch_data_tx",
+            "reason": "etch_reply",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938762.863,
+            "event": "etch_data_tx",
+            "reason": "etch_reply",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938762.863,
+            "event": "etch_data_tx",
+            "reason": "etch_reply",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938762.863,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          },
+          {
+            "ts": 1794938762.863,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 52
+          },
+          {
+            "ts": 1794938762.863,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 52
+          }
+        ],
+        "after": [
+          {
+            "ts": 1794938850.091,
+            "event": "rfcomm_connected",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938850.296,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 4
+          },
+          {
+            "ts": 1794938850.296,
+            "event": "session_init",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938850.296,
+            "event": "handshake_sent",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618"
+          },
+          {
+            "ts": 1794938850.296,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 16
+          },
+          {
+            "ts": 1794938853.18,
+            "event": "rx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "rfcomm_channel": 6,
+            "session_id": "LAB_RECOVER_175618",
+            "n": 10
+          },
+          {
+            "ts": 1794938853.18,
+            "event": "phone_tx_classified",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "cmd_name": "SELECTPROTO"
+          },
+          {
+            "ts": 1794938853.18,
+            "event": "tx_bytes",
+            "peer": "AC:C0:48:5E:CB:20",
+            "session_id": "LAB_RECOVER_175618",
+            "n": 12
+          }
+        ]
+      }
+    ]
+  },
+  "live": null,
+  "hypothesis_hint": "Many flaps during etch_reply TX → transport/ESP pressure candidate for missing phone-side replies (not Fall A)."
+}

@@ -98,9 +98,14 @@ Useful after ESP panic/reinit; **not** a substitute for killing host `system-ali
 
 ---
 
+## Freeze / next priority
+
+See `docs/analysis/FREEZE_C5CB0E6_HOME_SESSION_20261117.md`.  
+P0 workstream: `docs/evidence/LAB_P0_ESP_RFCOMM_20261117.md` (ESP panic ↔ RFCOMM flap correlation). Do **not** re-litigate F20 `WATCHDOG_MISS_NO_ETCH_REPLY` until transport is stable.
+
 ## Open issues (not blocking today’s green claims)
 
-1. **ESP `.131` panics** — still the main BCL killer (`resetReason=panic`); RFCOMM `write_error:11` / `eof` while ACL often stays Connected.
+1. **ESP `.131` panics** / **RFCOMM flaps** — P0; often `write_error:11` during `etch_reply` TX (transport pressure).
 2. **No `ackActionEvent`** in HU logs for action sweeps (TX-only fact).
 3. **AVRCP track metadata** often empty in HU plaintext even when Spotify plays.
 4. **W0 full A_or_C isolate** with parallel phone-sim jsonl still optional follow-up.
