@@ -61,8 +61,9 @@ USB phone (`hci0`) ↔ ESP HU `.131`: **same EAGAIN fingerprint** as Dual (89 B 
 
 → Transient RFCOMM not-ready is real; **fail-fast close** was what produced lab WATCHDOG_MISS.
 
-## Next
+## Freeze
 
-1. Keep retry as lab HU default; document knobs `BCL_WRITE_EAGAIN_S` / `_POLL_S`.  
-2. Optional: longer soak / field-stack comparison (does real BclCarLink retry?).  
-Field `WATCHDOG_MISS_NO_ETCH_REPLY` in this lab path = aftermath of closing on EAGAIN — still not W0 Fall A.
+write11 branch **frozen**: mitigation is the lab default; backpressure source is P2.
+
+Connected RHMI lifecycle after retry: **PASS** — see `LAB_P0_RHMI_LIFECYCLE_PASS_20261117.md`
+(checkResource→setResource→initialize→setData→`RUNTIME_ACTIVE`, Dual+Single ~90s).

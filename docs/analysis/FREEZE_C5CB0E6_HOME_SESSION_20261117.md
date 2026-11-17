@@ -30,7 +30,8 @@ c5cb0e6
 │
 ├─ ESP stability:                OPEN    ← P0
 ├─ RFCOMM stability:             OPEN    ← P0
-└─ checkResource return path:    open until transport is stable
+└─ checkResource return path:    PASS in lab after EAGAIN-retry (`ffd28aa` + `LAB_P0_RHMI_LIFECYCLE_PASS_20261117`)
+                                 — field miss may still be transport; lab Fall A remains REJECTED
 ```
 
 - Home session shows the real phone path works through CDS/RHMI.
