@@ -66,6 +66,8 @@ and holds **~90 s** without WATCHDOG. Dual-ESP and Single-ESP (USB phone) both P
 
 ## Next (protocol product path)
 
-1. Longer soak / more setData+actions under retry (optional).  
-2. Field phone with same HU retry semantics only if reproducing on-car.  
-3. P2: characterize EAGAIN wait histograms — **not** a Connected blocker.
+1. ~~Longer soak / more setData+actions under retry~~ → **PASS** see `LAB_P0_RHMI_SOAK_PASS_20261117.md`.  
+2. P1: minimale eigene UI-Sequenz (setData → Action → Event → interne Aktion).  
+3. P1: modelId 4 / 213 separat.  
+4. P2: EAGAIN wait histograms — **not** a Connected blocker.  
+5. P3: kontrollierter F20-Feldversuch nach stabiler Lab-UI-Sequenz.

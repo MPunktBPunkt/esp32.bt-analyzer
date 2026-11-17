@@ -1,0 +1,220 @@
+{
+  "131": {
+    "ip": "192.168.178.131",
+    "boot": {
+      "resetReason": "panic",
+      "restartCause": "none",
+      "bootGen": 25,
+      "uptimeMs": 8699621,
+      "panicNow": {
+        "generation": 25,
+        "count": 4,
+        "breadcrumbs": [
+          {
+            "code": 1,
+            "name": "boot",
+            "t_ms": 572,
+            "arg": 4
+          },
+          {
+            "code": 2,
+            "name": "wifi_up",
+            "t_ms": 3471,
+            "arg": 0
+          },
+          {
+            "code": 4,
+            "name": "web_up",
+            "t_ms": 3496,
+            "arg": 0
+          },
+          {
+            "code": 3,
+            "name": "hub_ok",
+            "t_ms": 8681037,
+            "arg": 0,
+            "repeat": 289
+          }
+        ]
+      },
+      "panicTail": {
+        "generation": 24,
+        "count": 4,
+        "restartCause": "none",
+        "breadcrumbs": [
+          {
+            "code": 1,
+            "name": "boot",
+            "t_ms": 570,
+            "arg": 4
+          },
+          {
+            "code": 2,
+            "name": "wifi_up",
+            "t_ms": 2857,
+            "arg": 0
+          },
+          {
+            "code": 4,
+            "name": "web_up",
+            "t_ms": 2881,
+            "arg": 0
+          },
+          {
+            "code": 3,
+            "name": "hub_ok",
+            "t_ms": 3337604,
+            "arg": 0,
+            "repeat": 111
+          }
+        ]
+      },
+      "checkpoint": {
+        "generation": 25,
+        "open": [],
+        "lastOpen": null,
+        "lastLeave": {
+          "phase": "hub",
+          "arg": 0,
+          "t_ms": 8681030
+        }
+      },
+      "recovery": {
+        "hardCount": 0,
+        "historyCount": 1,
+        "prevCause": "none",
+        "history": [
+          {
+            "reason": "web_ota",
+            "level": "soft",
+            "bootGen": 1,
+            "uptimeMs": 176405031
+          }
+        ]
+      }
+    },
+    "status": {
+      "ts": 1794951687.72148,
+      "ip": "192.168.178.131",
+      "uptime": "2h 24min",
+      "heap": 63328,
+      "resetReason": "panic",
+      "bootGen": 25,
+      "drops": 0,
+      "sessions": 1,
+      "toHostBytes": 300498,
+      "toCtrlBytes": 201145,
+      "client": "192.168.178.108",
+      "ready": true
+    }
+  },
+  "87": {
+    "ip": "192.168.178.87",
+    "boot": {
+      "resetReason": "panic",
+      "restartCause": "none",
+      "bootGen": 3,
+      "uptimeMs": 8700472,
+      "panicNow": {
+        "generation": 3,
+        "count": 4,
+        "breadcrumbs": [
+          {
+            "code": 1,
+            "name": "boot",
+            "t_ms": 571,
+            "arg": 4
+          },
+          {
+            "code": 2,
+            "name": "wifi_up",
+            "t_ms": 3450,
+            "arg": 0
+          },
+          {
+            "code": 4,
+            "name": "web_up",
+            "t_ms": 3470,
+            "arg": 0
+          },
+          {
+            "code": 3,
+            "name": "hub_ok",
+            "t_ms": 8680578,
+            "arg": 0,
+            "repeat": 289
+          }
+        ]
+      },
+      "panicTail": {
+        "generation": 2,
+        "count": 4,
+        "restartCause": "none",
+        "breadcrumbs": [
+          {
+            "code": 1,
+            "name": "boot",
+            "t_ms": 637,
+            "arg": 3
+          },
+          {
+            "code": 2,
+            "name": "wifi_up",
+            "t_ms": 3116,
+            "arg": 0
+          },
+          {
+            "code": 4,
+            "name": "web_up",
+            "t_ms": 3139,
+            "arg": 0
+          },
+          {
+            "code": 3,
+            "name": "hub_ok",
+            "t_ms": 22480631,
+            "arg": 0,
+            "repeat": 749
+          }
+        ]
+      },
+      "checkpoint": {
+        "generation": 3,
+        "open": [],
+        "lastOpen": null,
+        "lastLeave": {
+          "phase": "hub",
+          "arg": 0,
+          "t_ms": 8680571
+        }
+      },
+      "recovery": {
+        "hardCount": 0,
+        "historyCount": 1,
+        "prevCause": "none",
+        "history": [
+          {
+            "reason": "web_ota",
+            "level": "soft",
+            "bootGen": 1,
+            "uptimeMs": 67271342
+          }
+        ]
+      }
+    },
+    "status": {
+      "ts": 1794951688.6740878,
+      "ip": "192.168.178.87",
+      "uptime": "2h 25min",
+      "heap": 63344,
+      "resetReason": "panic",
+      "bootGen": 3,
+      "drops": 0,
+      "sessions": 3,
+      "toHostBytes": 271570,
+      "toCtrlBytes": 378554,
+      "client": "192.168.178.108",
+      "ready": true
+    }
+  }
+}

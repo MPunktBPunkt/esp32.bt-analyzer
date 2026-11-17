@@ -621,6 +621,14 @@ class PhoneClientSession(_Session):
     # W0 isolate: after first DESCRIPTION check, wait for reply only (no TEXTDB/init/setData).
     # Env BCL_RHMI_STOP_AFTER=description_check | off (default).
     rhmi_stop_after: str = ""
+    # Phased RHMI soak after RUNTIME_ACTIVE (lab product-path probe).
+    rhmi_soak: bool = False
+    _soak_t0: float | None = None
+    _soak_phase: str = ""
+    _soak_next_t: float = 0.0
+    _soak_i: int = 0
+    _soak_counts: dict = field(default_factory=dict)
+
     def session_init(self) -> bytes:
         self.events.append({"event": "session_init", "dir": "tx"})
         return INIT_MAGIC
@@ -665,6 +673,11 @@ class PhoneClientSession(_Session):
             "uploads": self._uploads_done,
             "cache_hits": self._cache_hits,
             "wait_class": wait_class,
+            "soak_phase": self._soak_phase or None,
+            "soak_counts": dict(self._soak_counts) if self._soak_counts else {},
+            "soak_elapsed_s": (
+                None if self._soak_t0 is None else round(time.time() - self._soak_t0, 1)
+            ),
         }
 
     def _knock_bytes(self) -> bytes:
@@ -1062,6 +1075,176 @@ class PhoneClientSession(_Session):
             self._set_rhmi_state("RESOURCE_CHECKING", next_type=self._rhmi_plan[self._rhmi_plan_i]["type_name"])
         self._queue_next_rhmi_check()
 
+    def queue_set_data(self, model_id: int, value: object, *, reason: str = "soak") -> None:
+        """Queue an additional rhmi_setData after bootstrap (own UI data path)."""
+        if self._rhmi_state not in ("RHMI_INITIALIZED", "RUNTIME_ACTIVE"):
+            return
+        rhmi_h = int(self._handles.get("rhmi_create") or 12)
+        self._queue_rpc(
+            "rhmi_setData",
+            {
+                "_messageId": self._next_msg(),
+                "handle": rhmi_h,
+                "modelId": int(model_id),
+                "value": value,
+            },
+        )
+        self._soak_counts["setData"] = int(self._soak_counts.get("setData") or 0) + 1
+        self.events.append(
+            {
+                "event": "mybmw_soak_setData",
+                "phase": self._soak_phase,
+                "reason": reason,
+                "modelId": int(model_id),
+                "value": value if isinstance(value, (str, int, float, bool)) or value is None else type(value).__name__,
+            }
+        )
+
+    def queue_set_property(
+        self,
+        component_id: int,
+        property_id: int,
+        value: object,
+        *,
+        reason: str = "soak",
+    ) -> None:
+        if self._rhmi_state not in ("RHMI_INITIALIZED", "RUNTIME_ACTIVE"):
+            return
+        rhmi_h = int(self._handles.get("rhmi_create") or 12)
+        self._queue_rpc(
+            "rhmi_setProperty",
+            {
+                "_messageId": self._next_msg(),
+                "handle": rhmi_h,
+                "componentId": int(component_id),
+                "propertyId": int(property_id),
+                "values": {0: value},
+            },
+        )
+        self._soak_counts["setProperty"] = int(self._soak_counts.get("setProperty") or 0) + 1
+        self.events.append(
+            {
+                "event": "mybmw_soak_setProperty",
+                "phase": self._soak_phase,
+                "reason": reason,
+                "componentId": int(component_id),
+                "propertyId": int(property_id),
+            }
+        )
+
+    def _ack_action_event(self, fields: dict) -> None:
+        """Acknowledge HU→phone rhmi_onActionEvent (product interaction path)."""
+        rhmi_h = int(fields.get("handle") or self._handles.get("rhmi_create") or 12)
+        action_id = fields.get("actionId")
+        ident = fields.get("ident", 0)
+        mid = fields.get("_messageId")
+        self._queue_rpc(
+            "rhmi_ackActionEvent",
+            {
+                "_messageId": self._next_msg(),
+                "handle": rhmi_h,
+                "actionId": int(action_id) if action_id is not None else 0,
+                "ident": ident if ident is not None else 0,
+            },
+        )
+        self._soak_counts["ackAction"] = int(self._soak_counts.get("ackAction") or 0) + 1
+        self.events.append(
+            {
+                "event": "mybmw_action_ack_tx",
+                "in_reply_to": mid,
+                "handle": rhmi_h,
+                "actionId": action_id,
+                "ident": ident,
+                "phase": self._soak_phase or None,
+            }
+        )
+
+    def tick_rhmi_soak(self, now: float) -> None:
+        """Drive phased post-RUNTIME_ACTIVE RHMI traffic (setData / setProperty).
+
+        Phases (seconds after RUNTIME_ACTIVE):
+          0–60   stabilize
+          60–180 setData repeat (models 100/101)
+          180–300 multi-model setData + light setProperty
+          300–420 actions expected from HU (phone only acks)
+          420–600 mixed setData + setProperty
+        """
+        if not self.rhmi_soak or self._rhmi_state != "RUNTIME_ACTIVE":
+            return
+        if self._soak_t0 is None:
+            self._soak_t0 = now
+            self._soak_phase = "stabilize"
+            self._soak_next_t = now + 60.0
+            self.events.append(
+                {
+                    "event": "mybmw_soak_start",
+                    "phase": "stabilize",
+                    "note": "0-60s stabilize after RUNTIME_ACTIVE",
+                }
+            )
+            return
+        elapsed = now - self._soak_t0
+        if elapsed < 60:
+            phase = "stabilize"
+        elif elapsed < 180:
+            phase = "setData_repeat"
+        elif elapsed < 300:
+            phase = "multi_model"
+        elif elapsed < 420:
+            phase = "actions_window"
+        else:
+            phase = "mixed"
+        if phase != self._soak_phase:
+            self._soak_phase = phase
+            self._soak_next_t = now
+            self.events.append(
+                {
+                    "event": "mybmw_soak_phase",
+                    "phase": phase,
+                    "elapsed_s": round(elapsed, 1),
+                    "counts": dict(self._soak_counts),
+                }
+            )
+        if now < self._soak_next_t:
+            return
+        self._soak_i += 1
+        i = self._soak_i
+        if phase == "stabilize":
+            self._soak_next_t = now + 5.0
+            return
+        if phase == "setData_repeat":
+            # Known-good string models from lifecycle PASS.
+            texts = ("PiDrive", "Apps", "Durchsuchen", f"PiDrive-{i}")
+            model = 100 if (i % 2) == 0 else 101
+            self.queue_set_data(model, texts[i % len(texts)], reason="soak_repeat")
+            self._soak_next_t = now + 5.0
+            return
+        if phase == "multi_model":
+            # Stick to accepted string models; avoid modelId 4 (known SE 213).
+            combo = (
+                (100, f"Apps-{i}"),
+                (101, f"Search-{i}"),
+                (100, "PiDrive"),
+                (101, "PiDrive-Menu"),
+            )
+            mid, val = combo[i % len(combo)]
+            self.queue_set_data(mid, val, reason="soak_multi")
+            if i % 4 == 0:
+                # Light property poke (component/property ids lab-exploratory).
+                self.queue_set_property(1, 18, True, reason="soak_multi")
+            self._soak_next_t = now + 4.0
+            return
+        if phase == "actions_window":
+            # HU inject drives actions; phone only acks when events arrive.
+            self._soak_next_t = now + 5.0
+            return
+        # mixed
+        model = 100 if (i % 2) == 0 else 101
+        self.queue_set_data(model, f"PiDrive-mixed-{i}", reason="soak_mixed")
+        if i % 3 == 0:
+            self.queue_set_property(1, 18, (i % 2) == 0, reason="soak_mixed")
+        self._soak_next_t = now + 4.0
+
     def _queue_rhmi_initialize_and_runtime(self) -> None:
         """After full check sequence: initialize → setData shell + ImageID←0 probe."""
         if self._etch_stage in ("menu_upload", "rhmi_runtime"):
@@ -1246,6 +1429,20 @@ class PhoneClientSession(_Session):
                             "detailMessage": (res.fields or {}).get("detailMessage"),
                         }
                     )
+            elif method == "rhmi_onActionEvent":
+                self.events.append(
+                    {
+                        "event": "mybmw_action_event_rx",
+                        "handle": fields.get("handle"),
+                        "actionId": fields.get("actionId"),
+                        "ident": fields.get("ident"),
+                        "args": fields.get("args"),
+                        "msg_id": fields.get("_messageId"),
+                        "phase": self._soak_phase or None,
+                    }
+                )
+                self._soak_counts["actionRx"] = int(self._soak_counts.get("actionRx") or 0) + 1
+                self._ack_action_event(fields)
             elif method == "cds_onPropertyChangedEvent":
                 self.events.append(
                     {

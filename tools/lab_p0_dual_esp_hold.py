@@ -204,20 +204,33 @@ for pth, ifaces in list(om.GetManagedObjects().items()):
         except Exception:
             pass
 
-time.sleep(0.5)
-ad_phone.StartDiscovery()
+time.sleep(1.0)
+# Prefer already-known HU device; otherwise scan (BREDR).
 path = None
-for _ in range(50):
-    for pth, ifaces in om.GetManagedObjects().items():
-        if "org.bluez.Device1" not in ifaces:
-            continue
-        d = ifaces["org.bluez.Device1"]
-        if str(d.get("Address", "")).upper() == HU_BD.upper() and str(d.get("Adapter")) == phone_adapter:
-            path = pth
-            break
-    if path:
+for pth, ifaces in om.GetManagedObjects().items():
+    if "org.bluez.Device1" not in ifaces:
+        continue
+    d = ifaces["org.bluez.Device1"]
+    if str(d.get("Address", "")).upper() == HU_BD.upper() and str(d.get("Adapter")) == phone_adapter:
+        path = pth
         break
-    time.sleep(0.4)
+if path is None:
+    try:
+        ad_phone.SetDiscoveryFilter({"Transport": "bredr"})
+    except Exception:
+        pass
+    ad_phone.StartDiscovery()
+    for _ in range(80):
+        for pth, ifaces in om.GetManagedObjects().items():
+            if "org.bluez.Device1" not in ifaces:
+                continue
+            d = ifaces["org.bluez.Device1"]
+            if str(d.get("Address", "")).upper() == HU_BD.upper() and str(d.get("Adapter")) == phone_adapter:
+                path = pth
+                break
+        if path:
+            break
+        time.sleep(0.4)
 try:
     ad_phone.StopDiscovery()
 except Exception:
@@ -338,16 +351,66 @@ if WANT_BCL and not bond.get("paired"):
     subprocess.run(["systemctl", "start", "bt-pair-agent.service"], capture_output=True)
     raise SystemExit(3)
 
+RHMI_SOAK = os.environ.get("BCL_RHMI_SOAK", "").strip() in ("1", "true", "yes")
+hold["rhmi_soak"] = RHMI_SOAK
+
+def soak_action_injector(stop_evt):
+    """HU→phone rhmi_onActionEvent during soak phases 5–10 min (hold wall clock)."""
+    if not RHMI_SOAK:
+        return
+    inject = "/tmp/bcl_dummy/inject_cds.jsonl"
+    os.makedirs(os.path.dirname(inject), exist_ok=True)
+    open(inject, "a").close()
+    # Wait for actions window (~5 min after hold start; RUNTIME_ACTIVE ~+4s).
+    while not stop_evt.is_set() and time.time() - t0 < 300:
+        time.sleep(1.0)
+    n = 0
+    while not stop_evt.is_set() and time.time() - t0 < HOLD:
+        elapsed = time.time() - t0
+        # 5–7 min: dense actions; 7–10 min: mixed slower actions
+        pace = 2.0 if elapsed < 420 else 4.0
+        handles = (12, 13, 17, 19)
+        action_ids = (541, 542, 543)
+        h = handles[n % len(handles)]
+        aid = action_ids[n % len(action_ids)]
+        line = json.dumps({
+            "_rhmi_action": {
+                "src": 19,
+                "handle": h,
+                "actionId": aid,
+                "args": {"0": n % 3},
+            },
+            "_pace_ms": 80,
+        }) + "\n"
+        with open(inject, "a") as f:
+            f.write(line)
+        n += 1
+        time.sleep(pace)
+    open(f"{OUT}/soak_actions.json", "w").write(json.dumps({"injected": n}, indent=2) + "\n")
+
 if USE_BCL:
     # Real BCL session owns RFCOMM; do not also raw-spam the same channel.
-    phone_proc = subprocess.Popen([
+    phone_env = os.environ.copy()
+    if RHMI_SOAK:
+        phone_env["BCL_RHMI_SOAK"] = "1"
+    phone_cmd = [
         "python3", "/tmp/bcl_dummy/bcl_dummy_hu_agent.py", "phone",
         "--adapter-bd", PHONE_BD, "--hu-bd", HU_BD, "--channel", str(CHANNEL),
         "--seconds", str(int(HOLD)),
         "--full-client", "--mybmw-sim",
         "--log", f"{OUT}/phone.jsonl",
         "--session-id", "LAB_P0_87_131_HOLD",
-    ], stdout=open(f"{OUT}/phone.out","w"), stderr=subprocess.STDOUT)
+    ]
+    if RHMI_SOAK:
+        phone_cmd.append("--rhmi-soak")
+    phone_proc = subprocess.Popen(
+        phone_cmd,
+        stdout=open(f"{OUT}/phone.out","w"),
+        stderr=subprocess.STDOUT,
+        env=phone_env,
+    )
+    soak_th = threading.Thread(target=soak_action_injector, args=(stop,), daemon=True)
+    soak_th.start()
     hold["rfcomm_connect_ok"] = None  # determined from phone.jsonl later
     hold["connect_error"] = None
     while time.time() - t0 < HOLD:
@@ -397,8 +460,16 @@ if USE_BCL:
                 wait_class = o.get("wait_class")
                 hold["rhmi_state"] = o.get("rhmi_state")
                 hold["rx_total"] = o.get("rx_total")
+                hold["soak_phase"] = o.get("soak_phase")
+                hold["soak_counts"] = o.get("soak_counts")
+                hold["soak_elapsed_s"] = o.get("soak_elapsed_s")
     hold["abort_reason"] = abort_reason
     hold["wait_class"] = wait_class
+    if os.path.exists(f"{OUT}/soak_actions.json"):
+        try:
+            hold["soak_actions"] = json.loads(open(f"{OUT}/soak_actions.json").read())
+        except Exception:
+            pass
     if not phone_connect_ok and send_err is None:
         send_err = "bcl_phone_no_rfcomm_connected"
     elif abort_reason and send_err is None:
@@ -581,6 +652,11 @@ def main() -> int:
     ap.add_argument("--phone-bd", default="", help="override phone BD (implies no phone ESP poll if not .87)")
     ap.add_argument("--out", type=Path, help="local evidence JSON path")
     ap.add_argument("--ssh", default=DEFAULT_SSH)
+    ap.add_argument(
+        "--rhmi-soak",
+        action="store_true",
+        help="enable phased RHMI soak (setData/Actions) via BCL_RHMI_SOAK=1",
+    )
     args = ap.parse_args()
     host = args.ssh
 
@@ -608,10 +684,21 @@ def main() -> int:
     finally:
         tmp.unlink(missing_ok=True)
 
+    # Deploy session + agent modules so soak/EAGAIN code is live on .108
+    for name in (
+        "bcl_dummy_hu_agent.py",
+        "bcl_dummy_hu.py",
+        "bcl_etch_stub.py",
+        "bcl_framer.py",
+        "etch_codec.py",
+    ):
+        scp_to(ROOT / "tools" / name, f"/tmp/bcl_dummy/{name}", host=host)
+
     env = (
         f"HU_BD={HU_BD} PHONE_BD={phone_bd} HU_IP={HU_IP} PHONE_IP={phone_ip} "
         f"RFCOMM_CHANNEL={args.channel} HOLD_S={args.hold} OUT_DIR={remote_out} "
-        f"BCL_PHONE={'0' if args.no_bcl_phone else '1'}"
+        f"BCL_PHONE={'0' if args.no_bcl_phone else '1'} "
+        f"BCL_RHMI_SOAK={'1' if args.rhmi_soak else '0'}"
     )
     timeout = max(180.0, args.hold + 120.0)
     print(f"remote OUT={remote_out} hold={args.hold}s", flush=True)

@@ -787,6 +787,9 @@ def run_phone(
         # Pre-set bytes so SP4 auto wire_v5 does not override (truthy).
         knock_payload = KNOCK_DEFAULT_PAYLOAD
     mybmw_sim = bool(getattr(args, "mybmw_sim", False))
+    rhmi_soak = bool(getattr(args, "rhmi_soak", False)) or (
+        os.environ.get("BCL_RHMI_SOAK", "").strip() in ("1", "true", "yes")
+    )
     sess = None if observe_only else PhoneClientSession(
         selectproto=sp,
         wire_open5001=bool(getattr(args, "wire_open5001", False)) or mybmw_sim,
@@ -795,7 +798,16 @@ def run_phone(
         knock_payload=knock_payload,
         skip_knock=skip_knock,
         mybmw_sim=mybmw_sim,
+        rhmi_soak=rhmi_soak and mybmw_sim,
     )
+    if sess is not None and getattr(sess, "rhmi_soak", False):
+        log.write(
+            {
+                "event": "rhmi_soak_enabled",
+                "session_id": session_id,
+                "note": "phased setData/setProperty after RUNTIME_ACTIVE",
+            }
+        )
     sent = 0
     rx_raw = b""
     end = time.time() + args.seconds
@@ -842,6 +854,48 @@ def run_phone(
             if sess.handshake is None and now >= next_init:
                 sock.sendall(sess.session_init())
                 next_init = now + SESSION_INIT_INTERVAL_S
+        # Phased RHMI soak: queue setData/setProperty after RUNTIME_ACTIVE.
+        if (
+            sess is not None
+            and getattr(sess, "rhmi_soak", False)
+            and getattr(sess, "mybmw_sim", False)
+            and not observe_only
+        ):
+            try:
+                sess.tick_rhmi_soak(now)  # type: ignore[attr-defined]
+            except Exception as exc:  # noqa: BLE001
+                log.write(
+                    {
+                        "event": "rhmi_soak_tick_error",
+                        "error": repr(exc),
+                        "session_id": session_id,
+                    }
+                )
+            for out in sess.drain_tx():
+                try:
+                    sock.sendall(out)
+                    log.write(
+                        {
+                            "event": "tx_bytes",
+                            "n": len(out),
+                            "hex": out.hex()[:128],
+                            "kind": "rhmi_soak",
+                            "session_id": session_id,
+                        }
+                    )
+                except OSError as exc:
+                    log.write(
+                        {
+                            "event": "rfcomm_closed",
+                            "reason": repr(exc),
+                            "session_id": session_id,
+                        }
+                    )
+                    abort_reason = "tx_error"
+                    break
+            sent = _flush_events(log, sess, sent, session_id=session_id)
+        if abort_reason is not None:
+            break
         # WD pings once ACTIVE — including controlled_init --full-client (was missing before)
         if (
             sess is not None
@@ -1035,6 +1089,9 @@ def run_phone(
             "rhmi_state": snap.get("rhmi_state"),
             "open_txns": snap.get("open_txns"),
             "pending_check_mid": snap.get("pending_check_mid"),
+            "soak_phase": snap.get("soak_phase"),
+            "soak_counts": snap.get("soak_counts"),
+            "soak_elapsed_s": snap.get("soak_elapsed_s"),
             "bcl_classification": cls["bcl_classification"],
             "classification": cls,
             **meta,
@@ -1203,6 +1260,11 @@ def main() -> int:
             "--full-client",
             action="store_true",
             help="after HANDSHAKE continue SELECTPROTO/KNOCK/OPEN (lab only by default)",
+        )
+        p.add_argument(
+            "--rhmi-soak",
+            action="store_true",
+            help="after RUNTIME_ACTIVE run phased setData/setProperty soak (also BCL_RHMI_SOAK=1)",
         )
         p.add_argument(
             "--selectproto",

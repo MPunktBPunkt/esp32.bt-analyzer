@@ -1,0 +1,184 @@
+{
+  "pass": true,
+  "hold_s": 603.96,
+  "rhmi_state": "RUNTIME_ACTIVE",
+  "abort_reason": null,
+  "wait_class": null,
+  "phone_events": {
+    "session_start": 1,
+    "rfcomm_connected": 1,
+    "rhmi_soak_enabled": 1,
+    "session_init": 1,
+    "rx_bytes": 782,
+    "handshake_rx": 1,
+    "tx_bytes": 282,
+    "frame": 930,
+    "mybmw_rpc_tx": 275,
+    "mybmw_sim_start": 1,
+    "watchdog_ping": 118,
+    "hu_dataack": 400,
+    "hu_unsolicited": 411,
+    "mybmw_rpc_rx": 411,
+    "watchdog_echo_rtt": 118,
+    "mybmw_rhmi_state": 9,
+    "mybmw_handle": 4,
+    "mybmw_apps_queued": 1,
+    "mybmw_rhmi_plan": 1,
+    "mybmw_check_resource_tx": 3,
+    "mybmw_cds_event": 30,
+    "mybmw_check_resource_rx": 3,
+    "mybmw_set_resource_tx": 1,
+    "mybmw_set_resource_skipped": 2,
+    "mybmw_menu_upload_queued": 1,
+    "mybmw_soak_start": 1,
+    "mybmw_setdata_service_exception": 1,
+    "mybmw_soak_phase": 4,
+    "mybmw_soak_setData": 97,
+    "mybmw_soak_setProperty": 21,
+    "mybmw_action_event_rx": 105,
+    "mybmw_action_ack_tx": 105,
+    "phone_done": 1
+  },
+  "hu_events_key": {
+    "rfcomm_closed": 1,
+    "tx_write_eagain": 2,
+    "tx_write_eagain_recovered": 2,
+    "rhmi_action_tx": 105,
+    "inject_rhmi_request": 105,
+    "rhmi_setdata_reject": 1
+  },
+  "methods_tx": {
+    "sas_certificate": 1,
+    "sas_login": 1,
+    "ver_getVersion": 1,
+    "info_getSystemInfo": 1,
+    "rhmi_getCapabilities": 1,
+    "cds_create": 1,
+    "am_create": 1,
+    "rhmi_create": 1,
+    "av_create": 1,
+    "cds_addPropertyChangedEventHandler": 15,
+    "cds_getPropertyAsync": 15,
+    "am_registerApp": 4,
+    "av_requestConnection": 1,
+    "rhmi_checkResource": 3,
+    "rhmi_setResource": 1,
+    "rhmi_initialize": 1,
+    "rhmi_setData": 100,
+    "rhmi_setProperty": 21,
+    "rhmi_ackActionEvent": 105
+  },
+  "methods_rx": {
+    "_result_sas_certificate": 1,
+    "_result_sas_login": 1,
+    "_result_ver_getVersion": 1,
+    "_result_info_getSystemInfo": 1,
+    "_result_rhmi_getCapabilities": 1,
+    "_result_cds_create": 1,
+    "_result_am_create": 1,
+    "_result_rhmi_create": 1,
+    "_result_av_create": 1,
+    "_result_cds_addPropertyChangedEventHandler": 15,
+    "cds_onPropertyChangedEvent": 30,
+    "_result_cds_getPropertyAsync": 15,
+    "_result_am_registerApp": 4,
+    "_result_av_requestConnection": 1,
+    "av_connectionGranted": 1,
+    "_result_rhmi_checkResource": 3,
+    "_result_rhmi_setResource": 1,
+    "_result_rhmi_initialize": 1,
+    "_result_rhmi_setData": 100,
+    "_result_rhmi_setProperty": 21,
+    "rhmi_onActionEvent": 105,
+    "_result_rhmi_ackActionEvent": 105
+  },
+  "eagain_events": 4,
+  "eagain_recovered": 2,
+  "hu_closes": [],
+  "service_exceptions": [
+    {
+      "errorCode": 213,
+      "detail": "SetData was not successful."
+    }
+  ],
+  "soak_phases": [
+    {
+      "ts": 1794951090.091,
+      "event": "mybmw_soak_start",
+      "phase": "stabilize",
+      "note": "0-60s stabilize after RUNTIME_ACTIVE",
+      "session_id": "LAB_P0_87_131_HOLD"
+    },
+    {
+      "ts": 1794951150.227,
+      "event": "mybmw_soak_phase",
+      "phase": "setData_repeat",
+      "elapsed_s": 60.1,
+      "counts": {},
+      "session_id": "LAB_P0_87_131_HOLD"
+    },
+    {
+      "ts": 1794951270.19,
+      "event": "mybmw_soak_phase",
+      "phase": "multi_model",
+      "elapsed_s": 180.1,
+      "counts": {
+        "setData": 24
+      },
+      "session_id": "LAB_P0_87_131_HOLD"
+    },
+    {
+      "ts": 1794951390.274,
+      "event": "mybmw_soak_phase",
+      "phase": "actions_window",
+      "elapsed_s": 300.2,
+      "counts": {
+        "setData": 54,
+        "setProperty": 7,
+        "actionRx": 3,
+        "ackAction": 3
+      },
+      "session_id": "LAB_P0_87_131_HOLD"
+    },
+    {
+      "ts": 1794951510.171,
+      "event": "mybmw_soak_phase",
+      "phase": "mixed",
+      "elapsed_s": 420.1,
+      "counts": {
+        "setData": 54,
+        "setProperty": 7,
+        "actionRx": 62,
+        "ackAction": 62
+      },
+      "session_id": "LAB_P0_87_131_HOLD"
+    }
+  ],
+  "soak_setData": 97,
+  "soak_setData_models": [
+    100,
+    101
+  ],
+  "actions_tx_hu": 105,
+  "actions_rx_phone": 105,
+  "action_acks": 105,
+  "soak_counts_done": {
+    "setData": 97,
+    "setProperty": 21,
+    "actionRx": 105,
+    "ackAction": 105
+  },
+  "soak_actions_injected": {
+    "injected": 105
+  },
+  "criteria": {
+    "hold_ge_540s": true,
+    "runtime_active": true,
+    "no_abort": true,
+    "no_hu_close_fatal": true,
+    "setData_soak_ge_10": true,
+    "actions_tx_ge_5": true,
+    "action_acks_ge_5": true
+  },
+  "esp_reset_hint": false
+}
