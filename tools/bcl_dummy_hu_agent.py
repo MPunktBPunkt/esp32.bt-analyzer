@@ -167,6 +167,7 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
             close(fd, "eof")
             return False
         c["rx_raw"] = c.get("rx_raw", b"") + data
+        c["last_rx_ts"] = time.time()
         sess = c["session"]
         log.write(
             {
@@ -208,12 +209,48 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
         for r in replies:
             try:
                 os.write(fd, r)
+                c["tx_total"] = int(c.get("tx_total") or 0) + len(r)
+                c["tx_frames"] = int(c.get("tx_frames") or 0) + 1
+                c["tx_max"] = max(int(c.get("tx_max") or 0), len(r))
+                c["last_tx_ts"] = time.time()
                 log.write(
-                    {"event": "tx_bytes", "n": len(r), "hex": r.hex()},
+                    {
+                        "event": "tx_bytes",
+                        "n": len(r),
+                        "hex": r.hex(),
+                        "tx_total": c["tx_total"],
+                        "tx_frames": c["tx_frames"],
+                    },
                     **c["dev"],
                     session_id=session_id,
                 )
             except OSError as exc:
+                # errno 11 == EAGAIN/EWOULDBLOCK on Linux — key for P0 write11 workstream
+                import errno as _errno
+
+                since_rx = None
+                if c.get("last_rx_ts") is not None:
+                    since_rx = round(time.time() - float(c["last_rx_ts"]), 4)
+                since_tx = None
+                if c.get("last_tx_ts") is not None:
+                    since_tx = round(time.time() - float(c["last_tx_ts"]), 4)
+                log.write(
+                    {
+                        "event": "tx_write_failed",
+                        "errno": exc.errno,
+                        "errno_name": _errno.errorcode.get(exc.errno, "?"),
+                        "bytes_attempted": len(r),
+                        "tx_total": int(c.get("tx_total") or 0),
+                        "tx_frames": int(c.get("tx_frames") or 0),
+                        "tx_max": int(c.get("tx_max") or 0),
+                        "rx_total": len(c.get("rx_raw") or b""),
+                        "seconds_since_last_rx": since_rx,
+                        "seconds_since_last_tx_ok": since_tx,
+                        "hex_head": r[:32].hex(),
+                    },
+                    **c["dev"],
+                    session_id=session_id,
+                )
                 close(fd, f"write_error:{exc.errno}")
                 return False
         return True

@@ -38,6 +38,15 @@ Bond flakes (`Page Timeout` / discovery miss) still occur between rapid restarts
 
 Debian Lab UI `:8081` reorganized into topic tabs + BMW subtabs + sticky status pills + howto on Übersicht.
 
+## Instrumented capture (`LAB_P0_WRITE11_CAP_20261117T2156Z`)
+
+- HU `os.write` → **errno 11 EAGAIN** after **~1.55 s**, during CDS reply flood (89 B attempt; 5250 B / 93 frames already sent).
+- Phone `WATCHDOG_MISS` ~24 s later is the **aftermath**, not the write moment.
+- btmon still shows RFCOMM credits ~30 near fail → prefer socket/queue/bridge-drain over air-credit=0.
+- Details: `LAB_P0_WRITE11_CAP_20261117T2156Z/ANALYSIS.md`
+
 ## Next (protocol, not panic)
 
-Classify why HU write fails during etch/WD under BCL (buffer, ACL, BlueZ RFCOMM). Field `WATCHDOG_MISS_NO_ETCH_REPLY` may be reinterpreted as transport TX failure visible as missing etch replies — still not W0 Fall A.
+1. Single-ESP A/B with the same instrumented capture.  
+2. Optional CDS-TX pacing probe.  
+Field `WATCHDOG_MISS_NO_ETCH_REPLY` = missing replies after RFCOMM already died on EAGAIN — still not W0 Fall A.
