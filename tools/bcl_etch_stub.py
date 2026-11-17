@@ -15,10 +15,13 @@ Does NOT reconstruct real SAS/RHMI; discovers what Phone needs to advance.
 
 from __future__ import annotations
 
+import hashlib
 import json
+import os
 import re
 import struct
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any, ClassVar, Literal
 
 ETCH_MAGIC = b"\xde\xad\xbe\xef"
@@ -303,6 +306,50 @@ class EtchChannelReassembler:
         return out
 
 
+def _sha256_hex(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def build_service_exception(
+    *, error_code: int = 213, detail: str = "SetData was not successful."
+):
+    """F20-shaped BMWRemoting.ServiceException (nested TC_CUSTOM on wire)."""
+    from etch_codec import EtchStruct
+
+    return EtchStruct(
+        "de.bmw.idrive.BMWRemoting.ServiceException",
+        {"errorCode": int(error_code), "detailMessage": str(detail)},
+    )
+
+
+def _is_imageid_zero(value: Any) -> bool:
+    """True when value is RHMIResourceIdentifier{id=0} (MockBMWRemotingServer 2019 rule)."""
+    from etch_codec import EtchStruct
+
+    def _id_is_zero(fields: dict) -> bool:
+        if "id" not in fields:
+            return False
+        rid = fields.get("id")
+        # id=0 is falsy — must not use `rid or …`
+        try:
+            return int(rid) == 0
+        except (TypeError, ValueError):
+            return False
+
+    if isinstance(value, EtchStruct):
+        short = value.type_name.rsplit(".", 1)[-1]
+        if "RHMIResourceIdentifier" in short or short == "RHMIResourceIdentifier":
+            return _id_is_zero(value.fields)
+        # Some stacks nest identifier fields without full type name on partial decode
+        if _id_is_zero(value.fields) and (
+            "type" in value.fields or "IMAGEID" in str(value.fields)
+        ):
+            return True
+    if isinstance(value, dict) and _id_is_zero(value):
+        return True
+    return False
+
+
 @dataclass
 class EtchSasCdsStub:
     """Per-connection stub state for dest 4004."""
@@ -327,6 +374,23 @@ class EtchSasCdsStub:
     events: list[dict] = field(default_factory=list)
     # Active CDS subscriptions from Phone (src, handle, propertyName) for live inject.
     subscriptions: list[dict] = field(default_factory=list)
+    # SHA-256 digests the "HU" already knows (checkResource→True). Seeded from
+    # setResource uploads and optional /tmp/bcl_dummy/rhmi_digests.txt.
+    known_digests: set[str] = field(default_factory=set)
+    setdata_reject: int = 0
+    check_resource_hits: list[dict] = field(default_factory=list)
+
+    def __post_init__(self) -> None:
+        # Seed whitelist from lab digest file if present (one hex digest per line).
+        path = Path(os.environ.get("BCL_RHMI_DIGESTS", "/tmp/bcl_dummy/rhmi_digests.txt"))
+        try:
+            if path.is_file():
+                for line in path.read_text().splitlines():
+                    d = line.strip().lower()
+                    if len(d) == 64 and all(c in "0123456789abcdef" for c in d):
+                        self.known_digests.add(d)
+        except OSError:
+            pass
 
     # Minimal field-seen set for unsolicited push experiments.
     CDS_PUSH_NAMES: ClassVar[tuple[str, ...]] = (
@@ -692,11 +756,69 @@ class EtchSasCdsStub:
             return out
 
         if method == "rhmi_checkResource":
-            # Returning False asks AAIdrive to upload ui_description.xml / images / texts via rhmi_setResource!
+            # Digest whitelist: known → True (skip upload); unknown → False (force setResource).
+            # Matches F20 behaviour once SAS.Digests.RHMIDescriptions is satisfied.
+            raw_hash = raw_fields.get("hash")
+            digest = ""
+            if isinstance(raw_hash, str):
+                digest = raw_hash.strip().lower()
+            elif isinstance(raw_hash, (bytes, bytearray)):
+                digest = bytes(raw_hash).hex()
+            known = bool(digest) and digest in self.known_digests
+            self.check_resource_hits.append(
+                {"src": src, "hash": digest or None, "known": known, "type": raw_fields.get("type")}
+            )
+            self.events.append(
+                {
+                    "event": "rhmi_check_resource",
+                    "src": src,
+                    "hash": digest or None,
+                    "known": known,
+                    "result": known,
+                }
+            )
             out.append(
                 encode_etch_packet(
                     "_result_rhmi_checkResource",
-                    {"_inReplyTo": reply_to, "_messageId": self._next_msg_id(), "result": False},
+                    {
+                        "_inReplyTo": reply_to,
+                        "_messageId": self._next_msg_id(),
+                        "result": known,
+                    },
+                )
+            )
+            return out
+
+        if method == "rhmi_setData":
+            # P0: F20 rejects ImageID←0 with ServiceException(213, ...) — field 17.11.
+            if _is_imageid_zero(raw_fields.get("value")):
+                self.setdata_reject += 1
+                self.events.append(
+                    {
+                        "event": "rhmi_setdata_reject",
+                        "src": src,
+                        "handle": raw_fields.get("handle"),
+                        "modelId": raw_fields.get("modelId"),
+                        "errorCode": 213,
+                    }
+                )
+                out.append(
+                    encode_etch_packet(
+                        "_result_rhmi_setData",
+                        {
+                            "_inReplyTo": reply_to,
+                            "_messageId": self._next_msg_id(),
+                            "result": build_service_exception(),
+                        },
+                    )
+                )
+                return out
+            # void OK (fall through to default below by not returning early with empty —
+            # emit void here for clarity)
+            out.append(
+                encode_etch_packet(
+                    "_result_rhmi_setData",
+                    {"_inReplyTo": reply_to, "_messageId": self._next_msg_id()},
                 )
             )
             return out
@@ -785,18 +907,42 @@ class EtchSasCdsStub:
             rhash = raw_fields.get("hash")
             nbytes = len(data_b) if isinstance(data_b, (bytes, bytearray)) else None
             saved = None
+            digest = None
             if isinstance(data_b, (bytes, bytearray)) and data_b:
                 # Persist for rhmi_db / cover offline parse (LAB only).
                 try:
-                    from pathlib import Path
-
-                    out_dir = Path("/tmp/bcl_dummy/resources")
+                    out_dir = Path(
+                        os.environ.get("BCL_RHMI_RESOURCES", "/tmp/bcl_dummy/resources")
+                    )
                     out_dir.mkdir(parents=True, exist_ok=True)
-                    fname = f"src{src}_h{raw_fields.get('handle')}_t{rtype}_{nbytes}.bin"
+                    digest = _sha256_hex(bytes(data_b))
+                    self.known_digests.add(digest)
+                    # Prefer caller-supplied hash string if it looks like sha256
+                    if isinstance(rhash, str) and len(rhash.strip()) == 64:
+                        self.known_digests.add(rhash.strip().lower())
+                    fname = (
+                        f"src{src}_h{raw_fields.get('handle')}_"
+                        f"sha{digest[:12]}_{nbytes}.bin"
+                    )
                     path = out_dir / fname
                     if not path.exists():
                         path.write_bytes(bytes(data_b))
                     saved = str(path)
+                    # Keep digest index for checkResource whitelist reloads
+                    idx = out_dir.parent / "rhmi_digests.txt"
+                    try:
+                        existing = set()
+                        if idx.is_file():
+                            existing = {
+                                ln.strip().lower()
+                                for ln in idx.read_text().splitlines()
+                                if len(ln.strip()) == 64
+                            }
+                        if digest not in existing:
+                            with idx.open("a") as fh:
+                                fh.write(digest + "\n")
+                    except OSError:
+                        pass
                 except OSError:
                     saved = None
             self.events.append(
@@ -804,8 +950,9 @@ class EtchSasCdsStub:
                     "event": "rhmi_resource_rx",
                     "src": src,
                     "handle": raw_fields.get("handle"),
-                    "type": rtype,
+                    "type": str(rtype)[:120] if rtype is not None else None,
                     "hash": rhash if isinstance(rhash, (str, int)) else None,
+                    "sha256": digest,
                     "bytes": nbytes,
                     "saved": saved,
                 }

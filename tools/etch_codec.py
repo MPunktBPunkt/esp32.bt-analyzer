@@ -177,6 +177,10 @@ BMW_FIELDS: tuple[str, ...] = (
     "playerState",
     "major",
     "minor",
+    "errorCode",
+    "detailMessage",
+    "category",
+    "appName",
     "revision",
     "vendor",
     "version",
@@ -455,7 +459,13 @@ def encode_value(val: Any) -> bytes:
             + bytes([TC_NONE])
         )
     if isinstance(val, EtchStruct):
-        return encode_struct(val.type_name, val.fields, nested=True)
+        # Exceptions / custom BMW types nest as TC_CUSTOM (0x95) on F20 wire
+        # (field: ServiceException in _result_rhmi_setData), not TC_STRUCT (0x94).
+        short = val.type_name.rsplit(".", 1)[-1]
+        as_custom = short.endswith("Exception") or short.startswith("RHMI")
+        return encode_struct(
+            val.type_name, val.fields, nested=True, custom=as_custom
+        )
     raise TypeError(f"Unsupported Etch value type: {type(val)!r}")
 
 
@@ -470,10 +480,19 @@ class EtchStruct:
             self.type_hash = fqn_hash(self.type_name)
 
 
-def encode_struct(type_name: str, fields: dict[str, Any], *, nested: bool = False) -> bytes:
+def encode_struct(
+    type_name: str,
+    fields: dict[str, Any],
+    *,
+    nested: bool = False,
+    custom: bool = False,
+) -> bytes:
     th = fqn_hash(type_name)
     out = bytearray()
-    out.append(TC_STRUCT if nested else ETCH_VERSION)
+    if nested:
+        out.append(TC_CUSTOM if custom else TC_STRUCT)
+    else:
+        out.append(ETCH_VERSION)
     out.append(TC_INT)
     out.extend(struct.pack(">I", th))
     out.extend(encode_int_value(len(fields)))

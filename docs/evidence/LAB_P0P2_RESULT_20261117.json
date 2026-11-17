@@ -1,0 +1,31 @@
+{
+  "claim_level": "LAB TEST PASS (in-process on .108)",
+  "menu": {
+    "event": "mybmw_menu_upload_queued",
+    "description_bytes": 13598,
+    "sha256": "3cf4795378d3cd7dfba139d8035c9ac5f6c1cacf8421e8044063d0824208b164"
+  },
+  "exc": {
+    "event": "mybmw_setdata_service_exception",
+    "errorCode": 213,
+    "detailMessage": "SetData was not successful."
+  },
+  "resources_rx": 1,
+  "setdata_reject": 1,
+  "am_registerApp": 4,
+  "persisted": [
+    [
+      "src10_h12_sha3cf4795378d3_13598.bin",
+      13598
+    ]
+  ],
+  "air": {
+    "status": "FAIL",
+    "errors": [
+      "Invalid exchange",
+      "Host is down",
+      "RFCOMM timeout"
+    ],
+    "note": "pair OK; ACL unstable; no rfcomm_connected"
+  }
+}

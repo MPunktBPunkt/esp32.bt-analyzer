@@ -22,9 +22,12 @@ SAS probe stages: none | dataack | challenge | challenge_rhmi | adaptive
 
 from __future__ import annotations
 
+import hashlib
+import os
 import struct
 import time
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any
 
 from bcl_etch_stub import (
@@ -628,15 +631,22 @@ class PhoneClientSession(_Session):
 
     def _queue_rpc(self, type_name: str, fields: dict) -> None:
         from etch_codec import encode_etch_packet
+        from bcl_framer import MAX_PAYLOAD
 
         body = encode_etch_packet(type_name, fields)
-        self._pending_tx.append(self._etch_data(body))
+        # BCL DATA payloads capped at MAX_PAYLOAD (4000); EtchChannelReassembler
+        # stitches fragments — matches field cert / DESCRIPTION uploads.
+        nfrag = 0
+        for off in range(0, max(len(body), 1), MAX_PAYLOAD):
+            self._pending_tx.append(self._etch_data(body[off : off + MAX_PAYLOAD]))
+            nfrag += 1
         self.events.append(
             {
                 "event": "mybmw_rpc_tx",
                 "method": type_name,
                 "msg_id": fields.get("_messageId"),
                 "len": len(body),
+                "fragments": nfrag,
             }
         )
 
@@ -691,22 +701,35 @@ class PhoneClientSession(_Session):
                     "propertyName": prop,
                 },
             )
-        self._queue_rpc(
-            "am_registerApp",
-            {
-                "_messageId": self._next_msg(),
-                "handle": am_h,
-                "id": "net.basarsoft.a4a",
-                "name": "AAIdrive",
-                "category": "Multimedia",
-            },
-        )
+        # Multi-app AM wave mirroring field 17.11 (YouTube / ScreenMirror / BT / AAIdrive).
+        for app_id, app_name in (
+            ("net.basarsoft.a4a", "AAIdrive"),
+            ("androidautoidrive.com.spotify.music", "Spotify"),
+            ("androidautoidrive.com.google.android.youtube", "YouTube"),
+            (
+                "io.bimmergestalt.idriveconnectaddons.screenmirror",
+                "Screen Mirroring",
+            ),
+        ):
+            self._queue_rpc(
+                "am_registerApp",
+                {
+                    "_messageId": self._next_msg(),
+                    "handle": am_h,
+                    "id": app_id,
+                    "name": app_name,
+                    "category": "Multimedia",
+                    "appId": app_id,
+                    "appName": app_name,
+                },
+            )
+        # Unknown digest → HU checkResource False → we upload DESCRIPTION (P1).
         self._queue_rpc(
             "rhmi_checkResource",
             {
                 "_messageId": self._next_msg(),
                 "handle": rhmi_h,
-                "hash": "lab_sim",
+                "hash": "lab_sim_unknown_digest",
                 "type": 0,
             },
         )
@@ -725,6 +748,85 @@ class PhoneClientSession(_Session):
                 "event": "mybmw_apps_queued",
                 "handles": dict(self._handles),
                 "cds_props": list(MYBMW_CDS_PROPS),
+                "am_apps": 4,
+            }
+        )
+
+    def _load_lab_description(self) -> bytes:
+        """Load calendar/News DESCRIPTION fixture (lab-authorized size class ~13.6 KiB)."""
+        candidates = [
+            Path(os.environ["BCL_RHMI_DESCRIPTION"])
+            if os.environ.get("BCL_RHMI_DESCRIPTION")
+            else None,
+            Path(__file__).resolve().parent / "fixtures" / "rhmi_description_lab_13598.xml",
+            Path("/tmp/bcl_dummy/fixtures/rhmi_description_lab_13598.xml"),
+        ]
+        for p in candidates:
+            if p is not None and p.is_file():
+                return p.read_bytes()
+        # Minimal fallback so dual-ESP smoke still exercises setResource path.
+        return (
+            b'<pluginApps><pluginApp applicationType="OnlineServices" '
+            b'text="lab_menu" applicationWeight="1"></pluginApp></pluginApps>\n'
+        )
+
+    def _queue_rhmi_menu_upload(self) -> None:
+        """After checkResource=False: setResource(DESCRIPTION) → initialize → setData Apps/Browse."""
+        if self._etch_stage == "menu_upload":
+            return
+        from etch_codec import EtchStruct
+
+        rhmi_h = int(self._handles.get("rhmi_create") or 12)
+        desc = self._load_lab_description()
+        digest = hashlib.sha256(desc).hexdigest()
+        rtype = EtchStruct(
+            "de.bmw.idrive.BMWRemoting.RHMIResourceType",
+            {"DESCRIPTION": True},
+        )
+        self._queue_rpc(
+            "rhmi_setResource",
+            {
+                "_messageId": self._next_msg(),
+                "handle": rhmi_h,
+                "hash": digest,
+                "type": rtype,
+                "data": desc,
+            },
+        )
+        self._queue_rpc(
+            "rhmi_initialize",
+            {"_messageId": self._next_msg(), "handle": rhmi_h},
+        )
+        # Same shell labels AAIdrive uses for Spotify/YouTube (de: Apps / Durchsuchen).
+        for model_id, text in ((100, "Apps"), (101, "Durchsuchen")):
+            self._queue_rpc(
+                "rhmi_setData",
+                {
+                    "_messageId": self._next_msg(),
+                    "handle": rhmi_h,
+                    "modelId": model_id,
+                    "value": text,
+                },
+            )
+        # Probe ImageID←0 → expect ServiceException(213) from improved f20_sim.
+        self._queue_rpc(
+            "rhmi_setData",
+            {
+                "_messageId": self._next_msg(),
+                "handle": rhmi_h,
+                "modelId": 4,
+                "value": EtchStruct(
+                    "de.bmw.idrive.BMWRemoting.RHMIResourceIdentifier",
+                    {"id": 0},
+                ),
+            },
+        )
+        self._etch_stage = "menu_upload"
+        self.events.append(
+            {
+                "event": "mybmw_menu_upload_queued",
+                "description_bytes": len(desc),
+                "sha256": digest,
             }
         )
 
@@ -835,6 +937,29 @@ class PhoneClientSession(_Session):
                 need = ("cds_create", "am_create", "rhmi_create", "av_create")
                 if all(k in self._handles for k in need):
                     self._queue_cds_and_apps()
+            elif method == "_result_rhmi_checkResource":
+                # False → upload DESCRIPTION + initialize + setData (menu shell).
+                if fields.get("result") is False:
+                    self._queue_rhmi_menu_upload()
+                else:
+                    self.events.append(
+                        {
+                            "event": "mybmw_check_resource_known",
+                            "result": fields.get("result"),
+                        }
+                    )
+            elif method == "_result_rhmi_setData":
+                res = fields.get("result")
+                from etch_codec import EtchStruct
+
+                if isinstance(res, EtchStruct) and "ServiceException" in res.type_name:
+                    self.events.append(
+                        {
+                            "event": "mybmw_setdata_service_exception",
+                            "errorCode": (res.fields or {}).get("errorCode"),
+                            "detailMessage": (res.fields or {}).get("detailMessage"),
+                        }
+                    )
             elif method == "cds_onPropertyChangedEvent":
                 self.events.append(
                     {
