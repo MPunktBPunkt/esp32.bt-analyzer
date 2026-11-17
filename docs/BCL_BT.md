@@ -10,7 +10,7 @@ secondary: technology-audit audits/supra-idrive6-android-auto-2026-secondary @4f
 method: docs/analysis/AUDIT_RHMI_RESOURCE_LIFECYCLE_20261117.md (check≠set≠verify) · docs/analysis/DEEP_FORENSIC_RHMI_SCREENMIRROR_20261117.md · docs/analysis/DEEP_FORENSIC_ETCH_SAS_20261116.md · docs/evidence/FIELD_VS_LAB_INSIGHTS_20261115.md
 architecture: controlled dual-leg HCI bridge — not passive Phone↔HU air sniff
 audit_reuse: technology-audit technologies/bmw-bcl + projects/esp32-bt-analyzer/applications/bmw-bcl.md
-next: W0 Air-Watchdog stabilisieren · W1 volle checkResource-Sequenz (DESCRIPTION/TEXTDB/IMAGEDB) · setResource nur bei false · nicht Dual-ESP zuerst
+next: W0 Fall A_vs_C (HCI/RFCOMM-Roh parallel zu BCL/Etch) — checkResource TX ohne HU-RPC · W1 volle Sequenz erst nach sichtbarem Reply · Dual-ESP separat
 desk_vs_wire: MyBMW ~3.0s = App-INIT-Poll-Timer (echte HU-INIT-RTT 20ms in S-B, 0.3–0.5s auf .87) · M48 KNOCK≠ACK56 · HU BCL DATA >4000B (plen=5306) · Pair(src,dest) richtungsinvariant
 ```
 

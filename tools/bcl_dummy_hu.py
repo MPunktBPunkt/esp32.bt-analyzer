@@ -614,14 +614,56 @@ class PhoneClientSession(_Session):
     _pending_check_mid: int | None = None
     _uploads_done: int = 0
     _cache_hits: int = 0
+    # Explicit RHMI lifecycle (audit / W0): not the same as _etch_stage bootstrap tags.
+    _rhmi_state: str = "DISCONNECTED"
+    # messageId → open Etch transaction (request awaiting reply).
+    _open_txns: dict = field(default_factory=dict)
 
     def session_init(self) -> bytes:
         self.events.append({"event": "session_init", "dir": "tx"})
         return INIT_MAGIC
 
+    def _set_rhmi_state(self, state: str, **extra: object) -> None:
+        self._rhmi_state = state
+        ev: dict = {"event": "mybmw_rhmi_state", "rhmi_state": state}
+        ev.update(extra)
+        self.events.append(ev)
+
     def _next_msg(self) -> int:
         self._msg_id += 1
         return self._msg_id
+
+    def forensic_snapshot(self) -> dict:
+        """W0: classify why client may be waiting (watchdog ≠ RHMI)."""
+        open_txns = [
+            {
+                "msg_id": mid,
+                "method": meta.get("method"),
+                "type": meta.get("type"),
+                "bcl_src": meta.get("bcl_src"),
+                "bcl_dest": meta.get("bcl_dest"),
+            }
+            for mid, meta in self._open_txns.items()
+        ]
+        wait_class = None
+        if self._pending_check_mid is not None or any(
+            t.get("method") == "rhmi_checkResource" for t in open_txns
+        ):
+            wait_class = "WATCHDOG_MISS_NO_ETCH_REPLY"
+        elif self._rhmi_state == "RESOURCE_CHECKING":
+            wait_class = "STATE_MACHINE_WAIT"
+        elif self._rhmi_state in ("RHMI_INITIALIZED", "RUNTIME_ACTIVE"):
+            wait_class = None
+        return {
+            "rhmi_state": self._rhmi_state,
+            "etch_stage": self._etch_stage,
+            "pending_check_mid": self._pending_check_mid,
+            "open_txns": open_txns,
+            "plan_i": self._rhmi_plan_i,
+            "uploads": self._uploads_done,
+            "cache_hits": self._cache_hits,
+            "wait_class": wait_class,
+        }
 
     def _knock_bytes(self) -> bytes:
         kp = self.knock_payload
@@ -641,6 +683,7 @@ class PhoneClientSession(_Session):
         from bcl_framer import MAX_PAYLOAD
 
         body = encode_etch_packet(type_name, fields)
+        mid = fields.get("_messageId")
         # BCL DATA payloads capped at MAX_PAYLOAD (4000); EtchChannelReassembler
         # stitches fragments — matches field cert / DESCRIPTION uploads.
         nfrag = 0
@@ -651,11 +694,21 @@ class PhoneClientSession(_Session):
             {
                 "event": "mybmw_rpc_tx",
                 "method": type_name,
-                "msg_id": fields.get("_messageId"),
+                "msg_id": mid,
                 "len": len(body),
                 "fragments": nfrag,
+                "bcl_src": int(self.etch_src),
+                "bcl_dest": DEST_ETCH_DESK,
             }
         )
+        if mid is not None and not str(type_name).startswith("_result_"):
+            self._open_txns[int(mid)] = {
+                "method": type_name,
+                "bcl_src": int(self.etch_src),
+                "bcl_dest": DEST_ETCH_DESK,
+                "type": fields.get("type"),
+                "handle": fields.get("handle"),
+            }
 
     def _start_mybmw(self) -> None:
         if not self.mybmw_sim or self._etch_stage != "idle":
@@ -740,6 +793,7 @@ class PhoneClientSession(_Session):
         )
         self._cds_props_queued = True
         self._etch_stage = "apps"
+        self._set_rhmi_state("AM_REGISTERED", am_apps=4)
         self.events.append(
             {
                 "event": "mybmw_apps_queued",
@@ -750,6 +804,7 @@ class PhoneClientSession(_Session):
         )
         # Start RHMI resource lifecycle (check per type; upload only on miss).
         self._build_rhmi_resource_plan()
+        self._set_rhmi_state("RESOURCE_CHECKING")
         self._queue_next_rhmi_check()
 
     def _load_lab_description(self) -> bytes:
@@ -857,19 +912,30 @@ class PhoneClientSession(_Session):
         if item.get("name") is not None:
             fields["name"] = str(item["name"])
         self._queue_rpc("rhmi_checkResource", fields)
+        if mid in self._open_txns:
+            self._open_txns[int(mid)]["type"] = item["type_name"]
+            self._open_txns[int(mid)]["hash"] = item["hash"]
+            self._open_txns[int(mid)]["size"] = item.get("size")
         self.events.append(
             {
                 "event": "mybmw_check_resource_tx",
                 "type": item["type_name"],
                 "hash": item["hash"],
                 "size": item.get("size"),
+                "name": item.get("name"),
+                "handle": rhmi_h,
                 "msg_id": mid,
                 "plan_i": self._rhmi_plan_i,
+                "bcl_src": int(self.etch_src),
+                "bcl_dest": DEST_ETCH_DESK,
+                "rhmi_state": self._rhmi_state,
             }
         )
 
     def _on_check_resource_result(self, *, result: object, in_reply_to: object) -> None:
         """Cache hit → next type / initialize. Cache miss → setResource only if we have data."""
+        if in_reply_to is not None:
+            self._open_txns.pop(int(in_reply_to), None)
         if (
             self._pending_check_mid is not None
             and in_reply_to is not None
@@ -880,6 +946,7 @@ class PhoneClientSession(_Session):
                     "event": "mybmw_check_resource_orphan",
                     "inReplyTo": in_reply_to,
                     "expected": self._pending_check_mid,
+                    "wait_class": "WATCHDOG_MISS_REPLY_UNMATCHED",
                 }
             )
             return
@@ -895,7 +962,12 @@ class PhoneClientSession(_Session):
                 "result": result,
                 "cache": "hit" if known else "miss",
                 "inReplyTo": in_reply_to,
+                "msg_id": in_reply_to,
                 "plan_i": self._rhmi_plan_i,
+                "handle": int(self._handles.get("rhmi_create") or 12),
+                "bcl_src": int(self.etch_src),
+                "bcl_dest": DEST_ETCH_DESK,
+                "rhmi_state": self._rhmi_state,
             }
         )
         if known:
@@ -903,6 +975,7 @@ class PhoneClientSession(_Session):
         else:
             data = item.get("data")
             if isinstance(data, (bytes, bytearray)) and data:
+                self._set_rhmi_state("RESOURCE_UPLOAD", type=item["type_name"])
                 rhmi_h = int(self._handles.get("rhmi_create") or 12)
                 digest = item.get("sha256") or hashlib.sha256(bytes(data)).hexdigest()
                 self._queue_rpc(
@@ -922,6 +995,8 @@ class PhoneClientSession(_Session):
                         "type": item["type_name"],
                         "bytes": len(data),
                         "sha256": digest,
+                        "bcl_src": int(self.etch_src),
+                        "bcl_dest": DEST_ETCH_DESK,
                     }
                 )
             else:
@@ -935,6 +1010,8 @@ class PhoneClientSession(_Session):
                 )
         self._rhmi_plan_i += 1
         self._pending_check_mid = None
+        if self._rhmi_plan_i < len(self._rhmi_plan):
+            self._set_rhmi_state("RESOURCE_CHECKING", next_type=self._rhmi_plan[self._rhmi_plan_i]["type_name"])
         self._queue_next_rhmi_check()
 
     def _queue_rhmi_initialize_and_runtime(self) -> None:
@@ -971,6 +1048,8 @@ class PhoneClientSession(_Session):
             },
         )
         self._etch_stage = "rhmi_runtime"
+        self._set_rhmi_state("RHMI_INITIALIZED")
+        self._set_rhmi_state("RUNTIME_ACTIVE")
         desc_item = next(
             (p for p in self._rhmi_plan if p["type_name"] == "DESCRIPTION"),
             None,
@@ -982,6 +1061,7 @@ class PhoneClientSession(_Session):
                 "sha256": (desc_item or {}).get("sha256"),
                 "uploads": self._uploads_done,
                 "cache_hits": self._cache_hits,
+                "rhmi_state": self._rhmi_state,
                 "note": "initialize after check sequence; setResource only on misses",
             }
         )
@@ -1063,6 +1143,10 @@ class PhoneClientSession(_Session):
                     "len": len(fr.payload),
                 }
             )
+            # Close open Etch TXN on any _result_* with matching _inReplyTo.
+            if method.startswith("_result_") and fields.get("_inReplyTo") is not None:
+                self._open_txns.pop(int(fields["_inReplyTo"]), None)
+
             if method == "_result_sas_certificate":
                 chal = fields.get("result")
                 if isinstance(chal, (bytes, bytearray)):
@@ -1075,6 +1159,7 @@ class PhoneClientSession(_Session):
                 )
             elif method == "_result_sas_login":
                 self._etch_stage = "bootstrap"
+                self._set_rhmi_state("SAS_AUTHENTICATED")
                 self._queue_bootstrap()
             elif method.startswith("_result_") and method.endswith(
                 ("_create", "_create_version")
@@ -1089,6 +1174,8 @@ class PhoneClientSession(_Session):
                             "handle": int(fields["result"]),
                         }
                     )
+                    if base == "rhmi_create":
+                        self._set_rhmi_state("RHMI_CREATED", handle=int(fields["result"]))
                 # When we have cds+am+rhmi+av, queue subscriptions
                 need = ("cds_create", "am_create", "rhmi_create", "av_create")
                 if all(k in self._handles for k in need):

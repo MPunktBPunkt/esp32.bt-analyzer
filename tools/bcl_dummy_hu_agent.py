@@ -865,6 +865,18 @@ def run_phone(
     if sess is not None:
         _flush_events(log, sess, sent, session_id=session_id)
     cls = classify_bytes(rx_raw)
+    snap: dict = {}
+    if sess is not None and getattr(sess, "mybmw_sim", False):
+        try:
+            snap = sess.forensic_snapshot()  # type: ignore[attr-defined]
+        except Exception:  # noqa: BLE001
+            snap = {}
+    wait_class = snap.get("wait_class")
+    if abort_reason == "wd_echo_miss_limit" and wait_class:
+        # Prefer RHMI-specific miss class over bare WD abort (W0).
+        abort_reason = str(wait_class)
+    elif abort_reason is None and wait_class and wd_misses > 0:
+        abort_reason = str(wait_class)
     log.write(
         {
             "event": "phone_done",
@@ -876,6 +888,10 @@ def run_phone(
             "rx_total": len(rx_raw),
             "abort_reason": abort_reason,
             "wd_misses": wd_misses,
+            "wait_class": wait_class,
+            "rhmi_state": snap.get("rhmi_state"),
+            "open_txns": snap.get("open_txns"),
+            "pending_check_mid": snap.get("pending_check_mid"),
             "bcl_classification": cls["bcl_classification"],
             "classification": cls,
             **meta,
