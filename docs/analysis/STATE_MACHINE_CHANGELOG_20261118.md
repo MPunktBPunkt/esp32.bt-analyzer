@@ -1,9 +1,9 @@
 # State-Machine Audit Changelog — 2026-11-18
 
 ```yaml
-phase: A+B complete; Phase Impl deferred pending GAP review
-commits_docs: STATE_MACHINE_CURRENT / GAP / TRANSITIONS
-code_changes: none
+phase: A+B done; P1 AuthState implemented 2026-11-18
+commits_docs: STATE_MACHINE_CURRENT / GAP / TRANSITIONS / P1_AUTH
+code_changes: tools/bcl_dummy_hu.py, bcl_dummy_hu_agent.py, tests/host/test_auth_state_p1.py
 ```
 
 ## Artefakte
@@ -48,8 +48,11 @@ code_changes: none
 | `WATCHDOG_MISS_NO_ETCH_REPLY` = eindeutige Ursache | **WEAK** — Sammelklasse, Split noch MISSING |
 | checkResource=true ⇒ Upload fehlt = Fehler | **REJECTED** (seit Resource-Audit) |
 
-## Tests / Commit-Policy
+## P1 Status
 
-- **Jetzt:** nur Analyse-Docs committen.
-- **Nach GAP-Review:** P1 AuthState zuerst; Tests für CERTIFICATE_REJECTED / LOGIN_REJECTED / AUTHENTICATED-positiv; Lab RUNTIME_ACTIVE Regression.
-- Keine F20-Feldbehauptung aus Lab-Verhalten.
+- `classify_result` + `AuthState` live; Field-Reject → `CERTIFICATE_REJECTED` (nie Schein-`SAS_AUTHENTICATED`).
+- Lab RUNTIME_ACTIVE / menu / W0 / PiDrive host tests grün.
+- `menu_upload` Dead-Gate entfernt.
+- Siehe [`STATE_MACHINE_P1_AUTH_20261118.md`](STATE_MACHINE_P1_AUTH_20261118.md).
+
+Keine F20-Feldbehauptung aus Lab-Verhalten.

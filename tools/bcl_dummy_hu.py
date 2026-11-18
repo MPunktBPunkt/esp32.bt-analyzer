@@ -46,6 +46,132 @@ from bcl_framer import (
 )
 from bcl_phone_tx_classify import classify_phone_frame
 
+# --- Etch result classification (P1 Auth / diagnose) ---
+# EXCEPTION always wins. Lab sas_login OK is VOID (no result field).
+RESULT_EXCEPTION = "EXCEPTION"
+RESULT_CHALLENGE = "CHALLENGE"
+RESULT_VOID_OK = "VOID_OK"
+RESULT_OK_INT = "OK_INT"
+RESULT_UNPARSED = "UNPARSED"
+
+AUTH_IDLE = "AUTH_IDLE"
+AUTH_CERTIFICATE_SENT = "CERTIFICATE_SENT"
+AUTH_CHALLENGE_RECEIVED = "CHALLENGE_RECEIVED"
+AUTH_LOGIN_SENT = "LOGIN_SENT"
+AUTH_AUTHENTICATED = "AUTHENTICATED"
+AUTH_CERTIFICATE_REJECTED = "CERTIFICATE_REJECTED"
+AUTH_LOGIN_REJECTED = "LOGIN_REJECTED"
+AUTH_TIMEOUT = "AUTH_TIMEOUT"
+AUTH_PROTOCOL_ERROR = "AUTH_PROTOCOL_ERROR"
+
+
+def classify_result(decoded_reply: dict | None) -> dict[str, Any]:
+    """Classify a decoded Etch `_result_*` (or any reply) for state transitions.
+
+    Precedence:
+      ServiceException/errorMsg-Struct → EXCEPTION
+      challenge/bytes                   → CHALLENGE
+      empty/missing result              → VOID_OK  (Lab sas_login OK)
+      int                               → OK_INT   (create handles)
+      else                              → UNPARSED
+    """
+    fields = {}
+    method = None
+    if isinstance(decoded_reply, dict):
+        method = decoded_reply.get("method")
+        fields = decoded_reply.get("raw_fields") or decoded_reply.get("fields") or {}
+    result = fields.get("result") if isinstance(fields, dict) else None
+    in_reply_to = fields.get("_inReplyTo") if isinstance(fields, dict) else None
+
+    def _is_exception(obj: object) -> tuple[bool, str | None, object | None]:
+        try:
+            from etch_codec import EtchStruct
+        except Exception:  # noqa: BLE001
+            EtchStruct = ()  # type: ignore[misc, assignment]
+        if EtchStruct and isinstance(obj, EtchStruct):
+            tname = str(getattr(obj, "type_name", "") or "")
+            if "ServiceException" in tname or tname.endswith("Exception"):
+                ef = getattr(obj, "fields", None) or {}
+                text = ef.get("detailMessage") or ef.get("errorMsg") or ef.get("message")
+                return True, tname, text
+            # Nested exception-shaped structs with errorMsg / detailMessage only
+            if ef := (getattr(obj, "fields", None) or {}):
+                if "errorMsg" in ef or (
+                    "detailMessage" in ef and "errorCode" in ef
+                ):
+                    return True, tname or "Exception", ef.get("detailMessage") or ef.get(
+                        "errorMsg"
+                    )
+        if isinstance(obj, dict) and (
+            "errorMsg" in obj or ("detailMessage" in obj and "errorCode" in obj)
+        ):
+            return True, "dict", obj.get("detailMessage") or obj.get("errorMsg")
+        return False, None, None
+
+    is_ex, ex_type, ex_text = _is_exception(result)
+    if is_ex:
+        return {
+            "classification": RESULT_EXCEPTION,
+            "exception_type": ex_type,
+            "error_text": ex_text,
+            "reply_method": method,
+            "in_reply_to": in_reply_to,
+            "result": result,
+        }
+    if isinstance(result, (bytes, bytearray)) and len(result) > 0:
+        return {
+            "classification": RESULT_CHALLENGE,
+            "reply_method": method,
+            "in_reply_to": in_reply_to,
+            "result": bytes(result),
+            "result_len": len(result),
+        }
+    if isinstance(result, bool):
+        # RHMI checkResource bool — not auth; callers ignore for AuthState
+        return {
+            "classification": RESULT_UNPARSED,
+            "reply_method": method,
+            "in_reply_to": in_reply_to,
+            "result": result,
+            "note": "bool_result",
+        }
+    if isinstance(result, int) and not isinstance(result, bool):
+        return {
+            "classification": RESULT_OK_INT,
+            "reply_method": method,
+            "in_reply_to": in_reply_to,
+            "result": int(result),
+        }
+    if result is None:
+        return {
+            "classification": RESULT_VOID_OK,
+            "reply_method": method,
+            "in_reply_to": in_reply_to,
+            "result": None,
+        }
+    # Empty struct without exception fields → treat as VOID_OK (defensive)
+    try:
+        from etch_codec import EtchStruct
+
+        if isinstance(result, EtchStruct):
+            ef = getattr(result, "fields", None) or {}
+            if not ef:
+                return {
+                    "classification": RESULT_VOID_OK,
+                    "reply_method": method,
+                    "in_reply_to": in_reply_to,
+                    "result": result,
+                }
+    except Exception:  # noqa: BLE001
+        pass
+    return {
+        "classification": RESULT_UNPARSED,
+        "reply_method": method,
+        "in_reply_to": in_reply_to,
+        "result": result,
+    }
+
+
 CMD_OPEN = 1
 CMD_DATA = 2
 CMD_CLOSE = 3
@@ -615,7 +741,15 @@ class PhoneClientSession(_Session):
     _uploads_done: int = 0
     _cache_hits: int = 0
     # Explicit RHMI lifecycle (audit / W0): not the same as _etch_stage bootstrap tags.
+    # SAS success is gated by AuthState — do not set SAS_AUTHENTICATED from method name alone.
     _rhmi_state: str = "DISCONNECTED"
+    # Wire-validated auth FSM (P1). AUTHENTICATED only on positive classified login reply.
+    _auth_state: str = AUTH_IDLE
+    _auth_cert_mid: int | None = None
+    _auth_login_mid: int | None = None
+    _last_result_class: str | None = None
+    _last_exception_text: str | None = None
+    _bootstrap_reached: bool = False
     # messageId → open Etch transaction (request awaiting reply).
     _open_txns: dict = field(default_factory=dict)
     # W0 isolate: after first DESCRIPTION check, wait for reply only (no TEXTDB/init/setData).
@@ -648,9 +782,34 @@ class PhoneClientSession(_Session):
         ev.update(extra)
         self.events.append(ev)
 
+    def _set_auth_state(self, state: str, **extra: object) -> None:
+        self._auth_state = state
+        ev: dict = {
+            "event": "mybmw_auth_state",
+            "auth_state": state,
+            "rhmi_state": self._rhmi_state,
+        }
+        ev.update(extra)
+        self.events.append(ev)
+
     def _next_msg(self) -> int:
         self._msg_id += 1
         return self._msg_id
+
+    def _classify_and_log(self, decoded: dict) -> dict[str, Any]:
+        cls = classify_result(decoded)
+        self._last_result_class = str(cls.get("classification") or "")
+        if cls.get("classification") == RESULT_EXCEPTION:
+            self._last_exception_text = (
+                str(cls.get("error_text")) if cls.get("error_text") is not None else None
+            )
+        self.events.append(
+            {
+                "event": "mybmw_result_classified",
+                **{k: v for k, v in cls.items() if k != "result"},
+            }
+        )
+        return cls
 
     def forensic_snapshot(self) -> dict:
         """W0: classify why client may be waiting (watchdog ≠ RHMI)."""
@@ -665,7 +824,12 @@ class PhoneClientSession(_Session):
             for mid, meta in self._open_txns.items()
         ]
         wait_class = None
-        if self._pending_check_mid is not None or any(
+        # Auth/create Exception replies are not "no reply" — diagnose separately.
+        if self._auth_state in (AUTH_CERTIFICATE_REJECTED, AUTH_LOGIN_REJECTED):
+            wait_class = "ETCH_REPLY_EXCEPTION"
+        elif self._last_result_class == RESULT_EXCEPTION and not self._bootstrap_reached:
+            wait_class = "ETCH_REPLY_EXCEPTION"
+        elif self._pending_check_mid is not None or any(
             t.get("method") == "rhmi_checkResource" for t in open_txns
         ):
             wait_class = "WATCHDOG_MISS_NO_ETCH_REPLY"
@@ -673,15 +837,28 @@ class PhoneClientSession(_Session):
             wait_class = "STATE_MACHINE_WAIT"
         elif self._rhmi_state in ("RHMI_INITIALIZED", "RUNTIME_ACTIVE"):
             wait_class = None
+        bootstrap = (
+            "HANDLES_READY"
+            if self._bootstrap_reached
+            and all(
+                k in self._handles
+                for k in ("cds_create", "am_create", "rhmi_create", "av_create")
+            )
+            else ("HANDLES_CREATING" if self._bootstrap_reached else "NOT_REACHED")
+        )
         return {
             "rhmi_state": self._rhmi_state,
+            "auth_state": self._auth_state,
             "etch_stage": self._etch_stage,
+            "bootstrap_state": bootstrap,
             "pending_check_mid": self._pending_check_mid,
             "open_txns": open_txns,
             "plan_i": self._rhmi_plan_i,
             "uploads": self._uploads_done,
             "cache_hits": self._cache_hits,
             "wait_class": wait_class,
+            "last_result_class": self._last_result_class,
+            "last_exception_text": self._last_exception_text,
             "soak_phase": self._soak_phase or None,
             "soak_counts": dict(self._soak_counts) if self._soak_counts else {},
             "soak_elapsed_s": (
@@ -740,13 +917,30 @@ class PhoneClientSession(_Session):
         if not self.mybmw_sim or self._etch_stage != "idle":
             return
         self._etch_stage = "sas_cert"
+        mid = self._next_msg()
+        self._auth_cert_mid = mid
         self._queue_rpc(
             "sas_certificate",
-            {"_messageId": self._next_msg(), "data": _STUB_PKCS7},
+            {"_messageId": mid, "data": _STUB_PKCS7},
         )
+        self._set_auth_state(AUTH_CERTIFICATE_SENT, msg_id=mid)
         self.events.append({"event": "mybmw_sim_start", "etch_src": self.etch_src})
 
     def _queue_bootstrap(self) -> None:
+        """Post-AUTHENTICATED only — never call after cert/login reject."""
+        if self._auth_state != AUTH_AUTHENTICATED:
+            self.events.append(
+                {
+                    "event": "mybmw_bootstrap_blocked",
+                    "auth_state": self._auth_state,
+                    "bootstrap_state": "NOT_REACHED",
+                    "reason": "auth_not_authenticated",
+                }
+            )
+            return
+        if self._bootstrap_reached:
+            return
+        self._bootstrap_reached = True
         mid = self._next_msg
         self._queue_rpc("ver_getVersion", {"_messageId": mid()})
         self._queue_rpc("info_getSystemInfo", {"_messageId": mid()})
@@ -759,6 +953,13 @@ class PhoneClientSession(_Session):
         self._queue_rpc("rhmi_create", {"_messageId": mid()})
         self._queue_rpc("av_create", {"_messageId": mid()})
         self._etch_stage = "bootstrap"
+        self.events.append(
+            {
+                "event": "mybmw_bootstrap_start",
+                "auth_state": self._auth_state,
+                "bootstrap_state": "HANDLES_CREATING",
+            }
+        )
 
     def _queue_cds_and_apps(self) -> None:
         if self._cds_props_queued:
@@ -1337,8 +1538,13 @@ class PhoneClientSession(_Session):
         self._soak_next_t = now + 4.0
 
     def _queue_rhmi_initialize_and_runtime(self) -> None:
-        """After full check sequence: initialize → setData shell + ImageID←0 probe."""
-        if self._etch_stage in ("menu_upload", "rhmi_runtime"):
+        """After full check sequence: initialize → setData shell + ImageID←0 probe.
+
+        Reentrancy guard is `_etch_stage == rhmi_runtime` only.
+        Historical `_etch_stage=menu_upload` was never assigned (dead gate) — removed P1.
+        Event name `mybmw_menu_upload_queued` kept for lab test compatibility (= init queued).
+        """
+        if self._etch_stage == "rhmi_runtime":
             return
         from etch_codec import EtchStruct
 
@@ -1470,38 +1676,175 @@ class PhoneClientSession(_Session):
                 self._open_txns.pop(int(fields["_inReplyTo"]), None)
 
             if method == "_result_sas_certificate":
-                chal = fields.get("result")
-                if isinstance(chal, (bytes, bytearray)):
-                    self._challenge = bytes(chal)
+                cls = self._classify_and_log(dec)
+                in_reply = fields.get("_inReplyTo")
+                if (
+                    self._auth_cert_mid is not None
+                    and in_reply is not None
+                    and int(in_reply) != int(self._auth_cert_mid)
+                ):
+                    self.events.append(
+                        {
+                            "event": "mybmw_auth_unmatched",
+                            "wait_class": "ETCH_REPLY_UNMATCHED",
+                            "expected_mid": self._auth_cert_mid,
+                            "inReplyTo": in_reply,
+                            "method": method,
+                        }
+                    )
+                    self._set_auth_state(
+                        AUTH_PROTOCOL_ERROR, reason="cert_in_reply_to_mismatch"
+                    )
+                    continue
+                if cls["classification"] == RESULT_EXCEPTION:
+                    self._set_auth_state(
+                        AUTH_CERTIFICATE_REJECTED,
+                        error_text=cls.get("error_text"),
+                        exception_type=cls.get("exception_type"),
+                    )
+                    self.events.append(
+                        {
+                            "event": "mybmw_bootstrap_blocked",
+                            "auth_state": AUTH_CERTIFICATE_REJECTED,
+                            "bootstrap_state": "NOT_REACHED",
+                            "am_state": "NOT_REACHED",
+                            "resource_state": "NOT_REACHED",
+                            "rhmi_followon": "NOT_REACHED",
+                            "runtime_state": "NOT_REACHED",
+                        }
+                    )
+                    continue
+                if cls["classification"] != RESULT_CHALLENGE:
+                    self._set_auth_state(
+                        AUTH_PROTOCOL_ERROR,
+                        reason="cert_result_not_challenge",
+                        classification=cls["classification"],
+                    )
+                    continue
+                self._challenge = bytes(cls["result"])
+                self._set_auth_state(
+                    AUTH_CHALLENGE_RECEIVED, challenge_len=len(self._challenge)
+                )
                 self._etch_stage = "sas_login"
-                sig = (self._challenge or bytes(16)) + bytes(496)
+                login_mid = self._next_msg()
+                self._auth_login_mid = login_mid
+                sig = self._challenge + bytes(496)
                 self._queue_rpc(
                     "sas_login",
-                    {"_messageId": self._next_msg(), "data": sig[:512]},
+                    {"_messageId": login_mid, "data": sig[:512]},
                 )
+                self._set_auth_state(AUTH_LOGIN_SENT, msg_id=login_mid)
             elif method == "_result_sas_login":
-                self._etch_stage = "bootstrap"
+                cls = self._classify_and_log(dec)
+                in_reply = fields.get("_inReplyTo")
+                if (
+                    self._auth_login_mid is not None
+                    and in_reply is not None
+                    and int(in_reply) != int(self._auth_login_mid)
+                ):
+                    self.events.append(
+                        {
+                            "event": "mybmw_auth_unmatched",
+                            "wait_class": "ETCH_REPLY_UNMATCHED",
+                            "expected_mid": self._auth_login_mid,
+                            "inReplyTo": in_reply,
+                            "method": method,
+                        }
+                    )
+                    # Do not AUTHENTICATE on mismatched correlation.
+                    continue
+                if (
+                    self._auth_login_mid is not None
+                    and in_reply is None
+                ):
+                    self.events.append(
+                        {
+                            "event": "mybmw_auth_unmatched",
+                            "wait_class": "ETCH_REPLY_UNMATCHED",
+                            "expected_mid": self._auth_login_mid,
+                            "inReplyTo": None,
+                            "method": method,
+                        }
+                    )
+                    continue
+                if cls["classification"] == RESULT_EXCEPTION:
+                    self._set_auth_state(
+                        AUTH_LOGIN_REJECTED,
+                        error_text=cls.get("error_text"),
+                        exception_type=cls.get("exception_type"),
+                    )
+                    self.events.append(
+                        {
+                            "event": "mybmw_bootstrap_blocked",
+                            "auth_state": AUTH_LOGIN_REJECTED,
+                            "bootstrap_state": "NOT_REACHED",
+                            "am_state": "NOT_REACHED",
+                            "resource_state": "NOT_REACHED",
+                            "rhmi_followon": "NOT_REACHED",
+                            "runtime_state": "NOT_REACHED",
+                        }
+                    )
+                    continue
+                if cls["classification"] not in (RESULT_VOID_OK, RESULT_OK_INT):
+                    self._set_auth_state(
+                        AUTH_PROTOCOL_ERROR,
+                        reason="login_result_not_ok",
+                        classification=cls["classification"],
+                    )
+                    continue
+                # Positive HU/Lab wire reply only.
+                self._set_auth_state(
+                    AUTH_AUTHENTICATED, classification=cls["classification"]
+                )
                 self._set_rhmi_state("SAS_AUTHENTICATED")
                 self._queue_bootstrap()
             elif method.startswith("_result_") and method.endswith(
                 ("_create", "_create_version")
             ):
+                cls = self._classify_and_log(dec)
                 base = method[len("_result_") :]
-                if isinstance(fields.get("result"), int):
-                    self._handles[base] = int(fields["result"])
+                if cls["classification"] == RESULT_EXCEPTION:
+                    self.events.append(
+                        {
+                            "event": "mybmw_create_exception",
+                            "method": base,
+                            "wait_class": "ETCH_REPLY_EXCEPTION",
+                            "error_text": cls.get("error_text"),
+                            "auth_state": self._auth_state,
+                        }
+                    )
+                    continue
+                if cls["classification"] == RESULT_OK_INT:
+                    self._handles[base] = int(cls["result"])
                     self.events.append(
                         {
                             "event": "mybmw_handle",
                             "method": base,
-                            "handle": int(fields["result"]),
+                            "handle": int(cls["result"]),
                         }
                     )
                     if base == "rhmi_create":
-                        self._set_rhmi_state("RHMI_CREATED", handle=int(fields["result"]))
+                        self._set_rhmi_state("RHMI_CREATED", handle=int(cls["result"]))
                 # When we have cds+am+rhmi+av, queue subscriptions
                 need = ("cds_create", "am_create", "rhmi_create", "av_create")
                 if all(k in self._handles for k in need):
                     self._queue_cds_and_apps()
+            elif method in (
+                "_result_ver_getVersion",
+                "_result_info_getSystemInfo",
+                "_result_rhmi_getCapabilities",
+            ):
+                cls = self._classify_and_log(dec)
+                if cls["classification"] == RESULT_EXCEPTION:
+                    self.events.append(
+                        {
+                            "event": "mybmw_bootstrap_rpc_exception",
+                            "method": method,
+                            "wait_class": "ETCH_REPLY_EXCEPTION",
+                            "error_text": cls.get("error_text"),
+                            "auth_state": self._auth_state,
+                        }
+                    )
             elif method == "_result_rhmi_checkResource":
                 # Cache hit → next type / initialize. Miss → setResource only if payload.
                 self._on_check_resource_result(
@@ -1509,15 +1852,21 @@ class PhoneClientSession(_Session):
                     in_reply_to=fields.get("_inReplyTo"),
                 )
             elif method == "_result_rhmi_setData":
-                res = fields.get("result")
-                from etch_codec import EtchStruct
-
-                if isinstance(res, EtchStruct) and "ServiceException" in res.type_name:
+                # R5 / SE 213: transactional exception — do not kill session/runtime.
+                cls = self._classify_and_log(dec)
+                if cls["classification"] == RESULT_EXCEPTION:
+                    res = fields.get("result")
+                    ef = getattr(res, "fields", None) or {}
                     self.events.append(
                         {
                             "event": "mybmw_setdata_service_exception",
-                            "errorCode": (res.fields or {}).get("errorCode"),
-                            "detailMessage": (res.fields or {}).get("detailMessage"),
+                            "errorCode": ef.get("errorCode"),
+                            "detailMessage": ef.get("detailMessage")
+                            or cls.get("error_text"),
+                            "wait_class": "ETCH_REPLY_EXCEPTION",
+                            "transaction": "EXCEPTION",
+                            "rhmi_state": self._rhmi_state,
+                            "auth_state": self._auth_state,
                         }
                     )
             elif method == "rhmi_onActionEvent":
