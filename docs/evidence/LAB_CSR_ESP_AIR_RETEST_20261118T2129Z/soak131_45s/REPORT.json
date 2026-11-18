@@ -1,0 +1,86 @@
+{
+  "claim_level": "LAB FACT",
+  "stamp": "20261118T2131Z",
+  "dut": {
+    "bd": "00:1A:7D:DA:71:02",
+    "hci": "hci3"
+  },
+  "peer": {
+    "bd": "C8:C9:A3:CB:7B:0A",
+    "hci": "hci2"
+  },
+  "channel": 22,
+  "duration_s": 45.0,
+  "payload": 240,
+  "dut_hciconfig": "hci3:\tType: Primary  Bus: USB\n\tBD Address: 00:1A:7D:DA:71:02  ACL MTU: 310:10  SCO MTU: 64:8\n\tUP RUNNING PSCAN ISCAN \n\tRX bytes:10232830 acl:47298 sco:0 events:48815 errors:0\n\tTX bytes:10378281 acl:49688 sco:0 commands:3293 errors:0\n\n",
+  "acl_connect_ok": false,
+  "link_pre": {
+    "rssi": "Get connection info failed: No such file or directory",
+    "lq": "Get connection info failed: No such file or directory",
+    "tpl": "Get connection info failed: No such file or directory",
+    "con": "Connections:"
+  },
+  "server_listen": {
+    "bd": "00:1A:7D:DA:71:02",
+    "channel": 22
+  },
+  "rfcomm_accept_addr": "('C8:C9:A3:CB:7B:0A', 22)",
+  "rfcomm_connect_s": 5.7553935050964355,
+  "link_connected": {
+    "rssi": "RSSI return value: -7",
+    "lq": "Link quality: 248",
+    "tpl": "Current transmit power level: 3",
+    "con": "Connections:\n\t< ACL 00:1A:7D:DA:71:02 handle 129 state 1 lm PERIPHERAL AUTH ENCRYPT"
+  },
+  "ping": {
+    "n": 20,
+    "errors": 0,
+    "rtt_ms": {
+      "min": 75.19,
+      "median": 101.7,
+      "p90": 107.36,
+      "max": 211.8,
+      "mean": 105.07
+    }
+  },
+  "echo_server": {
+    "rx_bytes": 1360
+  },
+  "bulk_peer_to_dut": {
+    "role": "peer_tx",
+    "ok": true,
+    "bytes": 723460,
+    "chunks": 2965,
+    "duration_s": 45.387,
+    "Bps": 15939.7,
+    "kBps": 15.57,
+    "server_rx": {
+      "rx_bytes": 721264,
+      "rx_kBps": 15.38
+    }
+  },
+  "bulk_dut_to_peer": {
+    "role": "dut_tx",
+    "ok": true,
+    "bytes": 1071648,
+    "chunks": 4392,
+    "duration_s": 45.105,
+    "Bps": 23759.2,
+    "kBps": 23.2,
+    "peer_rx": {
+      "rx_bytes": 1070672,
+      "rx_kBps": 22.96
+    }
+  },
+  "link_post": {
+    "rssi": "RSSI return value: -6",
+    "lq": "Link quality: 249",
+    "tpl": "Current transmit power level: 3",
+    "con": "Connections:\n\t< ACL 00:1A:7D:DA:71:02 handle 129 state 1 lm PERIPHERAL AUTH ENCRYPT"
+  },
+  "hci_post": {
+    "dut": "hci3:\tType: Primary  Bus: USB\n\tBD Address: 00:1A:7D:DA:71:02  ACL MTU: 310:10  SCO MTU: 64:8\n\tUP RUNNING PSCAN ISCAN \n\tRX bytes:11034135 acl:50507 sco:0 events:53447 errors:0\n\tTX bytes:11513997 acl:54287 sco:0 commands:3306 errors:0\n\n",
+    "peer": "hci2:\tType: Primary  Bus: Virtual\n\tBD Address: C8:C9:A3:CB:7B:0A  ACL MTU: 1021:9  SCO MTU: 255:4\n\tUP RUNNING PSCAN ISCAN \n\tRX bytes:0 acl:10266 sco:0 events:12034 errors:0\n\tTX bytes:1187379 acl:7987 sco:0 commands:3594 errors:0\n\n"
+  },
+  "verdict": "PASS"
+}
