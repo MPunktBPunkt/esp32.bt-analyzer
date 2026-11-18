@@ -1,0 +1,2 @@
+Clock:    0x14719e
+Accuracy: 20479.69 msec

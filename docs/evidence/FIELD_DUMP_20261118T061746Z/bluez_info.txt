@@ -1,0 +1,22 @@
+Device D4:36:39:CF:E1:B5 (public)
+	Name: BMW 38304
+	Alias: BMW 38304
+	Class: 0x00340408 (3408904)
+	Icon: audio-headset
+	Paired: yes
+	Bonded: yes
+	Trusted: yes
+	Blocked: no
+	Connected: yes
+	LegacyPairing: no
+	UUID: Vendor specific           (00000000-deca-fade-deca-deafdecacaff)
+	UUID: Serial Port               (00001101-0000-1000-8000-00805f9b34fb)
+	UUID: OBEX Object Push          (00001105-0000-1000-8000-00805f9b34fb)
+	UUID: Audio Sink                (0000110b-0000-1000-8000-00805f9b34fb)
+	UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
+	UUID: Advanced Audio Distribu.. (0000110d-0000-1000-8000-00805f9b34fb)
+	UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
+	UUID: Handsfree                 (0000111e-0000-1000-8000-00805f9b34fb)
+	UUID: Message Notification Se.. (00001133-0000-1000-8000-00805f9b34fb)
+	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
+	Modalias: bluetooth:v05EBp0116d0103

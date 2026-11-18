@@ -1,0 +1,22 @@
+Requesting information ...
+	BD Address:  D4:36:39:CF:E1:B5
+	OUI Company: Texas Instruments (D4-36-39)
+	Device Name: BMW 38304
+	LMP Version: 4.0 (0x6) LMP Subversion: 0x1b76
+	Manufacturer: Texas Instruments Inc. (13)
+	Features page 0: 0xff 0xfe 0x2d 0xfe 0xdb 0xff 0x7b 0x87
+		<3-slot packets> <5-slot packets> <encryption> <slot offset> 
+		<timing accuracy> <role switch> <hold mode> <sniff mode> 
+		<RSSI> <channel quality> <SCO link> <HV2 packets> 
+		<HV3 packets> <u-law log> <A-law log> <CVSD> <power control> 
+		<transparent SCO> <EDR ACL 2 Mbps> <EDR ACL 3 Mbps> 
+		<enhanced iscan> <interlaced iscan> <interlaced pscan> 
+		<inquiry with RSSI> <extended SCO> <EV4 packets> <EV5 packets> 
+		<AFH cap. perip.> <AFH cls. perip.> <LE support> 
+		<3-slot EDR ACL> <5-slot EDR ACL> <sniff subrating> 
+		<pause encryption> <AFH cap. central> <AFH cls. central> 
+		<EDR eSCO 2 Mbps> <EDR eSCO 3 Mbps> <3-slot EDR eSCO> 
+		<extended inquiry> <LE and BR/EDR> <simple pairing> 
+		<encapsulated PDU> <err. data report> <non-flush flag> <LSTO> 
+		<inquiry TX power> <EPC> <extended features> 
+	Features page 1: 0x01 0x00 0x00 0x00 0x00 0x00 0x00 0x00

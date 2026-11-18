@@ -1,0 +1,8 @@
+131296 /tmp/bcl_dummy/FIELD_AUTH_PROBE_20261118T061541Z/btmon.log
+    85 /tmp/bcl_dummy/FIELD_AUTH_PROBE_20261118T061541Z/con_post.txt
+    85 /tmp/bcl_dummy/FIELD_AUTH_PROBE_20261118T061541Z/con_pre.txt
+ 20972 /tmp/bcl_dummy/FIELD_AUTH_PROBE_20261118T061541Z/hci1.btsnoop
+ 70786 /tmp/bcl_dummy/FIELD_AUTH_PROBE_20261118T061541Z/phone.jsonl
+     0 /tmp/bcl_dummy/FIELD_AUTH_PROBE_20261118T061541Z/phone.stderr
+     0 /tmp/bcl_dummy/FIELD_AUTH_PROBE_20261118T061541Z/phone.stdout
+223224 total

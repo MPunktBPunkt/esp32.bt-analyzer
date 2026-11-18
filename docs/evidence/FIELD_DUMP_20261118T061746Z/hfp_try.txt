@@ -1,0 +1,19 @@
+TRY_CH 1
+FAIL_CH 1: [Errno 111] Connection refused
+TRY_CH 2
+FAIL_CH 2: [Errno 111] Connection refused
+TRY_CH 3
+FAIL_CH 3: [Errno 111] Connection refused
+TRY_CH 7
+CONNECTED 7
+no_banner timed out
+CMD AT+BRSF=? timeout timed out
+CMD AT+BRSF=0 timeout timed out
+CMD AT+CIND=? timeout timed out
+CMD AT+CIND? timeout timed out
+CMD AT+CLIP=1 timeout timed out
+CMD AT+CCWA=1 timeout timed out
+CMD AT+CMER=3,0,0,1 timeout timed out
+CMD AT+CHLD=? timeout timed out
+CMD AT+NREC=? timeout timed out
+CMD ATE0 timeout timed out

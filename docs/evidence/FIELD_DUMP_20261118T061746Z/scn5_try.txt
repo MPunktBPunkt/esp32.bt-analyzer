@@ -1,0 +1,6 @@
+CONNECTED 5
+recv_end timed out
+RX_LEN 0 HEX 
+ASCII 
+FAIL 9 [Errno 104] Connection reset by peer
+FAIL 10 timed out

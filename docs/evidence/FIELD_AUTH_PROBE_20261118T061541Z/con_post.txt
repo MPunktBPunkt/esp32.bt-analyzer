@@ -1,0 +1,2 @@
+Connections:
+	> ACL D4:36:39:CF:E1:B5 handle 129 state 1 lm PERIPHERAL AUTH ENCRYPT 
