@@ -1,0 +1,8 @@
+auth AUTHENTICATED
+rhmi RUNTIME_ACTIVE
+bootstrap HANDLES_READY
+elapsed_s 0.01
+uploads 1 cache_hits 0
+PASS True
+after_SE213 RUNTIME_ACTIVE AUTHENTICATED
+se_events 1

@@ -1,0 +1,34 @@
+test_field_style_cert_exception (tests.host.test_field_replay_fsm.TestAuthMatrixReplay.test_field_style_cert_exception) ... ok
+test_lab_stub_challenge_then_void_ok (tests.host.test_field_replay_fsm.TestAuthMatrixReplay.test_lab_stub_challenge_then_void_ok) ... ok
+test_login_exception_after_challenge (tests.host.test_field_replay_fsm.TestAuthMatrixReplay.test_login_exception_after_challenge) ... ok
+test_mutated_challenge_still_needs_valid_login (tests.host.test_field_replay_fsm.TestAuthMatrixReplay.test_mutated_challenge_still_needs_valid_login)
+Challenge bytes altered — still CHALLENGE class; login void → AUTH (Lab). ... ok
+test_auth_probe_pdu_classifications (tests.host.test_field_replay_fsm.TestFieldReplayClassify.test_auth_probe_pdu_classifications) ... /home/martin/projects/bt-analyzer/tests/host/test_field_replay_fsm.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/martin/projects/bt-analyzer/docs/evidence/FIELD_AUTH_PROBE_20261118T061541Z/phone.jsonl' mode='r' encoding='utf-8'>
+  break
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_auth_probe_ends_certificate_rejected (tests.host.test_field_replay_fsm.TestFieldReplayFsm.test_auth_probe_ends_certificate_rejected) ... /home/martin/projects/bt-analyzer/tools/field_replay_fsm.py:105: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/martin/projects/bt-analyzer/docs/evidence/FIELD_AUTH_PROBE_20261118T061541Z/phone.jsonl' mode='r' encoding='utf-8'>
+  events = [json.loads(ln) for ln in path.open() if ln.strip().startswith("{")]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_dump_probe_also_certificate_rejected (tests.host.test_field_replay_fsm.TestFieldReplayFsm.test_dump_probe_also_certificate_rejected) ... /home/martin/projects/bt-analyzer/tools/field_replay_fsm.py:105: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/martin/projects/bt-analyzer/docs/evidence/FIELD_DUMP_20261118T061746Z/bcl.jsonl' mode='r' encoding='utf-8'>
+  events = [json.loads(ln) for ln in path.open() if ln.strip().startswith("{")]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_field_auth_probe_cert_reject_replay (tests.host.test_auth_state_p1.TestAuthStateP1.test_field_auth_probe_cert_reject_replay)
+Abnahme: FIELD_AUTH_PROBE-style cert exception → never SAS_AUTHENTICATED. ... ok
+test_r5_setdata_service_exception_keeps_runtime (tests.host.test_auth_state_p1.TestAuthStateP1.test_r5_setdata_service_exception_keeps_runtime) ... ok
+test_t1_lab_stub_login_authenticated_bootstrap (tests.host.test_auth_state_p1.TestAuthStateP1.test_t1_lab_stub_login_authenticated_bootstrap) ... ok
+test_t2_certificate_rejected_no_bootstrap (tests.host.test_auth_state_p1.TestAuthStateP1.test_t2_certificate_rejected_no_bootstrap) ... ok
+test_t3_login_rejected (tests.host.test_auth_state_p1.TestAuthStateP1.test_t3_login_rejected) ... ok
+test_t4_login_in_reply_mismatch (tests.host.test_auth_state_p1.TestAuthStateP1.test_t4_login_in_reply_mismatch) ... ok
+test_challenge_bytes (tests.host.test_auth_state_p1.TestClassifyResult.test_challenge_bytes) ... ok
+test_login_void_ok (tests.host.test_auth_state_p1.TestClassifyResult.test_login_void_ok) ... ok
+test_ok_int (tests.host.test_auth_state_p1.TestClassifyResult.test_ok_int) ... ok
+test_precedence_exception_over_other (tests.host.test_auth_state_p1.TestClassifyResult.test_precedence_exception_over_other) ... ok
+test_init_reentrancy_uses_rhmi_runtime_only (tests.host.test_auth_state_p1.TestMenuUploadDeadGateRemoved.test_init_reentrancy_uses_rhmi_runtime_only) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.029s
+
+OK
