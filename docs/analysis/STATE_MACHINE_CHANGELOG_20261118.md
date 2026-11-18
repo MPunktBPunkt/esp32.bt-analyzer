@@ -37,6 +37,7 @@ code_changes: tools/bcl_dummy_hu.py, bcl_dummy_hu_agent.py, tests/host/test_auth
 - [`GATE_APP_AUTH_ACCEPTANCE_20261118.md`](GATE_APP_AUTH_ACCEPTANCE_20261118.md) — next Field variable = APP/APP_AUTH only.
 - Lab A/B matrix + AUTHENTICATED freeze + B3 relay selftest: `docs/evidence/LAB_GATE_AUTH_AB_B3_20261118T133244Z/`.
 - Agent: `--stop-on-authenticated` / `--stop-on-auth-reject`.
+- Field-day prep: [`FIELD_DAY_ONE_VARIABLE_GATE.md`](FIELD_DAY_ONE_VARIABLE_GATE.md), [`GATE_E2E_COMPARISON.md`](GATE_E2E_COMPARISON.md), golden fixture `tools/fixtures/auth_golden_lab_stub_login_ok.json`, T5 hard-gate test, [`B3_RELAY_FREEZE.md`](B3_RELAY_FREEZE.md).
 
 ## UNKNOWN
 

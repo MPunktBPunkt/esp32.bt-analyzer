@@ -78,14 +78,20 @@ Causal anchor if B succeeds and `am_registerApp` appears:
 | Item | Role | Claim level |
 |------|------|-------------|
 | `tools/lab_auth_ab_matrix.py` | A/B + freeze-on-AUTHENTICATED | LAB / REPLAY |
+| `tools/lab_auth_golden.py` + `tools/fixtures/auth_golden_lab_stub_login_ok.json` | Byte-exact positive login sequence | LAB anchor |
 | `tools/b3_rfcomm_relay.py` | Transparent RFCOMM/TCP relay + BCL/Etch decode | LAB scaffold; FIELD when Phone↔F20 |
 | `bcl_dummy_hu_agent --stop-on-authenticated` | Field-safe halt after positive login | agent flag |
-| Host unit tests | Matrix + relay byte-identity | LAB |
+| Host unit tests T5 + golden | LOGIN_SENT≠AUTHENTICATED; fixture validate | LAB |
+| `FIELD_DAY_ONE_VARIABLE_GATE.md` | Car operator runbook A then B | plan |
+| `GATE_E2E_COMPARISON.md` | Field / Lab / Replay table | docs |
+| `B3_RELAY_FREEZE.md` | Smoke only — no optimization | freeze |
 
 ## Explicitly out of scope until ACCEPT
 
-- Dual-ESP air soak (still infra-blocked: Classic discovery)
-- EAGAIN root-cause
+- Dual-ESP air soak / discovery optimization
+- EAGAIN / write11 root-cause
 - F20 Action mapping from Lab IDs
 - Fake auth bypass / unsigned challenge forgery
+- Resource-upload / RHMI-soak / PiDrive-seq expansion
 - Claiming Resource Digests = HU authorized resources
+- ESP HCI-over-WiFi performance tuning

@@ -32,7 +32,7 @@ from bcl_dummy_hu import (  # noqa: E402
     RESULT_OK_INT,
     RESULT_VOID_OK,
     classify_result,
-)
+)  # AUTH_LOGIN_SENT used by T5 hard-gate
 from bcl_etch_stub import (  # noqa: E402
     build_sas_challenge_payload,
     build_sas_login_ok_payload,
@@ -267,6 +267,30 @@ class TestAuthStateP1(unittest.TestCase):
             )
         )
         self.assertFalse(phone._bootstrap_reached)
+
+    def test_t5_login_sent_alone_is_not_authenticated(self):
+        """Hard gate: sas_login TX must NEVER imply AUTHENTICATED."""
+        phone = self._phone()
+        phone.handshake = {"version": 5, "instance_id": 14, "buffer_size": 0x4000}
+        phone.active = True
+        phone._auth_state = AUTH_LOGIN_SENT
+        phone._auth_login_mid = 1002
+        phone._etch_stage = "sas_login"
+        phone._rhmi_state = "ETCH_OPEN"
+        # No HU reply yet — must stay LOGIN_SENT (Schein-AUTHENTICATED forbidden)
+        self.assertEqual(phone._auth_state, AUTH_LOGIN_SENT)
+        self.assertNotEqual(phone._auth_state, AUTH_AUTHENTICATED)
+        self.assertNotEqual(phone._rhmi_state, "SAS_AUTHENTICATED")
+        self.assertFalse(phone._bootstrap_reached)
+        phone.on_bytes(b"")
+        self.assertEqual(phone._auth_state, AUTH_LOGIN_SENT)
+        self.assertFalse(phone._bootstrap_reached)
+        # Only correlated positive HU reply may promote
+        body = build_sas_login_ok_payload(in_reply_to=1002, msg_id=202)
+        phone.on_bytes(_etch_data(body, src=10))
+        self.assertEqual(phone._auth_state, AUTH_AUTHENTICATED)
+        self.assertEqual(phone._rhmi_state, "SAS_AUTHENTICATED")
+        self.assertTrue(phone._bootstrap_reached)
 
     def test_r5_setdata_service_exception_keeps_runtime(self):
         phone = self._phone()

@@ -320,6 +320,20 @@ def main() -> int:
             (out / "AUTHENTICATED_SNAPSHOT.json").write_text(
                 json.dumps(r.freeze_snapshot, indent=2) + "\n"
             )
+    # Refresh byte-level golden positive login sequence (LAB anchor)
+    try:
+        from lab_auth_golden import build_fixture, _drive_freeze
+
+        phone, _hu, steps = _drive_freeze()
+        golden = build_fixture(steps, phone)
+        (out / "AUTH_GOLDEN_SEQUENCE.json").write_text(
+            json.dumps(golden, indent=2) + "\n"
+        )
+        fixture_path = ROOT / "tools" / "fixtures" / "auth_golden_lab_stub_login_ok.json"
+        fixture_path.parent.mkdir(parents=True, exist_ok=True)
+        fixture_path.write_text(json.dumps(golden, indent=2) + "\n")
+    except Exception as exc:  # noqa: BLE001
+        print(f"golden capture skipped: {exc!r}")
     print(to_markdown(results, stamp=stamp))
     print(f"wrote {out}")
     return 0 if payload["all_pass"] else 1
