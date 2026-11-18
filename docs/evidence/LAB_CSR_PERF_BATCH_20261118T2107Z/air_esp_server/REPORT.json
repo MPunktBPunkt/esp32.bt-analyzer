@@ -1,0 +1,29 @@
+{
+  "claim_level": "LAB FACT",
+  "stamp": "20261118T2113Z",
+  "dut": {
+    "bd": "C8:C9:A3:CB:37:96",
+    "hci": "hci1"
+  },
+  "peer": {
+    "bd": "00:1A:7D:DA:71:02",
+    "hci": "hci3"
+  },
+  "channel": 22,
+  "duration_s": 12.0,
+  "payload": 240,
+  "dut_hciconfig": "hci1:\tType: Primary  Bus: Virtual\n\tBD Address: C8:C9:A3:CB:37:96  ACL MTU: 1021:9  SCO MTU: 255:4\n\tUP RUNNING PSCAN ISCAN \n\tRX bytes:0 acl:0 sco:0 events:34648 errors:0\n\tTX bytes:260815 acl:0 sco:0 commands:34631 errors:0\n\n",
+  "acl_connect_ok": true,
+  "link_pre": {
+    "rssi": "Read RSSI failed: Input/output error",
+    "lq": "HCI read_link_quality request failed: Input/output error",
+    "tpl": "HCI read transmit power level request failed: Input/output error",
+    "con": "Connections:\n\t< ACL C8:C9:A3:CB:37:96 handle 3840 state 2 lm CENTRAL"
+  },
+  "server_listen": {
+    "bd": "C8:C9:A3:CB:37:96",
+    "channel": 22
+  },
+  "error": "accept_failed: TimeoutError('timed out')",
+  "client_error": "OSError(112, 'Host is down')"
+}
