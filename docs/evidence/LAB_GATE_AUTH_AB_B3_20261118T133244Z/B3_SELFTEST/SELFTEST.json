@@ -1,0 +1,23 @@
+{
+  "byte_identity": true,
+  "sent": 95,
+  "recv": 95,
+  "summary": {
+    "event": "relay_done",
+    "elapsed_s": 0.001,
+    "phone": {
+      "bytes": 95,
+      "frames": 2,
+      "etch_msgs": 1,
+      "correlated": 0
+    },
+    "hu": {
+      "bytes": 0,
+      "frames": 0,
+      "etch_msgs": 0,
+      "correlated": 0
+    }
+  },
+  "claim_level": "LAB",
+  "note": "transparent relay selftest \u2014 not Field"
+}

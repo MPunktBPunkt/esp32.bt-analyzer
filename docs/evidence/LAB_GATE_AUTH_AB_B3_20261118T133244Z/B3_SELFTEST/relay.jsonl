@@ -1,0 +1,9 @@
+{"event": "relay_start", "a": "phone", "b": "hu", "ts": 1795008765.8950732}
+{"event": "bytes", "direction": "phone->hu", "n": 95, "hex_head": "1234567800040000000000080005000e000040000002000a0fa40043deadbeef0000003b03869c6372b803868104fdc28b101111111111111111111111111111"}
+{"event": "bcl_init_magic", "direction": "phone->hu", "count": 1}
+{"event": "bcl_frame", "direction": "phone->hu", "cmd": 4, "cmd_name": "HANDSHAKE", "src": 0, "dest": 0, "dest_label": null, "len": 8, "payload_hex_head": "0005000e00004000"}
+{"event": "handshake", "direction": "phone->hu", "version": 5, "instanceId": 14, "bufferSize": 16384}
+{"event": "bcl_frame", "direction": "phone->hu", "cmd": 2, "cmd_name": "DATA", "src": 10, "dest": 4004, "dest_label": "Etch", "len": 67, "payload_hex_head": "deadbeef0000003b03869c6372b803868104fdc28b101111111111111111111111111111111186eda8c9a68700000000"}
+{"event": "etch", "direction": "phone->hu", "method": "_result_sas_certificate", "type_hash": "0x9c6372b8", "messageId": 2, "inReplyTo": 1, "payload_len": 67}
+{"event": "eof", "side": "phone"}
+{"event": "relay_done", "elapsed_s": 0.001, "phone": {"bytes": 95, "frames": 2, "etch_msgs": 1, "correlated": 0}, "hu": {"bytes": 0, "frames": 0, "etch_msgs": 0, "correlated": 0}}

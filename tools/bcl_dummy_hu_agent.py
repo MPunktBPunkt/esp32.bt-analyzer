@@ -1066,6 +1066,42 @@ def run_phone(
                 # Field-safe: controlled_init stops after HANDSHAKE unless --full-client
                 if controlled_init and not full_client:
                     replies = []
+                # Gate: stop after wire-validated AUTHENTICATED (no AM/RHMI yet)
+                stop_auth = bool(getattr(args, "stop_on_authenticated", False))
+                stop_rej = bool(getattr(args, "stop_on_auth_reject", False))
+                auth_now = getattr(sess, "_auth_state", None)
+                if stop_auth and auth_now == "AUTHENTICATED":
+                    snap = {}
+                    try:
+                        snap = sess.forensic_snapshot()  # type: ignore[attr-defined]
+                    except Exception:  # noqa: BLE001
+                        snap = {"auth_state": auth_now}
+                    snap["freeze_event"] = "AUTHENTICATED"
+                    snap["note"] = (
+                        "stop-on-authenticated — snapshot before AM/RHMI/CDS"
+                    )
+                    log.write(
+                        {
+                            "event": "authenticated_snapshot",
+                            "session_id": session_id,
+                            **snap,
+                        }
+                    )
+                    abort_reason = "authenticated_freeze"
+                    replies = []
+                elif stop_rej and auth_now in (
+                    "CERTIFICATE_REJECTED",
+                    "LOGIN_REJECTED",
+                ):
+                    log.write(
+                        {
+                            "event": "auth_reject_stop",
+                            "session_id": session_id,
+                            "auth_state": auth_now,
+                        }
+                    )
+                    abort_reason = f"auth_{auth_now.lower()}"
+                    replies = []
                 if not observe_only or controlled_init:
                     for out in replies:
                         sock.sendall(out)
@@ -1078,6 +1114,12 @@ def run_phone(
                             }
                         )
                 sent = _flush_events(log, sess, sent, session_id=session_id)
+                if abort_reason in (
+                    "authenticated_freeze",
+                    "auth_certificate_rejected",
+                    "auth_login_rejected",
+                ):
+                    break
     if sess is not None:
         _flush_events(log, sess, sent, session_id=session_id)
     cls = classify_bytes(rx_raw)
@@ -1342,6 +1384,18 @@ def main() -> int:
             action="store_true",
             help="simulate MyBMW/AAIdrive Etch client after OPEN 4004 "
             "(sas_certificate→login→CDS/RHMI/AM/AV); implies --open-etch --wire-open5001",
+        )
+        p.add_argument(
+            "--stop-on-authenticated",
+            action="store_true",
+            help="after AuthState=AUTHENTICATED write snapshot event and abort "
+            "(no further AM/RHMI/CDS TX) — next Field gate A/B",
+        )
+        p.add_argument(
+            "--stop-on-auth-reject",
+            action="store_true",
+            help="abort hold on CERTIFICATE_REJECTED / LOGIN_REJECTED "
+            "(default continues observe; AuthState still logged)",
         )
 
     ph = sub.add_parser("phone", help="lab BclCarLink-like client (sends INIT)")

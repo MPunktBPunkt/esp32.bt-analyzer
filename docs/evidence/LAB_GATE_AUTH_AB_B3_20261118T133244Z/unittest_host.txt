@@ -1,0 +1,11 @@
+# B3 Relay Selftest
+
+- byte_identity: **PASS**
+- sent/recv: 95/95
+- summary: `{"event": "relay_done", "elapsed_s": 0.0, "phone": {"bytes": 95, "frames": 2, "etch_msgs": 1, "correlated": 0}, "hu": {"bytes": 0, "frames": 0, "etch_msgs": 0, "correlated": 0}}`
+
+Claim: LAB only.
+
+[http] "GET /api/v1/bmw/state HTTP/1.1" 200 -
+[http] "POST /api/v1/bmw/cds/query HTTP/1.1" 200 -
+HOST_RC=0

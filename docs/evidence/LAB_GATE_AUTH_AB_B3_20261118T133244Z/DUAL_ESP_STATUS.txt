@@ -1,0 +1,4 @@
+DUAL_ESP Classic discovery: still BLOCKED (2026-11-18 autonomous)
+Bridges up (.87 phone / .131 HU aliases). Inquiry sees OnePlus/TV/USB adapter,
+not D1 Classic peers between hci1/hci2 virtual bridges.
+No air soak/PiDrive attempted this cycle (infra, not AuthState).

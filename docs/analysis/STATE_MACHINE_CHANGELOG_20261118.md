@@ -32,6 +32,12 @@ code_changes: tools/bcl_dummy_hu.py, bcl_dummy_hu_agent.py, tests/host/test_auth
 - Lab-Cert: HU Reject („Certificate is invalid or expired.“ / „Session is not logged in.“).
 - Nachgelagerte AM/RHMI/CDS/Resource: **NOT_REACHED**, nicht widerlegt als „FAILED“.
 
+## Gate follow-up (same day, autonomous)
+
+- [`GATE_APP_AUTH_ACCEPTANCE_20261118.md`](GATE_APP_AUTH_ACCEPTANCE_20261118.md) — next Field variable = APP/APP_AUTH only.
+- Lab A/B matrix + AUTHENTICATED freeze + B3 relay selftest: `docs/evidence/LAB_GATE_AUTH_AB_B3_20261118T133244Z/`.
+- Agent: `--stop-on-authenticated` / `--stop-on-auth-reject`.
+
 ## UNKNOWN
 
 - Ob F20 nach **echtem** Cert denselben Resource-/AM-Pfad wie Lab nimmt.
