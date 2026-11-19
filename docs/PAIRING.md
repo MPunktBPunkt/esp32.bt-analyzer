@@ -7,6 +7,8 @@ agent: tools/bt_pair_agent.py · unit tools/bt-pair-agent.service · /opt/bt-ana
 origin: PiDrive bt_agent_dbus.py (BMW field test 2026-09-16, passkey dialog confirmed in iDrive)
 ```
 
+Lab ↔ iDriveSim host roles / drop-ins: [`docs/analysis/LAB_IDRIVESIM_SWITCH_20261119.md`](analysis/LAB_IDRIVESIM_SWITCH_20261119.md).
+
 ## Who decides what
 
 | Part | Role in pairing |

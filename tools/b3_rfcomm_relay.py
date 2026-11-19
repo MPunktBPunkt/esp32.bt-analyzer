@@ -443,11 +443,16 @@ def run_tcp_lab(args: argparse.Namespace) -> int:
 
 
 def run_rfcomm(args: argparse.Namespace) -> int:
-    """Accept RFCOMM on listen-channel, connect outbound to peer channel; relay."""
+    """Accept RFCOMM on listen-channel, connect outbound to peer channel; relay.
+
+    Outbound socket is bound to --connect-adapter-bd (default: same as listen
+    adapter) so dual-BlueZ hosts (.131 listen / .87 peer) use the right radio.
+    """
     if not hasattr(socket, "AF_BLUETOOTH"):
         print("AF_BLUETOOTH unavailable", file=sys.stderr)
         return 2
     log = RelayLogger(Path(args.log) if args.log else None)
+    connect_bd = (args.connect_adapter_bd or args.adapter_bd).strip()
     listen = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
     listen.bind((args.adapter_bd, args.listen_channel))
     listen.listen(1)
@@ -456,6 +461,7 @@ def run_rfcomm(args: argparse.Namespace) -> int:
             "event": "rfcomm_listening",
             "adapter": args.adapter_bd,
             "channel": args.listen_channel,
+            "connect_adapter": connect_bd,
             "peer": args.peer,
             "peer_channel": args.peer_channel,
             "claim_note": "FIELD only when live Phone↔F20 traffic",
@@ -463,14 +469,22 @@ def run_rfcomm(args: argparse.Namespace) -> int:
     )
     print(
         f"B3 rfcomm listen {args.adapter_bd} ch{args.listen_channel} "
-        f"→ {args.peer} ch{args.peer_channel}",
+        f"→ via {connect_bd} → {args.peer} ch{args.peer_channel}",
         flush=True,
     )
     phone_c, pinfo = listen.accept()
     log.write({"event": "rfcomm_accepted", "peer_info": repr(pinfo)})
     hu_c = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+    # channel 0 = ephemeral local channel for outbound RFCOMM client
+    hu_c.bind((connect_bd, 0))
     hu_c.connect((args.peer, args.peer_channel))
-    log.write({"event": "rfcomm_connected_hu", "peer": args.peer})
+    log.write(
+        {
+            "event": "rfcomm_connected_hu",
+            "peer": args.peer,
+            "via_adapter": connect_bd,
+        }
+    )
     raw = Path(args.raw_dir) if args.raw_dir else None
     try:
         pump_pair(
@@ -505,7 +519,12 @@ def main() -> int:
     tcp.add_argument("--max-s", type=float, default=0.0)
 
     rf = sub.add_parser("rfcomm", help="RFCOMM transparent relay (host BT)")
-    rf.add_argument("--adapter-bd", required=True)
+    rf.add_argument("--adapter-bd", required=True, help="local BD that phones connect to")
+    rf.add_argument(
+        "--connect-adapter-bd",
+        default="",
+        help="local BD for outbound RFCOMM to peer (default: --adapter-bd)",
+    )
     rf.add_argument("--listen-channel", type=int, default=6)
     rf.add_argument("--peer", required=True, help="HU BD_ADDR")
     rf.add_argument("--peer-channel", type=int, default=6)

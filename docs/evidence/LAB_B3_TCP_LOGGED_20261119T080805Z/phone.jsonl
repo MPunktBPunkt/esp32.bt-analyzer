@@ -1,0 +1,28 @@
+{"event": "phone_start", "peer": "127.0.0.1:9701"}
+{"event": "tx", "n": 4, "hex_head": "12345678"}
+{"event": "rx", "n": 16, "hex_head": "00040000000000080005000e00004000"}
+{"event": "tx", "n": 10, "hex_head": "00050000000000020004"}
+{"event": "tx", "n": 56, "hex_head": "0008000000000030002430653962393063342d636265312d343734322d383238332d6433363765396135363631390000"}
+{"event": "tx", "n": 8, "hex_head": "0001000113890000"}
+{"event": "tx", "n": 8, "hex_head": "0001000a0fa40000"}
+{"event": "tx", "n": 154, "hex_head": "0002000a0fa40092deadbeef0000008a0386304ba8bb02866306b4688700000000000003e986144a776f8b846c2d2d2d"}
+{"event": "rx", "n": 24, "hex_head": "00060000000000040000000a000600000000000400000038"}
+{"event": "rx", "n": 12, "hex_head": "000600000000000400000008"}
+{"event": "rx", "n": 99, "hex_head": "00060000000000040000000800060000000000040000009a0002000a0fa40043deadbeef0000003b03869c6372b80386"}
+{"event": "early_stop", "snap": {"rhmi_state": "DISCONNECTED", "auth_state": "LOGIN_SENT", "etch_stage": "sas_login", "bootstrap_state": "NOT_REACHED", "pending_check_mid": null, "open_txns": [{"msg_id": 1002, "method": "sas_login", "type": null, "bcl_src": 10, "bcl_dest": 4004}], "plan_i": 0, "uploads": 0, "cache_hits": 0, "wait_class": null, "last_result_class": "CHALLENGE", "last_exception_text": null, "soak_phase": null, "soak_counts": {}, "soak_elapsed_s": null, "selected_action": null, "seq_phase": null}}
+{"event": "sess", "inner": "session_init", "cmd_name": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "frame", "cmd_name": "HANDSHAKE", "method": null, "src": 0, "dest": 0}
+{"event": "sess", "inner": "mybmw_rpc_tx", "cmd_name": null, "method": "sas_certificate", "src": null, "dest": null}
+{"event": "sess", "inner": "mybmw_auth_state", "cmd_name": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "mybmw_sim_start", "cmd_name": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "frame", "cmd_name": "DATAACK", "method": null, "src": 0, "dest": 0}
+{"event": "sess", "inner": "frame", "cmd_name": "DATAACK", "method": null, "src": 0, "dest": 0}
+{"event": "sess", "inner": "frame", "cmd_name": "DATAACK", "method": null, "src": 0, "dest": 0}
+{"event": "sess", "inner": "frame", "cmd_name": "DATAACK", "method": null, "src": 0, "dest": 0}
+{"event": "sess", "inner": "frame", "cmd_name": "DATAACK", "method": null, "src": 0, "dest": 0}
+{"event": "sess", "inner": "frame", "cmd_name": "DATA", "method": null, "src": 10, "dest": 4004}
+{"event": "sess", "inner": "mybmw_rpc_rx", "cmd_name": null, "method": "_result_sas_certificate", "src": null, "dest": null}
+{"event": "sess", "inner": "mybmw_result_classified", "cmd_name": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "mybmw_auth_state", "cmd_name": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "mybmw_rpc_tx", "cmd_name": null, "method": "sas_login", "src": null, "dest": null}
+{"event": "sess", "inner": "mybmw_auth_state", "cmd_name": null, "method": null, "src": null, "dest": null}

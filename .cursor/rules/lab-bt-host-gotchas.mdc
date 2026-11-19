@@ -1,0 +1,64 @@
+---
+description: Lab/.108 BT host — pin loops, idrivesim vs f20_sim resource conflict, role switch
+alwaysApply: true
+---
+
+# Lab BT Host (.108) — First Checks
+
+When Phone↔Lab HU or Phone-role ESP↔real F20 fails (connect flaps, wrong name, “wird verwendet”, `failed to register accept channel 6`):
+
+**Do not start with ESP OTA / RF theory.** Check `.108` host state first.
+
+## Smoking guns (2026-11-19)
+
+1. **Orphan alias pin:** `/tmp/bcl_dummy/alias_pin_persist.log` — abandoned `python3 -` can force **BMW 38304 on phone hci** forever.  
+   `fuser -k /tmp/bcl_dummy/alias_pin_persist.log`
+2. Other loops: `cod_pin_home.log`, `cod_pin_home_fast.log`, `phone87_hold.log` — Alias BMW↔Phone + car CoD on phone.
+3. **Stale `hci_tcp_bridge`** after ESP reboot → `hci1 removed` / mid-connect drop. Restart bridges only after ESP `/api/status` ready.
+4. BlueZ **Alias ≠ HCI Name**; only one powered **BMW 38304**.
+
+## iDriveSim ↔ bt-analyzer resource conflict (Lösung)
+
+**Konflikt:** Beide wollen RFCOMM **ch6** + BMW-Identität / Pair-Agent-Drop-Ins — nie parallel.
+
+| Ressource | iDriveSim | bt-analyzer Lab (`f20_sim`) |
+|-----------|-----------|------------------------------|
+| RFCOMM ch6 | `idrivesim-rfcomm-bridge.service` (Unit oft auf **`.87`**) | `bcl_dummy_hu_agent.py hu --hu-profile f20_sim` |
+| Pair-Agent | Drop-Ins `idrivesim-hu.conf` / `idrivesim-csr.conf` (BMW auf `.87` und/oder CSR) | `bmw-alias.conf` — BMW nur **`.131`**, `.87`=Phone |
+| Symptom wenn falsch | Lab: `failed to register accept channel 6`; Phone sieht mehrere BMW / falschen Adapter | — |
+
+**→ Lab (Phone → `.131` / f20_sim):**
+
+```bash
+systemctl stop idrivesim-rfcomm-bridge.service
+pkill -f /opt/idrivesim/ || true
+mkdir -p /etc/systemd/system/bt-pair-agent.service.d.off
+mv /etc/systemd/system/bt-pair-agent.service.d/idrivesim-*.conf \
+   /etc/systemd/system/bt-pair-agent.service.d.off/ 2>/dev/null || true
+systemctl daemon-reload
+# dann nur .131 = BMW 38304 powered; ch6 frei für bcl_dummy_hu_agent
+```
+
+**→ iDriveSim:** `bcl_dummy_hu_agent` stoppen, `idrivesim-*.conf` zurück nach `service.d/`, `systemctl restart idrivesim-rfcomm-bridge bt-pair-agent`.
+
+**Regel:** ch6 = idrivesim **xor** `bcl_dummy_hu_agent` — nie beide.
+
+## Roles
+
+| ESP | BD | Lab Phone→`.131` | Field Phone→F20 | iDriveSim (typ.) |
+|-----|----|------------------|-----------------|------------------|
+| `.131` | `…:7B:0A` | **HU / BMW 38304** | oft off | oft Phone (drop-in) |
+| `.87` | `…:37:96` | Phone / off | **BT-Analyzer-Phone** → F20 | **HU** für rfcomm-bridge |
+
+## B3 relay (Phone→.131 / .87→HU)
+
+- Tool: `tools/b3_rfcomm_relay.py` (`rfcomm` + `--connect-adapter-bd`; `tcp-lab` for host-only).
+- **No** .131↔.87 bond required: two independent ACLs; host copies ch6 bytes.
+- BlueZ **Profile ch6 is host-global** — cannot run Profile HU + B3 listen both on ch6; lab air HU uses raw RFCOMM (`lab_b3_dual_esp_smoke.py`).
+- Weak WiFi (~−80): Classic inquiry between D1s often fails — use existing bonds + `wifi_ps=none`; tcp-lab still validates decode.
+
+## Docs
+
+- Full switch + field fault: `docs/analysis/LAB_IDRIVESIM_SWITCH_20261119.md`
+- B3 lab prep 2026-11-19: `docs/evidence/LAB_B3_TCP_DUALESP_PREP_20261119T0801Z/`
+- Host note: `/tmp/bcl_dummy/LAB_FAULT_20261119_FIELD.md` on `.108`

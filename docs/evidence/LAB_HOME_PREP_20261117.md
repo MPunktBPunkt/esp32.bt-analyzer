@@ -6,6 +6,9 @@
 **Phone (OnePlus 12):** `AC:C0:48:5E:CB:20`  
 **USB dongle (W0 air):** `C0:B8:83:34:F4:62`
 
+**Umschalten Lab ↔ iDriveSim** (häufige Ursache: `.131` Powered=no + ch6/Identitäts-Konflikt):  
+[`docs/analysis/LAB_IDRIVESIM_SWITCH_20261119.md`](../analysis/LAB_IDRIVESIM_SWITCH_20261119.md)
+
 ## Ziel heute (zwei getrennte Läufe)
 
 ### Lauf A — P0: checkResource-Rückweg (A vs C)
