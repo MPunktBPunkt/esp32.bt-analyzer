@@ -2,6 +2,10 @@
 """Logged B3 tcp-lab test: PhoneClientSession ↔ B3 ↔ f20_sim DummyHuSession.
 
 Produces JSONL + SUMMARY under --out. Claim: LAB only.
+
+Modes:
+  default / --full-auth  — SAS through AUTHENTICATED (freeze, no RHMI/AM)
+  --cert-only            — stop after challenge (legacy cert-gate evidence)
 """
 
 from __future__ import annotations
@@ -20,7 +24,11 @@ ROOT = Path(__file__).resolve().parents[1]
 TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
 
-from bcl_dummy_hu import DummyHuSession, PhoneClientSession, apply_hu_profile  # noqa: E402
+from bcl_dummy_hu import (  # noqa: E402
+    AUTH_AUTHENTICATED,
+    AUTH_LOGIN_SENT,
+    PhoneClientSession,
+)
 
 
 def log_jsonl(path: Path, obj: dict) -> None:
@@ -36,7 +44,19 @@ def main() -> int:
     ap.add_argument("--seconds", type=float, default=25.0)
     ap.add_argument("--listen", default="127.0.0.1:9701")
     ap.add_argument("--hu", default="127.0.0.1:9702")
+    ap.add_argument(
+        "--full-auth",
+        action="store_true",
+        default=True,
+        help="drive SAS to AUTHENTICATED then freeze (default)",
+    )
+    ap.add_argument(
+        "--cert-only",
+        action="store_true",
+        help="stop at LOGIN_SENT after certificate challenge",
+    )
     args = ap.parse_args()
+    args.full_auth = not args.cert_only
     out: Path = args.out
     out.mkdir(parents=True, exist_ok=True)
     (out / "raw").mkdir(exist_ok=True)
@@ -142,17 +162,28 @@ srv.close()
         hu.kill()
         return 1
 
-    # --- Phone ---
+    # --- Phone (same wire params as lab_auth_golden / arm B) ---
     host, _, port_s = args.listen.rpartition(":")
     sock = socket.create_connection((host or "127.0.0.1", int(port_s)), timeout=5)
     sock.settimeout(0.5)
     phone = PhoneClientSession(
         selectproto=4,
+        wire_open5001=True,
+        open_etch=True,
+        etch_src=10,
         knock_payload="wire_v5",
         mybmw_sim=True,
     )
-    log_jsonl(out / "phone.jsonl", {"event": "phone_start", "peer": args.listen})
+    log_jsonl(
+        out / "phone.jsonl",
+        {
+            "event": "phone_start",
+            "peer": args.listen,
+            "mode": "cert_only" if args.cert_only else "full_auth",
+        },
+    )
     tx: list[bytes] = [phone.session_init()]
+    freeze_snap: dict = {}
     t0 = time.time()
     while time.time() - t0 < args.seconds:
         for chunk in tx:
@@ -182,19 +213,21 @@ srv.close()
                 except Exception:
                     pass
             time.sleep(0.05)
-        # stop early if we saw meaningful etch traffic in phone events
-        ev = [e.get("event") for e in phone.events]
-        if ev.count("frame") > 15 or any(
-            "sas" in str(e.get("event", "")).lower() or e.get("cmd_name") == "DATA"
-            for e in phone.events[-5:]
-        ):
-            # keep going a bit for SAS
-            pass
-        snap = phone.forensic_snapshot() if hasattr(phone, "forensic_snapshot") else {}
-        if snap.get("auth_state") in ("AUTHENTICATED", "LOGIN_SENT") or getattr(
-            phone, "_auth_state", None
-        ) in ("AUTHENTICATED",):
-            log_jsonl(out / "phone.jsonl", {"event": "early_stop", "snap": snap})
+
+        auth = getattr(phone, "_auth_state", None)
+        if args.cert_only and auth == AUTH_LOGIN_SENT:
+            freeze_snap = phone.forensic_snapshot()
+            freeze_snap["freeze_event"] = "LOGIN_SENT"
+            log_jsonl(out / "phone.jsonl", {"event": "freeze", "snap": freeze_snap})
+            break
+        if args.full_auth and auth == AUTH_AUTHENTICATED:
+            # Freeze immediately — no AM/RHMI bootstrap drain.
+            freeze_snap = phone.forensic_snapshot()
+            freeze_snap["freeze_event"] = "AUTHENTICATED"
+            freeze_snap["note"] = (
+                "LAB freeze via B3 — no further bootstrap after positive login"
+            )
+            log_jsonl(out / "phone.jsonl", {"event": "freeze", "snap": freeze_snap})
             break
 
     for e in phone.events:
@@ -242,6 +275,7 @@ srv.close()
     b3c, huc, pc = Counter(b3_ev), Counter(hu_ev), Counter(phone_ev)
 
     etch_methods = []
+    etch_correlations: list[dict] = []
     if (out / "b3.jsonl").exists():
         for ln in (out / "b3.jsonl").read_text().splitlines():
             try:
@@ -250,21 +284,60 @@ srv.close()
                 continue
             if o.get("event") == "etch" and o.get("method"):
                 etch_methods.append(o["method"])
+                etch_correlations.append(
+                    {
+                        "method": o.get("method"),
+                        "messageId": o.get("messageId"),
+                        "inReplyTo": o.get("inReplyTo"),
+                        "direction": o.get("direction"),
+                    }
+                )
 
-    ok = (
+    snap = freeze_snap or (
+        phone.forensic_snapshot() if hasattr(phone, "forensic_snapshot") else {}
+    )
+    auth_state = snap.get("auth_state") or getattr(phone, "_auth_state", None)
+    method_set = set(etch_methods)
+    relay_ok = (
         b3c.get("handshake", 0) >= 1
         and b3c.get("bcl_frame", 0) >= 5
         and b3c.get("accepted", 0) >= 1
         and huc.get("tcp_hu_accept", 0) >= 1
     )
+    if args.full_auth:
+        auth_ok = (
+            auth_state == AUTH_AUTHENTICATED
+            and "sas_certificate" in method_set
+            and "_result_sas_certificate" in method_set
+            and "sas_login" in method_set
+            and "_result_sas_login" in method_set
+        )
+        mode_label = "full_auth_freeze"
+    else:
+        auth_ok = (
+            auth_state == AUTH_LOGIN_SENT
+            and "sas_certificate" in method_set
+            and "_result_sas_certificate" in method_set
+        )
+        mode_label = "cert_only"
+    ok = relay_ok and auth_ok
+
+    if snap:
+        (out / "AUTH_SNAPSHOT.json").write_text(json.dumps(snap, indent=2) + "\n")
+
     summary = {
         "ok": ok,
         "claim": "LAB",
+        "mode": mode_label,
+        "auth_state": auth_state,
+        "bootstrap_state": snap.get("bootstrap_state"),
+        "freeze_event": snap.get("freeze_event"),
         "b3": dict(b3c),
         "hu": dict(huc),
         "phone": dict(pc),
         "etch_methods": etch_methods[:40],
         "etch_method_counts": dict(Counter(etch_methods)),
+        "etch_correlations": etch_correlations[:20],
         "b3_rc": b3.returncode,
         "hu_rc": hu.returncode,
         "raw_files": [p.name for p in (out / "raw").glob("*")],
@@ -275,18 +348,37 @@ srv.close()
         "",
         f"- **ok:** {ok}",
         f"- claim: **LAB**",
+        f"- mode: `{mode_label}`",
+        f"- auth_state: `{auth_state}`",
+        f"- freeze_event: `{snap.get('freeze_event')}`",
+        f"- bootstrap_state: `{snap.get('bootstrap_state')}`",
         f"- handshake: {b3c.get('handshake', 0)}",
         f"- bcl_frames: {b3c.get('bcl_frame', 0)}",
         f"- etch events: {b3c.get('etch', 0)}",
         f"- etch methods: `{dict(Counter(etch_methods))}`",
         f"- raw: {summary['raw_files']}",
         "",
-        "What was logged: BCL INIT/HS/frames, Etch methods + mid correlation, raw bin both dirs.",
+        "Sequence target: INIT → HS → SELECTPROTO/KNOCK → OPEN → "
+        "sas_certificate → challenge → sas_login → positive login → AUTHENTICATED freeze.",
         "",
     ]
     (out / "SUMMARY.md").write_text("\n".join(md))
     print("\n".join(md))
-    print(json.dumps({k: summary[k] for k in ("ok", "etch_method_counts", "b3")}, indent=2))
+    print(
+        json.dumps(
+            {
+                k: summary[k]
+                for k in (
+                    "ok",
+                    "mode",
+                    "auth_state",
+                    "etch_method_counts",
+                    "b3",
+                )
+            },
+            indent=2,
+        )
+    )
     return 0 if ok else 1
 
 
