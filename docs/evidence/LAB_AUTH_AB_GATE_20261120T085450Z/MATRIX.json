@@ -1,0 +1,187 @@
+{
+  "stamp": "20261120T085450Z",
+  "gate": "APP_APP_AUTH_ACCEPTANCE",
+  "arms": [
+    {
+      "arm": "A_LABSIM_REJECT",
+      "claim_level": "LAB",
+      "expected_auth": "CERTIFICATE_REJECTED",
+      "auth_state": "CERTIFICATE_REJECTED",
+      "bootstrap_state": "NOT_REACHED",
+      "rhmi_state": "DISCONNECTED",
+      "wait_class": "ETCH_REPLY_EXCEPTION",
+      "last_exception_text": "Certificate is invalid or expired.",
+      "freeze_snapshot": {
+        "rhmi_state": "DISCONNECTED",
+        "auth_state": "CERTIFICATE_REJECTED",
+        "etch_stage": "sas_cert",
+        "bootstrap_state": "NOT_REACHED",
+        "pending_check_mid": null,
+        "open_txns": [],
+        "plan_i": 0,
+        "uploads": 0,
+        "cache_hits": 0,
+        "wait_class": "ETCH_REPLY_EXCEPTION",
+        "last_result_class": "EXCEPTION",
+        "last_exception_text": "Certificate is invalid or expired.",
+        "soak_phase": null,
+        "soak_counts": {},
+        "soak_elapsed_s": null,
+        "selected_action": null,
+        "seq_phase": null
+      },
+      "continued_past_auth": false,
+      "notes": "Simulates FIELD-style cert reject; bootstrap must stay NOT_REACHED",
+      "pass": true
+    },
+    {
+      "arm": "B_LAB_STUB_ACCEPT_FREEZE",
+      "claim_level": "LAB",
+      "expected_auth": "AUTHENTICATED",
+      "auth_state": "AUTHENTICATED",
+      "bootstrap_state": "HANDLES_CREATING",
+      "rhmi_state": "SAS_AUTHENTICATED",
+      "wait_class": null,
+      "last_exception_text": null,
+      "freeze_snapshot": {
+        "rhmi_state": "SAS_AUTHENTICATED",
+        "auth_state": "AUTHENTICATED",
+        "etch_stage": "bootstrap",
+        "bootstrap_state": "HANDLES_CREATING",
+        "pending_check_mid": null,
+        "open_txns": [
+          {
+            "msg_id": 1003,
+            "method": "ver_getVersion",
+            "type": null,
+            "bcl_src": 10,
+            "bcl_dest": 4004
+          },
+          {
+            "msg_id": 1004,
+            "method": "info_getSystemInfo",
+            "type": null,
+            "bcl_src": 10,
+            "bcl_dest": 4004
+          },
+          {
+            "msg_id": 1005,
+            "method": "rhmi_getCapabilities",
+            "type": null,
+            "bcl_src": 10,
+            "bcl_dest": 4004
+          },
+          {
+            "msg_id": 1006,
+            "method": "cds_create",
+            "type": null,
+            "bcl_src": 10,
+            "bcl_dest": 4004
+          },
+          {
+            "msg_id": 1007,
+            "method": "am_create",
+            "type": null,
+            "bcl_src": 10,
+            "bcl_dest": 4004
+          },
+          {
+            "msg_id": 1008,
+            "method": "rhmi_create",
+            "type": null,
+            "bcl_src": 10,
+            "bcl_dest": 4004
+          },
+          {
+            "msg_id": 1009,
+            "method": "av_create",
+            "type": null,
+            "bcl_src": 10,
+            "bcl_dest": 4004
+          }
+        ],
+        "plan_i": 0,
+        "uploads": 0,
+        "cache_hits": 0,
+        "wait_class": null,
+        "last_result_class": "VOID_OK",
+        "last_exception_text": null,
+        "soak_phase": null,
+        "soak_counts": {},
+        "soak_elapsed_s": null,
+        "selected_action": null,
+        "seq_phase": null,
+        "freeze_event": "AUTHENTICATED",
+        "note": "LAB freeze \u2014 no further bootstrap drain after positive login"
+      },
+      "continued_past_auth": false,
+      "notes": "Freeze on AUTHENTICATED \u2014 causal snapshot before AM/RHMI",
+      "pass": true
+    },
+    {
+      "arm": "B_LAB_STUB_ACCEPT_FULL",
+      "claim_level": "LAB",
+      "expected_auth": "AUTHENTICATED",
+      "auth_state": "AUTHENTICATED",
+      "bootstrap_state": "HANDLES_READY",
+      "rhmi_state": "RUNTIME_ACTIVE",
+      "wait_class": null,
+      "last_exception_text": "SetData was not successful.",
+      "freeze_snapshot": {
+        "rhmi_state": "RUNTIME_ACTIVE",
+        "auth_state": "AUTHENTICATED",
+        "etch_stage": "rhmi_runtime",
+        "bootstrap_state": "HANDLES_READY",
+        "pending_check_mid": null,
+        "open_txns": [],
+        "plan_i": 3,
+        "uploads": 1,
+        "cache_hits": 0,
+        "wait_class": null,
+        "last_result_class": "EXCEPTION",
+        "last_exception_text": "SetData was not successful.",
+        "soak_phase": null,
+        "soak_counts": {},
+        "soak_elapsed_s": null,
+        "selected_action": null,
+        "seq_phase": null
+      },
+      "continued_past_auth": true,
+      "notes": "Full lab stub path to handles (not Field acceptance)",
+      "pass": true
+    },
+    {
+      "arm": "C_FIELD_REPLAY",
+      "claim_level": "REPLAY",
+      "expected_auth": "CERTIFICATE_REJECTED",
+      "auth_state": "CERTIFICATE_REJECTED",
+      "bootstrap_state": "NOT_REACHED",
+      "rhmi_state": "NOT_REACHED",
+      "wait_class": "ETCH_REPLY_EXCEPTION",
+      "last_exception_text": "Certificate is invalid or expired.",
+      "freeze_snapshot": {
+        "rhmi_state": "DISCONNECTED",
+        "auth_state": "CERTIFICATE_REJECTED",
+        "etch_stage": "sas_cert",
+        "bootstrap_state": "NOT_REACHED",
+        "pending_check_mid": null,
+        "open_txns": [],
+        "plan_i": 0,
+        "uploads": 0,
+        "cache_hits": 0,
+        "wait_class": "ETCH_REPLY_EXCEPTION",
+        "last_result_class": "EXCEPTION",
+        "last_exception_text": "Certificate is invalid or expired.",
+        "soak_phase": null,
+        "soak_counts": {},
+        "soak_elapsed_s": null,
+        "selected_action": null,
+        "seq_phase": null
+      },
+      "continued_past_auth": false,
+      "notes": "FIELD MEASURED bytes \u2192 REPLAY FACT only; not FIELD ACCEPTANCE",
+      "pass": true
+    }
+  ],
+  "all_pass": true
+}

@@ -714,10 +714,18 @@ def _json_safe(obj: Any) -> Any:
 _DIGEST_KV_RE = re.compile(r"([A-Za-z0-9_.*]+)=([^&\x00-\x1f]+)")
 
 
-def sas_pad16_from_serial_u32(serial_u32: int) -> bytes:
-    """Native CASE A pad: MD5(serial as 4 big-endian bytes) → 16 B.
+# APP_AUTH CertificateType enum value as BE u32 — wire-validated pad input
+# (lab MyBMW sessions 2026-11: RSA-VERIFY digest matches MD5(chal XOR MD5(0x02000000)),
+#  NOT MD5(chal XOR MD5(X509_serial))). See DEEP_FORENSIC §6.2 + SAS_PAD_RSA_VERIFY note.
+SAS_APP_AUTH_PAD_U32 = 0x02000000
 
-    FACT from libaudio signChallenge audit — serial is hashed before XOR, not XORed raw.
+
+def sas_pad16_from_serial_u32(serial_u32: int) -> bytes:
+    """CASE A pad: MD5(u32 as 4 big-endian bytes) → 16 B.
+
+    FACT from libaudio signChallenge — value is hashed before XOR, not XORed raw.
+    For APP_AUTH wire sessions the effective u32 is SAS_APP_AUTH_PAD_U32 (0x02_00_00_00),
+    not the TouchCommand X509 serial.
     """
     return hashlib.md5((int(serial_u32) & 0xFFFFFFFF).to_bytes(4, "big")).digest()
 
@@ -828,7 +836,7 @@ def extract_pkcs7_cert_serials(p7b_pem_or_der: bytes) -> list[dict[str, Any]]:
 def summarize_sas_wire_fields(method: str | None, raw_fields: dict | None) -> dict[str, Any]:
     """Structured SAS fields for B3/HU jsonl — serial / challenge / login sig.
 
-    Enables Test A (pad = MD5(serial_u32)) without touching private keys.
+    Enables Test A (pad = MD5(u32); APP_AUTH → 0x02000000) without touching private keys.
     """
     method = method or ""
     fields = raw_fields or {}
@@ -845,7 +853,7 @@ def summarize_sas_wire_fields(method: str | None, raw_fields: dict | None) -> di
             out["cert_cns"] = meta.get("cns")
             out["cert_types"] = meta.get("cert_types")
             out["cert_serials"] = meta.get("serials")
-            # Prefer APP_AUTH leaf serial when present in CN list, else all serials
+            out["uses_app_auth_xor"] = meta.get("uses_app_auth_xor")
             serials = meta.get("serials") or []
             app_auth = [
                 s
@@ -854,10 +862,26 @@ def summarize_sas_wire_fields(method: str | None, raw_fields: dict | None) -> di
             ]
             pick = app_auth[0] if app_auth else (serials[0] if serials else None)
             if pick:
+                # X509 serial of signing leaf (identity / A↔B) — keep for correlation
+                out["signer_cn"] = pick.get("cn")
+                out["signer_serial_hex"] = pick.get("serial_hex")
+                out["signer_serial_u32"] = pick.get("serial_u32")
+            # Pad input: APP_AUTH path uses CertificateType u32 0x02000000 (wire FACT),
+            # not the X509 serial. Non-APP_AUTH falls back to leaf serial if present.
+            if meta.get("uses_app_auth_xor") or app_auth:
+                out["effective_serial_u32"] = SAS_APP_AUTH_PAD_U32
+                out["effective_serial_hex"] = f"{SAS_APP_AUTH_PAD_U32:08x}"
+                out["effective_cn"] = (pick or {}).get("cn")
+                out["effective_pad16_hex"] = sas_pad16_from_serial_u32(
+                    SAS_APP_AUTH_PAD_U32
+                ).hex()
+                out["pad_u32_source"] = "APP_AUTH_CertificateType"
+            elif pick:
                 out["effective_serial_u32"] = pick.get("serial_u32")
                 out["effective_serial_hex"] = pick.get("serial_hex")
                 out["effective_cn"] = pick.get("cn")
                 out["effective_pad16_hex"] = pick.get("pad16_hex")
+                out["pad_u32_source"] = "x509_serial"
         except Exception as exc:  # noqa: BLE001
             out["cert_inspect_error"] = str(exc)
 

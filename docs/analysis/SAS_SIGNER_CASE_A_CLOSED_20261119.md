@@ -8,12 +8,14 @@ source: technology-audit libaudio-signchallenge-pipeline-2026-11-19 (CASE A)
   FUNCTION-NOTES: …/FUNCTION-NOTES.md
 lib_sha256: 7bd16da13dc2662e505955425b16ce1facd78dbd81749356c3895d3f2b61ca90
 updates: GATE_APP_AUTH · FIELD_DAY · DEEP_FORENSIC_ETCH_SAS §6.2 · cursor rule
+wire_validation: SAS_PAD_RSA_VERIFY_LAB_20261120.md (8/8) · SAS_STATUS_CRYPTO_CLOSED_20261120.md
 ```
 
 ## Verdict
 
 > Client-side SAS signing is a **local OEM-app native component** (CASE A), not Keystore/TEE, Binder IPC, or `/data/Asset` on this path.  
-> **Field blocker remains HU acceptance** of the cert/sign constellation — mechanism ≠ acceptance.
+> **Wire validation (2026-11-20):** Pad-Formel + PKCS#1 + Signer↔Wire-Cert = **FACT** (8/8 RSA-VERIFY).  
+> **Field blocker remains F20 HU acceptance** (Gate B) — mechanism ≠ acceptance; Lab ≠ Field.
 
 ```text
 SecurityModule.signChallenge()
@@ -27,21 +29,29 @@ EVP_PKEY_sign()                 (static OpenSSL in libaudio.so)
 512-byte RSA signature
 ```
 
-## Crypto pipeline (FACT — verified against audit §B)
+## Crypto pipeline (FACT — audit §B + Wire 2026-11-20)
 
 ```text
 challenge[16]                         FACT — other lengths rejected
       ↓
-pad16  = MD5(cert_serial_u32)         FACT — serial hashed to 16 B; NOT raw serial in XOR
+pad16  = MD5(u32_be)                  FACT — value hashed to 16 B; NOT raw XOR
       ↓
 xored  = challenge[16] XOR pad16      FACT — NEON 16-byte eor
       ↓
 digest = MD5(xored)                   FACT — EVP_md5, DigestUpdate(len=0x10)
       ↓
-sig    = RSA EVP_PKEY_sign(digest)    FACT — RSA-4096 → typically 512 B
+sig    = RSA EVP_PKEY_sign(digest)    FACT — RSA-4096, PKCS#1 v1.5, DigestInfo-MD5 → 512 B
 ```
 
-**Claim hygiene:** Do **not** write “XOR with cert_serial”. The serial enters only as **MD5(serial_u32) → pad**. Wrong pad reconstruction breaks later wire↔APK correlation.
+**Wire FACT (lab 2026-11-20):** For APP_AUTH sessions the pad u32 is **`0x02000000`**
+(`MD5(02 00 00 00)`), **not** the TouchCommand X509 serial `0x0AA9`.  
+RSA-VERIFY against the wire leaf public key: **8/8 VALID**; 2³² brute unique hit `0x02000000`.  
+See [`SAS_PAD_RSA_VERIFY_LAB_20261120.md`](SAS_PAD_RSA_VERIFY_LAB_20261120.md) ·
+[`SAS_STATUS_CRYPTO_CLOSED_20261120.md`](SAS_STATUS_CRYPTO_CLOSED_20261120.md).
+
+**Claim hygiene:** Do **not** write “XOR with cert_serial”. The pad input is
+**MD5(u32) → pad**; on the APP_AUTH path that u32 is the CertificateType-shaped
+constant `0x02000000`, not the X509 serial.
 
 ## Key / signer source (claim hygiene)
 
@@ -68,6 +78,8 @@ MyBMW APK
 
 Init loads blob via `AudioModule_a` → parse `@0xca93c` (FACT presence). Unwrap into live `EVP_PKEY` is in-process PBE; passphrase details intentionally not pursued.
 
+**MyBMW role (post Wire FACT):** not required for protocol *math*; still the practical *sign carrier* until a clean standalone signer exists (no key extract).
+
 ## What is PKCS#12 here (architecture note)
 
 PKCS#12 (`.p12`/`.pfx`, RFC 7292) is an **encrypted container** for private key + certs — **not** a wire protocol. In this SO:
@@ -83,81 +95,73 @@ PKCS#12 (DER)
 
 Load sketch: passphrase → PBE → decrypt → unwrap PKCS#8 → `EVP_PKEY`.  
 `sas_login` itself is **outside** the container; it only carries the **signature bytes** from `signChallenge()`.  
-3DES-PBE is weak; audit still **STOP**s unwrap — architecture value exhausted; further work = key material.
+3DES-PBE is weak; audit still **STOP**s unwrap — architecture value exhausted; further work ≠ key material.
 
 ## APP_AUTH / certificate binding
 
 | Observation | Class |
 |-------------|-------|
-| Sign uses X509 at `context+0x18` serial for XOR **pad** | **FACT** |
+| APP_AUTH wire pad u32 = `0x02000000` | **FACT** (RSA-VERIFY + 2³²) |
+| Sign path uses context X509; Wire leaf = TouchCommand APP_AUTH | **FACT** (CN + RSA-VERIFY) |
 | Fallback embed cert has `SAS.CertificateType=APP` attrs | **FACT** |
 | Literal `APP_AUTH` / `sas_certificate` in `libaudio.so` | **NOT_FOUND** |
 | Java CertMangling / merge for wire `sas_certificate` | prior audit — **not re-proven** by PR #44 |
 
-**APP_AUTH epistemic status:** **Partial CONFIRMED** (serial→pad→sign linkage). Not “APP_AUTH fully reconstructed.”
+**APP_AUTH epistemic status:** Wire pad + Signer↔Cert = **FACT**. Literal native string still **NOT_FOUND**.
 
 ## Dual gate (do not collapse)
 
 ```text
-A) Client can produce sas_login signature   → mechanism FACT (CASE A)
-B) F20 HU accepts cert + signature context → OPEN (Field)
+A) Client formula + Cert↔Sig (Wire)     → CLOSED FACT (2026-11-20)
+B) F20 HU accepts cert + signature      → OPEN (Field)
 ```
 
-“SAS is not an unknown protocol problem” applies to **(A) client sign path only**.  
-Overall Field blocker stays **(B)** — HU validates against the certs it received in `sas_certificate` (`context+0x18` / merge chain). Lab stub `AUTHENTICATED` ≠ Field.
+Lab stub / lab MyBMW `rhmi_*` ≠ Field `AUTHENTICATED`.
 
 ### VIN-derived key?
 
 | Claim | Status |
 |-------|--------|
 | Embedded RSA key in `libaudio.so` PKCS#12 | **FACT** |
-| `private_key = f(VIN)` | **HYPOTHESIS / not evidenced** |
+| `private_key = f(VIN)` | **HYPOTHESIS / REJECTED as next step** |
 | VIN / account / vehicle profile selects which cert/key | **UNKNOWN** (not shown; do not investigate first) |
 
-PR #44 shows **embedded software key**, not a VIN-KDF architecture. Next work is **cert↔key identity / wire pad check**, not VIN→key.
+### A ↔ B identity
 
-### A ↔ B identity (largest open link)
+| Link | Status |
+|------|--------|
+| Wire Cert public key ↔ login_sig | **FACT** (8/8 RSA-VERIFY) |
+| embedded PKCS#12 ↔ Wire Cert leaf | **INFERENCE** (observe-only Cert-Bags; no unwrap) |
 
-```text
-embedded PKCS#12 (A)  ↔  wire sas_certificate / APP_AUTH context (B)
-```
+### Next Field decode (Gate B)
 
-PKEY lookup name = **FACT**; alias maps to embedded PKCS#12 identity = **INFERENCE**.  
-Only when A and B match does: cert → serial → pad → sign(matching key) → HU accept become a closed story.
+One F20 B3 run with authorized APP_AUTH constellation:
 
-### Field decode variables (next car / B3 run)
+1. `sas_certificate` + challenge + `sas_login` + HU result  
+2. Offline: `tools/sas_pad_crosscheck.py --from-bcl-jsonl` (expect VALID)  
+3. Gate B: `AUTHENTICATED` / subsequent `rhmi_*`?
 
-Separate cleanly:
-
-1. **Certificate chain** (CNs, `SAS.Digests`, **serial** of effective signing cert)
-2. **Signature correctness** (pad = MD5(serial_u32); XOR; MD5; RSA-4096) — Test A needs no private key
-3. **Session structure** (BCL/Etch/mids) — already strong
-
-Hard decode anchor: capture **effective cert serial** + challenge + `sas_login` from a real AAIdrive/MyBMW session, run `tools/sas_pad_crosscheck.py` — strongest APK↔wire bridge without key extraction.
+**Not next:** further `libaudio.so` dig, VIN→key, PKCS#12 unwrap.
 
 ## Logging coverage (bt-analyzer sources)
 
-| Datum | Before 2026-11-20 | After (this update) |
-|-------|-------------------|---------------------|
+| Datum | Before 2026-11-20 | After |
+|-------|-------------------|-------|
 | Etch method + mid correlation (B3) | yes | yes |
-| Raw bins both dirs (B3) | yes | yes |
-| PKCS7 CNs / cert_types | HU `inspect_pkcs7` CNs only | + **serials / serial_u32 / pad16** |
-| Challenge 16 B hex | often only in raw / memory | **jsonl** (`challenge_hex`) on B3 + f20_sim |
-| Login sig 512 B | `sig_len` only | **sha256 + hex** (≤640 B) |
-| Structured Test A input | **GAP** | `sas` object on B3 etch; HU `sas_challenge_tx` enriched |
+| PKCS7 CNs / cert_types / serials | partial | + **signer_serial_*** + **effective_serial_u32=0x02000000** (APP_AUTH) |
+| Challenge / login_sig | often raw only | **jsonl** hex + sha256 |
+| RSA-VERIFY offline | **GAP** | `sas_pad_crosscheck.py --from-bcl-jsonl` |
 
-Offline helper: `tools/sas_pad_crosscheck.py --from-jsonl b3.jsonl`  
-Helpers: `etch_codec.sas_pad16_from_serial_u32`, `summarize_sas_wire_fields`, `extract_pkcs7_cert_serials`.
+Helpers: `etch_codec.sas_pad16_from_serial_u32`, `SAS_APP_AUTH_PAD_U32`, `summarize_sas_wire_fields`.
 
-**Still not logged as FACT:** dynamic proof that PKEY alias == embedded PKCS#12 identity (observe-only optional; no dump).
-
-## Closed architecture chain (client)
+## Closed architecture chain (client + Wire)
 
 ```text
 Bluetooth SPP → BCL → Etch OPEN → sas_certificate
   → 16-byte challenge
-  → signChallenge → libaudio (MD5(serial) XOR → MD5 → EVP_PKEY_sign)
+  → pad = MD5(0x02000000) → XOR → MD5 → EVP_PKEY_sign
   → 512-byte signature → sas_login
+  → [Lab] rhmi_*     [F20] ???
 ```
 
 ## What we must no longer investigate
@@ -166,6 +170,8 @@ Bluetooth SPP → BCL → Etch OPEN → sas_certificate
 2. TEE / Android Keystore as required for this path.
 3. `/data/Asset` as live private-key source for `signChallenge`.
 4. PKCS#12 passphrase unwrap / private-key export.
+5. Pad u32 = X509 serial on APP_AUTH path (wire-**REJECTED**).
+6. Further native dig of `libaudio.so` for crypto formula (Wire-closed).
 
 Optional only (audit §G): observe-only confirm which PKEY alias binds after init — **no dump**.
 
@@ -173,28 +179,28 @@ Optional only (audit §G): observe-only confirm which PKEY alias binds after ini
 
 ### Do
 
-1. Treat client SAS signing as **CASE A OEM native block**; Field work = **HU acceptance**.
-2. Arm B = **live** MyBMW `SecurityModule` on phone — no key on Pi (MyBMW optional for protocol *math*, still needed for Field *accept* until matching cert+sign exists).
-3. Next capture: real session → serial + challenge + login → `tools/sas_pad_crosscheck.py` (Test A). Prefer B3 for Phone↔F20.
+1. Treat crypto + Wire A↔B as **closed**; Field work = **F20 HU acceptance** (Gate B).
+2. Arm B = **live** MyBMW `SecurityModule` on phone until standalone signer — no key on Pi.
+3. Next capture: F20 B3 → Cert + challenge + login → `sas_pad_crosscheck.py` + AuthState.
 4. Keep `--stop-on-authenticated` + snapshot; one variable = credential constellation.
-5. Keep APP_AUTH wording **Partial CONFIRMED**; pad = **MD5(serial_u32)**.
-6. Distinguish FACT vs INFERENCE for PKEY-alias↔PKCS#12 mapping.
-7. After pad matches: compare **public** cert identity (wire vs PKCS#12 inventory) — still no private-key export.
+5. Distinguish FACT (Wire Cert↔Sig) vs INFERENCE (PKCS#12↔Wire leaf).
+6. After Gate B: evaluate standalone sign *without* key extraction.
 
 ### Don't
 
-1. Write “XOR with cert_serial” (omit MD5 pad step).
+1. Write “XOR with cert_serial” / treat `0x0AA9` as APP_AUTH pad.
 2. Mark “PKEY alias = embedded PKCS#12 identity” as FACT.
 3. Unwrap PKCS#12 / recover passphrase / ship private keys.
-4. Resume Binder/TEE/Asset hunts for this signature path.
-5. Pursue **VIN→key** without a concrete native dataflow hit (currently unevidenced).
-6. Claim Field `AUTHENTICATED` from Lab stub or from CASE A alone.
+4. Resume Binder/TEE/Asset / libaudio formula hunts.
+5. Pursue **VIN→key**.
+6. Claim Field `AUTHENTICATED` from Lab stub or crypto alone.
 
 ## Related docs
 
+- [`SAS_STATUS_CRYPTO_CLOSED_20261120.md`](SAS_STATUS_CRYPTO_CLOSED_20261120.md) — **canonical status**
+- [`SAS_PAD_RSA_VERIFY_LAB_20261120.md`](SAS_PAD_RSA_VERIFY_LAB_20261120.md)
 - [`GATE_APP_AUTH_ACCEPTANCE_20261118.md`](GATE_APP_AUTH_ACCEPTANCE_20261118.md)
 - [`FIELD_DAY_ONE_VARIABLE_GATE.md`](FIELD_DAY_ONE_VARIABLE_GATE.md)
 - [`GATE_E2E_COMPARISON.md`](GATE_E2E_COMPARISON.md)
 - [`DEEP_FORENSIC_ETCH_SAS_20261116.md`](DEEP_FORENSIC_ETCH_SAS_20261116.md) §6.2
 - [`STATE_MACHINE_CHANGELOG_20261118.md`](STATE_MACHINE_CHANGELOG_20261118.md)
-- Lab B3 full-auth freeze: `docs/evidence/LAB_B3_TCP_FULLAUTH_20261119T091257Z/`

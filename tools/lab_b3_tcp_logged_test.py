@@ -57,7 +57,9 @@ def main() -> int:
     )
     args = ap.parse_args()
     args.full_auth = not args.cert_only
-    out: Path = args.out
+    # Absolute paths: B3 subprocess uses cwd=TOOLS, so relative --log/--raw-dir
+    # would land under tools/docs/... and break SUMMARY ok checks.
+    out: Path = args.out.expanduser().resolve()
     out.mkdir(parents=True, exist_ok=True)
     (out / "raw").mkdir(exist_ok=True)
 
@@ -94,26 +96,47 @@ c, addr = srv.accept()
 L({"event": "tcp_hu_accept", "peer": list(addr)})
 c.settimeout(0.4)
 t_end = time.time() + float(sys.argv[4])
+_seen = 0
+_SAS_KEYS = (
+    "challenge_hex", "challenge_len", "effective_serial_u32", "effective_cn",
+    "effective_pad16_hex", "pad_u32_source", "cert_types", "cert_cns",
+    "login_sig_sha256", "login_sig_hex", "sig_len",
+)
+def flush_sess():
+    global _seen
+    while _seen < len(sess.events):
+        e = sess.events[_seen]
+        _seen += 1
+        row = {"event": "sess", "inner": e.get("event"), "cmd_name": e.get("cmd_name"),
+               "dir": e.get("dir"), "method": e.get("method"), "src": e.get("src"), "dest": e.get("dest")}
+        for k in _SAS_KEYS:
+            if k in e:
+                row[k] = e.get(k)
+        L(row)
 while time.time() < t_end:
+    timed_out = False
     try:
         data = c.recv(8192)
     except socket.timeout:
+        timed_out = True
         data = b""
     except Exception as e:
         L({"event": "hu_err", "error": str(e)})
         break
-    if data:
-        L({"event": "rx", "n": len(data), "hex_head": data[:64].hex()})
-        for chunk in sess.on_bytes(data):
-            if chunk:
-                c.sendall(chunk)
-                L({"event": "tx", "n": len(chunk), "hex_head": chunk[:64].hex()})
-    else:
+    if timed_out:
         time.sleep(0.02)
+        continue
+    if not data:
+        flush_sess()
+        break  # peer EOF — flush before lab harness SIGKILLs us
+    L({"event": "rx", "n": len(data), "hex_head": data[:64].hex()})
+    for chunk in sess.on_bytes(data):
+        if chunk:
+            c.sendall(chunk)
+            L({"event": "tx", "n": len(chunk), "hex_head": chunk[:64].hex()})
+    flush_sess()
+flush_sess()
 L({"event": "hu_done", "sess_event_n": len(sess.events)})
-for e in sess.events:
-    L({"event": "sess", "inner": e.get("event"), "cmd_name": e.get("cmd_name"),
-       "dir": e.get("dir"), "method": e.get("method"), "src": e.get("src"), "dest": e.get("dest")})
 try:
     c.close()
 except Exception:

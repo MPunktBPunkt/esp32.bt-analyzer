@@ -145,20 +145,23 @@ Aus den im Lab mitgeschnittenen Original-PKCS7-Ketten des OnePlus (`LAB_DUMMY_ET
 1. **Drei-Zertifikate-Struktur jedes `.p7b`-Bundles (`CertMangling.mergeBMWCert`):**
    - **CA-Zertifikat:** `CN=a4a_android-ca`, ausgestellt von **`CN=a4a_root-ca`** (**RSA-2048**).
    - **App-Permission-Zertifikat (`SAS.CertificateType=APP`, RSA-4096):** trägt die Rechte (`CDS=true&RHMI=true&…`) und die **SHA-256-Whitelist** `SAS.Digests.RHMIDescriptions`, `ImageDatabases`, `TextDatabases` (z. B. `src10`: `a4a_app_myBMW.perm___applicationmanager_…`, `src11`: `a4a_app_mobile___com_smartthings_android_00.00.03`, `src12`: `a4a_app_myBMW.perm___cdsbaseapp_…`). Dafür braucht die App **keinen** eigenen privaten Schlüssel!
-   - **Gemeinsames Signing-Zertifikat (`SAS.CertificateType=APP_AUTH`, RSA-4096):** **`CN=a4a_app_BMWTouchCommand_Connection_00.00.10`**! Weil dieses Blatt `APP_AUTH` und RSA-4096 ist, gilt auf dem F20 zwingend die **XOR-Signaturvariante** (`challenge XOR MD5(02 00 00 00)`, danach `MD5withRSA` → **512 Byte Signatur** = `559 B` `sas_login`-Frame!).
+   - **Gemeinsames Signing-Zertifikat (`SAS.CertificateType=APP_AUTH`, RSA-4096):** **`CN=a4a_app_BMWTouchCommand_Connection_00.00.10`**! Weil dieses Blatt `APP_AUTH` und RSA-4096 ist, gilt die **XOR-Signaturvariante** (`challenge XOR MD5(02 00 00 00)`, danach `MD5withRSA` → **512 Byte Signatur**).
+     **Wire FACT 2026-11-20:** Pad-u32 = **`0x02000000`** (nicht X509-Serial `0x0AA9`); RSA-VERIFY 8/8 + 2³²-Brute — [`SAS_PAD_RSA_VERIFY_LAB_20261120.md`](SAS_PAD_RSA_VERIFY_LAB_20261120.md).
 2. **Wie modernes MyBMW (`de.bmw.connected.mobile20.*`) ohne Binder-Export signiert (`SecurityModuleManager.kt:69–100`):**
    - AAIdrive lädt per `context.createPackageContext("de.bmw.connected.mobile20.row", CONTEXT_IGNORE_SECURITY | CONTEXT_INCLUDE_CODE)` direkt die native JNI-Klasse `com.bmwgroup.connected.core.security.SecurityModule` (Fallback `AudioModule`) aus der installierten MyBMW-APK in den eigenen Prozess (`init("bmw")` → `createSecurityContext` → `getCertificates` → `signChallenge`).
 
-3. **CASE A closed (2026-11-19)** — [`SAS_SIGNER_CASE_A_CLOSED_20261119.md`](SAS_SIGNER_CASE_A_CLOSED_20261119.md)  
+3. **CASE A closed (2026-11-19) + Wire crypto closed (2026-11-20)** —  
+   [`SAS_STATUS_CRYPTO_CLOSED_20261120.md`](SAS_STATUS_CRYPTO_CLOSED_20261120.md) ·  
+   [`SAS_SIGNER_CASE_A_CLOSED_20261119.md`](SAS_SIGNER_CASE_A_CLOSED_20261119.md)  
    (upstream: [technology-audit libaudio-signchallenge-pipeline](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/README.md)):
    - Call chain **FACT:** `AudioModule.g` → `native_sign_impl` → `EVP_PKEY_sign` → **512 B RSA**.
-   - Crypto **FACT:** `pad16 = MD5(cert_serial_u32)` → `xored = challenge XOR pad16` → `digest = MD5(xored)` → RSA.  
-     (**Not** “XOR with raw serial”.)
+   - Crypto **FACT:** `pad16 = MD5(u32_be)` → `xored = challenge XOR pad16` → `digest = MD5(xored)` → RSA PKCS#1 v1.5 DigestInfo-MD5.  
+     APP_AUTH wire: **u32 = `0x02000000`** (**not** X509 serial).
+   - Signer ↔ Wire-Cert: **FACT** (RSA-VERIFY). PKCS#12 ↔ Wire leaf: **INFERENCE**.
    - Key blob **FACT:** embedded PKCS#12 in `libaudio.so` (`pkcs8ShroudedKeyBag` / 3DES-PBE OIDs).  
      PKEY alias `"com.bmwgroup.connected.bmw"` = **FACT** (lookup); alias↔PKCS#12 identity = **INFERENCE**.
-   - **REJECTED** on path: `/data/Asset`, Keystore/TEE, Binder/IPC signer.
-   - Literal `APP_AUTH` **NOT_FOUND** → APP_AUTH **Partial CONFIRMED**.
-   - **STOP:** PKCS#12 unwrap / key extraction. Field gate = HU **acceptance**, not further native dig.
+   - **REJECTED** on path: `/data/Asset`, Keystore/TEE, Binder/IPC signer, VIN→key, further libaudio formula dig.
+   - **STOP:** PKCS#12 unwrap / key extraction. Remaining gate = **F20 HU acceptance** (Gate B).
 
 ### 6.3 Wichtige Korrektur zu RHMI (`rhmi_getCapabilities` ≠ Widget-Baum!)
 

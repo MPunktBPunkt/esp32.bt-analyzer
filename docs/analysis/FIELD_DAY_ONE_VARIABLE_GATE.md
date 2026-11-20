@@ -1,19 +1,20 @@
 # Field Day — One-Variable Auth Gate
 
 ```yaml
-status: READY for car
-variable: APP / APP_AUTH authorization context only (HU acceptance)
+status: READY for car — Gate B only
+variable: APP / APP_AUTH authorization context (F20 HU acceptance)
 constants: phone, BT link, BCL, Etch, session build, payloads, timing
-signer: CASE A closed — MyBMW libaudio.so / EVP_PKEY_sign (do not dig native further)
+crypto: CLOSED — pad 0x02000000 · RSA-VERIFY 8/8 lab · see SAS_STATUS_CRYPTO_CLOSED_20261120.md
+signer: CASE A closed — do not dig libaudio further
 stop_rule: AUTHENTICATED → snapshot → END (no RHMI/AM/CDS/PiDrive)
 ```
 
-Signer localization: [`SAS_SIGNER_CASE_A_CLOSED_20261119.md`](SAS_SIGNER_CASE_A_CLOSED_20261119.md).  
-Field question is **HU accept/reject**, not “where is the key.”
+Status: [`SAS_STATUS_CRYPTO_CLOSED_20261120.md`](SAS_STATUS_CRYPTO_CLOSED_20261120.md).  
+Field question is **HU accept/reject**, not “where is the key” / “what is the formula.”
 
 ## Question (exactly one)
 
-> What changes on the wire when the rejected auth constellation is replaced by an authorized APP/APP_AUTH constellation?
+> Akzeptiert der echte F20 genau dieses `sas_certificate` + die korrekt erzeugte Signatur (`pad=MD5(0x02000000)`)?
 
 ```text
 RFCOMM / BCL_ACTIVE
@@ -22,25 +23,28 @@ sas_certificate
         ↓
 challenge
         ↓
+pad 0x02000000 → XOR → MD5 → RSA-4096
+        ↓
 sas_login
         ↓
-AUTHENTICATED   ← STOP + snapshot
+AUTHENTICATED / rhmi_*   ← STOP + snapshot   (= Gate B)
 ```
 
 ## Run A — Auth Gate (mandatory)
 
 1. Pair/connect as usual (OnePlus ↔ F20). ACL AUTH+ENCRYPT.
-2. Start capture: btmon + phone jsonl / agent with `--full-client` path using **authorized** SecurityModule context (Arm B). Optional Arm A first with lab/stub for reject baseline same day.
+2. Start capture: btmon + B3 relay / phone jsonl with **authorized** SecurityModule context (Arm B). Optional Arm A first with lab/stub for reject baseline same day.
 3. Agent flags: `--stop-on-authenticated` (and optionally `--stop-on-auth-reject` for Arm A).
 4. On `AuthState=AUTHENTICATED`: **freeze** — write `AUTHENTICATED_SNAPSHOT.json` + raw frames; **end session**.
 5. Do **not** TX AM / RHMI / Resource / CDS / PiDrive in Run A.
+6. Offline: `PYTHONPATH=tools python3 tools/sas_pad_crosscheck.py --from-bcl-jsonl …` → expect `VALID`.
 
 Arm table:
 
 | Arm | Credential | Expected |
 |-----|------------|----------|
 | A | Lab/stub (known reject) | `CERTIFICATE_REJECTED` or `LOGIN_REJECTED` |
-| B | Authorized APP + APP_AUTH | `AUTHENTICATED` **only** if HU reply positive + `inReplyTo` correlated |
+| B | Authorized APP + APP_AUTH (live MyBMW) | `AUTHENTICATED` **only** if HU reply positive + `inReplyTo` correlated |
 
 ## Run B — Topology (only if A ACCEPT)
 
@@ -56,36 +60,32 @@ Map F20 handles + real Model/Action/Resource IDs. Still **no** PiDrive integrati
 
 | Artifact | Role |
 |----------|------|
-| `tools/fixtures/auth_golden_lab_stub_login_ok.json` | Byte sequence TX/RX + mid correlation (LAB) |
-| `tools/lab_auth_ab_matrix.py` | A/B + freeze + field replay |
-| `tests/host/test_auth_state_p1.py` T5 | LOGIN_SENT ≠ AUTHENTICATED |
-| `docs/analysis/GATE_E2E_COMPARISON.md` | Field vs Lab vs Replay table |
-| B3 relay selftest | Smoke only — no further optimization |
+| `docs/analysis/SAS_PAD_RSA_VERIFY_LAB_20261120.md` | Crypto + A↔B Wire FACT (8/8) |
+| `tools/sas_pad_crosscheck.py` | RSA-VERIFY offline |
+| `tools/fixtures/auth_golden_lab_stub_login_ok.json` | Byte sequence (LAB) |
+| `tools/lab_auth_ab_matrix.py` | A/B + freeze |
+| `docs/analysis/GATE_E2E_COMPARISON.md` | Field vs Lab vs Replay |
 
-## Explicitly do **not** touch tomorrow
+## Explicitly do **not** touch
 
-write11/EAGAIN · Dual-ESP discovery · Fake-Auth · Lab→F20 ID mapping · Resource upload · PiDrive seq · RHMI soak · checkResource · CDS guessing · ESP HCI-WiFi tuning · PKCS#12 unwrap / key extraction · Binder/TEE signer hunts
+write11/EAGAIN · Dual-ESP discovery · Fake-Auth · Lab→F20 ID mapping · Resource upload · PiDrive · RHMI soak · PKCS#12 unwrap · Binder/TEE hunts · libaudio formula dig · VIN→key
 
 Arm B means **live MyBMW SecurityModule** on phone — never a copied BMW private key on the Pi.
 
-### Capture extras (pad cross-check / Test A)
+### Capture extras (RSA-VERIFY)
 
-On any Field/B3 session with real AAIdrive/MyBMW certs, B3/HU jsonl must include (now structured):
+B3/HU jsonl must allow reassembly of:
 
-1. Effective signing-cert **serial_u32** (+ CN) from `sas_certificate`  
+1. `sas_certificate` (PKCS7 PEM/DER)  
 2. HU **challenge_hex** (16 B)  
-3. Phone **login_sig_hex** / sha256 (512 B)
-
-Then:
+3. Phone **login_sig** (512 B)
 
 ```bash
-PYTHONPATH=tools python3 tools/sas_pad_crosscheck.py --from-jsonl /path/to/b3.jsonl
-# or: --serial-u32 … --challenge-hex …
+PYTHONPATH=tools python3 tools/sas_pad_crosscheck.py --from-bcl-jsonl /path/to/b3.jsonl
 ```
 
-Pad recipe (no key): `pad = MD5(serial_u32_be); xored = challenge XOR pad; digest = MD5(xored)`.  
-**Not** next: VIN→key. **Yes** next: serial pad match, then public A↔B cert identity.  
-VIN-derived key = unevidenced hypothesis — see [`SAS_SIGNER_CASE_A_CLOSED_20261119.md`](SAS_SIGNER_CASE_A_CLOSED_20261119.md).
+Pad recipe (APP_AUTH): `pad = MD5(0x02000000_be); xored = challenge XOR pad; digest = MD5(xored)`.  
+**Not** X509 serial. **Not** VIN→key.
 
 ## Operator one-liner (host)
 
@@ -98,4 +98,4 @@ python3 /tmp/bcl_dummy/bcl_dummy_hu_agent.py b2a-tx \
   --seconds 90 --log /tmp/bcl_dummy/FIELD_AUTH_GATE.jsonl
 ```
 
-Replace stub cert path with authorized APP context when available — **never** export BMW private keys.
+Prefer B3 Phone↔F20 relay for full wire capture. Never export BMW private keys.

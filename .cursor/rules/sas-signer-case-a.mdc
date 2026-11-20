@@ -1,30 +1,41 @@
 ---
-description: SAS signer CASE A closed — no key extraction; Field gate is HU acceptance only
+description: SAS crypto closed (Wire FACT); Field gate is F20 HU acceptance only
 alwaysApply: true
 ---
 
-# SAS Signer CASE A (closed)
+# SAS Signer / Crypto (closed) — Gate B open
 
-Canonical: `docs/analysis/SAS_SIGNER_CASE_A_CLOSED_20261119.md`
+Canonical status: `docs/analysis/SAS_STATUS_CRYPTO_CLOSED_20261120.md`  
+Native CASE A: `docs/analysis/SAS_SIGNER_CASE_A_CLOSED_20261119.md`  
+Lab RSA-VERIFY: `docs/analysis/SAS_PAD_RSA_VERIFY_LAB_20261120.md`
 
-## FACT (crypto)
+## FACT (crypto + Wire)
 
-`AudioModule.g` → `native_sign_impl` → `pad=MD5(serial_u32)` → `challenge XOR pad` → `MD5(xored)` → `EVP_PKEY_sign` → 512 B.  
+`AudioModule.g` → `native_sign_impl` → `pad=MD5(u32)` → `challenge XOR pad` → `MD5(xored)` → `EVP_PKEY_sign` → 512 B.  
+APP_AUTH pad u32 = **`0x02000000`** (not X509 serial `0x0AA9`) — lab RSA-VERIFY **8/8 VALID** + 2³² brute unique hit.  
+PKCS#1 v1.5 + DigestInfo-MD5. Signer ↔ Wire-Cert = **FACT**.  
 Embedded PKCS#12 in `libaudio.so` = FACT. PKEY name `"com.bmwgroup.connected.bmw"` = FACT.  
-Alias↔PKCS#12 identity = **INFERENCE** only. Not Keystore/TEE/Binder/`/data/Asset` on this path.  
-APP_AUTH = **Partial CONFIRMED** (literal string NOT_FOUND).
+Alias↔PKCS#12 identity = **INFERENCE** only. Not Keystore/TEE/Binder/`/data/Asset` on this path.
+
+## Dual gate
+
+- **Gate A** (formula + Cert↔Sig): **CLOSED**
+- **Gate B** (F20 accepts cert+sig): **OPEN** — one Field B3 run
+- Lab `rhmi_*` ≠ Field `AUTHENTICATED`
 
 ## Do not
 
-- Write “XOR with cert_serial” (pad is MD5 of serial)
+- Write “XOR with cert_serial” / use X509 serial as APP_AUTH pad
 - Unwrap PKCS#12 / recover passphrase / extract keys
-- Resume Binder / TEE / Asset hunts for this path
-- Claim Field `AUTHENTICATED` from Lab stub or CASE A alone
+- Resume Binder / TEE / Asset hunts or further libaudio dig for this path
+- Pursue VIN→key (unevidenced)
+- Claim Field `AUTHENTICATED` from Lab stub or crypto alone
+- Treat MyBMW as required for protocol *math* (it is not)
 
 ## Do
 
-- Field Arm B = **live** MyBMW SecurityModule (no key on Pi)
-- One-variable gate: F20 **acceptance** only
-- Capture **serial_u32 + challenge_hex + login_sig** (B3 `sas` / HU events); run `tools/sas_pad_crosscheck.py`
-- Prefer pad/A↔B identity checks over VIN→key (unevidenced)
+- Next: F20 B3 one-variable gate — HU **acceptance** only
+- Capture Cert + challenge + login_sig; `tools/sas_pad_crosscheck.py --from-bcl-jsonl`
+- Arm B = live MyBMW SecurityModule until standalone signer exists (no key on Pi)
+- Prefer pad/A↔B public checks over key extraction
 - Freeze on `AUTHENTICATED` + snapshot; no AM/RHMI in that run

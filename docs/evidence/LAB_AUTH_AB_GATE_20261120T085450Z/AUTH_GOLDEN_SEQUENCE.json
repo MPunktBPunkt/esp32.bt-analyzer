@@ -1,0 +1,167 @@
+{
+  "claim_level": "LAB",
+  "fixture": "auth_golden_lab_stub_login_ok",
+  "note": "Positive LAB stub SAS sequence \u2014 byte anchor for Field AUTHENTICATED comparison. Not FIELD PROTOCOL ACCEPTANCE.",
+  "required_auth_transitions": [
+    "CERTIFICATE_SENT",
+    "CHALLENGE_RECEIVED",
+    "LOGIN_SENT",
+    "AUTHENTICATED"
+  ],
+  "final_auth_state": "AUTHENTICATED",
+  "cert_mid": 1001,
+  "login_mid": 1002,
+  "auth_transitions_observed": [
+    {
+      "auth_state": "CERTIFICATE_SENT",
+      "msg_id": 1001,
+      "classification": null
+    },
+    {
+      "auth_state": "CHALLENGE_RECEIVED",
+      "msg_id": null,
+      "classification": null
+    },
+    {
+      "auth_state": "LOGIN_SENT",
+      "msg_id": 1002,
+      "classification": null
+    },
+    {
+      "auth_state": "AUTHENTICATED",
+      "msg_id": null,
+      "classification": "VOID_OK"
+    }
+  ],
+  "sequence": [
+    {
+      "step": "sas_certificate_tx",
+      "dir": "phone\u2192hu",
+      "method": "sas_certificate",
+      "msg_id": 1001,
+      "bcl_src": 10,
+      "bcl_dest": 4004,
+      "etch_body_len": 146,
+      "etch_body_sha256": "cc6ff69e279cf980680c13efbb523ca71878198a552abcd7e2bf4cead037c353",
+      "etch_body_hex": "deadbeef0000008a0386304ba8bb02866306b4688700000000000003e986144a776f8b846c2d2d2d2d2d424547494e20504b4353372d2d2d2d2d0a4d494942496a414e42676b71686b6947397730424151454641414f43415138414d49494243674b4341514541305a335653354a4a6364733378666e4c414253494d0a2d2d2d2d2d454e4420504b4353372d2d2d2d2d0a81",
+      "bcl_frame_hex": "0002000a0fa40092deadbeef0000008a0386304ba8bb02866306b4688700000000000003e986144a776f8b846c2d2d2d2d2d424547494e20504b4353372d2d2d2d2d0a4d494942496a414e42676b71686b6947397730424151454641414f43415138414d49494243674b4341514541305a335653354a4a6364733378666e4c414253494d0a2d2d2d2d2d454e4420504b4353372d2d2d2d2d0a81",
+      "auth_state_after_queue": "CERTIFICATE_SENT"
+    },
+    {
+      "step": "_result_sas_certificate_rx",
+      "dir": "hu\u2192phone",
+      "method": "_result_sas_certificate",
+      "msg_id": 201,
+      "in_reply_to": 1001,
+      "bcl_src": 10,
+      "bcl_dest": 4004,
+      "classification": "CHALLENGE",
+      "challenge_len": 16,
+      "challenge_hex": "5c50d72c81e1319ebcb4f690ae1683ea",
+      "etch_body_len": 67,
+      "etch_body_sha256": "84add515b41666fc9a01fe1feed9d1853d977e06ff283066da19699b5d06fc42",
+      "etch_body_hex": "deadbeef0000003b03869c6372b803868104fdc28b105c50d72c81e1319ebcb4f690ae1683ea86eda8c9a68700000000000003e9866306b4688700000000000000c981",
+      "bcl_frame_hex": "0002000a0fa40043deadbeef0000003b03869c6372b803868104fdc28b105c50d72c81e1319ebcb4f690ae1683ea86eda8c9a68700000000000003e9866306b4688700000000000000c981"
+    },
+    {
+      "step": "sas_login_tx",
+      "dir": "phone\u2192hu",
+      "method": "sas_login",
+      "msg_id": 1002,
+      "bcl_src": 10,
+      "bcl_dest": 4004,
+      "etch_body_len": 551,
+      "etch_body_sha256": "e296054f1cb117995492ab309f1fc6af6207b82768c72f37bc830e10381676be",
+      "etch_body_hex": "deadbeef0000021f03867e002a4d02866306b4688700000000000003ea86144a776f8b8502005c50d72c81e1319ebcb4f690ae1683ea0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000081",
+      "bcl_frame_hex": "0002000a0fa40227deadbeef0000021f03867e002a4d02866306b4688700000000000003ea86144a776f8b8502005c50d72c81e1319ebcb4f690ae1683ea0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000081",
+      "auth_state_after_queue": "LOGIN_SENT"
+    },
+    {
+      "step": "_result_sas_login_rx",
+      "dir": "hu\u2192phone",
+      "method": "_result_sas_login",
+      "msg_id": 202,
+      "in_reply_to": 1002,
+      "bcl_src": 10,
+      "bcl_dest": 4004,
+      "classification": "VOID_OK",
+      "challenge_len": null,
+      "challenge_hex": null,
+      "etch_body_len": 44,
+      "etch_body_sha256": "392b63d94a9e871c688ff553be93b257ba93ca00835cc7eb61f411add72f51eb",
+      "etch_body_hex": "deadbeef000000240386a6b0ffca0286eda8c9a68700000000000003ea866306b4688700000000000000ca81",
+      "bcl_frame_hex": "0002000a0fa4002cdeadbeef000000240386a6b0ffca0286eda8c9a68700000000000003ea866306b4688700000000000000ca81"
+    }
+  ],
+  "freeze_snapshot": {
+    "rhmi_state": "SAS_AUTHENTICATED",
+    "auth_state": "AUTHENTICATED",
+    "etch_stage": "bootstrap",
+    "bootstrap_state": "HANDLES_CREATING",
+    "pending_check_mid": null,
+    "open_txns": [
+      {
+        "msg_id": 1003,
+        "method": "ver_getVersion",
+        "type": null,
+        "bcl_src": 10,
+        "bcl_dest": 4004
+      },
+      {
+        "msg_id": 1004,
+        "method": "info_getSystemInfo",
+        "type": null,
+        "bcl_src": 10,
+        "bcl_dest": 4004
+      },
+      {
+        "msg_id": 1005,
+        "method": "rhmi_getCapabilities",
+        "type": null,
+        "bcl_src": 10,
+        "bcl_dest": 4004
+      },
+      {
+        "msg_id": 1006,
+        "method": "cds_create",
+        "type": null,
+        "bcl_src": 10,
+        "bcl_dest": 4004
+      },
+      {
+        "msg_id": 1007,
+        "method": "am_create",
+        "type": null,
+        "bcl_src": 10,
+        "bcl_dest": 4004
+      },
+      {
+        "msg_id": 1008,
+        "method": "rhmi_create",
+        "type": null,
+        "bcl_src": 10,
+        "bcl_dest": 4004
+      },
+      {
+        "msg_id": 1009,
+        "method": "av_create",
+        "type": null,
+        "bcl_src": 10,
+        "bcl_dest": 4004
+      }
+    ],
+    "plan_i": 0,
+    "uploads": 0,
+    "cache_hits": 0,
+    "wait_class": null,
+    "last_result_class": "VOID_OK",
+    "last_exception_text": null,
+    "soak_phase": null,
+    "soak_counts": {},
+    "soak_elapsed_s": null,
+    "selected_action": null,
+    "seq_phase": null,
+    "freeze_event": "AUTHENTICATED",
+    "note": "golden capture freeze \u2014 no AM/RHMI/CDS continuation required"
+  }
+}

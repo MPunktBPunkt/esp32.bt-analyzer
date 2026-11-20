@@ -1,0 +1,36 @@
+{"event": "listening", "addr": "127.0.0.1:19711", "forward": "127.0.0.1:19712"}
+{"event": "accepted", "peer": ["127.0.0.1", 44968]}
+{"event": "relay_start", "a": "phone", "b": "hu", "ts": 1795164863.7604809}
+{"event": "bytes", "direction": "phone->hu", "n": 4, "hex_head": "12345678"}
+{"event": "bcl_init_magic", "direction": "phone->hu", "count": 1}
+{"event": "bytes", "direction": "hu->phone", "n": 16, "hex_head": "00040000000000080005000e00004000"}
+{"event": "bcl_frame", "direction": "hu->phone", "cmd": 4, "cmd_name": "HANDSHAKE", "src": 0, "dest": 0, "dest_label": null, "len": 8, "payload_hex_head": "0005000e00004000"}
+{"event": "handshake", "direction": "hu->phone", "version": 5, "instanceId": 14, "bufferSize": 16384}
+{"event": "bytes", "direction": "phone->hu", "n": 10, "hex_head": "00050000000000020004"}
+{"event": "bcl_frame", "direction": "phone->hu", "cmd": 5, "cmd_name": "SELECTPROTO", "src": 0, "dest": 0, "dest_label": null, "len": 2, "payload_hex_head": "0004"}
+{"event": "bytes", "direction": "hu->phone", "n": 12, "hex_head": "00060000000000040000000a"}
+{"event": "bcl_frame", "direction": "hu->phone", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "dest_label": null, "len": 4, "payload_hex_head": "0000000a"}
+{"event": "bytes", "direction": "phone->hu", "n": 226, "hex_head": "0008000000000030002430653962393063342d636265312d343734322d383238332d643336376539613536363139000000000000000100070001138913890000"}
+{"event": "bcl_frame", "direction": "phone->hu", "cmd": 8, "cmd_name": "KNOCK", "src": 0, "dest": 0, "dest_label": null, "len": 48, "payload_hex_head": "002430653962393063342d636265312d343734322d383238332d64333637653961353636313900000000000000010007"}
+{"event": "bcl_frame", "direction": "phone->hu", "cmd": 1, "cmd_name": "OPEN", "src": 5001, "dest": 5001, "dest_label": "Watchdog", "len": 0, "payload_hex_head": ""}
+{"event": "bcl_frame", "direction": "phone->hu", "cmd": 1, "cmd_name": "OPEN", "src": 10, "dest": 4004, "dest_label": "Etch", "len": 0, "payload_hex_head": ""}
+{"event": "bcl_frame", "direction": "phone->hu", "cmd": 2, "cmd_name": "DATA", "src": 10, "dest": 4004, "dest_label": "Etch", "len": 146, "payload_hex_head": "deadbeef0000008a0386304ba8bb02866306b4688700000000000003e986144a776f8b846c2d2d2d2d2d424547494e20"}
+{"event": "etch", "direction": "phone->hu", "method": "sas_certificate", "type_hash": "0x304ba8bb", "messageId": 1001, "inReplyTo": null, "payload_len": 146, "sas": {"sas_method": "sas_certificate", "cert_len": 108, "cert_sha256": "11b42afd48e902132d29ec5a1f311e8ab5bcb45d0e3a6b44923a9e60bfd8f698", "cert_inspect_error": "Invalid base64-encoded string: number of data characters (65) cannot be 1 more than a multiple of 4"}}
+{"event": "bytes", "direction": "hu->phone", "n": 12, "hex_head": "000600000000000400000038"}
+{"event": "bcl_frame", "direction": "hu->phone", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "dest_label": null, "len": 4, "payload_hex_head": "00000038"}
+{"event": "bytes", "direction": "hu->phone", "n": 111, "hex_head": "00060000000000040000000800060000000000040000000800060000000000040000009a0002000a0fa40043deadbeef0000003b03869c6372b803868104fdc2"}
+{"event": "bcl_frame", "direction": "hu->phone", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "dest_label": null, "len": 4, "payload_hex_head": "00000008"}
+{"event": "bcl_frame", "direction": "hu->phone", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "dest_label": null, "len": 4, "payload_hex_head": "00000008"}
+{"event": "bcl_frame", "direction": "hu->phone", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "dest_label": null, "len": 4, "payload_hex_head": "0000009a"}
+{"event": "bcl_frame", "direction": "hu->phone", "cmd": 2, "cmd_name": "DATA", "src": 10, "dest": 4004, "dest_label": "Etch", "len": 67, "payload_hex_head": "deadbeef0000003b03869c6372b803868104fdc28b107aa3fcbb1571d4c58e572b433678f33986eda8c9a68700000000"}
+{"event": "etch", "direction": "hu->phone", "method": "_result_sas_certificate", "type_hash": "0x9c6372b8", "messageId": 201, "inReplyTo": 1001, "payload_len": 67, "sas": {"sas_method": "_result_sas_certificate", "challenge_len": 16, "challenge_hex": "7aa3fcbb1571d4c58e572b433678f339"}, "correlates_to": {"method": "sas_certificate", "ts": 1795164863.7678246}}
+{"event": "bytes", "direction": "phone->hu", "n": 559, "hex_head": "0002000a0fa40227deadbeef0000021f03867e002a4d02866306b4688700000000000003ea86144a776f8b8502007aa3fcbb1571d4c58e572b433678f3390000"}
+{"event": "bcl_frame", "direction": "phone->hu", "cmd": 2, "cmd_name": "DATA", "src": 10, "dest": 4004, "dest_label": "Etch", "len": 551, "payload_hex_head": "deadbeef0000021f03867e002a4d02866306b4688700000000000003ea86144a776f8b8502007aa3fcbb1571d4c58e57"}
+{"event": "etch", "direction": "phone->hu", "method": "sas_login", "type_hash": "0x7e002a4d", "messageId": 1002, "inReplyTo": null, "payload_len": 551, "sas": {"sas_method": "sas_login", "login_sig_len": 512, "login_sig_sha256": "384b4925fc87efea411f24182e76abb9979d1ac1cd23e5fa8db065e7368b3e1b", "login_sig_hex": "7aa3fcbb1571d4c58e572b433678f33900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"}}
+{"event": "bytes", "direction": "hu->phone", "n": 12, "hex_head": "00060000000000040000022f"}
+{"event": "bcl_frame", "direction": "hu->phone", "cmd": 6, "cmd_name": "DATAACK", "src": 0, "dest": 0, "dest_label": null, "len": 4, "payload_hex_head": "0000022f"}
+{"event": "bytes", "direction": "hu->phone", "n": 52, "hex_head": "0002000a0fa4002cdeadbeef000000240386a6b0ffca0286eda8c9a68700000000000003ea866306b4688700000000000000ca81"}
+{"event": "bcl_frame", "direction": "hu->phone", "cmd": 2, "cmd_name": "DATA", "src": 10, "dest": 4004, "dest_label": "Etch", "len": 44, "payload_hex_head": "deadbeef000000240386a6b0ffca0286eda8c9a68700000000000003ea866306b4688700000000000000ca81"}
+{"event": "etch", "direction": "hu->phone", "method": "_result_sas_login", "type_hash": "0xa6b0ffca", "messageId": 202, "inReplyTo": 1002, "payload_len": 44, "sas": {"sas_method": "_result_sas_login"}, "correlates_to": {"method": "sas_login", "ts": 1795164863.8211532}}
+{"event": "eof", "side": "phone"}
+{"event": "relay_done", "elapsed_s": 0.104, "phone": {"bytes": 799, "frames": 6, "etch_msgs": 2, "correlated": 2}, "hu": {"bytes": 215, "frames": 9, "etch_msgs": 2, "correlated": 0}}

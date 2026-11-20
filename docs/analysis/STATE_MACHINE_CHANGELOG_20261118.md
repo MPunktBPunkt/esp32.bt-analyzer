@@ -42,17 +42,27 @@ code_changes: tools/bcl_dummy_hu.py, bcl_dummy_hu_agent.py, tests/host/test_auth
 ## Signer CASE A closed (2026-11-19)
 
 - [`SAS_SIGNER_CASE_A_CLOSED_20261119.md`](SAS_SIGNER_CASE_A_CLOSED_20261119.md) — verified vs technology-audit README + FUNCTION-NOTES.
-- Crypto **FACT:** `pad=MD5(serial_u32)` → XOR challenge → `MD5(xored)` → `EVP_PKEY_sign` → 512 B (not “XOR with raw serial”).
 - Embedded PKCS#12 + PKEY name lookup: **FACT**; alias↔PKCS#12 identity: **INFERENCE**.
 - Keystore/TEE/Binder/Asset on path: **REJECTED**. Unwrap/key export: **STOP**.
-- Dual gate: (A) client sign mechanism closed · (B) HU acceptance still Field OPEN.
+
+## Wire crypto closed (2026-11-20)
+
+- Canonical: [`SAS_STATUS_CRYPTO_CLOSED_20261120.md`](SAS_STATUS_CRYPTO_CLOSED_20261120.md).
+- Lab RSA-VERIFY: [`SAS_PAD_RSA_VERIFY_LAB_20261120.md`](SAS_PAD_RSA_VERIFY_LAB_20261120.md) — **8/8 VALID**.
+- Pad u32 APP_AUTH = **`0x02000000`** (`MD5(02 00 00 00)`), **not** X509 serial `0x0AA9` — 2³² brute unique hit.
+- PKCS#1 v1.5 + DigestInfo-MD5; Signer ↔ Wire-Cert = **FACT**.
+- Lab HU: `sas_login` → `rhmi_*` = **FACT**.
+- Dual gate: (A) crypto + Cert↔Sig **CLOSED** · (B) **F20** acceptance still **OPEN**.
+- MyBMW as required protocol oracle: **REJECTED**; as sign carrier until standalone: still relevant.
+- VIN→key: **REJECTED** as next step. No further libaudio formula dig.
 
 ## UNKNOWN
 
-- Ob F20 nach **echtem** Cert denselben Resource-/AM-Pfad wie Lab nimmt.
+- Ob **F20** nach autorisiertem Cert denselben Resource-/AM-Pfad wie Lab nimmt (= Gate B).
 - F20 Action-/Model-IDs / Handles.
 - Ob Diagnose `NO_HCI_RX` vs `NO_ETCH_RX` mit heutiger Instrumentierung unterscheidbar (ohne neue Messpunkte → bei Impl `UNKNOWN`).
 - PKCS#12 unwrap passphrase (intentionally **not** pursued).
+- Standalone-Signer ohne Key-Extraktion (nach Gate B).
 
 ## Verworfene Annahmen (durch Audit + Field)
 
@@ -65,6 +75,9 @@ code_changes: tools/bcl_dummy_hu.py, bcl_dummy_hu_agent.py, tests/host/test_auth
 | checkResource=true ⇒ Upload fehlt = Fehler | **REJECTED** (seit Resource-Audit) |
 | Signer = Binder / TEE / `/data/Asset` (modern MyBMW SAS) | **REJECTED** (CASE A / PR #44) |
 | Nächster Schritt = PKCS#12-Key-Extraktion | **REJECTED** |
+| APP_AUTH pad = X509 serial (`0x0AA9`) | **REJECTED** (Wire 2026-11-20) |
+| MyBMW nötig für SAS-Protokollmathematik | **REJECTED** (Formel Wire-FACT) |
+| VIN → Key | **REJECTED** als nächster Schritt |
 
 ## P1 Status
 

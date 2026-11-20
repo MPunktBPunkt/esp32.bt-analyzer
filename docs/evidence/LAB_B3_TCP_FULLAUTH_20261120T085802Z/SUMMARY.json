@@ -1,0 +1,77 @@
+{
+  "ok": true,
+  "claim": "LAB",
+  "mode": "full_auth_freeze",
+  "auth_state": "AUTHENTICATED",
+  "bootstrap_state": "HANDLES_CREATING",
+  "freeze_event": "AUTHENTICATED",
+  "b3": {
+    "listening": 1,
+    "accepted": 1,
+    "relay_start": 1,
+    "bytes": 10,
+    "bcl_init_magic": 1,
+    "bcl_frame": 15,
+    "handshake": 1,
+    "etch": 4,
+    "eof": 1,
+    "relay_done": 1
+  },
+  "hu": {
+    "tcp_hu_listen": 1,
+    "tcp_hu_accept": 1,
+    "rx": 4,
+    "tx": 9
+  },
+  "phone": {
+    "phone_start": 1,
+    "tx": 7,
+    "rx": 6,
+    "freeze": 1,
+    "sess": 30
+  },
+  "etch_methods": [
+    "sas_certificate",
+    "_result_sas_certificate",
+    "sas_login",
+    "_result_sas_login"
+  ],
+  "etch_method_counts": {
+    "sas_certificate": 1,
+    "_result_sas_certificate": 1,
+    "sas_login": 1,
+    "_result_sas_login": 1
+  },
+  "etch_correlations": [
+    {
+      "method": "sas_certificate",
+      "messageId": 1001,
+      "inReplyTo": null,
+      "direction": "phone->hu"
+    },
+    {
+      "method": "_result_sas_certificate",
+      "messageId": 201,
+      "inReplyTo": 1001,
+      "direction": "hu->phone"
+    },
+    {
+      "method": "sas_login",
+      "messageId": 1002,
+      "inReplyTo": null,
+      "direction": "phone->hu"
+    },
+    {
+      "method": "_result_sas_login",
+      "messageId": 202,
+      "inReplyTo": 1002,
+      "direction": "hu->phone"
+    }
+  ],
+  "b3_rc": 0,
+  "hu_rc": null,
+  "raw_files": [
+    "phone_to_hu.bin",
+    "hu_to_phone.bin"
+  ]
+}

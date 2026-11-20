@@ -1,0 +1,71 @@
+{
+  "rhmi_state": "SAS_AUTHENTICATED",
+  "auth_state": "AUTHENTICATED",
+  "etch_stage": "bootstrap",
+  "bootstrap_state": "HANDLES_CREATING",
+  "pending_check_mid": null,
+  "open_txns": [
+    {
+      "msg_id": 1003,
+      "method": "ver_getVersion",
+      "type": null,
+      "bcl_src": 10,
+      "bcl_dest": 4004
+    },
+    {
+      "msg_id": 1004,
+      "method": "info_getSystemInfo",
+      "type": null,
+      "bcl_src": 10,
+      "bcl_dest": 4004
+    },
+    {
+      "msg_id": 1005,
+      "method": "rhmi_getCapabilities",
+      "type": null,
+      "bcl_src": 10,
+      "bcl_dest": 4004
+    },
+    {
+      "msg_id": 1006,
+      "method": "cds_create",
+      "type": null,
+      "bcl_src": 10,
+      "bcl_dest": 4004
+    },
+    {
+      "msg_id": 1007,
+      "method": "am_create",
+      "type": null,
+      "bcl_src": 10,
+      "bcl_dest": 4004
+    },
+    {
+      "msg_id": 1008,
+      "method": "rhmi_create",
+      "type": null,
+      "bcl_src": 10,
+      "bcl_dest": 4004
+    },
+    {
+      "msg_id": 1009,
+      "method": "av_create",
+      "type": null,
+      "bcl_src": 10,
+      "bcl_dest": 4004
+    }
+  ],
+  "plan_i": 0,
+  "uploads": 0,
+  "cache_hits": 0,
+  "wait_class": null,
+  "last_result_class": "VOID_OK",
+  "last_exception_text": null,
+  "soak_phase": null,
+  "soak_counts": {},
+  "soak_elapsed_s": null,
+  "selected_action": null,
+  "seq_phase": null,
+  "freeze_event": "AUTHENTICATED",
+  "note": "LAB freeze via B3 \u2014 no further bootstrap after positive login"
+}

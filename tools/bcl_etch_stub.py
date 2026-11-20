@@ -696,6 +696,9 @@ class EtchSasCdsStub:
                     "effective_serial_u32": sas_sum.get("effective_serial_u32"),
                     "effective_cn": sas_sum.get("effective_cn"),
                     "effective_pad16_hex": sas_sum.get("effective_pad16_hex"),
+                    "pad_u32_source": sas_sum.get("pad_u32_source"),
+                    "signer_serial_u32": sas_sum.get("signer_serial_u32"),
+                    "signer_cn": sas_sum.get("signer_cn"),
                     "challenge_hex": bytes(self.challenge).hex()
                     if isinstance(self.challenge, (bytes, bytearray))
                     else None,

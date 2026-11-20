@@ -1,0 +1,46 @@
+{"event": "tcp_hu_listen", "addr": "127.0.0.1:19732", "profile": "f20_sim"}
+{"event": "tcp_hu_accept", "peer": ["127.0.0.1", 33796]}
+{"event": "rx", "n": 4, "hex_head": "12345678"}
+{"event": "tx", "n": 16, "hex_head": "00040000000000080005000e00004000"}
+{"event": "sess", "inner": "session_init", "cmd_name": null, "dir": "rx", "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "handshake_sent", "cmd_name": null, "dir": null, "method": null, "src": null, "dest": null}
+{"event": "rx", "n": 10, "hex_head": "00050000000000020004"}
+{"event": "tx", "n": 12, "hex_head": "00060000000000040000000a"}
+{"event": "sess", "inner": "frame", "cmd_name": "SELECTPROTO", "dir": "rx", "method": null, "src": 0, "dest": 0}
+{"event": "sess", "inner": "phone_tx_classified", "cmd_name": "SELECTPROTO", "dir": null, "method": null, "src": 0, "dest": 0}
+{"event": "sess", "inner": "dataack_tx", "cmd_name": null, "dir": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "selectproto_rx", "cmd_name": null, "dir": null, "method": null, "src": null, "dest": null}
+{"event": "rx", "n": 226, "hex_head": "0008000000000030002430653962393063342d636265312d343734322d383238332d643336376539613536363139000000000000000100070001138913890000"}
+{"event": "tx", "n": 12, "hex_head": "000600000000000400000038"}
+{"event": "tx", "n": 12, "hex_head": "000600000000000400000008"}
+{"event": "tx", "n": 12, "hex_head": "000600000000000400000008"}
+{"event": "tx", "n": 12, "hex_head": "00060000000000040000009a"}
+{"event": "tx", "n": 75, "hex_head": "0002000a0fa40043deadbeef0000003b03869c6372b803868104fdc28b1088ebb2faaaee061617b3991f3a984c8486eda8c9a68700000000000003e9866306b4"}
+{"event": "sess", "inner": "frame", "cmd_name": "KNOCK", "dir": "rx", "method": null, "src": 0, "dest": 0}
+{"event": "sess", "inner": "frame", "cmd_name": "OPEN", "dir": "rx", "method": null, "src": 5001, "dest": 5001}
+{"event": "sess", "inner": "frame", "cmd_name": "OPEN", "dir": "rx", "method": null, "src": 10, "dest": 4004}
+{"event": "sess", "inner": "frame", "cmd_name": "DATA", "dir": "rx", "method": null, "src": 10, "dest": 4004}
+{"event": "sess", "inner": "phone_tx_classified", "cmd_name": "KNOCK", "dir": null, "method": null, "src": 0, "dest": 0}
+{"event": "sess", "inner": "dataack_tx", "cmd_name": null, "dir": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "knock_rx", "cmd_name": null, "dir": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "phone_tx_classified", "cmd_name": "OPEN", "dir": null, "method": null, "src": 5001, "dest": 5001}
+{"event": "sess", "inner": "dataack_tx", "cmd_name": null, "dir": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "phone_tx_classified", "cmd_name": "OPEN", "dir": null, "method": null, "src": 10, "dest": 4004}
+{"event": "sess", "inner": "dataack_tx", "cmd_name": null, "dir": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "etch_open_rx", "cmd_name": null, "dir": null, "method": null, "src": 10, "dest": 4004}
+{"event": "sess", "inner": "etch_open_probe", "cmd_name": null, "dir": null, "method": null, "src": 10, "dest": null}
+{"event": "sess", "inner": "phone_tx_classified", "cmd_name": "DATA", "dir": null, "method": null, "src": 10, "dest": 4004}
+{"event": "sess", "inner": "dataack_tx", "cmd_name": null, "dir": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "f20_rpc_rx", "cmd_name": null, "dir": null, "method": "sas_certificate", "src": 10, "dest": null}
+{"event": "sess", "inner": "sas_challenge_tx", "cmd_name": null, "dir": null, "method": null, "src": 10, "dest": null, "challenge_hex": "88ebb2faaaee061617b3991f3a984c84", "challenge_len": 16, "effective_serial_u32": null, "effective_cn": null, "effective_pad16_hex": null, "pad_u32_source": null, "cert_types": null, "cert_cns": null}
+{"event": "sess", "inner": "etch_data_tx", "cmd_name": null, "dir": null, "method": null, "src": 10, "dest": 4004}
+{"event": "rx", "n": 559, "hex_head": "0002000a0fa40227deadbeef0000021f03867e002a4d02866306b4688700000000000003ea86144a776f8b85020088ebb2faaaee061617b3991f3a984c840000"}
+{"event": "tx", "n": 12, "hex_head": "00060000000000040000022f"}
+{"event": "tx", "n": 52, "hex_head": "0002000a0fa4002cdeadbeef000000240386a6b0ffca0286eda8c9a68700000000000003ea866306b4688700000000000000ca81"}
+{"event": "sess", "inner": "frame", "cmd_name": "DATA", "dir": "rx", "method": null, "src": 10, "dest": 4004}
+{"event": "sess", "inner": "phone_tx_classified", "cmd_name": "DATA", "dir": null, "method": null, "src": 10, "dest": 4004}
+{"event": "sess", "inner": "dataack_tx", "cmd_name": null, "dir": null, "method": null, "src": null, "dest": null}
+{"event": "sess", "inner": "f20_rpc_rx", "cmd_name": null, "dir": null, "method": "sas_login", "src": 10, "dest": null}
+{"event": "sess", "inner": "sas_login_ok_tx", "cmd_name": null, "dir": null, "method": null, "src": 10, "dest": null, "login_sig_sha256": "3d86da68664ead39abc4144a0f0dda36b360c9a45f6268fc56c1f3add37fe78d", "login_sig_hex": "88ebb2faaaee061617b3991f3a984c8400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", "sig_len": 512}
+{"event": "sess", "inner": "etch_data_tx", "cmd_name": null, "dir": null, "method": null, "src": 10, "dest": 4004}
+{"event": "hu_done", "sess_event_n": 30}
