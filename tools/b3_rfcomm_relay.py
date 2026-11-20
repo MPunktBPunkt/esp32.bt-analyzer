@@ -114,6 +114,19 @@ def _decode_etch_side(st: SideState, payload: bytes, direction: str) -> dict[str
         "inReplyTo": irt,
         "payload_len": len(payload),
     }
+    # SAS pad cross-check fields (serial / challenge / login) — CASE A Test A
+    if method in (
+        "sas_certificate",
+        "_result_sas_certificate",
+        "sas_login",
+        "_result_sas_login",
+    ):
+        try:
+            from etch_codec import summarize_sas_wire_fields
+
+            entry["sas"] = summarize_sas_wire_fields(str(method), raw if isinstance(raw, dict) else {})
+        except Exception as exc:  # noqa: BLE001
+            entry["sas_error"] = str(exc)
     if isinstance(mid, int) and method and not str(method).startswith("_result_"):
         st.open_mids[mid] = {"method": method, "ts": time.time()}
     if isinstance(irt, int) and irt in st.open_mids:

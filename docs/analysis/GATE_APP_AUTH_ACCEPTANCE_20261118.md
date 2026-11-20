@@ -1,11 +1,16 @@
 # Gate — APP / APP_AUTH Acceptance (2026-11-18)
 
 ```yaml
-status: OPEN — next field gate
+status: OPEN — next field gate (HU acceptance only)
 transport: FIELD PASS (ACL/AUTH/ENCRYPT, SCN6, BCL HS v5, Etch 4004)
 blocker: SAS certificate / login acceptance by F20 HU
+signer_arch: CLOSED — CASE A libaudio.so / EVP_PKEY_sign (2026-11-19)
 frozen: write11/EAGAIN root-cause, Dual-ESP air, Lab Model/Action IDs as Field
 ```
+
+**Signer architecture (not the Field gate):** closed in [`SAS_SIGNER_CASE_A_CLOSED_20261119.md`](SAS_SIGNER_CASE_A_CLOSED_20261119.md).  
+SAS is a localized MyBMW native block (`libaudio.so` + embedded PKCS#12 + OpenSSL).  
+**Still open:** whether the **F20 HU accepts** an authorized APP/APP_AUTH constellation on the wire.
 
 ## Epistemic correction (report wording)
 
@@ -48,7 +53,20 @@ Change **only** the credential / SecurityModule profile.
 
 1. Which APP / APP_AUTH bundle is used (CN, `SAS.CertificateType`, source app/build).
 2. Bundle source (device path / MyBMW asset) — use `etch_codec.inspect_pkcs7_bundle` for digests/CN; a `.p7b` alone does **not** sign.
-3. Sign path: native SecurityModule / authorized helper — **never** copy BMW private key onto the Pi.
+3. Sign path: **live** MyBMW `SecurityModule.signChallenge()` → `libaudio.so` / `EVP_PKEY_sign` (CASE A).  
+   **Never** extract PKCS#12 / private key onto the Pi; passphrase unwrap is **out of scope**.
+
+### APP_AUTH wording (post CASE A)
+
+| Claim | Status |
+|-------|--------|
+| Literal `APP_AUTH` in native | **NOT_FOUND** — do not over-claim |
+| Challenge pad = `MD5(cert_serial_u32)` then XOR with challenge[16] | **FACT** |
+| PKEY lookup `"com.bmwgroup.connected.bmw"` | **FACT** |
+| PKEY alias ↔ embedded PKCS#12 identity | **INFERENCE** (not dynamic-proven) |
+| Full APP_AUTH reconstruction | **Partial CONFIRMED** only |
+
+Client sign mechanism = **FACT**; F20 **acceptance** of cert+sig = still the Field gate.
 
 ### Wire correlation (mandatory)
 
@@ -95,3 +113,5 @@ Causal anchor if B succeeds and `am_registerApp` appears:
 - Resource-upload / RHMI-soak / PiDrive-seq expansion
 - Claiming Resource Digests = HU authorized resources
 - ESP HCI-over-WiFi performance tuning
+- PKCS#12 unwrap / private-key extraction from `libaudio.so`
+- Binder / TEE / Keystore hunts for this SAS signature path (CASE A closed)

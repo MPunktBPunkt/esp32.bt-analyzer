@@ -1,0 +1,30 @@
+---
+description: SAS signer CASE A closed — no key extraction; Field gate is HU acceptance only
+alwaysApply: true
+---
+
+# SAS Signer CASE A (closed)
+
+Canonical: `docs/analysis/SAS_SIGNER_CASE_A_CLOSED_20261119.md`
+
+## FACT (crypto)
+
+`AudioModule.g` → `native_sign_impl` → `pad=MD5(serial_u32)` → `challenge XOR pad` → `MD5(xored)` → `EVP_PKEY_sign` → 512 B.  
+Embedded PKCS#12 in `libaudio.so` = FACT. PKEY name `"com.bmwgroup.connected.bmw"` = FACT.  
+Alias↔PKCS#12 identity = **INFERENCE** only. Not Keystore/TEE/Binder/`/data/Asset` on this path.  
+APP_AUTH = **Partial CONFIRMED** (literal string NOT_FOUND).
+
+## Do not
+
+- Write “XOR with cert_serial” (pad is MD5 of serial)
+- Unwrap PKCS#12 / recover passphrase / extract keys
+- Resume Binder / TEE / Asset hunts for this path
+- Claim Field `AUTHENTICATED` from Lab stub or CASE A alone
+
+## Do
+
+- Field Arm B = **live** MyBMW SecurityModule (no key on Pi)
+- One-variable gate: F20 **acceptance** only
+- Capture **serial_u32 + challenge_hex + login_sig** (B3 `sas` / HU events); run `tools/sas_pad_crosscheck.py`
+- Prefer pad/A↔B identity checks over VIN→key (unevidenced)
+- Freeze on `AUTHENTICATED` + snapshot; no AM/RHMI in that run

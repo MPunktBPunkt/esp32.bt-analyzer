@@ -2,10 +2,14 @@
 
 ```yaml
 status: READY for car
-variable: APP / APP_AUTH authorization context only
+variable: APP / APP_AUTH authorization context only (HU acceptance)
 constants: phone, BT link, BCL, Etch, session build, payloads, timing
+signer: CASE A closed — MyBMW libaudio.so / EVP_PKEY_sign (do not dig native further)
 stop_rule: AUTHENTICATED → snapshot → END (no RHMI/AM/CDS/PiDrive)
 ```
+
+Signer localization: [`SAS_SIGNER_CASE_A_CLOSED_20261119.md`](SAS_SIGNER_CASE_A_CLOSED_20261119.md).  
+Field question is **HU accept/reject**, not “where is the key.”
 
 ## Question (exactly one)
 
@@ -60,7 +64,28 @@ Map F20 handles + real Model/Action/Resource IDs. Still **no** PiDrive integrati
 
 ## Explicitly do **not** touch tomorrow
 
-write11/EAGAIN · Dual-ESP discovery · Fake-Auth · Lab→F20 ID mapping · Resource upload · PiDrive seq · RHMI soak · checkResource · CDS guessing · ESP HCI-WiFi tuning
+write11/EAGAIN · Dual-ESP discovery · Fake-Auth · Lab→F20 ID mapping · Resource upload · PiDrive seq · RHMI soak · checkResource · CDS guessing · ESP HCI-WiFi tuning · PKCS#12 unwrap / key extraction · Binder/TEE signer hunts
+
+Arm B means **live MyBMW SecurityModule** on phone — never a copied BMW private key on the Pi.
+
+### Capture extras (pad cross-check / Test A)
+
+On any Field/B3 session with real AAIdrive/MyBMW certs, B3/HU jsonl must include (now structured):
+
+1. Effective signing-cert **serial_u32** (+ CN) from `sas_certificate`  
+2. HU **challenge_hex** (16 B)  
+3. Phone **login_sig_hex** / sha256 (512 B)
+
+Then:
+
+```bash
+PYTHONPATH=tools python3 tools/sas_pad_crosscheck.py --from-jsonl /path/to/b3.jsonl
+# or: --serial-u32 … --challenge-hex …
+```
+
+Pad recipe (no key): `pad = MD5(serial_u32_be); xored = challenge XOR pad; digest = MD5(xored)`.  
+**Not** next: VIN→key. **Yes** next: serial pad match, then public A↔B cert identity.  
+VIN-derived key = unevidenced hypothesis — see [`SAS_SIGNER_CASE_A_CLOSED_20261119.md`](SAS_SIGNER_CASE_A_CLOSED_20261119.md).
 
 ## Operator one-liner (host)
 

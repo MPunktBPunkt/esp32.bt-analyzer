@@ -667,11 +667,18 @@ class EtchSasCdsStub:
             self.certs_seen += 1
             cert_bytes = raw_fields.get("data")
             cert_meta = None
+            sas_sum: dict[str, Any] = {}
             if isinstance(cert_bytes, (bytes, bytearray)):
                 try:
                     cert_meta = inspect_pkcs7_bundle(bytes(cert_bytes))
                 except Exception:  # noqa: BLE001
                     cert_meta = None
+                try:
+                    from etch_codec import summarize_sas_wire_fields
+
+                    sas_sum = summarize_sas_wire_fields("sas_certificate", raw_fields)
+                except Exception:  # noqa: BLE001
+                    sas_sum = {}
             self.challenges_sent += 1
             out.append(
                 build_sas_challenge_payload(
@@ -684,6 +691,17 @@ class EtchSasCdsStub:
                     "src": src,
                     "in_reply_to": reply_to,
                     "cert_cns": (cert_meta or {}).get("cns"),
+                    "cert_types": (cert_meta or {}).get("cert_types"),
+                    "cert_serials": (cert_meta or {}).get("serials"),
+                    "effective_serial_u32": sas_sum.get("effective_serial_u32"),
+                    "effective_cn": sas_sum.get("effective_cn"),
+                    "effective_pad16_hex": sas_sum.get("effective_pad16_hex"),
+                    "challenge_hex": bytes(self.challenge).hex()
+                    if isinstance(self.challenge, (bytes, bytearray))
+                    else None,
+                    "challenge_len": len(self.challenge)
+                    if isinstance(self.challenge, (bytes, bytearray))
+                    else None,
                 }
             )
             return out
@@ -696,13 +714,18 @@ class EtchSasCdsStub:
                     in_reply_to=reply_to, msg_id=self._next_msg_id()
                 )
             )
-            self.events.append(
-                {
-                    "event": "sas_login_ok_tx",
-                    "src": src,
-                    "sig_len": len(sig) if isinstance(sig, (bytes, bytearray)) else None,
-                }
-            )
+            login_ev: dict[str, Any] = {
+                "event": "sas_login_ok_tx",
+                "src": src,
+                "sig_len": len(sig) if isinstance(sig, (bytes, bytearray)) else None,
+            }
+            if isinstance(sig, (bytes, bytearray)):
+                import hashlib as _hl
+
+                login_ev["login_sig_sha256"] = _hl.sha256(bytes(sig)).hexdigest()
+                if len(sig) <= 640:
+                    login_ev["login_sig_hex"] = bytes(sig).hex()
+            self.events.append(login_ev)
             return out
 
         if method == "sas_permission":

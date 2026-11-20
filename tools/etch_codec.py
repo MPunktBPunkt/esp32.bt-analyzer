@@ -14,7 +14,10 @@ import hashlib
 import json
 import re
 import struct
+import subprocess
+import tempfile
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 ETCH_MAGIC = b"\xde\xad\xbe\xef"
@@ -711,8 +714,177 @@ def _json_safe(obj: Any) -> Any:
 _DIGEST_KV_RE = re.compile(r"([A-Za-z0-9_.*]+)=([^&\x00-\x1f]+)")
 
 
+def sas_pad16_from_serial_u32(serial_u32: int) -> bytes:
+    """Native CASE A pad: MD5(serial as 4 big-endian bytes) → 16 B.
+
+    FACT from libaudio signChallenge audit — serial is hashed before XOR, not XORed raw.
+    """
+    return hashlib.md5((int(serial_u32) & 0xFFFFFFFF).to_bytes(4, "big")).digest()
+
+
+def sas_challenge_transform(challenge16: bytes, serial_u32: int) -> dict[str, Any]:
+    """Observe-only transform for APK↔wire cross-check (no signing)."""
+    ch = bytes(challenge16)
+    if len(ch) != 16:
+        raise ValueError(f"challenge must be 16 bytes, got {len(ch)}")
+    pad = sas_pad16_from_serial_u32(serial_u32)
+    xored = bytes(a ^ b for a, b in zip(ch, pad, strict=True))
+    digest = hashlib.md5(xored).digest()
+    return {
+        "serial_u32": int(serial_u32) & 0xFFFFFFFF,
+        "pad16_hex": pad.hex(),
+        "xored_hex": xored.hex(),
+        "digest_md5_hex": digest.hex(),
+    }
+
+
+def _pkcs7_to_pem(p7b_pem_or_der: bytes) -> bytes:
+    if b"-----BEGIN" in p7b_pem_or_der:
+        return bytes(p7b_pem_or_der)
+    der = bytes(p7b_pem_or_der)
+    b64 = base64.encodebytes(der).decode("ascii")
+    return (
+        "-----BEGIN PKCS7-----\n" + b64 + "-----END PKCS7-----\n"
+    ).encode("ascii")
+
+
+def extract_pkcs7_cert_serials(p7b_pem_or_der: bytes) -> list[dict[str, Any]]:
+    """Best-effort X509 serials via openssl (observe-only; no private key).
+
+    Returns list of {cn, serial_hex, serial_u32, serial_u32_be_hex}.
+    serial_u32 = serial_int & 0xFFFFFFFF (CASE A MD5 input width).
+    """
+    pem = _pkcs7_to_pem(p7b_pem_or_der)
+    path = ""
+    try:
+        with tempfile.NamedTemporaryFile(suffix=".p7b.pem", delete=False) as tf:
+            tf.write(pem)
+            path = tf.name
+        printed = subprocess.run(
+            ["openssl", "pkcs7", "-in", path, "-print_certs"],
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=8,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return []
+    finally:
+        if path:
+            try:
+                Path(path).unlink(missing_ok=True)
+            except Exception:  # noqa: BLE001
+                pass
+    if printed.returncode != 0:
+        return []
+    certs = re.findall(
+        r"-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----",
+        printed.stdout,
+        re.S,
+    )
+    out: list[dict[str, Any]] = []
+    for block in certs:
+        cpath = ""
+        try:
+            with tempfile.NamedTemporaryFile(suffix=".pem", delete=False, mode="w") as cf:
+                cf.write(block + "\n")
+                cpath = cf.name
+            meta = subprocess.run(
+                ["openssl", "x509", "-in", cpath, "-noout", "-serial", "-subject"],
+                check=False,
+                capture_output=True,
+                text=True,
+                timeout=5,
+            )
+        except (OSError, subprocess.TimeoutExpired):
+            continue
+        finally:
+            if cpath:
+                try:
+                    Path(cpath).unlink(missing_ok=True)
+                except Exception:  # noqa: BLE001
+                    pass
+        if meta.returncode != 0:
+            continue
+        sm = re.search(r"serial=([0-9A-Fa-f]+)", meta.stdout)
+        cm = re.search(r"CN\s*=\s*([^,\n]+)", meta.stdout)
+        if not sm:
+            continue
+        serial_hex = sm.group(1).lower()
+        serial_int = int(serial_hex, 16)
+        serial_u32 = serial_int & 0xFFFFFFFF
+        out.append(
+            {
+                "cn": (cm.group(1).strip() if cm else None),
+                "serial_hex": serial_hex,
+                "serial_u32": serial_u32,
+                "serial_u32_be_hex": serial_u32.to_bytes(4, "big").hex(),
+                "pad16_hex": sas_pad16_from_serial_u32(serial_u32).hex(),
+            }
+        )
+    return out
+
+
+def summarize_sas_wire_fields(method: str | None, raw_fields: dict | None) -> dict[str, Any]:
+    """Structured SAS fields for B3/HU jsonl — serial / challenge / login sig.
+
+    Enables Test A (pad = MD5(serial_u32)) without touching private keys.
+    """
+    method = method or ""
+    fields = raw_fields or {}
+    out: dict[str, Any] = {"sas_method": method}
+    data = fields.get("data")
+    result = fields.get("result")
+
+    if method == "sas_certificate" and isinstance(data, (bytes, bytearray)):
+        blob = bytes(data)
+        out["cert_len"] = len(blob)
+        out["cert_sha256"] = hashlib.sha256(blob).hexdigest()
+        try:
+            meta = inspect_pkcs7_bundle(blob)
+            out["cert_cns"] = meta.get("cns")
+            out["cert_types"] = meta.get("cert_types")
+            out["cert_serials"] = meta.get("serials")
+            # Prefer APP_AUTH leaf serial when present in CN list, else all serials
+            serials = meta.get("serials") or []
+            app_auth = [
+                s
+                for s in serials
+                if s.get("cn") and "TouchCommand" in str(s.get("cn"))
+            ]
+            pick = app_auth[0] if app_auth else (serials[0] if serials else None)
+            if pick:
+                out["effective_serial_u32"] = pick.get("serial_u32")
+                out["effective_serial_hex"] = pick.get("serial_hex")
+                out["effective_cn"] = pick.get("cn")
+                out["effective_pad16_hex"] = pick.get("pad16_hex")
+        except Exception as exc:  # noqa: BLE001
+            out["cert_inspect_error"] = str(exc)
+
+    if method == "_result_sas_certificate":
+        chal = result if isinstance(result, (bytes, bytearray)) else None
+        if chal is None and isinstance(data, (bytes, bytearray)):
+            chal = data
+        if isinstance(chal, (bytes, bytearray)):
+            out["challenge_len"] = len(chal)
+            out["challenge_hex"] = bytes(chal).hex()
+
+    if method == "sas_login" and isinstance(data, (bytes, bytearray)):
+        sig = bytes(data)
+        out["login_sig_len"] = len(sig)
+        out["login_sig_sha256"] = hashlib.sha256(sig).hexdigest()
+        # Full hex is useful for offline RSA checks; 512 B → 1024 hex chars — keep it.
+        if len(sig) <= 640:
+            out["login_sig_hex"] = sig.hex()
+        else:
+            out["login_sig_hex_head"] = sig[:32].hex()
+            out["login_sig_hex_tail"] = sig[-32].hex()
+
+    return out
+
+
 def inspect_pkcs7_bundle(p7b_pem_or_der: bytes) -> dict[str, Any]:
-    """Extract CNs, SAS.CertificateType (APP vs APP_AUTH) and SHA-256 resource whitelist from a BMW .p7b."""
+    """Extract CNs, SAS.CertificateType (APP vs APP_AUTH), serials, SHA-256 resource whitelist from a BMW .p7b."""
     if b"-----BEGIN" in p7b_pem_or_der:
         b64 = b"".join(
             line.strip()
@@ -755,11 +927,14 @@ def inspect_pkcs7_bundle(p7b_pem_or_der: bytes) -> dict[str, Any]:
                 if len(tok) == 64 and all(c in "0123456789abcdef" for c in tok) and set(tok) != {"0"}:
                     target.add(tok)
 
+    serials = extract_pkcs7_cert_serials(p7b_pem_or_der)
+
     return {
         "der_bytes": len(der),
         "cns": cns,
         "cert_types": sorted(cert_types),
         "uses_app_auth_xor": "APP_AUTH" in cert_types,
+        "serials": serials,
         "rhmi_description_sha256": sorted(rhmi_digests),
         "image_db_sha256": sorted(image_digests),
         "text_db_sha256": sorted(text_digests),

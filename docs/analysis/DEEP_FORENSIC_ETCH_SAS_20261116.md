@@ -149,6 +149,17 @@ Aus den im Lab mitgeschnittenen Original-PKCS7-Ketten des OnePlus (`LAB_DUMMY_ET
 2. **Wie modernes MyBMW (`de.bmw.connected.mobile20.*`) ohne Binder-Export signiert (`SecurityModuleManager.kt:69–100`):**
    - AAIdrive lädt per `context.createPackageContext("de.bmw.connected.mobile20.row", CONTEXT_IGNORE_SECURITY | CONTEXT_INCLUDE_CODE)` direkt die native JNI-Klasse `com.bmwgroup.connected.core.security.SecurityModule` (Fallback `AudioModule`) aus der installierten MyBMW-APK in den eigenen Prozess (`init("bmw")` → `createSecurityContext` → `getCertificates` → `signChallenge`).
 
+3. **CASE A closed (2026-11-19)** — [`SAS_SIGNER_CASE_A_CLOSED_20261119.md`](SAS_SIGNER_CASE_A_CLOSED_20261119.md)  
+   (upstream: [technology-audit libaudio-signchallenge-pipeline](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/README.md)):
+   - Call chain **FACT:** `AudioModule.g` → `native_sign_impl` → `EVP_PKEY_sign` → **512 B RSA**.
+   - Crypto **FACT:** `pad16 = MD5(cert_serial_u32)` → `xored = challenge XOR pad16` → `digest = MD5(xored)` → RSA.  
+     (**Not** “XOR with raw serial”.)
+   - Key blob **FACT:** embedded PKCS#12 in `libaudio.so` (`pkcs8ShroudedKeyBag` / 3DES-PBE OIDs).  
+     PKEY alias `"com.bmwgroup.connected.bmw"` = **FACT** (lookup); alias↔PKCS#12 identity = **INFERENCE**.
+   - **REJECTED** on path: `/data/Asset`, Keystore/TEE, Binder/IPC signer.
+   - Literal `APP_AUTH` **NOT_FOUND** → APP_AUTH **Partial CONFIRMED**.
+   - **STOP:** PKCS#12 unwrap / key extraction. Field gate = HU **acceptance**, not further native dig.
+
 ### 6.3 Wichtige Korrektur zu RHMI (`rhmi_getCapabilities` ≠ Widget-Baum!)
 
 - **`rhmi_getCapabilities("", 255)` enthält KEINE Screens, Widgets, Property-IDs oder Events!** Es liefert eine flache `Map<String, String>` mit **149 System-Flags** (`nfields=149` in `174331` @ `17:44:06.777`: `hmi.type`, `vehicle.type`, `a4axl`, `tts`, `navi`, `iva_ENT_USB_COVER_ART_IPOD`, `_ENT_MTP_OFF`, …).
