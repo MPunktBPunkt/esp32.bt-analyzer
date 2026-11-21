@@ -142,7 +142,8 @@ One F20 B3 run with authorized APP_AUTH constellation:
 2. Offline: `tools/sas_pad_crosscheck.py --from-bcl-jsonl` (expect VALID)  
 3. Gate B: `AUTHENTICATED` / subsequent `rhmi_*`?
 
-**Not next:** further `libaudio.so` dig, VIN→key, PKCS#12 unwrap.
+**Not next (product blocker):** further `libaudio.so` dig, VIN→key, PKCS#12 **decrypt**/key dump.  
+Optional observe-only: PLT `PKCS12_parse` password regs — [PKCS12-ANATOMY](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PKCS12-ANATOMY.md).
 
 ## Logging coverage (bt-analyzer sources)
 
