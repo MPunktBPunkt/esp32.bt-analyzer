@@ -508,6 +508,87 @@ class DummyHuSession(_Session):
         )
         return replies
 
+    def inject_rhmi_hmi(
+        self,
+        *,
+        src: int,
+        handle: int,
+        component_id: int,
+        event_id: int,
+        args: dict[Any, Any] | None = None,
+        ident: str | int = 0,
+    ) -> list[bytes]:
+        """Live HU→Phone RHMI focus/HMI event (rhmi_onHmiEvent)."""
+        if self.etch is None:
+            return []
+        from etch_codec import encode_etch_packet
+
+        mid = self.etch._next_msg_id()
+        ev_args = dict(args) if args is not None else {0: 0}
+        body = encode_etch_packet(
+            "rhmi_onHmiEvent",
+            {
+                "_messageId": mid,
+                "handle": int(handle),
+                "ident": ident,
+                "componentId": int(component_id),
+                "eventId": int(event_id),
+                "args": ev_args,
+            },
+        )
+        replies: list[bytes] = []
+        self._append_etch_tx(replies, int(src), body, reason="inject_rhmi_hmi")
+        self.events.append(
+            {
+                "event": "rhmi_hmi_tx",
+                "src": int(src),
+                "handle": int(handle),
+                "componentId": int(component_id),
+                "eventId": int(event_id),
+                "args": ev_args,
+                "ident": ident,
+                "reason": "inject",
+            }
+        )
+        return replies
+
+    def inject_am_event(
+        self,
+        *,
+        src: int,
+        handle: int,
+        ident: str,
+        event_id: int,
+    ) -> list[bytes]:
+        """Live HU→Phone AM app focus/start (am_onAppEvent)."""
+        if self.etch is None:
+            return []
+        from etch_codec import encode_etch_packet
+
+        mid = self.etch._next_msg_id()
+        body = encode_etch_packet(
+            "am_onAppEvent",
+            {
+                "_messageId": mid,
+                "handle": int(handle),
+                "ident": str(ident),
+                "eventId": int(event_id),
+            },
+        )
+        replies: list[bytes] = []
+        self._append_etch_tx(replies, int(src), body, reason="inject_am_event")
+        self.events.append(
+            {
+                "event": "am_event_tx",
+                "src": int(src),
+                "handle": int(handle),
+                "ident": str(ident),
+                "eventId": int(event_id),
+                "reason": "inject",
+            }
+        )
+        return replies
+
     def _maybe_hu_open(self, replies: list[bytes]) -> None:
         if self.hu_opens_sent or not self.hu_open_srcs:
             return

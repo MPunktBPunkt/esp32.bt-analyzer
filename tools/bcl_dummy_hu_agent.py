@@ -609,6 +609,27 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                 continue
             if not isinstance(updates, dict) or not updates:
                 continue
+            def _coerce_args(args_map: object) -> dict:
+                coerced: dict = {}
+                for k, v in dict(args_map or {0: 0}).items():
+                    try:
+                        coerced[int(k)] = v
+                    except (TypeError, ValueError):
+                        coerced[k] = v
+                return coerced
+
+            def _pace_and_continue(obj: dict) -> None:
+                try:
+                    pace_ms = float(
+                        updates.get("_pace_ms")
+                        if updates.get("_pace_ms") is not None
+                        else obj.get("pace_ms", os.environ.get("RHMI_ACTION_PACE_MS", "80"))
+                    )
+                except (TypeError, ValueError):
+                    pace_ms = 80.0
+                if pace_ms > 0:
+                    time.sleep(pace_ms / 1000.0)
+
             # RHMI iDrive action inject: {"_rhmi_action":{"src":19,"handle":17,"actionId":541,"args":{"0":0}}}
             rhmi = updates.get("_rhmi_action")
             if isinstance(rhmi, dict):
@@ -624,19 +645,11 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                     sess = c.get("session")
                     if not isinstance(sess, DummyHuSession):
                         continue
-                    args_map = rhmi.get("args") or {0: 0}
-                    # JSON keys are str — coerce numeric keys
-                    coerced: dict = {}
-                    for k, v in dict(args_map).items():
-                        try:
-                            coerced[int(k)] = v
-                        except (TypeError, ValueError):
-                            coerced[k] = v
                     replies = sess.inject_rhmi_action(
                         src=int(rhmi.get("src") or 19),
                         handle=int(rhmi.get("handle") or 0),
                         action_id=int(rhmi.get("actionId") or rhmi.get("action_id") or 0),
-                        args=coerced,
+                        args=_coerce_args(rhmi.get("args")),
                         ident=rhmi.get("ident", 0),
                     )
                     c["sent"] = _flush_events(
@@ -660,18 +673,101 @@ def run_hu(args: argparse.Namespace, *, observe_only: bool) -> int:
                             **c["dev"],
                             session_id=session_id,
                         )
-                # Default pacing avoids same-ms action floods that correlated with RFCOMM drops.
-                # Override per line: {"_rhmi_action":{...},"_pace_ms":0} or env RHMI_ACTION_PACE_MS.
-                try:
-                    pace_ms = float(
-                        updates.get("_pace_ms")
-                        if updates.get("_pace_ms") is not None
-                        else rhmi.get("pace_ms", os.environ.get("RHMI_ACTION_PACE_MS", "80"))
+                _pace_and_continue(rhmi)
+                continue
+
+            # RHMI HMI/focus inject: {"_rhmi_hmi":{"src":16,"handle":13,"componentId":20,"eventId":1}}
+            rhmi_hmi = updates.get("_rhmi_hmi")
+            if isinstance(rhmi_hmi, dict):
+                log.write(
+                    {
+                        "event": "inject_rhmi_hmi_request",
+                        "action": rhmi_hmi,
+                        "open_conns": len(conns),
+                        "session_id": session_id,
+                    }
+                )
+                for fd, c in list(conns.items()):
+                    sess = c.get("session")
+                    if not isinstance(sess, DummyHuSession):
+                        continue
+                    replies = sess.inject_rhmi_hmi(
+                        src=int(rhmi_hmi.get("src") or 19),
+                        handle=int(rhmi_hmi.get("handle") or 0),
+                        component_id=int(
+                            rhmi_hmi.get("componentId") or rhmi_hmi.get("component_id") or 0
+                        ),
+                        event_id=int(rhmi_hmi.get("eventId") or rhmi_hmi.get("event_id") or 1),
+                        args=_coerce_args(rhmi_hmi.get("args")),
+                        ident=rhmi_hmi.get("ident", 0),
                     )
-                except (TypeError, ValueError):
-                    pace_ms = 80.0
-                if pace_ms > 0:
-                    time.sleep(pace_ms / 1000.0)
+                    c["sent"] = _flush_events(
+                        log, sess, c["sent"], **c["dev"], session_id=session_id
+                    )
+                    for r in replies:
+                        ok, fail = rfcomm_write_all(
+                            fd, r, log=log, conn=c, session_id=session_id, event_prefix="inject"
+                        )
+                        if not ok:
+                            close(fd, f"inject_write_error:{(fail or {}).get('errno')}")
+                            break
+                        log.write(
+                            {
+                                "event": "tx_bytes",
+                                "n": len(r),
+                                "hex": r.hex(),
+                                "reason": "inject_rhmi_hmi",
+                                "tx_total": c.get("tx_total"),
+                            },
+                            **c["dev"],
+                            session_id=session_id,
+                        )
+                _pace_and_continue(rhmi_hmi)
+                continue
+
+            # AM app event inject: {"_am_event":{"src":16,"handle":13,"ident":"…mapview","eventId":1}}
+            am_ev = updates.get("_am_event")
+            if isinstance(am_ev, dict):
+                log.write(
+                    {
+                        "event": "inject_am_event_request",
+                        "action": am_ev,
+                        "open_conns": len(conns),
+                        "session_id": session_id,
+                    }
+                )
+                for fd, c in list(conns.items()):
+                    sess = c.get("session")
+                    if not isinstance(sess, DummyHuSession):
+                        continue
+                    replies = sess.inject_am_event(
+                        src=int(am_ev.get("src") or 19),
+                        handle=int(am_ev.get("handle") or 0),
+                        ident=str(am_ev.get("ident") or ""),
+                        event_id=int(am_ev.get("eventId") or am_ev.get("event_id") or 1),
+                    )
+                    c["sent"] = _flush_events(
+                        log, sess, c["sent"], **c["dev"], session_id=session_id
+                    )
+                    for r in replies:
+                        ok, fail = rfcomm_write_all(
+                            fd, r, log=log, conn=c, session_id=session_id, event_prefix="inject"
+                        )
+                        if not ok:
+                            close(fd, f"inject_write_error:{(fail or {}).get('errno')}")
+                            break
+                        log.write(
+                            {
+                                "event": "tx_bytes",
+                                "n": len(r),
+                                "hex": r.hex(),
+                                "reason": "inject_am_event",
+                                "tx_total": c.get("tx_total"),
+                            },
+                            **c["dev"],
+                            session_id=session_id,
+                        )
+                _pace_and_continue(am_ev)
                 continue
 
             cds_updates = {k: v for k, v in updates.items() if not str(k).startswith("_")}

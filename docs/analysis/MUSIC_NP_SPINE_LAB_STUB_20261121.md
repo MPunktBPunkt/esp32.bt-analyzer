@@ -76,6 +76,20 @@ Evidence: [`LAB_MUSIC_NP_SPINE_SEQ_DUAL_20261121T133709Z`](../evidence/LAB_MUSIC
 
 First attempt (133537Z) failed: 92 KiB DESCRIPTION `setResource` → RFCOMM `TimeoutError`. Fixed via cache-hit + digest seed.
 
+### Live AAIdrive vs f20_sim (evening) — NP filled, action inject ≠ stub
+
+Deep eval: [`LAB_HOME_LIVE_DEEP_20261121.md`](LAB_HOME_LIVE_DEEP_20261121.md)
+
+| Check | Live AAIdrive |
+|-------|---------------|
+| Green on `7B:0A` f20_sim | yes |
+| setData 445–447 (artist/album/title) | yes (continuous) |
+| setData 444 | not observed in captures |
+| inject action 336·248 → ack | **no** (TX, 0 ack) |
+
+Evidence: `LAB_HOME_20261121T1840Z`, `LAB_HOME_20261121T1900Z`, `LAB_MUSIC_NP_LIVE_INJECT_20261121T1909Z`.  
+Do not treat Description-raAction IDs as live “start NP” levers. Next remains **one F20 field trial**.
+
 ## How to run (lab)
 
 ```bash

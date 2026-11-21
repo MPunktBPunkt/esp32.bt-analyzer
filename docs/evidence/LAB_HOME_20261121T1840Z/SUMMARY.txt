@@ -1,0 +1,12 @@
+lines 7480
+span_s 677.7
+handshake_sent 1
+sas_challenge_tx 10
+sas_login_ok_tx 10
+f20_rpc_rx 726
+rhmi_check_resource 11
+rhmi_resource_rx 11
+top_methods [('rhmi_setData', 458), ('rhmi_setProperty', 55), ('cds_addPropertyChangedEventHandler', 48), ('cds_getPropertyAsync', 46), ('ver_getVersion', 22), ('rhmi_checkResource', 11), ('rhmi_setResource', 11), ('sas_certificate', 10), ('sas_login', 10), ('cds_create', 5), ('rhmi_create', 5), ('am_registerApp', 5), ('rhmi_initialize', 5), ('cds_removePropertyChangedEventHandler', 5), ('rhmi_getCapabilities', 4)]
+session_id LAB_HOME_20261121T1828Z
+hu C8:C9:A3:CB:7B:0A f20_sim ch6
+phone AC:C0:48:5E:CB:20

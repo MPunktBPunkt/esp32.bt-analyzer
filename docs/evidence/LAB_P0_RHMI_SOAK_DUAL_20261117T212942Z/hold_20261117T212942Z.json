@@ -1,0 +1,28 @@
+{
+  "bond": {
+    "device_path": null,
+    "paired": false,
+    "error": "HU not found on phone adapter /org/bluez/hci1",
+    "phone_adapter": "/org/bluez/hci1",
+    "hu_adapter": "/org/bluez/hci2"
+  },
+  "adapters": {
+    "hu": "/org/bluez/hci2",
+    "phone": "/org/bluez/hci1"
+  },
+  "hold": {
+    "channel": 6,
+    "hold_s_requested": 600.0,
+    "mode": "bcl_bond_failed",
+    "rfcomm_connect_ok": false,
+    "connect_error": "HU not found on phone adapter /org/bluez/hci1",
+    "hold_s": 0.0,
+    "sent": 0,
+    "rx": 0,
+    "send_err": "bond_required:HU not found on phone adapter /org/bluez/hci1",
+    "ok": false
+  },
+  "esp_sample_count": 0,
+  "esp_first": null,
+  "esp_last": null
+}

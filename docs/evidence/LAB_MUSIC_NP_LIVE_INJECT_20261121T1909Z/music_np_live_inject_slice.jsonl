@@ -1,0 +1,10 @@
+{"ts": 1795288127.7944458, "event": "operator_marker", "note": "music_np_spine_live_inject_start"}
+{"ts": 1795288127.939, "event": "inject_rhmi_request", "action": {"src": 19, "handle": 17, "actionId": 336, "args": {"0": 0}}, "open_conns": 1, "session_id": "LAB_HOME_20261121T1857Z"}
+{"ts": 1795288127.939, "event": "rhmi_action_tx", "src": 19, "handle": 17, "actionId": 336, "args": {"0": 0}, "ident": 0, "reason": "inject", "adapter": "hci2", "peer": "AC:C0:48:5E:CB:20", "session_id": "LAB_HOME_20261121T1857Z"}
+{"ts": 1795288128.339, "event": "inject_rhmi_request", "action": {"src": 19, "handle": 17, "actionId": 248, "args": {"0": 0}}, "open_conns": 1, "session_id": "LAB_HOME_20261121T1857Z"}
+{"ts": 1795288128.339, "event": "rhmi_action_tx", "src": 19, "handle": 17, "actionId": 248, "args": {"0": 0}, "ident": 0, "reason": "inject", "adapter": "hci2", "peer": "AC:C0:48:5E:CB:20", "session_id": "LAB_HOME_20261121T1857Z"}
+{"ts": 1795288128.49, "event": "rhmi_hmi_tx", "src": 19, "handle": 17, "componentId": 0, "eventId": 1, "args": {"0": 0}, "ident": 0, "reason": "inject", "adapter": "hci2", "peer": "AC:C0:48:5E:CB:20", "session_id": "LAB_HOME_20261121T1857Z"}
+{"ts": 1795288128.57, "event": "rhmi_hmi_tx", "src": 19, "handle": 17, "componentId": 1, "eventId": 1, "args": {"0": 0}, "ident": 0, "reason": "inject", "adapter": "hci2", "peer": "AC:C0:48:5E:CB:20", "session_id": "LAB_HOME_20261121T1857Z"}
+{"ts": 1795288128.651, "event": "rhmi_hmi_tx", "src": 19, "handle": 17, "componentId": 9, "eventId": 1, "args": {"0": 0}, "ident": 0, "reason": "inject", "adapter": "hci2", "peer": "AC:C0:48:5E:CB:20", "session_id": "LAB_HOME_20261121T1857Z"}
+{"ts": 1795288128.731, "event": "rhmi_hmi_tx", "src": 19, "handle": 17, "componentId": 20, "eventId": 1, "args": {"0": 0}, "ident": 0, "reason": "inject", "adapter": "hci2", "peer": "AC:C0:48:5E:CB:20", "session_id": "LAB_HOME_20261121T1857Z"}
+{"ts": 1795288154.0228088, "event": "operator_marker", "note": "music_np_spine_live_inject_done"}
