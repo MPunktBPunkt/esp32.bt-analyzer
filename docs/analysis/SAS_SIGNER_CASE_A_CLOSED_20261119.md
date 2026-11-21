@@ -58,6 +58,7 @@ constant `0x02000000`, not the X509 serial.
 | Claim | Status |
 |-------|--------|
 | Embedded PKCS#12 in `libaudio.so` @ `0x5249e`, len `0x10f2` (4338 B) | **FACT / CONFIRMED** (OID inventory) |
+| PBE Salt / Iter=1 / CT 2376 B; empty-pw MAC **REJECT** | **FACT** (2026-11-21) — [PKCS12-ANATOMY](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PKCS12-ANATOMY.md); passphrase origin **INFERENCE** |
 | OID `pkcs8ShroudedKeyBag` ×1; `pkcs7-encryptedData`; `pbeWithSHAAnd3-KeyTripleDES-CBC` ×2 | **FACT** |
 | Sign path stays in-process (no `open`/`AAsset`/`socket` on depth≤3) | **FACT** |
 | Android Keystore / TEE / KeyMint | **REJECTED** (`NOT_FOUND`) |

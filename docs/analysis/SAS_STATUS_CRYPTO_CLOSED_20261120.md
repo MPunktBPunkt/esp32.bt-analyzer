@@ -77,6 +77,7 @@ Lab-HU ≠ F20-HU — aber Field-Lauf liegt vor (`FIELD_B3_GATEB_20261121T112446
 | Brauchen wir MyBMW (oder gleichwertige Signierfähigkeit), um am F20 einzuloggen? | **Als Signierträger ja**, bis Standalone existiert (Gate B Accept = FACT) |
 | Private-Key-Extraktion als nächster Schritt? | **REJECTED / STOP** |
 | PKCS#12 in `libaudio.so` vorhanden? | **FACT** (OID); Alias↔Blob = **INFERENCE** |
+| PKCS#12 PBE anatomy (Salt / **Iter=1** / 2376 B CT / empty-pw REJECT)? | **FACT** — technology-audit [`PKCS12-ANATOMY.md`](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PKCS12-ANATOMY.md); Passwort-**Ursprung** weiter INFERENCE bis PLT `PKCS12_parse` |
 
 ## Einstufung
 
@@ -113,7 +114,8 @@ Arbeitsfokus: [`FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`](FIELD_GATE_
 2. Lab stub frozen — [`MUSIC_NP_SPINE_LAB_STUB_20261121.md`](MUSIC_NP_SPINE_LAB_STUB_20261121.md) (IDs 444·445·446/447·660·661·336·248)  
 3. Lab proof → **ein** F20-Feldversuch (Suffizienz fremder RHMI-Client) → dann PiDrive-Implementierung  
 4. Optional: RSA-VERIFY Field-Raw; Standalone-Signer später (nicht blocker)  
-5. Kein BT-Stack-/libaudio-Forensik; kein allgemeiner Technology-Audit
+5. Optional observe-only: PLT `PKCS12_parse` password regs (Alias↔Blob / Passwort-Ursprung) — siehe PKCS12-ANATOMY; **kein** Key-Dump / kein PW-Brute  
+6. Kein BT-Stack-/libaudio-Forensik als Blocker für RHMI/PiDrive; kein allgemeiner Technology-Audit
 
 Tool für Field-SPP: `tools/b3_profile_relay.py` (SDP „BMW Connected“ ch6 + transparent relay).
 
