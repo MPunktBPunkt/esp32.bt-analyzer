@@ -130,8 +130,10 @@ Control-plane closure: [`BT_CONTROL_PLANE_CLOSED_20261121.md`](../../analysis/BT
 
 ## Next (PiDrive Weg A)
 
-1. Minimal-PoC-ID-Set aus Handle-23-Korrelation einfrieren (NP 444–447 + Events 660/661)  
-2. Minimales PiDrive-Menü / Lab stub (nicht Screen Mirroring zuerst)  
-3. Lab `f20_sim` → ein Feldversuch (eine Variable)  
-4. Optional: TEXTDB/IMAGEDB extract; RSA-VERIFY Field-Raw; Standalone-Signer später  
-5. **Nicht:** allgemeiner Technology-Audit / DESCRIPTION-Reassembly
+Frozen: [`MUSIC_NP_SPINE_LAB_STUB_20261121.md`](../../analysis/MUSIC_NP_SPINE_LAB_STUB_20261121.md)
+
+1. Lab stub **nur** 444·445·446/447·660·661·336·248  
+2. Lab-Kette stabil → **ein** F20-Feldversuch (Suffizienz fremder RHMI-Client)  
+3. Danach PiDrive-Implementierung (nicht mehr Wire-RE)  
+4. Optional parallel: TEXTDB/IMAGEDB; RSA-VERIFY; Standalone-Signer  
+5. **Nicht:** BT-Stack erweitern / Technology-Audit / 78-Model-Port

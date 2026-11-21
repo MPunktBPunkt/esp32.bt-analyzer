@@ -68,17 +68,21 @@ Handlers registered: `rhmi_addActionEventHandler` + `rhmi_addHmiEventHandler` wi
 | raListModel | 2 |
 | raGaugeModel | 1 |
 
-## Minimal PoC candidate (not yet Field-proven as standalone)
+## Minimal PoC — FROZEN for lab stub
 
-Enough for a first PiDrive stub (hypothesis):
+Plan: [`MUSIC_NP_SPINE_LAB_STUB_20261121.md`](../../../analysis/MUSIC_NP_SPINE_LAB_STUB_20261121.md)
 
-1. DESCRIPTION + checkResource MD5 `e9e31c31…` (or cache hit)  
-2. `rhmi_initialize` handle  
-3. setData: **444, 445, 446, 447** (+ optional 451/452/440/462)  
-4. triggerEvent **660** / **661** for IC/status  
-5. One toolbar `setProperty` visibility chain (e.g. component 54) + ack **336** if HU sends action  
+| ID | Role |
+|---:|------|
+| 444 | source/app/media |
+| 445 | artist |
+| 446 / 447 | title |
+| 660 | multimediaInfo event |
+| 661 | statusbar event |
+| 336 | action |
+| 248 | action |
 
-Full machine-readable list: `HANDLE23_CORRELATION.json`.
+Defer: 451/452/440/462/458. Full machine list: `HANDLE23_CORRELATION.json`.
 
 ## Epistemic
 

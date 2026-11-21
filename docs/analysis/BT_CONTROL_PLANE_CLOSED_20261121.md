@@ -78,7 +78,9 @@ Now-Playing spine (`audioHmiState` id=24): models **444–447**, **451–452**, 
 
 ## Next
 
-1. Finish minimal PoC ID set from correlation (NP + 1–2 toolbar actions)  
-2. Lab `f20_sim` stub with that subset  
-3. One F20 field variable  
-4. Optional: TEXTDB/IMAGEDB; Standalone-Signer (parallel, not blocking PoC design)
+Frozen: [`MUSIC_NP_SPINE_LAB_STUB_20261121.md`](MUSIC_NP_SPINE_LAB_STUB_20261121.md)
+
+1. Lab stub IDs only: **444, 445, 446/447, 660, 661, 336, 248**  
+2. Lab proof chain → one F20 field trial (sufficiency of Music-RHMI defs for foreign client)  
+3. Then PiDrive implementation — **not** more Bluetooth RE  
+4. Optional parallel: TEXTDB/IMAGEDB; Standalone-Signer (not blocker)

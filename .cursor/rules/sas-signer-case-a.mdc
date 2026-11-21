@@ -1,5 +1,5 @@
 ---
-description: BT control plane closed; next is minimal Handle-23 RHMI PoC → F20 field test
+description: BT control plane closed; next is frozen Music NP spine lab stub → one F20 trial → PiDrive
 alwaysApply: true
 ---
 
@@ -7,6 +7,7 @@ alwaysApply: true
 
 Canonical status: `docs/analysis/SAS_STATUS_CRYPTO_CLOSED_20261120.md`  
 Control plane: `docs/analysis/BT_CONTROL_PLANE_CLOSED_20261121.md`  
+Lab stub plan: `docs/analysis/MUSIC_NP_SPINE_LAB_STUB_20261121.md`  
 Native CASE A: `docs/analysis/SAS_SIGNER_CASE_A_CLOSED_20261119.md`  
 Lab RSA-VERIFY: `docs/analysis/SAS_PAD_RSA_VERIFY_LAB_20261120.md`  
 Field Gate B: `docs/evidence/FIELD_B3_GATEB_20261121T112446Z/EVAL.md`  
@@ -37,11 +38,12 @@ Alias↔PKCS#12 identity = **INFERENCE** only. Not Keystore/TEE/Binder/`/data/As
 
 ## Do
 
-- Next: freeze minimal Handle-23 PoC ID set (NP models 444–447, events 660/661)
-  → lab stub → one F20 field test (`HANDLE23_CORRELATION.md`,
-  `BT_CONTROL_PLANE_CLOSED_20261121.md`, `FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`)
-- Do not start a general technology-audit; BT control plane is CLOSED
-- Do not reassemble DESCRIPTION from B3 raw; blob is already matched (MD5 `e9e31c31…`)
+- Next: implement frozen Music NP spine lab stub only
+  (`MUSIC_NP_SPINE_LAB_STUB_20261121.md` — IDs 444, 445, 446/447, 660, 661, 336, 248)
+  → lab proof → one F20 field trial → then PiDrive implementation
+- Do not widen the Bluetooth stack; control plane is CLOSED
+- Do not start a general technology-audit; do not port all 78 models
+- Do not reassemble DESCRIPTION from B3 raw (MD5 `e9e31c31…` matched)
 - Optional: RSA-VERIFY from Field raw; Standalone signer later (still no key extract; not blocker)
 - Prefer pad/A↔B public checks over key extraction
 - Field SPP path: `tools/b3_profile_relay.py` (SDP + relay), not raw listen alone

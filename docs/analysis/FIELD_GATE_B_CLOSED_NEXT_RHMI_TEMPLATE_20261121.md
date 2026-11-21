@@ -10,6 +10,7 @@ addendum: …/ADDENDUM_RHMI_AM_20261121.md
 description_extract: …/resources/EXTRACT.md
 correlation: …/resources/HANDLE23_CORRELATION.md
 control_plane: BT_CONTROL_PLANE_CLOSED_20261121.md
+lab_stub_plan: MUSIC_NP_SPINE_LAB_STUB_20261121.md
 status_doc: SAS_STATUS_CRYPTO_CLOSED_20261120.md
 ```
 
@@ -42,13 +43,14 @@ NP-Spine: `audioHmiState` 24 → models 444–447 (+ Zeit/Progress/Playlist).
 
 ## Next workstream (ordered)
 
-1. Freeze **minimal PoC ID set** from [`HANDLE23_CORRELATION.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/resources/HANDLE23_CORRELATION.md) (NP 444–447 + events 660/661)  
-2. Reproduce that subset in `f20_sim` / iDriveSim stub  
-3. Wire **one** PiDrive action sink  
-4. **One** field variable: AAIdrive session + PiDrive test entry  
-5. Optional: TEXTDB/IMAGEDB extract  
+Frozen plan: [`MUSIC_NP_SPINE_LAB_STUB_20261121.md`](MUSIC_NP_SPINE_LAB_STUB_20261121.md)
 
-**Not next:** general technology-audit, Standalone signer as blocker, AOA, Screen-Mirroring-first, `libaudio` dig, DESCRIPTION reassembly.
+1. Lab stub = **only** IDs **444, 445, 446/447, 660, 661, 336, 248**  
+2. Prove: `initialize` → `setData` NP → render → action 336/248 → events 660/661  
+3. **One** F20 field trial — question: which Music-RHMI defs suffice for a foreign RHMI client UI?  
+4. Then: PiDrive implementation (not more Wire-RE)  
+
+**Not next:** BT-stack work, general technology-audit, Standalone signer as blocker, AOA, Screen-Mirroring-first, `libaudio` dig, DESCRIPTION reassembly, full 78-model port.
 
 ## Tooling
 
