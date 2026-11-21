@@ -74,7 +74,7 @@ Siehe [`ADDENDUM_RHMI_AM_20261121.md`](ADDENDUM_RHMI_AM_20261121.md):
 - fünf `am_registerApp` inkl. Package/Kategorie/Weights (**FIELD**)
 - Spotify ≠ AM; Media über `me.hufman.androidautoidrive.music` (**FIELD** / Handle 23 **STRONG**)
 - 11× `checkResource=true`, kein `setResource` (**STRONG**)
-- Music DESCRIPTION-Fingerprint 92 085 B — Blob im Repo noch **nicht** gefunden (**OPEN** Extraktion)
+- Music DESCRIPTION **CLOSED** — [`resources/ui_description_multimedia_v3.xml`](resources/ui_description_multimedia_v3.xml) (MD5 `e9e31c31…` / 92 085 B / SHA-256 `8e1d0b21…`); siehe [`resources/EXTRACT.md`](resources/EXTRACT.md)
 - CDS-Property-Namen + 123 `iva_*` (**FIELD**)
 
 ## Gaps (nicht blockierend für Gate B)
@@ -83,7 +83,7 @@ Siehe [`ADDENDUM_RHMI_AM_20261121.md`](ADDENDUM_RHMI_AM_20261121.md):
 2. **Viele kurze Relays** danach (`Connection reset` / `Connection refused`) als Auto/ACL weg — Noise nach dem Erfolgsfenster.
 3. **`btmon/*.btmon.txt`** nicht archiviert (nur `.btsnoop`).
 4. **Ideal-Freeze** bei `AUTHENTICATED` nicht erzwungen — Session lief absichtlich in RHMI/Media (Operator-Nutzen); Gate-B-Beweis trotzdem vollständig.
-5. **Music DESCRIPTION XML** (92 085 B) noch nicht reassembliert — nächster Template-Schritt.
+5. **Music DESCRIPTION ↔ Field ID-Korrelation** (Models/Actions/Events vs Handle-23 `setData`) — nächster Template-Schritt; Blob selbst ist geschlossen.
 
 ## Epistemic
 

@@ -109,7 +109,7 @@ Gate B erledigt — siehe [`FIELD_B3_GATEB_20261121T112446Z/EVAL.md`](../evidenc
 
 Arbeitsfokus: [`FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`](FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md)
 
-1. **Music RHMI DESCRIPTION** (92 085 B / `e9e31c31…`) extrahieren → Model/Action-IDs  
+1. Music DESCRIPTION **CLOSED** — [`…/resources/ui_description_multimedia_v3.xml`](../evidence/FIELD_B3_GATEB_20261121T112446Z/resources/ui_description_multimedia_v3.xml) (MD5 `e9e31c31…` = Field `checkResource`; SHA-256 `8e1d0b21…`) → Model/Action-IDs gegen Field `setData` korrelieren  
 2. Minimales PiDrive-Menü aus Music-Template (Weg A: AAIdrive-Session)  
 3. Optional: RSA-VERIFY Field-Raw; Standalone-Signer später  
 4. Kein weiteres `libaudio.so`-Forensik für die Formel

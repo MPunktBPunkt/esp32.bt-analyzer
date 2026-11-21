@@ -1,5 +1,5 @@
 ---
-description: SAS crypto + Gate B Field closed; next is Music RHMI template → PiDrive
+description: SAS crypto + Gate B Field closed; Music DESCRIPTION closed; next is ID correlation → PiDrive
 alwaysApply: true
 ---
 
@@ -8,7 +8,8 @@ alwaysApply: true
 Canonical status: `docs/analysis/SAS_STATUS_CRYPTO_CLOSED_20261120.md`  
 Native CASE A: `docs/analysis/SAS_SIGNER_CASE_A_CLOSED_20261119.md`  
 Lab RSA-VERIFY: `docs/analysis/SAS_PAD_RSA_VERIFY_LAB_20261120.md`  
-Field Gate B: `docs/evidence/FIELD_B3_GATEB_20261121T112446Z/EVAL.md`
+Field Gate B: `docs/evidence/FIELD_B3_GATEB_20261121T112446Z/EVAL.md`  
+Music DESCRIPTION: `docs/evidence/FIELD_B3_GATEB_20261121T112446Z/resources/EXTRACT.md`
 
 ## FACT (crypto + Wire)
 
@@ -34,8 +35,11 @@ Alias↔PKCS#12 identity = **INFERENCE** only. Not Keystore/TEE/Binder/`/data/As
 
 ## Do
 
-- Next: extract Music RHMI DESCRIPTION / Model+Action IDs → PiDrive Weg A template
-  (`FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`, Addendum RHMI/AM)
+- Next: correlate Music DESCRIPTION Model/Action/Event IDs with Field B3 Handle-23
+  `setData`/`setProperty` → PiDrive Weg A template
+  (`FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`, Addendum RHMI/AM,
+  `resources/ui_description_multimedia_v3.xml` — MD5 `e9e31c31…` / 92 085 B CLOSED)
+- Do not reassemble DESCRIPTION from B3 raw; blob is already matched
 - Optional: RSA-VERIFY from Field raw; Standalone signer later (still no key extract)
 - Prefer pad/A↔B public checks over key extraction
 - Field SPP path: `tools/b3_profile_relay.py` (SDP + relay), not raw listen alone

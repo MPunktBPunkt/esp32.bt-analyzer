@@ -86,17 +86,27 @@ Pad-Transform `0x02000000` = FIELD; **RSA-VERIFY** gegen Wire-Cert dieses Captur
 
 ### Music resource fingerprint (Handle 23)
 
-| Resource | Hash (prefix) | Size |
-|----------|---------------|-----:|
-| DESCRIPTION | `e9e31c31…` | 92 085 B |
-| TEXTDB | `1a1f84fb…` | 393 B |
-| IMAGEDB | `0b010109…` | 162 483 B |
+| Resource | Hash (algorithm) | Size | Status |
+|----------|------------------|-----:|--------|
+| DESCRIPTION | MD5 `e9e31c31110680e13b7a112a7d77eb55` | 92 085 B | **CLOSED** — [`resources/ui_description_multimedia_v3.xml`](resources/ui_description_multimedia_v3.xml) |
+| TEXTDB | `1a1f84fb…` | 393 B | OPEN extract |
+| IMAGEDB | `0b010109…` | 162 483 B | OPEN extract |
+
+**Hash hygiene:** Wire `checkResource` trägt **MD5** (16 B). SHA-256 der DESCRIPTION-Datei = `8e1d0b21f6d7d554…` (= Lab CONT10 `rhmi_resource_rx` Upload). `e9e31c31…` ist **nicht** SHA-256.
 
 **Hinweis:** mapview/screenmirror teilen in der Decode-Tabelle denselben DESCRIPTION/IMAGEDB-Hash — nicht ungeprüft als getrennte Templates übernehmen.
 
-### DESCRIPTION-Blob Suche
+### DESCRIPTION extract — CLOSED 2026-11-21
 
-Hash/Größe `e9e31c31…` / 92 085 B: **kein** `setResource`-Upload der Music-DESCRIPTION in durchsuchbaren bt-analyzer Evidence-Dateien gefunden (Stand 2026-11-21). Nächster Extraktionsschritt bleibt Reassembly aus Raw oder älterem Upload-Capture, nicht neuer Feldlauf nur für Auth.
+Siehe [`resources/EXTRACT.md`](resources/EXTRACT.md).
+
+| Check | Value | Match |
+|-------|-------|:-----:|
+| size | 92 085 B | ✓ |
+| MD5 (`checkResource` Field B3) | `e9e31c31110680e13b7a112a7d77eb55` | ✓ |
+| SHA-256 (Lab CONT10 upload) | `8e1d0b21f6d7d554683e341d47d57aa50768a81679d9846c2b02306dfefafd76` | ✓ |
+
+Provenance: AAIdrive Git `@ 246e11d4` `app/src/test/resources/ui_description_multimedia_v3.xml` (unmodified). Root: `<pluginApp applicationType="Multimedia" …>`.
 
 ## Epistemic hygiene
 
@@ -106,7 +116,7 @@ Hash/Größe `e9e31c31…` / 92 085 B: **kein** `setResource`-Upload der Music
 
 ## Next (PiDrive Weg A)
 
-1. Music-DESCRIPTION (92 085 B) reassemblieren / finden → Model/Action-IDs  
+1. Music-DESCRIPTION Models/Actions/Events gegen Field B3 Handle-23 `setData`/`setProperty` korrelieren  
 2. Minimales PiDrive-Menü aus Music-Template ableiten (nicht Screen Mirroring zuerst)  
 3. Lab `f20_sim` reproduzieren → ein Feldversuch (eine Variable)  
-4. Optional: RSA-VERIFY Field-Raw; Standalone-Signer später
+4. Optional: TEXTDB/IMAGEDB extract; RSA-VERIFY Field-Raw; Standalone-Signer später
