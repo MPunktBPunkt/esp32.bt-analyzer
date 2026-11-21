@@ -114,9 +114,24 @@ Provenance: AAIdrive Git `@ 246e11d4` `app/src/test/resources/ui_description_mul
 - „Spotify = ausschließlich AVRCP“ = **zu stark**; FACT: nicht AM-registriert; Media über `…music` RHMI + Player-Session.
 - Offline BCL-Reassembly von `phone_to_hu.bin` (einfacher Framer) liefert kaum DATA-Frames — Live-`b3.jsonl` bleibt Methodenquelle.
 
+## Handle-23 correlation — first cut
+
+Siehe [`resources/HANDLE23_CORRELATION.md`](resources/HANDLE23_CORRELATION.md) (+ `.json`).
+
+| | |
+|--|--:|
+| H23 unique modelIds (all in XML) | 78 |
+| H23 components (all in XML) | 20 |
+| Actions | 336, 248 |
+| Events | 660 (multimediaInfo), 661 (statusbar) |
+| NP spine | `audioHmiState` 24 → models 444–447 (+ Zeit/Progress/Playlist 458) |
+
+Control-plane closure: [`BT_CONTROL_PLANE_CLOSED_20261121.md`](../../analysis/BT_CONTROL_PLANE_CLOSED_20261121.md).
+
 ## Next (PiDrive Weg A)
 
-1. Music-DESCRIPTION Models/Actions/Events gegen Field B3 Handle-23 `setData`/`setProperty` korrelieren  
-2. Minimales PiDrive-Menü aus Music-Template ableiten (nicht Screen Mirroring zuerst)  
-3. Lab `f20_sim` reproduzieren → ein Feldversuch (eine Variable)  
-4. Optional: TEXTDB/IMAGEDB extract; RSA-VERIFY Field-Raw; Standalone-Signer später
+1. Minimal-PoC-ID-Set aus Handle-23-Korrelation einfrieren (NP 444–447 + Events 660/661)  
+2. Minimales PiDrive-Menü / Lab stub (nicht Screen Mirroring zuerst)  
+3. Lab `f20_sim` → ein Feldversuch (eine Variable)  
+4. Optional: TEXTDB/IMAGEDB extract; RSA-VERIFY Field-Raw; Standalone-Signer später  
+5. **Nicht:** allgemeiner Technology-Audit / DESCRIPTION-Reassembly

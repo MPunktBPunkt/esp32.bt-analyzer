@@ -1,15 +1,17 @@
 ---
-description: SAS crypto + Gate B Field closed; Music DESCRIPTION closed; next is ID correlation → PiDrive
+description: BT control plane closed; next is minimal Handle-23 RHMI PoC → F20 field test
 alwaysApply: true
 ---
 
 # SAS Signer / Crypto — Gate A+B CLOSED (Field)
 
 Canonical status: `docs/analysis/SAS_STATUS_CRYPTO_CLOSED_20261120.md`  
+Control plane: `docs/analysis/BT_CONTROL_PLANE_CLOSED_20261121.md`  
 Native CASE A: `docs/analysis/SAS_SIGNER_CASE_A_CLOSED_20261119.md`  
 Lab RSA-VERIFY: `docs/analysis/SAS_PAD_RSA_VERIFY_LAB_20261120.md`  
 Field Gate B: `docs/evidence/FIELD_B3_GATEB_20261121T112446Z/EVAL.md`  
-Music DESCRIPTION: `docs/evidence/FIELD_B3_GATEB_20261121T112446Z/resources/EXTRACT.md`
+Music DESCRIPTION: `docs/evidence/FIELD_B3_GATEB_20261121T112446Z/resources/EXTRACT.md`  
+Handle-23 correlation: `docs/evidence/FIELD_B3_GATEB_20261121T112446Z/resources/HANDLE23_CORRELATION.md`
 
 ## FACT (crypto + Wire)
 
@@ -35,11 +37,11 @@ Alias↔PKCS#12 identity = **INFERENCE** only. Not Keystore/TEE/Binder/`/data/As
 
 ## Do
 
-- Next: correlate Music DESCRIPTION Model/Action/Event IDs with Field B3 Handle-23
-  `setData`/`setProperty` → PiDrive Weg A template
-  (`FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`, Addendum RHMI/AM,
-  `resources/ui_description_multimedia_v3.xml` — MD5 `e9e31c31…` / 92 085 B CLOSED)
-- Do not reassemble DESCRIPTION from B3 raw; blob is already matched
-- Optional: RSA-VERIFY from Field raw; Standalone signer later (still no key extract)
+- Next: freeze minimal Handle-23 PoC ID set (NP models 444–447, events 660/661)
+  → lab stub → one F20 field test (`HANDLE23_CORRELATION.md`,
+  `BT_CONTROL_PLANE_CLOSED_20261121.md`, `FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`)
+- Do not start a general technology-audit; BT control plane is CLOSED
+- Do not reassemble DESCRIPTION from B3 raw; blob is already matched (MD5 `e9e31c31…`)
+- Optional: RSA-VERIFY from Field raw; Standalone signer later (still no key extract; not blocker)
 - Prefer pad/A↔B public checks over key extraction
 - Field SPP path: `tools/b3_profile_relay.py` (SDP + relay), not raw listen alone

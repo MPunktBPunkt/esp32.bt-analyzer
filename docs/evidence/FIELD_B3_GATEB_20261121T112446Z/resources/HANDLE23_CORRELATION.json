@@ -1,0 +1,1092 @@
+{
+  "claim_level": "FIELD + DESK cross-validated",
+  "handle": 23,
+  "appId": "me.hufman.androidautoidrive.music",
+  "description": "ui_description_multimedia_v3.xml",
+  "xml_unique_ids": 643,
+  "field_h23_setData_calls": 117,
+  "field_h23_unique_modelIds": [
+    168,
+    176,
+    180,
+    184,
+    259,
+    338,
+    439,
+    440,
+    442,
+    444,
+    445,
+    446,
+    447,
+    451,
+    452,
+    454,
+    455,
+    458,
+    459,
+    462,
+    464,
+    465,
+    466,
+    467,
+    468,
+    469,
+    470,
+    471,
+    472,
+    473,
+    474,
+    475,
+    476,
+    477,
+    478,
+    479,
+    480,
+    481,
+    482,
+    483,
+    485,
+    486,
+    487,
+    488,
+    490,
+    492,
+    493,
+    495,
+    496,
+    497,
+    498,
+    499,
+    500,
+    502,
+    503,
+    504,
+    505,
+    506,
+    507,
+    508,
+    509,
+    510,
+    511,
+    535,
+    536,
+    540,
+    550,
+    569,
+    576,
+    589,
+    639,
+    640,
+    643,
+    653,
+    654,
+    655,
+    657,
+    658
+  ],
+  "field_h23_modelIds_in_xml": 78,
+  "field_h23_setProperty_calls": 38,
+  "field_h23_components": [
+    {
+      "componentId": 27,
+      "n_setProperty": 1,
+      "propertyIds": [
+        3
+      ],
+      "in_xml": true,
+      "xml_tag": "image",
+      "xml_attrs": {
+        "model": "441"
+      }
+    },
+    {
+      "componentId": 38,
+      "n_setProperty": 1,
+      "propertyIds": [
+        3
+      ],
+      "in_xml": true,
+      "xml_tag": "image",
+      "xml_attrs": {
+        "model": "453"
+      }
+    },
+    {
+      "componentId": 51,
+      "n_setProperty": 3,
+      "propertyIds": [
+        1,
+        22
+      ],
+      "in_xml": true,
+      "xml_tag": "button",
+      "xml_attrs": {
+        "action": "173",
+        "selectAction": "250",
+        "tooltipModel": "499",
+        "imageModel": "500"
+      }
+    },
+    {
+      "componentId": 52,
+      "n_setProperty": 1,
+      "propertyIds": [
+        2
+      ],
+      "in_xml": true,
+      "xml_tag": "button",
+      "xml_attrs": {
+        "action": "177",
+        "selectAction": "251",
+        "tooltipModel": "501",
+        "imageModel": "502"
+      }
+    },
+    {
+      "componentId": 53,
+      "n_setProperty": 3,
+      "propertyIds": [
+        1,
+        22
+      ],
+      "in_xml": true,
+      "xml_tag": "button",
+      "xml_attrs": {
+        "action": "181",
+        "selectAction": "252",
+        "tooltipModel": "503",
+        "imageModel": "504"
+      }
+    },
+    {
+      "componentId": 54,
+      "n_setProperty": 2,
+      "propertyIds": [
+        1,
+        3
+      ],
+      "in_xml": true,
+      "xml_tag": "button",
+      "xml_attrs": {
+        "action": "185",
+        "selectAction": "253",
+        "tooltipModel": "505",
+        "imageModel": "506"
+      }
+    },
+    {
+      "componentId": 60,
+      "n_setProperty": 1,
+      "propertyIds": [
+        3
+      ],
+      "in_xml": true,
+      "xml_tag": "list",
+      "xml_attrs": {
+        "model": "515",
+        "action": "256",
+        "selectAction": "272"
+      }
+    },
+    {
+      "componentId": 69,
+      "n_setProperty": 1,
+      "propertyIds": [
+        9
+      ],
+      "in_xml": true,
+      "xml_tag": "image",
+      "xml_attrs": {
+        "model": "529"
+      }
+    },
+    {
+      "componentId": 70,
+      "n_setProperty": 3,
+      "propertyIds": [
+        3,
+        4,
+        6
+      ],
+      "in_xml": true,
+      "xml_tag": "list",
+      "xml_attrs": {
+        "model": "530",
+        "action": "277",
+        "selectAction": "278"
+      }
+    },
+    {
+      "componentId": 72,
+      "n_setProperty": 1,
+      "propertyIds": [
+        37
+      ],
+      "in_xml": true,
+      "xml_tag": "label",
+      "xml_attrs": {
+        "model": "525"
+      }
+    },
+    {
+      "componentId": 73,
+      "n_setProperty": 1,
+      "propertyIds": [
+        37
+      ],
+      "in_xml": true,
+      "xml_tag": "label",
+      "xml_attrs": {
+        "model": "526"
+      }
+    },
+    {
+      "componentId": 82,
+      "n_setProperty": 2,
+      "propertyIds": [
+        3,
+        6
+      ],
+      "in_xml": true,
+      "xml_tag": "list",
+      "xml_attrs": {
+        "model": "554",
+        "action": "299",
+        "selectAction": "315"
+      }
+    },
+    {
+      "componentId": 84,
+      "n_setProperty": 3,
+      "propertyIds": [
+        3,
+        4,
+        6
+      ],
+      "in_xml": true,
+      "xml_tag": "list",
+      "xml_attrs": {
+        "model": "556",
+        "action": "303",
+        "selectAction": "316"
+      }
+    },
+    {
+      "componentId": 94,
+      "n_setProperty": 1,
+      "propertyIds": [
+        6
+      ],
+      "in_xml": true,
+      "xml_tag": "list",
+      "xml_attrs": {
+        "model": "570",
+        "action": "328",
+        "selectAction": "334"
+      }
+    },
+    {
+      "componentId": 100,
+      "n_setProperty": 2,
+      "propertyIds": [
+        3,
+        6
+      ],
+      "in_xml": true,
+      "xml_tag": "list",
+      "xml_attrs": {
+        "model": "580",
+        "action": "339",
+        "selectAction": "355"
+      }
+    },
+    {
+      "componentId": 102,
+      "n_setProperty": 3,
+      "propertyIds": [
+        3,
+        4,
+        6
+      ],
+      "in_xml": true,
+      "xml_tag": "list",
+      "xml_attrs": {
+        "model": "582",
+        "action": "343",
+        "selectAction": "356"
+      }
+    },
+    {
+      "componentId": 112,
+      "n_setProperty": 2,
+      "propertyIds": [
+        3,
+        6
+      ],
+      "in_xml": true,
+      "xml_tag": "list",
+      "xml_attrs": {
+        "model": "593",
+        "action": "360",
+        "selectAction": "376"
+      }
+    },
+    {
+      "componentId": 114,
+      "n_setProperty": 3,
+      "propertyIds": [
+        3,
+        4,
+        6
+      ],
+      "in_xml": true,
+      "xml_tag": "list",
+      "xml_attrs": {
+        "model": "595",
+        "action": "364",
+        "selectAction": "377"
+      }
+    },
+    {
+      "componentId": 646,
+      "n_setProperty": 2,
+      "propertyIds": [
+        1,
+        22
+      ],
+      "in_xml": true,
+      "xml_tag": "button",
+      "xml_attrs": {
+        "action": "203",
+        "selectAction": "240",
+        "tooltipModel": "468",
+        "imageModel": "469"
+      }
+    },
+    {
+      "componentId": 647,
+      "n_setProperty": 2,
+      "propertyIds": [
+        1,
+        22
+      ],
+      "in_xml": true,
+      "xml_tag": "button",
+      "xml_attrs": {
+        "action": "206",
+        "selectAction": "241",
+        "tooltipModel": "470",
+        "imageModel": "471"
+      }
+    }
+  ],
+  "models": [
+    {
+      "modelId": 168,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raIntModel",
+      "xml_attrs": {
+        "value": "0"
+      },
+      "sample_value": "11"
+    },
+    {
+      "modelId": 176,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raIntModel",
+      "xml_attrs": {
+        "value": "0"
+      },
+      "sample_value": "12"
+    },
+    {
+      "modelId": 180,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raIntModel",
+      "xml_attrs": {
+        "value": "0"
+      },
+      "sample_value": "18"
+    },
+    {
+      "modelId": 184,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raIntModel",
+      "xml_attrs": {
+        "value": "0"
+      },
+      "sample_value": "18"
+    },
+    {
+      "modelId": 259,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raIntModel",
+      "xml_attrs": {
+        "value": "0"
+      },
+      "sample_value": "10"
+    },
+    {
+      "modelId": 338,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raIntModel",
+      "xml_attrs": {
+        "value": "0"
+      },
+      "sample_value": "11"
+    },
+    {
+      "modelId": 439,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "textIdModel",
+      "xml_attrs": {
+        "textId": "164",
+        "modelType": "Info"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 440,
+      "n_setData": 4,
+      "in_xml": true,
+      "xml_tag": "raGaugeModel",
+      "xml_attrs": {
+        "modelType": "Progress",
+        "min": "0",
+        "max": "100",
+        "value": "0",
+        "increment": "1"
+      },
+      "sample_value": "63"
+    },
+    {
+      "modelId": 442,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raImageModel",
+      "xml_attrs": {},
+      "sample_value": "EtchStruct(type_name='RHMIResourceData', fields={'data': b'\\x89PNG\\r\\n\\x1a\\n\\x00"
+    },
+    {
+      "modelId": 444,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Spotify'"
+    },
+    {
+      "modelId": 445,
+      "n_setData": 3,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Halestorm, I Prevail'"
+    },
+    {
+      "modelId": 446,
+      "n_setData": 3,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'can u see me in the dark?'"
+    },
+    {
+      "modelId": 447,
+      "n_setData": 3,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'can u see me in the dark?'"
+    },
+    {
+      "modelId": 451,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'  2:32'"
+    },
+    {
+      "modelId": 452,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'  3:58'"
+    },
+    {
+      "modelId": 454,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raImageModel",
+      "xml_attrs": {},
+      "sample_value": "EtchStruct(type_name='RHMIResourceData', fields={'data': b'\\x89PNG\\r\\n\\x1a\\n\\x00"
+    },
+    {
+      "modelId": 455,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raImageModel",
+      "xml_attrs": {},
+      "sample_value": "EtchStruct(type_name='RHMIResourceData', fields={'data': b'\\x89PNG\\r\\n\\x1a\\n\\x00"
+    },
+    {
+      "modelId": 458,
+      "n_setData": 6,
+      "in_xml": true,
+      "xml_tag": "raListModel",
+      "xml_attrs": {
+        "modelType": "PlayList"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIDataTable', fields={'data': [[False, EtchStruct(type_n"
+    },
+    {
+      "modelId": 459,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raIntModel",
+      "xml_attrs": {},
+      "sample_value": "1"
+    },
+    {
+      "modelId": 462,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {
+        "modelType": "FloatingPoint"
+      },
+      "sample_value": "str:'0.63'"
+    },
+    {
+      "modelId": 464,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Apps'"
+    },
+    {
+      "modelId": 465,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "154"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 466,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Durchsuchen'"
+    },
+    {
+      "modelId": 467,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "155"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 468,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Aktuelle Wiedergabe'"
+    },
+    {
+      "modelId": 469,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "156"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 470,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Aktionen'"
+    },
+    {
+      "modelId": 471,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "157"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 472,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Zufallswiedergabe nicht verf\u00fcgbar'"
+    },
+    {
+      "modelId": 473,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "158"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 474,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Wiederholen nicht verf\u00fcgbar'"
+    },
+    {
+      "modelId": 475,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "159"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 476,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "151"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 477,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "149"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 478,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "153"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 479,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Halestorm'"
+    },
+    {
+      "modelId": 480,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'can u see me in the dark?'"
+    },
+    {
+      "modelId": 481,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'can u see me in the dark?'"
+    },
+    {
+      "modelId": 482,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {
+        "modelType": "Info"
+      },
+      "sample_value": "str:'   :  '"
+    },
+    {
+      "modelId": 483,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {
+        "modelType": "Info"
+      },
+      "sample_value": "str:'  3:58'"
+    },
+    {
+      "modelId": 485,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "151"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 486,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "149"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 487,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "153"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 488,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Halestorm'"
+    },
+    {
+      "modelId": 490,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'can u see me in the dark?'"
+    },
+    {
+      "modelId": 492,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'   :  '"
+    },
+    {
+      "modelId": 493,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'  3:58'"
+    },
+    {
+      "modelId": 495,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Apps'"
+    },
+    {
+      "modelId": 496,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "154"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 497,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Durchsuchen'"
+    },
+    {
+      "modelId": 498,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "155"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 499,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Aktuelle Wiedergabe'"
+    },
+    {
+      "modelId": 500,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "156"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 502,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "157"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 503,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Aktionen'"
+    },
+    {
+      "modelId": 504,
+      "n_setData": 2,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "158"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 505,
+      "n_setData": 3,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Zufallswiedergabe nicht verf\u00fcgbar'"
+    },
+    {
+      "modelId": 506,
+      "n_setData": 4,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "159"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 507,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Zur\u00fcck'"
+    },
+    {
+      "modelId": 508,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "160"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 509,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'N\u00e4chster'"
+    },
+    {
+      "modelId": 510,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "161"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 511,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Apps'"
+    },
+    {
+      "modelId": 535,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raListModel",
+      "xml_attrs": {
+        "modelType": "EntICPlaylist"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIDataTable', fields={'data': [[0, '< Zur\u00fcck', '', '', -"
+    },
+    {
+      "modelId": 536,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'EntICPlaylist'"
+    },
+    {
+      "modelId": 540,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'can u see me in the dark?'"
+    },
+    {
+      "modelId": 550,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Durchsuchen'"
+    },
+    {
+      "modelId": 569,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Aktionen'"
+    },
+    {
+      "modelId": 576,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Durchsuchen'"
+    },
+    {
+      "modelId": 589,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Durchsuchen'"
+    },
+    {
+      "modelId": 639,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "textIdModel",
+      "xml_attrs": {
+        "textId": "163"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 640,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "162"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 643,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "162"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 653,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Halestorm'"
+    },
+    {
+      "modelId": 654,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'can u see me in the dark?'"
+    },
+    {
+      "modelId": 655,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "raDataModel",
+      "xml_attrs": {},
+      "sample_value": "str:'Spotify'"
+    },
+    {
+      "modelId": 657,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "textIdModel",
+      "xml_attrs": {
+        "textId": "163"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    },
+    {
+      "modelId": 658,
+      "n_setData": 1,
+      "in_xml": true,
+      "xml_tag": "imageIdModel",
+      "xml_attrs": {
+        "imageId": "162"
+      },
+      "sample_value": "EtchStruct(type_name='RHMIResourceIdentifier', fields={'type': EtchStruct(type_n"
+    }
+  ],
+  "note": "Decoded via ETCH-magic scan of phone_to_hu.bin (BCL stream framer fails on multi-session concat). Counts may exceed live b3.jsonl method histogram (105 setData) due to multiple sessions in raw."
+}

@@ -4,9 +4,12 @@
 date: 2026-11-21
 gate_b: CLOSED
 music_description: CLOSED
+handle23_correlation: FIRST_CUT
 evidence: docs/evidence/FIELD_B3_GATEB_20261121T112446Z/
 addendum: …/ADDENDUM_RHMI_AM_20261121.md
 description_extract: …/resources/EXTRACT.md
+correlation: …/resources/HANDLE23_CORRELATION.md
+control_plane: BT_CONTROL_PLANE_CLOSED_20261121.md
 status_doc: SAS_STATUS_CRYPTO_CLOSED_20261120.md
 ```
 
@@ -16,10 +19,11 @@ status_doc: SAS_STATUS_CRYPTO_CLOSED_20261120.md
 SAS ACCEPT (F20)  →  AM  →  RHMI  →  CDS  →  AV
 ```
 
-ist **FIELD FACT**. Protokoll-RE für Auth/Transport ist nicht mehr der Engpass.
+ist **FIELD FACT**. Bluetooth Control Plane = **CLOSED** — siehe [`BT_CONTROL_PLANE_CLOSED_20261121.md`](BT_CONTROL_PLANE_CLOSED_20261121.md).  
+Kein weiterer allgemeiner Technology-Audit.
 
-Music DESCRIPTION (92 085 B) ist **DESK+FIELD cross-validated** — siehe [`resources/ui_description_multimedia_v3.xml`](../evidence/FIELD_B3_GATEB_20261121T112446Z/resources/ui_description_multimedia_v3.xml).  
-Offen: Korrelation Models/Actions/Events ↔ Field `setData`/`setProperty`.
+Music DESCRIPTION **CLOSED**; Handle-23 Field∩XML **first cut** — 78 modelIds / 20 components / actions 336·248 / events 660·661.  
+NP-Spine: `audioHmiState` 24 → models 444–447 (+ Zeit/Progress/Playlist).
 
 ## Claim hygiene
 
@@ -33,17 +37,18 @@ Offen: Korrelation Models/Actions/Events ↔ Field `setData`/`setProperty`.
 | 11/11 `checkResource=true`, kein Upload | STRONG |
 | RSA-VERIFY dieses Captures | OPEN |
 | Music DESCRIPTION = `ui_description_multimedia_v3.xml` (MD5 `e9e31c31…`, 92 085 B) | **CLOSED** (DESK+FIELD) |
+| H23 Field modelIds ⊆ DESCRIPTION | **STRONG** (78/78) |
 | Eigenes PiDrive-Menü am F20 | OPEN (machbar, nicht bewiesen) |
 
 ## Next workstream (ordered)
 
-1. Catalog **modelIds / actionIds / events** from DESCRIPTION + Field B3 Handle-23 `setData`/`setProperty`  
-2. Optional: extract TEXTDB/IMAGEDB against addendum fingerprints  
-3. Reproduce minimal Multimedia template in `f20_sim` / iDriveSim stub  
-4. Wire **one** PiDrive action sink  
-5. **One** field variable: AAIdrive session + PiDrive test entry  
+1. Freeze **minimal PoC ID set** from [`HANDLE23_CORRELATION.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/resources/HANDLE23_CORRELATION.md) (NP 444–447 + events 660/661)  
+2. Reproduce that subset in `f20_sim` / iDriveSim stub  
+3. Wire **one** PiDrive action sink  
+4. **One** field variable: AAIdrive session + PiDrive test entry  
+5. Optional: TEXTDB/IMAGEDB extract  
 
-**Not next:** Standalone signer, AOA, Screen-Mirroring-first, further `libaudio` dig, B3-blob reassembly of DESCRIPTION.
+**Not next:** general technology-audit, Standalone signer as blocker, AOA, Screen-Mirroring-first, `libaudio` dig, DESCRIPTION reassembly.
 
 ## Tooling
 

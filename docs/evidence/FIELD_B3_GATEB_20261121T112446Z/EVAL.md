@@ -83,7 +83,7 @@ Siehe [`ADDENDUM_RHMI_AM_20261121.md`](ADDENDUM_RHMI_AM_20261121.md):
 2. **Viele kurze Relays** danach (`Connection reset` / `Connection refused`) als Auto/ACL weg — Noise nach dem Erfolgsfenster.
 3. **`btmon/*.btmon.txt`** nicht archiviert (nur `.btsnoop`).
 4. **Ideal-Freeze** bei `AUTHENTICATED` nicht erzwungen — Session lief absichtlich in RHMI/Media (Operator-Nutzen); Gate-B-Beweis trotzdem vollständig.
-5. **Music DESCRIPTION ↔ Field ID-Korrelation** (Models/Actions/Events vs Handle-23 `setData`) — nächster Template-Schritt; Blob selbst ist geschlossen.
+5. **Minimal RHMI PoC** aus Handle-23-Korrelation ([`resources/HANDLE23_CORRELATION.md`](resources/HANDLE23_CORRELATION.md)) — DESCRIPTION + ID-Schnittmenge geschlossen; PoC/Field-Test offen.
 
 ## Epistemic
 

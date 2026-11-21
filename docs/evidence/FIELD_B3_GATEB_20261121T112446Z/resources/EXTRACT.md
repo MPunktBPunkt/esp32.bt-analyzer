@@ -41,4 +41,5 @@ sha256: 8e1d0b21f6d7d554683e341d47d57aa50768a81679d9846c2b02306dfefafd76
 
 ## Next
 
-Catalog model/action/event IDs against Field B3 Handle-23 `rhmi_setData` / `setProperty` sequence → PiDrive Weg A template.
+Handle-23 Field∩XML first cut: [`HANDLE23_CORRELATION.md`](HANDLE23_CORRELATION.md).  
+Control plane closure: [`BT_CONTROL_PLANE_CLOSED_20261121.md`](../../../analysis/BT_CONTROL_PLANE_CLOSED_20261121.md).

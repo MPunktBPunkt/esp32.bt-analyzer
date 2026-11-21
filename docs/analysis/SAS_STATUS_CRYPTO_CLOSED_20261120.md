@@ -109,10 +109,11 @@ Gate B erledigt — siehe [`FIELD_B3_GATEB_20261121T112446Z/EVAL.md`](../evidenc
 
 Arbeitsfokus: [`FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`](FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md)
 
-1. Music DESCRIPTION **CLOSED** — [`…/resources/ui_description_multimedia_v3.xml`](../evidence/FIELD_B3_GATEB_20261121T112446Z/resources/ui_description_multimedia_v3.xml) (MD5 `e9e31c31…` = Field `checkResource`; SHA-256 `8e1d0b21…`) → Model/Action-IDs gegen Field `setData` korrelieren  
-2. Minimales PiDrive-Menü aus Music-Template (Weg A: AAIdrive-Session)  
-3. Optional: RSA-VERIFY Field-Raw; Standalone-Signer später  
-4. Kein weiteres `libaudio.so`-Forensik für die Formel
+1. Bluetooth Control Plane **CLOSED** — [`BT_CONTROL_PLANE_CLOSED_20261121.md`](BT_CONTROL_PLANE_CLOSED_20261121.md); Music DESCRIPTION **CLOSED** (MD5 `e9e31c31…` / SHA-256 `8e1d0b21…`)  
+2. Handle-23 Korrelation first cut — [`HANDLE23_CORRELATION.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/resources/HANDLE23_CORRELATION.md) → minimal PoC-ID-Set (NP 444–447)  
+3. Minimales PiDrive-Menü / Lab stub → ein F20-Feldversuch  
+4. Optional: RSA-VERIFY Field-Raw; Standalone-Signer später (nicht blocker)  
+5. Kein weiteres `libaudio.so`-Forensik; kein allgemeiner Technology-Audit
 
 Tool für Field-SPP: `tools/b3_profile_relay.py` (SDP „BMW Connected“ ch6 + transparent relay).
 
