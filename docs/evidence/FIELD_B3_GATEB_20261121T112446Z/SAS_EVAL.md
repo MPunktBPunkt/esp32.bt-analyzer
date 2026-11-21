@@ -18,5 +18,5 @@
 ## Gate interpretation
 
 - **Transport/SAS path to real F20:** works (Arm A style reject)
-- **Gate B ACCEPT:** still OPEN — needs live MyBMW APP_AUTH (Phone → B3 → F20), not lab stub
+- **Gate B ACCEPT:** CLOSED in live B3 session (`EVAL.md`); this file is **Arm-A stub control only**
 

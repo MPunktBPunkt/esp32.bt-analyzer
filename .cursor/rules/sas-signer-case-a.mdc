@@ -34,7 +34,8 @@ Alias↔PKCS#12 identity = **INFERENCE** only. Not Keystore/TEE/Binder/`/data/As
 
 ## Do
 
-- Next: Standalone signer **without** key extraction (MyBMW still sign carrier until then)
-- Optional: RSA-VERIFY from Field raw (`FIELD_B3_GATEB_20261121T112446Z`)
+- Next: extract Music RHMI DESCRIPTION / Model+Action IDs → PiDrive Weg A template
+  (`FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`, Addendum RHMI/AM)
+- Optional: RSA-VERIFY from Field raw; Standalone signer later (still no key extract)
 - Prefer pad/A↔B public checks over key extraction
 - Field SPP path: `tools/b3_profile_relay.py` (SDP + relay), not raw listen alone

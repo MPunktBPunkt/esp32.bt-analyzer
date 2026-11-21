@@ -105,11 +105,14 @@ Kein weiterer technology-audit vor dem F20-B3-Lauf.
 
 ## Nächster Schritt (nach Gate B)
 
-Gate B erledigt — siehe [`FIELD_B3_GATEB_20261121T112446Z/EVAL.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/EVAL.md).
+Gate B erledigt — siehe [`FIELD_B3_GATEB_20261121T112446Z/EVAL.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/EVAL.md) + [`ADDENDUM_RHMI_AM_20261121.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/ADDENDUM_RHMI_AM_20261121.md).
 
-1. Optional: RSA-VERIFY aus Field-Raw (Cert-Reassembly) — Pad-Transform bereits `0x02000000`
-2. Restaufgabe: **Standalone-Signer** ohne Key-Extraktion / ohne MyBMW als Träger
-3. Kein weiteres `libaudio.so`-Forensik für die Formel
+Arbeitsfokus: [`FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`](FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md)
+
+1. **Music RHMI DESCRIPTION** (92 085 B / `e9e31c31…`) extrahieren → Model/Action-IDs  
+2. Minimales PiDrive-Menü aus Music-Template (Weg A: AAIdrive-Session)  
+3. Optional: RSA-VERIFY Field-Raw; Standalone-Signer später  
+4. Kein weiteres `libaudio.so`-Forensik für die Formel
 
 Tool für Field-SPP: `tools/b3_profile_relay.py` (SDP „BMW Connected“ ch6 + transparent relay).
 

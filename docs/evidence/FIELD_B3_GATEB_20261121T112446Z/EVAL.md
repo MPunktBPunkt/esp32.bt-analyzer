@@ -67,12 +67,23 @@ Etch-`rhmi_setData` (105×) ist method-geloggt; Payload-Text steckt primär im R
 
 Top: `rhmi_setData` 105 · `cds_*` ~100 · `sas_login` 18 · `rhmi_setProperty` 16 · `rhmi_checkResource` 11 · `am_registerApp` 5 · `rhmi_initialize` 5 · `_result_sas_certificate` 2 · `_result_sas_login` 2 · `av_create` 1 · `av_requestConnection` 1
 
+## Post-Auth Template (Addendum)
+
+Siehe [`ADDENDUM_RHMI_AM_20261121.md`](ADDENDUM_RHMI_AM_20261121.md):
+
+- fünf `am_registerApp` inkl. Package/Kategorie/Weights (**FIELD**)
+- Spotify ≠ AM; Media über `me.hufman.androidautoidrive.music` (**FIELD** / Handle 23 **STRONG**)
+- 11× `checkResource=true`, kein `setResource` (**STRONG**)
+- Music DESCRIPTION-Fingerprint 92 085 B — Blob im Repo noch **nicht** gefunden (**OPEN** Extraktion)
+- CDS-Property-Namen + 123 `iva_*` (**FIELD**)
+
 ## Gaps (nicht blockierend für Gate B)
 
 1. **`sas_certificate` Etch-TX** fehlt im Decode (Session startete mit Challenge-Reply) — Cert-Bytes vermutlich in Raw vor Challenge; RSA-VERIFY-Pipeline noch nachziehen.
 2. **Viele kurze Relays** danach (`Connection reset` / `Connection refused`) als Auto/ACL weg — Noise nach dem Erfolgsfenster.
 3. **`btmon/*.btmon.txt`** nicht archiviert (nur `.btsnoop`).
 4. **Ideal-Freeze** bei `AUTHENTICATED` nicht erzwungen — Session lief absichtlich in RHMI/Media (Operator-Nutzen); Gate-B-Beweis trotzdem vollständig.
+5. **Music DESCRIPTION XML** (92 085 B) noch nicht reassembliert — nächster Template-Schritt.
 
 ## Epistemic
 
