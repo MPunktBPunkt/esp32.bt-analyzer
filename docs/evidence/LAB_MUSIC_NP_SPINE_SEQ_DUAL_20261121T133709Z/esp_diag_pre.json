@@ -1,0 +1,188 @@
+{
+  "131": {
+    "ip": "192.168.178.131",
+    "boot": {
+      "resetReason": "panic",
+      "restartCause": "none",
+      "bootGen": 2,
+      "uptimeMs": 8044510,
+      "panicNow": {
+        "generation": 2,
+        "count": 4,
+        "breadcrumbs": [
+          {
+            "code": 1,
+            "name": "boot",
+            "t_ms": 570,
+            "arg": 4
+          },
+          {
+            "code": 2,
+            "name": "wifi_up",
+            "t_ms": 2852,
+            "arg": 0
+          },
+          {
+            "code": 4,
+            "name": "web_up",
+            "t_ms": 2876,
+            "arg": 0
+          },
+          {
+            "code": 3,
+            "name": "hub_ok",
+            "t_ms": 8044341,
+            "arg": 0,
+            "repeat": 268
+          }
+        ]
+      },
+      "panicTail": {
+        "generation": 1,
+        "count": 4,
+        "restartCause": "none",
+        "breadcrumbs": [
+          {
+            "code": 1,
+            "name": "boot",
+            "t_ms": 572,
+            "arg": 1
+          },
+          {
+            "code": 2,
+            "name": "wifi_up",
+            "t_ms": 2786,
+            "arg": 0
+          },
+          {
+            "code": 4,
+            "name": "web_up",
+            "t_ms": 2810,
+            "arg": 0
+          },
+          {
+            "code": 3,
+            "name": "hub_ok",
+            "t_ms": 273043,
+            "arg": 0,
+            "repeat": 7
+          }
+        ]
+      },
+      "checkpoint": {
+        "generation": 2,
+        "open": [],
+        "lastOpen": null,
+        "lastLeave": {
+          "phase": "hub",
+          "arg": 0,
+          "t_ms": 8044334
+        }
+      },
+      "recovery": {
+        "hardCount": 0,
+        "historyCount": 0,
+        "prevCause": "none",
+        "history": []
+      }
+    },
+    "status": {
+      "ts": 1795268230.8804882,
+      "ip": "192.168.178.131",
+      "uptime": "2h 14min",
+      "heap": 63680,
+      "resetReason": "panic",
+      "bootGen": 2,
+      "drops": 39,
+      "sessions": 2,
+      "toHostBytes": 1917733,
+      "toCtrlBytes": 163413,
+      "client": "192.168.178.108",
+      "ready": true
+    }
+  },
+  "87": {
+    "ip": "192.168.178.87",
+    "boot": {
+      "resetReason": "power_on",
+      "restartCause": "none",
+      "bootGen": 1,
+      "uptimeMs": 8334774,
+      "panicNow": {
+        "generation": 1,
+        "count": 6,
+        "breadcrumbs": [
+          {
+            "code": 1,
+            "name": "boot",
+            "t_ms": 570,
+            "arg": 1
+          },
+          {
+            "code": 2,
+            "name": "wifi_up",
+            "t_ms": 3449,
+            "arg": 0
+          },
+          {
+            "code": 4,
+            "name": "web_up",
+            "t_ms": 3474,
+            "arg": 0
+          },
+          {
+            "code": 3,
+            "name": "hub_ok",
+            "t_ms": 3556,
+            "arg": 0
+          },
+          {
+            "code": 6,
+            "name": "wifi_lost",
+            "t_ms": 33170,
+            "arg": 0,
+            "repeat": 1
+          },
+          {
+            "code": 3,
+            "name": "hub_ok",
+            "t_ms": 8319854,
+            "arg": 0,
+            "repeat": 274
+          }
+        ]
+      },
+      "panicTail": null,
+      "checkpoint": {
+        "generation": 1,
+        "open": [],
+        "lastOpen": null,
+        "lastLeave": {
+          "phase": "hub",
+          "arg": 0,
+          "t_ms": 8319848
+        }
+      },
+      "recovery": {
+        "hardCount": 0,
+        "historyCount": 0,
+        "prevCause": "none",
+        "history": []
+      }
+    },
+    "status": {
+      "ts": 1795268231.5740287,
+      "ip": "192.168.178.87",
+      "uptime": "2h 18min",
+      "heap": 63304,
+      "resetReason": "power_on",
+      "bootGen": 1,
+      "drops": 0,
+      "sessions": 2,
+      "toHostBytes": 175447,
+      "toCtrlBytes": 1011505,
+      "client": "192.168.178.108",
+      "ready": true
+    }
+  }
+}

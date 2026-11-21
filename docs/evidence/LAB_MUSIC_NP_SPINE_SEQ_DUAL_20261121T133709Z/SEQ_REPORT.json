@@ -1,0 +1,48 @@
+{
+  "pass": true,
+  "hold_s": 63.25,
+  "rhmi_state": "RUNTIME_ACTIVE",
+  "abort_reason": null,
+  "selected_action": "MUSIC_NP_SPINE",
+  "seq_phase": "complete",
+  "counts": {
+    "setData": 8,
+    "models_seen": [
+      444,
+      445,
+      446,
+      447
+    ],
+    "triggers": 2,
+    "events_seen": [
+      660,
+      661
+    ],
+    "action_tx": 2,
+    "action_rx": 2,
+    "acks": 2,
+    "sinks": 2,
+    "complete": 1
+  },
+  "inject": null,
+  "hu_closes_fatal": [],
+  "criteria": {
+    "hold_ge_45s": true,
+    "runtime_active": true,
+    "no_abort": true,
+    "no_hu_close_fatal": true,
+    "setData_models_444_447": true,
+    "trigger_events_660_661": true,
+    "action_tx_336_248": true,
+    "action_rx_336_248": true,
+    "action_ack_336_248": true,
+    "music_np_sink": true,
+    "selected_or_complete": true
+  },
+  "chain": [
+    "setData(444 source, 445 artist, 446/447 title)",
+    "triggerEvent(660 multimediaInfo, 661 statusbar)",
+    "HU actions 336 + 248",
+    "phone ack + MUSIC_NP_SPINE sink"
+  ]
+}

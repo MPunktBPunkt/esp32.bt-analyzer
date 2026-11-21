@@ -1,0 +1,225 @@
+{
+  "mode": {
+    "hu_bd": "C8:C9:A3:CB:7B:0A",
+    "phone_bd": "C8:C9:A3:CB:37:96",
+    "hu_ip": "192.168.178.131",
+    "phone_ip": "192.168.178.87",
+    "single_esp": false
+  },
+  "bond": {
+    "device_path": "/org/bluez/hci1/dev_C8_C9_A3_CB_7B_0A",
+    "paired": true,
+    "error": null,
+    "phone_adapter": "/org/bluez/hci1",
+    "hu_adapter": "/org/bluez/hci2",
+    "trusted": true
+  },
+  "adapters": {
+    "hu": "/org/bluez/hci2",
+    "phone": "/org/bluez/hci1"
+  },
+  "hold": {
+    "channel": 6,
+    "hold_s_requested": 60.0,
+    "mode": "bcl_phone",
+    "rhmi_soak": false,
+    "rhmi_pidrive_seq": false,
+    "rhmi_music_np_seq": true,
+    "menu_test_action": 200,
+    "music_np_actions": [
+      336,
+      248
+    ],
+    "rfcomm_connect_ok": true,
+    "connect_error": null,
+    "phone_events": {
+      "session_start": 1,
+      "rfcomm_connected": 1,
+      "rhmi_music_np_seq_enabled": 1,
+      "session_init": 1,
+      "rx_bytes": 35,
+      "handshake_rx": 1,
+      "tx_bytes": 57,
+      "frame": 123,
+      "mybmw_rpc_tx": 45,
+      "mybmw_auth_state": 4,
+      "mybmw_sim_start": 1,
+      "watchdog_ping": 1,
+      "hu_dataack": 50,
+      "hu_unsolicited": 76,
+      "watchdog_echo_rtt": 1,
+      "mybmw_rpc_rx": 73,
+      "mybmw_result_classified": 9,
+      "mybmw_rhmi_state": 4,
+      "mybmw_bootstrap_start": 1,
+      "mybmw_handle": 4,
+      "mybmw_apps_queued": 1,
+      "mybmw_rhmi_plan": 1,
+      "mybmw_check_resource_tx": 1,
+      "mybmw_cds_event": 30
+    },
+    "phone_returncode": 1,
+    "abort_reason": null,
+    "wait_class": null,
+    "hold_s": 6.04,
+    "sent": 0,
+    "rx": 0,
+    "send_err": "phone_proc_exit_1",
+    "ok": false
+  },
+  "esp_sample_count": 2,
+  "esp_deltas": [],
+  "esp_first": {
+    "ts": 1795268160.2655509,
+    "131": {
+      "ts": 1795268160.9296505,
+      "ip": "192.168.178.131",
+      "uptime": "2h 12min",
+      "heap": 64896,
+      "resetReason": "panic",
+      "bootGen": 2,
+      "drops": 39,
+      "sessions": 2,
+      "toHostBytes": 1878484,
+      "toCtrlBytes": 153949,
+      "client": "192.168.178.108",
+      "ready": true
+    },
+    "87": {
+      "ts": 1795268161.6311357,
+      "ip": "192.168.178.87",
+      "uptime": "2h 17min",
+      "heap": 63292,
+      "resetReason": "power_on",
+      "bootGen": 1,
+      "drops": 0,
+      "sessions": 2,
+      "toHostBytes": 165079,
+      "toCtrlBytes": 973585,
+      "client": "192.168.178.108",
+      "ready": true
+    }
+  },
+  "esp_last": {
+    "ts": 1795268163.631229,
+    "131": {
+      "ts": 1795268164.4426587,
+      "ip": "192.168.178.131",
+      "uptime": "2h 12min",
+      "heap": 62204,
+      "resetReason": "panic",
+      "bootGen": 2,
+      "drops": 39,
+      "sessions": 2,
+      "toHostBytes": 1884453,
+      "toCtrlBytes": 160366,
+      "client": "192.168.178.108",
+      "ready": true
+    },
+    "87": {
+      "ts": 1795268165.2646182,
+      "ip": "192.168.178.87",
+      "uptime": "2h 17min",
+      "heap": 60640,
+      "resetReason": "power_on",
+      "bootGen": 1,
+      "drops": 0,
+      "sessions": 2,
+      "toHostBytes": 174744,
+      "toCtrlBytes": 985958,
+      "client": "192.168.178.108",
+      "ready": true
+    }
+  },
+  "esp_diag_pre": {
+    "131": {
+      "bootGen": 2,
+      "resetReason": "panic",
+      "uptime": "2h 12min",
+      "drops": 39
+    },
+    "87": {
+      "bootGen": 1,
+      "resetReason": "power_on",
+      "uptime": "2h 17min",
+      "drops": 0
+    }
+  },
+  "esp_diag_post": {
+    "131": {
+      "bootGen": 2,
+      "resetReason": "panic",
+      "uptime": "2h 13min",
+      "drops": 39,
+      "status_error": null,
+      "boot_error": null
+    },
+    "87": {
+      "bootGen": 1,
+      "resetReason": "power_on",
+      "uptime": "2h 17min",
+      "drops": 0,
+      "status_error": null,
+      "boot_error": null
+    }
+  },
+  "hu_events": {
+    "session_start": 1,
+    "profile_registered": 1,
+    "inject_watch": 1,
+    "rfcomm_connected": 1,
+    "rx_bytes": 34,
+    "session_init": 1,
+    "handshake_sent": 1,
+    "tx_bytes": 135,
+    "frame": 58,
+    "phone_tx_classified": 58,
+    "dataack_tx": 58,
+    "selectproto_rx": 1,
+    "knock_rx": 1,
+    "etch_open_rx": 1,
+    "etch_open_probe": 1,
+    "f20_rpc_rx": 45,
+    "sas_challenge_tx": 1,
+    "etch_data_tx": 76,
+    "watchdog_echo": 1,
+    "sas_login_ok_tx": 1,
+    "rhmi_capabilities_tx": 1,
+    "handle_created": 4,
+    "cds_subscribed": 15,
+    "cds_property_tx": 30,
+    "tx_write_eagain": 2,
+    "tx_write_eagain_recovered": 2,
+    "rhmi_check_resource": 1,
+    "tx_write_failed": 1,
+    "rfcomm_closed": 1
+  },
+  "hu_key_events": [
+    {
+      "ts": 1795268162.241,
+      "event": "rfcomm_connected",
+      "peer": "C8:C9:A3:CB:37:96",
+      "session_id": "LAB_AB_87_131"
+    },
+    {
+      "ts": 1795268162.642,
+      "event": "session_init",
+      "peer": "C8:C9:A3:CB:37:96",
+      "session_id": "LAB_AB_87_131"
+    },
+    {
+      "ts": 1795268162.642,
+      "event": "handshake_sent",
+      "peer": "C8:C9:A3:CB:37:96",
+      "session_id": "LAB_AB_87_131"
+    },
+    {
+      "ts": 1795268165.828,
+      "event": "rfcomm_closed",
+      "reason": "write_error:104",
+      "peer": "C8:C9:A3:CB:37:96",
+      "session_id": "LAB_AB_87_131"
+    }
+  ],
+  "phone_proc": 1
+}

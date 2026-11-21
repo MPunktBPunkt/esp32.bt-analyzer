@@ -1,7 +1,8 @@
 # Music NP Spine — Lab Stub Plan (frozen) 2026-11-21
 
 ```yaml
-status: LAB STUB WIRED
+status: LAB PROOF PASS
+lab_evidence: docs/evidence/LAB_MUSIC_NP_SPINE_SEQ_DUAL_20261121T133709Z/
 bt_stack: CLOSED — do not widen
 handoff: Reverse Engineering → PiDrive implementation (after one F20 proof)
 upstream:
@@ -61,6 +62,20 @@ Event handling (660 / 661)
 
 Pass criteria (lab): stub session reaches visible NP-equivalent state on `f20_sim` / iDriveSim without BT-stack changes.
 
+### Lab result 2026-11-21T133709Z — **PASS**
+
+Evidence: [`LAB_MUSIC_NP_SPINE_SEQ_DUAL_20261121T133709Z`](../evidence/LAB_MUSIC_NP_SPINE_SEQ_DUAL_20261121T133709Z/)
+
+| Check | OK |
+|-------|----|
+| RUNTIME_ACTIVE / hold ≥45s | yes |
+| setData 444–447 | yes |
+| triggerEvent 660·661 | yes |
+| action TX/RX/ack 336·248 | yes |
+| sink `MUSIC_NP_SPINE` | yes |
+
+First attempt (133537Z) failed: 92 KiB DESCRIPTION `setResource` → RFCOMM `TimeoutError`. Fixed via cache-hit + digest seed.
+
 ## How to run (lab)
 
 ```bash
@@ -73,6 +88,7 @@ python3 tools/lab_music_np_spine_seq.py --hold 60
 
 Env / flags: `BCL_RHMI_MUSIC_NP_SEQ=1` or `--rhmi-music-np-seq`.  
 DESCRIPTION: Field-matched `ui_description_multimedia_v3.xml` (auto-deployed to `/tmp/bcl_dummy/`).  
+Lab uses **`BCL_RHMI_CACHE_HIT=1`** + seeded `rhmi_digests.txt` (SHA-256) so the 92 KiB DESCRIPTION is not RFCOMM-uploaded (avoids phone `TimeoutError`).  
 Mutually exclusive with `BCL_RHMI_PIDRIVE_SEQ` / soak.
 
 ## Single F20 field trial (only after lab stable)

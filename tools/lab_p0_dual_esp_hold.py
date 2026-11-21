@@ -368,6 +368,26 @@ hold["rhmi_music_np_seq"] = RHMI_MUSIC_NP_SEQ
 hold["menu_test_action"] = MENU_TEST_ACTION
 hold["music_np_actions"] = [MUSIC_NP_ACTION_PRIMARY, MUSIC_NP_ACTION_SECONDARY]
 
+# Seed HU digest whitelist before HU agent starts (Music NP cache-hit path).
+if RHMI_MUSIC_NP_SEQ:
+    import hashlib
+    desc_path = os.environ.get(
+        "BCL_RHMI_DESCRIPTION",
+        "/tmp/bcl_dummy/ui_description_multimedia_v3.xml",
+    )
+    if os.path.exists(desc_path):
+        sha = hashlib.sha256(open(desc_path, "rb").read()).hexdigest()
+        dig = "/tmp/bcl_dummy/rhmi_digests.txt"
+        existing = set()
+        if os.path.exists(dig):
+            existing = {ln.strip().lower() for ln in open(dig) if ln.strip()}
+        if sha not in existing:
+            with open(dig, "a") as fh:
+                fh.write(sha + "\n")
+        print("MUSIC_NP_DIGEST_SEED", sha[:16], flush=True)
+    else:
+        print("MUSIC_NP_DIGEST_SEED_SKIP missing", desc_path, flush=True)
+
 def soak_action_injector(stop_evt):
     """HU→phone rhmi_onActionEvent during soak phases 5–10 min (hold wall clock)."""
     if not RHMI_SOAK or RHMI_PIDRIVE_SEQ or RHMI_MUSIC_NP_SEQ:
@@ -487,6 +507,10 @@ if USE_BCL:
             "BCL_RHMI_DESCRIPTION",
             "/tmp/bcl_dummy/ui_description_multimedia_v3.xml",
         )
+        # Avoid blasting 92 KiB setResource over RFCOMM (TimeoutError at 0.2s sock).
+        # Digest seed happens earlier (before HU start); phone only needs CACHE_HIT.
+        phone_env["BCL_RHMI_CACHE_HIT"] = "1"
+        phone_env["BCL_RHMI_DIGESTS"] = "/tmp/bcl_dummy/rhmi_digests.txt"
     elif RHMI_PIDRIVE_SEQ:
         phone_env["BCL_RHMI_PIDRIVE_SEQ"] = "1"
     elif RHMI_SOAK:
