@@ -58,9 +58,9 @@ constant `0x02000000`, not the X509 serial.
 | Claim | Status |
 |-------|--------|
 | Embedded PKCS#12 in `libaudio.so` @ `0x5249e`, len `0x10f2` (4338 B) | **FACT / CONFIRMED** (OID inventory) |
-| Local PFX pass + `PKCS12_parse`@`0x164988` / `verify_mac`@`0x165b74` + RSA-4096 e=3 | **FACT** (rev. 2026-11-22b) — [PKCS12-ANATOMY](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PKCS12-ANATOMY.md); credentials **withheld** |
-| `0xca93c` parses PFX; `0x167184` = unwrap | **REJECTED** |
-| `EVP_PKEY*` from parse ≡ signer `EVP_PKEY_sign` | **OPEN** (strong INFERENCE via cert/SPKI/wire) |
+| Local PFX pass + `PKCS12_parse` + RSA-4096 e=3 | **FACT** — [PKCS12-ANATOMY](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PKCS12-ANATOMY.md) |
+| Alias → loader `0xbdf84`; `EVP_PKEY*` → x3 of `0x12e564` | **FACT** (rev. 2026-11-22c) |
+| Innermost RSA/`EVP_PKEY_sign` inside `0x12e564` | **NEXT** (VERY STRONG that this is the APP_AUTH key) |
 | OID `pkcs8ShroudedKeyBag` ×1; `pkcs7-encryptedData`; `pbeWithSHAAnd3-KeyTripleDES-CBC` ×2 | **FACT** |
 | Sign path stays in-process (no `open`/`AAsset`/`socket` on depth≤3) | **FACT** |
 | Android Keystore / TEE / KeyMint | **REJECTED** (`NOT_FOUND`) |
