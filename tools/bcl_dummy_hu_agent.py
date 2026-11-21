@@ -793,6 +793,15 @@ def run_phone(
     rhmi_pidrive_seq = bool(getattr(args, "rhmi_pidrive_seq", False)) or (
         os.environ.get("BCL_RHMI_PIDRIVE_SEQ", "").strip() in ("1", "true", "yes")
     )
+    rhmi_music_np_seq = bool(getattr(args, "rhmi_music_np_seq", False)) or (
+        os.environ.get("BCL_RHMI_MUSIC_NP_SEQ", "").strip() in ("1", "true", "yes")
+    )
+    # Mutual exclusion: music NP > pidrive > soak
+    if rhmi_music_np_seq:
+        rhmi_pidrive_seq = False
+        rhmi_soak = False
+    elif rhmi_pidrive_seq:
+        rhmi_soak = False
     sess = None if observe_only else PhoneClientSession(
         selectproto=sp,
         wire_open5001=bool(getattr(args, "wire_open5001", False)) or mybmw_sim,
@@ -801,8 +810,9 @@ def run_phone(
         knock_payload=knock_payload,
         skip_knock=skip_knock,
         mybmw_sim=mybmw_sim,
-        rhmi_soak=rhmi_soak and mybmw_sim and not rhmi_pidrive_seq,
+        rhmi_soak=rhmi_soak and mybmw_sim,
         rhmi_pidrive_seq=rhmi_pidrive_seq and mybmw_sim,
+        rhmi_music_np_seq=rhmi_music_np_seq and mybmw_sim,
     )
     if sess is not None and getattr(sess, "rhmi_soak", False):
         log.write(
@@ -819,6 +829,17 @@ def run_phone(
                 "session_id": session_id,
                 "menu_test_action": int(getattr(sess, "MENU_TEST_ACTION", 200)),
                 "note": "setData(PiDrive) → MENU_TEST_ACTION → PI_DRIVE_TEST sink",
+            }
+        )
+    if sess is not None and getattr(sess, "rhmi_music_np_seq", False):
+        log.write(
+            {
+                "event": "rhmi_music_np_seq_enabled",
+                "session_id": session_id,
+                "models": [444, 445, 446, 447],
+                "events": [660, 661],
+                "actions": [336, 248],
+                "note": "Music NP spine → MUSIC_NP_SPINE sink",
             }
         )
     sent = 0
@@ -867,7 +888,7 @@ def run_phone(
             if sess.handshake is None and now >= next_init:
                 sock.sendall(sess.session_init())
                 next_init = now + SESSION_INIT_INTERVAL_S
-        # Phased RHMI soak or minimal PiDrive UI sequence after RUNTIME_ACTIVE.
+        # Phased RHMI soak / PiDrive / Music NP spine after RUNTIME_ACTIVE.
         if (
             sess is not None
             and getattr(sess, "mybmw_sim", False)
@@ -875,10 +896,13 @@ def run_phone(
             and (
                 getattr(sess, "rhmi_soak", False)
                 or getattr(sess, "rhmi_pidrive_seq", False)
+                or getattr(sess, "rhmi_music_np_seq", False)
             )
         ):
             try:
-                if getattr(sess, "rhmi_pidrive_seq", False):
+                if getattr(sess, "rhmi_music_np_seq", False):
+                    sess.tick_rhmi_music_np_seq(now)  # type: ignore[attr-defined]
+                elif getattr(sess, "rhmi_pidrive_seq", False):
                     sess.tick_rhmi_pidrive_seq(now)  # type: ignore[attr-defined]
                 else:
                     sess.tick_rhmi_soak(now)  # type: ignore[attr-defined]
@@ -890,6 +914,11 @@ def run_phone(
                         "session_id": session_id,
                     }
                 )
+            _seq_kind = (
+                "music_np_seq"
+                if getattr(sess, "rhmi_music_np_seq", False)
+                else ("rhmi_seq" if getattr(sess, "rhmi_pidrive_seq", False) else "rhmi_soak")
+            )
             for out in sess.drain_tx():
                 try:
                     sock.sendall(out)
@@ -898,7 +927,7 @@ def run_phone(
                             "event": "tx_bytes",
                             "n": len(out),
                             "hex": out.hex()[:128],
-                            "kind": "rhmi_seq" if getattr(sess, "rhmi_pidrive_seq", False) else "rhmi_soak",
+                            "kind": _seq_kind,
                             "session_id": session_id,
                         }
                     )
@@ -1337,6 +1366,14 @@ def main() -> int:
             "--rhmi-pidrive-seq",
             action="store_true",
             help="minimal UI seq: setData(PiDrive)→MENU_TEST_ACTION→PI_DRIVE_TEST (BCL_RHMI_PIDRIVE_SEQ=1)",
+        )
+        p.add_argument(
+            "--rhmi-music-np-seq",
+            action="store_true",
+            help=(
+                "Music NP spine: setData(444..447)+triggerEvent(660/661)"
+                "→actions 336/248 (BCL_RHMI_MUSIC_NP_SEQ=1)"
+            ),
         )
         p.add_argument(
             "--selectproto",

@@ -353,14 +353,24 @@ if WANT_BCL and not bond.get("paired"):
 
 RHMI_SOAK = os.environ.get("BCL_RHMI_SOAK", "").strip() in ("1", "true", "yes")
 RHMI_PIDRIVE_SEQ = os.environ.get("BCL_RHMI_PIDRIVE_SEQ", "").strip() in ("1", "true", "yes")
+RHMI_MUSIC_NP_SEQ = os.environ.get("BCL_RHMI_MUSIC_NP_SEQ", "").strip() in ("1", "true", "yes")
 MENU_TEST_ACTION = int(os.environ.get("MENU_TEST_ACTION", "200"))
+MUSIC_NP_ACTION_PRIMARY = int(os.environ.get("MUSIC_NP_ACTION_PRIMARY", "336"))
+MUSIC_NP_ACTION_SECONDARY = int(os.environ.get("MUSIC_NP_ACTION_SECONDARY", "248"))
+if RHMI_MUSIC_NP_SEQ:
+    RHMI_PIDRIVE_SEQ = False
+    RHMI_SOAK = False
+elif RHMI_PIDRIVE_SEQ:
+    RHMI_SOAK = False
 hold["rhmi_soak"] = RHMI_SOAK
 hold["rhmi_pidrive_seq"] = RHMI_PIDRIVE_SEQ
+hold["rhmi_music_np_seq"] = RHMI_MUSIC_NP_SEQ
 hold["menu_test_action"] = MENU_TEST_ACTION
+hold["music_np_actions"] = [MUSIC_NP_ACTION_PRIMARY, MUSIC_NP_ACTION_SECONDARY]
 
 def soak_action_injector(stop_evt):
     """HU→phone rhmi_onActionEvent during soak phases 5–10 min (hold wall clock)."""
-    if not RHMI_SOAK or RHMI_PIDRIVE_SEQ:
+    if not RHMI_SOAK or RHMI_PIDRIVE_SEQ or RHMI_MUSIC_NP_SEQ:
         return
     inject = "/tmp/bcl_dummy/inject_cds.jsonl"
     os.makedirs(os.path.dirname(inject), exist_ok=True)
@@ -392,6 +402,19 @@ def soak_action_injector(stop_evt):
         time.sleep(pace)
     open(f"{OUT}/soak_actions.json", "w").write(json.dumps({"injected": n}, indent=2) + "\n")
 
+def _rhmi_handle_from_phone_log() -> int:
+    handle = 12
+    phone_path = f"{OUT}/phone.jsonl"
+    if os.path.exists(phone_path):
+        for line in open(phone_path):
+            try:
+                o = json.loads(line)
+            except Exception:
+                continue
+            if o.get("event") == "mybmw_handle" and o.get("method") == "rhmi_create":
+                handle = int(o.get("handle") or 12)
+    return handle
+
 def pidrive_seq_injector(stop_evt):
     """One-shot MENU_TEST_ACTION after phone setData(PiDrive) (~25s hold clock)."""
     if not RHMI_PIDRIVE_SEQ:
@@ -404,17 +427,7 @@ def pidrive_seq_injector(stop_evt):
         time.sleep(0.5)
     if stop_evt.is_set():
         return
-    # Prefer live rhmi handle from phone log if already known; else 12.
-    handle = 12
-    phone_path = f"{OUT}/phone.jsonl"
-    if os.path.exists(phone_path):
-        for line in open(phone_path):
-            try:
-                o = json.loads(line)
-            except Exception:
-                continue
-            if o.get("event") == "mybmw_handle" and o.get("method") == "rhmi_create":
-                handle = int(o.get("handle") or 12)
+    handle = _rhmi_handle_from_phone_log()
     line = json.dumps({
         "_rhmi_action": {
             "src": 19,
@@ -430,13 +443,54 @@ def pidrive_seq_injector(stop_evt):
     open(f"{OUT}/pidrive_seq_action.json", "w").write(json.dumps(meta, indent=2) + "\n")
     print("PIDRIVE_SEQ_INJECT", json.dumps(meta), flush=True)
 
+def music_np_seq_injector(stop_evt):
+    """Inject Field Music actions 336 then 248 after NP setData (~12s hold clock)."""
+    if not RHMI_MUSIC_NP_SEQ:
+        return
+    inject = "/tmp/bcl_dummy/inject_cds.jsonl"
+    os.makedirs(os.path.dirname(inject), exist_ok=True)
+    open(inject, "a").close()
+    # RUNTIME_ACTIVE ~4s + phone setData/events at +5s → inject ~12s / +2s.
+    while not stop_evt.is_set() and time.time() - t0 < 12.0:
+        time.sleep(0.5)
+    if stop_evt.is_set():
+        return
+    handle = _rhmi_handle_from_phone_log()
+    injected = []
+    for aid in (MUSIC_NP_ACTION_PRIMARY, MUSIC_NP_ACTION_SECONDARY):
+        if stop_evt.is_set():
+            break
+        line = json.dumps({
+            "_rhmi_action": {
+                "src": 19,
+                "handle": handle,
+                "actionId": aid,
+                "args": {"0": 0},
+            },
+            "_pace_ms": 80,
+        }) + "\n"
+        with open(inject, "a") as f:
+            f.write(line)
+        injected.append({"actionId": aid, "handle": handle, "t_rel_s": round(time.time() - t0, 1)})
+        time.sleep(2.0)
+    meta = {"injected": len(injected), "actions": injected}
+    open(f"{OUT}/music_np_seq_action.json", "w").write(json.dumps(meta, indent=2) + "\n")
+    print("MUSIC_NP_SEQ_INJECT", json.dumps(meta), flush=True)
+
 if USE_BCL:
     # Real BCL session owns RFCOMM; do not also raw-spam the same channel.
     phone_env = os.environ.copy()
-    if RHMI_SOAK and not RHMI_PIDRIVE_SEQ:
-        phone_env["BCL_RHMI_SOAK"] = "1"
-    if RHMI_PIDRIVE_SEQ:
+    if RHMI_MUSIC_NP_SEQ:
+        phone_env["BCL_RHMI_MUSIC_NP_SEQ"] = "1"
+        # Prefer Field-matched Music DESCRIPTION when present on lab host.
+        phone_env.setdefault(
+            "BCL_RHMI_DESCRIPTION",
+            "/tmp/bcl_dummy/ui_description_multimedia_v3.xml",
+        )
+    elif RHMI_PIDRIVE_SEQ:
         phone_env["BCL_RHMI_PIDRIVE_SEQ"] = "1"
+    elif RHMI_SOAK:
+        phone_env["BCL_RHMI_SOAK"] = "1"
     phone_cmd = [
         "python3", "/tmp/bcl_dummy/bcl_dummy_hu_agent.py", "phone",
         "--adapter-bd", PHONE_BD, "--hu-bd", HU_BD, "--channel", str(CHANNEL),
@@ -445,7 +499,9 @@ if USE_BCL:
         "--log", f"{OUT}/phone.jsonl",
         "--session-id", "LAB_P0_87_131_HOLD",
     ]
-    if RHMI_PIDRIVE_SEQ:
+    if RHMI_MUSIC_NP_SEQ:
+        phone_cmd.append("--rhmi-music-np-seq")
+    elif RHMI_PIDRIVE_SEQ:
         phone_cmd.append("--rhmi-pidrive-seq")
     elif RHMI_SOAK:
         phone_cmd.append("--rhmi-soak")
@@ -459,6 +515,8 @@ if USE_BCL:
     soak_th.start()
     seq_th = threading.Thread(target=pidrive_seq_injector, args=(stop,), daemon=True)
     seq_th.start()
+    music_th = threading.Thread(target=music_np_seq_injector, args=(stop,), daemon=True)
+    music_th.start()
     hold["rfcomm_connect_ok"] = None  # determined from phone.jsonl later
     hold["connect_error"] = None
     while time.time() - t0 < HOLD:
@@ -717,6 +775,13 @@ def main() -> int:
         action="store_true",
         help="minimal PiDrive UI seq (setData→MENU_TEST_ACTION→sink) via BCL_RHMI_PIDRIVE_SEQ=1",
     )
+    ap.add_argument(
+        "--rhmi-music-np-seq",
+        action="store_true",
+        help=(
+            "Music NP spine seq (444..447 / 660·661 / 336·248) via BCL_RHMI_MUSIC_NP_SEQ=1"
+        ),
+    )
     args = ap.parse_args()
     host = args.ssh
 
@@ -754,13 +819,30 @@ def main() -> int:
     ):
         scp_to(ROOT / "tools" / name, f"/tmp/bcl_dummy/{name}", host=host)
 
+    music_np = bool(args.rhmi_music_np_seq)
+    pidrive = bool(args.rhmi_pidrive_seq) and not music_np
+    soak = bool(args.rhmi_soak) and not music_np and not pidrive
+    # Deploy Field Music DESCRIPTION alongside agent modules when NP spine is selected.
+    if music_np:
+        desc = (
+            ROOT
+            / "docs"
+            / "evidence"
+            / "FIELD_B3_GATEB_20261121T112446Z"
+            / "resources"
+            / "ui_description_multimedia_v3.xml"
+        )
+        if desc.is_file():
+            scp_to(desc, "/tmp/bcl_dummy/ui_description_multimedia_v3.xml", host=host)
     env = (
         f"HU_BD={HU_BD} PHONE_BD={phone_bd} HU_IP={HU_IP} PHONE_IP={phone_ip} "
         f"RFCOMM_CHANNEL={args.channel} HOLD_S={args.hold} OUT_DIR={remote_out} "
         f"BCL_PHONE={'0' if args.no_bcl_phone else '1'} "
-        f"BCL_RHMI_SOAK={'1' if args.rhmi_soak and not args.rhmi_pidrive_seq else '0'} "
-        f"BCL_RHMI_PIDRIVE_SEQ={'1' if args.rhmi_pidrive_seq else '0'} "
-        f"MENU_TEST_ACTION=200"
+        f"BCL_RHMI_SOAK={'1' if soak else '0'} "
+        f"BCL_RHMI_PIDRIVE_SEQ={'1' if pidrive else '0'} "
+        f"BCL_RHMI_MUSIC_NP_SEQ={'1' if music_np else '0'} "
+        f"MENU_TEST_ACTION=200 "
+        f"MUSIC_NP_ACTION_PRIMARY=336 MUSIC_NP_ACTION_SECONDARY=248"
     )
     timeout = max(180.0, args.hold + 120.0)
     print(f"remote OUT={remote_out} hold={args.hold}s", flush=True)

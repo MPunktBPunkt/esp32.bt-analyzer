@@ -1,12 +1,16 @@
 # Music NP Spine — Lab Stub Plan (frozen) 2026-11-21
 
 ```yaml
-status: PLAN FROZEN
+status: LAB STUB WIRED
 bt_stack: CLOSED — do not widen
 handoff: Reverse Engineering → PiDrive implementation (after one F20 proof)
 upstream:
   - BT_CONTROL_PLANE_CLOSED_20261121.md
   - FIELD_B3_GATEB_…/resources/HANDLE23_CORRELATION.md
+tools:
+  - tools/lab_music_np_spine_seq.py
+  - PhoneClientSession.tick_rhmi_music_np_seq (bcl_dummy_hu.py)
+  - BCL_RHMI_MUSIC_NP_SEQ=1 / --rhmi-music-np-seq
 ```
 
 ## Bridge (FACT)
@@ -56,6 +60,20 @@ Event handling (660 / 661)
 ```
 
 Pass criteria (lab): stub session reaches visible NP-equivalent state on `f20_sim` / iDriveSim without BT-stack changes.
+
+## How to run (lab)
+
+```bash
+# Host unit test (no BT)
+PYTHONPATH=tools python3 -m unittest tests.host.test_music_np_spine_seq -v
+
+# Dual-ESP hold on .108 (needs lab host + ESP up)
+python3 tools/lab_music_np_spine_seq.py --hold 60
+```
+
+Env / flags: `BCL_RHMI_MUSIC_NP_SEQ=1` or `--rhmi-music-np-seq`.  
+DESCRIPTION: Field-matched `ui_description_multimedia_v3.xml` (auto-deployed to `/tmp/bcl_dummy/`).  
+Mutually exclusive with `BCL_RHMI_PIDRIVE_SEQ` / soak.
 
 ## Single F20 field trial (only after lab stable)
 

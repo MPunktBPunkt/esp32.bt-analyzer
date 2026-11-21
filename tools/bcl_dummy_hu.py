@@ -765,12 +765,25 @@ class PhoneClientSession(_Session):
     # Minimal PiDrive UI sequence (setData → Action → internal sink).
     # MENU_TEST_ACTION=200 aligns with controller DEMO_PIDRIVE_XML raAction ids.
     rhmi_pidrive_seq: bool = False
+    # Frozen Music NP spine (Handle-23 Field∩XML) — see MUSIC_NP_SPINE_LAB_STUB_20261121.md
+    rhmi_music_np_seq: bool = False
     selected_action: str | None = None
     _seq_t0: float | None = None
     _seq_phase: str = ""
     _seq_setdata_done: bool = False
+    _music_np_actions_seen: set = field(default_factory=set)
     MENU_TEST_ACTION: int = 200
     PI_DRIVE_TEST: str = "PI_DRIVE_TEST"
+    # Music NP spine IDs (FIELD B3 Handle 23 / ui_description_multimedia_v3.xml)
+    MUSIC_NP_MODEL_SOURCE: int = 444
+    MUSIC_NP_MODEL_ARTIST: int = 445
+    MUSIC_NP_MODEL_ALBUM: int = 446
+    MUSIC_NP_MODEL_TITLE: int = 447
+    MUSIC_NP_EVENT_MULTIMEDIA_INFO: int = 660
+    MUSIC_NP_EVENT_STATUSBAR: int = 661
+    MUSIC_NP_ACTION_PRIMARY: int = 336
+    MUSIC_NP_ACTION_SECONDARY: int = 248
+    MUSIC_NP_SINK: str = "MUSIC_NP_SPINE"
 
     def session_init(self) -> bytes:
         self.events.append({"event": "session_init", "dir": "tx"})
@@ -1046,13 +1059,31 @@ class PhoneClientSession(_Session):
         self._queue_next_rhmi_check()
 
     def _load_lab_description(self) -> bytes:
-        """Load calendar/News DESCRIPTION fixture (lab-authorized size class ~13.6 KiB)."""
+        """Load DESCRIPTION fixture.
+
+        Music NP spine prefers Field-matched multimedia XML (92 085 B / MD5 e9e31c31…).
+        Default lab path uses calendar/News ~13.6 KiB fixture.
+        """
+        root = Path(__file__).resolve().parents[1]
+        music_desc = (
+            root
+            / "docs"
+            / "evidence"
+            / "FIELD_B3_GATEB_20261121T112446Z"
+            / "resources"
+            / "ui_description_multimedia_v3.xml"
+        )
+        prefer_music = self.rhmi_music_np_seq or (
+            os.environ.get("BCL_RHMI_MUSIC_NP_SEQ", "").strip() in ("1", "true", "yes")
+        )
         candidates = [
             Path(os.environ["BCL_RHMI_DESCRIPTION"])
             if os.environ.get("BCL_RHMI_DESCRIPTION")
             else None,
+            music_desc if prefer_music else None,
             Path(__file__).resolve().parent / "fixtures" / "rhmi_description_lab_13598.xml",
             Path("/tmp/bcl_dummy/fixtures/rhmi_description_lab_13598.xml"),
+            music_desc,
         ]
         for p in candidates:
             if p is not None and p.is_file():
@@ -1305,10 +1336,34 @@ class PhoneClientSession(_Session):
         self.events.append(
             {
                 "event": "mybmw_soak_setData",
-                "phase": self._soak_phase,
+                "phase": self._soak_phase or self._seq_phase or None,
                 "reason": reason,
                 "modelId": int(model_id),
                 "value": value if isinstance(value, (str, int, float, bool)) or value is None else type(value).__name__,
+            }
+        )
+
+    def queue_trigger_event(self, event_id: int, *, reason: str = "music_np") -> None:
+        """Queue rhmi_triggerEvent (phone→HU), e.g. multimediaInfo / statusbar."""
+        if self._rhmi_state not in ("RHMI_INITIALIZED", "RUNTIME_ACTIVE"):
+            return
+        rhmi_h = int(self._handles.get("rhmi_create") or 12)
+        self._queue_rpc(
+            "rhmi_triggerEvent",
+            {
+                "_messageId": self._next_msg(),
+                "handle": rhmi_h,
+                "eventId": int(event_id),
+            },
+        )
+        self._soak_counts["triggerEvent"] = int(self._soak_counts.get("triggerEvent") or 0) + 1
+        self.events.append(
+            {
+                "event": "music_np_triggerEvent",
+                "phase": self._seq_phase or None,
+                "reason": reason,
+                "eventId": int(event_id),
+                "handle": rhmi_h,
             }
         )
 
@@ -1373,6 +1428,37 @@ class PhoneClientSession(_Session):
         )
         # Echo measurable UI state back onto known-good model 101.
         self.queue_set_data(101, self.selected_action, reason="pidrive_sink_echo")
+
+    def _dispatch_music_np_action(self, fields: dict) -> None:
+        """Music NP spine sink: Field actions 336/248 → MUSIC_NP_SPINE."""
+        try:
+            action_id = int(fields.get("actionId") if fields.get("actionId") is not None else -1)
+        except (TypeError, ValueError):
+            action_id = -1
+        wanted = {int(self.MUSIC_NP_ACTION_PRIMARY), int(self.MUSIC_NP_ACTION_SECONDARY)}
+        if action_id not in wanted:
+            self.events.append(
+                {
+                    "event": "music_np_action_ignored",
+                    "actionId": action_id,
+                    "expected": sorted(wanted),
+                }
+            )
+            return
+        self._music_np_actions_seen.add(action_id)
+        self._soak_counts["music_np_sink"] = int(self._soak_counts.get("music_np_sink") or 0) + 1
+        self.events.append(
+            {
+                "event": "music_np_action_sink",
+                "actionId": action_id,
+                "seen": sorted(self._music_np_actions_seen),
+                "handle": fields.get("handle"),
+                "note": "Field Music action → MUSIC_NP_SPINE",
+            }
+        )
+        if wanted.issubset(self._music_np_actions_seen):
+            self.selected_action = str(self.MUSIC_NP_SINK)
+            self._seq_phase = "music_np_internal"
 
     def _ack_action_event(self, fields: dict) -> None:
         """Acknowledge HU→phone rhmi_onActionEvent (product interaction path)."""
@@ -1447,6 +1533,86 @@ class PhoneClientSession(_Session):
                 {
                     "event": "pidrive_seq_complete",
                     "selected_action": self.selected_action,
+                    "elapsed_s": round(elapsed, 1),
+                }
+            )
+
+    def tick_rhmi_music_np_seq(self, now: float) -> None:
+        """Frozen Music NP spine after RUNTIME_ACTIVE.
+
+        0–5s stabilize → setData(444/445/446/447) + triggerEvent(660/661)
+        → await Field actions 336+248 → complete MUSIC_NP_SPINE.
+        """
+        if not self.rhmi_music_np_seq or self._rhmi_state != "RUNTIME_ACTIVE":
+            return
+        if self._seq_t0 is None:
+            self._seq_t0 = now
+            self._seq_phase = "stabilize"
+            self._music_np_actions_seen = set()
+            self.events.append(
+                {
+                    "event": "music_np_seq_start",
+                    "phase": "stabilize",
+                    "models": [
+                        int(self.MUSIC_NP_MODEL_SOURCE),
+                        int(self.MUSIC_NP_MODEL_ARTIST),
+                        int(self.MUSIC_NP_MODEL_ALBUM),
+                        int(self.MUSIC_NP_MODEL_TITLE),
+                    ],
+                    "events": [
+                        int(self.MUSIC_NP_EVENT_MULTIMEDIA_INFO),
+                        int(self.MUSIC_NP_EVENT_STATUSBAR),
+                    ],
+                    "actions": [
+                        int(self.MUSIC_NP_ACTION_PRIMARY),
+                        int(self.MUSIC_NP_ACTION_SECONDARY),
+                    ],
+                }
+            )
+            return
+        elapsed = now - self._seq_t0
+        if not self._seq_setdata_done and elapsed >= 5.0:
+            np_values = (
+                (int(self.MUSIC_NP_MODEL_SOURCE), "PiDrive"),
+                (int(self.MUSIC_NP_MODEL_ARTIST), "Halestorm, I Prevail"),
+                (int(self.MUSIC_NP_MODEL_ALBUM), "can u see me in the dark?"),
+                (int(self.MUSIC_NP_MODEL_TITLE), "can u see me in the dark?"),
+            )
+            for mid, val in np_values:
+                self.queue_set_data(mid, val, reason="music_np_seq")
+                self.events.append(
+                    {
+                        "event": "music_np_seq_setData",
+                        "modelId": mid,
+                        "value": val,
+                        "elapsed_s": round(elapsed, 1),
+                    }
+                )
+            for eid in (
+                int(self.MUSIC_NP_EVENT_MULTIMEDIA_INFO),
+                int(self.MUSIC_NP_EVENT_STATUSBAR),
+            ):
+                self.queue_trigger_event(eid, reason="music_np_seq")
+            self._seq_setdata_done = True
+            self._seq_phase = "await_action"
+            self.events.append(
+                {
+                    "event": "music_np_seq_phase",
+                    "phase": "await_action",
+                    "elapsed_s": round(elapsed, 1),
+                    "note": "waiting for HU actions 336/248",
+                }
+            )
+        elif (
+            self.selected_action == str(self.MUSIC_NP_SINK)
+            and self._seq_phase != "complete"
+        ):
+            self._seq_phase = "complete"
+            self.events.append(
+                {
+                    "event": "music_np_seq_complete",
+                    "selected_action": self.selected_action,
+                    "actions_seen": sorted(self._music_np_actions_seen),
                     "elapsed_s": round(elapsed, 1),
                 }
             )
@@ -1882,8 +2048,11 @@ class PhoneClientSession(_Session):
                     }
                 )
                 self._soak_counts["actionRx"] = int(self._soak_counts.get("actionRx") or 0) + 1
-                # Decode → PiDrive handler → internal state (lab product chain).
-                self._dispatch_pidrive_action(fields)
+                # Decode → Music-NP or PiDrive sink → ack (lab product chain).
+                if self.rhmi_music_np_seq:
+                    self._dispatch_music_np_action(fields)
+                else:
+                    self._dispatch_pidrive_action(fields)
                 self._ack_action_event(fields)
             elif method == "cds_onPropertyChangedEvent":
                 self.events.append(

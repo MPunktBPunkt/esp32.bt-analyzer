@@ -38,9 +38,10 @@ Alias↔PKCS#12 identity = **INFERENCE** only. Not Keystore/TEE/Binder/`/data/As
 
 ## Do
 
-- Next: implement frozen Music NP spine lab stub only
-  (`MUSIC_NP_SPINE_LAB_STUB_20261121.md` — IDs 444, 445, 446/447, 660, 661, 336, 248)
-  → lab proof → one F20 field trial → then PiDrive implementation
+- Next: run Music NP spine lab proof
+  (`tools/lab_music_np_spine_seq.py` / `BCL_RHMI_MUSIC_NP_SEQ=1` —
+  IDs 444, 445, 446/447, 660, 661, 336, 248; see `MUSIC_NP_SPINE_LAB_STUB_20261121.md`)
+  → one F20 field trial → then PiDrive implementation
 - Do not widen the Bluetooth stack; control plane is CLOSED
 - Do not start a general technology-audit; do not port all 78 models
 - Do not reassemble DESCRIPTION from B3 raw (MD5 `e9e31c31…` matched)

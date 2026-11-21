@@ -45,8 +45,8 @@ NP-Spine: `audioHmiState` 24 → models 444–447 (+ Zeit/Progress/Playlist).
 
 Frozen plan: [`MUSIC_NP_SPINE_LAB_STUB_20261121.md`](MUSIC_NP_SPINE_LAB_STUB_20261121.md)
 
-1. Lab stub = **only** IDs **444, 445, 446/447, 660, 661, 336, 248**  
-2. Prove: `initialize` → `setData` NP → render → action 336/248 → events 660/661  
+1. Lab stub **wired** — `tools/lab_music_np_spine_seq.py` / `BCL_RHMI_MUSIC_NP_SEQ=1` (IDs 444·445·446/447·660·661·336·248)  
+2. Run lab proof on `.108` Dual-ESP → PASS on SEQ criteria  
 3. **One** F20 field trial — question: which Music-RHMI defs suffice for a foreign RHMI client UI?  
 4. Then: PiDrive implementation (not more Wire-RE)  
 
