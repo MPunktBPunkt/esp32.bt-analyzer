@@ -77,7 +77,7 @@ Lab-HU ≠ F20-HU — aber Field-Lauf liegt vor (`FIELD_B3_GATEB_20261121T112446
 | Brauchen wir MyBMW (oder gleichwertige Signierfähigkeit), um am F20 einzuloggen? | **Als Signierträger ja**, bis Standalone existiert (Gate B Accept = FACT) |
 | Private-Key-Extraktion als nächster Schritt? | **REJECTED / STOP** |
 | PKCS#12 in `libaudio.so` vorhanden? | **FACT** (OID); Alias↔Blob = **INFERENCE** |
-| PKCS#12 PBE anatomy (Salt / **Iter=1** / 2376 B CT / empty-pw REJECT)? | **FACT** — technology-audit [`PKCS12-ANATOMY.md`](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PKCS12-ANATOMY.md); Passwort-**Ursprung** weiter INFERENCE bis PLT `PKCS12_parse` |
+| PKCS#12 PBE anatomy (2× Salt + MAC-Salt / **Iter=1** / empty-pw REJECT)? | **FACT** — [`PKCS12-ANATOMY`](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PKCS12-ANATOMY.md) (rev. 2026-11-22); `0xca93c`/`0x167184` ≠ Unwrap (**REJECTED**); Passwort + echte `PKCS12_*`-Callsite **OPEN** |
 
 ## Einstufung
 
