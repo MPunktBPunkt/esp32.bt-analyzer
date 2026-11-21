@@ -6,7 +6,7 @@ claim_level: FACT where marked
 lab_evidence: SAS_PAD_RSA_VERIFY_LAB_20261120.md
 field_gate_b: docs/evidence/FIELD_B3_GATEB_20261121T112446Z/EVAL.md
 signer_arch: SAS_SIGNER_CASE_A_CLOSED_20261119.md
-next: standalone signer without MyBMW (no key extraction); optional RSA-VERIFY from Field raw
+next: Music RHMI DESCRIPTION extract → PiDrive Weg A; optional RSA-VERIFY Field raw; standalone signer later
 ```
 
 ## Verdict
@@ -58,7 +58,7 @@ Challenge ── XOR ──────────┘
 ```
 
 Lab: `sas_login` → `rhmi_*` (akzeptiert).  
-F20: derselbe Nachweis fehlt.
+F20: `sas_login` → AM/RHMI/CDS/AV (Gate B FIELD CLOSED 2026-11-21).
 
 ## Dual Gate (nicht kollabieren)
 
