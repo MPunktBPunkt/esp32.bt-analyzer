@@ -1,0 +1,24 @@
+{
+  "evidence_id": "FIELD_B3_GATEB_20261121T112446Z",
+  "pulled_final_utc": "2026-11-21T11:50:00Z",
+  "primary": [
+    "EVAL.md",
+    "AUTHENTICATED_SNAPSHOT.json",
+    "b3.jsonl",
+    "raw/phone_to_hu.bin",
+    "raw/hu_to_phone.bin",
+    "btmon/hu131_hci2.btsnoop",
+    "btmon/phone87_hci1.btsnoop"
+  ],
+  "controls": [
+    "sas_b2a_tx.jsonl",
+    "sas_b2a_tx_20261121T114107Z.jsonl",
+    "sas_b2a_tx_20261121T114431Z.jsonl",
+    "sdp_f20_20261121T114431Z.txt"
+  ],
+  "b3_jsonl_lines": 2315,
+  "have_challenge": true,
+  "have_login_sig": true,
+  "have_media_ascii": true,
+  "rsa_verify_from_this_capture": "pending (cert PEM not in etch decode)"
+}

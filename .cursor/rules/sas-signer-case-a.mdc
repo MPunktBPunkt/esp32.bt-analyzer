@@ -1,13 +1,14 @@
 ---
-description: SAS crypto closed (Wire FACT); Field gate is F20 HU acceptance only
+description: SAS crypto + Gate B Field closed; next is standalone signer
 alwaysApply: true
 ---
 
-# SAS Signer / Crypto (closed) — Gate B open
+# SAS Signer / Crypto — Gate A+B CLOSED (Field)
 
 Canonical status: `docs/analysis/SAS_STATUS_CRYPTO_CLOSED_20261120.md`  
 Native CASE A: `docs/analysis/SAS_SIGNER_CASE_A_CLOSED_20261119.md`  
-Lab RSA-VERIFY: `docs/analysis/SAS_PAD_RSA_VERIFY_LAB_20261120.md`
+Lab RSA-VERIFY: `docs/analysis/SAS_PAD_RSA_VERIFY_LAB_20261120.md`  
+Field Gate B: `docs/evidence/FIELD_B3_GATEB_20261121T112446Z/EVAL.md`
 
 ## FACT (crypto + Wire)
 
@@ -20,8 +21,7 @@ Alias↔PKCS#12 identity = **INFERENCE** only. Not Keystore/TEE/Binder/`/data/As
 ## Dual gate
 
 - **Gate A** (formula + Cert↔Sig): **CLOSED**
-- **Gate B** (F20 accepts cert+sig): **OPEN** — one Field B3 run
-- Lab `rhmi_*` ≠ Field `AUTHENTICATED`
+- **Gate B** (F20 accepts cert+sig): **CLOSED** — Field B3 2026-11-21 (AAIdrive green, RHMI/Media)
 
 ## Do not
 
@@ -29,13 +29,12 @@ Alias↔PKCS#12 identity = **INFERENCE** only. Not Keystore/TEE/Binder/`/data/As
 - Unwrap PKCS#12 / recover passphrase / extract keys
 - Resume Binder / TEE / Asset hunts or further libaudio dig for this path
 - Pursue VIN→key (unevidenced)
-- Claim Field `AUTHENTICATED` from Lab stub or crypto alone
+- Re-open Gate B without new contrary Field evidence
 - Treat MyBMW as required for protocol *math* (it is not)
 
 ## Do
 
-- Next: F20 B3 one-variable gate — HU **acceptance** only
-- Capture Cert + challenge + login_sig; `tools/sas_pad_crosscheck.py --from-bcl-jsonl`
-- Arm B = live MyBMW SecurityModule until standalone signer exists (no key on Pi)
+- Next: Standalone signer **without** key extraction (MyBMW still sign carrier until then)
+- Optional: RSA-VERIFY from Field raw (`FIELD_B3_GATEB_20261121T112446Z`)
 - Prefer pad/A↔B public checks over key extraction
-- Freeze on `AUTHENTICATED` + snapshot; no AM/RHMI in that run
+- Field SPP path: `tools/b3_profile_relay.py` (SDP + relay), not raw listen alone

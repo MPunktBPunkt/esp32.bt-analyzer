@@ -1,0 +1,27 @@
+{
+  "status": "FIELD AUTHENTICATED",
+  "claim_level": "FIELD MEASURED",
+  "gate_b": "CLOSED",
+  "timestamp_utc": "2026-11-21T11:35:00Z",
+  "topology": "OnePlus/AAIdrive → BMW 38304 C8:C9:A3:CB:7B:0A → b3_profile_relay → C8:C9:A3:CB:37:96 → F20 D4:36:39:CF:E1:B5",
+  "operator": {
+    "aaidrive": "green",
+    "hu_ui": "Spotify + menu",
+    "now_playing": "Halestorm, I Prevail (cover art on HU)"
+  },
+  "wire": {
+    "challenge_hex": "8f873bb740471e52f36aa26093f580da",
+    "challenge_hex_2": "0cebb9948964c8a0",
+    "login_sig_len": 512,
+    "login_sig_sha256_first": "732e655d980394ec97a7ddcbc308f25bb768d5bb243ec40fd38d513513761248",
+    "login_result": "_result_sas_login correlated",
+    "pad_u32_hex": "0x02000000"
+  },
+  "best_relay_s": 62.368,
+  "raw": {
+    "phone_to_hu_bytes": 417174,
+    "hu_to_phone_bytes": 110651,
+    "media_ascii": ["Halestorm, I Prevail", "Spotify"]
+  },
+  "note": "Session continued into RHMI/AM/CDS/AV after login (no hard AUTHENTICATED freeze)."
+}

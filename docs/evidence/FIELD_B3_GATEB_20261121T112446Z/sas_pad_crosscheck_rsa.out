@@ -1,0 +1,7 @@
+{
+  "source": "docs/evidence/FIELD_B3_GATEB_20261121T112446Z/b3_as_txrx.jsonl",
+  "pad_u32_hex": "0x02000000",
+  "sessions": 0,
+  "valid": 0,
+  "results": []
+}

@@ -1,0 +1,16 @@
+{
+  "serial_u32": 33554432,
+  "pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+  "xored_hex": "7d5a365af2857e136da4e8fe904768f2",
+  "digest_md5_hex": "53447b38f96696ffb2a35bb05143b3b5",
+  "pad_u32_hex": "0x02000000",
+  "pad_u32_source": null,
+  "login_sig_len": 512,
+  "source": "docs/evidence/FIELD_B3_GATEB_20261121T112446Z/b3.jsonl",
+  "rsa_verify": {
+    "skipped": true,
+    "reason": "no cert_pem in jsonl (use --from-bcl-jsonl raw HU capture for RSA-VERIFY)",
+    "login_sig_len": 512,
+    "digest_md5_hex": "53447b38f96696ffb2a35bb05143b3b5"
+  }
+}
