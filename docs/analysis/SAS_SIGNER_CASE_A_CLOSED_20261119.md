@@ -58,10 +58,10 @@ constant `0x02000000`, not the X509 serial.
 | Claim | Status |
 |-------|--------|
 | Embedded PKCS#12 in `libaudio.so` @ `0x5249e`, len `0x10f2` (4338 B) | **FACT / CONFIRMED** (OID inventory) |
-| Native SAS E2E: `g`→`0xbd73c`→MD5/XOR/MD5→`EVP_SignFinal`(`0x12e564`)→`EVP_PKEY_sign`(`0x12ef34`) | **FACT** (rev. 2026-11-22d) — [PKCS12-ANATOMY](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PKCS12-ANATOMY.md) |
-| PFX key is the local APP_AUTH signer key | **FACT** |
-| `AudioModule_f` is the signer | **REJECTED** |
-| CertificateType ASN.1 field → `0x02000000` | **STRONG** (micro-gap) |
+| Feature-PKI: PFX + RSA-1536 Feature Cert + local pass + Feature `EVP_SignFinal` | **FACT** (Feature only) — [PKCS12-ANATOMY](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PKCS12-ANATOMY.md) rev. 2026-11-22e |
+| PFX @`0x5249e` = APP_AUTH RSA-4096 key | **REJECTED** (`EVP_PKEY_size`=192) |
+| `0x168374` = APP_AUTH | **REJECTED** (PKCS#7 decrypt) |
+| Native APP_AUTH PKEY + SAS prep + `createSecurityContext` | **OPEN** |
 | OID `pkcs8ShroudedKeyBag` ×1; `pkcs7-encryptedData`; `pbeWithSHAAnd3-KeyTripleDES-CBC` ×2 | **FACT** |
 | Sign path stays in-process (no `open`/`AAsset`/`socket` on depth≤3) | **FACT** |
 | Android Keystore / TEE / KeyMint | **REJECTED** (`NOT_FOUND`) |
