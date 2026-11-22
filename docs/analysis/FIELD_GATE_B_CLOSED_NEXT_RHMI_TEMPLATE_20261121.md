@@ -36,21 +36,25 @@ NP-Spine: `audioHmiState` 24 → models 444–447 (+ Zeit/Progress/Playlist).
 | Spotify ≠ diese AM-Liste | FIELD FACT |
 | Media-UI = RHMI app `…music` | STRONG |
 | 11/11 `checkResource=true`, kein Upload | STRONG |
-| RSA-VERIFY dieses Captures | OPEN |
+| RSA-VERIFY dieses Captures | **CLOSED** (18/18, 2026-11-22) |
+| Handle-23 NP models 444–447 / 456 cover / Spotify@655 | **FACT** (wire) |
 | Music DESCRIPTION = `ui_description_multimedia_v3.xml` (MD5 `e9e31c31…`, 92 085 B) | **CLOSED** (DESK+FIELD) |
 | H23 Field modelIds ⊆ DESCRIPTION | **STRONG** (78/78) |
 | Eigenes PiDrive-Menü am F20 | OPEN (machbar, nicht bewiesen) |
 
 ## Next workstream (ordered)
 
-Frozen plan: [`MUSIC_NP_SPINE_LAB_STUB_20261121.md`](MUSIC_NP_SPINE_LAB_STUB_20261121.md)
+Gesamtstand: [`GESAMTSTAND_F20_AAIDRIVE_SPOTIFY_20261122.md`](GESAMTSTAND_F20_AAIDRIVE_SPOTIFY_20261122.md)  
+Wire graph: [`…/forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md)  
+Lab stub plan: [`MUSIC_NP_SPINE_LAB_STUB_20261121.md`](MUSIC_NP_SPINE_LAB_STUB_20261121.md)
 
-1. Lab stub **wired** — `tools/lab_music_np_spine_seq.py` / `BCL_RHMI_MUSIC_NP_SEQ=1` (IDs 444·445·446/447·660·661·336·248)  
-2. Run lab proof on `.108` Dual-ESP → PASS on SEQ criteria  
-3. **One** F20 field trial — question: which Music-RHMI defs suffice for a foreign RHMI client UI?  
-4. Then: PiDrive implementation (not more Wire-RE)  
+1. **Done (2026-11-22):** Field RSA-VERIFY; Handle-23 Spotify/NP/cover model map from raw  
+2. Lab stub **wired** — NP spine IDs 444·445·446/447·456·660·661·336·248 (now wire-proven)  
+3. Lab proof Dual-ESP → PASS  
+4. **One** F20 field trial — foreign RHMI client with Music template  
+5. PiDrive Music/RHMI implementation  
 
-**Not next:** BT-stack work, general technology-audit, Standalone signer as blocker, AOA, Screen-Mirroring-first, `libaudio` dig, DESCRIPTION reassembly, full 78-model port.
+**Not next:** BT-stack, Standalone signer as blocker, `libaudio` dig, full 78-model port before lab spine PASS.
 
 ## Tooling
 

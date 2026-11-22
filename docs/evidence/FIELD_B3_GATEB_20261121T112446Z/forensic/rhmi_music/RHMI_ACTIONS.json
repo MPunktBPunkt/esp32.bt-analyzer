@@ -1,0 +1,276 @@
+[
+  {
+    "off": 87600,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addActionEventHandler",
+    "message_id": 1795260933334,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933334,
+      "ident": "me.hufman.androidautoidrive.notification.readout",
+      "actionId": -1
+    }
+  },
+  {
+    "off": 91987,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addActionEventHandler",
+    "message_id": 1795260933408,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "handle": 21,
+      "_messageId": 1795260933408,
+      "ident": "me.hufman.androidautoidrive.calendar",
+      "actionId": -1
+    }
+  },
+  {
+    "off": 93000,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addActionEventHandler",
+    "message_id": 1795260933439,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933439,
+      "ident": "me.hufman.androidautoidrive.music",
+      "actionId": -1
+    }
+  },
+  {
+    "off": 99501,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addActionEventHandler",
+    "message_id": 1795260933838,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260933838,
+      "ident": "io.bimmergestalt.idriveconnectaddons.screenmirror",
+      "actionId": -1
+    }
+  },
+  {
+    "off": 102266,
+    "direction": "phone_to_hu",
+    "method": "rhmi_ackActionEvent",
+    "message_id": 1795260935992,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "success": true,
+      "_messageId": 1795260935992,
+      "actionId": 336,
+      "confirmId": 1
+    }
+  },
+  {
+    "off": 134438,
+    "direction": "phone_to_hu",
+    "method": "rhmi_ackActionEvent",
+    "message_id": 1795260937805,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "success": true,
+      "_messageId": 1795260937805,
+      "actionId": 336,
+      "confirmId": 1
+    }
+  },
+  {
+    "off": 204105,
+    "direction": "phone_to_hu",
+    "method": "rhmi_ackActionEvent",
+    "message_id": 1795260938212,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "success": true,
+      "_messageId": 1795260938212,
+      "actionId": 336,
+      "confirmId": 1
+    }
+  },
+  {
+    "off": 315513,
+    "direction": "phone_to_hu",
+    "method": "rhmi_ackActionEvent",
+    "message_id": 1795260938730,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "success": true,
+      "_messageId": 1795260938730,
+      "actionId": 248,
+      "confirmId": 1
+    }
+  },
+  {
+    "off": 54160,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672251,
+    "in_reply_to": 1795260933334,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260933334,
+      "_messageId": 1795260388672251
+    }
+  },
+  {
+    "off": 55351,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672265,
+    "in_reply_to": 1795260933408,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260933408,
+      "_messageId": 1795260388672265
+    }
+  },
+  {
+    "off": 56535,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672280,
+    "in_reply_to": 1795260933439,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260933439,
+      "_messageId": 1795260388672280
+    }
+  },
+  {
+    "off": 60714,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onActionEvent",
+    "message_id": 1795260388672345,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "_messageId": 1795260388672345,
+      "handle": 23,
+      "actionId": 336,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {}
+    }
+  },
+  {
+    "off": 61595,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672357,
+    "in_reply_to": 1795260933838,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260933838,
+      "_messageId": 1795260388672357
+    }
+  },
+  {
+    "off": 68047,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_ackActionEvent",
+    "message_id": 1795260388672423,
+    "in_reply_to": 1795260935992,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260935992,
+      "_messageId": 1795260388672423
+    }
+  },
+  {
+    "off": 73825,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onActionEvent",
+    "message_id": 1795260388672498,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "_messageId": 1795260388672498,
+      "handle": 23,
+      "actionId": 336,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {}
+    }
+  },
+  {
+    "off": 75154,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_ackActionEvent",
+    "message_id": 1795260388672516,
+    "in_reply_to": 1795260937805,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260937805,
+      "_messageId": 1795260388672516
+    }
+  },
+  {
+    "off": 77751,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onActionEvent",
+    "message_id": 1795260388672542,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "_messageId": 1795260388672542,
+      "handle": 23,
+      "actionId": 336,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {}
+    }
+  },
+  {
+    "off": 78486,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_ackActionEvent",
+    "message_id": 1795260388672551,
+    "in_reply_to": 1795260938212,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260938212,
+      "_messageId": 1795260388672551
+    }
+  },
+  {
+    "off": 79424,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onActionEvent",
+    "message_id": 1795260388672556,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "_messageId": 1795260388672556,
+      "handle": 23,
+      "actionId": 248,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "99": false
+      }
+    }
+  },
+  {
+    "off": 81035,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_ackActionEvent",
+    "message_id": 1795260388672574,
+    "in_reply_to": 1795260938730,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260938730,
+      "_messageId": 1795260388672574
+    }
+  }
+]

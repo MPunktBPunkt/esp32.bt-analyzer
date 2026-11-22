@@ -6,7 +6,8 @@ claim_level: FACT where marked
 lab_evidence: SAS_PAD_RSA_VERIFY_LAB_20261120.md
 field_gate_b: docs/evidence/FIELD_B3_GATEB_20261121T112446Z/EVAL.md
 signer_arch: SAS_SIGNER_CASE_A_CLOSED_20261119.md
-next: Music RHMI DESCRIPTION extract → PiDrive Weg A; optional RSA-VERIFY Field raw; standalone signer later
+next: RHMI Music object graph (Handle 23) → PiDrive Music/RHMI; standalone signer later
+field_rsa_verify: CLOSED 18/18 (2026-11-22 RAW_FORENSIC)
 ```
 
 ## Verdict
@@ -26,7 +27,7 @@ next: Music RHMI DESCRIPTION extract → PiDrive Weg A; optional RSA-VERIFY Fiel
 | Pad | **FACT** | `MD5(02 00 00 00)` |
 | Challenge-Verarbeitung | **FACT** | `challenge XOR pad → MD5` |
 | RSA | **FACT** | RSA-4096, PKCS#1 v1.5, DigestInfo-MD5 |
-| Signer ↔ Wire-Cert | **FACT** | 8/8 RSA-VERIFY gegen Public Key des Wire-Certs |
+| Signer ↔ Wire-Cert | **FACT** | Lab 8/8 + **Field B3 18/18** RSA-VERIFY (`SAS_CRYPTO_VERIFY.json`) |
 | Reproduzierbarkeit | **FACT** | 2³²-Bruteforce findet eindeutig `0x02000000` |
 | Lab-HU-Akzeptanz | **FACT** | danach `rhmi_*` |
 | Echter F20-HU-Akzeptanztest | **FACT** | Field B3 2026-11-21 — `AUTHENTICATED` + RHMI/Media |

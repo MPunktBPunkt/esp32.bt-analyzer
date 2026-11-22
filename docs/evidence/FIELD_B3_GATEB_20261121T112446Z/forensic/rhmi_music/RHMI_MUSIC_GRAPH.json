@@ -1,0 +1,6080 @@
+{
+  "source": "FIELD_B3_GATEB_20261121T112446Z raw/*.bin DEADBEEF envelope scan (PRIMARY)",
+  "framing_fact": "BCL = 8-byte BE (cmd/src/dest/len); DEADBEEF Etch envelope is INSIDE BCL DATA payload",
+  "scan": {
+    "phone_to_hu_envelopes": 442,
+    "hu_to_phone_envelopes": 619,
+    "decode_errors_phone": 26,
+    "decode_errors_hu": 0
+  },
+  "music_package": "me.hufman.androidautoidrive.music",
+  "music_handle": 23,
+  "package_to_handle": {
+    "me.hufman.androidautoidrive.calendar": 21,
+    "me.hufman.androidautoidrive.notification.readout": 22,
+    "me.hufman.androidautoidrive.music": 23,
+    "me.hufman.androidautoidrive.mapview": 24,
+    "io.bimmergestalt.idriveconnectaddons.screenmirror": 25
+  },
+  "create_pairs": [
+    {
+      "package": "me.hufman.androidautoidrive.calendar",
+      "handle": 21,
+      "create_off": 82515,
+      "result_off": 52368,
+      "messageId": 1795260933223,
+      "inReplyTo": 1795260933223,
+      "result_messageId": 1795260388672227,
+      "vendor": "me.hufman",
+      "name": "me.hufman.androidautoidrive.calendar"
+    },
+    {
+      "package": "me.hufman.androidautoidrive.notification.readout",
+      "handle": 22,
+      "create_off": 82699,
+      "result_off": 52438,
+      "messageId": 1795260933223,
+      "inReplyTo": 1795260933223,
+      "result_messageId": 1795260388672228,
+      "vendor": "me.hufman",
+      "name": "me.hufman.androidautoidrive.notification.readout"
+    },
+    {
+      "package": "me.hufman.androidautoidrive.music",
+      "handle": 23,
+      "create_off": 83527,
+      "result_off": 52642,
+      "messageId": 1795260933254,
+      "inReplyTo": 1795260933254,
+      "result_messageId": 1795260388672231,
+      "vendor": "me.hufman",
+      "name": "me.hufman.androidautoidrive.music"
+    },
+    {
+      "package": "me.hufman.androidautoidrive.mapview",
+      "handle": 24,
+      "create_off": 83705,
+      "result_off": 52724,
+      "messageId": 1795260933272,
+      "inReplyTo": 1795260933272,
+      "result_messageId": 1795260388672233,
+      "vendor": "me.hufman",
+      "name": "me.hufman.androidautoidrive.mapview"
+    },
+    {
+      "package": "io.bimmergestalt.idriveconnectaddons.screenmirror",
+      "handle": 25,
+      "create_off": 92612,
+      "result_off": 56242,
+      "messageId": 1795260933690,
+      "inReplyTo": 1795260933690,
+      "result_messageId": 1795260388672276,
+      "vendor": "io.bimmergestalt",
+      "name": "io.bimmergestalt.idriveconnectaddons.screenmirror"
+    },
+    {
+      "package": "me.hufman.androidautoidrive.notification.readout",
+      "handle": 22,
+      "create_off": 408132,
+      "result_off": 104912,
+      "messageId": 1795261034180,
+      "inReplyTo": 1795261034180,
+      "result_messageId": 1795260388672644,
+      "vendor": "me.hufman",
+      "name": "me.hufman.androidautoidrive.notification.readout"
+    },
+    {
+      "package": "me.hufman.androidautoidrive.mapview",
+      "handle": 24,
+      "create_off": 409257,
+      "result_off": 105070,
+      "messageId": 1795261034195,
+      "inReplyTo": 1795261034195,
+      "result_messageId": 1795260388672647,
+      "vendor": "me.hufman",
+      "name": "me.hufman.androidautoidrive.mapview"
+    },
+    {
+      "package": "me.hufman.androidautoidrive.calendar",
+      "handle": 21,
+      "create_off": 409073,
+      "result_off": 110442,
+      "messageId": 1795261034181,
+      "inReplyTo": 1795261034181,
+      "result_messageId": 1795260388672648,
+      "vendor": "me.hufman",
+      "name": "me.hufman.androidautoidrive.calendar"
+    }
+  ],
+  "resources": [
+    {
+      "method": "rhmi_checkResource",
+      "off": 84259,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "messageId": 1795260933291,
+      "name": "",
+      "size": 92085,
+      "hash_md5_hex": "e9e31c31110680e13b7a112a7d77eb55",
+      "type_name": "DESCRIPTION",
+      "type": {
+        "type": "struct",
+        "struct": "RHMIResourceType",
+        "fields": {
+          "DESCRIPTION": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "fields_summary": {
+        "hash": {
+          "type": "bytes",
+          "len": 16,
+          "hex_head": "e9e31c31110680e13b7a112a7d77eb55",
+          "looks_image": false
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260933291
+        },
+        "size": {
+          "type": "int",
+          "value": 92085
+        },
+        "name": {
+          "type": "string",
+          "value": "",
+          "len": 0
+        },
+        "type": {
+          "type": "struct",
+          "struct": "RHMIResourceType",
+          "fields": {
+            "DESCRIPTION": {
+              "type": "bool",
+              "value": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "method": "rhmi_checkResource",
+      "off": 84856,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "messageId": 1795260933328,
+      "name": "",
+      "size": 393,
+      "hash_md5_hex": "1a1f84fb6bf6504db2494dd274a72efc",
+      "type_name": "TEXTDB",
+      "type": {
+        "type": "struct",
+        "struct": "RHMIResourceType",
+        "fields": {
+          "TEXTDB": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "fields_summary": {
+        "hash": {
+          "type": "bytes",
+          "len": 16,
+          "hex_head": "1a1f84fb6bf6504db2494dd274a72efc",
+          "looks_image": false
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260933328
+        },
+        "size": {
+          "type": "int",
+          "value": 393
+        },
+        "name": {
+          "type": "string",
+          "value": "",
+          "len": 0
+        },
+        "type": {
+          "type": "struct",
+          "struct": "RHMIResourceType",
+          "fields": {
+            "TEXTDB": {
+              "type": "bool",
+              "value": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "method": "rhmi_checkResource",
+      "off": 89109,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "messageId": 1795260933365,
+      "name": "",
+      "size": 162483,
+      "hash_md5_hex": "0b010109a0fd4f3c7aced4fd0b4dcbd9",
+      "type_name": "IMAGEDB",
+      "type": {
+        "type": "struct",
+        "struct": "RHMIResourceType",
+        "fields": {
+          "IMAGEDB": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "fields_summary": {
+        "hash": {
+          "type": "bytes",
+          "len": 16,
+          "hex_head": "0b010109a0fd4f3c7aced4fd0b4dcbd9",
+          "looks_image": false
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260933365
+        },
+        "size": {
+          "type": "int",
+          "value": 162483
+        },
+        "name": {
+          "type": "string",
+          "value": "",
+          "len": 0
+        },
+        "type": {
+          "type": "struct",
+          "struct": "RHMIResourceType",
+          "fields": {
+            "IMAGEDB": {
+              "type": "bool",
+              "value": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "method": "rhmi_initialize",
+      "off": 91943,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "messageId": 1795260933402,
+      "name": null,
+      "size": null,
+      "hash_md5_hex": null,
+      "type_name": null,
+      "type": null,
+      "fields_summary": {
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260933402
+        }
+      }
+    },
+    {
+      "method": "_result_rhmi_checkResource",
+      "off": 53120,
+      "direction": "hu_to_phone",
+      "inReplyTo": 1795260933291,
+      "messageId": 1795260388672238,
+      "result": true,
+      "return_code": true,
+      "fields_summary": {
+        "result": {
+          "type": "bool",
+          "value": true
+        },
+        "_inReplyTo": {
+          "type": "int",
+          "value": 1795260933291
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672238
+        }
+      }
+    },
+    {
+      "method": "_result_rhmi_checkResource",
+      "off": 53702,
+      "direction": "hu_to_phone",
+      "inReplyTo": 1795260933328,
+      "messageId": 1795260388672245,
+      "result": true,
+      "return_code": true,
+      "fields_summary": {
+        "result": {
+          "type": "bool",
+          "value": true
+        },
+        "_inReplyTo": {
+          "type": "int",
+          "value": 1795260933328
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672245
+        }
+      }
+    },
+    {
+      "method": "_result_rhmi_checkResource",
+      "off": 54766,
+      "direction": "hu_to_phone",
+      "inReplyTo": 1795260933365,
+      "messageId": 1795260388672257,
+      "result": true,
+      "return_code": true,
+      "fields_summary": {
+        "result": {
+          "type": "bool",
+          "value": true
+        },
+        "_inReplyTo": {
+          "type": "int",
+          "value": 1795260933365
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672257
+        }
+      }
+    },
+    {
+      "method": "_result_rhmi_initialize",
+      "off": 56050,
+      "direction": "hu_to_phone",
+      "inReplyTo": 1795260933402,
+      "messageId": 1795260388672273,
+      "result": null,
+      "return_code": null,
+      "fields_summary": {
+        "_inReplyTo": {
+          "type": "int",
+          "value": 1795260933402
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672273
+        }
+      }
+    }
+  ],
+  "handlers": [
+    {
+      "method": "rhmi_addActionEventHandler",
+      "off": 93000,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "messageId": 1795260933439,
+      "ident": "me.hufman.androidautoidrive.music",
+      "actionId": -1,
+      "eventId": null,
+      "fields": {
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260933439
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "actionId": {
+          "type": "int",
+          "value": -1
+        }
+      }
+    },
+    {
+      "method": "rhmi_addHmiEventHandler",
+      "off": 93531,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "messageId": 1795260933476,
+      "ident": "me.hufman.androidautoidrive.music",
+      "actionId": null,
+      "eventId": -1,
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": -1
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260933476
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "componentId": {
+          "type": "int",
+          "value": -1
+        }
+      }
+    },
+    {
+      "method": "_result_rhmi_addActionEventHandler",
+      "off": 56535,
+      "direction": "hu_to_phone",
+      "inReplyTo": 1795260933439,
+      "result": null,
+      "fields": {
+        "_inReplyTo": {
+          "type": "int",
+          "value": 1795260933439
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672280
+        }
+      }
+    },
+    {
+      "method": "_result_rhmi_addHmiEventHandler",
+      "off": 57255,
+      "direction": "hu_to_phone",
+      "inReplyTo": 1795260933476,
+      "result": null,
+      "fields": {
+        "_inReplyTo": {
+          "type": "int",
+          "value": 1795260933476
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672289
+        }
+      }
+    }
+  ],
+  "events": [
+    {
+      "method": "rhmi_ackActionEvent",
+      "off": 102266,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "actionId": 336,
+      "confirmId": 1,
+      "success": true,
+      "fields": {
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "success": {
+          "type": "bool",
+          "value": true
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260935992
+        },
+        "actionId": {
+          "type": "int",
+          "value": 336
+        },
+        "confirmId": {
+          "type": "int",
+          "value": 1
+        }
+      }
+    },
+    {
+      "method": "rhmi_ackActionEvent",
+      "off": 134438,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "actionId": 336,
+      "confirmId": 1,
+      "success": true,
+      "fields": {
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "success": {
+          "type": "bool",
+          "value": true
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260937805
+        },
+        "actionId": {
+          "type": "int",
+          "value": 336
+        },
+        "confirmId": {
+          "type": "int",
+          "value": 1
+        }
+      }
+    },
+    {
+      "method": "rhmi_triggerEvent",
+      "off": 203763,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "eventId": 661,
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 661
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260938175
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 1,
+          "keys": [
+            "0"
+          ],
+          "entries": {
+            "0": {
+              "type": "null"
+            }
+          }
+        }
+      }
+    },
+    {
+      "method": "rhmi_ackActionEvent",
+      "off": 204105,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "actionId": 336,
+      "confirmId": 1,
+      "success": true,
+      "fields": {
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "success": {
+          "type": "bool",
+          "value": true
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260938212
+        },
+        "actionId": {
+          "type": "int",
+          "value": 336
+        },
+        "confirmId": {
+          "type": "int",
+          "value": 1
+        }
+      }
+    },
+    {
+      "method": "rhmi_ackActionEvent",
+      "off": 315513,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "actionId": 248,
+      "confirmId": 1,
+      "success": true,
+      "fields": {
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "success": {
+          "type": "bool",
+          "value": true
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260938730
+        },
+        "actionId": {
+          "type": "int",
+          "value": 248
+        },
+        "confirmId": {
+          "type": "int",
+          "value": 1
+        }
+      }
+    },
+    {
+      "method": "rhmi_triggerEvent",
+      "off": 315882,
+      "direction": "phone_to_hu",
+      "handle": 23,
+      "eventId": 660,
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 660
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260938767
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 1,
+          "keys": [
+            "0"
+          ],
+          "entries": {
+            "0": {
+              "type": "null"
+            }
+          }
+        }
+      }
+    },
+    {
+      "method": "rhmi_onActionEvent",
+      "off": 60714,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672345,
+      "actionId": 336,
+      "eventId": null,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 0,
+        "keys": [],
+        "entries": {}
+      },
+      "fields": {
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672345
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "actionId": {
+          "type": "int",
+          "value": 336
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 0,
+          "keys": [],
+          "entries": {}
+        }
+      }
+    },
+    {
+      "method": "rhmi_onHmiEvent",
+      "off": 60829,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672346,
+      "actionId": null,
+      "eventId": 2,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 2,
+        "keys": [
+          "5",
+          "6"
+        ],
+        "entries": {
+          "5": {
+            "type": "int",
+            "value": 0
+          },
+          "6": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 2
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672346
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 2,
+          "keys": [
+            "5",
+            "6"
+          ],
+          "entries": {
+            "5": {
+              "type": "int",
+              "value": 0
+            },
+            "6": {
+              "type": "int",
+              "value": 1
+            }
+          }
+        },
+        "componentId": {
+          "type": "int",
+          "value": 70
+        }
+      }
+    },
+    {
+      "method": "rhmi_onHmiEvent",
+      "off": 61428,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672355,
+      "actionId": null,
+      "eventId": 2,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 2,
+        "keys": [
+          "5",
+          "6"
+        ],
+        "entries": {
+          "5": {
+            "type": "int",
+            "value": 0
+          },
+          "6": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 2
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672355
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 2,
+          "keys": [
+            "5",
+            "6"
+          ],
+          "entries": {
+            "5": {
+              "type": "int",
+              "value": 0
+            },
+            "6": {
+              "type": "int",
+              "value": 1
+            }
+          }
+        },
+        "componentId": {
+          "type": "int",
+          "value": 84
+        }
+      }
+    },
+    {
+      "method": "rhmi_onHmiEvent",
+      "off": 62034,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672365,
+      "actionId": null,
+      "eventId": 2,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 2,
+        "keys": [
+          "5",
+          "6"
+        ],
+        "entries": {
+          "5": {
+            "type": "int",
+            "value": 0
+          },
+          "6": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 2
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672365
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 2,
+          "keys": [
+            "5",
+            "6"
+          ],
+          "entries": {
+            "5": {
+              "type": "int",
+              "value": 0
+            },
+            "6": {
+              "type": "int",
+              "value": 1
+            }
+          }
+        },
+        "componentId": {
+          "type": "int",
+          "value": 102
+        }
+      }
+    },
+    {
+      "method": "rhmi_onHmiEvent",
+      "off": 62469,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672372,
+      "actionId": null,
+      "eventId": 2,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 2,
+        "keys": [
+          "5",
+          "6"
+        ],
+        "entries": {
+          "5": {
+            "type": "int",
+            "value": 0
+          },
+          "6": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 2
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672372
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 2,
+          "keys": [
+            "5",
+            "6"
+          ],
+          "entries": {
+            "5": {
+              "type": "int",
+              "value": 0
+            },
+            "6": {
+              "type": "int",
+              "value": 1
+            }
+          }
+        },
+        "componentId": {
+          "type": "int",
+          "value": 114
+        }
+      }
+    },
+    {
+      "method": "rhmi_onHmiEvent",
+      "off": 72832,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672484,
+      "actionId": null,
+      "eventId": 2,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 2,
+        "keys": [
+          "5",
+          "6"
+        ],
+        "entries": {
+          "5": {
+            "type": "int",
+            "value": 0
+          },
+          "6": {
+            "type": "int",
+            "value": 3
+          }
+        }
+      },
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 2
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672484
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 2,
+          "keys": [
+            "5",
+            "6"
+          ],
+          "entries": {
+            "5": {
+              "type": "int",
+              "value": 0
+            },
+            "6": {
+              "type": "int",
+              "value": 3
+            }
+          }
+        },
+        "componentId": {
+          "type": "int",
+          "value": 24
+        }
+      }
+    },
+    {
+      "method": "rhmi_onActionEvent",
+      "off": 73825,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672498,
+      "actionId": 336,
+      "eventId": null,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 0,
+        "keys": [],
+        "entries": {}
+      },
+      "fields": {
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672498
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "actionId": {
+          "type": "int",
+          "value": 336
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 0,
+          "keys": [],
+          "entries": {}
+        }
+      }
+    },
+    {
+      "method": "rhmi_onActionEvent",
+      "off": 77751,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672542,
+      "actionId": 336,
+      "eventId": null,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 0,
+        "keys": [],
+        "entries": {}
+      },
+      "fields": {
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672542
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "actionId": {
+          "type": "int",
+          "value": 336
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 0,
+          "keys": [],
+          "entries": {}
+        }
+      }
+    },
+    {
+      "method": "rhmi_onHmiEvent",
+      "off": 79158,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672554,
+      "actionId": null,
+      "eventId": 11,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "23"
+        ],
+        "entries": {
+          "23": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 11
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672554
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 1,
+          "keys": [
+            "23"
+          ],
+          "entries": {
+            "23": {
+              "type": "bool",
+              "value": true
+            }
+          }
+        },
+        "componentId": {
+          "type": "int",
+          "value": 10
+        }
+      }
+    },
+    {
+      "method": "rhmi_onHmiEvent",
+      "off": 79279,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672555,
+      "actionId": null,
+      "eventId": 1,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "4"
+        ],
+        "entries": {
+          "4": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 1
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672555
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 1,
+          "keys": [
+            "4"
+          ],
+          "entries": {
+            "4": {
+              "type": "bool",
+              "value": true
+            }
+          }
+        },
+        "componentId": {
+          "type": "int",
+          "value": 10
+        }
+      }
+    },
+    {
+      "method": "rhmi_onActionEvent",
+      "off": 79424,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672556,
+      "actionId": 248,
+      "eventId": null,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "99"
+        ],
+        "entries": {
+          "99": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      "fields": {
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672556
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "actionId": {
+          "type": "int",
+          "value": 248
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 1,
+          "keys": [
+            "99"
+          ],
+          "entries": {
+            "99": {
+              "type": "bool",
+              "value": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "method": "rhmi_onHmiEvent",
+      "off": 82401,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672596,
+      "actionId": null,
+      "eventId": 2,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 2,
+        "keys": [
+          "5",
+          "6"
+        ],
+        "entries": {
+          "5": {
+            "type": "int",
+            "value": 0
+          },
+          "6": {
+            "type": "int",
+            "value": 30
+          }
+        }
+      },
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 2
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672596
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 2,
+          "keys": [
+            "5",
+            "6"
+          ],
+          "entries": {
+            "5": {
+              "type": "int",
+              "value": 0
+            },
+            "6": {
+              "type": "int",
+              "value": 30
+            }
+          }
+        },
+        "componentId": {
+          "type": "int",
+          "value": 146
+        }
+      }
+    },
+    {
+      "method": "rhmi_onHmiEvent",
+      "off": 82526,
+      "direction": "hu_to_phone",
+      "handle": 23,
+      "messageId": 1795260388672597,
+      "actionId": null,
+      "eventId": 2,
+      "args_summary": {
+        "type": "map",
+        "n_keys": 2,
+        "keys": [
+          "5",
+          "6"
+        ],
+        "entries": {
+          "5": {
+            "type": "int",
+            "value": 0
+          },
+          "6": {
+            "type": "int",
+            "value": 30
+          }
+        }
+      },
+      "fields": {
+        "eventId": {
+          "type": "int",
+          "value": 2
+        },
+        "_messageId": {
+          "type": "int",
+          "value": 1795260388672597
+        },
+        "handle": {
+          "type": "int",
+          "value": 23
+        },
+        "ident": {
+          "type": "string",
+          "value": "me.hufman.androidautoidrive.music",
+          "len": 33
+        },
+        "args": {
+          "type": "map",
+          "n_keys": 2,
+          "keys": [
+            "5",
+            "6"
+          ],
+          "entries": {
+            "5": {
+              "type": "int",
+              "value": 0
+            },
+            "6": {
+              "type": "int",
+              "value": 30
+            }
+          }
+        },
+        "componentId": {
+          "type": "int",
+          "value": 146
+        }
+      }
+    }
+  ],
+  "setProperty": [
+    {
+      "off": 96386,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260934512,
+      "componentId": 60,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 97487,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260934808,
+      "componentId": 69,
+      "propertyId": 9,
+      "propertyName": "WIDTH",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "int",
+            "value": 180
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 97562,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260934845,
+      "componentId": 72,
+      "propertyId": 37,
+      "propertyName": "CUTTYPE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 97635,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260934882,
+      "componentId": 73,
+      "propertyId": 37,
+      "propertyName": "CUTTYPE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 97708,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260934919,
+      "componentId": 70,
+      "propertyId": 4,
+      "propertyName": "VALID",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 97781,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260934956,
+      "componentId": 70,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 97854,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260934993,
+      "componentId": 70,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "57,90,10,*",
+            "len": 10
+          }
+        }
+      },
+      "strings": [
+        "57,90,10,*"
+      ]
+    },
+    {
+      "off": 97938,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935030,
+      "componentId": 82,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 98011,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935067,
+      "componentId": 82,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "0,0,*",
+            "len": 5
+          }
+        }
+      },
+      "strings": [
+        "0,0,*"
+      ]
+    },
+    {
+      "off": 98090,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935104,
+      "componentId": 84,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 98163,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935141,
+      "componentId": 84,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "57,90,10,*",
+            "len": 10
+          }
+        }
+      },
+      "strings": [
+        "57,90,10,*"
+      ]
+    },
+    {
+      "off": 98255,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935178,
+      "componentId": 84,
+      "propertyId": 4,
+      "propertyName": "VALID",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 98390,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935252,
+      "componentId": 100,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 98463,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935289,
+      "componentId": 100,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "0,0,*",
+            "len": 5
+          }
+        }
+      },
+      "strings": [
+        "0,0,*"
+      ]
+    },
+    {
+      "off": 98542,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935326,
+      "componentId": 102,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 98615,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935363,
+      "componentId": 102,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "57,90,10,*",
+            "len": 10
+          }
+        }
+      },
+      "strings": [
+        "57,90,10,*"
+      ]
+    },
+    {
+      "off": 98699,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935400,
+      "componentId": 102,
+      "propertyId": 4,
+      "propertyName": "VALID",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 98842,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935474,
+      "componentId": 112,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 98915,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935511,
+      "componentId": 112,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "0,0,*",
+            "len": 5
+          }
+        }
+      },
+      "strings": [
+        "0,0,*"
+      ]
+    },
+    {
+      "off": 98994,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935548,
+      "componentId": 114,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 99067,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935585,
+      "componentId": 114,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "57,90,10,*",
+            "len": 10
+          }
+        }
+      },
+      "strings": [
+        "57,90,10,*"
+      ]
+    },
+    {
+      "off": 99151,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935622,
+      "componentId": 114,
+      "propertyId": 4,
+      "propertyName": "VALID",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 99345,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260935733,
+      "componentId": 94,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "57,0,*",
+            "len": 6
+          }
+        }
+      },
+      "strings": [
+        "57,0,*"
+      ]
+    },
+    {
+      "off": 108817,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260936251,
+      "componentId": 51,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 109033,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260936362,
+      "componentId": 53,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 109475,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260936584,
+      "componentId": 52,
+      "propertyId": 2,
+      "propertyName": "SELECTABLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 109548,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260936621,
+      "componentId": 51,
+      "propertyId": 22,
+      "propertyName": "BOOKMARKABLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 109629,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260936658,
+      "componentId": 53,
+      "propertyId": 22,
+      "propertyName": "BOOKMARKABLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 109889,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260936806,
+      "componentId": 646,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 110107,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260936917,
+      "componentId": 647,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 112633,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260937250,
+      "componentId": 646,
+      "propertyId": 22,
+      "propertyName": "BOOKMARKABLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 112708,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260937287,
+      "componentId": 647,
+      "propertyId": 22,
+      "propertyName": "BOOKMARKABLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 316318,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260938989,
+      "componentId": 51,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 316556,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260939100,
+      "componentId": 54,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 316629,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260939137,
+      "componentId": 54,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 316879,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260939174,
+      "componentId": 53,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 344188,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260939544,
+      "componentId": 27,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    },
+    {
+      "off": 344261,
+      "direction": "phone_to_hu",
+      "method": "rhmi_setProperty",
+      "handle": 23,
+      "messageId": 1795260939581,
+      "componentId": 38,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      },
+      "strings": []
+    }
+  ],
+  "now_playing_spine_from_wire": {
+    "444": {
+      "role_inference": "provider/app name",
+      "wire_values": [
+        [
+          "Spotify"
+        ]
+      ]
+    },
+    "445": {
+      "role_inference": "artist",
+      "wire_values": [
+        [
+          "Halestorm, I Prevail"
+        ],
+        [
+          "Halestorm"
+        ],
+        [
+          "Halestorm"
+        ]
+      ]
+    },
+    "446": {
+      "role_inference": "title/album text",
+      "wire_values": [
+        [
+          "can u see me in the dark?"
+        ],
+        [
+          "can u see me in the dark?"
+        ],
+        [
+          "can u see me in the dark?"
+        ]
+      ]
+    },
+    "458": {
+      "role_inference": "playlist table",
+      "wire_values": [
+        "RHMIDataTable",
+        "RHMIDataTable",
+        "RHMIDataTable",
+        "RHMIDataTable",
+        "RHMIDataTable",
+        "RHMIDataTable"
+      ]
+    },
+    "462": {
+      "role_inference": "progress float",
+      "wire_values": [
+        {
+          "type": "string",
+          "value": "0.63",
+          "len": 4
+        },
+        {
+          "type": "string",
+          "value": "0.63",
+          "len": 4
+        }
+      ]
+    },
+    "440": {
+      "role_inference": "progress gauge int",
+      "wire_values": [
+        {
+          "type": "int",
+          "value": 63
+        },
+        {
+          "type": "int",
+          "value": 63
+        },
+        {
+          "type": "int",
+          "value": 63
+        },
+        {
+          "type": "int",
+          "value": 63
+        }
+      ]
+    },
+    "655": {
+      "role_inference": "statusbar text",
+      "wire_values": [
+        [
+          "Spotify"
+        ]
+      ]
+    },
+    "653": {
+      "role_inference": "multimediaInfo artist",
+      "wire_values": [
+        [
+          "Halestorm"
+        ]
+      ]
+    },
+    "654": {
+      "role_inference": "multimediaInfo title",
+      "wire_values": [
+        [
+          "can u see me in the dark?"
+        ]
+      ]
+    }
+  },
+  "id_catalog": {
+    "modelIds": [
+      168,
+      176,
+      180,
+      184,
+      259,
+      338,
+      439,
+      440,
+      442,
+      444,
+      445,
+      446,
+      447,
+      451,
+      452,
+      454,
+      455,
+      458,
+      459,
+      462,
+      464,
+      465,
+      466,
+      467,
+      468,
+      469,
+      470,
+      471,
+      472,
+      473,
+      474,
+      475,
+      476,
+      477,
+      478,
+      479,
+      480,
+      481,
+      482,
+      483,
+      485,
+      486,
+      487,
+      488,
+      490,
+      492,
+      493,
+      495,
+      496,
+      497,
+      498,
+      499,
+      500,
+      502,
+      503,
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      535,
+      536,
+      540,
+      550,
+      569,
+      576,
+      589,
+      639,
+      640,
+      643,
+      653,
+      654,
+      655,
+      657,
+      658
+    ],
+    "dataIds": [
+      0,
+      149,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      168,
+      176,
+      180,
+      184,
+      259,
+      338,
+      439,
+      440,
+      442,
+      444,
+      445,
+      446,
+      447,
+      451,
+      452,
+      454,
+      455,
+      458,
+      459,
+      462,
+      464,
+      465,
+      466,
+      467,
+      468,
+      469,
+      470,
+      471,
+      472,
+      473,
+      474,
+      475,
+      476,
+      477,
+      478,
+      479,
+      480,
+      481,
+      482,
+      483,
+      485,
+      486,
+      487,
+      488,
+      490,
+      492,
+      493,
+      495,
+      496,
+      497,
+      498,
+      499,
+      500,
+      502,
+      503,
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      535,
+      536,
+      540,
+      550,
+      569,
+      576,
+      589,
+      639,
+      640,
+      643,
+      653,
+      654,
+      655,
+      657,
+      658,
+      1015
+    ],
+    "componentIds": [
+      27,
+      38,
+      51,
+      52,
+      53,
+      54,
+      60,
+      69,
+      70,
+      72,
+      73,
+      82,
+      84,
+      94,
+      100,
+      102,
+      112,
+      114,
+      646,
+      647
+    ],
+    "propertyIds": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      9,
+      22,
+      37
+    ],
+    "propertyNames": {
+      "1": "ENABLED",
+      "2": "SELECTABLE",
+      "3": "VISIBLE",
+      "4": "VALID",
+      "6": "LIST_COLUMNWIDTH",
+      "9": "WIDTH",
+      "22": "BOOKMARKABLE",
+      "37": "CUTTYPE"
+    },
+    "actionIds": [
+      248,
+      336
+    ],
+    "eventIds": [
+      1,
+      2,
+      11,
+      660,
+      661
+    ],
+    "counts": {
+      "modelIds": 78,
+      "componentIds": 20,
+      "propertyIds": 8,
+      "dataIds": 95,
+      "actionIds": 2,
+      "eventIds": 5
+    },
+    "distinct_all_ui_ids": 128,
+    "distinct_node_data_property_ids": 123
+  },
+  "setData_count": 117,
+  "setProperty_count": 38,
+  "nodes": [
+    {
+      "kind": "package",
+      "id": "me.hufman.androidautoidrive.music",
+      "handle": 23,
+      "vendor": "me.hufman"
+    },
+    {
+      "kind": "handle",
+      "id": 23,
+      "package": "me.hufman.androidautoidrive.music"
+    },
+    {
+      "kind": "dataModel",
+      "id": 0,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 149,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 151,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 152,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 153,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 154,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 155,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 156,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 157,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 158,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 159,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 160,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 161,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 162,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 163,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 164,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 168,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 176,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 180,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 184,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 259,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 338,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 439,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 440,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 442,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 444,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 445,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 446,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 447,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 451,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 452,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 454,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 455,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 458,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 459,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 462,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 464,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 465,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 466,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 467,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 468,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 469,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 470,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 471,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 472,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 473,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 474,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 475,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 476,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 477,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 478,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 479,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 480,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 481,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 482,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 483,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 485,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 486,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 487,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 488,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 490,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 492,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 493,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 495,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 496,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 497,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 498,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 499,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 500,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 502,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 503,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 504,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 505,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 506,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 507,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 508,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 509,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 510,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 511,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 535,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 536,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 540,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 550,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 569,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 576,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 589,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 639,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 640,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 643,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 653,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 654,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 655,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 657,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 658,
+      "handle": 23
+    },
+    {
+      "kind": "dataModel",
+      "id": 1015,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 27,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 38,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 51,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 52,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 53,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 54,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 60,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 69,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 70,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 72,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 73,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 82,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 84,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 94,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 100,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 102,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 112,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 114,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 646,
+      "handle": 23
+    },
+    {
+      "kind": "component",
+      "id": 647,
+      "handle": 23
+    },
+    {
+      "kind": "property",
+      "id": 1,
+      "name": "ENABLED",
+      "handle": 23
+    },
+    {
+      "kind": "property",
+      "id": 2,
+      "name": "SELECTABLE",
+      "handle": 23
+    },
+    {
+      "kind": "property",
+      "id": 3,
+      "name": "VISIBLE",
+      "handle": 23
+    },
+    {
+      "kind": "property",
+      "id": 4,
+      "name": "VALID",
+      "handle": 23
+    },
+    {
+      "kind": "property",
+      "id": 6,
+      "name": "LIST_COLUMNWIDTH",
+      "handle": 23
+    },
+    {
+      "kind": "property",
+      "id": 9,
+      "name": "WIDTH",
+      "handle": 23
+    },
+    {
+      "kind": "property",
+      "id": 22,
+      "name": "BOOKMARKABLE",
+      "handle": 23
+    },
+    {
+      "kind": "property",
+      "id": 37,
+      "name": "CUTTYPE",
+      "handle": 23
+    },
+    {
+      "kind": "action",
+      "id": 248,
+      "handle": 23
+    },
+    {
+      "kind": "action",
+      "id": 336,
+      "handle": 23
+    },
+    {
+      "kind": "event",
+      "id": 1,
+      "handle": 23
+    },
+    {
+      "kind": "event",
+      "id": 2,
+      "handle": 23
+    },
+    {
+      "kind": "event",
+      "id": 11,
+      "handle": 23
+    },
+    {
+      "kind": "event",
+      "id": 660,
+      "handle": 23
+    },
+    {
+      "kind": "event",
+      "id": 661,
+      "handle": 23
+    },
+    {
+      "kind": "resource",
+      "type_name": "DESCRIPTION",
+      "size": 92085,
+      "hash_md5_hex": "e9e31c31110680e13b7a112a7d77eb55",
+      "handle": 23,
+      "check_off": 84259,
+      "name_empty": true
+    },
+    {
+      "kind": "resource",
+      "type_name": "TEXTDB",
+      "size": 393,
+      "hash_md5_hex": "1a1f84fb6bf6504db2494dd274a72efc",
+      "handle": 23,
+      "check_off": 84856,
+      "name_empty": true
+    },
+    {
+      "kind": "resource",
+      "type_name": "IMAGEDB",
+      "size": 162483,
+      "hash_md5_hex": "0b010109a0fd4f3c7aced4fd0b4dcbd9",
+      "handle": 23,
+      "check_off": 89109,
+      "name_empty": true
+    },
+    {
+      "kind": "av_instance",
+      "package": "me.hufman.androidautoidrive.music",
+      "instanceID": 14,
+      "av_handle": 1,
+      "correlated_rhmi_handle": 23,
+      "create_off": 102700
+    }
+  ],
+  "edges": [
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 439,
+      "id": null,
+      "off": 94099,
+      "messageId": 1795260933513,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 465,
+      "id": null,
+      "off": 94191,
+      "messageId": 1795260933550,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 467,
+      "id": null,
+      "off": 94275,
+      "messageId": 1795260933587,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 469,
+      "id": null,
+      "off": 94359,
+      "messageId": 1795260933624,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 471,
+      "id": null,
+      "off": 94443,
+      "messageId": 1795260933661,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 473,
+      "id": null,
+      "off": 94535,
+      "messageId": 1795260933698,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 475,
+      "id": null,
+      "off": 94619,
+      "messageId": 1795260933735,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 476,
+      "id": null,
+      "off": 94703,
+      "messageId": 1795260933772,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 477,
+      "id": null,
+      "off": 94787,
+      "messageId": 1795260933809,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 478,
+      "id": null,
+      "off": 94871,
+      "messageId": 1795260933846,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 485,
+      "id": null,
+      "off": 94955,
+      "messageId": 1795260933883,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 486,
+      "id": null,
+      "off": 95039,
+      "messageId": 1795260933920,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 487,
+      "id": null,
+      "off": 95123,
+      "messageId": 1795260933957,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 496,
+      "id": null,
+      "off": 95207,
+      "messageId": 1795260933994,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 498,
+      "id": null,
+      "off": 95291,
+      "messageId": 1795260934031,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 500,
+      "id": null,
+      "off": 95375,
+      "messageId": 1795260934068,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 502,
+      "id": null,
+      "off": 95459,
+      "messageId": 1795260934105,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 504,
+      "id": null,
+      "off": 95543,
+      "messageId": 1795260934142,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 506,
+      "id": null,
+      "off": 95627,
+      "messageId": 1795260934179,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 508,
+      "id": null,
+      "off": 95711,
+      "messageId": 1795260934216,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 510,
+      "id": null,
+      "off": 95795,
+      "messageId": 1795260934253,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 639,
+      "id": null,
+      "off": 95879,
+      "messageId": 1795260934290,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 640,
+      "id": null,
+      "off": 95963,
+      "messageId": 1795260934327,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 643,
+      "id": null,
+      "off": 96047,
+      "messageId": 1795260934364,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 657,
+      "id": null,
+      "off": 96139,
+      "messageId": 1795260934401,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 658,
+      "id": null,
+      "off": 96231,
+      "messageId": 1795260934438,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 511,
+      "id": null,
+      "off": 96323,
+      "messageId": 1795260934475,
+      "has_image": false,
+      "strings": [
+        "Apps"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 259,
+      "id": null,
+      "off": 96459,
+      "messageId": 1795260934549,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 168,
+      "id": null,
+      "off": 96509,
+      "messageId": 1795260934586,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 176,
+      "id": null,
+      "off": 96559,
+      "messageId": 1795260934623,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 184,
+      "id": null,
+      "off": 96609,
+      "messageId": 1795260934660,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 168,
+      "id": null,
+      "off": 97329,
+      "messageId": 1795260934697,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 176,
+      "id": null,
+      "off": 97379,
+      "messageId": 1795260934734,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 180,
+      "id": null,
+      "off": 97429,
+      "messageId": 1795260934771,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 550,
+      "id": null,
+      "off": 98328,
+      "messageId": 1795260935215,
+      "has_image": false,
+      "strings": [
+        "Durchsuchen"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 576,
+      "id": null,
+      "off": 98780,
+      "messageId": 1795260935437,
+      "has_image": false,
+      "strings": [
+        "Durchsuchen"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 589,
+      "id": null,
+      "off": 99224,
+      "messageId": 1795260935659,
+      "has_image": false,
+      "strings": [
+        "Durchsuchen"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 569,
+      "id": null,
+      "off": 99286,
+      "messageId": 1795260935696,
+      "has_image": false,
+      "strings": [
+        "Aktionen"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 338,
+      "id": null,
+      "off": 102216,
+      "messageId": 1795260935955,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 495,
+      "id": null,
+      "off": 108622,
+      "messageId": 1795260936140,
+      "has_image": false,
+      "strings": [
+        "Apps"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 497,
+      "id": null,
+      "off": 108685,
+      "messageId": 1795260936177,
+      "has_image": false,
+      "strings": [
+        "Durchsuchen"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 499,
+      "id": null,
+      "off": 108747,
+      "messageId": 1795260936214,
+      "has_image": false,
+      "strings": [
+        "Aktuelle Wiedergabe"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 503,
+      "id": null,
+      "off": 108890,
+      "messageId": 1795260936288,
+      "has_image": false,
+      "strings": [
+        "Aktionen"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 504,
+      "id": null,
+      "off": 108949,
+      "messageId": 1795260936325,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 505,
+      "id": null,
+      "off": 109106,
+      "messageId": 1795260936399,
+      "has_image": false,
+      "strings": [
+        "Zufallswiedergabe nicht verfügbar"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 506,
+      "id": null,
+      "off": 109191,
+      "messageId": 1795260936436,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 507,
+      "id": null,
+      "off": 109275,
+      "messageId": 1795260936473,
+      "has_image": false,
+      "strings": [
+        "Zurück"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 509,
+      "id": null,
+      "off": 109333,
+      "messageId": 1795260936510,
+      "has_image": false,
+      "strings": [
+        "Nächster"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 502,
+      "id": null,
+      "off": 109393,
+      "messageId": 1795260936547,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 464,
+      "id": null,
+      "off": 109702,
+      "messageId": 1795260936695,
+      "has_image": false,
+      "strings": [
+        "Apps"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 466,
+      "id": null,
+      "off": 109757,
+      "messageId": 1795260936732,
+      "has_image": false,
+      "strings": [
+        "Durchsuchen"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 468,
+      "id": null,
+      "off": 109819,
+      "messageId": 1795260936769,
+      "has_image": false,
+      "strings": [
+        "Aktuelle Wiedergabe"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 470,
+      "id": null,
+      "off": 109964,
+      "messageId": 1795260936843,
+      "has_image": false,
+      "strings": [
+        "Aktionen"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 471,
+      "id": null,
+      "off": 110023,
+      "messageId": 1795260936880,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 472,
+      "id": null,
+      "off": 110182,
+      "messageId": 1795260936954,
+      "has_image": false,
+      "strings": [
+        "Zufallswiedergabe nicht verfügbar"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 473,
+      "id": null,
+      "off": 110267,
+      "messageId": 1795260936991,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 454,
+      "id": null,
+      "off": 110351,
+      "messageId": 1795260937028,
+      "has_image": true,
+      "strings": [
+        "RHMIResourceData",
+        "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 455,
+      "id": null,
+      "off": 110866,
+      "messageId": 1795260937065,
+      "has_image": true,
+      "strings": [
+        "RHMIResourceData",
+        "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 474,
+      "id": null,
+      "off": 111823,
+      "messageId": 1795260937102,
+      "has_image": false,
+      "strings": [
+        "Wiederholen nicht verfügbar"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 475,
+      "id": null,
+      "off": 111902,
+      "messageId": 1795260937139,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 458,
+      "id": null,
+      "off": 111986,
+      "messageId": 1795260937176,
+      "has_image": true,
+      "strings": [
+        "RHMIDataTable",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType",
+        "Zurück",
+        "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType",
+        "Nächster"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 459,
+      "id": null,
+      "off": 112583,
+      "messageId": 1795260937213,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 445,
+      "id": null,
+      "off": 112791,
+      "messageId": 1795260937324,
+      "has_image": false,
+      "strings": [
+        "Halestorm, I Prevail"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 446,
+      "id": null,
+      "off": 112870,
+      "messageId": 1795260937361,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 458,
+      "id": null,
+      "off": 113544,
+      "messageId": 1795260937398,
+      "has_image": true,
+      "strings": [
+        "RHMIDataTable",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType",
+        "Zurück",
+        "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+        "can u see me in the dark?",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 447,
+      "id": null,
+      "off": 114167,
+      "messageId": 1795260937435,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 458,
+      "id": null,
+      "off": 133072,
+      "messageId": 1795260937509,
+      "has_image": true,
+      "strings": [
+        "RHMIDataTable",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType",
+        "Zurück",
+        "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+        "can u see me in the dark?",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 462,
+      "id": null,
+      "off": 133695,
+      "messageId": 1795260937546,
+      "has_image": false,
+      "strings": [
+        "0.63"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 451,
+      "id": null,
+      "off": 133750,
+      "messageId": 1795260937583,
+      "has_image": false,
+      "strings": [
+        "  2:32"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 452,
+      "id": null,
+      "off": 133807,
+      "messageId": 1795260937620,
+      "has_image": false,
+      "strings": [
+        "  3:58"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 445,
+      "id": null,
+      "off": 133872,
+      "messageId": 1795260937657,
+      "has_image": false,
+      "strings": [
+        "Halestorm"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 446,
+      "id": null,
+      "off": 133932,
+      "messageId": 1795260937694,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 338,
+      "id": null,
+      "off": 134016,
+      "messageId": 1795260937731,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 458,
+      "id": null,
+      "off": 134827,
+      "messageId": 1795260937842,
+      "has_image": true,
+      "strings": [
+        "RHMIDataTable",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType",
+        "Zurück",
+        "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+        "can u see me in the dark?",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 447,
+      "id": null,
+      "off": 135450,
+      "messageId": 1795260937879,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 458,
+      "id": null,
+      "off": 202555,
+      "messageId": 1795260937990,
+      "has_image": true,
+      "strings": [
+        "RHMIDataTable",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType",
+        "Zurück",
+        "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+        "can u see me in the dark?",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 462,
+      "id": null,
+      "off": 203267,
+      "messageId": 1795260938027,
+      "has_image": false,
+      "strings": [
+        "0.63"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 451,
+      "id": null,
+      "off": 203322,
+      "messageId": 1795260938064,
+      "has_image": false,
+      "strings": [
+        "  2:32"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 452,
+      "id": null,
+      "off": 203379,
+      "messageId": 1795260938101,
+      "has_image": false,
+      "strings": [
+        "  3:58"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 655,
+      "id": null,
+      "off": 203436,
+      "messageId": 1795260938138,
+      "has_image": false,
+      "strings": [
+        "Spotify"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 653,
+      "id": null,
+      "off": 204442,
+      "messageId": 1795260938249,
+      "has_image": false,
+      "strings": [
+        "Halestorm"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 654,
+      "id": null,
+      "off": 204510,
+      "messageId": 1795260938286,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 540,
+      "id": null,
+      "off": 204586,
+      "messageId": 1795260938323,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 444,
+      "id": null,
+      "off": 204670,
+      "messageId": 1795260938360,
+      "has_image": false,
+      "strings": [
+        "Spotify"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 442,
+      "id": null,
+      "off": 204736,
+      "messageId": 1795260938397,
+      "has_image": true,
+      "strings": [
+        "RHMIResourceData",
+        "89504e470d0a1a0a0000000d49484452000000300000003008060000005702f9",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 488,
+      "id": null,
+      "off": 206376,
+      "messageId": 1795260938434,
+      "has_image": false,
+      "strings": [
+        "Halestorm"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 479,
+      "id": null,
+      "off": 206436,
+      "messageId": 1795260938471,
+      "has_image": false,
+      "strings": [
+        "Halestorm"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 480,
+      "id": null,
+      "off": 206496,
+      "messageId": 1795260938508,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 490,
+      "id": null,
+      "off": 206572,
+      "messageId": 1795260938545,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 481,
+      "id": null,
+      "off": 206648,
+      "messageId": 1795260938582,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 440,
+      "id": null,
+      "off": 315455,
+      "messageId": 1795260938693,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 440,
+      "id": null,
+      "off": 316040,
+      "messageId": 1795260938804,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 492,
+      "id": null,
+      "off": 316090,
+      "messageId": 1795260938841,
+      "has_image": false,
+      "strings": [
+        "   :  "
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 482,
+      "id": null,
+      "off": 316147,
+      "messageId": 1795260938878,
+      "has_image": false,
+      "strings": [
+        "   :  "
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 493,
+      "id": null,
+      "off": 316204,
+      "messageId": 1795260938915,
+      "has_image": false,
+      "strings": [
+        "  3:58"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 483,
+      "id": null,
+      "off": 316261,
+      "messageId": 1795260938952,
+      "has_image": false,
+      "strings": [
+        "  3:58"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 505,
+      "id": null,
+      "off": 316391,
+      "messageId": 1795260939026,
+      "has_image": false,
+      "strings": [
+        "Zufallswiedergabe deaktivieren"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 506,
+      "id": null,
+      "off": 316472,
+      "messageId": 1795260939063,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 536,
+      "id": null,
+      "off": 317041,
+      "messageId": 1795260939211,
+      "has_image": false,
+      "strings": [
+        "EntICPlaylist"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 535,
+      "id": null,
+      "off": 317113,
+      "messageId": 1795260939248,
+      "has_image": false,
+      "strings": [
+        "RHMIDataTable",
+        "< Zurück",
+        "can u see me in the dark?",
+        "Halestorm",
+        "can u see me in the dark?",
+        "Nächster >",
+        "Kryptonite",
+        "Rebel Yell"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 488,
+      "id": null,
+      "off": 318175,
+      "messageId": 1795260939285,
+      "has_image": false,
+      "strings": [
+        "Halestorm"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 479,
+      "id": null,
+      "off": 318243,
+      "messageId": 1795260939322,
+      "has_image": false,
+      "strings": [
+        "Halestorm"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 480,
+      "id": null,
+      "off": 318303,
+      "messageId": 1795260939359,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 490,
+      "id": null,
+      "off": 318379,
+      "messageId": 1795260939396,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 481,
+      "id": null,
+      "off": 318455,
+      "messageId": 1795260939433,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 440,
+      "id": null,
+      "off": 344334,
+      "messageId": 1795260939618,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 440,
+      "id": null,
+      "off": 344561,
+      "messageId": 1795260939655,
+      "has_image": false,
+      "strings": []
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 492,
+      "id": null,
+      "off": 344611,
+      "messageId": 1795260939692,
+      "has_image": false,
+      "strings": [
+        "  2:32"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 482,
+      "id": null,
+      "off": 344668,
+      "messageId": 1795260939729,
+      "has_image": false,
+      "strings": [
+        "  2:32"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 493,
+      "id": null,
+      "off": 344725,
+      "messageId": 1795260939766,
+      "has_image": false,
+      "strings": [
+        "  3:58"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 483,
+      "id": null,
+      "off": 344782,
+      "messageId": 1795260939803,
+      "has_image": false,
+      "strings": [
+        "  3:58"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 505,
+      "id": null,
+      "off": 344847,
+      "messageId": 1795260939840,
+      "has_image": false,
+      "strings": [
+        "Zufallswiedergabe deaktivieren"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 506,
+      "id": null,
+      "off": 344928,
+      "messageId": 1795260939877,
+      "has_image": false,
+      "strings": [
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 445,
+      "id": null,
+      "off": 345020,
+      "messageId": 1795260939914,
+      "has_image": false,
+      "strings": [
+        "Halestorm"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 446,
+      "id": null,
+      "off": 345088,
+      "messageId": 1795260939951,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 458,
+      "id": null,
+      "off": 345164,
+      "messageId": 1795260939988,
+      "has_image": true,
+      "strings": [
+        "RHMIDataTable",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType",
+        "Zurück",
+        "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+        "can u see me in the dark?",
+        "RHMIResourceIdentifier",
+        "RHMIResourceType"
+      ]
+    },
+    {
+      "type": "setData",
+      "handle": 23,
+      "modelId": 447,
+      "id": null,
+      "off": 345787,
+      "messageId": 1795260940025,
+      "has_image": false,
+      "strings": [
+        "can u see me in the dark?"
+      ]
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 60,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 96386,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 69,
+      "propertyId": 9,
+      "propertyName": "WIDTH",
+      "off": 97487,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "int",
+            "value": 180
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 72,
+      "propertyId": 37,
+      "propertyName": "CUTTYPE",
+      "off": 97562,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 73,
+      "propertyId": 37,
+      "propertyName": "CUTTYPE",
+      "off": 97635,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "int",
+            "value": 0
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 70,
+      "propertyId": 4,
+      "propertyName": "VALID",
+      "off": 97708,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 70,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 97781,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 70,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "off": 97854,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "57,90,10,*",
+            "len": 10
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 82,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 97938,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 82,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "off": 98011,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "0,0,*",
+            "len": 5
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 84,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 98090,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 84,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "off": 98163,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "57,90,10,*",
+            "len": 10
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 84,
+      "propertyId": 4,
+      "propertyName": "VALID",
+      "off": 98255,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 100,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 98390,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 100,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "off": 98463,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "0,0,*",
+            "len": 5
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 102,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 98542,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 102,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "off": 98615,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "57,90,10,*",
+            "len": 10
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 102,
+      "propertyId": 4,
+      "propertyName": "VALID",
+      "off": 98699,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 112,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 98842,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 112,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "off": 98915,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "0,0,*",
+            "len": 5
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 114,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 98994,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 114,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "off": 99067,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "57,90,10,*",
+            "len": 10
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 114,
+      "propertyId": 4,
+      "propertyName": "VALID",
+      "off": 99151,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 94,
+      "propertyId": 6,
+      "propertyName": "LIST_COLUMNWIDTH",
+      "off": 99345,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "string",
+            "value": "57,0,*",
+            "len": 6
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 51,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "off": 108817,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 53,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "off": 109033,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 52,
+      "propertyId": 2,
+      "propertyName": "SELECTABLE",
+      "off": 109475,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 51,
+      "propertyId": 22,
+      "propertyName": "BOOKMARKABLE",
+      "off": 109548,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 53,
+      "propertyId": 22,
+      "propertyName": "BOOKMARKABLE",
+      "off": 109629,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 646,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "off": 109889,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 647,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "off": 110107,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 646,
+      "propertyId": 22,
+      "propertyName": "BOOKMARKABLE",
+      "off": 112633,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 647,
+      "propertyId": 22,
+      "propertyName": "BOOKMARKABLE",
+      "off": 112708,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 51,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "off": 316318,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 54,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "off": 316556,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 54,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 316629,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 53,
+      "propertyId": 1,
+      "propertyName": "ENABLED",
+      "off": 316879,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 27,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 344188,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "setProperty",
+      "handle": 23,
+      "componentId": 38,
+      "propertyId": 3,
+      "propertyName": "VISIBLE",
+      "off": 344261,
+      "values": {
+        "type": "map",
+        "n_keys": 1,
+        "keys": [
+          "0"
+        ],
+        "entries": {
+          "0": {
+            "type": "bool",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "type": "rhmi_ackActionEvent",
+      "handle": 23,
+      "actionId": 336,
+      "eventId": null,
+      "off": 102266
+    },
+    {
+      "type": "rhmi_ackActionEvent",
+      "handle": 23,
+      "actionId": 336,
+      "eventId": null,
+      "off": 134438
+    },
+    {
+      "type": "rhmi_triggerEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 661,
+      "off": 203763
+    },
+    {
+      "type": "rhmi_ackActionEvent",
+      "handle": 23,
+      "actionId": 336,
+      "eventId": null,
+      "off": 204105
+    },
+    {
+      "type": "rhmi_ackActionEvent",
+      "handle": 23,
+      "actionId": 248,
+      "eventId": null,
+      "off": 315513
+    },
+    {
+      "type": "rhmi_triggerEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 660,
+      "off": 315882
+    },
+    {
+      "type": "rhmi_onActionEvent",
+      "handle": 23,
+      "actionId": 336,
+      "eventId": null,
+      "off": 60714
+    },
+    {
+      "type": "rhmi_onHmiEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 2,
+      "off": 60829
+    },
+    {
+      "type": "rhmi_onHmiEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 2,
+      "off": 61428
+    },
+    {
+      "type": "rhmi_onHmiEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 2,
+      "off": 62034
+    },
+    {
+      "type": "rhmi_onHmiEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 2,
+      "off": 62469
+    },
+    {
+      "type": "rhmi_onHmiEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 2,
+      "off": 72832
+    },
+    {
+      "type": "rhmi_onActionEvent",
+      "handle": 23,
+      "actionId": 336,
+      "eventId": null,
+      "off": 73825
+    },
+    {
+      "type": "rhmi_onActionEvent",
+      "handle": 23,
+      "actionId": 336,
+      "eventId": null,
+      "off": 77751
+    },
+    {
+      "type": "rhmi_onHmiEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 11,
+      "off": 79158
+    },
+    {
+      "type": "rhmi_onHmiEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 1,
+      "off": 79279
+    },
+    {
+      "type": "rhmi_onActionEvent",
+      "handle": 23,
+      "actionId": 248,
+      "eventId": null,
+      "off": 79424
+    },
+    {
+      "type": "rhmi_onHmiEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 2,
+      "off": 82401
+    },
+    {
+      "type": "rhmi_onHmiEvent",
+      "handle": 23,
+      "actionId": null,
+      "eventId": 2,
+      "off": 82526
+    }
+  ],
+  "av": {
+    "messages": [
+      {
+        "method": "av_create",
+        "direction": "phone_to_hu",
+        "off": 102700,
+        "fields": {
+          "_messageId": {
+            "type": "int",
+            "value": 1795260936029
+          },
+          "instanceID": {
+            "type": "int",
+            "value": 14
+          },
+          "id": {
+            "type": "string",
+            "value": "me.hufman.androidautoidrive.music",
+            "len": 33
+          }
+        }
+      },
+      {
+        "method": "av_requestConnection",
+        "direction": "phone_to_hu",
+        "off": 134074,
+        "fields": {
+          "connectionType": {
+            "type": "struct",
+            "struct": "AVConnectionType",
+            "fields": {
+              "AV_CONNECTION_TYPE_ENTERTAINMENT": {
+                "type": "bool",
+                "value": true
+              }
+            }
+          },
+          "handle": {
+            "type": "int",
+            "value": 1
+          },
+          "_messageId": {
+            "type": "int",
+            "value": 1795260937768
+          }
+        }
+      },
+      {
+        "method": "av_playerStateChanged",
+        "direction": "phone_to_hu",
+        "off": 202150,
+        "fields": {
+          "connectionType": {
+            "type": "struct",
+            "struct": "AVConnectionType",
+            "fields": {
+              "AV_CONNECTION_TYPE_ENTERTAINMENT": {
+                "type": "bool",
+                "value": true
+              }
+            }
+          },
+          "handle": {
+            "type": "int",
+            "value": 1
+          },
+          "_messageId": {
+            "type": "int",
+            "value": 1795260937953
+          },
+          "playerState": {
+            "type": "struct",
+            "struct": "AVPlayerState",
+            "fields": {
+              "AV_PLAYERSTATE_PLAY": {
+                "type": "bool",
+                "value": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "method": "_result_av_create",
+        "direction": "hu_to_phone",
+        "off": 68583,
+        "fields": {
+          "result": {
+            "type": "int",
+            "value": 1
+          },
+          "_inReplyTo": {
+            "type": "int",
+            "value": 1795260936029
+          },
+          "_messageId": {
+            "type": "int",
+            "value": 1795260388672429
+          }
+        }
+      },
+      {
+        "method": "_result_av_requestConnection",
+        "direction": "hu_to_phone",
+        "off": 74749,
+        "fields": {
+          "_inReplyTo": {
+            "type": "int",
+            "value": 1795260937768
+          },
+          "_messageId": {
+            "type": "int",
+            "value": 1795260388672511
+          }
+        }
+      },
+      {
+        "method": "av_requestPlayerState",
+        "direction": "hu_to_phone",
+        "off": 75048,
+        "fields": {
+          "connectionType": {
+            "type": "struct",
+            "struct": "AVConnectionType",
+            "fields": {
+              "AV_CONNECTION_TYPE_ENTERTAINMENT": {
+                "type": "bool",
+                "value": true
+              }
+            }
+          },
+          "_messageId": {
+            "type": "int",
+            "value": 1795260388672515
+          },
+          "handle": {
+            "type": "int",
+            "value": 1
+          },
+          "playerState": {
+            "type": "struct",
+            "struct": "AVPlayerState",
+            "fields": {
+              "AV_PLAYERSTATE_PLAY": {
+                "type": "bool",
+                "value": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "method": "av_connectionGranted",
+        "direction": "hu_to_phone",
+        "off": 75709,
+        "fields": {
+          "connectionType": {
+            "type": "struct",
+            "struct": "AVConnectionType",
+            "fields": {
+              "AV_CONNECTION_TYPE_ENTERTAINMENT": {
+                "type": "bool",
+                "value": true
+              }
+            }
+          },
+          "_messageId": {
+            "type": "int",
+            "value": 1795260388672521
+          },
+          "handle": {
+            "type": "int",
+            "value": 1
+          }
+        }
+      },
+      {
+        "method": "_result_av_playerStateChanged",
+        "direction": "hu_to_phone",
+        "off": 76691,
+        "fields": {
+          "_inReplyTo": {
+            "type": "int",
+            "value": 1795260937953
+          },
+          "_messageId": {
+            "type": "int",
+            "value": 1795260388672530
+          }
+        }
+      }
+    ],
+    "av_handle": 1,
+    "instanceID": 14,
+    "package": "me.hufman.androidautoidrive.music",
+    "rhmi_handle_correlation": 23,
+    "note": "AV id string equals RHMI music package; AV handle (1) is separate from RHMI handle (23)"
+  },
+  "secondary_crosscheck": {
+    "source": "SECONDARY — resources/HANDLE23_CORRELATION.* + ui_description_multimedia_v3.xml (post-wire only)",
+    "wire_modelIds_count": 78,
+    "secondary_modelIds_count": 78,
+    "wire_only": [],
+    "secondary_only_not_in_this_envelope_scan": [],
+    "spotify_secondary_claim": "modelId 444 = provider/textModel",
+    "spotify_wire_fact": [
+      {
+        "modelId": 655,
+        "off": 203436,
+        "value": "Spotify"
+      },
+      {
+        "modelId": 444,
+        "off": 204670,
+        "value": "Spotify"
+      }
+    ],
+    "agreement_444": true,
+    "agreement_655_statusbar": true
+  },
+  "stats": {
+    "decoded_etch_envelopes": 1061,
+    "setData_on_music_handle": 117,
+    "distinct_modelIds": 78,
+    "distinct_dataIds_incl_nested": 95,
+    "distinct_componentIds": 20,
+    "distinct_propertyIds": 8,
+    "distinct_actionIds": 2,
+    "distinct_eventIds": 5,
+    "distinct_node_data_property_ids": 123,
+    "distinct_all_ui_ids": 128
+  }
+}

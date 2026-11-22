@@ -1,0 +1,290 @@
+[
+  {
+    "off": 82515,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795260933223,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260933223,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.calendar",
+        "name": "me.hufman.androidautoidrive.calendar"
+      }
+    }
+  },
+  {
+    "off": 82699,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795260933223,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260933223,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.notification.readout",
+        "name": "me.hufman.androidautoidrive.notification.readout"
+      }
+    }
+  },
+  {
+    "off": 83527,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795260933254,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260933254,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.music",
+        "name": "me.hufman.androidautoidrive.music"
+      }
+    }
+  },
+  {
+    "off": 83705,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795260933272,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260933272,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.mapview",
+        "name": "me.hufman.androidautoidrive.mapview"
+      }
+    }
+  },
+  {
+    "off": 92612,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795260933690,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260933690,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "io.bimmergestalt",
+        "id": "io.bimmergestalt.idriveconnectaddons.screenmirror",
+        "name": "io.bimmergestalt.idriveconnectaddons.screenmirror"
+      }
+    }
+  },
+  {
+    "off": 408132,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795261034180,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795261034180,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.notification.readout",
+        "name": "me.hufman.androidautoidrive.notification.readout"
+      }
+    }
+  },
+  {
+    "off": 409073,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795261034181,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795261034181,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.calendar",
+        "name": "me.hufman.androidautoidrive.calendar"
+      }
+    }
+  },
+  {
+    "off": 409257,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795261034195,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795261034195,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.mapview",
+        "name": "me.hufman.androidautoidrive.mapview"
+      }
+    }
+  },
+  {
+    "off": 52368,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672227,
+    "in_reply_to": 1795260933223,
+    "handle": null,
+    "fields": {
+      "result": 21,
+      "_inReplyTo": 1795260933223,
+      "_messageId": 1795260388672227
+    }
+  },
+  {
+    "off": 52438,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672228,
+    "in_reply_to": 1795260933223,
+    "handle": null,
+    "fields": {
+      "result": 22,
+      "_inReplyTo": 1795260933223,
+      "_messageId": 1795260388672228
+    }
+  },
+  {
+    "off": 52642,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672231,
+    "in_reply_to": 1795260933254,
+    "handle": null,
+    "fields": {
+      "result": 23,
+      "_inReplyTo": 1795260933254,
+      "_messageId": 1795260388672231
+    }
+  },
+  {
+    "off": 52724,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672233,
+    "in_reply_to": 1795260933272,
+    "handle": null,
+    "fields": {
+      "result": 24,
+      "_inReplyTo": 1795260933272,
+      "_messageId": 1795260388672233
+    }
+  },
+  {
+    "off": 56242,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672276,
+    "in_reply_to": 1795260933690,
+    "handle": null,
+    "fields": {
+      "result": 25,
+      "_inReplyTo": 1795260933690,
+      "_messageId": 1795260388672276
+    }
+  },
+  {
+    "off": 104912,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672644,
+    "in_reply_to": 1795261034180,
+    "handle": null,
+    "fields": {
+      "result": 22,
+      "_inReplyTo": 1795261034180,
+      "_messageId": 1795260388672644
+    }
+  },
+  {
+    "off": 105070,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672647,
+    "in_reply_to": 1795261034195,
+    "handle": null,
+    "fields": {
+      "result": 24,
+      "_inReplyTo": 1795261034195,
+      "_messageId": 1795260388672647
+    }
+  },
+  {
+    "off": 110442,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672648,
+    "in_reply_to": 1795261034181,
+    "handle": null,
+    "fields": {
+      "result": 21,
+      "_inReplyTo": 1795261034181,
+      "_messageId": 1795260388672648
+    }
+  }
+]

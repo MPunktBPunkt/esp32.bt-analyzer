@@ -1,0 +1,6052 @@
+[
+  {
+    "off": 6863,
+    "direction": "phone_to_hu",
+    "method": "rhmi_getCapabilities",
+    "message_id": 1795260913606,
+    "in_reply_to": null,
+    "handle": -1,
+    "fields": {
+      "handle": -1,
+      "_messageId": 1795260913606,
+      "component": ""
+    }
+  },
+  {
+    "off": 14485,
+    "direction": "phone_to_hu",
+    "method": "rhmi_getCapabilities",
+    "message_id": 1795260916954,
+    "in_reply_to": null,
+    "handle": -1,
+    "fields": {
+      "handle": -1,
+      "_messageId": 1795260916954,
+      "component": ""
+    }
+  },
+  {
+    "off": 29622,
+    "direction": "phone_to_hu",
+    "method": "rhmi_getCapabilities",
+    "message_id": 1795260920093,
+    "in_reply_to": null,
+    "handle": 255,
+    "fields": {
+      "handle": 255,
+      "_messageId": 1795260920093,
+      "component": ""
+    }
+  },
+  {
+    "off": 30589,
+    "direction": "phone_to_hu",
+    "method": "rhmi_getCapabilities",
+    "message_id": 1795260921101,
+    "in_reply_to": null,
+    "handle": 255,
+    "fields": {
+      "handle": 255,
+      "_messageId": 1795260921101,
+      "component": ""
+    }
+  },
+  {
+    "off": 82515,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795260933223,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260933223,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.calendar",
+        "name": "me.hufman.androidautoidrive.calendar"
+      }
+    }
+  },
+  {
+    "off": 82699,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795260933223,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260933223,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.notification.readout",
+        "name": "me.hufman.androidautoidrive.notification.readout"
+      }
+    }
+  },
+  {
+    "off": 83527,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795260933254,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260933254,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.music",
+        "name": "me.hufman.androidautoidrive.music"
+      }
+    }
+  },
+  {
+    "off": 83705,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795260933272,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260933272,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.mapview",
+        "name": "me.hufman.androidautoidrive.mapview"
+      }
+    }
+  },
+  {
+    "off": 83971,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933260,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "2149f3ddb1175f88",
+        "kind": "binary",
+        "head": "e35cd2f19b5dfe156612ab5746e284df"
+      },
+      "handle": 21,
+      "_messageId": 1795260933260,
+      "size": 13598,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "DESCRIPTION": true
+      }
+    }
+  },
+  {
+    "off": 84071,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933260,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "112b1bc447a65b89",
+        "kind": "binary",
+        "head": "431f598b66195819f767ad0240eb1da1"
+      },
+      "handle": 22,
+      "_messageId": 1795260933260,
+      "size": 13943,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "DESCRIPTION": true
+      }
+    }
+  },
+  {
+    "off": 84259,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933291,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "a60555a1a2b69412",
+        "kind": "binary",
+        "head": "e9e31c31110680e13b7a112a7d77eb55"
+      },
+      "handle": 23,
+      "_messageId": 1795260933291,
+      "size": 92085,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "DESCRIPTION": true
+      }
+    }
+  },
+  {
+    "off": 84422,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933309,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "2e483d33ec6ee36c",
+        "kind": "binary",
+        "head": "b8b9b3704e58da6ce6eb53f643f5cf74"
+      },
+      "handle": 24,
+      "_messageId": 1795260933309,
+      "size": 85586,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "DESCRIPTION": true
+      }
+    }
+  },
+  {
+    "off": 84600,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933297,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "7df13e5beca0198f",
+        "kind": "bin_with_ascii",
+        "ascii_samples": [
+          "j[Q*"
+        ]
+      },
+      "handle": 21,
+      "_messageId": 1795260933297,
+      "size": 1576,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "IMAGEDB": true
+      }
+    }
+  },
+  {
+    "off": 84700,
+    "direction": "phone_to_hu",
+    "method": "rhmi_initialize",
+    "message_id": 1795260933297,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933297
+    }
+  },
+  {
+    "off": 84856,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933328,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "2ba0211820753a0f",
+        "kind": "binary",
+        "head": "1a1f84fb6bf6504db2494dd274a72efc"
+      },
+      "handle": 23,
+      "_messageId": 1795260933328,
+      "size": 393,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "TEXTDB": true
+      }
+    }
+  },
+  {
+    "off": 87398,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933346,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "bb901829a9481ebd",
+        "kind": "binary",
+        "head": "06805f739268db5e6b87be24f9e13221"
+      },
+      "handle": 24,
+      "_messageId": 1795260933346,
+      "size": 119338,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "IMAGEDB": true
+      }
+    }
+  },
+  {
+    "off": 87500,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933334,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "28e9909bfa212d62",
+        "kind": "bin_with_ascii",
+        "ascii_samples": [
+          "0g$F"
+        ]
+      },
+      "handle": 21,
+      "_messageId": 1795260933334,
+      "size": 7195,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "TEXTDB": true
+      }
+    }
+  },
+  {
+    "off": 87600,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addActionEventHandler",
+    "message_id": 1795260933334,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933334,
+      "ident": "me.hufman.androidautoidrive.notification.readout",
+      "actionId": -1
+    }
+  },
+  {
+    "off": 89109,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933365,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "c182fae14e47efd0",
+        "kind": "binary",
+        "head": "0b010109a0fd4f3c7aced4fd0b4dcbd9"
+      },
+      "handle": 23,
+      "_messageId": 1795260933365,
+      "size": 162483,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "IMAGEDB": true
+      }
+    }
+  },
+  {
+    "off": 91620,
+    "direction": "phone_to_hu",
+    "method": "rhmi_initialize",
+    "message_id": 1795260933383,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933383
+    }
+  },
+  {
+    "off": 91664,
+    "direction": "phone_to_hu",
+    "method": "rhmi_initialize",
+    "message_id": 1795260933371,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "handle": 21,
+      "_messageId": 1795260933371
+    }
+  },
+  {
+    "off": 91708,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addHmiEventHandler",
+    "message_id": 1795260933371,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "eventId": -1,
+      "handle": 22,
+      "_messageId": 1795260933371,
+      "ident": "me.hufman.androidautoidrive.notification.readout",
+      "componentId": -1
+    }
+  },
+  {
+    "off": 91943,
+    "direction": "phone_to_hu",
+    "method": "rhmi_initialize",
+    "message_id": 1795260933402,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933402
+    }
+  },
+  {
+    "off": 91987,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addActionEventHandler",
+    "message_id": 1795260933408,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "handle": 21,
+      "_messageId": 1795260933408,
+      "ident": "me.hufman.androidautoidrive.calendar",
+      "actionId": -1
+    }
+  },
+  {
+    "off": 92080,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933408,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933408,
+      "modelId": 27,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 1
+      }
+    }
+  },
+  {
+    "off": 92333,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933420,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933420,
+      "modelId": 474,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 150
+      }
+    }
+  },
+  {
+    "off": 92425,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addHmiEventHandler",
+    "message_id": 1795260933445,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "eventId": -1,
+      "handle": 21,
+      "_messageId": 1795260933445,
+      "ident": "me.hufman.androidautoidrive.calendar",
+      "componentId": -1
+    }
+  },
+  {
+    "off": 92524,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933445,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933445,
+      "modelId": 28,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 2
+      }
+    }
+  },
+  {
+    "off": 92612,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795260933690,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260933690,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "io.bimmergestalt",
+        "id": "io.bimmergestalt.idriveconnectaddons.screenmirror",
+        "name": "io.bimmergestalt.idriveconnectaddons.screenmirror"
+      }
+    }
+  },
+  {
+    "off": 92908,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933457,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933457,
+      "modelId": 475,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 148
+      }
+    }
+  },
+  {
+    "off": 93000,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addActionEventHandler",
+    "message_id": 1795260933439,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933439,
+      "ident": "me.hufman.androidautoidrive.music",
+      "actionId": -1
+    }
+  },
+  {
+    "off": 93090,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933482,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933482,
+      "modelId": 29,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 3
+      }
+    }
+  },
+  {
+    "off": 93178,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933482,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "handle": 21,
+      "_messageId": 1795260933482,
+      "modelId": 88,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 40
+      }
+    }
+  },
+  {
+    "off": 93266,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933727,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "2e483d33ec6ee36c",
+        "kind": "binary",
+        "head": "b8b9b3704e58da6ce6eb53f643f5cf74"
+      },
+      "handle": 25,
+      "_messageId": 1795260933727,
+      "size": 85586,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "DESCRIPTION": true
+      }
+    }
+  },
+  {
+    "off": 93439,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933494,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933494,
+      "modelId": 476,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 152
+      }
+    }
+  },
+  {
+    "off": 93531,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addHmiEventHandler",
+    "message_id": 1795260933476,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": -1,
+      "handle": 23,
+      "_messageId": 1795260933476,
+      "ident": "me.hufman.androidautoidrive.music",
+      "componentId": -1
+    }
+  },
+  {
+    "off": 93627,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933519,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933519,
+      "modelId": 30,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 4
+      }
+    }
+  },
+  {
+    "off": 93715,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933519,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "handle": 21,
+      "_messageId": 1795260933519,
+      "modelId": 89,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 41
+      }
+    }
+  },
+  {
+    "off": 93905,
+    "direction": "phone_to_hu",
+    "method": "rhmi_checkResource",
+    "message_id": 1795260933764,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "hash": {
+        "len": 16,
+        "sha256": "bb901829a9481ebd",
+        "kind": "binary",
+        "head": "06805f739268db5e6b87be24f9e13221"
+      },
+      "handle": 25,
+      "_messageId": 1795260933764,
+      "size": 119338,
+      "name": "",
+      "type": {
+        "_type": "RHMIResourceType",
+        "IMAGEDB": true
+      }
+    }
+  },
+  {
+    "off": 94007,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933531,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933531,
+      "modelId": 483,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 150
+      }
+    }
+  },
+  {
+    "off": 94099,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933513,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933513,
+      "modelId": 439,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 164
+      }
+    }
+  },
+  {
+    "off": 94191,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933550,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933550,
+      "modelId": 465,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 154
+      }
+    }
+  },
+  {
+    "off": 94275,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933587,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933587,
+      "modelId": 467,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 155
+      }
+    }
+  },
+  {
+    "off": 94359,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933624,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933624,
+      "modelId": 469,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 156
+      }
+    }
+  },
+  {
+    "off": 94443,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933661,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933661,
+      "modelId": 471,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 157
+      }
+    }
+  },
+  {
+    "off": 94535,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933698,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933698,
+      "modelId": 473,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 158
+      }
+    }
+  },
+  {
+    "off": 94619,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933735,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933735,
+      "modelId": 475,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 159
+      }
+    }
+  },
+  {
+    "off": 94703,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933772,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933772,
+      "modelId": 476,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 151
+      }
+    }
+  },
+  {
+    "off": 94787,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933809,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933809,
+      "modelId": 477,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 149
+      }
+    }
+  },
+  {
+    "off": 94871,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933846,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933846,
+      "modelId": 478,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 153
+      }
+    }
+  },
+  {
+    "off": 94955,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933883,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933883,
+      "modelId": 485,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 151
+      }
+    }
+  },
+  {
+    "off": 95039,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933920,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933920,
+      "modelId": 486,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 149
+      }
+    }
+  },
+  {
+    "off": 95123,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933957,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933957,
+      "modelId": 487,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 153
+      }
+    }
+  },
+  {
+    "off": 95207,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933994,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260933994,
+      "modelId": 496,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 154
+      }
+    }
+  },
+  {
+    "off": 95291,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934031,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934031,
+      "modelId": 498,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 155
+      }
+    }
+  },
+  {
+    "off": 95375,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934068,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934068,
+      "modelId": 500,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 156
+      }
+    }
+  },
+  {
+    "off": 95459,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934105,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934105,
+      "modelId": 502,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 157
+      }
+    }
+  },
+  {
+    "off": 95543,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934142,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934142,
+      "modelId": 504,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 158
+      }
+    }
+  },
+  {
+    "off": 95627,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934179,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934179,
+      "modelId": 506,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 159
+      }
+    }
+  },
+  {
+    "off": 95711,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934216,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934216,
+      "modelId": 508,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 160
+      }
+    }
+  },
+  {
+    "off": 95795,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934253,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934253,
+      "modelId": 510,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 161
+      }
+    }
+  },
+  {
+    "off": 95879,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934290,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934290,
+      "modelId": 639,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 163
+      }
+    }
+  },
+  {
+    "off": 95963,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934327,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934327,
+      "modelId": 640,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 162
+      }
+    }
+  },
+  {
+    "off": 96047,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934364,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934364,
+      "modelId": 643,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 162
+      }
+    }
+  },
+  {
+    "off": 96139,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934401,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934401,
+      "modelId": 657,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 163
+      }
+    }
+  },
+  {
+    "off": 96231,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934438,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934438,
+      "modelId": 658,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 162
+      }
+    }
+  },
+  {
+    "off": 96323,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934475,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934475,
+      "modelId": 511,
+      "value": "Apps"
+    }
+  },
+  {
+    "off": 96386,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934512,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260934512,
+      "componentId": 60,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 96459,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934549,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934549,
+      "modelId": 259,
+      "value": 10
+    }
+  },
+  {
+    "off": 96509,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934586,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934586,
+      "modelId": 168,
+      "value": 11
+    }
+  },
+  {
+    "off": 96559,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934623,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934623,
+      "modelId": 176,
+      "value": 12
+    }
+  },
+  {
+    "off": 96609,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934660,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934660,
+      "modelId": 184,
+      "value": 18
+    }
+  },
+  {
+    "off": 96667,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933556,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933556,
+      "modelId": 31,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 5
+      }
+    }
+  },
+  {
+    "off": 96755,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933556,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "handle": 21,
+      "_messageId": 1795260933556,
+      "modelId": 116,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 39
+      }
+    }
+  },
+  {
+    "off": 96925,
+    "direction": "phone_to_hu",
+    "method": "rhmi_initialize",
+    "message_id": 1795260933801,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260933801
+    }
+  },
+  {
+    "off": 96969,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933568,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933568,
+      "modelId": 484,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 148
+      }
+    }
+  },
+  {
+    "off": 97061,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933593,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "handle": 21,
+      "_messageId": 1795260933593,
+      "modelId": 117,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 38
+      }
+    }
+  },
+  {
+    "off": 97149,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933593,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933593,
+      "modelId": 33,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 6
+      }
+    }
+  },
+  {
+    "off": 97329,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934697,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934697,
+      "modelId": 168,
+      "value": 11
+    }
+  },
+  {
+    "off": 97379,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934734,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934734,
+      "modelId": 176,
+      "value": 12
+    }
+  },
+  {
+    "off": 97429,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934771,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260934771,
+      "modelId": 180,
+      "value": 18
+    }
+  },
+  {
+    "off": 97487,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934808,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 9,
+      "_messageId": 1795260934808,
+      "componentId": 69,
+      "values": {
+        "0": 180
+      }
+    }
+  },
+  {
+    "off": 97562,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934845,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 37,
+      "_messageId": 1795260934845,
+      "componentId": 72,
+      "values": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "off": 97635,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934882,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 37,
+      "_messageId": 1795260934882,
+      "componentId": 73,
+      "values": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "off": 97708,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934919,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 4,
+      "_messageId": 1795260934919,
+      "componentId": 70,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 97781,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934956,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260934956,
+      "componentId": 70,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 97854,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934993,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 6,
+      "_messageId": 1795260934993,
+      "componentId": 70,
+      "values": {
+        "0": "57,90,10,*"
+      }
+    }
+  },
+  {
+    "off": 97938,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935030,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260935030,
+      "componentId": 82,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 98011,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935067,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 6,
+      "_messageId": 1795260935067,
+      "componentId": 82,
+      "values": {
+        "0": "0,0,*"
+      }
+    }
+  },
+  {
+    "off": 98090,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935104,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260935104,
+      "componentId": 84,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 98163,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935141,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 6,
+      "_messageId": 1795260935141,
+      "componentId": 84,
+      "values": {
+        "0": "57,90,10,*"
+      }
+    }
+  },
+  {
+    "off": 98255,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935178,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 4,
+      "_messageId": 1795260935178,
+      "componentId": 84,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 98328,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260935215,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260935215,
+      "modelId": 550,
+      "value": "Durchsuchen"
+    }
+  },
+  {
+    "off": 98390,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935252,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260935252,
+      "componentId": 100,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 98463,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935289,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 6,
+      "_messageId": 1795260935289,
+      "componentId": 100,
+      "values": {
+        "0": "0,0,*"
+      }
+    }
+  },
+  {
+    "off": 98542,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935326,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260935326,
+      "componentId": 102,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 98615,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935363,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 6,
+      "_messageId": 1795260935363,
+      "componentId": 102,
+      "values": {
+        "0": "57,90,10,*"
+      }
+    }
+  },
+  {
+    "off": 98699,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935400,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 4,
+      "_messageId": 1795260935400,
+      "componentId": 102,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 98780,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260935437,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260935437,
+      "modelId": 576,
+      "value": "Durchsuchen"
+    }
+  },
+  {
+    "off": 98842,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935474,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260935474,
+      "componentId": 112,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 98915,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935511,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 6,
+      "_messageId": 1795260935511,
+      "componentId": 112,
+      "values": {
+        "0": "0,0,*"
+      }
+    }
+  },
+  {
+    "off": 98994,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935548,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260935548,
+      "componentId": 114,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 99067,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935585,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 6,
+      "_messageId": 1795260935585,
+      "componentId": 114,
+      "values": {
+        "0": "57,90,10,*"
+      }
+    }
+  },
+  {
+    "off": 99151,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935622,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 4,
+      "_messageId": 1795260935622,
+      "componentId": 114,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 99224,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260935659,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260935659,
+      "modelId": 589,
+      "value": "Durchsuchen"
+    }
+  },
+  {
+    "off": 99286,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260935696,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260935696,
+      "modelId": 569,
+      "value": "Aktionen"
+    }
+  },
+  {
+    "off": 99345,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260935733,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 6,
+      "_messageId": 1795260935733,
+      "componentId": 94,
+      "values": {
+        "0": "57,0,*"
+      }
+    }
+  },
+  {
+    "off": 99501,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addActionEventHandler",
+    "message_id": 1795260933838,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260933838,
+      "ident": "io.bimmergestalt.idriveconnectaddons.screenmirror",
+      "actionId": -1
+    }
+  },
+  {
+    "off": 99607,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933605,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933605,
+      "modelId": 485,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 152
+      }
+    }
+  },
+  {
+    "off": 99699,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933630,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "handle": 21,
+      "_messageId": 1795260933630,
+      "modelId": 133,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 39
+      }
+    }
+  },
+  {
+    "off": 99789,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933630,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933630,
+      "modelId": 35,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 7
+      }
+    }
+  },
+  {
+    "off": 99961,
+    "direction": "phone_to_hu",
+    "method": "rhmi_addHmiEventHandler",
+    "message_id": 1795260933875,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "eventId": -1,
+      "handle": 25,
+      "_messageId": 1795260933875,
+      "ident": "io.bimmergestalt.idriveconnectaddons.screenmirror",
+      "componentId": -1
+    }
+  },
+  {
+    "off": 100073,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933642,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933642,
+      "modelId": 494,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 153
+      }
+    }
+  },
+  {
+    "off": 100165,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933667,
+    "in_reply_to": null,
+    "handle": 21,
+    "fields": {
+      "handle": 21,
+      "_messageId": 1795260933667,
+      "modelId": 134,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 38
+      }
+    }
+  },
+  {
+    "off": 100344,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933667,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933667,
+      "modelId": 36,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 55002
+      }
+    }
+  },
+  {
+    "off": 100524,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933679,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933679,
+      "modelId": 496,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 154
+      }
+    }
+  },
+  {
+    "off": 100616,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933912,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260933912,
+      "modelId": 474,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 150
+      }
+    }
+  },
+  {
+    "off": 100839,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933704,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933704,
+      "modelId": 37,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 8
+      }
+    }
+  },
+  {
+    "off": 101007,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933716,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933716,
+      "modelId": 498,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 155
+      }
+    }
+  },
+  {
+    "off": 101099,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933949,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260933949,
+      "modelId": 475,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 148
+      }
+    }
+  },
+  {
+    "off": 101345,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933741,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933741,
+      "modelId": 38,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 55003
+      }
+    }
+  },
+  {
+    "off": 101518,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933753,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933753,
+      "modelId": 500,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 156
+      }
+    }
+  },
+  {
+    "off": 101610,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933986,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260933986,
+      "modelId": 476,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 152
+      }
+    }
+  },
+  {
+    "off": 101871,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933778,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933778,
+      "modelId": 39,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 9
+      }
+    }
+  },
+  {
+    "off": 102032,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933790,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933790,
+      "modelId": 502,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 157
+      }
+    }
+  },
+  {
+    "off": 102124,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934023,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934023,
+      "modelId": 483,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 150
+      }
+    }
+  },
+  {
+    "off": 102216,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260935955,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260935955,
+      "modelId": 338,
+      "value": 11
+    }
+  },
+  {
+    "off": 102266,
+    "direction": "phone_to_hu",
+    "method": "rhmi_ackActionEvent",
+    "message_id": 1795260935992,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "success": true,
+      "_messageId": 1795260935992,
+      "actionId": 336,
+      "confirmId": 1
+    }
+  },
+  {
+    "off": 102330,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933815,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933815,
+      "modelId": 40,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 55009
+      }
+    }
+  },
+  {
+    "off": 102516,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933827,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933827,
+      "modelId": 504,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 158
+      }
+    }
+  },
+  {
+    "off": 102608,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934060,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934060,
+      "modelId": 484,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 148
+      }
+    }
+  },
+  {
+    "off": 102784,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933852,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933852,
+      "modelId": 41,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 10
+      }
+    }
+  },
+  {
+    "off": 102958,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934097,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934097,
+      "modelId": 485,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 152
+      }
+    }
+  },
+  {
+    "off": 103050,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933864,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933864,
+      "modelId": 506,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 159
+      }
+    }
+  },
+  {
+    "off": 103142,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933889,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933889,
+      "modelId": 42,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 59001
+      }
+    }
+  },
+  {
+    "off": 106591,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934134,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934134,
+      "modelId": 494,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 153
+      }
+    }
+  },
+  {
+    "off": 106683,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933901,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933901,
+      "modelId": 508,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 160
+      }
+    }
+  },
+  {
+    "off": 106775,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933926,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933926,
+      "modelId": 43,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 58001
+      }
+    }
+  },
+  {
+    "off": 108074,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934171,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934171,
+      "modelId": 496,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 154
+      }
+    }
+  },
+  {
+    "off": 108166,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933938,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933938,
+      "modelId": 553,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 163
+      }
+    }
+  },
+  {
+    "off": 108258,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933963,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260933963,
+      "modelId": 44,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 56
+      }
+    }
+  },
+  {
+    "off": 108346,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934208,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934208,
+      "modelId": 498,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 155
+      }
+    }
+  },
+  {
+    "off": 108438,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260933975,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260933975,
+      "modelId": 561,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 162
+      }
+    }
+  },
+  {
+    "off": 108530,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934000,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934000,
+      "modelId": 45,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 58004
+      }
+    }
+  },
+  {
+    "off": 108622,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936140,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936140,
+      "modelId": 495,
+      "value": "Apps"
+    }
+  },
+  {
+    "off": 108685,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936177,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936177,
+      "modelId": 497,
+      "value": "Durchsuchen"
+    }
+  },
+  {
+    "off": 108747,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936214,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936214,
+      "modelId": 499,
+      "value": "Aktuelle Wiedergabe"
+    }
+  },
+  {
+    "off": 108817,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260936251,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 1,
+      "_messageId": 1795260936251,
+      "componentId": 51,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 108890,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936288,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936288,
+      "modelId": 503,
+      "value": "Aktionen"
+    }
+  },
+  {
+    "off": 108949,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936325,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936325,
+      "modelId": 504,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 158
+      }
+    }
+  },
+  {
+    "off": 109033,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260936362,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 1,
+      "_messageId": 1795260936362,
+      "componentId": 53,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 109106,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936399,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936399,
+      "modelId": 505,
+      "value": "Zufallswiedergabe nicht verf\u00fcgbar"
+    }
+  },
+  {
+    "off": 109191,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936436,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936436,
+      "modelId": 506,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 159
+      }
+    }
+  },
+  {
+    "off": 109275,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936473,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936473,
+      "modelId": 507,
+      "value": "Zur\u00fcck"
+    }
+  },
+  {
+    "off": 109333,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936510,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936510,
+      "modelId": 509,
+      "value": "N\u00e4chster"
+    }
+  },
+  {
+    "off": 109393,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936547,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936547,
+      "modelId": 502,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 0
+      }
+    }
+  },
+  {
+    "off": 109475,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260936584,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 2,
+      "_messageId": 1795260936584,
+      "componentId": 52,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 109548,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260936621,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 22,
+      "_messageId": 1795260936621,
+      "componentId": 51,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 109629,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260936658,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 22,
+      "_messageId": 1795260936658,
+      "componentId": 53,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 109702,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936695,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936695,
+      "modelId": 464,
+      "value": "Apps"
+    }
+  },
+  {
+    "off": 109757,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936732,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936732,
+      "modelId": 466,
+      "value": "Durchsuchen"
+    }
+  },
+  {
+    "off": 109819,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936769,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936769,
+      "modelId": 468,
+      "value": "Aktuelle Wiedergabe"
+    }
+  },
+  {
+    "off": 109889,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260936806,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 1,
+      "_messageId": 1795260936806,
+      "componentId": 646,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 109964,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936843,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936843,
+      "modelId": 470,
+      "value": "Aktionen"
+    }
+  },
+  {
+    "off": 110023,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936880,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936880,
+      "modelId": 471,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 158
+      }
+    }
+  },
+  {
+    "off": 110107,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260936917,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 1,
+      "_messageId": 1795260936917,
+      "componentId": 647,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 110182,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936954,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936954,
+      "modelId": 472,
+      "value": "Zufallswiedergabe nicht verf\u00fcgbar"
+    }
+  },
+  {
+    "off": 110267,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260936991,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260936991,
+      "modelId": 473,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 159
+      }
+    }
+  },
+  {
+    "off": 110351,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937028,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937028,
+      "modelId": 454,
+      "value": {
+        "_type": "RHMIResourceData",
+        "data": {
+          "len": 422,
+          "sha256": "e3f49ee034e8e1a4",
+          "kind": "png"
+        },
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEDATA": true
+        }
+      }
+    }
+  },
+  {
+    "off": 110866,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937065,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937065,
+      "modelId": 455,
+      "value": {
+        "_type": "RHMIResourceData",
+        "data": {
+          "len": 864,
+          "sha256": "1f624d71d2f42842",
+          "kind": "png"
+        },
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEDATA": true
+        }
+      }
+    }
+  },
+  {
+    "off": 111823,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937102,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937102,
+      "modelId": 474,
+      "value": "Wiederholen nicht verf\u00fcgbar"
+    }
+  },
+  {
+    "off": 111902,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937139,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937139,
+      "modelId": 475,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 1015
+      }
+    }
+  },
+  {
+    "off": 111986,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937176,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937176,
+      "modelId": 458,
+      "value": {
+        "_type": "RHMIDataTable",
+        "data": [
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 160
+            },
+            "Zur\u00fcck",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "len": 354,
+              "sha256": "6ed93a6cfd3e1d75",
+              "kind": "png"
+            },
+            "",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 161
+            },
+            "N\u00e4chster",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ]
+        ],
+        "totalRows": 3,
+        "fromColumn": 0,
+        "numColumns": 10,
+        "numRows": 3,
+        "fromRow": 0,
+        "totalColumns": 10,
+        "virtualTableEnable": false
+      }
+    }
+  },
+  {
+    "off": 112583,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937213,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937213,
+      "modelId": 459,
+      "value": 1
+    }
+  },
+  {
+    "off": 112633,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260937250,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 22,
+      "_messageId": 1795260937250,
+      "componentId": 646,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 112708,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260937287,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 22,
+      "_messageId": 1795260937287,
+      "componentId": 647,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 112791,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937324,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937324,
+      "modelId": 445,
+      "value": "Halestorm, I Prevail"
+    }
+  },
+  {
+    "off": 112870,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937361,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937361,
+      "modelId": 446,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 112954,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934245,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934245,
+      "modelId": 500,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 156
+      }
+    }
+  },
+  {
+    "off": 113046,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934012,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260934012,
+      "modelId": 562,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 161
+      }
+    }
+  },
+  {
+    "off": 113138,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934037,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934037,
+      "modelId": 46,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 59003
+      }
+    }
+  },
+  {
+    "off": 113268,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934282,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934282,
+      "modelId": 502,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 157
+      }
+    }
+  },
+  {
+    "off": 113360,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934049,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260934049,
+      "modelId": 565,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 161
+      }
+    }
+  },
+  {
+    "off": 113452,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934074,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934074,
+      "modelId": 47,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 58003
+      }
+    }
+  },
+  {
+    "off": 113544,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937398,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937398,
+      "modelId": 458,
+      "value": {
+        "_type": "RHMIDataTable",
+        "data": [
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 160
+            },
+            "Zur\u00fcck",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "len": 354,
+              "sha256": "6ed93a6cfd3e1d75",
+              "kind": "png"
+            },
+            "can u see me in the dark?",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 161
+            },
+            "N\u00e4chster",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ]
+        ],
+        "totalRows": 3,
+        "fromColumn": 0,
+        "numColumns": 10,
+        "numRows": 3,
+        "fromRow": 0,
+        "totalColumns": 10,
+        "virtualTableEnable": false
+      }
+    }
+  },
+  {
+    "off": 114167,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937435,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937435,
+      "modelId": 447,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 132830,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934319,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934319,
+      "modelId": 504,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 158
+      }
+    }
+  },
+  {
+    "off": 132922,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934111,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934111,
+      "modelId": 48,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 59004
+      }
+    }
+  },
+  {
+    "off": 133014,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934086,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260934086,
+      "modelId": 512,
+      "value": ""
+    }
+  },
+  {
+    "off": 133072,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937509,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937509,
+      "modelId": 458,
+      "value": {
+        "_type": "RHMIDataTable",
+        "data": [
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 160
+            },
+            "Zur\u00fcck",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "len": 354,
+              "sha256": "6ed93a6cfd3e1d75",
+              "kind": "png"
+            },
+            "can u see me in the dark?",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 161
+            },
+            "N\u00e4chster",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ]
+        ],
+        "totalRows": 3,
+        "fromColumn": 0,
+        "numColumns": 10,
+        "numRows": 3,
+        "fromRow": 0,
+        "totalColumns": 10,
+        "virtualTableEnable": false
+      }
+    }
+  },
+  {
+    "off": 133695,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937546,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937546,
+      "modelId": 462,
+      "value": "0.63"
+    }
+  },
+  {
+    "off": 133750,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937583,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937583,
+      "modelId": 451,
+      "value": "  2:32"
+    }
+  },
+  {
+    "off": 133807,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937620,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937620,
+      "modelId": 452,
+      "value": "  3:58"
+    }
+  },
+  {
+    "off": 133872,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937657,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937657,
+      "modelId": 445,
+      "value": "Halestorm"
+    }
+  },
+  {
+    "off": 133932,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937694,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937694,
+      "modelId": 446,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 134016,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937731,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937731,
+      "modelId": 338,
+      "value": 10
+    }
+  },
+  {
+    "off": 134137,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934148,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934148,
+      "modelId": 49,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 58005
+      }
+    }
+  },
+  {
+    "off": 134229,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934123,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260934123,
+      "modelId": 509,
+      "value": {
+        "_type": "RHMIDataTable",
+        "data": [],
+        "totalRows": 0,
+        "fromColumn": 0,
+        "numColumns": 1,
+        "numRows": 0,
+        "fromRow": 0,
+        "totalColumns": 1,
+        "virtualTableEnable": false
+      }
+    }
+  },
+  {
+    "off": 134346,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934356,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934356,
+      "modelId": 506,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 159
+      }
+    }
+  },
+  {
+    "off": 134438,
+    "direction": "phone_to_hu",
+    "method": "rhmi_ackActionEvent",
+    "message_id": 1795260937805,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "success": true,
+      "_messageId": 1795260937805,
+      "actionId": 336,
+      "confirmId": 1
+    }
+  },
+  {
+    "off": 134502,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934160,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "_messageId": 1795260934160,
+      "modelId": 384,
+      "value": 9
+    }
+  },
+  {
+    "off": 134560,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934185,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934185,
+      "modelId": 137,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 58006
+      }
+    }
+  },
+  {
+    "off": 134654,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934393,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934393,
+      "modelId": 508,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 160
+      }
+    }
+  },
+  {
+    "off": 134746,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934197,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "propertyId": 3,
+      "_messageId": 1795260934197,
+      "componentId": 24,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 134827,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937842,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937842,
+      "modelId": 458,
+      "value": {
+        "_type": "RHMIDataTable",
+        "data": [
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 160
+            },
+            "Zur\u00fcck",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "len": 354,
+              "sha256": "6ed93a6cfd3e1d75",
+              "kind": "png"
+            },
+            "can u see me in the dark?",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 161
+            },
+            "N\u00e4chster",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ]
+        ],
+        "totalRows": 3,
+        "fromColumn": 0,
+        "numColumns": 10,
+        "numRows": 3,
+        "fromRow": 0,
+        "totalColumns": 10,
+        "virtualTableEnable": false
+      }
+    }
+  },
+  {
+    "off": 135450,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937879,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937879,
+      "modelId": 447,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 202232,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934222,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934222,
+      "modelId": 54,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 15
+      }
+    }
+  },
+  {
+    "off": 202320,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934430,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934430,
+      "modelId": 553,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 163
+      }
+    }
+  },
+  {
+    "off": 202424,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934234,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "propertyId": 3,
+      "_messageId": 1795260934234,
+      "componentId": 25,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 202555,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260937990,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260937990,
+      "modelId": 458,
+      "value": {
+        "_type": "RHMIDataTable",
+        "data": [
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 160
+            },
+            "Zur\u00fcck",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "len": 354,
+              "sha256": "6ed93a6cfd3e1d75",
+              "kind": "png"
+            },
+            "can u see me in the dark?",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 161
+            },
+            "N\u00e4chster",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ]
+        ],
+        "totalRows": 3,
+        "fromColumn": 0,
+        "numColumns": 10,
+        "numRows": 3,
+        "fromRow": 0,
+        "totalColumns": 10,
+        "virtualTableEnable": false
+      }
+    }
+  },
+  {
+    "off": 203186,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934271,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "propertyId": 3,
+      "_messageId": 1795260934271,
+      "componentId": 26,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 203267,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938027,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938027,
+      "modelId": 462,
+      "value": "0.63"
+    }
+  },
+  {
+    "off": 203322,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938064,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938064,
+      "modelId": 451,
+      "value": "  2:32"
+    }
+  },
+  {
+    "off": 203379,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938101,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938101,
+      "modelId": 452,
+      "value": "  3:58"
+    }
+  },
+  {
+    "off": 203436,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938138,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938138,
+      "modelId": 655,
+      "value": "Spotify"
+    }
+  },
+  {
+    "off": 203502,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934467,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934467,
+      "modelId": 561,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 162
+      }
+    }
+  },
+  {
+    "off": 203594,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934259,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934259,
+      "modelId": 55,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 16
+      }
+    }
+  },
+  {
+    "off": 203682,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934308,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "propertyId": 3,
+      "_messageId": 1795260934308,
+      "componentId": 27,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 203763,
+    "direction": "phone_to_hu",
+    "method": "rhmi_triggerEvent",
+    "message_id": 1795260938175,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 661,
+      "handle": 23,
+      "_messageId": 1795260938175,
+      "args": {
+        "0": null
+      }
+    }
+  },
+  {
+    "off": 203840,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934504,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934504,
+      "modelId": 562,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 161
+      }
+    }
+  },
+  {
+    "off": 203932,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934345,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "propertyId": 3,
+      "_messageId": 1795260934345,
+      "componentId": 28,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 204013,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934296,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934296,
+      "modelId": 56,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 55004
+      }
+    }
+  },
+  {
+    "off": 204105,
+    "direction": "phone_to_hu",
+    "method": "rhmi_ackActionEvent",
+    "message_id": 1795260938212,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "success": true,
+      "_messageId": 1795260938212,
+      "actionId": 336,
+      "confirmId": 1
+    }
+  },
+  {
+    "off": 204181,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934541,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934541,
+      "modelId": 565,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 161
+      }
+    }
+  },
+  {
+    "off": 204273,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934382,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "propertyId": 3,
+      "_messageId": 1795260934382,
+      "componentId": 29,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 204354,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934333,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934333,
+      "modelId": 57,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 17
+      }
+    }
+  },
+  {
+    "off": 204442,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938249,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938249,
+      "modelId": 653,
+      "value": "Halestorm"
+    }
+  },
+  {
+    "off": 204510,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938286,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938286,
+      "modelId": 654,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 204586,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938323,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938323,
+      "modelId": 540,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 204670,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938360,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938360,
+      "modelId": 444,
+      "value": "Spotify"
+    }
+  },
+  {
+    "off": 204736,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938397,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938397,
+      "modelId": 442,
+      "value": {
+        "_type": "RHMIResourceData",
+        "data": {
+          "len": 1555,
+          "sha256": "650e67eafb6d7d68",
+          "kind": "png"
+        },
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEDATA": true
+        }
+      }
+    }
+  },
+  {
+    "off": 206376,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938434,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938434,
+      "modelId": 488,
+      "value": "Halestorm"
+    }
+  },
+  {
+    "off": 206436,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938471,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938471,
+      "modelId": 479,
+      "value": "Halestorm"
+    }
+  },
+  {
+    "off": 206496,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938508,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938508,
+      "modelId": 480,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 206572,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938545,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938545,
+      "modelId": 490,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 206648,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938582,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938582,
+      "modelId": 481,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 315455,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938693,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938693,
+      "modelId": 440,
+      "value": 63
+    }
+  },
+  {
+    "off": 315513,
+    "direction": "phone_to_hu",
+    "method": "rhmi_ackActionEvent",
+    "message_id": 1795260938730,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "success": true,
+      "_messageId": 1795260938730,
+      "actionId": 248,
+      "confirmId": 1
+    }
+  },
+  {
+    "off": 315577,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934419,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "propertyId": 3,
+      "_messageId": 1795260934419,
+      "componentId": 30,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 315658,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934370,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934370,
+      "modelId": 58,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 55001
+      }
+    }
+  },
+  {
+    "off": 315750,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934578,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "_messageId": 1795260934578,
+      "modelId": 384,
+      "value": 19
+    }
+  },
+  {
+    "off": 315882,
+    "direction": "phone_to_hu",
+    "method": "rhmi_triggerEvent",
+    "message_id": 1795260938767,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 660,
+      "handle": 23,
+      "_messageId": 1795260938767,
+      "args": {
+        "0": null
+      }
+    }
+  },
+  {
+    "off": 315959,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934456,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "propertyId": 3,
+      "_messageId": 1795260934456,
+      "componentId": 31,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 316040,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938804,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938804,
+      "modelId": 440,
+      "value": 63
+    }
+  },
+  {
+    "off": 316090,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938841,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938841,
+      "modelId": 492,
+      "value": "   :  "
+    }
+  },
+  {
+    "off": 316147,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938878,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938878,
+      "modelId": 482,
+      "value": "   :  "
+    }
+  },
+  {
+    "off": 316204,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938915,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938915,
+      "modelId": 493,
+      "value": "  3:58"
+    }
+  },
+  {
+    "off": 316261,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260938952,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260938952,
+      "modelId": 483,
+      "value": "  3:58"
+    }
+  },
+  {
+    "off": 316318,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260938989,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 1,
+      "_messageId": 1795260938989,
+      "componentId": 51,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 316391,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939026,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939026,
+      "modelId": 505,
+      "value": "Zufallswiedergabe deaktivieren"
+    }
+  },
+  {
+    "off": 316472,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939063,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939063,
+      "modelId": 506,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 152
+      }
+    }
+  },
+  {
+    "off": 316556,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260939100,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 1,
+      "_messageId": 1795260939100,
+      "componentId": 54,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 316629,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260939137,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260939137,
+      "componentId": 54,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 316710,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934615,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "propertyId": 24,
+      "_messageId": 1795260934615,
+      "componentId": 19,
+      "values": {
+        "0": 3
+      }
+    }
+  },
+  {
+    "off": 316791,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934407,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934407,
+      "modelId": 60,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 18
+      }
+    }
+  },
+  {
+    "off": 316879,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260939174,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 1,
+      "_messageId": 1795260939174,
+      "componentId": 53,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 316960,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934493,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "propertyId": 3,
+      "_messageId": 1795260934493,
+      "componentId": 32,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 317041,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939211,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939211,
+      "modelId": 536,
+      "value": "EntICPlaylist"
+    }
+  },
+  {
+    "off": 317113,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939248,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939248,
+      "modelId": 535,
+      "value": {
+        "_type": "RHMIDataTable",
+        "data": [
+          [
+            0,
+            "< Zur\u00fcck",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            1,
+            "can u see me in the dark?",
+            "Halestorm",
+            "can u see me in the dark?",
+            -1,
+            1,
+            true
+          ],
+          [
+            2,
+            "N\u00e4chster >",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            3,
+            "Kryptonite",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            4,
+            "Rebel Yell",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            5,
+            "Another Brick in the Wall, Pt. 1, 2, 3 - Pink Floyd Cover",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            6,
+            "Got The Time",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            7,
+            "Tears Don't Fall",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            8,
+            "Jesus He Knows Me",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            9,
+            "Wizards in Winter",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            10,
+            "Darkness Always Wins",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            11,
+            "The Regress",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            12,
+            "Noise",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            13,
+            "March Along",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            14,
+            "Won't Be Long",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            15,
+            "Golden Brown",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            16,
+            "Youth of the Nation",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            17,
+            "A Little Piece of Heaven",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            18,
+            "You Want a Battle? (Here's a War)",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            19,
+            "Carry on Wayward Son",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            20,
+            "Black Saturday",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            21,
+            "Hit That",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            22,
+            "For You",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            23,
+            "Bullet With Butterfly Wings - Remastered 2012",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            24,
+            "Losing My Religion",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            25,
+            "Let There Be Shred",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ],
+          [
+            26,
+            "Year Zero",
+            "",
+            "",
+            -1,
+            0,
+            true
+          ]
+        ],
+        "totalRows": 27,
+        "fromColumn": 0,
+        "numColumns": 7,
+        "numRows": 27,
+        "fromRow": 0,
+        "totalColumns": 7,
+        "virtualTableEnable": false
+      }
+    }
+  },
+  {
+    "off": 318088,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934652,
+    "in_reply_to": null,
+    "handle": 25,
+    "fields": {
+      "handle": 25,
+      "propertyId": 26,
+      "_messageId": 1795260934652,
+      "componentId": 19,
+      "values": {
+        "0": "1,0,7"
+      }
+    }
+  },
+  {
+    "off": 318175,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939285,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939285,
+      "modelId": 488,
+      "value": "Halestorm"
+    }
+  },
+  {
+    "off": 318243,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939322,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939322,
+      "modelId": 479,
+      "value": "Halestorm"
+    }
+  },
+  {
+    "off": 318303,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939359,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939359,
+      "modelId": 480,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 318379,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939396,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939396,
+      "modelId": 490,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 318455,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939433,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939433,
+      "modelId": 481,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 344188,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260939544,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260939544,
+      "componentId": 27,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 344261,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260939581,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "propertyId": 3,
+      "_messageId": 1795260939581,
+      "componentId": 38,
+      "values": {
+        "0": true
+      }
+    }
+  },
+  {
+    "off": 344334,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939618,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939618,
+      "modelId": 440,
+      "value": 63
+    }
+  },
+  {
+    "off": 344392,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260934444,
+    "in_reply_to": null,
+    "handle": 22,
+    "fields": {
+      "handle": 22,
+      "_messageId": 1795260934444,
+      "modelId": 61,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "TEXTID": true
+        },
+        "id": 19
+      }
+    }
+  },
+  {
+    "off": 344480,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setProperty",
+    "message_id": 1795260934530,
+    "in_reply_to": null,
+    "handle": 24,
+    "fields": {
+      "handle": 24,
+      "propertyId": 3,
+      "_messageId": 1795260934530,
+      "componentId": 33,
+      "values": {
+        "0": false
+      }
+    }
+  },
+  {
+    "off": 344561,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939655,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939655,
+      "modelId": 440,
+      "value": 63
+    }
+  },
+  {
+    "off": 344611,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939692,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939692,
+      "modelId": 492,
+      "value": "  2:32"
+    }
+  },
+  {
+    "off": 344668,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939729,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939729,
+      "modelId": 482,
+      "value": "  2:32"
+    }
+  },
+  {
+    "off": 344725,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939766,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939766,
+      "modelId": 493,
+      "value": "  3:58"
+    }
+  },
+  {
+    "off": 344782,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939803,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939803,
+      "modelId": 483,
+      "value": "  3:58"
+    }
+  },
+  {
+    "off": 344847,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939840,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939840,
+      "modelId": 505,
+      "value": "Zufallswiedergabe deaktivieren"
+    }
+  },
+  {
+    "off": 344928,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939877,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939877,
+      "modelId": 506,
+      "value": {
+        "_type": "RHMIResourceIdentifier",
+        "type": {
+          "_type": "RHMIResourceType",
+          "IMAGEID": true
+        },
+        "id": 152
+      }
+    }
+  },
+  {
+    "off": 345020,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939914,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939914,
+      "modelId": 445,
+      "value": "Halestorm"
+    }
+  },
+  {
+    "off": 345088,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939951,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939951,
+      "modelId": 446,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 345164,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260939988,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260939988,
+      "modelId": 458,
+      "value": {
+        "_type": "RHMIDataTable",
+        "data": [
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 160
+            },
+            "Zur\u00fcck",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "len": 354,
+              "sha256": "6ed93a6cfd3e1d75",
+              "kind": "png"
+            },
+            "can u see me in the dark?",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ],
+          [
+            false,
+            {
+              "_type": "RHMIResourceIdentifier",
+              "type": {
+                "_type": "RHMIResourceType",
+                "IMAGEID": true
+              },
+              "id": 161
+            },
+            "N\u00e4chster",
+            "",
+            false,
+            "",
+            false,
+            "",
+            false,
+            true
+          ]
+        ],
+        "totalRows": 3,
+        "fromColumn": 0,
+        "numColumns": 10,
+        "numRows": 3,
+        "fromRow": 0,
+        "totalColumns": 10,
+        "virtualTableEnable": false
+      }
+    }
+  },
+  {
+    "off": 345787,
+    "direction": "phone_to_hu",
+    "method": "rhmi_setData",
+    "message_id": 1795260940025,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "handle": 23,
+      "_messageId": 1795260940025,
+      "modelId": 447,
+      "value": "can u see me in the dark?"
+    }
+  },
+  {
+    "off": 356132,
+    "direction": "phone_to_hu",
+    "method": "rhmi_getCapabilities",
+    "message_id": 1795261031671,
+    "in_reply_to": null,
+    "handle": -1,
+    "fields": {
+      "handle": -1,
+      "_messageId": 1795261031671,
+      "component": ""
+    }
+  },
+  {
+    "off": 408080,
+    "direction": "phone_to_hu",
+    "method": "rhmi_getCapabilities",
+    "message_id": 1795261033488,
+    "in_reply_to": null,
+    "handle": 255,
+    "fields": {
+      "handle": 255,
+      "_messageId": 1795261033488,
+      "component": ""
+    }
+  },
+  {
+    "off": 408132,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795261034180,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795261034180,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.notification.readout",
+        "name": "me.hufman.androidautoidrive.notification.readout"
+      }
+    }
+  },
+  {
+    "off": 409021,
+    "direction": "phone_to_hu",
+    "method": "rhmi_getCapabilities",
+    "message_id": 1795261034177,
+    "in_reply_to": null,
+    "handle": 255,
+    "fields": {
+      "handle": 255,
+      "_messageId": 1795261034177,
+      "component": ""
+    }
+  },
+  {
+    "off": 409073,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795261034181,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795261034181,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.calendar",
+        "name": "me.hufman.androidautoidrive.calendar"
+      }
+    }
+  },
+  {
+    "off": 409257,
+    "direction": "phone_to_hu",
+    "method": "rhmi_create",
+    "message_id": 1795261034195,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795261034195,
+      "metaData": {
+        "_type": "RHMIMetaData",
+        "version": {
+          "_type": "VersionInfo",
+          "major": 0,
+          "revision": 0,
+          "minor": 1
+        },
+        "vendor": "me.hufman",
+        "id": "me.hufman.androidautoidrive.mapview",
+        "name": "me.hufman.androidautoidrive.mapview"
+      }
+    }
+  },
+  {
+    "off": 54872,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672258,
+    "in_reply_to": 1795260933371,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260933371,
+      "_messageId": 1795260388672258
+    }
+  },
+  {
+    "off": 56126,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672274,
+    "in_reply_to": 1795260933445,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260933445,
+      "_messageId": 1795260388672274
+    }
+  },
+  {
+    "off": 57255,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672289,
+    "in_reply_to": 1795260933476,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260933476,
+      "_messageId": 1795260388672289
+    }
+  },
+  {
+    "off": 60714,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onActionEvent",
+    "message_id": 1795260388672345,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "_messageId": 1795260388672345,
+      "handle": 23,
+      "actionId": 336,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {}
+    }
+  },
+  {
+    "off": 60829,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onHmiEvent",
+    "message_id": 1795260388672346,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 2,
+      "_messageId": 1795260388672346,
+      "handle": 23,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "5": 0,
+        "6": 1
+      },
+      "componentId": 70
+    }
+  },
+  {
+    "off": 61428,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onHmiEvent",
+    "message_id": 1795260388672355,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 2,
+      "_messageId": 1795260388672355,
+      "handle": 23,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "5": 0,
+        "6": 1
+      },
+      "componentId": 84
+    }
+  },
+  {
+    "off": 62034,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onHmiEvent",
+    "message_id": 1795260388672365,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 2,
+      "_messageId": 1795260388672365,
+      "handle": 23,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "5": 0,
+        "6": 1
+      },
+      "componentId": 102
+    }
+  },
+  {
+    "off": 62469,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onHmiEvent",
+    "message_id": 1795260388672372,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 2,
+      "_messageId": 1795260388672372,
+      "handle": 23,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "5": 0,
+        "6": 1
+      },
+      "componentId": 114
+    }
+  },
+  {
+    "off": 63553,
+    "direction": "hu_to_phone",
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672384,
+    "in_reply_to": 1795260933875,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260933875,
+      "_messageId": 1795260388672384
+    }
+  },
+  {
+    "off": 72832,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onHmiEvent",
+    "message_id": 1795260388672484,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 2,
+      "_messageId": 1795260388672484,
+      "handle": 23,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "5": 0,
+        "6": 3
+      },
+      "componentId": 24
+    }
+  },
+  {
+    "off": 73825,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onActionEvent",
+    "message_id": 1795260388672498,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "_messageId": 1795260388672498,
+      "handle": 23,
+      "actionId": 336,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {}
+    }
+  },
+  {
+    "off": 77751,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onActionEvent",
+    "message_id": 1795260388672542,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "_messageId": 1795260388672542,
+      "handle": 23,
+      "actionId": 336,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {}
+    }
+  },
+  {
+    "off": 79158,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onHmiEvent",
+    "message_id": 1795260388672554,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 11,
+      "_messageId": 1795260388672554,
+      "handle": 23,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "23": true
+      },
+      "componentId": 10
+    }
+  },
+  {
+    "off": 79279,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onHmiEvent",
+    "message_id": 1795260388672555,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 1,
+      "_messageId": 1795260388672555,
+      "handle": 23,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "4": true
+      },
+      "componentId": 10
+    }
+  },
+  {
+    "off": 79424,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onActionEvent",
+    "message_id": 1795260388672556,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "_messageId": 1795260388672556,
+      "handle": 23,
+      "actionId": 248,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "99": false
+      }
+    }
+  },
+  {
+    "off": 82401,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onHmiEvent",
+    "message_id": 1795260388672596,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 2,
+      "_messageId": 1795260388672596,
+      "handle": 23,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "5": 0,
+        "6": 30
+      },
+      "componentId": 146
+    }
+  },
+  {
+    "off": 82526,
+    "direction": "hu_to_phone",
+    "method": "rhmi_onHmiEvent",
+    "message_id": 1795260388672597,
+    "in_reply_to": null,
+    "handle": 23,
+    "fields": {
+      "eventId": 2,
+      "_messageId": 1795260388672597,
+      "handle": 23,
+      "ident": "me.hufman.androidautoidrive.music",
+      "args": {
+        "5": 0,
+        "6": 30
+      },
+      "componentId": 146
+    }
+  }
+]

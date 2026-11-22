@@ -1,0 +1,4042 @@
+{
+  "Spotify": {
+    "raw_occurrences": [
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 203486,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 655,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260938138,
+          "etch_off": 203436,
+          "raw_len": 58,
+          "value": "Spotify"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Spotify"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 204720,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 444,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260938360,
+          "etch_off": 204670,
+          "raw_len": 58,
+          "value": "Spotify"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Spotify"
+          }
+        ]
+      }
+    ],
+    "decoded_field_hits": [
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 203436,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 655,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260938138,
+        "value": "Spotify"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 204670,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 444,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260938360,
+        "value": "Spotify"
+      }
+    ],
+    "raw_count": 2,
+    "decoded_count": 2
+  },
+  "Halestorm": {
+    "raw_occurrences": [
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 112841,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 445,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937324,
+          "etch_off": 112791,
+          "raw_len": 71,
+          "value": "Halestorm, I Prevail"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Halestorm, I Prevail"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 133922,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 445,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937657,
+          "etch_off": 133872,
+          "raw_len": 60,
+          "value": "Halestorm"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Halestorm"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 204492,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 653,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260938249,
+          "etch_off": 204442,
+          "raw_len": 60,
+          "value": "Halestorm"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Halestorm"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 206426,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 488,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260938434,
+          "etch_off": 206376,
+          "raw_len": 60,
+          "value": "Halestorm"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Halestorm"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 206486,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 479,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260938471,
+          "etch_off": 206436,
+          "raw_len": 60,
+          "value": "Halestorm"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Halestorm"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 317233,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 535,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939248,
+          "etch_off": 317113,
+          "raw_len": 967,
+          "value": {
+            "type": "struct",
+            "struct": "RHMIDataTable",
+            "fields": {
+              "data": {
+                "type": "list",
+                "len": 27,
+                "items": [
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "< Zurück",
+                        "len": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 1
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "string",
+                        "value": "Halestorm",
+                        "len": 9
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 1
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 2
+                      },
+                      {
+                        "type": "string",
+                        "value": "Nächster >",
+                        "len": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 3
+                      },
+                      {
+                        "type": "string",
+                        "value": "Kryptonite",
+                        "len": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 4
+                      },
+                      {
+                        "type": "string",
+                        "value": "Rebel Yell",
+                        "len": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 5
+                      },
+                      {
+                        "type": "string",
+                        "value": "Another Brick in the Wall, Pt. 1, 2, 3 - Pink Floyd Cover",
+                        "len": 57
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 6
+                      },
+                      {
+                        "type": "string",
+                        "value": "Got The Time",
+                        "len": 12
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 7
+                      },
+                      {
+                        "type": "string",
+                        "value": "Tears Don't Fall",
+                        "len": 16
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "Jesus He Knows Me",
+                        "len": 17
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 9
+                      },
+                      {
+                        "type": "string",
+                        "value": "Wizards in Winter",
+                        "len": 17
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "Darkness Always Wins",
+                        "len": 20
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 11
+                      },
+                      {
+                        "type": "string",
+                        "value": "The Regress",
+                        "len": 11
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  }
+                ],
+                "truncated": true
+              },
+              "totalRows": {
+                "type": "int",
+                "value": 27
+              },
+              "fromColumn": {
+                "type": "int",
+                "value": 0
+              },
+              "numColumns": {
+                "type": "int",
+                "value": 7
+              },
+              "numRows": {
+                "type": "int",
+                "value": 27
+              },
+              "fromRow": {
+                "type": "int",
+                "value": 0
+              },
+              "totalColumns": {
+                "type": "int",
+                "value": 7
+              },
+              "virtualTableEnable": {
+                "type": "bool",
+                "value": false
+              }
+            }
+          }
+        },
+        "field_hits": [
+          {
+            "path": "value.data[1][2]",
+            "value": "Halestorm"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 318225,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 488,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939285,
+          "etch_off": 318175,
+          "raw_len": 60,
+          "value": "Halestorm"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Halestorm"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 318293,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 479,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939322,
+          "etch_off": 318243,
+          "raw_len": 60,
+          "value": "Halestorm"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Halestorm"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 345070,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 445,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939914,
+          "etch_off": 345020,
+          "raw_len": 60,
+          "value": "Halestorm"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Halestorm"
+          }
+        ]
+      }
+    ],
+    "decoded_field_hits": [
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 112791,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 445,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937324,
+        "value": "Halestorm, I Prevail"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 133872,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 445,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937657,
+        "value": "Halestorm"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 204442,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 653,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260938249,
+        "value": "Halestorm"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 206376,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 488,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260938434,
+        "value": "Halestorm"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 206436,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 479,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260938471,
+        "value": "Halestorm"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 317113,
+        "direction": "phone_to_hu",
+        "path": "value.data[1][2]",
+        "modelId": 535,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939248,
+        "value": "Halestorm"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 318175,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 488,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939285,
+        "value": "Halestorm"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 318243,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 479,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939322,
+        "value": "Halestorm"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 345020,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 445,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939914,
+        "value": "Halestorm"
+      }
+    ],
+    "raw_count": 9,
+    "decoded_count": 9
+  },
+  "I Prevail": {
+    "raw_occurrences": [
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 112852,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 445,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937324,
+          "etch_off": 112791,
+          "raw_len": 71,
+          "value": "Halestorm, I Prevail"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Halestorm, I Prevail"
+          }
+        ]
+      }
+    ],
+    "decoded_field_hits": [
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 112791,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 445,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937324,
+        "value": "Halestorm, I Prevail"
+      }
+    ],
+    "raw_count": 1,
+    "decoded_count": 1
+  },
+  "can u see me": {
+    "raw_occurrences": [
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 112920,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 446,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937361,
+          "etch_off": 112870,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 114030,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 458,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937398,
+          "etch_off": 113544,
+          "raw_len": 623,
+          "value": {
+            "type": "struct",
+            "struct": "RHMIDataTable",
+            "fields": {
+              "data": {
+                "type": "list",
+                "len": 3,
+                "items": [
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "struct",
+                        "struct": "RHMIResourceIdentifier",
+                        "fields": {
+                          "type": {
+                            "type": "struct",
+                            "struct": "RHMIResourceType",
+                            "fields": {
+                              "IMAGEID": {
+                                "type": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "int",
+                            "value": 160
+                          }
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "value": "Zurück",
+                        "len": 6
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bytes",
+                        "len": 354,
+                        "hex_head": "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+                        "looks_image": true
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "struct",
+                        "struct": "RHMIResourceIdentifier",
+                        "fields": {
+                          "type": {
+                            "type": "struct",
+                            "struct": "RHMIResourceType",
+                            "fields": {
+                              "IMAGEID": {
+                                "type": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "int",
+                            "value": 161
+                          }
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "value": "Nächster",
+                        "len": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              "totalRows": {
+                "type": "int",
+                "value": 3
+              },
+              "fromColumn": {
+                "type": "int",
+                "value": 0
+              },
+              "numColumns": {
+                "type": "int",
+                "value": 10
+              },
+              "numRows": {
+                "type": "int",
+                "value": 3
+              },
+              "fromRow": {
+                "type": "int",
+                "value": 0
+              },
+              "totalColumns": {
+                "type": "int",
+                "value": 10
+              },
+              "virtualTableEnable": {
+                "type": "bool",
+                "value": false
+              }
+            }
+          }
+        },
+        "field_hits": [
+          {
+            "path": "value.data[1][2]",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 114217,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 447,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937435,
+          "etch_off": 114167,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 133558,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 458,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937509,
+          "etch_off": 133072,
+          "raw_len": 623,
+          "value": {
+            "type": "struct",
+            "struct": "RHMIDataTable",
+            "fields": {
+              "data": {
+                "type": "list",
+                "len": 3,
+                "items": [
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "struct",
+                        "struct": "RHMIResourceIdentifier",
+                        "fields": {
+                          "type": {
+                            "type": "struct",
+                            "struct": "RHMIResourceType",
+                            "fields": {
+                              "IMAGEID": {
+                                "type": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "int",
+                            "value": 160
+                          }
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "value": "Zurück",
+                        "len": 6
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bytes",
+                        "len": 354,
+                        "hex_head": "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+                        "looks_image": true
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "struct",
+                        "struct": "RHMIResourceIdentifier",
+                        "fields": {
+                          "type": {
+                            "type": "struct",
+                            "struct": "RHMIResourceType",
+                            "fields": {
+                              "IMAGEID": {
+                                "type": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "int",
+                            "value": 161
+                          }
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "value": "Nächster",
+                        "len": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              "totalRows": {
+                "type": "int",
+                "value": 3
+              },
+              "fromColumn": {
+                "type": "int",
+                "value": 0
+              },
+              "numColumns": {
+                "type": "int",
+                "value": 10
+              },
+              "numRows": {
+                "type": "int",
+                "value": 3
+              },
+              "fromRow": {
+                "type": "int",
+                "value": 0
+              },
+              "totalColumns": {
+                "type": "int",
+                "value": 10
+              },
+              "virtualTableEnable": {
+                "type": "bool",
+                "value": false
+              }
+            }
+          }
+        },
+        "field_hits": [
+          {
+            "path": "value.data[1][2]",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 133982,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 446,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937694,
+          "etch_off": 133932,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 135313,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 458,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937842,
+          "etch_off": 134827,
+          "raw_len": 623,
+          "value": {
+            "type": "struct",
+            "struct": "RHMIDataTable",
+            "fields": {
+              "data": {
+                "type": "list",
+                "len": 3,
+                "items": [
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "struct",
+                        "struct": "RHMIResourceIdentifier",
+                        "fields": {
+                          "type": {
+                            "type": "struct",
+                            "struct": "RHMIResourceType",
+                            "fields": {
+                              "IMAGEID": {
+                                "type": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "int",
+                            "value": 160
+                          }
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "value": "Zurück",
+                        "len": 6
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bytes",
+                        "len": 354,
+                        "hex_head": "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+                        "looks_image": true
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "struct",
+                        "struct": "RHMIResourceIdentifier",
+                        "fields": {
+                          "type": {
+                            "type": "struct",
+                            "struct": "RHMIResourceType",
+                            "fields": {
+                              "IMAGEID": {
+                                "type": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "int",
+                            "value": 161
+                          }
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "value": "Nächster",
+                        "len": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              "totalRows": {
+                "type": "int",
+                "value": 3
+              },
+              "fromColumn": {
+                "type": "int",
+                "value": 0
+              },
+              "numColumns": {
+                "type": "int",
+                "value": 10
+              },
+              "numRows": {
+                "type": "int",
+                "value": 3
+              },
+              "fromRow": {
+                "type": "int",
+                "value": 0
+              },
+              "totalColumns": {
+                "type": "int",
+                "value": 10
+              },
+              "virtualTableEnable": {
+                "type": "bool",
+                "value": false
+              }
+            }
+          }
+        },
+        "field_hits": [
+          {
+            "path": "value.data[1][2]",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 135500,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 447,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937879,
+          "etch_off": 135450,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 203041,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 458,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260937990,
+          "etch_off": 202555,
+          "raw_len": 623,
+          "value": {
+            "type": "struct",
+            "struct": "RHMIDataTable",
+            "fields": {
+              "data": {
+                "type": "list",
+                "len": 3,
+                "items": [
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "struct",
+                        "struct": "RHMIResourceIdentifier",
+                        "fields": {
+                          "type": {
+                            "type": "struct",
+                            "struct": "RHMIResourceType",
+                            "fields": {
+                              "IMAGEID": {
+                                "type": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "int",
+                            "value": 160
+                          }
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "value": "Zurück",
+                        "len": 6
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bytes",
+                        "len": 354,
+                        "hex_head": "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+                        "looks_image": true
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "struct",
+                        "struct": "RHMIResourceIdentifier",
+                        "fields": {
+                          "type": {
+                            "type": "struct",
+                            "struct": "RHMIResourceType",
+                            "fields": {
+                              "IMAGEID": {
+                                "type": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "int",
+                            "value": 161
+                          }
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "value": "Nächster",
+                        "len": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              "totalRows": {
+                "type": "int",
+                "value": 3
+              },
+              "fromColumn": {
+                "type": "int",
+                "value": 0
+              },
+              "numColumns": {
+                "type": "int",
+                "value": 10
+              },
+              "numRows": {
+                "type": "int",
+                "value": 3
+              },
+              "fromRow": {
+                "type": "int",
+                "value": 0
+              },
+              "totalColumns": {
+                "type": "int",
+                "value": 10
+              },
+              "virtualTableEnable": {
+                "type": "bool",
+                "value": false
+              }
+            }
+          }
+        },
+        "field_hits": [
+          {
+            "path": "value.data[1][2]",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 204560,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 654,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260938286,
+          "etch_off": 204510,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 204636,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 540,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260938323,
+          "etch_off": 204586,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 206546,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 480,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260938508,
+          "etch_off": 206496,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 206622,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 490,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260938545,
+          "etch_off": 206572,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 206698,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 481,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260938582,
+          "etch_off": 206648,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 317206,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 535,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939248,
+          "etch_off": 317113,
+          "raw_len": 967,
+          "value": {
+            "type": "struct",
+            "struct": "RHMIDataTable",
+            "fields": {
+              "data": {
+                "type": "list",
+                "len": 27,
+                "items": [
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "< Zurück",
+                        "len": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 1
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "string",
+                        "value": "Halestorm",
+                        "len": 9
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 1
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 2
+                      },
+                      {
+                        "type": "string",
+                        "value": "Nächster >",
+                        "len": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 3
+                      },
+                      {
+                        "type": "string",
+                        "value": "Kryptonite",
+                        "len": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 4
+                      },
+                      {
+                        "type": "string",
+                        "value": "Rebel Yell",
+                        "len": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 5
+                      },
+                      {
+                        "type": "string",
+                        "value": "Another Brick in the Wall, Pt. 1, 2, 3 - Pink Floyd Cover",
+                        "len": 57
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 6
+                      },
+                      {
+                        "type": "string",
+                        "value": "Got The Time",
+                        "len": 12
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 7
+                      },
+                      {
+                        "type": "string",
+                        "value": "Tears Don't Fall",
+                        "len": 16
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "Jesus He Knows Me",
+                        "len": 17
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 9
+                      },
+                      {
+                        "type": "string",
+                        "value": "Wizards in Winter",
+                        "len": 17
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "Darkness Always Wins",
+                        "len": 20
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 11
+                      },
+                      {
+                        "type": "string",
+                        "value": "The Regress",
+                        "len": 11
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  }
+                ],
+                "truncated": true
+              },
+              "totalRows": {
+                "type": "int",
+                "value": 27
+              },
+              "fromColumn": {
+                "type": "int",
+                "value": 0
+              },
+              "numColumns": {
+                "type": "int",
+                "value": 7
+              },
+              "numRows": {
+                "type": "int",
+                "value": 27
+              },
+              "fromRow": {
+                "type": "int",
+                "value": 0
+              },
+              "totalColumns": {
+                "type": "int",
+                "value": 7
+              },
+              "virtualTableEnable": {
+                "type": "bool",
+                "value": false
+              }
+            }
+          }
+        },
+        "field_hits": [
+          {
+            "path": "value.data[1][1]",
+            "value": "can u see me in the dark?"
+          },
+          {
+            "path": "value.data[1][3]",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 317244,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 535,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939248,
+          "etch_off": 317113,
+          "raw_len": 967,
+          "value": {
+            "type": "struct",
+            "struct": "RHMIDataTable",
+            "fields": {
+              "data": {
+                "type": "list",
+                "len": 27,
+                "items": [
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "< Zurück",
+                        "len": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 1
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "string",
+                        "value": "Halestorm",
+                        "len": 9
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 1
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 2
+                      },
+                      {
+                        "type": "string",
+                        "value": "Nächster >",
+                        "len": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 3
+                      },
+                      {
+                        "type": "string",
+                        "value": "Kryptonite",
+                        "len": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 4
+                      },
+                      {
+                        "type": "string",
+                        "value": "Rebel Yell",
+                        "len": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 5
+                      },
+                      {
+                        "type": "string",
+                        "value": "Another Brick in the Wall, Pt. 1, 2, 3 - Pink Floyd Cover",
+                        "len": 57
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 6
+                      },
+                      {
+                        "type": "string",
+                        "value": "Got The Time",
+                        "len": 12
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 7
+                      },
+                      {
+                        "type": "string",
+                        "value": "Tears Don't Fall",
+                        "len": 16
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "Jesus He Knows Me",
+                        "len": 17
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 9
+                      },
+                      {
+                        "type": "string",
+                        "value": "Wizards in Winter",
+                        "len": 17
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 10
+                      },
+                      {
+                        "type": "string",
+                        "value": "Darkness Always Wins",
+                        "len": 20
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 7,
+                    "items": [
+                      {
+                        "type": "int",
+                        "value": 11
+                      },
+                      {
+                        "type": "string",
+                        "value": "The Regress",
+                        "len": 11
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "int",
+                        "value": -1
+                      },
+                      {
+                        "type": "int",
+                        "value": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  }
+                ],
+                "truncated": true
+              },
+              "totalRows": {
+                "type": "int",
+                "value": 27
+              },
+              "fromColumn": {
+                "type": "int",
+                "value": 0
+              },
+              "numColumns": {
+                "type": "int",
+                "value": 7
+              },
+              "numRows": {
+                "type": "int",
+                "value": 27
+              },
+              "fromRow": {
+                "type": "int",
+                "value": 0
+              },
+              "totalColumns": {
+                "type": "int",
+                "value": 7
+              },
+              "virtualTableEnable": {
+                "type": "bool",
+                "value": false
+              }
+            }
+          }
+        },
+        "field_hits": [
+          {
+            "path": "value.data[1][1]",
+            "value": "can u see me in the dark?"
+          },
+          {
+            "path": "value.data[1][3]",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 318353,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 480,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939359,
+          "etch_off": 318303,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 318429,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 490,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939396,
+          "etch_off": 318379,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 318505,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 481,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939433,
+          "etch_off": 318455,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 345138,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 446,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939951,
+          "etch_off": 345088,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 345650,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 458,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939988,
+          "etch_off": 345164,
+          "raw_len": 623,
+          "value": {
+            "type": "struct",
+            "struct": "RHMIDataTable",
+            "fields": {
+              "data": {
+                "type": "list",
+                "len": 3,
+                "items": [
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "struct",
+                        "struct": "RHMIResourceIdentifier",
+                        "fields": {
+                          "type": {
+                            "type": "struct",
+                            "struct": "RHMIResourceType",
+                            "fields": {
+                              "IMAGEID": {
+                                "type": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "int",
+                            "value": 160
+                          }
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "value": "Zurück",
+                        "len": 6
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bytes",
+                        "len": 354,
+                        "hex_head": "89504e470d0a1a0a0000000d4948445200000041000000330800000000ed763a",
+                        "looks_image": true
+                      },
+                      {
+                        "type": "string",
+                        "value": "can u see me in the dark?",
+                        "len": 25
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  },
+                  {
+                    "type": "list",
+                    "len": 10,
+                    "items": [
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "struct",
+                        "struct": "RHMIResourceIdentifier",
+                        "fields": {
+                          "type": {
+                            "type": "struct",
+                            "struct": "RHMIResourceType",
+                            "fields": {
+                              "IMAGEID": {
+                                "type": "bool",
+                                "value": true
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "int",
+                            "value": 161
+                          }
+                        }
+                      },
+                      {
+                        "type": "string",
+                        "value": "Nächster",
+                        "len": 8
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "string",
+                        "value": "",
+                        "len": 0
+                      },
+                      {
+                        "type": "bool",
+                        "value": false
+                      },
+                      {
+                        "type": "bool",
+                        "value": true
+                      }
+                    ],
+                    "truncated": false
+                  }
+                ],
+                "truncated": false
+              },
+              "totalRows": {
+                "type": "int",
+                "value": 3
+              },
+              "fromColumn": {
+                "type": "int",
+                "value": 0
+              },
+              "numColumns": {
+                "type": "int",
+                "value": 10
+              },
+              "numRows": {
+                "type": "int",
+                "value": 3
+              },
+              "fromRow": {
+                "type": "int",
+                "value": 0
+              },
+              "totalColumns": {
+                "type": "int",
+                "value": 10
+              },
+              "virtualTableEnable": {
+                "type": "bool",
+                "value": false
+              }
+            }
+          }
+        },
+        "field_hits": [
+          {
+            "path": "value.data[1][2]",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 345837,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 447,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260940025,
+          "etch_off": 345787,
+          "raw_len": 76,
+          "value": "can u see me in the dark?"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "can u see me in the dark?"
+          }
+        ]
+      }
+    ],
+    "decoded_field_hits": [
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 112870,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 446,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937361,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 113544,
+        "direction": "phone_to_hu",
+        "path": "value.data[1][2]",
+        "modelId": 458,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937398,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 114167,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 447,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937435,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 133072,
+        "direction": "phone_to_hu",
+        "path": "value.data[1][2]",
+        "modelId": 458,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937509,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 133932,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 446,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937694,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 134827,
+        "direction": "phone_to_hu",
+        "path": "value.data[1][2]",
+        "modelId": 458,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937842,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 135450,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 447,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937879,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 202555,
+        "direction": "phone_to_hu",
+        "path": "value.data[1][2]",
+        "modelId": 458,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260937990,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 204510,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 654,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260938286,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 204586,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 540,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260938323,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 206496,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 480,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260938508,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 206572,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 490,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260938545,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 206648,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 481,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260938582,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 317113,
+        "direction": "phone_to_hu",
+        "path": "value.data[1][1]",
+        "modelId": 535,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939248,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 317113,
+        "direction": "phone_to_hu",
+        "path": "value.data[1][3]",
+        "modelId": 535,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939248,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 318303,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 480,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939359,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 318379,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 490,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939396,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 318455,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 481,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939433,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 345088,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 446,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939951,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 345164,
+        "direction": "phone_to_hu",
+        "path": "value.data[1][2]",
+        "modelId": 458,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939988,
+        "value": "can u see me in the dark?"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 345787,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 447,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260940025,
+        "value": "can u see me in the dark?"
+      }
+    ],
+    "raw_count": 21,
+    "decoded_count": 21
+  },
+  "Zufallswiedergabe": {
+    "raw_occurrences": [
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 109156,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 505,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260936399,
+          "etch_off": 109106,
+          "raw_len": 85,
+          "value": "Zufallswiedergabe nicht verfügbar"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Zufallswiedergabe nicht verfügbar"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 110232,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 472,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260936954,
+          "etch_off": 110182,
+          "raw_len": 85,
+          "value": "Zufallswiedergabe nicht verfügbar"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Zufallswiedergabe nicht verfügbar"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 316441,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 505,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939026,
+          "etch_off": 316391,
+          "raw_len": 81,
+          "value": "Zufallswiedergabe deaktivieren"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Zufallswiedergabe deaktivieren"
+          }
+        ]
+      },
+      {
+        "direction": "phone_to_hu",
+        "raw_byte_off": 344897,
+        "encoding": "utf-8",
+        "in_etch_envelope": true,
+        "etch": {
+          "method": "rhmi_setData",
+          "handle": 23,
+          "modelId": 505,
+          "id": null,
+          "componentId": null,
+          "propertyId": null,
+          "messageId": 1795260939840,
+          "etch_off": 344847,
+          "raw_len": 81,
+          "value": "Zufallswiedergabe deaktivieren"
+        },
+        "field_hits": [
+          {
+            "path": "value",
+            "value": "Zufallswiedergabe deaktivieren"
+          }
+        ]
+      }
+    ],
+    "decoded_field_hits": [
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 109106,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 505,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260936399,
+        "value": "Zufallswiedergabe nicht verfügbar"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 110182,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 472,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260936954,
+        "value": "Zufallswiedergabe nicht verfügbar"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 316391,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 505,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939026,
+        "value": "Zufallswiedergabe deaktivieren"
+      },
+      {
+        "method": "rhmi_setData",
+        "handle": 23,
+        "off": 344847,
+        "direction": "phone_to_hu",
+        "path": "value",
+        "modelId": 505,
+        "id": null,
+        "componentId": null,
+        "propertyId": null,
+        "messageId": 1795260939840,
+        "value": "Zufallswiedergabe deaktivieren"
+      }
+    ],
+    "raw_count": 4,
+    "decoded_count": 4
+  }
+}

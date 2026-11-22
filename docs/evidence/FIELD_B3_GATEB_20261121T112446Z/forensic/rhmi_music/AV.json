@@ -1,0 +1,124 @@
+[
+  {
+    "off": 102700,
+    "direction": "phone_to_hu",
+    "method": "av_create",
+    "message_id": 1795260936029,
+    "in_reply_to": null,
+    "handle": null,
+    "fields": {
+      "_messageId": 1795260936029,
+      "instanceID": 14,
+      "id": "me.hufman.androidautoidrive.music"
+    }
+  },
+  {
+    "off": 134074,
+    "direction": "phone_to_hu",
+    "method": "av_requestConnection",
+    "message_id": 1795260937768,
+    "in_reply_to": null,
+    "handle": 1,
+    "fields": {
+      "connectionType": {
+        "_type": "AVConnectionType",
+        "AV_CONNECTION_TYPE_ENTERTAINMENT": true
+      },
+      "handle": 1,
+      "_messageId": 1795260937768
+    }
+  },
+  {
+    "off": 202150,
+    "direction": "phone_to_hu",
+    "method": "av_playerStateChanged",
+    "message_id": 1795260937953,
+    "in_reply_to": null,
+    "handle": 1,
+    "fields": {
+      "connectionType": {
+        "_type": "AVConnectionType",
+        "AV_CONNECTION_TYPE_ENTERTAINMENT": true
+      },
+      "handle": 1,
+      "_messageId": 1795260937953,
+      "playerState": {
+        "_type": "AVPlayerState",
+        "AV_PLAYERSTATE_PLAY": true
+      }
+    }
+  },
+  {
+    "off": 68583,
+    "direction": "hu_to_phone",
+    "method": "_result_av_create",
+    "message_id": 1795260388672429,
+    "in_reply_to": 1795260936029,
+    "handle": null,
+    "fields": {
+      "result": 1,
+      "_inReplyTo": 1795260936029,
+      "_messageId": 1795260388672429
+    }
+  },
+  {
+    "off": 74749,
+    "direction": "hu_to_phone",
+    "method": "_result_av_requestConnection",
+    "message_id": 1795260388672511,
+    "in_reply_to": 1795260937768,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260937768,
+      "_messageId": 1795260388672511
+    }
+  },
+  {
+    "off": 75048,
+    "direction": "hu_to_phone",
+    "method": "av_requestPlayerState",
+    "message_id": 1795260388672515,
+    "in_reply_to": null,
+    "handle": 1,
+    "fields": {
+      "connectionType": {
+        "_type": "AVConnectionType",
+        "AV_CONNECTION_TYPE_ENTERTAINMENT": true
+      },
+      "_messageId": 1795260388672515,
+      "handle": 1,
+      "playerState": {
+        "_type": "AVPlayerState",
+        "AV_PLAYERSTATE_PLAY": true
+      }
+    }
+  },
+  {
+    "off": 75709,
+    "direction": "hu_to_phone",
+    "method": "av_connectionGranted",
+    "message_id": 1795260388672521,
+    "in_reply_to": null,
+    "handle": 1,
+    "fields": {
+      "connectionType": {
+        "_type": "AVConnectionType",
+        "AV_CONNECTION_TYPE_ENTERTAINMENT": true
+      },
+      "_messageId": 1795260388672521,
+      "handle": 1
+    }
+  },
+  {
+    "off": 76691,
+    "direction": "hu_to_phone",
+    "method": "_result_av_playerStateChanged",
+    "message_id": 1795260388672530,
+    "in_reply_to": 1795260937953,
+    "handle": null,
+    "fields": {
+      "_inReplyTo": 1795260937953,
+      "_messageId": 1795260388672530
+    }
+  }
+]

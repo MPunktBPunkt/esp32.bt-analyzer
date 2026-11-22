@@ -52,30 +52,34 @@ u. a. `vehicle.VIN`, `vehicle.type/units/language/country/time/productiondate/pr
 
 **123** `iva_*`-Flags im HU→Phone-Raw, u. a. `iva_A4A_FOR_ANDROID`, `iva_CDMM_BLUETOOTH_AUDIO`, `iva_ENT_IAP_BLUETOOTH_COVERART`, DAB/SDARS/Cover-Flags.
 
-### SAS
+### SAS (rev. 2026-11-22)
 
-Zwei erfolgreiche Login-Zyklen (Challenges `8f873bb7…80da` und `0cebb994…aa29`), jeweils `_result_sas_login` korreliert.  
-Pad-Transform `0x02000000` = FIELD; **RSA-VERIFY** gegen Wire-Cert dieses Captures = **OPEN**.
+19 Challenges / 18 Logins / 18 Accepts im Raw.  
+Pad `0x02000000` + **RSA-VERIFY 18/18 VALID** gegen Wire-Leaf TouchCommand — siehe `SAS_CRYPTO_VERIFY.json` / `RAW_FORENSIC_ANALYSIS.md`.
 
-### Action-Pfad in *diesem* jsonl
+### Action-Pfad (Raw envelope scan, Handle 23)
 
-| Method | Count |
-|--------|------:|
-| `rhmi_ackActionEvent` | 3 |
-| `rhmi_triggerEvent` | 2 |
-| `rhmi_onActionEvent` | **0** (hier nicht geloggt; älterer Capture ggf. separat) |
+| Method | IDs / notes |
+|--------|-------------|
+| `rhmi_onActionEvent` | **336** (×3), **248** (×1) — HU→Phone |
+| `rhmi_ackActionEvent` | 336, 248 |
+| `rhmi_triggerEvent` | **660**, **661** |
+| `rhmi_onHmiEvent` | 1, 2, 11 |
 
 ## STRONG — deep-decode (gleiche Evidence, unabhängige Auswertung)
 
-### RHMI create handles ↔ App-ID
+### RHMI create handles ↔ App-ID (Raw 2026-11-22)
 
 | Handle | App-ID | Rolle |
 |-------:|--------|------|
-| 21 | `me.hufman.androidautoidrive.notification.readout` | Readout |
-| 22 | `me.hufman.androidautoidrive.calendar` | Calendar |
+| 21 | `me.hufman.androidautoidrive.calendar` | Calendar |
+| 22 | `me.hufman.androidautoidrive.notification.readout` | Readout |
 | 23 | `me.hufman.androidautoidrive.music` | Media UI |
 | 24 | `me.hufman.androidautoidrive.mapview` | Map |
-| 25 | `io.bimmergestalt…screenmirror` | Screen Mirroring (ggf. 2. Instanz) |
+| 25 | `io.bimmergestalt…screenmirror` | Screen Mirroring |
+
+Music NP (Handle 23): `setData` **444/655=`Spotify`**, **445** artist, **446/447** title, **456** cover JPEG — [`forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md`](forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md).  
+Hinweis: frühere Tabelle hatte 21/22 vertauscht; korrigiert nach create/result-Reihenfolge.
 
 `am_addAppEventHandler` ident bestätigt u. a. `…assistant`, `…screenmirror`, `…music`.
 

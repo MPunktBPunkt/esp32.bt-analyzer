@@ -1,0 +1,547 @@
+[
+  {
+    "off": 109106,
+    "modelId": 505,
+    "message_id": 1795260936399,
+    "data": null,
+    "value": "Zufallswiedergabe nicht verfügbar"
+  },
+  {
+    "off": 111986,
+    "modelId": 458,
+    "message_id": 1795260937176,
+    "data": null,
+    "value": {
+      "_struct": "RHMIDataTable",
+      "data": [
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 160
+          },
+          "Zurück",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "len": 354,
+            "type": "png"
+          },
+          "",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 161
+          },
+          "Nächster",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ]
+      ],
+      "totalRows": 3,
+      "fromColumn": 0,
+      "numColumns": 10,
+      "numRows": 3,
+      "fromRow": 0,
+      "totalColumns": 10,
+      "virtualTableEnable": false
+    }
+  },
+  {
+    "off": 112791,
+    "modelId": 445,
+    "message_id": 1795260937324,
+    "data": null,
+    "value": "Halestorm, I Prevail"
+  },
+  {
+    "off": 112870,
+    "modelId": 446,
+    "message_id": 1795260937361,
+    "data": null,
+    "value": "can u see me in the dark?"
+  },
+  {
+    "off": 113544,
+    "modelId": 458,
+    "message_id": 1795260937398,
+    "data": null,
+    "value": {
+      "_struct": "RHMIDataTable",
+      "data": [
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 160
+          },
+          "Zurück",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "len": 354,
+            "type": "png"
+          },
+          "can u see me in the dark?",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 161
+          },
+          "Nächster",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ]
+      ],
+      "totalRows": 3,
+      "fromColumn": 0,
+      "numColumns": 10,
+      "numRows": 3,
+      "fromRow": 0,
+      "totalColumns": 10,
+      "virtualTableEnable": false
+    }
+  },
+  {
+    "off": 114167,
+    "modelId": 447,
+    "message_id": 1795260937435,
+    "data": null,
+    "value": "can u see me in the dark?"
+  },
+  {
+    "off": 133072,
+    "modelId": 458,
+    "message_id": 1795260937509,
+    "data": null,
+    "value": {
+      "_struct": "RHMIDataTable",
+      "data": [
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 160
+          },
+          "Zurück",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "len": 354,
+            "type": "png"
+          },
+          "can u see me in the dark?",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 161
+          },
+          "Nächster",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ]
+      ],
+      "totalRows": 3,
+      "fromColumn": 0,
+      "numColumns": 10,
+      "numRows": 3,
+      "fromRow": 0,
+      "totalColumns": 10,
+      "virtualTableEnable": false
+    }
+  },
+  {
+    "off": 133872,
+    "modelId": 445,
+    "message_id": 1795260937657,
+    "data": null,
+    "value": "Halestorm"
+  },
+  {
+    "off": 133932,
+    "modelId": 446,
+    "message_id": 1795260937694,
+    "data": null,
+    "value": "can u see me in the dark?"
+  },
+  {
+    "off": 134827,
+    "modelId": 458,
+    "message_id": 1795260937842,
+    "data": null,
+    "value": {
+      "_struct": "RHMIDataTable",
+      "data": [
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 160
+          },
+          "Zurück",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "len": 354,
+            "type": "png"
+          },
+          "can u see me in the dark?",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 161
+          },
+          "Nächster",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ]
+      ],
+      "totalRows": 3,
+      "fromColumn": 0,
+      "numColumns": 10,
+      "numRows": 3,
+      "fromRow": 0,
+      "totalColumns": 10,
+      "virtualTableEnable": false
+    }
+  },
+  {
+    "off": 135450,
+    "modelId": 447,
+    "message_id": 1795260937879,
+    "data": null,
+    "value": "can u see me in the dark?"
+  },
+  {
+    "off": 202555,
+    "modelId": 458,
+    "message_id": 1795260937990,
+    "data": null,
+    "value": {
+      "_struct": "RHMIDataTable",
+      "data": [
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 160
+          },
+          "Zurück",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "len": 354,
+            "type": "png"
+          },
+          "can u see me in the dark?",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 161
+          },
+          "Nächster",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ]
+      ],
+      "totalRows": 3,
+      "fromColumn": 0,
+      "numColumns": 10,
+      "numRows": 3,
+      "fromRow": 0,
+      "totalColumns": 10,
+      "virtualTableEnable": false
+    }
+  },
+  {
+    "off": 203436,
+    "modelId": 655,
+    "message_id": 1795260938138,
+    "data": null,
+    "value": "Spotify"
+  },
+  {
+    "off": 204442,
+    "modelId": 653,
+    "message_id": 1795260938249,
+    "data": null,
+    "value": "Halestorm"
+  },
+  {
+    "off": 204510,
+    "modelId": 654,
+    "message_id": 1795260938286,
+    "data": null,
+    "value": "can u see me in the dark?"
+  },
+  {
+    "off": 204586,
+    "modelId": 540,
+    "message_id": 1795260938323,
+    "data": null,
+    "value": "can u see me in the dark?"
+  },
+  {
+    "off": 204670,
+    "modelId": 444,
+    "message_id": 1795260938360,
+    "data": null,
+    "value": "Spotify"
+  },
+  {
+    "off": 316391,
+    "modelId": 505,
+    "message_id": 1795260939026,
+    "data": null,
+    "value": "Zufallswiedergabe deaktivieren"
+  },
+  {
+    "off": 344847,
+    "modelId": 505,
+    "message_id": 1795260939840,
+    "data": null,
+    "value": "Zufallswiedergabe deaktivieren"
+  },
+  {
+    "off": 345020,
+    "modelId": 445,
+    "message_id": 1795260939914,
+    "data": null,
+    "value": "Halestorm"
+  },
+  {
+    "off": 345088,
+    "modelId": 446,
+    "message_id": 1795260939951,
+    "data": null,
+    "value": "can u see me in the dark?"
+  },
+  {
+    "off": 345164,
+    "modelId": 458,
+    "message_id": 1795260939988,
+    "data": null,
+    "value": {
+      "_struct": "RHMIDataTable",
+      "data": [
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 160
+          },
+          "Zurück",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "len": 354,
+            "type": "png"
+          },
+          "can u see me in the dark?",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ],
+        [
+          false,
+          {
+            "_struct": "RHMIResourceIdentifier",
+            "type": {
+              "_struct": "RHMIResourceType",
+              "IMAGEID": true
+            },
+            "id": 161
+          },
+          "Nächster",
+          "",
+          false,
+          "",
+          false,
+          "",
+          false,
+          true
+        ]
+      ],
+      "totalRows": 3,
+      "fromColumn": 0,
+      "numColumns": 10,
+      "numRows": 3,
+      "fromRow": 0,
+      "totalColumns": 10,
+      "virtualTableEnable": false
+    }
+  },
+  {
+    "off": 345787,
+    "modelId": 447,
+    "message_id": 1795260940025,
+    "data": null,
+    "value": "can u see me in the dark?"
+  }
+]
