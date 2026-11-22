@@ -441,12 +441,20 @@ PHONE                                              HU
 
 ---
 
-## 9. Nächster Feldtest (aus Timeline abgeleitet)
+## 9. PLAY-Boundary Skim (2026-11-22) + Lab-Overlay
 
-Größter Erkenntnisgewinn: Capture mit
+Offline-Skim: [`PLAY_BOUNDARY_SKIM_20261122.md`](PLAY_BOUNDARY_SKIM_20261122.md).
 
-1. **hörbarem** Playback (oder bewusstem Fail) **und**
-2. parallelem Log der **Audio-Ebene** (A2DP/AVRCP/iAP audio / Relay-PCM),  
-   plus optional Next-Track für Track A→B,
+Kurz: nach `P@0x000315a6` folgen RHMI `setData`/Event 661 und **große BCL-4000-Fragmente auf dest 4004** (RHMI-shaped, z. B. Etch @`P@0x00032784` len 66488). **Kein** weiteres `av_*`. Audio-Transport weiter **NOT PROVEN**.
 
-damit die offene Grenze unter `av_playerStateChanged PLAY` (`P@0x000315a6`) entweder als fehlender Transport oder als Transport-ohne-Audibility geschlossen werden kann.
+Lab-Logs (`LAB_MUSIC_NP_SPINE_*`, `LAB_A2DP_BCL_CORR_*`, `AUDIOOK` B2A) sind **andere Sessions** — Overlay schließt B3-Audio nicht, liefert aber die Lab-Forderung: **Dual-Plane** (BCL + A2DP/transport) bei jedem Music-PLAY-Test.
+
+## 10. Nächster Feldtest (aus Timeline abgeleitet)
+
+Priorität vor Multi-Track A→B:
+
+1. **hörbares** Playback (oder bewusster Fail) **und**
+2. paralleles Dual-Plane-Log (BCL/Etch **und** A2DP/transport-state; Transport erst benennen nach Nachweis),  
+   optional danach Next-Track für Track A→B,
+
+damit die Grenze unter `P@0x000315a6` geschlossen werden kann.

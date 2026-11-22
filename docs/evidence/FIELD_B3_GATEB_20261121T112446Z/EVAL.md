@@ -74,5 +74,6 @@ Standalone-Signer ohne MyBMW bleibt **OPEN** (Signierträger).
 - [`forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md`](forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md)
 - [`forensic/rhmi_music/RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md`](forensic/rhmi_music/RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md)
 - [`forensic/F20_CONNECTED_MUSIC_END_TO_END_TIMELINE.md`](forensic/F20_CONNECTED_MUSIC_END_TO_END_TIMELINE.md) — session index AUTH→…→PLAY→audio boundary
+- [`forensic/PLAY_BOUNDARY_SKIM_20261122.md`](forensic/PLAY_BOUNDARY_SKIM_20261122.md) — offline post-PLAY skim; lab overlay notes
 - [`GESAMTSTAND_F20_AAIDRIVE_SPOTIFY_20261122.md`](../../analysis/GESAMTSTAND_F20_AAIDRIVE_SPOTIFY_20261122.md)
 - [`SAS_STATUS_CRYPTO_CLOSED_20261120.md`](../../analysis/SAS_STATUS_CRYPTO_CLOSED_20261120.md)

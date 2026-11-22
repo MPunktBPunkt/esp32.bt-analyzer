@@ -103,10 +103,11 @@ Detail: [`RHMI_MUSIC_UI_STATE_MACHINE.md`](../evidence/FIELD_B3_GATEB_20261121T1
 
 1. ~~Wire RHMI Music graph~~ → **done** (2026-11-22)
 2. ~~Home Entry + Multi-Track analysis~~ → **done** (2026-11-22; Track B still needs new capture)
-3. Field capture with explicit next/prev track (close Track A→B)
-4. Lab NP-spine stub mit wire-proven IDs (inkl. cover **456**) — after Track-B model closed enough
-5. F20-Trial fremder RHMI-Client
-6. PiDrive Music/RHMI (nicht Spotify-AM)
+3. ~~E2E timeline + PLAY @ P@0x315a6~~ → **done**; offline PLAY-boundary skim → [`PLAY_BOUNDARY_SKIM_20261122`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/PLAY_BOUNDARY_SKIM_20261122.md)
+4. **Next:** Dual-Plane field/lab (BCL + A2DP/transport) around PLAY — before Track A→B
+5. Track A→B field capture (secondary)
+6. Lab: AV PLAY stub + dual-plane logging (idrivesim P3b); PiDrive treats Etch PLAY as control-only
+7. F20-Trial / PiDrive Music RHMI after audio plane clearer
 
 ## 9. Related
 
