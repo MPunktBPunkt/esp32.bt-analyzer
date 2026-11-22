@@ -51,7 +51,8 @@ Standalone-Signer ohne MyBMW bleibt **OPEN** (Signierträger).
 | 445 artist / 446·447 title / 456 cover JPEG | **FACT** (+ XML roles **STRONG**) |
 | AV `…music` → ENTERTAINMENT → PLAY | **FACT** |
 | Spotify ∈ `am_registerApp` | **REJECTED** |
-| Exakte Home-Menü-Widget-ID | **OPEN** |
+| Home/Launcher Entry-Object-ID | **OPEN / NOT FOUND** |
+| Action 336/248 · Event 660/661 wire map | **FACT** — see `forensic/rhmi_music/RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md` |
 
 ## Epistemic
 

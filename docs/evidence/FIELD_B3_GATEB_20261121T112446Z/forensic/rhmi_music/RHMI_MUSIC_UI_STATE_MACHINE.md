@@ -130,6 +130,8 @@ All targets found as UTF-8 inside handle-23 `rhmi_setData` envelopes:
 
 **OPEN.** Exact semantics of onHmiEvent 1/2/11 without DESCRIPTION event table binding on wire.
 
+**Follow-up (2026-11-22):** Action/Event/Home/AV edges — [`RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md`](RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md) (336/248/660/661 wire-CLOSED; Home entry OPEN; RHMI↔AV ordered FACT).
+
 ---
 
 ## 7. AV ↔ music instance

@@ -80,11 +80,13 @@ Multi-SAS: mehrere parallele OPEN-4004-Kanäle mit eigenen Cert/Challenge/Login 
 | RHMI `rhmi_create` → `…music` → Handle **23** | **FACT** |
 | `setData` **444** + **655** = `"Spotify"` | **FACT** |
 | **445** artist · **446/447** title · **456** cover JPEG | **FACT** (+ XML `audioHmiState@24` **STRONG**) |
-| Actions **336**/ **248** · Events **660**/ **661** | **FACT** |
-| AV id = `…music` → ENTERTAINMENT → PLAY | **FACT** |
-| Jede Button→Action-Semantik / Home-Menü-Entry-ID | **OPEN** |
+| Actions **336**/ **248** · Events **660**/ **661** (wire lifecycle) | **FACT** |
+| 336 ≃ Music entry / 248 ≃ Apps toolbar select | **INFERENCE** (+ XML STRONG) |
+| 661 statusbar / 660 multimediaInfo | **INFERENCE** (+ XML STRONG) |
+| AV id = `…music` → ENTERTAINMENT → PLAY; coupled after Action 336 | **FACT** order |
+| BMW Home/Launcher Entry-Object-ID | **OPEN / NOT FOUND** |
 
-Detail: [`…/forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md)
+Detail: [`RHMI_MUSIC_UI_STATE_MACHINE.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md) · [`RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md)
 
 ## 7. Was beschreibbar vs. offen ist
 
