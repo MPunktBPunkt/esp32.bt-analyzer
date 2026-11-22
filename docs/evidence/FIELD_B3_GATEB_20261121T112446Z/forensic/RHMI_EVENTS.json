@@ -1,0 +1,7257 @@
+[
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 6863,
+    "method": "rhmi_getCapabilities",
+    "handle": -1,
+    "message_id": 1795260913606,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 6863,
+    "method": "rhmi_getCapabilities",
+    "handle": -1,
+    "message_id": 1795260913606,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14485,
+    "method": "rhmi_getCapabilities",
+    "handle": -1,
+    "message_id": 1795260916954,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14485,
+    "method": "rhmi_getCapabilities",
+    "handle": -1,
+    "message_id": 1795260916954,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 29622,
+    "method": "rhmi_getCapabilities",
+    "handle": 255,
+    "message_id": 1795260920093,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 29622,
+    "method": "rhmi_getCapabilities",
+    "handle": 255,
+    "message_id": 1795260920093,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30589,
+    "method": "rhmi_getCapabilities",
+    "handle": 255,
+    "message_id": 1795260921101,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30589,
+    "method": "rhmi_getCapabilities",
+    "handle": 255,
+    "message_id": 1795260921101,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 82515,
+    "method": "rhmi_create",
+    "message_id": 1795260933223,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 82515,
+    "method": "rhmi_create",
+    "message_id": 1795260933223,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 82699,
+    "method": "rhmi_create",
+    "message_id": 1795260933223,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 82699,
+    "method": "rhmi_create",
+    "message_id": 1795260933223,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 83527,
+    "method": "rhmi_create",
+    "message_id": 1795260933254,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 83527,
+    "method": "rhmi_create",
+    "message_id": 1795260933254,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 83705,
+    "method": "rhmi_create",
+    "message_id": 1795260933272,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 83705,
+    "method": "rhmi_create",
+    "message_id": 1795260933272,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 83971,
+    "method": "rhmi_checkResource",
+    "handle": 21,
+    "message_id": 1795260933260,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 83971,
+    "method": "rhmi_checkResource",
+    "handle": 21,
+    "message_id": 1795260933260,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84071,
+    "method": "rhmi_checkResource",
+    "handle": 22,
+    "message_id": 1795260933260,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84071,
+    "method": "rhmi_checkResource",
+    "handle": 22,
+    "message_id": 1795260933260,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84259,
+    "method": "rhmi_checkResource",
+    "handle": 23,
+    "message_id": 1795260933291,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84259,
+    "method": "rhmi_checkResource",
+    "handle": 23,
+    "message_id": 1795260933291,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84422,
+    "method": "rhmi_checkResource",
+    "handle": 24,
+    "message_id": 1795260933309,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84422,
+    "method": "rhmi_checkResource",
+    "handle": 24,
+    "message_id": 1795260933309,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84600,
+    "method": "rhmi_checkResource",
+    "handle": 21,
+    "message_id": 1795260933297,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84600,
+    "method": "rhmi_checkResource",
+    "handle": 21,
+    "message_id": 1795260933297,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84700,
+    "method": "rhmi_initialize",
+    "handle": 22,
+    "message_id": 1795260933297,
+    "type_hash": "0x9364779b"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84700,
+    "method": "rhmi_initialize",
+    "handle": 22,
+    "message_id": 1795260933297,
+    "type_hash": "0x9364779b"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84856,
+    "method": "rhmi_checkResource",
+    "handle": 23,
+    "message_id": 1795260933328,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84856,
+    "method": "rhmi_checkResource",
+    "handle": 23,
+    "message_id": 1795260933328,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 87398,
+    "method": "rhmi_checkResource",
+    "handle": 24,
+    "message_id": 1795260933346,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 87398,
+    "method": "rhmi_checkResource",
+    "handle": 24,
+    "message_id": 1795260933346,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 87500,
+    "method": "rhmi_checkResource",
+    "handle": 21,
+    "message_id": 1795260933334,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 87500,
+    "method": "rhmi_checkResource",
+    "handle": 21,
+    "message_id": 1795260933334,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 87600,
+    "method": "rhmi_addActionEventHandler",
+    "handle": 22,
+    "message_id": 1795260933334,
+    "type_hash": "0x7e8fab7c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 87600,
+    "method": "rhmi_addActionEventHandler",
+    "handle": 22,
+    "message_id": 1795260933334,
+    "type_hash": "0x7e8fab7c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 89109,
+    "method": "rhmi_checkResource",
+    "handle": 23,
+    "message_id": 1795260933365,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 89109,
+    "method": "rhmi_checkResource",
+    "handle": 23,
+    "message_id": 1795260933365,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91620,
+    "method": "rhmi_initialize",
+    "handle": 24,
+    "message_id": 1795260933383,
+    "type_hash": "0x9364779b"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91620,
+    "method": "rhmi_initialize",
+    "handle": 24,
+    "message_id": 1795260933383,
+    "type_hash": "0x9364779b"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91664,
+    "method": "rhmi_initialize",
+    "handle": 21,
+    "message_id": 1795260933371,
+    "type_hash": "0x9364779b"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91664,
+    "method": "rhmi_initialize",
+    "handle": 21,
+    "message_id": 1795260933371,
+    "type_hash": "0x9364779b"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91708,
+    "method": "rhmi_addHmiEventHandler",
+    "handle": 22,
+    "message_id": 1795260933371,
+    "type_hash": "0x5ca65f7e"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91708,
+    "method": "rhmi_addHmiEventHandler",
+    "handle": 22,
+    "message_id": 1795260933371,
+    "type_hash": "0x5ca65f7e"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91943,
+    "method": "rhmi_initialize",
+    "handle": 23,
+    "message_id": 1795260933402,
+    "type_hash": "0x9364779b"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91943,
+    "method": "rhmi_initialize",
+    "handle": 23,
+    "message_id": 1795260933402,
+    "type_hash": "0x9364779b"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91987,
+    "method": "rhmi_addActionEventHandler",
+    "handle": 21,
+    "message_id": 1795260933408,
+    "type_hash": "0x7e8fab7c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91987,
+    "method": "rhmi_addActionEventHandler",
+    "handle": 21,
+    "message_id": 1795260933408,
+    "type_hash": "0x7e8fab7c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92080,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933408,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92080,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933408,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92333,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933420,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92333,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933420,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92425,
+    "method": "rhmi_addHmiEventHandler",
+    "handle": 21,
+    "message_id": 1795260933445,
+    "type_hash": "0x5ca65f7e"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92425,
+    "method": "rhmi_addHmiEventHandler",
+    "handle": 21,
+    "message_id": 1795260933445,
+    "type_hash": "0x5ca65f7e"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92524,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933445,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92524,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933445,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92612,
+    "method": "rhmi_create",
+    "message_id": 1795260933690,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92612,
+    "method": "rhmi_create",
+    "message_id": 1795260933690,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92908,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933457,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92908,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933457,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93000,
+    "method": "rhmi_addActionEventHandler",
+    "handle": 23,
+    "message_id": 1795260933439,
+    "type_hash": "0x7e8fab7c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93000,
+    "method": "rhmi_addActionEventHandler",
+    "handle": 23,
+    "message_id": 1795260933439,
+    "type_hash": "0x7e8fab7c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93090,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933482,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93090,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933482,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93178,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933482,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93178,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933482,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93266,
+    "method": "rhmi_checkResource",
+    "handle": 25,
+    "message_id": 1795260933727,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93266,
+    "method": "rhmi_checkResource",
+    "handle": 25,
+    "message_id": 1795260933727,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93439,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933494,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93439,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933494,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93531,
+    "method": "rhmi_addHmiEventHandler",
+    "handle": 23,
+    "message_id": 1795260933476,
+    "type_hash": "0x5ca65f7e"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93531,
+    "method": "rhmi_addHmiEventHandler",
+    "handle": 23,
+    "message_id": 1795260933476,
+    "type_hash": "0x5ca65f7e"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93627,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933519,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93627,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933519,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93715,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933519,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93715,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933519,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93905,
+    "method": "rhmi_checkResource",
+    "handle": 25,
+    "message_id": 1795260933764,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93905,
+    "method": "rhmi_checkResource",
+    "handle": 25,
+    "message_id": 1795260933764,
+    "type_hash": "0xe3cd41cb"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 94007,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933531,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 94007,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933531,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 94099,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260933513,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 94099,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260933513,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 94191,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260933550,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 94535,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260933698,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96139,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260934401,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96139,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260934401,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96231,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260934438,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96231,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260934438,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96323,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260934475,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96323,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260934475,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96386,
+    "method": "rhmi_setProperty",
+    "handle": 23,
+    "message_id": 1795260934512,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96667,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933556,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96667,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933556,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96755,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933556,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96755,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933556,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96925,
+    "method": "rhmi_initialize",
+    "handle": 25,
+    "message_id": 1795260933801,
+    "type_hash": "0x9364779b"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96925,
+    "method": "rhmi_initialize",
+    "handle": 25,
+    "message_id": 1795260933801,
+    "type_hash": "0x9364779b"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96969,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933568,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96969,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933568,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 97061,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933593,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 97061,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933593,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 97149,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933593,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 97149,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933593,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 97329,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260934697,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 97487,
+    "method": "rhmi_setProperty",
+    "handle": 23,
+    "message_id": 1795260934808,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 98255,
+    "method": "rhmi_setProperty",
+    "handle": 23,
+    "message_id": 1795260935178,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 98780,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260935437,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99501,
+    "method": "rhmi_addActionEventHandler",
+    "handle": 25,
+    "message_id": 1795260933838,
+    "type_hash": "0x7e8fab7c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99501,
+    "method": "rhmi_addActionEventHandler",
+    "handle": 25,
+    "message_id": 1795260933838,
+    "type_hash": "0x7e8fab7c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99607,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933605,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99607,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933605,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99699,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933630,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99699,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933630,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99789,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933630,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99789,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933630,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99961,
+    "method": "rhmi_addHmiEventHandler",
+    "handle": 25,
+    "message_id": 1795260933875,
+    "type_hash": "0x5ca65f7e"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99961,
+    "method": "rhmi_addHmiEventHandler",
+    "handle": 25,
+    "message_id": 1795260933875,
+    "type_hash": "0x5ca65f7e"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100073,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933642,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100073,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933642,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100165,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933667,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100165,
+    "method": "rhmi_setData",
+    "handle": 21,
+    "message_id": 1795260933667,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100344,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933667,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100344,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933667,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100524,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933679,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100524,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933679,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100616,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260933912,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100616,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260933912,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100839,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933704,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100839,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933704,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101007,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933716,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101007,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933716,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101099,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260933949,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101099,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260933949,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101345,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933741,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101345,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933741,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101518,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933753,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101518,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933753,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101610,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260933986,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101610,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260933986,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101871,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933778,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101871,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933778,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102032,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933790,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102032,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933790,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102124,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934023,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102124,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934023,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102216,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260935955,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102330,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933815,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102330,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933815,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102516,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933827,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102516,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933827,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102608,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934060,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102608,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934060,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102784,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933852,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102784,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933852,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102958,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934097,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102958,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934097,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 103050,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933864,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 103050,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933864,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 103142,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933889,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 103142,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933889,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 106591,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934134,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 106591,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934134,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 106683,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933901,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 106683,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933901,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 106775,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933926,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 106775,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933926,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108074,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934171,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108074,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934171,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108166,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933938,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108166,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933938,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108258,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933963,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108258,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260933963,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108346,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934208,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108346,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934208,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108438,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933975,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108438,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260933975,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108530,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934000,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108530,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934000,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108622,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260936140,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108622,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260936140,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 108685,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260936177,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 109629,
+    "method": "rhmi_setProperty",
+    "handle": 23,
+    "message_id": 1795260936658,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 110866,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937065,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 110866,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937065,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 111823,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937102,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 112791,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937324,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 112791,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937324,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 112870,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937361,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 112870,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937361,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 112954,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934245,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 112954,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934245,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113046,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260934012,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113046,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260934012,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113138,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934037,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113138,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934037,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113268,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934282,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113268,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934282,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113360,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260934049,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113360,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260934049,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113452,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934074,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113452,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934074,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 113544,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937398,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 114251,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937472,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 132830,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934319,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 132830,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934319,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 132922,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934111,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 132922,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934111,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 133014,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260934086,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 133014,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260934086,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 133072,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937509,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 133872,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937657,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134016,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937731,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134016,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937731,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134137,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934148,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134137,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934148,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134229,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260934123,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134229,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260934123,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134346,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934356,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134346,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934356,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134438,
+    "method": "rhmi_ackActionEvent",
+    "handle": 23,
+    "message_id": 1795260937805,
+    "type_hash": "0xb6f1e926"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134438,
+    "method": "rhmi_ackActionEvent",
+    "handle": 23,
+    "message_id": 1795260937805,
+    "type_hash": "0xb6f1e926"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134502,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260934160,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134502,
+    "method": "rhmi_setData",
+    "handle": 24,
+    "message_id": 1795260934160,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134560,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934185,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134560,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934185,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134654,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934393,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134654,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934393,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134746,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934197,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134746,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934197,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134827,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937842,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 202232,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934222,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 202232,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934222,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 202320,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934430,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 202320,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934430,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 202424,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934234,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 202424,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934234,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 202555,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937990,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 202555,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260937990,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203186,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934271,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203186,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934271,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203267,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260938027,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203502,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934467,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203502,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934467,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203594,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934259,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203594,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934259,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203682,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934308,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203682,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934308,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203763,
+    "method": "rhmi_triggerEvent",
+    "handle": 23,
+    "message_id": 1795260938175,
+    "type_hash": "0xc9d852ad"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203763,
+    "method": "rhmi_triggerEvent",
+    "handle": 23,
+    "message_id": 1795260938175,
+    "type_hash": "0xc9d852ad"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203840,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934504,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203840,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934504,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203932,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934345,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 203932,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934345,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204013,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934296,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204013,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934296,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204105,
+    "method": "rhmi_ackActionEvent",
+    "handle": 23,
+    "message_id": 1795260938212,
+    "type_hash": "0xb6f1e926"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204105,
+    "method": "rhmi_ackActionEvent",
+    "handle": 23,
+    "message_id": 1795260938212,
+    "type_hash": "0xb6f1e926"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204181,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934541,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204181,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934541,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204273,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934382,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204273,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934382,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204354,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934333,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204354,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934333,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204442,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260938249,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204442,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260938249,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204510,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260938286,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204670,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260938360,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204670,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260938360,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 204736,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260938397,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315513,
+    "method": "rhmi_ackActionEvent",
+    "handle": 23,
+    "message_id": 1795260938730,
+    "type_hash": "0xb6f1e926"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315513,
+    "method": "rhmi_ackActionEvent",
+    "handle": 23,
+    "message_id": 1795260938730,
+    "type_hash": "0xb6f1e926"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315577,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934419,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315577,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934419,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315658,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934370,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315658,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934370,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315750,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934578,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315750,
+    "method": "rhmi_setData",
+    "handle": 25,
+    "message_id": 1795260934578,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315882,
+    "method": "rhmi_triggerEvent",
+    "handle": 23,
+    "message_id": 1795260938767,
+    "type_hash": "0xc9d852ad"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315882,
+    "method": "rhmi_triggerEvent",
+    "handle": 23,
+    "message_id": 1795260938767,
+    "type_hash": "0xc9d852ad"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315959,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934456,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 315959,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934456,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 316040,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260938804,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 316710,
+    "method": "rhmi_setProperty",
+    "handle": 25,
+    "message_id": 1795260934615,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 316710,
+    "method": "rhmi_setProperty",
+    "handle": 25,
+    "message_id": 1795260934615,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 316791,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934407,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 316791,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934407,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 316879,
+    "method": "rhmi_setProperty",
+    "handle": 23,
+    "message_id": 1795260939174,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 316879,
+    "method": "rhmi_setProperty",
+    "handle": 23,
+    "message_id": 1795260939174,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 316960,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934493,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 316960,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934493,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 317041,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939211,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 317041,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939211,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 317113,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939248,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 317113,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939248,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 318088,
+    "method": "rhmi_setProperty",
+    "handle": 25,
+    "message_id": 1795260934652,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 318088,
+    "method": "rhmi_setProperty",
+    "handle": 25,
+    "message_id": 1795260934652,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 318175,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939285,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 318175,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939285,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 318243,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939322,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 344392,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934444,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 344392,
+    "method": "rhmi_setData",
+    "handle": 22,
+    "message_id": 1795260934444,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 344480,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934530,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 344480,
+    "method": "rhmi_setProperty",
+    "handle": 24,
+    "message_id": 1795260934530,
+    "type_hash": "0xb682424c"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 344561,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939655,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 344847,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939840,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 345020,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939914,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 345020,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939914,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 345088,
+    "method": "rhmi_setData",
+    "handle": 23,
+    "message_id": 1795260939951,
+    "type_hash": "0x5485cd21"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 356132,
+    "method": "rhmi_getCapabilities",
+    "handle": -1,
+    "message_id": 1795261031671,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 356132,
+    "method": "rhmi_getCapabilities",
+    "handle": -1,
+    "message_id": 1795261031671,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 408080,
+    "method": "rhmi_getCapabilities",
+    "handle": 255,
+    "message_id": 1795261033488,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 408080,
+    "method": "rhmi_getCapabilities",
+    "handle": 255,
+    "message_id": 1795261033488,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 408132,
+    "method": "rhmi_create",
+    "message_id": 1795261034180,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 408132,
+    "method": "rhmi_create",
+    "message_id": 1795261034180,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 409021,
+    "method": "rhmi_getCapabilities",
+    "handle": 255,
+    "message_id": 1795261034177,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 409021,
+    "method": "rhmi_getCapabilities",
+    "handle": 255,
+    "message_id": 1795261034177,
+    "type_hash": "0x06688121"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 409073,
+    "method": "rhmi_create",
+    "message_id": 1795261034181,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 409073,
+    "method": "rhmi_create",
+    "message_id": 1795261034181,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 409257,
+    "method": "rhmi_create",
+    "message_id": 1795261034195,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 409257,
+    "method": "rhmi_create",
+    "message_id": 1795261034195,
+    "type_hash": "0x722a4d67"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 259,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672028,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 259,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672028,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 11442,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672037,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 11442,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672037,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 24394,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672060,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 24394,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672060,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 30442,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672069,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 30442,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672069,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52368,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672227,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52368,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672227,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52438,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672228,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52438,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672228,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52642,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672231,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52642,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672231,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52724,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672233,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52724,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672233,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52846,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672234,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52846,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672234,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52916,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672235,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52916,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672235,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53120,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672238,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53120,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672238,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53254,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672240,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53254,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672240,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53336,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672241,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53336,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672241,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53550,
+    "method": "_result_rhmi_initialize",
+    "message_id": 1795260388672243,
+    "type_hash": "0xff7c4198"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53550,
+    "method": "_result_rhmi_initialize",
+    "message_id": 1795260388672243,
+    "type_hash": "0xff7c4198"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53702,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672245,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53702,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672245,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54020,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672249,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54020,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672249,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54090,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672250,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54090,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672250,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54160,
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672251,
+    "type_hash": "0xdc30a93f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54160,
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672251,
+    "type_hash": "0xdc30a93f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54766,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672257,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54766,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672257,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54872,
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672258,
+    "type_hash": "0xb15cef7b"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54872,
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672258,
+    "type_hash": "0xb15cef7b"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54976,
+    "method": "_result_rhmi_initialize",
+    "message_id": 1795260388672260,
+    "type_hash": "0xff7c4198"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54976,
+    "method": "_result_rhmi_initialize",
+    "message_id": 1795260388672260,
+    "type_hash": "0xff7c4198"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55098,
+    "method": "_result_rhmi_initialize",
+    "message_id": 1795260388672262,
+    "type_hash": "0xff7c4198"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55098,
+    "method": "_result_rhmi_initialize",
+    "message_id": 1795260388672262,
+    "type_hash": "0xff7c4198"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55351,
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672265,
+    "type_hash": "0xdc30a93f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55351,
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672265,
+    "type_hash": "0xdc30a93f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55415,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672266,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55415,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672266,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55998,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672272,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55998,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672272,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56050,
+    "method": "_result_rhmi_initialize",
+    "message_id": 1795260388672273,
+    "type_hash": "0xff7c4198"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56050,
+    "method": "_result_rhmi_initialize",
+    "message_id": 1795260388672273,
+    "type_hash": "0xff7c4198"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56126,
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672274,
+    "type_hash": "0xb15cef7b"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56126,
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672274,
+    "type_hash": "0xb15cef7b"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56178,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672275,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56178,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672275,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56242,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672276,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56242,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672276,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56471,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672279,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56471,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672279,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56535,
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672280,
+    "type_hash": "0xdc30a93f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56535,
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672280,
+    "type_hash": "0xdc30a93f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56747,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672282,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56747,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672282,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56811,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672283,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56811,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672283,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56939,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672285,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56939,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672285,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57191,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672288,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57191,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672288,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57255,
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672289,
+    "type_hash": "0xb15cef7b"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57255,
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672289,
+    "type_hash": "0xb15cef7b"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57319,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672290,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57319,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672290,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57407,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672291,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57407,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672291,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57789,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672295,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57789,
+    "method": "_result_rhmi_checkResource",
+    "message_id": 1795260388672295,
+    "type_hash": "0x0e18858e"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57859,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672296,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57859,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672296,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57935,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672297,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57935,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672297,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57987,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672298,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57987,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672298,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58039,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672299,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58039,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672299,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58091,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672300,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58091,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672300,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58143,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672301,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58143,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672301,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58207,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672302,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58207,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672302,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58259,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672303,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58259,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672303,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58311,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672304,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58311,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672304,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58363,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672305,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58363,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672305,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58415,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672306,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58415,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672306,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58467,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672307,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58467,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672307,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58519,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672308,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58519,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672308,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58571,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672309,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58571,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672309,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58623,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672310,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58623,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672310,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58675,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672311,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58675,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672311,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58727,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672312,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58727,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672312,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58779,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672313,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58779,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672313,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58831,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672314,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58831,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672314,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58883,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672315,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58883,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672315,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58935,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672316,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58935,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672316,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58987,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672317,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 58987,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672317,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59039,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672318,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59039,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672318,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59091,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672319,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59091,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672319,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59143,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672320,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59143,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672320,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59207,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672321,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59207,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672321,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59271,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672322,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59271,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672322,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59347,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672323,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59347,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672323,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59423,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672329,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59423,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672329,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59475,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672330,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59475,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672330,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59527,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672324,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59831,
+    "method": "_result_rhmi_initialize",
+    "message_id": 1795260388672332,
+    "type_hash": "0xff7c4198"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59831,
+    "method": "_result_rhmi_initialize",
+    "message_id": 1795260388672332,
+    "type_hash": "0xff7c4198"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59895,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672333,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59895,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672333,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59971,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672334,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59971,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672334,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60023,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672335,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60023,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672335,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60406,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672339,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60406,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672339,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60470,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672340,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60470,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672340,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60522,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672341,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60662,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672344,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60662,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672344,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60714,
+    "method": "rhmi_onActionEvent",
+    "handle": 23,
+    "message_id": 1795260388672345,
+    "type_hash": "0x6008acfa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60714,
+    "method": "rhmi_onActionEvent",
+    "handle": 23,
+    "message_id": 1795260388672345,
+    "type_hash": "0x6008acfa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60829,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672346,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60829,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672346,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60952,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672347,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60952,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672347,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61004,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672348,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61004,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672348,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61056,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672349,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61056,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672349,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61108,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672350,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61108,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672350,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61160,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672351,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61160,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672351,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61212,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672352,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61212,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672352,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61264,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672353,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61264,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672353,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61328,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672354,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61328,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672354,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61428,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672355,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61595,
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672357,
+    "type_hash": "0xdc30a93f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61595,
+    "method": "_result_rhmi_addActionEventHandler",
+    "message_id": 1795260388672357,
+    "type_hash": "0xdc30a93f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61730,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672360,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61730,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672360,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61782,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672359,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61878,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672362,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61878,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672362,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61930,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672363,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61930,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672363,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61982,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672364,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 61982,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672364,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62034,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672365,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62034,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672365,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62157,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672366,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62157,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672366,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62209,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672367,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62209,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672367,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62261,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672368,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62261,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672368,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62313,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672369,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62313,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672369,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62365,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672370,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62365,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672370,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62417,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672371,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62417,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672371,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62469,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672372,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62469,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672372,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62604,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672373,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62604,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672373,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62656,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672374,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62656,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672374,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62708,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672375,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62708,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672375,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62760,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672376,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62760,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672376,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62882,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672378,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62882,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672378,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63553,
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672384,
+    "type_hash": "0xb15cef7b"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63553,
+    "method": "_result_rhmi_addHmiEventHandler",
+    "message_id": 1795260388672384,
+    "type_hash": "0xb15cef7b"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63605,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672385,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63605,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672385,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63669,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672386,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63669,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672386,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63914,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672390,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63914,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672390,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64422,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672392,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64422,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672392,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64486,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672393,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64486,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672393,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64708,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672396,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64708,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672396,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 65936,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672402,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 65936,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672402,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66000,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672403,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66000,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672403,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66303,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672407,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66303,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672407,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66846,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672411,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66846,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672411,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66910,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672412,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66910,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672412,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 67211,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672417,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 67211,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672417,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 67875,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672420,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 67875,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672420,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 67927,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672421,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 67927,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672421,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68003,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672422,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68099,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672424,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68099,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672424,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68467,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672427,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68467,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672427,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68519,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672428,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68519,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672428,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68653,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672430,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68653,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672430,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69132,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672434,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69132,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672434,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69196,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672435,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69196,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672435,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69260,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672436,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69260,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672436,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69999,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672441,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69999,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672441,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70051,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672442,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70051,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672442,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70103,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672443,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70103,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672443,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70706,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672448,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70706,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672448,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70758,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672449,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70758,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672449,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70810,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672450,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70810,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672450,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70874,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672451,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70874,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672451,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70938,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672452,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70938,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672452,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71002,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672453,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71002,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672453,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71121,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672454,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71121,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672454,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71209,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672455,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71209,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672455,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71261,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672456,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71261,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672456,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71313,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672457,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71313,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672457,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71365,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672458,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71365,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672458,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71417,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672459,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71417,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672459,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71469,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672460,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71469,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672460,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71521,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672461,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71521,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672461,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71573,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672462,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71573,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672462,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71625,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672463,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71625,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672463,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71677,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672464,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71677,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672464,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71729,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672465,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71729,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672465,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71836,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672466,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71836,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672466,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71888,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672467,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71888,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672467,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71940,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672468,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71940,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672468,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71992,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672469,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 71992,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672469,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72044,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672470,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72044,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672470,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72096,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672471,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72096,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672471,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72148,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672472,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72148,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672472,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72200,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672473,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72200,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672473,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72252,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672474,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72252,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672474,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72304,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672475,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72304,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672475,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72356,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672476,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72356,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672476,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72408,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672477,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72408,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672477,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72460,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672478,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72460,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672478,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72512,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672479,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72512,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672479,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72624,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672480,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72624,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672480,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72676,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672481,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72676,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672481,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72728,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672482,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72728,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672482,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72780,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672483,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72780,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672483,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72832,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672484,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72832,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672484,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72955,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672485,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 72955,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672485,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73007,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672486,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73007,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672486,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73059,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672487,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73059,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672487,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73111,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672488,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73111,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672488,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73163,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672489,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73163,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672489,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73215,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672490,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73215,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672490,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73279,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672491,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73279,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672491,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73462,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672493,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73462,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672493,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73514,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672494,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73514,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672494,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73566,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672495,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73566,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672495,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73685,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672496,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73685,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672496,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73737,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672497,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73737,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672497,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73825,
+    "method": "rhmi_onActionEvent",
+    "handle": 23,
+    "message_id": 1795260388672498,
+    "type_hash": "0x6008acfa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73825,
+    "method": "rhmi_onActionEvent",
+    "handle": 23,
+    "message_id": 1795260388672498,
+    "type_hash": "0x6008acfa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73988,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672499,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 73988,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672499,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74076,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672500,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74076,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672500,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74128,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672501,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74128,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672501,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74180,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672502,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74180,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672502,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74244,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672503,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74244,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672503,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74296,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672504,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74569,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672508,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74569,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672508,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74621,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672509,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74621,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672509,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74697,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672510,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74697,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672510,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74825,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672512,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74825,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672512,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74877,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672513,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74877,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672513,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74996,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672514,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74996,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672514,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75154,
+    "method": "_result_rhmi_ackActionEvent",
+    "message_id": 1795260388672516,
+    "type_hash": "0x633a9623"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75154,
+    "method": "_result_rhmi_ackActionEvent",
+    "message_id": 1795260388672516,
+    "type_hash": "0x633a9623"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75206,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672517,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75206,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672517,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75270,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672518,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75270,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672518,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75784,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672522,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75784,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672522,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75848,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672523,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75848,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672523,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75912,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672524,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75912,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672524,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75964,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672525,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75964,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672525,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76567,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672529,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76567,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672529,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76842,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672532,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76842,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672532,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76894,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672533,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76894,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672533,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76946,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672534,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76946,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672534,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77010,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672535,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77010,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672535,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77074,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672536,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77074,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672536,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77138,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672537,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77138,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672537,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77190,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672538,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77190,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672538,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77242,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672539,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77242,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672539,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77294,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672540,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77294,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672540,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77370,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672543,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77370,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672543,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77866,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672544,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77866,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672544,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77930,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672545,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77930,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672545,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78175,
+    "method": "_result_rhmi_triggerEvent",
+    "message_id": 1795260388672547,
+    "type_hash": "0x1130ee2a"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78175,
+    "method": "_result_rhmi_triggerEvent",
+    "message_id": 1795260388672547,
+    "type_hash": "0x1130ee2a"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78251,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672548,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78251,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672548,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78303,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672549,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78303,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672549,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78379,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672550,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78379,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672550,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78486,
+    "method": "_result_rhmi_ackActionEvent",
+    "message_id": 1795260388672551,
+    "type_hash": "0x633a9623"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78486,
+    "method": "_result_rhmi_ackActionEvent",
+    "message_id": 1795260388672551,
+    "type_hash": "0x633a9623"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79158,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672554,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79158,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672554,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79279,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672555,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79279,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672555,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79424,
+    "method": "rhmi_onActionEvent",
+    "handle": 23,
+    "message_id": 1795260388672556,
+    "type_hash": "0x6008acfa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79424,
+    "method": "rhmi_onActionEvent",
+    "handle": 23,
+    "message_id": 1795260388672556,
+    "type_hash": "0x6008acfa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79613,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672557,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79613,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672557,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79665,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672558,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79665,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672558,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79717,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672559,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79717,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672559,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79769,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672560,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79769,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672560,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79821,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672561,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79821,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672561,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79873,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672562,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79873,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672562,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79925,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672563,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79925,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672563,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79989,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672564,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 79989,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672564,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80041,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672565,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80041,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672565,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80093,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672566,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80093,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672566,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80145,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672567,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80145,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672567,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80197,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672568,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80197,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672568,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80249,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672569,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80249,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672569,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80675,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672571,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80675,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672571,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80847,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672572,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80847,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672572,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80899,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672573,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80899,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672573,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81035,
+    "method": "_result_rhmi_ackActionEvent",
+    "message_id": 1795260388672574,
+    "type_hash": "0x633a9623"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81035,
+    "method": "_result_rhmi_ackActionEvent",
+    "message_id": 1795260388672574,
+    "type_hash": "0x633a9623"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81186,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672576,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81186,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672576,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81238,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672577,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81238,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672577,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81345,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672578,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81345,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672578,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81433,
+    "method": "_result_rhmi_triggerEvent",
+    "message_id": 1795260388672579,
+    "type_hash": "0x1130ee2a"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81433,
+    "method": "_result_rhmi_triggerEvent",
+    "message_id": 1795260388672579,
+    "type_hash": "0x1130ee2a"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81497,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672580,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81497,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672580,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81573,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672581,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81573,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672581,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81625,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672582,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81625,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672582,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81677,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672583,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81677,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672583,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81729,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672584,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81729,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672584,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81781,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672585,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81781,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672585,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81845,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672586,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81845,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672586,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81897,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672587,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81897,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672587,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81949,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672588,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 81949,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672588,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82001,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672589,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82001,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672589,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82053,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672590,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82053,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672590,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82105,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672591,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82105,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672591,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82157,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672592,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82157,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672592,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82221,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672593,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82221,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672593,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82297,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672594,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82297,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672594,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82349,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672595,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82349,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672595,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82401,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672596,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82401,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672596,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82526,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672597,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82526,
+    "method": "rhmi_onHmiEvent",
+    "handle": 23,
+    "message_id": 1795260388672597,
+    "type_hash": "0x3c5e1860"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82663,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672598,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82663,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672598,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82727,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672599,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82727,
+    "method": "_result_rhmi_setProperty",
+    "message_id": 1795260388672599,
+    "type_hash": "0x1a59f78f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82791,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672600,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82791,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672600,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82855,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672601,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82855,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672601,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82907,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672602,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82907,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672602,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82959,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672603,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 82959,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672603,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 83011,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672604,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 83011,
+    "method": "_result_rhmi_setData",
+    "message_id": 1795260388672604,
+    "type_hash": "0x9358a564"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 87537,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672626,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 87537,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672626,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 99446,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672641,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 99446,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672641,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 104912,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672644,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 104912,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672644,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 105070,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672647,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 105070,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672647,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 105128,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672646,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 105128,
+    "method": "_result_rhmi_getCapabilities",
+    "message_id": 1795260388672646,
+    "type_hash": "0x19481364"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 110442,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672648,
+    "type_hash": "0x634e3464"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 110442,
+    "method": "_result_rhmi_create",
+    "message_id": 1795260388672648,
+    "type_hash": "0x634e3464"
+  }
+]

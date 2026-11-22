@@ -1,0 +1,3502 @@
+[
+  {
+    "direction": "phone_to_hu",
+    "offset": 35842,
+    "keyword": "BMW",
+    "match": "bmw",
+    "context": "Mobile2-android(36);bmw;6.11.3(56034);row\",\"_msgId\":\"be326e98-a"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 36617,
+    "keyword": "BMW",
+    "match": "bmw",
+    "context": "Mobile2-android(36);bmw;6.11.3(56034);row\",\"_msgId\":\"be326e98-a"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 203486,
+    "keyword": "Spotify",
+    "match": "Spotify",
+    "context": ".......o......8.....Spotify........T.......L..T..!........c..h....."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 204720,
+    "keyword": "Spotify",
+    "match": "Spotify",
+    "context": "....x..o......8.....Spotify................`..T..!........c..h....."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 83650,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music....0.!me.hufman.androidautoidrive.music"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 83690,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music....................r*Mg..c..h.........."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 93070,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music.#\\...........P.......H..T..!........c.."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 93607,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..C^3.........P.......H..T..!........c.."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 101857,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music........P.......H..T..!........c..h....."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 102770,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music........P.......H..T..!........c..h....."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 30866,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h..........M.....entertainment.multi"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 30911,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia................K.......C....n.........."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 31063,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h..........M.....entertainment.multi"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 31108,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia........C.......;...............9....sen"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 88576,
+    "keyword": "media",
+    "match": "media",
+    "context": "....IEND.B`....Multimedia........e..Screen Mirroringf..Screen Mir"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 106189,
+    "keyword": "media",
+    "match": "media",
+    "context": "....IEND.B`....Multimedia.....[..e..Bluetoothf..Bluetoothg..Bluet"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 106536,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h..........M.....54.....d..........7"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 107736,
+    "keyword": "media",
+    "match": "media",
+    "context": "....IEND.B`....Multimedia........e..YouTubef..YouTubeg..YouTubeh."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 108037,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h..........M.....54........T.......L"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 320591,
+    "keyword": "SAS",
+    "match": "saS",
+    "context": ",<&w..VC...5.....~..saS....b\".w.H.G.....^nlv.a..D..\\...F/.kt..."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 347923,
+    "keyword": "SAS",
+    "match": "saS",
+    "context": ",<&w..VC...5.....~..saS....b\".w.H.G.....^nlv.a..D..\\...F/.kt..."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 35379,
+    "keyword": "AUTH",
+    "match": "Auth",
+    "context": "ipaThirdParty\":{\"omcAuthenticationInfo\":{\"globalCustomerId\":\"a91"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 36160,
+    "keyword": "AUTH",
+    "match": "Auth",
+    "context": "ipaThirdParty\":{\"omcAuthenticationInfo\":{\"globalCustomerId\":\"a91"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 138932,
+    "keyword": "AUTH",
+    "match": "AUTh",
+    "context": "r.?7.s.GJf..ef)).4..AUTh..x......`..Lna..T.t...,....n..6.....*.0"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 210130,
+    "keyword": "AUTH",
+    "match": "AUTh",
+    "context": "r.?7.s.GJf..ef)).4..AUTh..x......`..Lna..T.t...,....n..6.....*.0"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 35025,
+    "keyword": "Connected",
+    "match": "connected",
+    "context": "llo\":{\"clientType\":\"connectedapp\",\"_msgId\":\"be326e98-a39e-4cec-8764-e"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 36815,
+    "keyword": "CDS",
+    "match": "cds",
+    "context": "....n..........9....cds.apiRegistry.c..h........l.M.....cds.api"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 36851,
+    "keyword": "CDS",
+    "match": "cds",
+    "context": "c..h........l.M.....cds.apiRegistry................D.......<..."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 36987,
+    "keyword": "CDS",
+    "match": "cds",
+    "context": "...............9....cds.apiRegistry.c..h..........M.....cds.api"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 37023,
+    "keyword": "CDS",
+    "match": "cds",
+    "context": "c..h..........M.....cds.apiRegistry........X.......P....n......"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 112841,
+    "keyword": "Halestorm",
+    "match": "Halestorm",
+    "context": "....l..o......8.....Halestorm, I Prevail........L.......D..T..!......"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 133922,
+    "keyword": "Halestorm",
+    "match": "Halestorm",
+    "context": ".......o......8.....Halestorm........D..T..!........c..h...........o."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 204492,
+    "keyword": "Halestorm",
+    "match": "Halestorm",
+    "context": ".......o......8.....Halestorm................D..T..!........c..h....."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 206426,
+    "keyword": "Halestorm",
+    "match": "Halestorm",
+    "context": ".......o......8.....Halestorm........4..T..!........c..h...........o."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 206486,
+    "keyword": "Halestorm",
+    "match": "Halestorm",
+    "context": ".......o......8.....Halestorm........D..T..!........c..h...........o."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 317233,
+    "keyword": "Halestorm",
+    "match": "Halestorm",
+    "context": "ee me in the dark?..Halestorm..can u see me in the dark?...........N."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 318225,
+    "keyword": "Halestorm",
+    "match": "Halestorm",
+    "context": ".......o......8.....Halestorm........ .......4..T..!........c..h....."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 318293,
+    "keyword": "Halestorm",
+    "match": "Halestorm",
+    "context": "....:..o......8.....Halestorm........D..T..!........c..h........_..o."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 345070,
+    "keyword": "Halestorm",
+    "match": "Halestorm",
+    "context": ".......o......8.....Halestorm................D..T..!........c..h....."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 112854,
+    "keyword": "Prevail",
+    "match": "Prevail",
+    "context": ".8.....Halestorm, I Prevail........L.......D..T..!........c..h....."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 82620,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "man.Z$...$me.hufman.androidautoidrive.calendar....0.$me.hufman.androidautoidr"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 82663,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "dar....0.$me.hufman.androidautoidrive.calendar....................r*Mg..c..h."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 82804,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "man.Z$...0me.hufman.androidautoidrive.notification.readout....0.0me.hufman.an"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 82859,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "out....0.0me.hufman.androidautoidrive.notification.readout.........5.......-."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 83632,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "man.Z$...!me.hufman.androidautoidrive.music....0.!me.hufman.androidautoidrive"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 83672,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "sic....0.!me.hufman.androidautoidrive.music....................r*Mg..c..h...."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 83810,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "man.Z$...#me.hufman.androidautoidrive.mapview....0.#me.hufman.androidautoidri"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 83852,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "iew....0.#me.hufman.androidautoidrive.mapview.........L.......D....n........."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 84223,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....%me.hufman.androidautoidrive.assistant........^.......V....A....d.3."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 84998,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "c..h..........a.>..Candroidautoidrive.assistant.com.google.android.googlequic"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 87652,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....0me.hufman.androidautoidrive.notification.readout.#\\...........,...."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 89253,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "c..h..........a.>...androidautoidrive.assistant.com.amazon.dee.app..NO......K"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 91766,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....0me.hufman.androidautoidrive.notification.readout..C^3.............."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 92039,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": ".. .M....$me.hufman.androidautoidrive.calendar.#\\...........P.......H..T..!.."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 92483,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "..E.M....$me.hufman.androidautoidrive.calendar..C^3.........P.......H..T..!.."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 93052,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "..?.M....!me.hufman.androidautoidrive.music.#\\...........P.......H..T..!....."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 93589,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "..d.M....!me.hufman.androidautoidrive.music..C^3.........P.......H..T..!....."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 101839,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music........P.......H..T..!........c.."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 102752,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "iU..Z$...!me.hufman.androidautoidrive.music........P.......H..T..!........c.."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 103276,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "c..h..........a.>..'androidautoidrive.com.android.bluetooth..NO......K.....`."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 106909,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "c..h..........a.>..,androidautoidrive.com.google.android.youtube..NO......K.."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 408237,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "man.Z$...0me.hufman.androidautoidrive.notification.readout....0.0me.hufman.an"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 408292,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "out....0.0me.hufman.androidautoidrive.notification.readout.........5.......-."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 409178,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "man.Z$...$me.hufman.androidautoidrive.calendar....0.$me.hufman.androidautoidr"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 409221,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "dar....0.$me.hufman.androidautoidrive.calendar....................r*Mg..c..h."
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 409362,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "man.Z$...#me.hufman.androidautoidrive.mapview....0.#me.hufman.androidautoidri"
+  },
+  {
+    "direction": "phone_to_hu",
+    "offset": 409404,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "iew....0.#me.hufman.androidautoidrive.mapview............................0K.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3177,
+    "keyword": "BMW",
+    "match": "BMW",
+    "context": "AP..true..hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_fro"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8527,
+    "keyword": "BMW",
+    "match": "BMW",
+    "context": "AP..true..hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_fro"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14360,
+    "keyword": "BMW",
+    "match": "BMW",
+    "context": "AP..true..hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_fro"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 19874,
+    "keyword": "BMW",
+    "match": "BMW",
+    "context": "AP..true..hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_fro"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 27312,
+    "keyword": "BMW",
+    "match": "BMW",
+    "context": "AP..true..hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_fro"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 33360,
+    "keyword": "BMW",
+    "match": "BMW",
+    "context": "AP..true..hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_fro"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 90455,
+    "keyword": "BMW",
+    "match": "BMW",
+    "context": "AP..true..hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_fro"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 96531,
+    "keyword": "BMW",
+    "match": "BMW",
+    "context": "AP..true..hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_fro"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 102364,
+    "keyword": "BMW",
+    "match": "BMW",
+    "context": "AP..true..hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_fro"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 108046,
+    "keyword": "BMW",
+    "match": "BMW",
+    "context": "AP..true..hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_fro"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 60792,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`..............s.......k"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 60905,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`............C^3F......."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 61504,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`............C^3T......."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 62110,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`............C^3f......."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 62545,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`............C^3r......."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 72908,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`............C^3........"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 73903,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`......................."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 77829,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`..............,.......$"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 79234,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`..........C^3.........q"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 79355,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`..........C^3.........."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 79502,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`....c...............\\.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 82477,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`............C^3........"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 82602,
+    "keyword": "music",
+    "match": "music",
+    "context": "n.androidautoidrive.music..........K.....`............C^3........"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 35967,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h...`....H.......9..7.O{\"multimedia\""
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 36006,
+    "keyword": "media",
+    "match": "media",
+    "context": ".......9..7.O{\"multimedia\":{\"title\":\"NowPlayingTrack\",\"artist\":\" "
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 36104,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia........,.......$....&.................c"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 36435,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h...`....M.......9..7.O{\"multimedia\""
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 36474,
+    "keyword": "media",
+    "match": "media",
+    "context": ".......9..7.O{\"multimedia\":{\"title\":\"NowPlayingTrack\",\"artist\":\" "
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 36572,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia............K.......,.......$....4C....."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 43122,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h...`............9..7.O{\"multimedia\""
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 43161,
+    "keyword": "media",
+    "match": "media",
+    "context": ".......9..7.O{\"multimedia\":{\"title\":\"NowPlayingTrack\",\"artist\":\" "
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 43259,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia........l.......d....=i...9....driving.o"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 64260,
+    "keyword": "media",
+    "match": "Media",
+    "context": "d\":\"0\",\"menuTitle\":\"Media/Radio\",\"appType\":\"1\",\"shiftDirections\":"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 65011,
+    "keyword": "media",
+    "match": "Media",
+    "context": "d\":\"0\",\"menuTitle\":\"Media/Radio\",\"appType\":\"1\",\"shiftDirections\":"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 65340,
+    "keyword": "media",
+    "match": "Media",
+    "context": "d\":\"0\",\"menuTitle\":\"Media/Radio\",\"appType\":\"1\",\"shiftDirections\":"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 65669,
+    "keyword": "media",
+    "match": "Media",
+    "context": "d\":\"0\",\"menuTitle\":\"Media/Radio\",\"appType\":\"1\",\"shiftDirections\":"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 69615,
+    "keyword": "media",
+    "match": "Media",
+    "context": "d\":\"0\",\"menuTitle\":\"Media/Radio\",\"appType\":\"1\",\"shiftDirections\":"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 69790,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h...`............9..7.O{\"multimedia\""
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 69829,
+    "keyword": "media",
+    "match": "media",
+    "context": ".......9..7.O{\"multimedia\":{\"title\":\"NowPlayingTrack\",\"artist\":\" "
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 70379,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h...`............9..7.O{\"multimedia\""
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 70418,
+    "keyword": "media",
+    "match": "media",
+    "context": ".......9..7.O{\"multimedia\":{\"title\":\"NowPlayingTrack\",\"artist\":\" "
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 70541,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h...`............9..7.O{\"multimedia\""
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 70580,
+    "keyword": "media",
+    "match": "media",
+    "context": ".......9..7.O{\"multimedia\":{\"title\":\"NowPlayingTrack\",\"artist\":\" "
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 75418,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h...`............9..7.@{\"multimedia\""
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 75457,
+    "keyword": "media",
+    "match": "media",
+    "context": ".......9..7.@{\"multimedia\":{\"title\":\" \",\"artist\":\" \",\"album\":\" \","
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 75573,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia.c..h...`............9..7.@{\"multimedia\""
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 75612,
+    "keyword": "media",
+    "match": "media",
+    "context": ".......9..7.@{\"multimedia\":{\"title\":\" \",\"artist\":\" \",\"album\":\" \","
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 75695,
+    "keyword": "media",
+    "match": "media",
+    "context": ".entertainment.multimedia........7......./..=.E...F.....x.D......"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 77661,
+    "keyword": "media",
+    "match": "Media",
+    "context": "d\":\"0\",\"menuTitle\":\"Media/Radio\",\"appType\":\"1\",\"shiftDirections\":"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 549,
+    "keyword": "RSA",
+    "match": "RSA",
+    "context": "T_INTERIORLIGHT_BOWERSANDWILKINS..false..seat_front_massage..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5899,
+    "keyword": "RSA",
+    "match": "RSA",
+    "context": "T_INTERIORLIGHT_BOWERSANDWILKINS..false..seat_front_massage..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11732,
+    "keyword": "RSA",
+    "match": "RSA",
+    "context": "T_INTERIORLIGHT_BOWERSANDWILKINS..false..seat_front_massage..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 17246,
+    "keyword": "RSA",
+    "match": "RSA",
+    "context": "T_INTERIORLIGHT_BOWERSANDWILKINS..false..seat_front_massage..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 24684,
+    "keyword": "RSA",
+    "match": "RSA",
+    "context": "T_INTERIORLIGHT_BOWERSANDWILKINS..false..seat_front_massage..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 30732,
+    "keyword": "RSA",
+    "match": "RSA",
+    "context": "T_INTERIORLIGHT_BOWERSANDWILKINS..false..seat_front_massage..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 87827,
+    "keyword": "RSA",
+    "match": "RSA",
+    "context": "T_INTERIORLIGHT_BOWERSANDWILKINS..false..seat_front_massage..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 93903,
+    "keyword": "RSA",
+    "match": "RSA",
+    "context": "T_INTERIORLIGHT_BOWERSANDWILKINS..false..seat_front_massage..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 99736,
+    "keyword": "RSA",
+    "match": "RSA",
+    "context": "T_INTERIORLIGHT_BOWERSANDWILKINS..false..seat_front_massage..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 105418,
+    "keyword": "RSA",
+    "match": "RSA",
+    "context": "T_INTERIORLIGHT_BOWERSANDWILKINS..false..seat_front_massage..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2888,
+    "keyword": "CDS",
+    "match": "CDS",
+    "context": "RS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.country"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8238,
+    "keyword": "CDS",
+    "match": "CDS",
+    "context": "RS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.country"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14071,
+    "keyword": "CDS",
+    "match": "CDS",
+    "context": "RS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.country"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 19585,
+    "keyword": "CDS",
+    "match": "CDS",
+    "context": "RS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.country"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 27023,
+    "keyword": "CDS",
+    "match": "CDS",
+    "context": "RS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.country"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 33071,
+    "keyword": "CDS",
+    "match": "CDS",
+    "context": "RS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.country"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 90166,
+    "keyword": "CDS",
+    "match": "CDS",
+    "context": "RS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.country"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 96242,
+    "keyword": "CDS",
+    "match": "CDS",
+    "context": "RS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.country"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 102075,
+    "keyword": "CDS",
+    "match": "CDS",
+    "context": "RS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.country"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 107757,
+    "keyword": "CDS",
+    "match": "CDS",
+    "context": "RS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.country"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 60774,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "..P.M....!me.hufman.androidautoidrive.music..........K.....`..............s.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 60887,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music..........K.....`............C^3F."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 61486,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music..........K.....`............C^3T."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 62092,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music..........K.....`............C^3f."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 62527,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music..........K.....`............C^3r."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 72890,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music..........K.....`............C^3.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 73885,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "..P.M....!me.hufman.androidautoidrive.music..........K.....`................."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 77811,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "..P.M....!me.hufman.androidautoidrive.music..........K.....`..............,.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 79216,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music..........K.....`..........C^3...."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 79337,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music..........K.....`..........C^3...."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 79484,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music..........K.....`....c............"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 82459,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music..........K.....`............C^3.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 82584,
+    "keyword": "androidautoidrive",
+    "match": "androidautoidrive",
+    "context": "....M....!me.hufman.androidautoidrive.music..........K.....`............C^3.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 299,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".....K.....`.....`..iva_ENT_DVD_SINGLE..false..iva_ENT_HUDRIVE_I"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 326,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_DVD_SINGLE..false..iva_ENT_HUDRIVE_INSTALLED..true..iva_ENT_RAD"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 359,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "VE_INSTALLED..true..iva_ENT_RADIO_COUNTRY_US..false..tts..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 404,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".false..tts..false..iva_ENT_SDARS_ALBUM_ART..true..iva_ENT_RADIO"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 435,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "RS_ALBUM_ART..true..iva_ENT_RADIO_RDS..true..iva_ENT_AUX_RSE..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 460,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NT_RADIO_RDS..true..iva_ENT_AUX_RSE..false..ambient_light_bright"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 517,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_brightness..false.,iva_MYV_LIGHT_INTERIORLIGHT_BOWERSANDWILKINS"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 597,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ont_massage..false..iva_TC_FRONT_SEAT_VENTILATION..false..iva_EN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 635,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "VENTILATION..false..iva_ENT_RADIO_DMB..false..iva_ADDRESS_FORMAT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 661,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "T_RADIO_DMB..false..iva_ADDRESS_FORMAT_US..false..iva_ENT_RADIO_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 691,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "S_FORMAT_US..false..iva_ENT_RADIO_IBOC..false..iva_CDMM_BLUETOOT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 718,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_RADIO_IBOC..false..iva_CDMM_BLUETOOTH_AUDIO..true..seat_auto_cl"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 776,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "uto_climate..false..iva_TC_SLIDING_ROOF..false..iva_ENT_USB_AUDI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 804,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LIDING_ROOF..false..iva_ENT_USB_AUDIO_FIRST..true..vehicle.produ"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 860,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "le.productline..lk..iva_TC_DIAGNOSE_TEST_MODE..false..light_swor"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 939,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "isplay-height..480..iva_TC_TYPE_STEERING_LEFT..true..iva_TC_FRON"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 972,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TEERING_LEFT..true..iva_TC_FRONT_SEAT_LORDOSE..false..iva_ENT_US"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1006,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_LORDOSE..false..iva_ENT_USB_VIDEO_FOR_USB_1..false..iva_TC_V"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1042,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "O_FOR_USB_1..false..iva_TC_V12_ENGINE_AVAILABLE..false..iva_ENT_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1078,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "E_AVAILABLE..false..iva_ENT_GLOBAL_GRAPHIC..true..iva_TC_AMBIENT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1108,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "OBAL_GRAPHIC..true..iva_TC_AMBIENT_LIGHT..false..alignment-right"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1160,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "gnment-right..true..iva_ENT_SDARS_ALBUM_COVER..true..iva_TC_WLAN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1193,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_ALBUM_COVER..true..iva_TC_WLAN_HOTSPOT..false..iva_TC_PANORAMIC"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1221,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LAN_HOTSPOT..false..iva_TC_PANORAMIC_ROOF..false..iva_ENT_IAP_BL"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1251,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ORAMIC_ROOF..false..iva_ENT_IAP_BLUETOOTH_COVERART..true..climat"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1313,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ate_4_zones..false..iva_ENT_BLURAY_SINGLE..false..iva_ENT_RADIO_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1343,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "URAY_SINGLE..false..iva_ENT_RADIO_DAB..false..iva_STEERING_SIDE_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1369,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "T_RADIO_DAB..false..iva_STEERING_SIDE_LEFT..true..seat_ventilati"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1430,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ation_front..false..iva_TC_FRONT_SEAT_HEATING..false..iva_TC_FRO"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1464,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_HEATING..false..iva_TC_FRONT_SEAT_MULTIFUNCTION..false..iva_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1504,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_ENT_DVD..false..iva_TC_TYPE_STEERING_RIG"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1524,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "iva_ENT_DVD..false..iva_TC_TYPE_STEERING_RIGHT..false.$iva_MYV_L"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1559,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ERING_RIGHT..false.$iva_MYV_LIGHT_INTERIORLIGHT_CHECKBOX..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1628,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "display-width..800..iva_ENT_TV_BML..false..seat_heating_front..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1678,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ating_front..false..iva_TC_AMBIENT_LIGHT_BRIGHTNESS..false..iva_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1718,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_BRIGHTNESS..false..iva_ENT_RADIO_SDARS..false..iva_ENT_TRAFFIC."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1746,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "RADIO_SDARS..false..iva_ENT_TRAFFIC..false..panoramic_roof_illum"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1805,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "illuminated..false..iva_CAR_SHARING..false..iva_ENT_AUX_HU..fals"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1829,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "CAR_SHARING..false..iva_ENT_AUX_HU..false..einzel_sa..false..iva"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1870,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "..einzel_sa..false..iva_TC_TOUCH_COMMAND..false.,iva_TC_AMBIENT_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1899,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UCH_COMMAND..false.,iva_TC_AMBIENT_LIGHT_COLOR_SWITCH_10_ENTRIES"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 1984,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ltifunction..false..iva_ENT_TV..false..iva_ENT_RADIO_AM..true..i"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2003,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".iva_ENT_TV..false..iva_ENT_RADIO_AM..true..ionisation..false..i"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2046,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".ionisation..false..iva_TC_SEAT_TRAINING..false..iva_ENT_TP..tru"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2075,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "AT_TRAINING..false..iva_ENT_TP..true..iva_TC_LIGHT_SWORD..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2093,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "..iva_ENT_TP..true..iva_TC_LIGHT_SWORD..false..iva_TC_CLIMATE_4_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2120,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LIGHT_SWORD..false..iva_TC_CLIMATE_4_ZONES..false..touch_command"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2173,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "uch_command..false..iva_STEERING_SIDE_RIGHT..false..iva_ENT_USB_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2205,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_SIDE_RIGHT..false..iva_ENT_USB_VIDEO_FOR_IPOD_2..false..speech2"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2262,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "speech2text..false..iva_MYV_LIGHT_INTERIORLIGHT..false..hmi.vers"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2400,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "021-10-14 11:52:20..iva_PHONE_MAIN..true..hmi.role..HU..iva_ARMR"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2436,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "true..hmi.role..HU..iva_ARMREST_ALL_CONTROL..false..iva_TC_REAR_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2468,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ALL_CONTROL..false..iva_TC_REAR_CURTAINS..false..iva_MIRACAST..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2497,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "AR_CURTAINS..false..iva_MIRACAST..false..ambient_light_color_swi"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2567,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "alse..a4axl..false..iva_MYV_LIGHT_INTERIORLIGHT_REDUCEWHILEDRIVI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2662,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "light_sight..false..iva_TC_FOLDER_BROWSING..false..iva_TC_SEAT_A"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2693,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ER_BROWSING..false..iva_TC_SEAT_AUTO_CLIMATE..false..iva_ENT_BLU"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2726,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UTO_CLIMATE..false..iva_ENT_BLURAY_RSE..false..seat_rear_massage"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2779,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ear_massage..false.#iva_TC_HIGH_END_AUDIO_BW_ONLY_LIGHT..false.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2836,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "false..inbox..true.$iva_MYV_LIGHT_INTERIORLIGHT_COLORS_6..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2881,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "HT_COLORS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.c"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 2972,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "eating_rear..false.(iva_MYV_LIGHT_INTERIORLIGHT_LICHTSCHWERT..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3051,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ar_extended..false..iva_PHONE_MPC..true..map..false..wlan_hotspo"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3105,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "lan_hotspot..false..iva_TC_HIGH_END_AUDIO_BW_FULL..false..iva_EN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3143,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "DIO_BW_FULL..false..iva_ENT_BTAS_IAP..true..hmi.type..BMW ID6L.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3187,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_front_lordose."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3341,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ductiondate..07.17.!iva_TC_HIGH_END_AUDIO_BW_NO_LIGHT..false..hi"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3409,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "nd_audio_bw..false..iva_TC_REAR_SEAT_VENTILATION..false..vehicle"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3514,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ltifunction..false..iva_NAVI_EXISTS..false..iva_ENT_USB_AUDIO_SE"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3538,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NAVI_EXISTS..false..iva_ENT_USB_AUDIO_SECOND..false..iva_ENT_MTP"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3571,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UDIO_SECOND..false..iva_ENT_MTP_OFF..false.&iva_MYV_LIGHT_INTERI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3595,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ENT_MTP_OFF..false.&iva_MYV_LIGHT_INTERIORLIGHT_BRIGHTNESS..fals"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3642,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_BRIGHTNESS..false..iva_PHONE_CONFERENCE_CALL..true..eco_conf_cl"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3700,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "onf_climate..false.)iva_MYV_LIGHT_INTERIORLIGHT_PANORAMICROOF..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3750,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NORAMICROOF..false..iva_SEAT_FRONT_MASSAGE..false..iva_ENT_CDVD_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3781,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ONT_MASSAGE..false..iva_ENT_CDVD_CHANGER..false..speedlock..true"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3827,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "e..speedlock..true..iva_ADDRESSBOOK..true..rear_and_side_window_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3887,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "dow_curtain..false.!iva_TC_PANORAMIC_ROOF_ILLUMINATED..false..na"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3942,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "false..navi..false..iva_CLIMATE_SCENT_IONISATION..false..iva_SEA"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 3979,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_IONISATION..false..iva_SEAT_TRAINING..false..ambient_light..fal"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4027,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "bient_light..false..iva_PHONE_OBJECT_PUSH_MENUE..false..iva_CDMM"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4063,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_PUSH_MENUE..false..iva_CDMM_TV_CAS_MENU..false.)iva_TC_PANORAMI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4092,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TV_CAS_MENU..false.)iva_TC_PANORAMIC_ROOF_ILLUMINATED_COUPLED..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4142,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TED_COUPLED..false.%iva_MYV_LIGHT_INTERIORLIGHT_COLORS_11..false"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4188,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "T_COLORS_11..false..iva_ENT_TV_AUDIOTRACK..false..iva_OFFICE..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4218,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_AUDIOTRACK..false..iva_OFFICE..false..iva_ENT_CD_SINGLE..true.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4237,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".iva_OFFICE..false..iva_ENT_CD_SINGLE..true..iva_ENT_USB_COVER_A"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4262,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NT_CD_SINGLE..true..iva_ENT_USB_COVER_ART_IPOD..true..eco_conf_s"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4325,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "seatheating..false..iva_SEAT_REAR_MULTIFUNCTION..false..iva_ENT_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4361,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_ENT_TV_SUBTITLES..false..iva_DMB_FOR_TV."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4390,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "V_SUBTITLES..false..iva_DMB_FOR_TV..false..iva_ENT_DVD_RSE..true"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4413,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_DMB_FOR_TV..false..iva_ENT_DVD_RSE..true..iva_ENT_GRACENOTE_MLT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4436,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_ENT_DVD_RSE..true..iva_ENT_GRACENOTE_MLT..true..iva_TC_EINZEL_S"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4465,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "RACENOTE_MLT..true..iva_TC_EINZEL_SA..false..iva_NAVI_SHOW_GEOCO"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4490,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "C_EINZEL_SA..false..iva_NAVI_SHOW_GEOCOORDINATES..true..iva_TC_I"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4526,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "OCOORDINATES..true..iva_TC_IONISATION..false..iva_CAPTAINCHAIR.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4552,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_IONISATION..false..iva_CAPTAINCHAIR..false..iva_TC_REAR_SEAT_MU"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4577,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "APTAINCHAIR..false..iva_TC_REAR_SEAT_MULTIFUNCTION..false..iva_T"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4616,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_TC_REAR_SEAT_MASSAGE..false..sliding_roo"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4670,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "liding_roof..false..iva_SEAT_REAR_MASSAGE..false..iva_ENT_TV_TEL"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4700,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAR_MASSAGE..false..iva_ENT_TV_TELETEXT..false..iva_TV_CHANNEL_D"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4728,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TV_TELETEXT..false..iva_TV_CHANNEL_DIVERSITY..false..iva_TC_FRON"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4761,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "L_DIVERSITY..false..iva_TC_FRONT_SEAT_MASSAGE..false..iva_TC_REA"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4795,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_MASSAGE..false..iva_TC_REAR_SEAT_HEATING..false..iva_ENT_USB"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4828,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_HEATING..false..iva_ENT_USB_COVER_ART_USB..true..iva_PHONE_R"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4861,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "OVER_ART_USB..true..iva_PHONE_RSE..false..captainchair..false..p"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4932,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "c_roof..not_active..iva_TC_REAR_WINDOW_CURTAIN..false..iva_ENT_V"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4967,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "DOW_CURTAIN..false..iva_ENT_VIDEO..false..iva_HVAC_SEATHEAT_DIST"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 4989,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "a_ENT_VIDEO..false..iva_HVAC_SEATHEAT_DISTR_FOND..false..svs..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5038,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".false..svs..false..iva_ENT_MC_AVAILABLE..false..iva_ENT_USB_AUD"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5067,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "C_AVAILABLE..false..iva_ENT_USB_AUDIO_THIRD..false..iva_TC_PANOR"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5099,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "AUDIO_THIRD..false..iva_TC_PANORAMIC_ROOF_SPLIT..false..iva_COUN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5135,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_ROOF_SPLIT..false..iva_COUNTRY_JAPAN..false..voice..false..iva_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5175,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "alse..voice..false..iva_TC_CAPTAINCHAIR..false..seat_ventilation"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5233,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "lation_rear..false..iva_TC_CLIMATE_REAR..false..iva_ENT_RADIO_FR"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5261,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LIMATE_REAR..false..iva_ENT_RADIO_FREQ_COLUMN..false..iva_ENT_US"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5295,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "FREQ_COLUMN..false..iva_ENT_USB_VIDEO_FOR_IPOD_1..false..iva_ENT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5332,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_FOR_IPOD_1..false..iva_ENT_USB_VIDEO_FOR_USB_2..false..iva_SEAT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5368,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "O_FOR_USB_2..false..iva_SEAT_MULTIFUNCTION..false..iva_COUNTRY_C"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5399,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_COUNTRY_CHINA..false.+iva_TC_AMBIENT_LIG"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5425,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UNTRY_CHINA..false.+iva_TC_AMBIENT_LIGHT_COLOR_SWITCH_7_ENTRIES."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5477,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "H_7_ENTRIES..false..iva_A4A_FOR_ANDROID..true..iva_ENT_RADIO_DMB"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5504,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_FOR_ANDROID..true..iva_ENT_RADIO_DMB_VIDEO..false.............."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5649,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".....K.....`.....`..iva_ENT_DVD_SINGLE..false..iva_ENT_HUDRIVE_I"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5676,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_DVD_SINGLE..false..iva_ENT_HUDRIVE_INSTALLED..true..iva_ENT_RAD"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5709,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "VE_INSTALLED..true..iva_ENT_RADIO_COUNTRY_US..false..tts..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5754,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".false..tts..false..iva_ENT_SDARS_ALBUM_ART..true..iva_ENT_RADIO"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5785,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "RS_ALBUM_ART..true..iva_ENT_RADIO_RDS..true..iva_ENT_AUX_RSE..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5810,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NT_RADIO_RDS..true..iva_ENT_AUX_RSE..false..ambient_light_bright"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5867,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_brightness..false.,iva_MYV_LIGHT_INTERIORLIGHT_BOWERSANDWILKINS"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5947,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ont_massage..false..iva_TC_FRONT_SEAT_VENTILATION..false..iva_EN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 5985,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "VENTILATION..false..iva_ENT_RADIO_DMB..false..iva_ADDRESS_FORMAT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6011,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "T_RADIO_DMB..false..iva_ADDRESS_FORMAT_US..false..iva_ENT_RADIO_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6041,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "S_FORMAT_US..false..iva_ENT_RADIO_IBOC..false..iva_CDMM_BLUETOOT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6068,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_RADIO_IBOC..false..iva_CDMM_BLUETOOTH_AUDIO..true..seat_auto_cl"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6126,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "uto_climate..false..iva_TC_SLIDING_ROOF..false..iva_ENT_USB_AUDI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6154,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LIDING_ROOF..false..iva_ENT_USB_AUDIO_FIRST..true..vehicle.produ"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6210,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "le.productline..lk..iva_TC_DIAGNOSE_TEST_MODE..false..light_swor"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6289,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "isplay-height..480..iva_TC_TYPE_STEERING_LEFT..true..iva_TC_FRON"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6322,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TEERING_LEFT..true..iva_TC_FRONT_SEAT_LORDOSE..false..iva_ENT_US"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6356,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_LORDOSE..false..iva_ENT_USB_VIDEO_FOR_USB_1..false..iva_TC_V"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6392,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "O_FOR_USB_1..false..iva_TC_V12_ENGINE_AVAILABLE..false..iva_ENT_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6428,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "E_AVAILABLE..false..iva_ENT_GLOBAL_GRAPHIC..true..iva_TC_AMBIENT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6458,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "OBAL_GRAPHIC..true..iva_TC_AMBIENT_LIGHT..false..alignment-right"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6510,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "gnment-right..true..iva_ENT_SDARS_ALBUM_COVER..true..iva_TC_WLAN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6543,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_ALBUM_COVER..true..iva_TC_WLAN_HOTSPOT..false..iva_TC_PANORAMIC"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6571,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LAN_HOTSPOT..false..iva_TC_PANORAMIC_ROOF..false..iva_ENT_IAP_BL"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6601,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ORAMIC_ROOF..false..iva_ENT_IAP_BLUETOOTH_COVERART..true..climat"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6663,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ate_4_zones..false..iva_ENT_BLURAY_SINGLE..false..iva_ENT_RADIO_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6693,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "URAY_SINGLE..false..iva_ENT_RADIO_DAB..false..iva_STEERING_SIDE_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6719,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "T_RADIO_DAB..false..iva_STEERING_SIDE_LEFT..true..seat_ventilati"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6780,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ation_front..false..iva_TC_FRONT_SEAT_HEATING..false..iva_TC_FRO"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6814,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_HEATING..false..iva_TC_FRONT_SEAT_MULTIFUNCTION..false..iva_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6854,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_ENT_DVD..false..iva_TC_TYPE_STEERING_RIG"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6874,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "iva_ENT_DVD..false..iva_TC_TYPE_STEERING_RIGHT..false.$iva_MYV_L"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6909,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ERING_RIGHT..false.$iva_MYV_LIGHT_INTERIORLIGHT_CHECKBOX..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 6978,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "display-width..800..iva_ENT_TV_BML..false..seat_heating_front..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7028,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ating_front..false..iva_TC_AMBIENT_LIGHT_BRIGHTNESS..false..iva_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7068,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_BRIGHTNESS..false..iva_ENT_RADIO_SDARS..false..iva_ENT_TRAFFIC."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7096,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "RADIO_SDARS..false..iva_ENT_TRAFFIC..false..panoramic_roof_illum"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7155,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "illuminated..false..iva_CAR_SHARING..false..iva_ENT_AUX_HU..fals"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7179,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "CAR_SHARING..false..iva_ENT_AUX_HU..false..einzel_sa..false..iva"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7220,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "..einzel_sa..false..iva_TC_TOUCH_COMMAND..false.,iva_TC_AMBIENT_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7249,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UCH_COMMAND..false.,iva_TC_AMBIENT_LIGHT_COLOR_SWITCH_10_ENTRIES"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7334,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ltifunction..false..iva_ENT_TV..false..iva_ENT_RADIO_AM..true..i"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7353,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".iva_ENT_TV..false..iva_ENT_RADIO_AM..true..ionisation..false..i"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7396,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".ionisation..false..iva_TC_SEAT_TRAINING..false..iva_ENT_TP..tru"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7425,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "AT_TRAINING..false..iva_ENT_TP..true..iva_TC_LIGHT_SWORD..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7443,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "..iva_ENT_TP..true..iva_TC_LIGHT_SWORD..false..iva_TC_CLIMATE_4_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7470,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LIGHT_SWORD..false..iva_TC_CLIMATE_4_ZONES..false..touch_command"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7523,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "uch_command..false..iva_STEERING_SIDE_RIGHT..false..iva_ENT_USB_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7555,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_SIDE_RIGHT..false..iva_ENT_USB_VIDEO_FOR_IPOD_2..false..speech2"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7612,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "speech2text..false..iva_MYV_LIGHT_INTERIORLIGHT..false..hmi.vers"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7750,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "021-10-14 11:52:20..iva_PHONE_MAIN..true..hmi.role..HU..iva_ARMR"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7786,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "true..hmi.role..HU..iva_ARMREST_ALL_CONTROL..false..iva_TC_REAR_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7818,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ALL_CONTROL..false..iva_TC_REAR_CURTAINS..false..iva_MIRACAST..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7847,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "AR_CURTAINS..false..iva_MIRACAST..false..ambient_light_color_swi"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 7917,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "alse..a4axl..false..iva_MYV_LIGHT_INTERIORLIGHT_REDUCEWHILEDRIVI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8012,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "light_sight..false..iva_TC_FOLDER_BROWSING..false..iva_TC_SEAT_A"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8043,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ER_BROWSING..false..iva_TC_SEAT_AUTO_CLIMATE..false..iva_ENT_BLU"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8076,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UTO_CLIMATE..false..iva_ENT_BLURAY_RSE..false..seat_rear_massage"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8129,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ear_massage..false.#iva_TC_HIGH_END_AUDIO_BW_ONLY_LIGHT..false.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8186,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "false..inbox..true.$iva_MYV_LIGHT_INTERIORLIGHT_COLORS_6..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8231,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "HT_COLORS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.c"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8322,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "eating_rear..false.(iva_MYV_LIGHT_INTERIORLIGHT_LICHTSCHWERT..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8401,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ar_extended..false..iva_PHONE_MPC..true..map..false..wlan_hotspo"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8455,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "lan_hotspot..false..iva_TC_HIGH_END_AUDIO_BW_FULL..false..iva_EN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8493,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "DIO_BW_FULL..false..iva_ENT_BTAS_IAP..true..hmi.type..BMW ID6L.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8537,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_front_lordose."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8691,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ductiondate..07.17.!iva_TC_HIGH_END_AUDIO_BW_NO_LIGHT..false..hi"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8759,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "nd_audio_bw..false..iva_TC_REAR_SEAT_VENTILATION..false..vehicle"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8864,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ltifunction..false..iva_NAVI_EXISTS..false..iva_ENT_USB_AUDIO_SE"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8888,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NAVI_EXISTS..false..iva_ENT_USB_AUDIO_SECOND..false..iva_ENT_MTP"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8921,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UDIO_SECOND..false..iva_ENT_MTP_OFF..false.&iva_MYV_LIGHT_INTERI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8945,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ENT_MTP_OFF..false.&iva_MYV_LIGHT_INTERIORLIGHT_BRIGHTNESS..fals"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 8992,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_BRIGHTNESS..false..iva_PHONE_CONFERENCE_CALL..true..eco_conf_cl"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9050,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "onf_climate..false.)iva_MYV_LIGHT_INTERIORLIGHT_PANORAMICROOF..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9100,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NORAMICROOF..false..iva_SEAT_FRONT_MASSAGE..false..iva_ENT_CDVD_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9131,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ONT_MASSAGE..false..iva_ENT_CDVD_CHANGER..false..speedlock..true"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9177,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "e..speedlock..true..iva_ADDRESSBOOK..true..rear_and_side_window_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9237,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "dow_curtain..false.!iva_TC_PANORAMIC_ROOF_ILLUMINATED..false..na"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9292,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "false..navi..false..iva_CLIMATE_SCENT_IONISATION..false..iva_SEA"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9329,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_IONISATION..false..iva_SEAT_TRAINING..false..ambient_light..fal"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9377,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "bient_light..false..iva_PHONE_OBJECT_PUSH_MENUE..false..iva_CDMM"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9413,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_PUSH_MENUE..false..iva_CDMM_TV_CAS_MENU..false.)iva_TC_PANORAMI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9442,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TV_CAS_MENU..false.)iva_TC_PANORAMIC_ROOF_ILLUMINATED_COUPLED..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9492,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TED_COUPLED..false.%iva_MYV_LIGHT_INTERIORLIGHT_COLORS_11..false"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9538,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "T_COLORS_11..false..iva_ENT_TV_AUDIOTRACK..false..iva_OFFICE..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9568,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_AUDIOTRACK..false..iva_OFFICE..false..iva_ENT_CD_SINGLE..true.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9587,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".iva_OFFICE..false..iva_ENT_CD_SINGLE..true..iva_ENT_USB_COVER_A"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9612,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NT_CD_SINGLE..true..iva_ENT_USB_COVER_ART_IPOD..true..eco_conf_s"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9675,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "seatheating..false..iva_SEAT_REAR_MULTIFUNCTION..false..iva_ENT_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9711,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_ENT_TV_SUBTITLES..false..iva_DMB_FOR_TV."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9740,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "V_SUBTITLES..false..iva_DMB_FOR_TV..false..iva_ENT_DVD_RSE..true"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9763,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_DMB_FOR_TV..false..iva_ENT_DVD_RSE..true..iva_ENT_GRACENOTE_MLT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9786,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_ENT_DVD_RSE..true..iva_ENT_GRACENOTE_MLT..true..iva_TC_EINZEL_S"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9815,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "RACENOTE_MLT..true..iva_TC_EINZEL_SA..false..iva_NAVI_SHOW_GEOCO"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9840,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "C_EINZEL_SA..false..iva_NAVI_SHOW_GEOCOORDINATES..true..iva_TC_I"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9876,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "OCOORDINATES..true..iva_TC_IONISATION..false..iva_CAPTAINCHAIR.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9902,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_IONISATION..false..iva_CAPTAINCHAIR..false..iva_TC_REAR_SEAT_MU"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9927,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "APTAINCHAIR..false..iva_TC_REAR_SEAT_MULTIFUNCTION..false..iva_T"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 9966,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_TC_REAR_SEAT_MASSAGE..false..sliding_roo"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10020,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "liding_roof..false..iva_SEAT_REAR_MASSAGE..false..iva_ENT_TV_TEL"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10050,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAR_MASSAGE..false..iva_ENT_TV_TELETEXT..false..iva_TV_CHANNEL_D"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10078,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TV_TELETEXT..false..iva_TV_CHANNEL_DIVERSITY..false..iva_TC_FRON"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10111,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "L_DIVERSITY..false..iva_TC_FRONT_SEAT_MASSAGE..false..iva_TC_REA"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10145,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_MASSAGE..false..iva_TC_REAR_SEAT_HEATING..false..iva_ENT_USB"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10178,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_HEATING..false..iva_ENT_USB_COVER_ART_USB..true..iva_PHONE_R"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10211,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "OVER_ART_USB..true..iva_PHONE_RSE..false..captainchair..false..p"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10282,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "c_roof..not_active..iva_TC_REAR_WINDOW_CURTAIN..false..iva_ENT_V"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10317,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "DOW_CURTAIN..false..iva_ENT_VIDEO..false..iva_HVAC_SEATHEAT_DIST"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10339,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "a_ENT_VIDEO..false..iva_HVAC_SEATHEAT_DISTR_FOND..false..svs..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10388,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".false..svs..false..iva_ENT_MC_AVAILABLE..false..iva_ENT_USB_AUD"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10417,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "C_AVAILABLE..false..iva_ENT_USB_AUDIO_THIRD..false..iva_TC_PANOR"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10449,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "AUDIO_THIRD..false..iva_TC_PANORAMIC_ROOF_SPLIT..false..iva_COUN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10485,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_ROOF_SPLIT..false..iva_COUNTRY_JAPAN..false..voice..false..iva_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10525,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "alse..voice..false..iva_TC_CAPTAINCHAIR..false..seat_ventilation"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10583,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "lation_rear..false..iva_TC_CLIMATE_REAR..false..iva_ENT_RADIO_FR"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10611,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LIMATE_REAR..false..iva_ENT_RADIO_FREQ_COLUMN..false..iva_ENT_US"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10645,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "FREQ_COLUMN..false..iva_ENT_USB_VIDEO_FOR_IPOD_1..false..iva_ENT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10682,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_FOR_IPOD_1..false..iva_ENT_USB_VIDEO_FOR_USB_2..false..iva_SEAT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10718,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "O_FOR_USB_2..false..iva_SEAT_MULTIFUNCTION..false..iva_COUNTRY_C"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10749,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_COUNTRY_CHINA..false.+iva_TC_AMBIENT_LIG"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10775,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UNTRY_CHINA..false.+iva_TC_AMBIENT_LIGHT_COLOR_SWITCH_7_ENTRIES."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10827,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "H_7_ENTRIES..false..iva_A4A_FOR_ANDROID..true..iva_ENT_RADIO_DMB"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 10854,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_FOR_ANDROID..true..iva_ENT_RADIO_DMB_VIDEO..false.............."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11482,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".....K.....`.....`..iva_ENT_DVD_SINGLE..false..iva_ENT_HUDRIVE_I"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11509,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_DVD_SINGLE..false..iva_ENT_HUDRIVE_INSTALLED..true..iva_ENT_RAD"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11542,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "VE_INSTALLED..true..iva_ENT_RADIO_COUNTRY_US..false..tts..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11587,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".false..tts..false..iva_ENT_SDARS_ALBUM_ART..true..iva_ENT_RADIO"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11618,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "RS_ALBUM_ART..true..iva_ENT_RADIO_RDS..true..iva_ENT_AUX_RSE..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11643,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NT_RADIO_RDS..true..iva_ENT_AUX_RSE..false..ambient_light_bright"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11700,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_brightness..false.,iva_MYV_LIGHT_INTERIORLIGHT_BOWERSANDWILKINS"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11780,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ont_massage..false..iva_TC_FRONT_SEAT_VENTILATION..false..iva_EN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11818,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "VENTILATION..false..iva_ENT_RADIO_DMB..false..iva_ADDRESS_FORMAT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11844,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "T_RADIO_DMB..false..iva_ADDRESS_FORMAT_US..false..iva_ENT_RADIO_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11874,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "S_FORMAT_US..false..iva_ENT_RADIO_IBOC..false..iva_CDMM_BLUETOOT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11901,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_RADIO_IBOC..false..iva_CDMM_BLUETOOTH_AUDIO..true..seat_auto_cl"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11959,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "uto_climate..false..iva_TC_SLIDING_ROOF..false..iva_ENT_USB_AUDI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 11987,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LIDING_ROOF..false..iva_ENT_USB_AUDIO_FIRST..true..vehicle.produ"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12043,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "le.productline..lk..iva_TC_DIAGNOSE_TEST_MODE..false..light_swor"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12122,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "isplay-height..480..iva_TC_TYPE_STEERING_LEFT..true..iva_TC_FRON"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12155,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TEERING_LEFT..true..iva_TC_FRONT_SEAT_LORDOSE..false..iva_ENT_US"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12189,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_LORDOSE..false..iva_ENT_USB_VIDEO_FOR_USB_1..false..iva_TC_V"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12225,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "O_FOR_USB_1..false..iva_TC_V12_ENGINE_AVAILABLE..false..iva_ENT_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12261,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "E_AVAILABLE..false..iva_ENT_GLOBAL_GRAPHIC..true..iva_TC_AMBIENT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12291,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "OBAL_GRAPHIC..true..iva_TC_AMBIENT_LIGHT..false..alignment-right"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12343,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "gnment-right..true..iva_ENT_SDARS_ALBUM_COVER..true..iva_TC_WLAN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12376,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_ALBUM_COVER..true..iva_TC_WLAN_HOTSPOT..false..iva_TC_PANORAMIC"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12404,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LAN_HOTSPOT..false..iva_TC_PANORAMIC_ROOF..false..iva_ENT_IAP_BL"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12434,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ORAMIC_ROOF..false..iva_ENT_IAP_BLUETOOTH_COVERART..true..climat"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12496,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ate_4_zones..false..iva_ENT_BLURAY_SINGLE..false..iva_ENT_RADIO_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12526,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "URAY_SINGLE..false..iva_ENT_RADIO_DAB..false..iva_STEERING_SIDE_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12552,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "T_RADIO_DAB..false..iva_STEERING_SIDE_LEFT..true..seat_ventilati"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12613,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ation_front..false..iva_TC_FRONT_SEAT_HEATING..false..iva_TC_FRO"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12647,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_HEATING..false..iva_TC_FRONT_SEAT_MULTIFUNCTION..false..iva_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12687,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_ENT_DVD..false..iva_TC_TYPE_STEERING_RIG"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12707,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "iva_ENT_DVD..false..iva_TC_TYPE_STEERING_RIGHT..false.$iva_MYV_L"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12742,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ERING_RIGHT..false.$iva_MYV_LIGHT_INTERIORLIGHT_CHECKBOX..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12811,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "display-width..800..iva_ENT_TV_BML..false..seat_heating_front..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12861,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ating_front..false..iva_TC_AMBIENT_LIGHT_BRIGHTNESS..false..iva_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12901,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_BRIGHTNESS..false..iva_ENT_RADIO_SDARS..false..iva_ENT_TRAFFIC."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12929,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "RADIO_SDARS..false..iva_ENT_TRAFFIC..false..panoramic_roof_illum"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 12988,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "illuminated..false..iva_CAR_SHARING..false..iva_ENT_AUX_HU..fals"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13012,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "CAR_SHARING..false..iva_ENT_AUX_HU..false..einzel_sa..false..iva"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13053,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "..einzel_sa..false..iva_TC_TOUCH_COMMAND..false.,iva_TC_AMBIENT_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13082,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UCH_COMMAND..false.,iva_TC_AMBIENT_LIGHT_COLOR_SWITCH_10_ENTRIES"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13167,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ltifunction..false..iva_ENT_TV..false..iva_ENT_RADIO_AM..true..i"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13186,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".iva_ENT_TV..false..iva_ENT_RADIO_AM..true..ionisation..false..i"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13229,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".ionisation..false..iva_TC_SEAT_TRAINING..false..iva_ENT_TP..tru"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13258,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "AT_TRAINING..false..iva_ENT_TP..true..iva_TC_LIGHT_SWORD..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13276,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "..iva_ENT_TP..true..iva_TC_LIGHT_SWORD..false..iva_TC_CLIMATE_4_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13303,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LIGHT_SWORD..false..iva_TC_CLIMATE_4_ZONES..false..touch_command"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13356,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "uch_command..false..iva_STEERING_SIDE_RIGHT..false..iva_ENT_USB_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13388,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_SIDE_RIGHT..false..iva_ENT_USB_VIDEO_FOR_IPOD_2..false..speech2"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13445,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "speech2text..false..iva_MYV_LIGHT_INTERIORLIGHT..false..hmi.vers"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13583,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "021-10-14 11:52:20..iva_PHONE_MAIN..true..hmi.role..HU..iva_ARMR"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13619,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "true..hmi.role..HU..iva_ARMREST_ALL_CONTROL..false..iva_TC_REAR_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13651,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ALL_CONTROL..false..iva_TC_REAR_CURTAINS..false..iva_MIRACAST..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13680,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "AR_CURTAINS..false..iva_MIRACAST..false..ambient_light_color_swi"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13750,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "alse..a4axl..false..iva_MYV_LIGHT_INTERIORLIGHT_REDUCEWHILEDRIVI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13845,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "light_sight..false..iva_TC_FOLDER_BROWSING..false..iva_TC_SEAT_A"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13876,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ER_BROWSING..false..iva_TC_SEAT_AUTO_CLIMATE..false..iva_ENT_BLU"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13909,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UTO_CLIMATE..false..iva_ENT_BLURAY_RSE..false..seat_rear_massage"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 13962,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ear_massage..false.#iva_TC_HIGH_END_AUDIO_BW_ONLY_LIGHT..false.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14019,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "false..inbox..true.$iva_MYV_LIGHT_INTERIORLIGHT_COLORS_6..false."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14064,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "HT_COLORS_6..false..iva_TC_CDS_FKA_LUM_SUPPORT..false..vehicle.c"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14155,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "eating_rear..false.(iva_MYV_LIGHT_INTERIORLIGHT_LICHTSCHWERT..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14234,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ar_extended..false..iva_PHONE_MPC..true..map..false..wlan_hotspo"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14288,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "lan_hotspot..false..iva_TC_HIGH_END_AUDIO_BW_FULL..false..iva_EN"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14326,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "DIO_BW_FULL..false..iva_ENT_BTAS_IAP..true..hmi.type..BMW ID6L.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14370,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "hmi.type..BMW ID6L..iva_ENT_HDMI_RSE..false..seat_front_lordose."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14524,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ductiondate..07.17.!iva_TC_HIGH_END_AUDIO_BW_NO_LIGHT..false..hi"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14592,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "nd_audio_bw..false..iva_TC_REAR_SEAT_VENTILATION..false..vehicle"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14697,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ltifunction..false..iva_NAVI_EXISTS..false..iva_ENT_USB_AUDIO_SE"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14721,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NAVI_EXISTS..false..iva_ENT_USB_AUDIO_SECOND..false..iva_ENT_MTP"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14754,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "UDIO_SECOND..false..iva_ENT_MTP_OFF..false.&iva_MYV_LIGHT_INTERI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14778,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ENT_MTP_OFF..false.&iva_MYV_LIGHT_INTERIORLIGHT_BRIGHTNESS..fals"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14825,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_BRIGHTNESS..false..iva_PHONE_CONFERENCE_CALL..true..eco_conf_cl"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14883,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "onf_climate..false.)iva_MYV_LIGHT_INTERIORLIGHT_PANORAMICROOF..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14933,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NORAMICROOF..false..iva_SEAT_FRONT_MASSAGE..false..iva_ENT_CDVD_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 14964,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "ONT_MASSAGE..false..iva_ENT_CDVD_CHANGER..false..speedlock..true"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15010,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "e..speedlock..true..iva_ADDRESSBOOK..true..rear_and_side_window_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15070,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "dow_curtain..false.!iva_TC_PANORAMIC_ROOF_ILLUMINATED..false..na"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15125,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "false..navi..false..iva_CLIMATE_SCENT_IONISATION..false..iva_SEA"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15162,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_IONISATION..false..iva_SEAT_TRAINING..false..ambient_light..fal"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15210,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "bient_light..false..iva_PHONE_OBJECT_PUSH_MENUE..false..iva_CDMM"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15246,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_PUSH_MENUE..false..iva_CDMM_TV_CAS_MENU..false.)iva_TC_PANORAMI"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15275,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TV_CAS_MENU..false.)iva_TC_PANORAMIC_ROOF_ILLUMINATED_COUPLED..f"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15325,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TED_COUPLED..false.%iva_MYV_LIGHT_INTERIORLIGHT_COLORS_11..false"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15371,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "T_COLORS_11..false..iva_ENT_TV_AUDIOTRACK..false..iva_OFFICE..fa"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15401,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_AUDIOTRACK..false..iva_OFFICE..false..iva_ENT_CD_SINGLE..true.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15420,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": ".iva_OFFICE..false..iva_ENT_CD_SINGLE..true..iva_ENT_USB_COVER_A"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15445,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "NT_CD_SINGLE..true..iva_ENT_USB_COVER_ART_IPOD..true..eco_conf_s"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15508,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "seatheating..false..iva_SEAT_REAR_MULTIFUNCTION..false..iva_ENT_"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15544,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_ENT_TV_SUBTITLES..false..iva_DMB_FOR_TV."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15573,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "V_SUBTITLES..false..iva_DMB_FOR_TV..false..iva_ENT_DVD_RSE..true"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15596,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_DMB_FOR_TV..false..iva_ENT_DVD_RSE..true..iva_ENT_GRACENOTE_MLT"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15619,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_ENT_DVD_RSE..true..iva_ENT_GRACENOTE_MLT..true..iva_TC_EINZEL_S"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15648,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "RACENOTE_MLT..true..iva_TC_EINZEL_SA..false..iva_NAVI_SHOW_GEOCO"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15673,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "C_EINZEL_SA..false..iva_NAVI_SHOW_GEOCOORDINATES..true..iva_TC_I"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15709,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "OCOORDINATES..true..iva_TC_IONISATION..false..iva_CAPTAINCHAIR.."
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15735,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "_IONISATION..false..iva_CAPTAINCHAIR..false..iva_TC_REAR_SEAT_MU"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15760,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "APTAINCHAIR..false..iva_TC_REAR_SEAT_MULTIFUNCTION..false..iva_T"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15799,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "LTIFUNCTION..false..iva_TC_REAR_SEAT_MASSAGE..false..sliding_roo"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15853,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "liding_roof..false..iva_SEAT_REAR_MASSAGE..false..iva_ENT_TV_TEL"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15883,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAR_MASSAGE..false..iva_ENT_TV_TELETEXT..false..iva_TV_CHANNEL_D"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15911,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "TV_TELETEXT..false..iva_TV_CHANNEL_DIVERSITY..false..iva_TC_FRON"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15944,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "L_DIVERSITY..false..iva_TC_FRONT_SEAT_MASSAGE..false..iva_TC_REA"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 15978,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_MASSAGE..false..iva_TC_REAR_SEAT_HEATING..false..iva_ENT_USB"
+  },
+  {
+    "direction": "hu_to_phone",
+    "offset": 16011,
+    "keyword": "iva_",
+    "match": "iva_",
+    "context": "EAT_HEATING..false..iva_ENT_USB_COVER_ART_USB..true..iva_PHONE_R"
+  }
+]

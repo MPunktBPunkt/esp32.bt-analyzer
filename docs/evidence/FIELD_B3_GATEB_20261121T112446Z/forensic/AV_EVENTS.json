@@ -1,0 +1,318 @@
+[
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102700,
+    "kind": "ETCH_INLINE",
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "bcl_off": 102692,
+    "method": "av_create",
+    "method_fqn": "av_create",
+    "type_hash": "0x6757fe04",
+    "fields_json": {
+      "_messageId": 1795260936029,
+      "instanceID": 14,
+      "id": "me.hufman.androidautoidrive.music"
+    },
+    "message_id": 1795260936029,
+    "in_reply_to": null,
+    "payload_len": 76,
+    "payload_sha256": "ec2caac0b4bac6e4e0abfad10f6f5ada0e2214b9ba18d7b95be53d7c4a013542"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102700,
+    "kind": "ETCH_REASSEMBLED",
+    "fragmented": false,
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "method": "av_create",
+    "method_fqn": "av_create",
+    "type_hash": "0x6757fe04",
+    "fields_json": {
+      "_messageId": 1795260936029,
+      "instanceID": 14,
+      "id": "me.hufman.androidautoidrive.music"
+    },
+    "message_id": 1795260936029,
+    "in_reply_to": null,
+    "payload_len": 76,
+    "payload_sha256": "ec2caac0b4bac6e4e0abfad10f6f5ada0e2214b9ba18d7b95be53d7c4a013542"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134074,
+    "kind": "ETCH_INLINE",
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "bcl_off": 134066,
+    "method": "av_requestConnection",
+    "method_fqn": "av_requestConnection",
+    "type_hash": "0x060bb705",
+    "fields_json": {
+      "connectionType": {
+        "_struct": "AVConnectionType",
+        "AV_CONNECTION_TYPE_ENTERTAINMENT": true
+      },
+      "handle": 1,
+      "_messageId": 1795260937768
+    },
+    "message_id": 1795260937768,
+    "in_reply_to": null,
+    "payload_len": 55,
+    "payload_sha256": "7b462e20060970551b3621ce2596d51a796ac10a73bbf83c399215925681023a"
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 134074,
+    "kind": "ETCH_REASSEMBLED",
+    "fragmented": false,
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "method": "av_requestConnection",
+    "method_fqn": "av_requestConnection",
+    "type_hash": "0x060bb705",
+    "fields_json": {
+      "connectionType": {
+        "_struct": "AVConnectionType",
+        "AV_CONNECTION_TYPE_ENTERTAINMENT": true
+      },
+      "handle": 1,
+      "_messageId": 1795260937768
+    },
+    "message_id": 1795260937768,
+    "in_reply_to": null,
+    "payload_len": 55,
+    "payload_sha256": "7b462e20060970551b3621ce2596d51a796ac10a73bbf83c399215925681023a"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68583,
+    "kind": "ETCH_INLINE",
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "bcl_off": 68575,
+    "method": "_result_av_create",
+    "method_fqn": "_result_av_create",
+    "type_hash": "0x9008d381",
+    "fields_json": {
+      "result": 1,
+      "_inReplyTo": 1795260936029,
+      "_messageId": 1795260388672429
+    },
+    "message_id": 1795260388672429,
+    "in_reply_to": 1795260936029,
+    "payload_len": 50,
+    "payload_sha256": "2c4792921991251bf0c4cf91a6892c129cd21d58b9c7634e127cf57da4ddedfb"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68583,
+    "kind": "ETCH_REASSEMBLED",
+    "fragmented": false,
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "method": "_result_av_create",
+    "method_fqn": "_result_av_create",
+    "type_hash": "0x9008d381",
+    "fields_json": {
+      "result": 1,
+      "_inReplyTo": 1795260936029,
+      "_messageId": 1795260388672429
+    },
+    "message_id": 1795260388672429,
+    "in_reply_to": 1795260936029,
+    "payload_len": 50,
+    "payload_sha256": "2c4792921991251bf0c4cf91a6892c129cd21d58b9c7634e127cf57da4ddedfb"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74749,
+    "kind": "ETCH_INLINE",
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "bcl_off": 74741,
+    "method": "_result_av_requestConnection",
+    "method_fqn": "_result_av_requestConnection",
+    "type_hash": "0x18eb4948",
+    "fields_json": {
+      "_inReplyTo": 1795260937768,
+      "_messageId": 1795260388672511
+    },
+    "message_id": 1795260388672511,
+    "in_reply_to": 1795260937768,
+    "payload_len": 44,
+    "payload_sha256": "9850031c1127cee26fe66382bbc89647693323f6f897a092057a6e9190c10673"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74749,
+    "kind": "ETCH_REASSEMBLED",
+    "fragmented": false,
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "method": "_result_av_requestConnection",
+    "method_fqn": "_result_av_requestConnection",
+    "type_hash": "0x18eb4948",
+    "fields_json": {
+      "_inReplyTo": 1795260937768,
+      "_messageId": 1795260388672511
+    },
+    "message_id": 1795260388672511,
+    "in_reply_to": 1795260937768,
+    "payload_len": 44,
+    "payload_sha256": "9850031c1127cee26fe66382bbc89647693323f6f897a092057a6e9190c10673"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75048,
+    "kind": "ETCH_INLINE",
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "bcl_off": 75040,
+    "method": "av_requestPlayerState",
+    "method_fqn": "av_requestPlayerState",
+    "type_hash": "0x2326c4c9",
+    "fields_json": {
+      "connectionType": {
+        "_struct": "AVConnectionType",
+        "AV_CONNECTION_TYPE_ENTERTAINMENT": true
+      },
+      "_messageId": 1795260388672515,
+      "handle": 1,
+      "playerState": {
+        "_struct": "AVPlayerState",
+        "AV_PLAYERSTATE_PLAY": true
+      }
+    },
+    "message_id": 1795260388672515,
+    "in_reply_to": null,
+    "payload_len": 74,
+    "payload_sha256": "a660ea4968c9af57935eb9db679a6b677e6771d434efe1fd1876d7d0a7c26d02"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75048,
+    "kind": "ETCH_REASSEMBLED",
+    "fragmented": false,
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "method": "av_requestPlayerState",
+    "method_fqn": "av_requestPlayerState",
+    "type_hash": "0x2326c4c9",
+    "fields_json": {
+      "connectionType": {
+        "_struct": "AVConnectionType",
+        "AV_CONNECTION_TYPE_ENTERTAINMENT": true
+      },
+      "_messageId": 1795260388672515,
+      "handle": 1,
+      "playerState": {
+        "_struct": "AVPlayerState",
+        "AV_PLAYERSTATE_PLAY": true
+      }
+    },
+    "message_id": 1795260388672515,
+    "in_reply_to": null,
+    "payload_len": 74,
+    "payload_sha256": "a660ea4968c9af57935eb9db679a6b677e6771d434efe1fd1876d7d0a7c26d02"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75709,
+    "kind": "ETCH_INLINE",
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "bcl_off": 75701,
+    "method": "av_connectionGranted",
+    "method_fqn": "av_connectionGranted",
+    "type_hash": "0x3d9d45b5",
+    "fields_json": {
+      "connectionType": {
+        "_struct": "AVConnectionType",
+        "AV_CONNECTION_TYPE_ENTERTAINMENT": true
+      },
+      "_messageId": 1795260388672521,
+      "handle": 1
+    },
+    "message_id": 1795260388672521,
+    "in_reply_to": null,
+    "payload_len": 55,
+    "payload_sha256": "7fe8ca8026c9bb1ec8aafc4bc50ea75f0691c948c46c97c3328a082ed2c9b863"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75709,
+    "kind": "ETCH_REASSEMBLED",
+    "fragmented": false,
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "method": "av_connectionGranted",
+    "method_fqn": "av_connectionGranted",
+    "type_hash": "0x3d9d45b5",
+    "fields_json": {
+      "connectionType": {
+        "_struct": "AVConnectionType",
+        "AV_CONNECTION_TYPE_ENTERTAINMENT": true
+      },
+      "_messageId": 1795260388672521,
+      "handle": 1
+    },
+    "message_id": 1795260388672521,
+    "in_reply_to": null,
+    "payload_len": 55,
+    "payload_sha256": "7fe8ca8026c9bb1ec8aafc4bc50ea75f0691c948c46c97c3328a082ed2c9b863"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76691,
+    "kind": "ETCH_INLINE",
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "bcl_off": 76683,
+    "method": "_result_av_playerStateChanged",
+    "method_fqn": "_result_av_playerStateChanged",
+    "type_hash": "0x8ae77f29",
+    "fields_json": {
+      "_inReplyTo": 1795260937953,
+      "_messageId": 1795260388672530
+    },
+    "message_id": 1795260388672530,
+    "in_reply_to": 1795260937953,
+    "payload_len": 44,
+    "payload_sha256": "f57adc591ba92b775c3b59270c1cc8ee2cecef94f57ab2ccdaf3645f15e2d6c6"
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76691,
+    "kind": "ETCH_REASSEMBLED",
+    "fragmented": false,
+    "bcl_src": 17,
+    "bcl_dest": 4004,
+    "method": "_result_av_playerStateChanged",
+    "method_fqn": "_result_av_playerStateChanged",
+    "type_hash": "0x8ae77f29",
+    "fields_json": {
+      "_inReplyTo": 1795260937953,
+      "_messageId": 1795260388672530
+    },
+    "message_id": 1795260388672530,
+    "in_reply_to": 1795260937953,
+    "payload_len": 44,
+    "payload_sha256": "f57adc591ba92b775c3b59270c1cc8ee2cecef94f57ab2ccdaf3645f15e2d6c6"
+  }
+]

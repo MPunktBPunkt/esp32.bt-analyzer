@@ -1,0 +1,336 @@
+{
+  "pad_u32": "0x02000000",
+  "formula": "Digest=MD5(challenge XOR MD5(02 00 00 00)); RSA-4096 PKCS#1 v1.5 DigestInfo-MD5",
+  "cert_sha256": "b4364f34ebc4bf282eeb2c8f97723011357d56db5d22477c47496e545ef28e49",
+  "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+  "pairs": [
+    {
+      "login_off": 6304,
+      "login_mid": 1795260913569,
+      "sig_sha256": "732e655d980394ec97a7ddcbc308f25bb768d5bb243ec40fd38d513513761248",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 108,
+        "challenge_hex": "8f873bb740471e52f36aa26093f580da",
+        "challenge_irt": 1795260913532,
+        "digest_md5_hex": "53447b38f96696ffb2a35bb05143b3b5",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 13888,
+      "login_mid": 1795260916917,
+      "sig_sha256": "1c0c5c8635d5237f9ed6ca0433d20cf8143a890a5f225338f300062a1f06e284",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 11157,
+        "challenge_hex": "cee0993409fcc7424cb956f9a5ff2134",
+        "challenge_irt": 1795260916880,
+        "digest_md5_hex": "5c20b4564c8bac940a42ba7e50cb8afb",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 22262,
+      "login_mid": 1795260920056,
+      "sig_sha256": "05f42fd81e3b363a50fae4998a2ccc396e43a4bd4a9d0bef1795928b7c84af8f",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 23830,
+        "challenge_hex": "865cebc6a40a189774baf807af78e17e",
+        "challenge_irt": 1795260920019,
+        "digest_md5_hex": "25281a5518053ae3bd2bf7b1c7dee2b2",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 29788,
+      "login_mid": 1795260921064,
+      "sig_sha256": "61fddc2ea03b18949b643715b5118ae1f7a6c9d014f2ad9163eee42903dfd218",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 29708,
+        "challenge_hex": "587bb2617779a3c333fabcd8f9de0c80",
+        "challenge_irt": 1795260921027,
+        "digest_md5_hex": "ee955bef5e79e3ea91476ebd6876f66d",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 79589,
+      "login_mid": 1795260933186,
+      "sig_sha256": "b1b2fa447dee37285409d566c571069239995105edf65477c1f1c7a2291edf98",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 49651,
+        "challenge_hex": "3af846de025f7676196e7ec9e65f473e",
+        "challenge_irt": 1795260933149,
+        "digest_md5_hex": "6054cfe70e2c7adc23750193ceeed8ee",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 80148,
+      "login_mid": 1795260933186,
+      "sig_sha256": "cd4955f5ef7cda90b943600f39383b2c8aac17107a28a3aa30dcd27d64342184",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 49846,
+        "challenge_hex": "daf99f51724314a53dd17d36af8ab6e9",
+        "challenge_irt": 1795260933149,
+        "digest_md5_hex": "633f346be33fecb9b14e23dc9cf92a10",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 80745,
+      "login_mid": 1795260933183,
+      "sig_sha256": "d673c6bab565196d7f2129fc1ab14c1658cc9d1155ca6a1fc0dbeab8a8c63835",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 49957,
+        "challenge_hex": "82fdc8845c3efa75ac783e92d885d0b2",
+        "challenge_irt": 1795260933146,
+        "digest_md5_hex": "f956fd104bde8eccc5428a75470ff01f",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 81304,
+      "login_mid": 1795260933217,
+      "sig_sha256": "46eacd14546dcc2fb889c7b9dafb1f3cb71db140fa7711a1ff15ecc0b0afe9aa",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 50198,
+        "challenge_hex": "7e6f04f1b21896efe91426989edc8220",
+        "challenge_irt": 1795260933180,
+        "digest_md5_hex": "dc5c369b9e09f822f81778e1a94d06d3",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 81875,
+      "login_mid": 1795260933235,
+      "sig_sha256": "de94c7fc8d4592807de845a88b1b3f2e5bce0c81064f471186c55f297345802e",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 50531,
+        "challenge_hex": "d94aa435889eab3417e9c6ef6f96a1ed",
+        "challenge_irt": 1795260933198,
+        "digest_md5_hex": "98d711e8a92a40c14f389c2f69b30d86",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 82968,
+      "login_mid": 1795260933468,
+      "sig_sha256": "9fd39074e6f33f369bf9a73aabe3a9c143f9c827380e0b14021d678ab768168e",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 51139,
+        "challenge_hex": "05a5deb8be75a7a789cd4027aac24783",
+        "challenge_irt": 1795260933431,
+        "digest_md5_hex": "a2ecaca4297772b2f4090bf32acc8b7a",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 355573,
+      "login_mid": 1795261031634,
+      "sig_sha256": "9e9b4b89876982c4e0ba2dcd7270972cbf6aca8324a8dc6bf9ea8aed615c7c24",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 87374,
+        "challenge_hex": "0cebb9948964c8a04d8e8fbc2431aa29",
+        "challenge_irt": 1795261031597,
+        "digest_md5_hex": "2aeda0b28fcec267c4eb014e8b117095",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 404702,
+      "login_mid": 1795261033451,
+      "sig_sha256": "c9aa6be7e0826f37670c9ba8bf7185055ff97dcb9b28e1fcc43844fc77c29f5e",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 92923,
+        "challenge_hex": "d688e194fd893c86567cad003ef4844a",
+        "challenge_irt": 1795261033414,
+        "digest_md5_hex": "b65293ea623a797f79a7fd789f432ff2",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 405273,
+      "login_mid": 1795261034143,
+      "sig_sha256": "b5e453003ed6d7b1b1afe08ca3b7416a03a560b506dc7adff0dd9b91f20fed74",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 93094,
+        "challenge_hex": "df3dde69a1a609ee3499ab58ca5581a0",
+        "challenge_irt": 1795261034106,
+        "digest_md5_hex": "378e1088e827ca2ac16b8e6e770dc463",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 405832,
+      "login_mid": 1795261034144,
+      "sig_sha256": "1b7cae6c7a1f61aba3832b3ea834db7e6efc7fa558d3dc877d2122123774b0af",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 93181,
+        "challenge_hex": "dd6335dbec716142ed0f432b03c775e3",
+        "challenge_irt": 1795261034107,
+        "digest_md5_hex": "4534125aa0a0b415b0f8ccc3da382870",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 406391,
+      "login_mid": 1795261034140,
+      "sig_sha256": "25f8314d38ba0246fc428bad515bca364503d414b0a12df6c9f5468a3922dded",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 93292,
+        "challenge_hex": "04534ca5f955932dee3e85b893065971",
+        "challenge_irt": 1795261034103,
+        "digest_md5_hex": "33aee95e7163e8334592e2bb133bc375",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 406950,
+      "login_mid": 1795261034144,
+      "sig_sha256": "5b7e13487e1dcb75848a899a4d9463078335f3ad12b7bb7f34c6c2f107957d7a",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 93391,
+        "challenge_hex": "698e4c55ffad98ecbcdb17c0a28ca3a6",
+        "challenge_irt": 1795261034107,
+        "digest_md5_hex": "105bb92b5aa9fe84c7c7743db38c5b76",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 407509,
+      "login_mid": 1795261034158,
+      "sig_sha256": "0d2c34ee363f8e8fcf94f99e50475ea210902afa7900993ed2bb72b41e88575d",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 93502,
+        "challenge_hex": "dfef4bd844de05331d8aebb0904421fa",
+        "challenge_irt": 1795261034121,
+        "digest_md5_hex": "695b53bb618aa3b8ec6cda415b44ad3f",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    },
+    {
+      "login_off": 408462,
+      "login_mid": 1795261034161,
+      "sig_sha256": "05eed0de5cc5c78f5ae1680e1026fa6fa1e94b57cf5588add6c21d5d918f03d6",
+      "sig_len": 512,
+      "hu_status": "HU_ACCEPTED",
+      "crypto": {
+        "challenge_off": 98927,
+        "challenge_hex": "d26d4fd11be7bdd7c2d49764603a0a3f",
+        "challenge_irt": 1795261034124,
+        "digest_md5_hex": "2472d0c3d962e0226f00043d0854b0ad",
+        "pad_u32_hex": "0x02000000",
+        "pkcs1": "PKCS1_v1_5_DigestInfo_MD5",
+        "signer": "subject=DC=com, DC=bmwgroup, O=pki, OU=bmw-a4a-pki, CN=a4a_app_BMWTouchCommand_Connection_00.00.10 | serial=0AA9",
+        "rsa_verify_ok": true
+      }
+    }
+  ],
+  "unique_challenges": [
+    "04534ca5f955932dee3e85b893065971",
+    "05a5deb8be75a7a789cd4027aac24783",
+    "0cebb9948964c8a04d8e8fbc2431aa29",
+    "2955176e341ca151a68c0137d12331a3",
+    "3af846de025f7676196e7ec9e65f473e",
+    "587bb2617779a3c333fabcd8f9de0c80",
+    "698e4c55ffad98ecbcdb17c0a28ca3a6",
+    "7e6f04f1b21896efe91426989edc8220",
+    "82fdc8845c3efa75ac783e92d885d0b2",
+    "865cebc6a40a189774baf807af78e17e",
+    "8f873bb740471e52f36aa26093f580da",
+    "cee0993409fcc7424cb956f9a5ff2134",
+    "d26d4fd11be7bdd7c2d49764603a0a3f",
+    "d688e194fd893c86567cad003ef4844a",
+    "d94aa435889eab3417e9c6ef6f96a1ed",
+    "daf99f51724314a53dd17d36af8ab6e9",
+    "dd6335dbec716142ed0f432b03c775e3",
+    "df3dde69a1a609ee3499ab58ca5581a0",
+    "dfef4bd844de05331d8aebb0904421fa"
+  ],
+  "valid_count": 18
+}

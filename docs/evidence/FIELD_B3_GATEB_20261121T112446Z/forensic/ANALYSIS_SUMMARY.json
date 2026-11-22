@@ -1,0 +1,669 @@
+{
+  "integrity": {
+    "phone_to_hu": {
+      "path": "raw/phone_to_hu.bin",
+      "size": 417174,
+      "sha256": "86272e98c3d8d6f123159c48c557b6e47b4be9ff6c39735995eb32db3a5c158c",
+      "md5": "1c07a16855c0728860063296fec5e8ac",
+      "sha1": "3a64ccba9bfafe02f3d66998ab71c55a9e4c5dae",
+      "offset0_hex": "deadbeefdead010000002c010130653962393063342d636265312d343734322d",
+      "end_hex": "65312d343734322d383238332d64333637653961353636313900deadbeefbeef",
+      "end_offset": 417173
+    },
+    "hu_to_phone": {
+      "path": "raw/hu_to_phone.bin",
+      "size": 110651,
+      "sha256": "0ca169d1abaebd69a6a34e5c04d9ed3a7b01ba775c94752569c455de6d37ab2d",
+      "md5": "1fbf97ca5cc7ca26877e0991ec468043",
+      "sha1": "297db51d29dcc2ad02cce922b0343176b037d574",
+      "offset0_hex": "00040000000000080005000e0000400000060000000000040000000a00060000",
+      "end_hex": "138900041337133700060000000000040000000c000213891389000413371337",
+      "end_offset": 110650
+    }
+  },
+  "coverage_phone": {
+    "file_len": 417174,
+    "bcl_bytes": 404599,
+    "init_bytes": 4,
+    "gap_bytes": 12515,
+    "preamble_bytes": 56,
+    "raw_etch_continuation_bytes": 0,
+    "unparsed_tail": 1008,
+    "decoded_protocol_bytes": 404659,
+    "known_gap_bytes": 12515,
+    "coverage_pct": 99.75837420356973
+  },
+  "coverage_hu": {
+    "file_len": 110651,
+    "bcl_bytes": 110651,
+    "init_bytes": 0,
+    "gap_bytes": 0,
+    "preamble_bytes": 0,
+    "raw_etch_continuation_bytes": 0,
+    "unparsed_tail": 0,
+    "decoded_protocol_bytes": 110651,
+    "known_gap_bytes": 0,
+    "coverage_pct": 100.0
+  },
+  "frame_counts": {
+    "phone": {
+      "INIT": 1,
+      "BCL": 467,
+      "ETCH_REASSEMBLED": 343,
+      "ETCH_PARTIAL": 2
+    },
+    "hu": {
+      "BCL": 1061,
+      "ETCH_REASSEMBLED": 573
+    }
+  },
+  "bcl_cmd_phone": {
+    "SELECTPROTO": 1,
+    "KNOCK": 1,
+    "OPEN": 21,
+    "DATA": 442,
+    "CLOSE": 2
+  },
+  "bcl_cmd_hu": {
+    "HANDSHAKE": 2,
+    "DATAACK": 461,
+    "DATA": 598
+  },
+  "etch_methods": {
+    "sas_certificate": 12,
+    "sas_login": 36,
+    "rhmi_getCapabilities": 14,
+    "info_getSystemInfo": 6,
+    "am_create": 12,
+    "am_addAppEventHandler": 8,
+    "am_showLoadingHint": 2,
+    "am_showLoadedSuccessHint": 2,
+    "cds_create": 8,
+    "cds_addPropertyChangedEventHandler": 98,
+    "cds_getPropertyAsync": 96,
+    "ver_getVersion": 14,
+    "cds_setPropertyAsync": 10,
+    "rhmi_create": 16,
+    "rhmi_checkResource": 22,
+    "rhmi_initialize": 10,
+    "am_registerApp": 10,
+    "rhmi_addActionEventHandler": 8,
+    "rhmi_addHmiEventHandler": 8,
+    "rhmi_setData": 202,
+    "rhmi_setProperty": 30,
+    "av_create": 2,
+    "av_requestConnection": 2,
+    "rhmi_ackActionEvent": 6,
+    "rhmi_triggerEvent": 4,
+    "_result_sas_certificate": 38,
+    "_result_sas_login": 36,
+    "_result_rhmi_getCapabilities": 14,
+    "_result_info_getSystemInfo": 6,
+    "_result_am_create": 12,
+    "_result_am_addAppEventHandler": 8,
+    "_result_am_showLoadingHint": 2,
+    "_result_am_showLoadedSuccessHint": 2,
+    "_result_cds_create": 10,
+    "_result_cds_addPropertyChangedEventHandler": 75,
+    "cds_onPropertyChangedEvent": 242,
+    "_result_cds_getPropertyAsync": 93,
+    "_result_ver_getVersion": 14,
+    "_result_cds_setPropertyAsync": 10,
+    "_result_rhmi_create": 16,
+    "_result_rhmi_checkResource": 22,
+    "_result_rhmi_initialize": 10,
+    "_result_am_registerApp": 10,
+    "_result_rhmi_addActionEventHandler": 8,
+    "_result_rhmi_addHmiEventHandler": 8,
+    "_result_rhmi_setData": 349,
+    "_result_rhmi_setProperty": 86,
+    "rhmi_onActionEvent": 6,
+    "rhmi_onHmiEvent": 17,
+    "_result_av_create": 2,
+    "_result_av_requestConnection": 2,
+    "av_requestPlayerState": 2,
+    "_result_rhmi_ackActionEvent": 6,
+    "av_connectionGranted": 2,
+    "_result_av_playerStateChanged": 2,
+    "_result_rhmi_triggerEvent": 4
+  },
+  "sas_event_count": 122,
+  "rhmi_count": 866,
+  "am_count": 68,
+  "cds_count": 642,
+  "av_count": 14,
+  "images": 10,
+  "crypto_results": [
+    {
+      "session": 1,
+      "login_off": 6304,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 6304,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 13888,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 13888,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 22262,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 22262,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 29788,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 29788,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 79589,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 79589,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 80148,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 80148,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 80745,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 80745,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 81304,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 81304,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 81875,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 81875,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 82968,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 82968,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 355573,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 355573,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 404702,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 404702,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 405273,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 405273,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 405832,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 405832,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 406391,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 406391,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 406950,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 406950,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 407509,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 407509,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 408462,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 408462,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    }
+  ],
+  "lib_hits": {
+    "pad_u32_be": {
+      "found": true,
+      "offset": 210,
+      "len": 4
+    },
+    "APP_AUTH": {
+      "found": false,
+      "offset": null,
+      "len": 8
+    },
+    "CertificateType": {
+      "found": true,
+      "offset": 334118,
+      "len": 15
+    },
+    "createSecurityContext": {
+      "found": true,
+      "offset": 257793,
+      "len": 21
+    },
+    "sas_certificate": {
+      "found": false,
+      "offset": null,
+      "len": 15
+    },
+    "sas_login": {
+      "found": false,
+      "offset": null,
+      "len": 9
+    },
+    "signChallenge": {
+      "found": true,
+      "offset": 314575,
+      "len": 13
+    },
+    "EVP_SignFinal": {
+      "found": true,
+      "offset": 249561,
+      "len": 13
+    },
+    "EVP_PKEY_sign": {
+      "found": true,
+      "offset": 261934,
+      "len": 13
+    }
+  },
+  "b3_etch_count": 322,
+  "b3_decode_errors": 93,
+  "b3_methods": {
+    "_result_sas_certificate": 2,
+    "sas_login": 18,
+    "_result_sas_login": 2,
+    "rhmi_getCapabilities": 7,
+    "info_getSystemInfo": 3,
+    "am_create": 6,
+    "am_addAppEventHandler": 4,
+    "am_showLoadingHint": 1,
+    "am_showLoadedSuccessHint": 1,
+    "cds_create": 4,
+    "cds_addPropertyChangedEventHandler": 49,
+    "cds_getPropertyAsync": 48,
+    "ver_getVersion": 7,
+    "cds_setPropertyAsync": 5,
+    "rhmi_create": 8,
+    "rhmi_checkResource": 11,
+    "rhmi_initialize": 5,
+    "am_registerApp": 5,
+    "rhmi_addActionEventHandler": 4,
+    "rhmi_addHmiEventHandler": 4,
+    "rhmi_setData": 105,
+    "rhmi_setProperty": 16,
+    "av_create": 1,
+    "av_requestConnection": 1,
+    "rhmi_ackActionEvent": 3,
+    "rhmi_triggerEvent": 2
+  },
+  "gaps_phone": [
+    {
+      "kind": "PREAMBLE",
+      "off": 0,
+      "len": 56,
+      "note": "bytes before first INIT"
+    },
+    {
+      "kind": "DESYNC_GAP",
+      "off": 338571,
+      "len": 5813,
+      "resync": "BCL",
+      "resync_off": 344384,
+      "etch_remain_at_desync": 151,
+      "cmd_attempt": [
+        38158,
+        18256,
+        15774,
+        13255
+      ]
+    },
+    {
+      "kind": "DESYNC_GAP",
+      "off": 349871,
+      "len": 5694,
+      "resync": "BCL",
+      "resync_off": 355565,
+      "etch_remain_at_desync": 16151,
+      "cmd_attempt": [
+        17767,
+        22852,
+        22097,
+        20812
+      ]
+    },
+    {
+      "kind": "ETCH_TRUNCATED",
+      "off": 363071,
+      "have": 4000,
+      "remain": 2350
+    },
+    {
+      "kind": "ETCH_TRUNCATED",
+      "off": 367079,
+      "have": 4000,
+      "remain": 2687
+    },
+    {
+      "kind": "ETCH_TRUNCATED",
+      "off": 389765,
+      "have": 4000,
+      "remain": 2813
+    },
+    {
+      "kind": "UNPARSED_TAIL",
+      "off": 416166,
+      "len": 1008
+    }
+  ],
+  "gaps_hu": [],
+  "notable_phone": [
+    {
+      "off": 82620,
+      "text": "androidautoidrive.calendar\ufffd\u51dd0\ufffd$me.hufman.androidautoidrive.calendar\ufffd\ufffd"
+    },
+    {
+      "off": 82804,
+      "text": "androidautoidrive.notification.readout\ufffd\u51dd0\ufffd0me.hufman.androidautoidrive.noti"
+    },
+    {
+      "off": 83632,
+      "text": "androidautoidrive.music\ufffd\u51dd0\ufffd!me.hufman.androidautoidrive.music\ufffd\ufffd"
+    },
+    {
+      "off": 83810,
+      "text": "androidautoidrive.mapview\ufffd\u51dd0\ufffd#me.hufman.androidautoidrive.mapview\ufffd\ufffd"
+    },
+    {
+      "off": 84223,
+      "text": "androidautoidrive.assistant\ufffd"
+    },
+    {
+      "off": 84998,
+      "text": "androidautoidrive.assistant.com.google.android.googlequicksearchbox\ufffd\ufffdNO\u01d5\ufffd\u007f\ufffd\ufffd"
+    },
+    {
+      "off": 87652,
+      "text": "androidautoidrive.notification.readout\ufffd#\\\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "off": 89253,
+      "text": "androidautoidrive.assistant.com.amazon.dee.app\ufffd\ufffdNO\u01d5\ufffd\u007f\ufffd\ufffdK\u0001\ufffd\ufffd\ufffd`\ufffd\ufffd\u0001<"
+    },
+    {
+      "off": 91766,
+      "text": "androidautoidrive.notification.readout\ufffd\ufffdC^3\ufffd\ufffd"
+    },
+    {
+      "off": 92039,
+      "text": "androidautoidrive.calendar\ufffd#\\\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "off": 92483,
+      "text": "androidautoidrive.calendar\ufffd\ufffdC^3\ufffd\ufffd"
+    },
+    {
+      "off": 93052,
+      "text": "androidautoidrive.music\ufffd#\\\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "off": 93589,
+      "text": "androidautoidrive.music\ufffd\ufffdC^3\ufffd\ufffd"
+    },
+    {
+      "off": 101839,
+      "text": "androidautoidrive.music\ufffd"
+    },
+    {
+      "off": 102752,
+      "text": "androidautoidrive.music\ufffd"
+    },
+    {
+      "off": 103276,
+      "text": "androidautoidrive.com.android.bluetooth\ufffd\ufffdNO\u01d5\ufffd\u007f\ufffd\ufffdK\u0001\ufffd\ufffd\ufffd`\ufffd\ufffd\u0001<"
+    },
+    {
+      "off": 106909,
+      "text": "androidautoidrive.com.google.android.youtube\ufffd\ufffdNO\u01d5\ufffd\u007f\ufffd\ufffdK\u0001\ufffd\ufffd\ufffd`\ufffd\ufffd\u0001<"
+    },
+    {
+      "off": 109156,
+      "text": "Zufallswiedergabe nicht verf\u00fcgbar\ufffd\u07ad\ufffd\ufffd"
+    },
+    {
+      "off": 110232,
+      "text": "Zufallswiedergabe nicht verf\u00fcgbar\ufffd\u07ad\ufffd\ufffd"
+    },
+    {
+      "off": 112841,
+      "text": "Halestorm"
+    },
+    {
+      "off": 112852,
+      "text": "I Prevail"
+    },
+    {
+      "off": 112920,
+      "text": "can u see me in the dark?\ufffd"
+    },
+    {
+      "off": 114030,
+      "text": "can u see me in the dark?\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\n\ufffd\ufffd\ufffdC\ufffd6+\u0002\ufffd\b\ufffd\ufffd\u007f\ufffd\ufffd"
+    },
+    {
+      "off": 114217,
+      "text": "can u see me in the dark?\ufffd"
+    },
+    {
+      "off": 133558,
+      "text": "can u see me in the dark?\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\n\ufffd\ufffd\ufffdC\ufffd6+\u0002\ufffd\b\ufffd\ufffd\u007f\ufffd\ufffd"
+    },
+    {
+      "off": 133922,
+      "text": "Halestorm"
+    },
+    {
+      "off": 133982,
+      "text": "can u see me in the dark?\ufffd"
+    },
+    {
+      "off": 135313,
+      "text": "can u see me in the dark?\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\n\ufffd\ufffd\ufffdC\ufffd6+\u0002\ufffd\b\ufffd\ufffd\u007f\ufffd\ufffd"
+    },
+    {
+      "off": 135500,
+      "text": "can u see me in the dark?\ufffd\u07ad\ufffd\ufffd"
+    },
+    {
+      "off": 203041,
+      "text": "can u see me in the dark?\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\n\ufffd\ufffd\ufffdC\ufffd6+\u0002\ufffd\b\ufffd\ufffd\u007f\ufffd\ufffd"
+    },
+    {
+      "off": 203486,
+      "text": "Spotify"
+    },
+    {
+      "off": 204492,
+      "text": "Halestorm"
+    },
+    {
+      "off": 204560,
+      "text": "can u see me in the dark?\ufffd\u07ad\ufffd\ufffd"
+    },
+    {
+      "off": 204636,
+      "text": "can u see me in the dark?\ufffd"
+    },
+    {
+      "off": 204720,
+      "text": "Spotify"
+    },
+    {
+      "off": 206426,
+      "text": "Halestorm"
+    },
+    {
+      "off": 206486,
+      "text": "Halestorm"
+    },
+    {
+      "off": 206546,
+      "text": "can u see me in the dark?\ufffd\u07ad\ufffd\ufffd"
+    },
+    {
+      "off": 206622,
+      "text": "can u see me in the dark?\ufffd\u07ad\ufffd\ufffd"
+    },
+    {
+      "off": 206698,
+      "text": "can u see me in the dark?\ufffd\u07ad\ufffd\ufffd"
+    }
+  ],
+  "string_hit_counts": {
+    "BMW": 12,
+    "Spotify": 2,
+    "music": 19,
+    "media": 35,
+    "SAS": 2,
+    "AUTH": 4,
+    "Connected": 1,
+    "CDS": 14,
+    "Halestorm": 9,
+    "Prevail": 1,
+    "androidautoidrive": 40,
+    "RSA": 10,
+    "iva_": 1230,
+    "a4a_": 10
+  }
+}

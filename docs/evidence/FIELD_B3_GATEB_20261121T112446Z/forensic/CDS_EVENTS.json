@@ -1,0 +1,5834 @@
+[
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14447,
+    "method": "cds_create",
+    "message_id": 1795260913828
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14447,
+    "method": "cds_create",
+    "message_id": 1795260913828
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14535,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "vehicle.type",
+    "ident": "vehicle.type",
+    "message_id": 1795260913865
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14535,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "vehicle.type",
+    "ident": "vehicle.type",
+    "message_id": 1795260913865
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14681,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "vehicle.type",
+    "ident": "vehicle.type",
+    "message_id": 1795260913902
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14681,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "vehicle.type",
+    "ident": "vehicle.type",
+    "message_id": 1795260913902
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14763,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "vehicle.units",
+    "ident": "vehicle.units",
+    "message_id": 1795260913939
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14763,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "vehicle.units",
+    "ident": "vehicle.units",
+    "message_id": 1795260913939
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14855,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "vehicle.units",
+    "ident": "vehicle.units",
+    "message_id": 1795260913976
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14855,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "vehicle.units",
+    "ident": "vehicle.units",
+    "message_id": 1795260913976
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14939,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "driving.odometer",
+    "ident": "driving.odometer",
+    "message_id": 1795260914013
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 14939,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "driving.odometer",
+    "ident": "driving.odometer",
+    "message_id": 1795260914013
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 15037,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "driving.odometer",
+    "ident": "driving.odometer",
+    "message_id": 1795260914050
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 15037,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "driving.odometer",
+    "ident": "driving.odometer",
+    "message_id": 1795260914050
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 15143,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "sensors.fuel",
+    "ident": "sensors.fuel",
+    "message_id": 1795260914087
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 15143,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "sensors.fuel",
+    "ident": "sensors.fuel",
+    "message_id": 1795260914087
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 22070,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "sensors.fuel",
+    "ident": "sensors.fuel",
+    "message_id": 1795260914124
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 22070,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "sensors.fuel",
+    "ident": "sensors.fuel",
+    "message_id": 1795260914124
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 22164,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "vehicle.language",
+    "ident": "vehicle.language",
+    "message_id": 1795260914161
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 22164,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "vehicle.language",
+    "ident": "vehicle.language",
+    "message_id": 1795260914161
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 29532,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "vehicle.language",
+    "ident": "vehicle.language",
+    "message_id": 1795260914198
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 29532,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "vehicle.language",
+    "ident": "vehicle.language",
+    "message_id": 1795260914198
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 29674,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "sensors.SOCBatteryHybrid",
+    "message_id": 1795260914235
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 29674,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "sensors.SOCBatteryHybrid",
+    "message_id": 1795260914235
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30347,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "sensors.SOCBatteryHybrid",
+    "message_id": 1795260914272
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30347,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "sensors.SOCBatteryHybrid",
+    "message_id": 1795260914272
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30453,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "driving.displayRangeElectricVehicle",
+    "ident": "driving.displayRangeElectricVehicle",
+    "message_id": 1795260914309
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30453,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "driving.displayRangeElectricVehicle",
+    "ident": "driving.displayRangeElectricVehicle",
+    "message_id": 1795260914309
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30653,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "driving.displayRangeElectricVehicle",
+    "ident": "driving.displayRangeElectricVehicle",
+    "message_id": 1795260914346
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30653,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "driving.displayRangeElectricVehicle",
+    "ident": "driving.displayRangeElectricVehicle",
+    "message_id": 1795260914346
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30781,
+    "method": "cds_create",
+    "message_id": 1795260921138
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30781,
+    "method": "cds_create",
+    "message_id": 1795260921138
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30819,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "entertainment.multimedia",
+    "ident": "entertainment.multimedia",
+    "message_id": 1795260914383
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30819,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "entertainment.multimedia",
+    "ident": "entertainment.multimedia",
+    "message_id": 1795260914383
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30933,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260921175
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 30933,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260921175
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31016,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "entertainment.multimedia",
+    "ident": "entertainment.multimedia",
+    "message_id": 1795260914420
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31016,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "entertainment.multimedia",
+    "ident": "entertainment.multimedia",
+    "message_id": 1795260914420
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31122,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260921212
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31122,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260921212
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31197,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "navigation.infoToNextDestination",
+    "ident": "navigation.infoToNextDestination",
+    "message_id": 1795260914457
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31197,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "navigation.infoToNextDestination",
+    "ident": "navigation.infoToNextDestination",
+    "message_id": 1795260914457
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31365,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "57",
+    "message_id": 1795260921249
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31365,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "57",
+    "message_id": 1795260921249
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31471,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "navigation.infoToNextDestination",
+    "ident": "navigation.infoToNextDestination",
+    "message_id": 1795260914494
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31471,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "navigation.infoToNextDestination",
+    "ident": "navigation.infoToNextDestination",
+    "message_id": 1795260914494
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31593,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "57",
+    "message_id": 1795260921286
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31593,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "57",
+    "message_id": 1795260921286
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31691,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "navigation.currentPositionDetailedInfo",
+    "message_id": 1795260914531
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31691,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "navigation.currentPositionDetailedInfo",
+    "message_id": 1795260914531
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31833,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260921323
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31833,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260921323
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31914,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "navigation.currentPositionDetailedInfo",
+    "message_id": 1795260914568
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 31914,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "navigation.currentPositionDetailedInfo",
+    "message_id": 1795260914568
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32048,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260921360
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32048,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260921360
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32121,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "navigation.finalDestinationDetailedInfo",
+    "ident": "navigation.finalDestinationDetailedInfo",
+    "message_id": 1795260914605
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32121,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "navigation.finalDestinationDetailedInfo",
+    "ident": "navigation.finalDestinationDetailedInfo",
+    "message_id": 1795260914605
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32277,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "controls.windowDriverFront",
+    "ident": "23",
+    "message_id": 1795260921397
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32277,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "controls.windowDriverFront",
+    "ident": "23",
+    "message_id": 1795260921397
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32371,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "navigation.finalDestinationDetailedInfo",
+    "ident": "navigation.finalDestinationDetailedInfo",
+    "message_id": 1795260914642
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32371,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "navigation.finalDestinationDetailedInfo",
+    "ident": "navigation.finalDestinationDetailedInfo",
+    "message_id": 1795260914642
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32507,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "controls.windowDriverFront",
+    "ident": "23",
+    "message_id": 1795260921434
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32507,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "controls.windowDriverFront",
+    "ident": "23",
+    "message_id": 1795260921434
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32593,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "communication.lastCallInfo",
+    "ident": "communication.lastCallInfo",
+    "message_id": 1795260914679
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32593,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "communication.lastCallInfo",
+    "ident": "communication.lastCallInfo",
+    "message_id": 1795260914679
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32711,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "engine.info",
+    "ident": "47",
+    "message_id": 1795260921471
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32711,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "engine.info",
+    "ident": "47",
+    "message_id": 1795260921471
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32790,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "communication.lastCallInfo",
+    "ident": "communication.lastCallInfo",
+    "message_id": 1795260914716
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32790,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "communication.lastCallInfo",
+    "ident": "communication.lastCallInfo",
+    "message_id": 1795260914716
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32900,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "engine.info",
+    "ident": "47",
+    "message_id": 1795260921508
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32900,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "engine.info",
+    "ident": "47",
+    "message_id": 1795260921508
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32971,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "sensors.temperatureExterior",
+    "ident": "sensors.temperatureExterior",
+    "message_id": 1795260914753
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 32971,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "sensors.temperatureExterior",
+    "ident": "sensors.temperatureExterior",
+    "message_id": 1795260914753
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33091,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.displayRangeElectricVehicle",
+    "ident": "92",
+    "message_id": 1795260921545
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33091,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.displayRangeElectricVehicle",
+    "ident": "92",
+    "message_id": 1795260921545
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33194,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "sensors.temperatureExterior",
+    "ident": "sensors.temperatureExterior",
+    "message_id": 1795260914790
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33194,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "sensors.temperatureExterior",
+    "ident": "sensors.temperatureExterior",
+    "message_id": 1795260914790
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33306,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.displayRangeElectricVehicle",
+    "ident": "92",
+    "message_id": 1795260921582
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33306,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.displayRangeElectricVehicle",
+    "ident": "92",
+    "message_id": 1795260921582
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33401,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "driving.drivingStyle",
+    "ident": "driving.drivingStyle",
+    "message_id": 1795260914827
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33401,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "driving.drivingStyle",
+    "ident": "driving.drivingStyle",
+    "message_id": 1795260914827
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33507,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.odometer",
+    "ident": "39",
+    "message_id": 1795260921619
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33507,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.odometer",
+    "ident": "39",
+    "message_id": 1795260921619
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33591,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "driving.drivingStyle",
+    "ident": "driving.drivingStyle",
+    "message_id": 1795260914864
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33591,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "driving.drivingStyle",
+    "ident": "driving.drivingStyle",
+    "message_id": 1795260914864
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33689,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.odometer",
+    "ident": "39",
+    "message_id": 1795260921656
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33689,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.odometer",
+    "ident": "39",
+    "message_id": 1795260921656
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33765,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "engine.info",
+    "ident": "engine.info",
+    "message_id": 1795260914901
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33765,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "engine.info",
+    "ident": "engine.info",
+    "message_id": 1795260914901
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33853,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerFront",
+    "ident": "25",
+    "message_id": 1795260921693
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33853,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerFront",
+    "ident": "25",
+    "message_id": 1795260921693
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33962,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "engine.info",
+    "ident": "engine.info",
+    "message_id": 1795260914938
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 33962,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "engine.info",
+    "ident": "engine.info",
+    "message_id": 1795260914938
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34042,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerFront",
+    "ident": "25",
+    "message_id": 1795260921730
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34042,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerFront",
+    "ident": "25",
+    "message_id": 1795260921730
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34131,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "vehicle.country",
+    "ident": "vehicle.country",
+    "message_id": 1795260914975
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34131,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "vehicle.country",
+    "ident": "vehicle.country",
+    "message_id": 1795260914975
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34227,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.averageSpeed",
+    "ident": "31",
+    "message_id": 1795260921767
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34227,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.averageSpeed",
+    "ident": "31",
+    "message_id": 1795260921767
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34315,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "vehicle.country",
+    "ident": "vehicle.country",
+    "message_id": 1795260915012
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34315,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "vehicle.country",
+    "ident": "vehicle.country",
+    "message_id": 1795260915012
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34403,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.averageSpeed",
+    "ident": "31",
+    "message_id": 1795260921804
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34403,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.averageSpeed",
+    "ident": "31",
+    "message_id": 1795260921804
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34483,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "driving.mode",
+    "ident": "driving.mode",
+    "message_id": 1795260915049
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34483,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "driving.mode",
+    "ident": "driving.mode",
+    "message_id": 1795260915049
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34573,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "navigation.GPSExtendedInfo",
+    "ident": "61",
+    "message_id": 1795260921841
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34573,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "navigation.GPSExtendedInfo",
+    "ident": "61",
+    "message_id": 1795260921841
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34705,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "driving.mode",
+    "ident": "driving.mode",
+    "message_id": 1795260915086
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34705,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "driving.mode",
+    "ident": "driving.mode",
+    "message_id": 1795260915086
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34787,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "navigation.GPSExtendedInfo",
+    "ident": "61",
+    "message_id": 1795260921878
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34787,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "navigation.GPSExtendedInfo",
+    "ident": "61",
+    "message_id": 1795260921878
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34873,
+    "method": "cds_setPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "7ffe5c2a-e437-427f-ac2d-59bbd8d430a9",
+    "message_id": 1795260915123
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 34873,
+    "method": "cds_setPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "7ffe5c2a-e437-427f-ac2d-59bbd8d430a9",
+    "message_id": 1795260915123
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 35153,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "controls.windowDriverRear",
+    "ident": "24",
+    "message_id": 1795260921915
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 35153,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "controls.windowDriverRear",
+    "ident": "24",
+    "message_id": 1795260921915
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 35246,
+    "method": "cds_setPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "466031cc-a471-4fe1-b62b-219f89629183",
+    "message_id": 1795260915160
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 35246,
+    "method": "cds_setPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "466031cc-a471-4fe1-b62b-219f89629183",
+    "message_id": 1795260915160
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 35575,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "controls.windowDriverRear",
+    "ident": "24",
+    "message_id": 1795260921952
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 35575,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "controls.windowDriverRear",
+    "ident": "24",
+    "message_id": 1795260921952
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 35660,
+    "method": "cds_setPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "58d82737-c409-4abc-8c30-873f310a8dfd",
+    "message_id": 1795260915197
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 35660,
+    "method": "cds_setPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "58d82737-c409-4abc-8c30-873f310a8dfd",
+    "message_id": 1795260915197
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 35940,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.ecoRangeWon",
+    "ident": "96",
+    "message_id": 1795260921989
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 35940,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.ecoRangeWon",
+    "ident": "96",
+    "message_id": 1795260921989
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36027,
+    "method": "cds_setPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "427e4e07-03de-43af-8344-1952b0fc6ef0",
+    "message_id": 1795260915234
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36027,
+    "method": "cds_setPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "427e4e07-03de-43af-8344-1952b0fc6ef0",
+    "message_id": 1795260915234
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36356,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.ecoRangeWon",
+    "ident": "96",
+    "message_id": 1795260922026
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36356,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.ecoRangeWon",
+    "ident": "96",
+    "message_id": 1795260922026
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36435,
+    "method": "cds_setPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "6435846b-00a6-469e-9e95-7daf68619fc5",
+    "message_id": 1795260915271
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36435,
+    "method": "cds_setPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "6435846b-00a6-469e-9e95-7daf68619fc5",
+    "message_id": 1795260915271
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36703,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "controls.sunroof",
+    "ident": "21",
+    "message_id": 1795260922063
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36703,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "controls.sunroof",
+    "ident": "21",
+    "message_id": 1795260922063
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36787,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "cds.apiRegistry",
+    "ident": "cds.apiRegistry",
+    "message_id": 1795260915308
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36787,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "cds.apiRegistry",
+    "ident": "cds.apiRegistry",
+    "message_id": 1795260915308
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36883,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "controls.sunroof",
+    "ident": "21",
+    "message_id": 1795260922100
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36883,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "controls.sunroof",
+    "ident": "21",
+    "message_id": 1795260922100
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36959,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "cds.apiRegistry",
+    "ident": "cds.apiRegistry",
+    "message_id": 1795260915345
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 36959,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "cds.apiRegistry",
+    "ident": "cds.apiRegistry",
+    "message_id": 1795260915345
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37047,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerRear",
+    "ident": "26",
+    "message_id": 1795260922137
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37047,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerRear",
+    "ident": "26",
+    "message_id": 1795260922137
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37143,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "api.ipaThirdParty",
+    "message_id": 1795260915382
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37143,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "api.ipaThirdParty",
+    "message_id": 1795260915382
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37243,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerRear",
+    "ident": "26",
+    "message_id": 1795260922174
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37243,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerRear",
+    "ident": "26",
+    "message_id": 1795260922174
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37331,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "api.ipaThirdParty",
+    "message_id": 1795260915419
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37331,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "api.ipaThirdParty",
+    "message_id": 1795260915419
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37423,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "vehicle.language",
+    "ident": "83",
+    "message_id": 1795260922211
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37423,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "vehicle.language",
+    "ident": "83",
+    "message_id": 1795260922211
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37507,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "vehicle.VIN",
+    "ident": "vehicle.VIN",
+    "message_id": 1795260915456
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37507,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 2,
+    "propertyName": "vehicle.VIN",
+    "ident": "vehicle.VIN",
+    "message_id": 1795260915456
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37607,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "vehicle.language",
+    "ident": "83",
+    "message_id": 1795260922248
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 37607,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "vehicle.language",
+    "ident": "83",
+    "message_id": 1795260922248
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 72583,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "vehicle.VIN",
+    "ident": "vehicle.VIN",
+    "message_id": 1795260915493
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 72583,
+    "method": "cds_getPropertyAsync",
+    "handle": 2,
+    "propertyName": "vehicle.VIN",
+    "ident": "vehicle.VIN",
+    "message_id": 1795260915493
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 79500,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.drivingStyle",
+    "ident": "110",
+    "message_id": 1795260922285
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 79500,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.drivingStyle",
+    "ident": "110",
+    "message_id": 1795260922285
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 82434,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.drivingStyle",
+    "ident": "110",
+    "message_id": 1795260922322
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 82434,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.drivingStyle",
+    "ident": "110",
+    "message_id": 1795260922322
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 83887,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "engine.rangeCalc",
+    "ident": "88",
+    "message_id": 1795260922359
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 83887,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "engine.rangeCalc",
+    "ident": "88",
+    "message_id": 1795260922359
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84524,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "engine.rangeCalc",
+    "ident": "88",
+    "message_id": 1795260922396
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 84524,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "engine.rangeCalc",
+    "ident": "88",
+    "message_id": 1795260922396
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 87318,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "sensors.fuel",
+    "ident": "71",
+    "message_id": 1795260922433
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 87318,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "sensors.fuel",
+    "ident": "71",
+    "message_id": 1795260922433
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 89037,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "sensors.fuel",
+    "ident": "71",
+    "message_id": 1795260922470
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 89037,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "sensors.fuel",
+    "ident": "71",
+    "message_id": 1795260922470
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91819,
+    "method": "cds_create",
+    "message_id": 1795260933616
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91819,
+    "method": "cds_create",
+    "message_id": 1795260933616
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91857,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "engine.temperature",
+    "ident": "52",
+    "message_id": 1795260922507
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 91857,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "engine.temperature",
+    "ident": "52",
+    "message_id": 1795260922507
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92168,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 4,
+    "propertyName": "42",
+    "ident": "driving.speedActual",
+    "message_id": 1795260933653
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92168,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 4,
+    "propertyName": "42",
+    "ident": "driving.speedActual",
+    "message_id": 1795260933653
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92255,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "engine.temperature",
+    "ident": "52",
+    "message_id": 1795260922544
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92255,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "engine.temperature",
+    "ident": "52",
+    "message_id": 1795260922544
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92829,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "vehicle.VIN",
+    "ident": "87",
+    "message_id": 1795260922581
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 92829,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "vehicle.VIN",
+    "ident": "87",
+    "message_id": 1795260922581
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93368,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "vehicle.VIN",
+    "ident": "87",
+    "message_id": 1795260922618
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93368,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "vehicle.VIN",
+    "ident": "87",
+    "message_id": 1795260922618
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93815,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "navigation.GPSPosition",
+    "ident": "62",
+    "message_id": 1795260922655
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 93815,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "navigation.GPSPosition",
+    "ident": "62",
+    "message_id": 1795260922655
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96843,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "navigation.GPSPosition",
+    "ident": "62",
+    "message_id": 1795260922692
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 96843,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "navigation.GPSPosition",
+    "ident": "62",
+    "message_id": 1795260922692
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 97237,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "93",
+    "message_id": 1795260922729
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 97237,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "93",
+    "message_id": 1795260922729
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99877,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "93",
+    "message_id": 1795260922766
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 99877,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "93",
+    "message_id": 1795260922766
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100255,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260935807
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100255,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260935807
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100436,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.parkingBrake",
+    "ident": "40",
+    "message_id": 1795260922803
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100436,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.parkingBrake",
+    "ident": "40",
+    "message_id": 1795260922803
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100708,
+    "method": "cds_create",
+    "message_id": 1795260933704
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100708,
+    "method": "cds_create",
+    "message_id": 1795260933704
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100758,
+    "method": "cds_getPropertyAsync",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260935844
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100758,
+    "method": "cds_getPropertyAsync",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260935844
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100927,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.parkingBrake",
+    "ident": "40",
+    "message_id": 1795260922840
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 100927,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.parkingBrake",
+    "ident": "40",
+    "message_id": 1795260922840
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101191,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 6,
+    "propertyName": "navigation.guidanceStatus",
+    "ident": "63",
+    "message_id": 1795260933741
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101191,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 6,
+    "propertyName": "navigation.guidanceStatus",
+    "ident": "63",
+    "message_id": 1795260933741
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101437,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "vehicle.units",
+    "ident": "86",
+    "message_id": 1795260922877
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101437,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "vehicle.units",
+    "ident": "86",
+    "message_id": 1795260922877
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101702,
+    "method": "cds_getPropertyAsync",
+    "handle": 6,
+    "propertyName": "navigation.guidanceStatus",
+    "ident": "63",
+    "message_id": 1795260933778
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101702,
+    "method": "cds_getPropertyAsync",
+    "handle": 6,
+    "propertyName": "navigation.guidanceStatus",
+    "ident": "63",
+    "message_id": 1795260933778
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101959,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "vehicle.units",
+    "ident": "86",
+    "message_id": 1795260922914
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 101959,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "vehicle.units",
+    "ident": "86",
+    "message_id": 1795260922914
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102422,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.averageConsumption",
+    "ident": "30",
+    "message_id": 1795260922951
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102422,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "driving.averageConsumption",
+    "ident": "30",
+    "message_id": 1795260922951
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102872,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.averageConsumption",
+    "ident": "30",
+    "message_id": 1795260922988
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 102872,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "driving.averageConsumption",
+    "ident": "30",
+    "message_id": 1795260922988
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 106489,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "entertainment.multimedia",
+    "ident": "54",
+    "message_id": 1795260923025
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 106489,
+    "method": "cds_addPropertyChangedEventHandler",
+    "handle": 3,
+    "propertyName": "entertainment.multimedia",
+    "ident": "54",
+    "message_id": 1795260923025
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 107990,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "entertainment.multimedia",
+    "ident": "54",
+    "message_id": 1795260923062
+  },
+  {
+    "direction": "phone_to_hu",
+    "session": 1,
+    "off": 107990,
+    "method": "cds_getPropertyAsync",
+    "handle": 3,
+    "propertyName": "entertainment.multimedia",
+    "ident": "54",
+    "message_id": 1795260923062
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 11384,
+    "method": "_result_cds_create",
+    "message_id": 1795260388672036
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 11384,
+    "method": "_result_cds_create",
+    "message_id": 1795260388672036
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 16768,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672038
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 16768,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672038
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 16844,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.type",
+    "ident": "vehicle.type",
+    "message_id": 1795260388672039
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 16844,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.type",
+    "ident": "vehicle.type",
+    "message_id": 1795260388672039
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22282,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672041
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22282,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672041
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22334,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.type",
+    "ident": "vehicle.type",
+    "message_id": 1795260388672042
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22334,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.type",
+    "ident": "vehicle.type",
+    "message_id": 1795260388672042
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22446,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.units",
+    "ident": "vehicle.units",
+    "message_id": 1795260388672043
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22446,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.units",
+    "ident": "vehicle.units",
+    "message_id": 1795260388672043
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22729,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672044
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22729,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672044
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22793,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672045
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22793,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672045
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22845,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.units",
+    "ident": "vehicle.units",
+    "message_id": 1795260388672046
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 22845,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.units",
+    "ident": "vehicle.units",
+    "message_id": 1795260388672046
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23140,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.odometer",
+    "ident": "driving.odometer",
+    "message_id": 1795260388672047
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23140,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.odometer",
+    "ident": "driving.odometer",
+    "message_id": 1795260388672047
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23256,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672048
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23256,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672048
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23320,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672049
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23320,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672049
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23372,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.odometer",
+    "ident": "driving.odometer",
+    "message_id": 1795260388672050
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23372,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.odometer",
+    "ident": "driving.odometer",
+    "message_id": 1795260388672050
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23536,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.fuel",
+    "ident": "sensors.fuel",
+    "message_id": 1795260388672051
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23766,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672053
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23766,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672053
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23905,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.fuel",
+    "ident": "sensors.fuel",
+    "message_id": 1795260388672055
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 23905,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.fuel",
+    "ident": "sensors.fuel",
+    "message_id": 1795260388672055
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 24055,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672056
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 24055,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672056
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 24107,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.language",
+    "ident": "vehicle.language",
+    "message_id": 1795260388672057
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 24107,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.language",
+    "ident": "vehicle.language",
+    "message_id": 1795260388672057
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 24342,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672059
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 24342,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672059
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 29783,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.language",
+    "ident": "vehicle.language",
+    "message_id": 1795260388672062
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 29783,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.language",
+    "ident": "vehicle.language",
+    "message_id": 1795260388672062
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 29906,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672063
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 29906,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672063
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 29958,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "sensors.SOCBatteryHybrid",
+    "message_id": 1795260388672064
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 29958,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "sensors.SOCBatteryHybrid",
+    "message_id": 1795260388672064
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 30122,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672065
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 30122,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672065
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 30226,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "sensors.SOCBatteryHybrid",
+    "message_id": 1795260388672067
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 30226,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "sensors.SOCBatteryHybrid",
+    "message_id": 1795260388672067
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 30390,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672068
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 30390,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672068
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 35792,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672070
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 35792,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672070
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 35856,
+    "method": "_result_cds_create",
+    "message_id": 1795260388672071
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 35856,
+    "method": "_result_cds_create",
+    "message_id": 1795260388672071
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 35926,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "entertainment.multimedia",
+    "ident": "entertainment.multimedia",
+    "message_id": 1795260388672072
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 35926,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "entertainment.multimedia",
+    "ident": "entertainment.multimedia",
+    "message_id": 1795260388672072
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36118,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672073
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36118,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672073
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36182,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672074
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36182,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672074
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36234,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260388672075
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36234,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260388672075
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36342,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672076
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36342,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672076
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36394,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "entertainment.multimedia",
+    "ident": "entertainment.multimedia",
+    "message_id": 1795260388672077
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36394,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "entertainment.multimedia",
+    "ident": "entertainment.multimedia",
+    "message_id": 1795260388672077
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36598,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672078
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36598,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672078
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36650,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260388672079
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36650,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260388672079
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36758,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "navigation.infoToNextDestination",
+    "ident": "navigation.infoToNextDestination",
+    "message_id": 1795260388672080
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36758,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "navigation.infoToNextDestination",
+    "ident": "navigation.infoToNextDestination",
+    "message_id": 1795260388672080
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36900,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672081
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 36900,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672081
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37059,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "57",
+    "message_id": 1795260388672083
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37059,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "57",
+    "message_id": 1795260388672083
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37177,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672084
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37177,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672084
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37241,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672085
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37241,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672085
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37293,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "navigation.infoToNextDestination",
+    "ident": "navigation.infoToNextDestination",
+    "message_id": 1795260388672086
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37293,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "navigation.infoToNextDestination",
+    "ident": "navigation.infoToNextDestination",
+    "message_id": 1795260388672086
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37447,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672087
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37447,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672087
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37499,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "57",
+    "message_id": 1795260388672088
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37499,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "57",
+    "message_id": 1795260388672088
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37629,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "navigation.currentPositionDetailedInfo",
+    "message_id": 1795260388672089
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37839,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672091
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37839,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672091
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37891,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672092
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 37891,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672092
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38073,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672093
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38073,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672093
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38125,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "navigation.currentPositionDetailedInfo",
+    "message_id": 1795260388672094
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38125,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "navigation.currentPositionDetailedInfo",
+    "message_id": 1795260388672094
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38291,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672095
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38291,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672095
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38355,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "navigation.finalDestinationDetailedInfo",
+    "ident": "navigation.finalDestinationDetailedInfo",
+    "message_id": 1795260388672096
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38555,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672098
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38555,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672098
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38761,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672099
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38761,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672099
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38813,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverFront",
+    "ident": "23",
+    "message_id": 1795260388672100
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38813,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverFront",
+    "ident": "23",
+    "message_id": 1795260388672100
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 38975,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672101
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39187,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672103
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39187,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672103
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39239,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverFront",
+    "ident": "23",
+    "message_id": 1795260388672104
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39239,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverFront",
+    "ident": "23",
+    "message_id": 1795260388672104
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39401,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "communication.lastCallInfo",
+    "ident": "communication.lastCallInfo",
+    "message_id": 1795260388672105
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39401,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "communication.lastCallInfo",
+    "ident": "communication.lastCallInfo",
+    "message_id": 1795260388672105
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39582,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672106
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39582,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672106
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39646,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672107
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39646,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672107
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39698,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.info",
+    "ident": "47",
+    "message_id": 1795260388672108
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39698,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.info",
+    "ident": "47",
+    "message_id": 1795260388672108
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39887,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672109
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39887,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672109
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39939,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "communication.lastCallInfo",
+    "ident": "communication.lastCallInfo",
+    "message_id": 1795260388672110
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 39939,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "communication.lastCallInfo",
+    "ident": "communication.lastCallInfo",
+    "message_id": 1795260388672110
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40132,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672111
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40132,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672111
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40184,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.info",
+    "ident": "47",
+    "message_id": 1795260388672112
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40184,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.info",
+    "ident": "47",
+    "message_id": 1795260388672112
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40373,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672113
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40373,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672113
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40425,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.temperatureExterior",
+    "ident": "sensors.temperatureExterior",
+    "message_id": 1795260388672114
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40425,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.temperatureExterior",
+    "ident": "sensors.temperatureExterior",
+    "message_id": 1795260388672114
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40583,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672115
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40583,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672115
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40647,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672116
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40647,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672116
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40699,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.temperatureExterior",
+    "ident": "sensors.temperatureExterior",
+    "message_id": 1795260388672117
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40699,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "sensors.temperatureExterior",
+    "ident": "sensors.temperatureExterior",
+    "message_id": 1795260388672117
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40857,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672118
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40857,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672118
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 40921,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.drivingStyle",
+    "ident": "driving.drivingStyle",
+    "message_id": 1795260388672119
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41141,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.odometer",
+    "ident": "39",
+    "message_id": 1795260388672121
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41141,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.odometer",
+    "ident": "39",
+    "message_id": 1795260388672121
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41243,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672122
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41243,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672122
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41307,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672123
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41307,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672123
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41359,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.drivingStyle",
+    "ident": "driving.drivingStyle",
+    "message_id": 1795260388672124
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41359,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.drivingStyle",
+    "ident": "driving.drivingStyle",
+    "message_id": 1795260388672124
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41535,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672125
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41535,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672125
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41587,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.odometer",
+    "ident": "39",
+    "message_id": 1795260388672126
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 41783,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.units",
+    "ident": "vehicle.units",
+    "message_id": 1795260388672128
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43273,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.odometer",
+    "ident": "driving.odometer",
+    "message_id": 1795260388672138
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43273,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.odometer",
+    "ident": "driving.odometer",
+    "message_id": 1795260388672138
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43389,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "communication.lastCallInfo",
+    "ident": "communication.lastCallInfo",
+    "message_id": 1795260388672139
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43389,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "communication.lastCallInfo",
+    "ident": "communication.lastCallInfo",
+    "message_id": 1795260388672139
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43582,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "engine.info",
+    "ident": "engine.info",
+    "message_id": 1795260388672140
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43582,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "engine.info",
+    "ident": "engine.info",
+    "message_id": 1795260388672140
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43768,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672141
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43768,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672141
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43832,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672142
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43832,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672142
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43884,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerFront",
+    "ident": "25",
+    "message_id": 1795260388672143
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 43884,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerFront",
+    "ident": "25",
+    "message_id": 1795260388672143
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44064,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.drivingStyle",
+    "ident": "driving.drivingStyle",
+    "message_id": 1795260388672144
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44064,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.drivingStyle",
+    "ident": "driving.drivingStyle",
+    "message_id": 1795260388672144
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44240,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672145
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44240,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672145
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44304,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672146
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44304,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672146
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44356,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerFront",
+    "ident": "25",
+    "message_id": 1795260388672149
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44356,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerFront",
+    "ident": "25",
+    "message_id": 1795260388672149
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44512,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "engine.info",
+    "ident": "engine.info",
+    "message_id": 1795260388672147
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44888,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672150
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44888,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672150
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44940,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.country",
+    "ident": "vehicle.country",
+    "message_id": 1795260388672151
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 44940,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.country",
+    "ident": "vehicle.country",
+    "message_id": 1795260388672151
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45060,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.averageSpeed",
+    "ident": "31",
+    "message_id": 1795260388672152
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45060,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.averageSpeed",
+    "ident": "31",
+    "message_id": 1795260388672152
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45218,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672153
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45218,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672153
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45282,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672154
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45282,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672154
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45334,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.country",
+    "ident": "vehicle.country",
+    "message_id": 1795260388672155
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45334,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.country",
+    "ident": "vehicle.country",
+    "message_id": 1795260388672155
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45454,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672156
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45454,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672156
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45506,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.averageSpeed",
+    "ident": "31",
+    "message_id": 1795260388672157
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45506,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.averageSpeed",
+    "ident": "31",
+    "message_id": 1795260388672157
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45676,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672158
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45676,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672158
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45728,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.mode",
+    "ident": "driving.mode",
+    "message_id": 1795260388672159
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45728,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "driving.mode",
+    "ident": "driving.mode",
+    "message_id": 1795260388672159
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45839,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672160
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45839,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672160
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45891,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSExtendedInfo",
+    "ident": "61",
+    "message_id": 1795260388672161
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 45891,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSExtendedInfo",
+    "ident": "61",
+    "message_id": 1795260388672161
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46169,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672163
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46169,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672163
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46233,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672164
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46233,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672164
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46297,
+    "method": "_result_cds_setPropertyAsync",
+    "message_id": 1795260388672165
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46297,
+    "method": "_result_cds_setPropertyAsync",
+    "message_id": 1795260388672165
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46349,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.country",
+    "ident": "vehicle.country",
+    "message_id": 1795260388672166
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46349,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.country",
+    "ident": "vehicle.country",
+    "message_id": 1795260388672166
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46457,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSExtendedInfo",
+    "ident": "61",
+    "message_id": 1795260388672167
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46457,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSExtendedInfo",
+    "ident": "61",
+    "message_id": 1795260388672167
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46640,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672168
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46640,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672168
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46704,
+    "method": "_result_cds_setPropertyAsync",
+    "message_id": 1795260388672169
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46704,
+    "method": "_result_cds_setPropertyAsync",
+    "message_id": 1795260388672169
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46756,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverRear",
+    "ident": "24",
+    "message_id": 1795260388672170
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46756,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverRear",
+    "ident": "24",
+    "message_id": 1795260388672170
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46916,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672171
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46916,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672171
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46992,
+    "method": "_result_cds_setPropertyAsync",
+    "message_id": 1795260388672172
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 46992,
+    "method": "_result_cds_setPropertyAsync",
+    "message_id": 1795260388672172
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47056,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverRear",
+    "ident": "24",
+    "message_id": 1795260388672173
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47056,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverRear",
+    "ident": "24",
+    "message_id": 1795260388672173
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47216,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672174
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47216,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672174
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47268,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.ecoRangeWon",
+    "ident": "96",
+    "message_id": 1795260388672175
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47268,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.ecoRangeWon",
+    "ident": "96",
+    "message_id": 1795260388672175
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47385,
+    "method": "_result_cds_setPropertyAsync",
+    "message_id": 1795260388672176
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47385,
+    "method": "_result_cds_setPropertyAsync",
+    "message_id": 1795260388672176
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47449,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672177
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47449,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672177
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47501,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.ecoRangeWon",
+    "ident": "96",
+    "message_id": 1795260388672178
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47501,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.ecoRangeWon",
+    "ident": "96",
+    "message_id": 1795260388672178
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47618,
+    "method": "_result_cds_setPropertyAsync",
+    "message_id": 1795260388672179
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47618,
+    "method": "_result_cds_setPropertyAsync",
+    "message_id": 1795260388672179
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47682,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672180
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47682,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672180
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47746,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672181
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47746,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672181
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47798,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.sunroof",
+    "ident": "21",
+    "message_id": 1795260388672182
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47798,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.sunroof",
+    "ident": "21",
+    "message_id": 1795260388672182
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47955,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672183
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 47955,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672183
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48019,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672184
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48019,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672184
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48071,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.sunroof",
+    "ident": "21",
+    "message_id": 1795260388672185
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48071,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.sunroof",
+    "ident": "21",
+    "message_id": 1795260388672185
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48228,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672186
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48228,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672186
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48280,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerRear",
+    "ident": "26",
+    "message_id": 1795260388672187
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48280,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerRear",
+    "ident": "26",
+    "message_id": 1795260388672187
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48446,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "api.ipaThirdParty",
+    "message_id": 1795260388672188
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48614,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672190
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48614,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672190
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48666,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerRear",
+    "ident": "26",
+    "message_id": 1795260388672191
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48666,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerRear",
+    "ident": "26",
+    "message_id": 1795260388672191
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 48832,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672192
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49000,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.language",
+    "ident": "83",
+    "message_id": 1795260388672194
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49000,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.language",
+    "ident": "83",
+    "message_id": 1795260388672194
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49097,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672195
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49097,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672195
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49161,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.VIN",
+    "ident": "vehicle.VIN",
+    "message_id": 1795260388672196
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49161,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.VIN",
+    "ident": "vehicle.VIN",
+    "message_id": 1795260388672196
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49265,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672197
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49265,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672197
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49365,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672198
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49365,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672198
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49441,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.language",
+    "ident": "83",
+    "message_id": 1795260388672199
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49726,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260388672202
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 49726,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260388672202
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50032,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "57",
+    "message_id": 1795260388672205
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50032,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.currentPositionDetailedInfo",
+    "ident": "57",
+    "message_id": 1795260388672205
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50285,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672207
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50285,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672207
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50479,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672208
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50479,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672208
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50606,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "api.ipaThirdParty",
+    "message_id": 1795260388672210
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50606,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "api.ipaThirdParty",
+    "ident": "api.ipaThirdParty",
+    "message_id": 1795260388672210
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50718,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.VIN",
+    "ident": "vehicle.VIN",
+    "message_id": 1795260388672211
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50718,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.VIN",
+    "ident": "vehicle.VIN",
+    "message_id": 1795260388672211
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50834,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverFront",
+    "ident": "23",
+    "message_id": 1795260388672212
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 50834,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverFront",
+    "ident": "23",
+    "message_id": 1795260388672212
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 51214,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.drivingStyle",
+    "ident": "110",
+    "message_id": 1795260388672215
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 51637,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.VIN",
+    "ident": "vehicle.VIN",
+    "message_id": 1795260388672221
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 51637,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "vehicle.VIN",
+    "ident": "vehicle.VIN",
+    "message_id": 1795260388672221
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 51741,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.info",
+    "ident": "47",
+    "message_id": 1795260388672222
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 51741,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.info",
+    "ident": "47",
+    "message_id": 1795260388672222
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52018,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672224
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52018,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672224
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52082,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.drivingStyle",
+    "ident": "110",
+    "message_id": 1795260388672225
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52782,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672232
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 52782,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672232
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53202,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672239
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53202,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672239
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53394,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerFront",
+    "ident": "25",
+    "message_id": 1795260388672242
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53394,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerFront",
+    "ident": "25",
+    "message_id": 1795260388672242
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 53784,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.fuel",
+    "ident": "71",
+    "message_id": 1795260388672246
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54288,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672253
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54288,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672253
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54340,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.fuel",
+    "ident": "71",
+    "message_id": 1795260388672254
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54340,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.fuel",
+    "ident": "71",
+    "message_id": 1795260388672254
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54468,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.fuel",
+    "ident": "71",
+    "message_id": 1795260388672255
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54468,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.fuel",
+    "ident": "71",
+    "message_id": 1795260388672255
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54608,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.averageSpeed",
+    "ident": "31",
+    "message_id": 1795260388672256
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 54608,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.averageSpeed",
+    "ident": "31",
+    "message_id": 1795260388672256
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55040,
+    "method": "_result_cds_create",
+    "message_id": 1795260388672261
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55040,
+    "method": "_result_cds_create",
+    "message_id": 1795260388672261
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55162,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.temperature",
+    "ident": "52",
+    "message_id": 1795260388672263
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55479,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 4,
+    "propertyName": "42",
+    "ident": "driving.speedActual",
+    "message_id": 1795260388672267
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55479,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 4,
+    "propertyName": "42",
+    "ident": "driving.speedActual",
+    "message_id": 1795260388672267
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55578,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672268
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55578,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672268
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55642,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672269
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55642,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672269
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55706,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSExtendedInfo",
+    "ident": "61",
+    "message_id": 1795260388672270
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55706,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSExtendedInfo",
+    "ident": "61",
+    "message_id": 1795260388672270
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55877,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.temperature",
+    "ident": "52",
+    "message_id": 1795260388672271
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 55877,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.temperature",
+    "ident": "52",
+    "message_id": 1795260388672271
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56312,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.VIN",
+    "ident": "87",
+    "message_id": 1795260388672277
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56312,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.VIN",
+    "ident": "87",
+    "message_id": 1795260388672277
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56407,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672278
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56407,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672278
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56587,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverRear",
+    "ident": "24",
+    "message_id": 1795260388672281
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56587,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowDriverRear",
+    "ident": "24",
+    "message_id": 1795260388672281
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56887,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672284
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56887,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672284
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 56997,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.VIN",
+    "ident": "87",
+    "message_id": 1795260388672286
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57459,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.ecoRangeWon",
+    "ident": "96",
+    "message_id": 1795260388672292
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57459,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.ecoRangeWon",
+    "ident": "96",
+    "message_id": 1795260388672292
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57576,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSPosition",
+    "ident": "62",
+    "message_id": 1795260388672293
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57576,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSPosition",
+    "ident": "62",
+    "message_id": 1795260388672293
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57725,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672294
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 57725,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672294
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59779,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672331
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 59779,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672331
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60075,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.sunroof",
+    "ident": "21",
+    "message_id": 1795260388672336
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60075,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.sunroof",
+    "ident": "21",
+    "message_id": 1795260388672336
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 60232,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "93",
+    "message_id": 1795260388672337
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62812,
+    "method": "_result_cds_create",
+    "message_id": 1795260388672377
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62812,
+    "method": "_result_cds_create",
+    "message_id": 1795260388672377
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62934,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerRear",
+    "ident": "26",
+    "message_id": 1795260388672379
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 62934,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "controls.windowPassengerRear",
+    "ident": "26",
+    "message_id": 1795260388672379
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63100,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672380
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63100,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672380
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63152,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSPosition",
+    "ident": "62",
+    "message_id": 1795260388672381
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63152,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSPosition",
+    "ident": "62",
+    "message_id": 1795260388672381
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63301,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.SOCBatteryHybrid",
+    "ident": "93",
+    "message_id": 1795260388672382
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63757,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.parkingBrake",
+    "ident": "40",
+    "message_id": 1795260388672387
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63757,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.parkingBrake",
+    "ident": "40",
+    "message_id": 1795260388672387
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63862,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672389
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 63862,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672389
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64021,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672391
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64021,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672391
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64358,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672388
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64358,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672388
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64574,
+    "method": "_result_cds_create",
+    "message_id": 1795260388672394
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64574,
+    "method": "_result_cds_create",
+    "message_id": 1795260388672394
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64656,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672395
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64656,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672395
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 64772,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672397
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 65767,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672400
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 65767,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672400
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 65819,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.parkingBrake",
+    "ident": "40",
+    "message_id": 1795260388672401
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 65819,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.parkingBrake",
+    "ident": "40",
+    "message_id": 1795260388672401
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66064,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 6,
+    "propertyName": "navigation.guidanceStatus",
+    "ident": "63",
+    "message_id": 1795260388672404
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66064,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 6,
+    "propertyName": "navigation.guidanceStatus",
+    "ident": "63",
+    "message_id": 1795260388672404
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66169,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672405
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66169,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672405
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66422,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.units",
+    "ident": "86",
+    "message_id": 1795260388672408
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66738,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260388672410
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66738,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "sensors.battery",
+    "ident": "68",
+    "message_id": 1795260388672410
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 66974,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672413
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 67263,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672416
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 67263,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672416
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 67315,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.units",
+    "ident": "86",
+    "message_id": 1795260388672418
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68218,
+    "method": "_result_cds_addPropertyChangedEventHandler",
+    "message_id": 1795260388672425
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68705,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672431
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68705,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672431
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68887,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672432
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68887,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672432
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68939,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.averageConsumption",
+    "ident": "30",
+    "message_id": 1795260388672433
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 68939,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.averageConsumption",
+    "ident": "30",
+    "message_id": 1795260388672433
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69376,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672438
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69376,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672438
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 69749,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "entertainment.multimedia",
+    "ident": "54",
+    "message_id": 1795260388672439
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70286,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672445
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70286,
+    "method": "_result_cds_getPropertyAsync",
+    "message_id": 1795260388672445
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 70338,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "entertainment.multimedia",
+    "ident": "54",
+    "message_id": 1795260388672446
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74436,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.temperature",
+    "ident": "52",
+    "message_id": 1795260388672507
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 74436,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "engine.temperature",
+    "ident": "52",
+    "message_id": 1795260388672507
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75377,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "entertainment.multimedia",
+    "ident": "54",
+    "message_id": 1795260388672519
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75377,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "entertainment.multimedia",
+    "ident": "54",
+    "message_id": 1795260388672519
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75532,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "entertainment.multimedia",
+    "ident": "entertainment.multimedia",
+    "message_id": 1795260388672520
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 75532,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 2,
+    "propertyName": "entertainment.multimedia",
+    "ident": "entertainment.multimedia",
+    "message_id": 1795260388672520
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76040,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSPosition",
+    "ident": "62",
+    "message_id": 1795260388672526
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76040,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "navigation.GPSPosition",
+    "ident": "62",
+    "message_id": 1795260388672526
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76261,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.parkingBrake",
+    "ident": "40",
+    "message_id": 1795260388672527
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76261,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.parkingBrake",
+    "ident": "40",
+    "message_id": 1795260388672527
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76402,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 6,
+    "propertyName": "navigation.guidanceStatus",
+    "ident": "63",
+    "message_id": 1795260388672528
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 76402,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 6,
+    "propertyName": "navigation.guidanceStatus",
+    "ident": "63",
+    "message_id": 1795260388672528
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77422,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672541
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77982,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.averageConsumption",
+    "ident": "30",
+    "message_id": 1795260388672546
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 77982,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "driving.averageConsumption",
+    "ident": "30",
+    "message_id": 1795260388672546
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78538,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672552
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78538,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672552
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78848,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672553
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 78848,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672553
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80445,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672570
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 80445,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672570
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 83063,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672605
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 83063,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672605
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 83373,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672606
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 83373,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672606
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 83683,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672607
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 83683,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672607
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 83993,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672608
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 83993,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672608
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 84303,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672609
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 84303,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672609
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 84613,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672610
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 84613,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672610
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 84923,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672611
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 84923,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672611
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 85233,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672612
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 85233,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672612
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 85543,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672613
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 85543,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672613
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 85853,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672614
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 85853,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672614
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 86163,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672615
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 86163,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672615
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 86473,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672616
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 86473,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672616
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 86795,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672617
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 86795,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 5,
+    "propertyName": "hmi.graphicalContext",
+    "ident": "114",
+    "message_id": 1795260388672617
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 87105,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672618
+  },
+  {
+    "direction": "hu_to_phone",
+    "session": 0,
+    "off": 87105,
+    "method": "cds_onPropertyChangedEvent",
+    "handle": 3,
+    "propertyName": "vehicle.time",
+    "ident": "109",
+    "message_id": 1795260388672618
+  }
+]

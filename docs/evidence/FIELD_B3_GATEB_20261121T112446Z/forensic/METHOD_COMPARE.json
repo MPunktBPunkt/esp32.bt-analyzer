@@ -1,0 +1,289 @@
+{
+  "raw": {
+    "sas_login": 18,
+    "rhmi_getCapabilities": 7,
+    "info_getSystemInfo": 3,
+    "am_create": 6,
+    "am_addAppEventHandler": 4,
+    "am_showLoadingHint": 1,
+    "am_showLoadedSuccessHint": 1,
+    "cds_create": 5,
+    "cds_addPropertyChangedEventHandler": 49,
+    "cds_getPropertyAsync": 48,
+    "ver_getVersion": 7,
+    "cds_setPropertyAsync": 5,
+    "rhmi_create": 8,
+    "rhmi_checkResource": 11,
+    "rhmi_initialize": 5,
+    "am_registerApp": 5,
+    "rhmi_addActionEventHandler": 4,
+    "rhmi_addHmiEventHandler": 4,
+    "rhmi_setData": 192,
+    "rhmi_setProperty": 50,
+    "rhmi_ackActionEvent": 4,
+    "av_create": 1,
+    "av_requestConnection": 1,
+    "av_playerStateChanged": 1,
+    "rhmi_triggerEvent": 2,
+    "_result_sas_certificate": 19,
+    "_result_sas_login": 18,
+    "_result_rhmi_getCapabilities": 7,
+    "_result_info_getSystemInfo": 3,
+    "_result_am_create": 6,
+    "_result_am_addAppEventHandler": 4,
+    "_result_am_showLoadingHint": 1,
+    "_result_am_showLoadedSuccessHint": 1,
+    "_result_cds_create": 5,
+    "_result_cds_addPropertyChangedEventHandler": 49,
+    "cds_onPropertyChangedEvent": 155,
+    "_result_cds_getPropertyAsync": 48,
+    "_result_ver_getVersion": 7,
+    "_result_cds_setPropertyAsync": 5,
+    "_result_rhmi_create": 8,
+    "_result_rhmi_checkResource": 11,
+    "_result_rhmi_initialize": 5,
+    "_result_am_registerApp": 5,
+    "_result_rhmi_addActionEventHandler": 4,
+    "_result_rhmi_addHmiEventHandler": 4,
+    "_result_rhmi_setData": 183,
+    "_result_rhmi_setProperty": 47,
+    "rhmi_onActionEvent": 4,
+    "rhmi_onHmiEvent": 9,
+    "_result_rhmi_ackActionEvent": 4,
+    "_result_av_create": 1,
+    "_result_av_requestConnection": 1,
+    "av_requestPlayerState": 1,
+    "av_connectionGranted": 1,
+    "_result_av_playerStateChanged": 1,
+    "_result_rhmi_triggerEvent": 2
+  },
+  "b3": {},
+  "only_raw": [
+    [
+      "sas_login",
+      18
+    ],
+    [
+      "rhmi_getCapabilities",
+      7
+    ],
+    [
+      "info_getSystemInfo",
+      3
+    ],
+    [
+      "am_create",
+      6
+    ],
+    [
+      "am_addAppEventHandler",
+      4
+    ],
+    [
+      "am_showLoadingHint",
+      1
+    ],
+    [
+      "am_showLoadedSuccessHint",
+      1
+    ],
+    [
+      "cds_create",
+      5
+    ],
+    [
+      "cds_addPropertyChangedEventHandler",
+      49
+    ],
+    [
+      "cds_getPropertyAsync",
+      48
+    ],
+    [
+      "ver_getVersion",
+      7
+    ],
+    [
+      "cds_setPropertyAsync",
+      5
+    ],
+    [
+      "rhmi_create",
+      8
+    ],
+    [
+      "rhmi_checkResource",
+      11
+    ],
+    [
+      "rhmi_initialize",
+      5
+    ],
+    [
+      "am_registerApp",
+      5
+    ],
+    [
+      "rhmi_addActionEventHandler",
+      4
+    ],
+    [
+      "rhmi_addHmiEventHandler",
+      4
+    ],
+    [
+      "rhmi_setData",
+      192
+    ],
+    [
+      "rhmi_setProperty",
+      50
+    ],
+    [
+      "rhmi_ackActionEvent",
+      4
+    ],
+    [
+      "av_create",
+      1
+    ],
+    [
+      "av_requestConnection",
+      1
+    ],
+    [
+      "av_playerStateChanged",
+      1
+    ],
+    [
+      "rhmi_triggerEvent",
+      2
+    ],
+    [
+      "_result_sas_certificate",
+      19
+    ],
+    [
+      "_result_sas_login",
+      18
+    ],
+    [
+      "_result_rhmi_getCapabilities",
+      7
+    ],
+    [
+      "_result_info_getSystemInfo",
+      3
+    ],
+    [
+      "_result_am_create",
+      6
+    ],
+    [
+      "_result_am_addAppEventHandler",
+      4
+    ],
+    [
+      "_result_am_showLoadingHint",
+      1
+    ],
+    [
+      "_result_am_showLoadedSuccessHint",
+      1
+    ],
+    [
+      "_result_cds_create",
+      5
+    ],
+    [
+      "_result_cds_addPropertyChangedEventHandler",
+      49
+    ],
+    [
+      "cds_onPropertyChangedEvent",
+      155
+    ],
+    [
+      "_result_cds_getPropertyAsync",
+      48
+    ],
+    [
+      "_result_ver_getVersion",
+      7
+    ],
+    [
+      "_result_cds_setPropertyAsync",
+      5
+    ],
+    [
+      "_result_rhmi_create",
+      8
+    ],
+    [
+      "_result_rhmi_checkResource",
+      11
+    ],
+    [
+      "_result_rhmi_initialize",
+      5
+    ],
+    [
+      "_result_am_registerApp",
+      5
+    ],
+    [
+      "_result_rhmi_addActionEventHandler",
+      4
+    ],
+    [
+      "_result_rhmi_addHmiEventHandler",
+      4
+    ],
+    [
+      "_result_rhmi_setData",
+      183
+    ],
+    [
+      "_result_rhmi_setProperty",
+      47
+    ],
+    [
+      "rhmi_onActionEvent",
+      4
+    ],
+    [
+      "rhmi_onHmiEvent",
+      9
+    ],
+    [
+      "_result_rhmi_ackActionEvent",
+      4
+    ],
+    [
+      "_result_av_create",
+      1
+    ],
+    [
+      "_result_av_requestConnection",
+      1
+    ],
+    [
+      "av_requestPlayerState",
+      1
+    ],
+    [
+      "av_connectionGranted",
+      1
+    ],
+    [
+      "_result_av_playerStateChanged",
+      1
+    ],
+    [
+      "_result_rhmi_triggerEvent",
+      2
+    ]
+  ],
+  "only_b3": [],
+  "deltas": []
+}

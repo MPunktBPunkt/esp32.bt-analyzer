@@ -1,0 +1,82 @@
+[
+  {
+    "off": 102700,
+    "direction": "phone_to_hu",
+    "method": "av_create",
+    "fields": {
+      "_messageId": 1795260936029,
+      "instanceID": 14,
+      "id": "me.hufman.androidautoidrive.music"
+    }
+  },
+  {
+    "off": 134074,
+    "direction": "phone_to_hu",
+    "method": "av_requestConnection",
+    "fields": {
+      "connectionType": "EtchStruct(type_name='AVConnectionType', fields={'AV_CONNECTION_TYPE_ENTERTAINMENT': True}, type_hash=2024883215)",
+      "handle": 1,
+      "_messageId": 1795260937768
+    }
+  },
+  {
+    "off": 202150,
+    "direction": "phone_to_hu",
+    "method": "av_playerStateChanged",
+    "fields": {
+      "connectionType": "EtchStruct(type_name='AVConnectionType', fields={'AV_CONNECTION_TYPE_ENTERTAINMENT': True}, type_hash=2024883215)",
+      "handle": 1,
+      "_messageId": 1795260937953,
+      "playerState": "EtchStruct(type_name='AVPlayerState', fields={'AV_PLAYERSTATE_PLAY': True}, type_hash=2929552729)"
+    }
+  },
+  {
+    "off": 68583,
+    "direction": "hu_to_phone",
+    "method": "_result_av_create",
+    "fields": {
+      "result": 1,
+      "_inReplyTo": 1795260936029,
+      "_messageId": 1795260388672429
+    }
+  },
+  {
+    "off": 74749,
+    "direction": "hu_to_phone",
+    "method": "_result_av_requestConnection",
+    "fields": {
+      "_inReplyTo": 1795260937768,
+      "_messageId": 1795260388672511
+    }
+  },
+  {
+    "off": 75048,
+    "direction": "hu_to_phone",
+    "method": "av_requestPlayerState",
+    "fields": {
+      "connectionType": "EtchStruct(type_name='AVConnectionType', fields={'AV_CONNECTION_TYPE_ENTERTAINMENT': True}, type_hash=2024883215)",
+      "_messageId": 1795260388672515,
+      "handle": 1,
+      "playerState": "EtchStruct(type_name='AVPlayerState', fields={'AV_PLAYERSTATE_PLAY': True}, type_hash=2929552729)"
+    }
+  },
+  {
+    "off": 75709,
+    "direction": "hu_to_phone",
+    "method": "av_connectionGranted",
+    "fields": {
+      "connectionType": "EtchStruct(type_name='AVConnectionType', fields={'AV_CONNECTION_TYPE_ENTERTAINMENT': True}, type_hash=2024883215)",
+      "_messageId": 1795260388672521,
+      "handle": 1
+    }
+  },
+  {
+    "off": 76691,
+    "direction": "hu_to_phone",
+    "method": "_result_av_playerStateChanged",
+    "fields": {
+      "_inReplyTo": 1795260937953,
+      "_messageId": 1795260388672530
+    }
+  }
+]

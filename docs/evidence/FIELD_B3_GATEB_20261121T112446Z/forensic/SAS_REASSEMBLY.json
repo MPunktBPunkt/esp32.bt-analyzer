@@ -1,0 +1,3258 @@
+{
+  "cert_present": true,
+  "cert_sha256": "b4364f34ebc4bf282eeb2c8f97723011357d56db5d22477c47496e545ef28e49",
+  "cert_len": 8001,
+  "sas_events": [
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 162,
+      "message_id": 1795260913532,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6087,
+        "cert_sha256": "da3b98d1fced079d3b08257dc62a8543a0c9b75958cbad5a59037c9260ff26e2",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_myBMW.perm___applicationmanager_3e80d28cc70847c4914df91cb6dd4ad44fbc90a6bd7db2f96904e21bca92b8e30",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_myBMW.perm___applicationmanager_3e80d28cc70847c4914df91cb6dd4ad44fbc90a6bd7db2f96904e21bca92b8e3",
+            "serial_hex": "062157",
+            "serial_u32": 401751,
+            "serial_u32_be_hex": "00062157",
+            "pad16_hex": "8feeb90bc10a0e8c2a488b3a97e20a6a"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "da3b98d1fced079d3b08257dc62a8543a0c9b75958cbad5a59037c9260ff26e2",
+        "cert_blob_len": 6087,
+        "pkcs7": {
+          "der_bytes": 4462,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_myBMW.perm___applicationmanager_3e80d28cc70847c4914df91cb6dd4ad44fbc90a6bd7db2f96904e21bca92b8e30",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_myBMW.perm___applicationmanager_3e80d28cc70847c4914df91cb6dd4ad44fbc90a6bd7db2f96904e21bca92b8e3",
+              "serial_hex": "062157",
+              "serial_u32": 401751,
+              "serial_u32_be_hex": "00062157",
+              "pad16_hex": "8feeb90bc10a0e8c2a488b3a97e20a6a"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            }
+          ],
+          "rhmi_description_sha256": [],
+          "image_db_sha256": [],
+          "text_db_sha256": [],
+          "permissions": [
+            {
+              "app.device_platform": "Android",
+              "cds.entertainment.statusAvailableSources": "3",
+              "CDS": "true",
+              "RHMI": "true",
+              "APPID": "myBMW",
+              "Make": "BMW,MINI,J29",
+              "SAS.CertificateType": "APP",
+              "cds.api.ipaThirdParty": "3",
+              "AVS": "true",
+              "SAS.Digests.TextDatabases": "0000000000000000000000000000000000000000000000000000000000000000",
+              "SAS.Digests.ImageDatabases": "0000000000000000000000000000000000000000000000000000000000000000",
+              "SAS.Digests.RHMIDescriptions": "00000000000000000000000000000000000000000000000000000000000000000"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 6304,
+      "message_id": 1795260913569,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "732e655d980394ec97a7ddcbc308f25bb768d5bb243ec40fd38d513513761248",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_000018a0_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 6304,
+      "message_id": 1795260913569,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "732e655d980394ec97a7ddcbc308f25bb768d5bb243ec40fd38d513513761248",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_000018a0_512.bin"
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 7097,
+      "message_id": 1795260916880,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6648,
+        "cert_sha256": "d9b4249c27f8eb71341c60cca198767bc34244d623a09f207d89eb423b952370",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf80",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf8",
+            "serial_hex": "062156",
+            "serial_u32": 401750,
+            "serial_u32_be_hex": "00062156",
+            "pad16_hex": "7c0dc5caf402ee1d8caa5cca831e9f02"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "d9b4249c27f8eb71341c60cca198767bc34244d623a09f207d89eb423b952370",
+        "cert_blob_len": 6648,
+        "pkcs7": {
+          "der_bytes": 4878,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf80",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf8",
+              "serial_hex": "062156",
+              "serial_u32": 401750,
+              "serial_u32_be_hex": "00062156",
+              "pad16_hex": "7c0dc5caf402ee1d8caa5cca831e9f02"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            }
+          ],
+          "rhmi_description_sha256": [],
+          "image_db_sha256": [],
+          "text_db_sha256": [],
+          "permissions": [
+            {
+              "mapp.device_platform": "Android",
+              "cds.entertainment.statusAvailableSources": "3",
+              "cds.cds.apiRegistry": "3",
+              "cds.api.startJSApp": "3",
+              "rhmi.entrybutton.everywhere": "true",
+              "cds.*": "1",
+              "rhmi.contact": "true",
+              "rhmi.padfocusevents": "true",
+              "CDS": "true",
+              "SAS.CertificateType": "APP",
+              "cds.api.ipamediaplayer": "3",
+              "rhmi.menuchange.onevent": "true",
+              "cds.api.carcloud": "3",
+              "rhmi.navigation": "true",
+              "APPID": "myBMW",
+              "rhmi.padfocusevents.permanentoverride": "true",
+              "rhmi.notification.center": "true",
+              "TUI": "false",
+              "Make": "BMW,MINI,J29",
+              "cds.api.ipaThirdParty": "3",
+              "rhmi.hmicontrol": "false",
+              "cds.hmi.graphicalContext": "3",
+              "RHMI": "true",
+              "rhmi.unlimitedfocusevents": "true",
+              "rhmi.phone": "true",
+              "rhmi.tts": "true",
+              "MAP": "true",
+              "AVS": "false",
+              "SAS.Digests.TextDatabases": "0000000000000000000000000000000000000000000000000000000000000000",
+              "SAS.Digests.ImageDatabases": "0000000000000000000000000000000000000000000000000000000000000000",
+              "SAS.Digests.RHMIDescriptions": "00000000000000000000000000000000000000000000000000000000000000000"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 13888,
+      "message_id": 1795260916917,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "1c0c5c8635d5237f9ed6ca0433d20cf8143a890a5f225338f300062a1f06e284",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00003640_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 13888,
+      "message_id": 1795260916917,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "1c0c5c8635d5237f9ed6ca0433d20cf8143a890a5f225338f300062a1f06e284",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00003640_512.bin"
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 15241,
+      "message_id": 1795260920019,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6774,
+        "cert_sha256": "b512116d5a65f0fc4b6bc88288a5a2e9720593d67503e5f8cfa1ca5af35a5133",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_mobile___com_smartthings_android_00.00.030",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_mobile___com_smartthings_android_00.00.03",
+            "serial_hex": "36a7",
+            "serial_u32": 13991,
+            "serial_u32_be_hex": "000036a7",
+            "pad16_hex": "1774b9248af23e3a57da999364c5d0ab"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "b512116d5a65f0fc4b6bc88288a5a2e9720593d67503e5f8cfa1ca5af35a5133",
+        "cert_blob_len": 6774,
+        "pkcs7": {
+          "der_bytes": 4971,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_mobile___com_smartthings_android_00.00.030",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_mobile___com_smartthings_android_00.00.03",
+              "serial_hex": "36a7",
+              "serial_u32": 13991,
+              "serial_u32_be_hex": "000036a7",
+              "pad16_hex": "1774b9248af23e3a57da999364c5d0ab"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            }
+          ],
+          "rhmi_description_sha256": [
+            "ab8f2a86e7f648fa4c3399b52d8001a5fe109bcefea790ccbd98f04a9301f93c"
+          ],
+          "image_db_sha256": [
+            "65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d",
+            "a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9"
+          ],
+          "text_db_sha256": [
+            "7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f"
+          ],
+          "permissions": [
+            {
+              "SAS.CertificateType": "APP",
+              "app.device_platform": "Android",
+              "AVS": "true",
+              "CDS": "true",
+              "RHMI": "true",
+              "Make": "BMW,MINI",
+              "SAS.Digests.RHMIDescriptions": "ab8f2a86e7f648fa4c3399b52d8001a5fe109bcefea790ccbd98f04a9301f93c",
+              "SAS.Digests.ImageDatabases": "65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9,a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9",
+              "SAS.Digests.TextDatabases": "7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f0"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 22262,
+      "message_id": 1795260920056,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "05f42fd81e3b363a50fae4998a2ccc396e43a4bd4a9d0bef1795928b7c84af8f",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_000056f6_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 22262,
+      "message_id": 1795260920056,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "05f42fd81e3b363a50fae4998a2ccc396e43a4bd4a9d0bef1795928b7c84af8f",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_000056f6_512.bin"
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 22829,
+      "message_id": 1795260921027,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6648,
+        "cert_sha256": "1dcfe6eee8fa16a296f86bc41ee5cb8328fdfbc38b9f60ffb6dfbaa938f0190c",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf80",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf8",
+            "serial_hex": "062156",
+            "serial_u32": 401750,
+            "serial_u32_be_hex": "00062156",
+            "pad16_hex": "7c0dc5caf402ee1d8caa5cca831e9f02"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "1dcfe6eee8fa16a296f86bc41ee5cb8328fdfbc38b9f60ffb6dfbaa938f0190c",
+        "cert_blob_len": 6648,
+        "pkcs7": {
+          "der_bytes": 4876,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf80",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf8",
+              "serial_hex": "062156",
+              "serial_u32": 401750,
+              "serial_u32_be_hex": "00062156",
+              "pad16_hex": "7c0dc5caf402ee1d8caa5cca831e9f02"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            }
+          ],
+          "rhmi_description_sha256": [],
+          "image_db_sha256": [],
+          "text_db_sha256": [],
+          "permissions": [
+            {
+              "mapp.device_platform": "Android",
+              "cds.entertainment.statusAvailableSources": "3",
+              "cds.cds.apiRegistry": "3",
+              "cds.api.startJSApp": "3",
+              "rhmi.entrybutton.everywhere": "true",
+              "cds.*": "1",
+              "rhmi.contact": "true",
+              "rhmi.padfocusevents": "true",
+              "CDS": "true",
+              "SAS.CertificateType": "APP",
+              "cds.api.ipamediaplayer": "3",
+              "rhmi.menuchange.onevent": "true",
+              "cds.api.carcloud": "3",
+              "rhmi.navigation": "true",
+              "APPID": "myBMW",
+              "rhmi.padfocusevents.permanentoverride": "true",
+              "rhmi.notification.center": "true",
+              "TUI": "false",
+              "Make": "BMW,MINI,J29",
+              "cds.api.ipaThirdParty": "3",
+              "rhmi.hmicontrol": "false",
+              "cds.hmi.graphicalContext": "3",
+              "RHMI": "true",
+              "rhmi.unlimitedfocusevents": "true",
+              "rhmi.phone": "true",
+              "rhmi.tts": "true",
+              "MAP": "true",
+              "AVS": "false",
+              "SAS.Digests.TextDatabases": "0000000000000000000000000000000000000000000000000000000000000000",
+              "SAS.Digests.ImageDatabases": "0000000000000000000000000000000000000000000000000000000000000000",
+              "SAS.Digests.RHMIDescriptions": "00000000000000000000000000000000000000000000000000000000000000000"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 29788,
+      "message_id": 1795260921064,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "61fddc2ea03b18949b643715b5118ae1f7a6c9d014f2ad9163eee42903dfd218",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_0000745c_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 29788,
+      "message_id": 1795260921064,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "61fddc2ea03b18949b643715b5118ae1f7a6c9d014f2ad9163eee42903dfd218",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_0000745c_512.bin"
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 37707,
+      "message_id": 1795260933149,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6843,
+        "cert_sha256": "1cdc4a790204a0bdd64fb4524fc344eb5385cd24bbc79ad4ad600a7cb47ca23d",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_bmw_one_app___calendar_00.00.040",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_bmw_one_app___calendar_00.00.04",
+            "serial_hex": "5c5b",
+            "serial_u32": 23643,
+            "serial_u32_be_hex": "00005c5b",
+            "pad16_hex": "ae1bca6d74a3e00ef0e7b79de0c627fa"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "1cdc4a790204a0bdd64fb4524fc344eb5385cd24bbc79ad4ad600a7cb47ca23d",
+        "cert_blob_len": 6843,
+        "pkcs7": {
+          "der_bytes": 5021,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_bmw_one_app___calendar_00.00.040",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_bmw_one_app___calendar_00.00.04",
+              "serial_hex": "5c5b",
+              "serial_u32": 23643,
+              "serial_u32_be_hex": "00005c5b",
+              "pad16_hex": "ae1bca6d74a3e00ef0e7b79de0c627fa"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            }
+          ],
+          "rhmi_description_sha256": [
+            "3cf4795378d3cd7dfba139d8035c9ac5f6c1cacf8421e8044063d0824208b164",
+            "eb460af39f00c39d26ab00fce4c4d0e2fa49e331ecf8174730821a91d75846ae",
+            "f05e6fa4ed54fe116516cf4330f2ceed7a51ea060f36d4372fc3ebab7f023a71"
+          ],
+          "image_db_sha256": [
+            "22acafe04d71e561e0834edf101bc20c05a2fe2e42cea2f94b577c80ee17cf37",
+            "2cc2d6d7a3c07e22ac5d37aad78233b948b63b9468830983cc3616e895969ff0",
+            "c56661493b14bcc935e3a6e30e1a9828b07b417b546d71dc3cbc03aa75c0b5b8",
+            "eb74e889a3a0ff285dca6ea51ebca189c3436587afb1d520b2598ca6225e511c"
+          ],
+          "text_db_sha256": [
+            "05e3ac6337a95c218dd331051bb10d77edc780ce31efa0e28a56cf6eb18b93f2",
+            "65acf9006253bc4a41a0cd661c712435d07b4725aba3c597269bbd24029a90c4",
+            "8db89b060d464564e160e0690e367d38ebc37233b89d9f2d7813349290fcefb2",
+            "a47a0ee18b522cb8e677c81c4fe111e0f426db4eb23c9011944fa5e925ca7bde"
+          ],
+          "permissions": [
+            {
+              "8SAS.CertificateType": "APP",
+              "app.device_platform": "Android",
+              "AVS": "true",
+              "CDS": "true",
+              "RHMI": "true",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "eb460af39f00c39d26ab00fce4c4d0e2fa49e331ecf8174730821a91d75846ae,f05e6fa4ed54fe116516cf4330f2ceed7a51ea060f36d4372fc3ebab7f023a71,3cf4795378d3cd7dfba139d8035c9ac5f6c1cacf8421e8044063d0824208b164,3cf4795378d3cd7dfba139d8035c9ac5f6c1cacf8421e8044063d0824208b164",
+              "SAS.Digests.ImageDatabases": "c56661493b14bcc935e3a6e30e1a9828b07b417b546d71dc3cbc03aa75c0b5b8,eb74e889a3a0ff285dca6ea51ebca189c3436587afb1d520b2598ca6225e511c,c56661493b14bcc935e3a6e30e1a9828b07b417b546d71dc3cbc03aa75c0b5b8,2cc2d6d7a3c07e22ac5d37aad78233b948b63b9468830983cc3616e895969ff0,22acafe04d71e561e0834edf101bc20c05a2fe2e42cea2f94b577c80ee17cf37",
+              "SAS.Digests.TextDatabases": "a47a0ee18b522cb8e677c81c4fe111e0f426db4eb23c9011944fa5e925ca7bde,65acf9006253bc4a41a0cd661c712435d07b4725aba3c597269bbd24029a90c4,8db89b060d464564e160e0690e367d38ebc37233b89d9f2d7813349290fcefb2,65acf9006253bc4a41a0cd661c712435d07b4725aba3c597269bbd24029a90c4,05e3ac6337a95c218dd331051bb10d77edc780ce31efa0e28a56cf6eb18b93f20"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 44605,
+      "message_id": 1795260933149,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6311,
+        "cert_sha256": "40e7427087cb3af28302c592a6589c59220720c1fe079fe8580052917e57b68c",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_bmwconnected___news_00.00.100",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_bmwconnected___news_00.00.10",
+            "serial_hex": "239d",
+            "serial_u32": 9117,
+            "serial_u32_be_hex": "0000239d",
+            "pad16_hex": "7ebfd18474f822a3c3800bb5b4dc7fe1"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "40e7427087cb3af28302c592a6589c59220720c1fe079fe8580052917e57b68c",
+        "cert_blob_len": 6311,
+        "pkcs7": {
+          "der_bytes": 4628,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_bmwconnected___news_00.00.100",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_bmwconnected___news_00.00.10",
+              "serial_hex": "239d",
+              "serial_u32": 9117,
+              "serial_u32_be_hex": "0000239d",
+              "pad16_hex": "7ebfd18474f822a3c3800bb5b4dc7fe1"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            }
+          ],
+          "rhmi_description_sha256": [
+            "a8abc5655b6cba3343e1df90c08fd036aaf2733475567e4062860cae6a84c745"
+          ],
+          "image_db_sha256": [
+            "02a70f67333b7330aa0e784f840f7b565c0d0105cd80b2bd44ee91ed70944d5a",
+            "218de74690dba2765296e78758bd9139d42b6206536d192e39db8f985b45d408",
+            "2cc2d6d7a3c07e22ac5d37aad78233b948b63b9468830983cc3616e895969ff0",
+            "eb74e889a3a0ff285dca6ea51ebca189c3436587afb1d520b2598ca6225e511c"
+          ],
+          "text_db_sha256": [
+            "65acf9006253bc4a41a0cd661c712435d07b4725aba3c597269bbd24029a90c4",
+            "acfa86abfa67d6955aeb450dd24c38dded3ddce9e0f6e10ac5a84b857c5cf0b4"
+          ],
+          "permissions": [
+            {
+              "SAS.CertificateType": "APP",
+              "app.device_platform": "Android",
+              "AVS": "true",
+              "CDS": "true",
+              "RHMI": "true",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "a8abc5655b6cba3343e1df90c08fd036aaf2733475567e4062860cae6a84c745",
+              "SAS.Digests.ImageDatabases": "02a70f67333b7330aa0e784f840f7b565c0d0105cd80b2bd44ee91ed70944d5a,eb74e889a3a0ff285dca6ea51ebca189c3436587afb1d520b2598ca6225e511c,218de74690dba2765296e78758bd9139d42b6206536d192e39db8f985b45d408,2cc2d6d7a3c07e22ac5d37aad78233b948b63b9468830983cc3616e895969ff0",
+              "SAS.Digests.TextDatabases": "65acf9006253bc4a41a0cd661c712435d07b4725aba3c597269bbd24029a90c4,acfa86abfa67d6955aeb450dd24c38dded3ddce9e0f6e10ac5a84b857c5cf0b4,65acf9006253bc4a41a0cd661c712435d07b4725aba3c597269bbd24029a90c40"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 50971,
+      "message_id": 1795260933146,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6648,
+        "cert_sha256": "1dcfe6eee8fa16a296f86bc41ee5cb8328fdfbc38b9f60ffb6dfbaa938f0190c",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf80",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf8",
+            "serial_hex": "062156",
+            "serial_u32": 401750,
+            "serial_u32_be_hex": "00062156",
+            "pad16_hex": "7c0dc5caf402ee1d8caa5cca831e9f02"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "1dcfe6eee8fa16a296f86bc41ee5cb8328fdfbc38b9f60ffb6dfbaa938f0190c",
+        "cert_blob_len": 6648,
+        "pkcs7": {
+          "der_bytes": 4876,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf80",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf8",
+              "serial_hex": "062156",
+              "serial_u32": 401750,
+              "serial_u32_be_hex": "00062156",
+              "pad16_hex": "7c0dc5caf402ee1d8caa5cca831e9f02"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            }
+          ],
+          "rhmi_description_sha256": [],
+          "image_db_sha256": [],
+          "text_db_sha256": [],
+          "permissions": [
+            {
+              "mapp.device_platform": "Android",
+              "cds.entertainment.statusAvailableSources": "3",
+              "cds.cds.apiRegistry": "3",
+              "cds.api.startJSApp": "3",
+              "rhmi.entrybutton.everywhere": "true",
+              "cds.*": "1",
+              "rhmi.contact": "true",
+              "rhmi.padfocusevents": "true",
+              "CDS": "true",
+              "SAS.CertificateType": "APP",
+              "cds.api.ipamediaplayer": "3",
+              "rhmi.menuchange.onevent": "true",
+              "cds.api.carcloud": "3",
+              "rhmi.navigation": "true",
+              "APPID": "myBMW",
+              "rhmi.padfocusevents.permanentoverride": "true",
+              "rhmi.notification.center": "true",
+              "TUI": "false",
+              "Make": "BMW,MINI,J29",
+              "cds.api.ipaThirdParty": "3",
+              "rhmi.hmicontrol": "false",
+              "cds.hmi.graphicalContext": "3",
+              "RHMI": "true",
+              "rhmi.unlimitedfocusevents": "true",
+              "rhmi.phone": "true",
+              "rhmi.tts": "true",
+              "MAP": "true",
+              "AVS": "false",
+              "SAS.Digests.TextDatabases": "0000000000000000000000000000000000000000000000000000000000000000",
+              "SAS.Digests.ImageDatabases": "0000000000000000000000000000000000000000000000000000000000000000",
+              "SAS.Digests.RHMIDescriptions": "00000000000000000000000000000000000000000000000000000000000000000"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 57682,
+      "message_id": 1795260933180,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 8001,
+        "cert_sha256": "b4364f34ebc4bf282eeb2c8f97723011357d56db5d22477c47496e545ef28e49",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_spotify___com_spotify_music_00.00.040",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_spotify___com_spotify_music_00.00.04",
+            "serial_hex": "5865",
+            "serial_u32": 22629,
+            "serial_u32_be_hex": "00005865",
+            "pad16_hex": "ac3792b0f9e8c77d3413662f8a5713c6"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "b4364f34ebc4bf282eeb2c8f97723011357d56db5d22477c47496e545ef28e49",
+        "cert_blob_len": 8001,
+        "pkcs7": {
+          "der_bytes": 5876,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_spotify___com_spotify_music_00.00.040",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_spotify___com_spotify_music_00.00.04",
+              "serial_hex": "5865",
+              "serial_u32": 22629,
+              "serial_u32_be_hex": "00005865",
+              "pad16_hex": "ac3792b0f9e8c77d3413662f8a5713c6"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            }
+          ],
+          "rhmi_description_sha256": [
+            "8e1d0b21f6d7d554683e341d47d57aa50768a81679d9846c2b02306dfefafd76",
+            "d8dcd4c90bf5d3a66e056f2564e7c047fd57b36f2730d5c1cf4849cd372095fe"
+          ],
+          "image_db_sha256": [
+            "bb927bab7d37519c0ee39f48e91c466e31165ff8ab5a5ec675c4cc7647733d40",
+            "d9ff14aab4c47e044a6342c8233993dd8766ae3fd6526b618c04574b3b3f3145",
+            "e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d"
+          ],
+          "text_db_sha256": [
+            "075b21ee7693ccf289679a24ff9b5e3dbe380b132e9d5eab4d8866769fdfdbea",
+            "e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d"
+          ],
+          "permissions": [
+            {
+              "SAS.CertificateType": "APP",
+              "app.device_platform": "Android",
+              "AVS": "true",
+              "CDS": "true",
+              "RHMI": "true",
+              "Make": "BMW,MINI",
+              "SAS.Digests.RHMIDescriptions": "d8dcd4c90bf5d3a66e056f2564e7c047fd57b36f2730d5c1cf4849cd372095fe,8e1d0b21f6d7d554683e341d47d57aa50768a81679d9846c2b02306dfefafd76,8e1d0b21f6d7d554683e341d47d57aa50768a81679d9846c2b02306dfefafd76",
+              "SAS.Digests.ImageDatabases": "e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,bb927bab7d37519c0ee39f48e91c466e31165ff8ab5a5ec675c4cc7647733d40,bb927bab7d37519c0ee39f48e91c466e31165ff8ab5a5ec675c4cc7647733d40,bb927bab7d37519c0ee39f48e91c466e31165ff8ab5a5ec675c4cc7647733d40,bb927bab7d37519c0ee39f48e91c466e31165ff8ab5a5ec675c4cc7647733d40,d9ff14aab4c47e044a6342c8233993dd8766ae3fd6526b618c04574b3b3f3145,d9ff14aab4c47e044a6342c8233993dd8766ae3fd6526b618c04574b3b3f3145",
+              "SAS.Digests.TextDatabases": "e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,e5e0a29b37e61c3ec9670e5a9d895281dfd6e9cff7050b842fa7a268010bf73d,075b21ee7693ccf289679a24ff9b5e3dbe380b132e9d5eab4d8866769fdfdbea,075b21ee7693ccf289679a24ff9b5e3dbe380b132e9d5eab4d8866769fdfdbea,075b21ee7693ccf289679a24ff9b5e3dbe380b132e9d5eab4d8866769fdfdbea,075b21ee7693ccf289679a24ff9b5e3dbe380b132e9d5eab4d8866769fdfdbea,075b21ee7693ccf289679a24ff9b5e3dbe380b132e9d5eab4d8866769fdfdbea,075b21ee7693ccf289679a24ff9b5e3dbe380b132e9d5eab4d8866769fdfdbea0"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 65754,
+      "message_id": 1795260933198,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6774,
+        "cert_sha256": "b512116d5a65f0fc4b6bc88288a5a2e9720593d67503e5f8cfa1ca5af35a5133",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_mobile___com_smartthings_android_00.00.030",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_mobile___com_smartthings_android_00.00.03",
+            "serial_hex": "36a7",
+            "serial_u32": 13991,
+            "serial_u32_be_hex": "000036a7",
+            "pad16_hex": "1774b9248af23e3a57da999364c5d0ab"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "b512116d5a65f0fc4b6bc88288a5a2e9720593d67503e5f8cfa1ca5af35a5133",
+        "cert_blob_len": 6774,
+        "pkcs7": {
+          "der_bytes": 4971,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_mobile___com_smartthings_android_00.00.030",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_mobile___com_smartthings_android_00.00.03",
+              "serial_hex": "36a7",
+              "serial_u32": 13991,
+              "serial_u32_be_hex": "000036a7",
+              "pad16_hex": "1774b9248af23e3a57da999364c5d0ab"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            }
+          ],
+          "rhmi_description_sha256": [
+            "ab8f2a86e7f648fa4c3399b52d8001a5fe109bcefea790ccbd98f04a9301f93c"
+          ],
+          "image_db_sha256": [
+            "65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d",
+            "a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9"
+          ],
+          "text_db_sha256": [
+            "7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f"
+          ],
+          "permissions": [
+            {
+              "SAS.CertificateType": "APP",
+              "app.device_platform": "Android",
+              "AVS": "true",
+              "CDS": "true",
+              "RHMI": "true",
+              "Make": "BMW,MINI",
+              "SAS.Digests.RHMIDescriptions": "ab8f2a86e7f648fa4c3399b52d8001a5fe109bcefea790ccbd98f04a9301f93c",
+              "SAS.Digests.ImageDatabases": "65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9,a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9",
+              "SAS.Digests.TextDatabases": "7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f0"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 72671,
+      "message_id": 1795260933431,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6774,
+        "cert_sha256": "b512116d5a65f0fc4b6bc88288a5a2e9720593d67503e5f8cfa1ca5af35a5133",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_mobile___com_smartthings_android_00.00.030",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_mobile___com_smartthings_android_00.00.03",
+            "serial_hex": "36a7",
+            "serial_u32": 13991,
+            "serial_u32_be_hex": "000036a7",
+            "pad16_hex": "1774b9248af23e3a57da999364c5d0ab"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "b512116d5a65f0fc4b6bc88288a5a2e9720593d67503e5f8cfa1ca5af35a5133",
+        "cert_blob_len": 6774,
+        "pkcs7": {
+          "der_bytes": 4971,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_mobile___com_smartthings_android_00.00.030",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_mobile___com_smartthings_android_00.00.03",
+              "serial_hex": "36a7",
+              "serial_u32": 13991,
+              "serial_u32_be_hex": "000036a7",
+              "pad16_hex": "1774b9248af23e3a57da999364c5d0ab"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            }
+          ],
+          "rhmi_description_sha256": [
+            "ab8f2a86e7f648fa4c3399b52d8001a5fe109bcefea790ccbd98f04a9301f93c"
+          ],
+          "image_db_sha256": [
+            "65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d",
+            "a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9"
+          ],
+          "text_db_sha256": [
+            "7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f"
+          ],
+          "permissions": [
+            {
+              "SAS.CertificateType": "APP",
+              "app.device_platform": "Android",
+              "AVS": "true",
+              "CDS": "true",
+              "RHMI": "true",
+              "Make": "BMW,MINI",
+              "SAS.Digests.RHMIDescriptions": "ab8f2a86e7f648fa4c3399b52d8001a5fe109bcefea790ccbd98f04a9301f93c",
+              "SAS.Digests.ImageDatabases": "65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9,a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9",
+              "SAS.Digests.TextDatabases": "7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f0"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 79589,
+      "message_id": 1795260933186,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "b1b2fa447dee37285409d566c571069239995105edf65477c1f1c7a2291edf98",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_000136e5_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 79589,
+      "message_id": 1795260933186,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "b1b2fa447dee37285409d566c571069239995105edf65477c1f1c7a2291edf98",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_000136e5_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 80148,
+      "message_id": 1795260933186,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "cd4955f5ef7cda90b943600f39383b2c8aac17107a28a3aa30dcd27d64342184",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00013914_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 80148,
+      "message_id": 1795260933186,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "cd4955f5ef7cda90b943600f39383b2c8aac17107a28a3aa30dcd27d64342184",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00013914_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 80745,
+      "message_id": 1795260933183,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "d673c6bab565196d7f2129fc1ab14c1658cc9d1155ca6a1fc0dbeab8a8c63835",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00013b69_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 80745,
+      "message_id": 1795260933183,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "d673c6bab565196d7f2129fc1ab14c1658cc9d1155ca6a1fc0dbeab8a8c63835",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00013b69_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 81304,
+      "message_id": 1795260933217,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "46eacd14546dcc2fb889c7b9dafb1f3cb71db140fa7711a1ff15ecc0b0afe9aa",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00013d98_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 81304,
+      "message_id": 1795260933217,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "46eacd14546dcc2fb889c7b9dafb1f3cb71db140fa7711a1ff15ecc0b0afe9aa",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00013d98_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 81875,
+      "message_id": 1795260933235,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "de94c7fc8d4592807de845a88b1b3f2e5bce0c81064f471186c55f297345802e",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00013fd3_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 81875,
+      "message_id": 1795260933235,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "de94c7fc8d4592807de845a88b1b3f2e5bce0c81064f471186c55f297345802e",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00013fd3_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 82968,
+      "message_id": 1795260933468,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "9fd39074e6f33f369bf9a73aabe3a9c143f9c827380e0b14021d678ab768168e",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00014418_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 82968,
+      "message_id": 1795260933468,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "9fd39074e6f33f369bf9a73aabe3a9c143f9c827380e0b14021d678ab768168e",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00014418_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 355573,
+      "message_id": 1795261031634,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "9e9b4b89876982c4e0ba2dcd7270972cbf6aca8324a8dc6bf9ea8aed615c7c24",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00056cf5_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 355573,
+      "message_id": 1795261031634,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "9e9b4b89876982c4e0ba2dcd7270972cbf6aca8324a8dc6bf9ea8aed615c7c24",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00056cf5_512.bin"
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 356206,
+      "message_id": 1795261033414,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6774,
+        "cert_sha256": "b512116d5a65f0fc4b6bc88288a5a2e9720593d67503e5f8cfa1ca5af35a5133",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_mobile___com_smartthings_android_00.00.030",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_mobile___com_smartthings_android_00.00.03",
+            "serial_hex": "36a7",
+            "serial_u32": 13991,
+            "serial_u32_be_hex": "000036a7",
+            "pad16_hex": "1774b9248af23e3a57da999364c5d0ab"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "b512116d5a65f0fc4b6bc88288a5a2e9720593d67503e5f8cfa1ca5af35a5133",
+        "cert_blob_len": 6774,
+        "pkcs7": {
+          "der_bytes": 4971,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_mobile___com_smartthings_android_00.00.030",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_mobile___com_smartthings_android_00.00.03",
+              "serial_hex": "36a7",
+              "serial_u32": 13991,
+              "serial_u32_be_hex": "000036a7",
+              "pad16_hex": "1774b9248af23e3a57da999364c5d0ab"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            }
+          ],
+          "rhmi_description_sha256": [
+            "ab8f2a86e7f648fa4c3399b52d8001a5fe109bcefea790ccbd98f04a9301f93c"
+          ],
+          "image_db_sha256": [
+            "65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d",
+            "a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9"
+          ],
+          "text_db_sha256": [
+            "7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f"
+          ],
+          "permissions": [
+            {
+              "SAS.CertificateType": "APP",
+              "app.device_platform": "Android",
+              "AVS": "true",
+              "CDS": "true",
+              "RHMI": "true",
+              "Make": "BMW,MINI",
+              "SAS.Digests.RHMIDescriptions": "ab8f2a86e7f648fa4c3399b52d8001a5fe109bcefea790ccbd98f04a9301f93c",
+              "SAS.Digests.ImageDatabases": "65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,65ee53d1c35550d82c14e69329ff373b7d8bec69d4ac9f9a6a4e977f7b7e410d,a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9,a5b903633cbca334148b927c2cd6cf6ba090a16cc150b8a9ff8867de42bd36f9",
+              "SAS.Digests.TextDatabases": "7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f,7d393535f231837fe17603a24d8bcbe3020744404ae7bc67606e21db65aac03f0"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 404702,
+      "message_id": 1795261033451,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "c9aa6be7e0826f37670c9ba8bf7185055ff97dcb9b28e1fcc43844fc77c29f5e",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00062cde_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 404702,
+      "message_id": 1795261033451,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "c9aa6be7e0826f37670c9ba8bf7185055ff97dcb9b28e1fcc43844fc77c29f5e",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00062cde_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 405273,
+      "message_id": 1795261034143,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "b5e453003ed6d7b1b1afe08ca3b7416a03a560b506dc7adff0dd9b91f20fed74",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00062f19_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 405273,
+      "message_id": 1795261034143,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "b5e453003ed6d7b1b1afe08ca3b7416a03a560b506dc7adff0dd9b91f20fed74",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00062f19_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 405832,
+      "message_id": 1795261034144,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "1b7cae6c7a1f61aba3832b3ea834db7e6efc7fa558d3dc877d2122123774b0af",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00063148_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 405832,
+      "message_id": 1795261034144,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "1b7cae6c7a1f61aba3832b3ea834db7e6efc7fa558d3dc877d2122123774b0af",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00063148_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 406391,
+      "message_id": 1795261034140,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "25f8314d38ba0246fc428bad515bca364503d414b0a12df6c9f5468a3922dded",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00063377_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 406391,
+      "message_id": 1795261034140,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "25f8314d38ba0246fc428bad515bca364503d414b0a12df6c9f5468a3922dded",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00063377_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 406950,
+      "message_id": 1795261034144,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "5b7e13487e1dcb75848a899a4d9463078335f3ad12b7bb7f34c6c2f107957d7a",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_000635a6_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 406950,
+      "message_id": 1795261034144,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "5b7e13487e1dcb75848a899a4d9463078335f3ad12b7bb7f34c6c2f107957d7a",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_000635a6_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 407509,
+      "message_id": 1795261034158,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "0d2c34ee363f8e8fcf94f99e50475ea210902afa7900993ed2bb72b41e88575d",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_000637d5_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 407509,
+      "message_id": 1795261034158,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "0d2c34ee363f8e8fcf94f99e50475ea210902afa7900993ed2bb72b41e88575d",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_000637d5_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 408462,
+      "message_id": 1795261034161,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "05eed0de5cc5c78f5ae1680e1026fa6fa1e94b57cf5588add6c21d5d918f03d6",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00063b8e_512.bin"
+      }
+    },
+    {
+      "method": "sas_login",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 408462,
+      "message_id": 1795261034161,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_login",
+        "login_sig_len": 512,
+        "login_sig_sha256": "05eed0de5cc5c78f5ae1680e1026fa6fa1e94b57cf5588add6c21d5d918f03d6",
+        "sig_file": "forensic/SAS_SIGNATURES/sig_00063b8e_512.bin"
+      }
+    },
+    {
+      "method": "sas_certificate",
+      "direction": "phone_to_hu",
+      "session": 1,
+      "off": 409447,
+      "message_id": 1795261040076,
+      "in_reply_to": null,
+      "sas": {
+        "sas_method": "sas_certificate",
+        "cert_len": 6648,
+        "cert_sha256": "d9b4249c27f8eb71341c60cca198767bc34244d623a09f207d89eb423b952370",
+        "cert_cns": [
+          "a4a_android-ca",
+          "a4a_android-ca0",
+          "a4a_app_BMWTouchCommand_Connection_00.00.100",
+          "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf80",
+          "a4a_root-ca0"
+        ],
+        "cert_types": [
+          "APP",
+          "APP_AUTH"
+        ],
+        "cert_serials": [
+          {
+            "cn": "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf8",
+            "serial_hex": "062156",
+            "serial_u32": 401750,
+            "serial_u32_be_hex": "00062156",
+            "pad16_hex": "7c0dc5caf402ee1d8caa5cca831e9f02"
+          },
+          {
+            "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+            "serial_hex": "0aa9",
+            "serial_u32": 2729,
+            "serial_u32_be_hex": "00000aa9",
+            "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+          },
+          {
+            "cn": "a4a_android-ca",
+            "serial_hex": "053f",
+            "serial_u32": 1343,
+            "serial_u32_be_hex": "0000053f",
+            "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+          }
+        ],
+        "uses_app_auth_xor": true,
+        "signer_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "signer_serial_hex": "0aa9",
+        "signer_serial_u32": 2729,
+        "effective_serial_u32": 33554432,
+        "effective_serial_hex": "02000000",
+        "effective_cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+        "effective_pad16_hex": "f2dd0dedb2c260419ece4a9e03b2e828",
+        "pad_u32_source": "APP_AUTH_CertificateType",
+        "cert_blob_sha256": "d9b4249c27f8eb71341c60cca198767bc34244d623a09f207d89eb423b952370",
+        "cert_blob_len": 6648,
+        "pkcs7": {
+          "der_bytes": 4878,
+          "cns": [
+            "a4a_android-ca",
+            "a4a_android-ca0",
+            "a4a_app_BMWTouchCommand_Connection_00.00.100",
+            "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf80",
+            "a4a_root-ca0"
+          ],
+          "cert_types": [
+            "APP",
+            "APP_AUTH"
+          ],
+          "uses_app_auth_xor": true,
+          "serials": [
+            {
+              "cn": "a4a_app_myBMW.perm___cdsbaseapp_68a3d7ff1ac97dbb5226b106f5e9ab6b6dfe193abd0005dc62455b732e378bf8",
+              "serial_hex": "062156",
+              "serial_u32": 401750,
+              "serial_u32_be_hex": "00062156",
+              "pad16_hex": "7c0dc5caf402ee1d8caa5cca831e9f02"
+            },
+            {
+              "cn": "a4a_app_BMWTouchCommand_Connection_00.00.10",
+              "serial_hex": "0aa9",
+              "serial_u32": 2729,
+              "serial_u32_be_hex": "00000aa9",
+              "pad16_hex": "6e3d4d1bbc5797879045cee5b0f8e985"
+            },
+            {
+              "cn": "a4a_android-ca",
+              "serial_hex": "053f",
+              "serial_u32": 1343,
+              "serial_u32_be_hex": "0000053f",
+              "pad16_hex": "2ad7b35a4ed0bd22e7d9519af16c0c25"
+            }
+          ],
+          "rhmi_description_sha256": [],
+          "image_db_sha256": [],
+          "text_db_sha256": [],
+          "permissions": [
+            {
+              "mapp.device_platform": "Android",
+              "cds.entertainment.statusAvailableSources": "3",
+              "cds.cds.apiRegistry": "3",
+              "cds.api.startJSApp": "3",
+              "rhmi.entrybutton.everywhere": "true",
+              "cds.*": "1",
+              "rhmi.contact": "true",
+              "rhmi.padfocusevents": "true",
+              "CDS": "true",
+              "SAS.CertificateType": "APP",
+              "cds.api.ipamediaplayer": "3",
+              "rhmi.menuchange.onevent": "true",
+              "cds.api.carcloud": "3",
+              "rhmi.navigation": "true",
+              "APPID": "myBMW",
+              "rhmi.padfocusevents.permanentoverride": "true",
+              "rhmi.notification.center": "true",
+              "TUI": "false",
+              "Make": "BMW,MINI,J29",
+              "cds.api.ipaThirdParty": "3",
+              "rhmi.hmicontrol": "false",
+              "cds.hmi.graphicalContext": "3",
+              "RHMI": "true",
+              "rhmi.unlimitedfocusevents": "true",
+              "rhmi.phone": "true",
+              "rhmi.tts": "true",
+              "MAP": "true",
+              "AVS": "false",
+              "SAS.Digests.TextDatabases": "0000000000000000000000000000000000000000000000000000000000000000",
+              "SAS.Digests.ImageDatabases": "0000000000000000000000000000000000000000000000000000000000000000",
+              "SAS.Digests.RHMIDescriptions": "00000000000000000000000000000000000000000000000000000000000000000"
+            },
+            {
+              "SAS.CertificateType": "APP_AUTH",
+              "app.device_platform": "Android",
+              "AVS": "false",
+              "CDS": "true",
+              "RHMI": "false",
+              "Make": "BMW",
+              "SAS.Digests.RHMIDescriptions": "0",
+              "SAS.Digests.ImageDatabases": "0",
+              "SAS.Digests.TextDatabases": "00"
+            }
+          ]
+        },
+        "der_certs": []
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 108,
+      "message_id": 1795260388672026,
+      "in_reply_to": 1795260913532,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "8f873bb740471e52f36aa26093f580da"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 108,
+      "message_id": 1795260388672026,
+      "in_reply_to": 1795260913532,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "8f873bb740471e52f36aa26093f580da"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 195,
+      "message_id": 1795260388672027,
+      "in_reply_to": 1795260913569,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 195,
+      "message_id": 1795260388672027,
+      "in_reply_to": 1795260913569,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 11157,
+      "message_id": 1795260388672033,
+      "in_reply_to": 1795260916880,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "cee0993409fcc7424cb956f9a5ff2134"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 11157,
+      "message_id": 1795260388672033,
+      "in_reply_to": 1795260916880,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "cee0993409fcc7424cb956f9a5ff2134"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 11308,
+      "message_id": 1795260388672035,
+      "in_reply_to": 1795260916917,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 11308,
+      "message_id": 1795260388672035,
+      "in_reply_to": 1795260916917,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 23830,
+      "message_id": 1795260388672054,
+      "in_reply_to": 1795260920019,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "865cebc6a40a189774baf807af78e17e"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 23830,
+      "message_id": 1795260388672054,
+      "in_reply_to": 1795260920019,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "865cebc6a40a189774baf807af78e17e"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 24230,
+      "message_id": 1795260388672058,
+      "in_reply_to": 1795260920056,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 24230,
+      "message_id": 1795260388672058,
+      "in_reply_to": 1795260920056,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 29708,
+      "message_id": 1795260388672061,
+      "in_reply_to": 1795260921027,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "587bb2617779a3c333fabcd8f9de0c80"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 29708,
+      "message_id": 1795260388672061,
+      "in_reply_to": 1795260921027,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "587bb2617779a3c333fabcd8f9de0c80"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 30174,
+      "message_id": 1795260388672066,
+      "in_reply_to": 1795260921064,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 30174,
+      "message_id": 1795260388672066,
+      "in_reply_to": 1795260921064,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 49651,
+      "message_id": 1795260388672201,
+      "in_reply_to": 1795260933149,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "3af846de025f7676196e7ec9e65f473e"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 49651,
+      "message_id": 1795260388672201,
+      "in_reply_to": 1795260933149,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "3af846de025f7676196e7ec9e65f473e"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 49846,
+      "message_id": 1795260388672203,
+      "in_reply_to": 1795260933149,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "daf99f51724314a53dd17d36af8ab6e9"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 49846,
+      "message_id": 1795260388672203,
+      "in_reply_to": 1795260933149,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "daf99f51724314a53dd17d36af8ab6e9"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 49957,
+      "message_id": 1795260388672204,
+      "in_reply_to": 1795260933146,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "82fdc8845c3efa75ac783e92d885d0b2"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 49957,
+      "message_id": 1795260388672204,
+      "in_reply_to": 1795260933146,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "82fdc8845c3efa75ac783e92d885d0b2"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 50198,
+      "message_id": 1795260388672206,
+      "in_reply_to": 1795260933180,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "7e6f04f1b21896efe91426989edc8220"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 50198,
+      "message_id": 1795260388672206,
+      "in_reply_to": 1795260933180,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "7e6f04f1b21896efe91426989edc8220"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 50531,
+      "message_id": 1795260388672209,
+      "in_reply_to": 1795260933198,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "d94aa435889eab3417e9c6ef6f96a1ed"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 50531,
+      "message_id": 1795260388672209,
+      "in_reply_to": 1795260933198,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "d94aa435889eab3417e9c6ef6f96a1ed"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51139,
+      "message_id": 1795260388672214,
+      "in_reply_to": 1795260933431,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "05a5deb8be75a7a789cd4027aac24783"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51139,
+      "message_id": 1795260388672214,
+      "in_reply_to": 1795260933431,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "05a5deb8be75a7a789cd4027aac24783"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51405,
+      "message_id": 1795260388672217,
+      "in_reply_to": 1795260933186,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51405,
+      "message_id": 1795260388672217,
+      "in_reply_to": 1795260933186,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51457,
+      "message_id": 1795260388672218,
+      "in_reply_to": 1795260933186,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51457,
+      "message_id": 1795260388672218,
+      "in_reply_to": 1795260933186,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51521,
+      "message_id": 1795260388672219,
+      "in_reply_to": 1795260933183,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51521,
+      "message_id": 1795260388672219,
+      "in_reply_to": 1795260933183,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51585,
+      "message_id": 1795260388672220,
+      "in_reply_to": 1795260933217,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51585,
+      "message_id": 1795260388672220,
+      "in_reply_to": 1795260933217,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51954,
+      "message_id": 1795260388672223,
+      "in_reply_to": 1795260933235,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 51954,
+      "message_id": 1795260388672223,
+      "in_reply_to": 1795260933235,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 52578,
+      "message_id": 1795260388672230,
+      "in_reply_to": 1795260933468,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 52578,
+      "message_id": 1795260388672230,
+      "in_reply_to": 1795260933468,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 87374,
+      "message_id": 1795260388672624,
+      "in_reply_to": 1795261031597,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "0cebb9948964c8a04d8e8fbc2431aa29"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 87374,
+      "message_id": 1795260388672624,
+      "in_reply_to": 1795261031597,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "0cebb9948964c8a04d8e8fbc2431aa29"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 87461,
+      "message_id": 1795260388672625,
+      "in_reply_to": 1795261031634,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 87461,
+      "message_id": 1795260388672625,
+      "in_reply_to": 1795261031634,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 92923,
+      "message_id": 1795260388672627,
+      "in_reply_to": 1795261033414,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "d688e194fd893c86567cad003ef4844a"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 92923,
+      "message_id": 1795260388672627,
+      "in_reply_to": 1795261033414,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "d688e194fd893c86567cad003ef4844a"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 93094,
+      "message_id": 1795260388672628,
+      "in_reply_to": 1795261034106,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "df3dde69a1a609ee3499ab58ca5581a0"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 93094,
+      "message_id": 1795260388672628,
+      "in_reply_to": 1795261034106,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "df3dde69a1a609ee3499ab58ca5581a0"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 93181,
+      "message_id": 1795260388672629,
+      "in_reply_to": 1795261034107,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "dd6335dbec716142ed0f432b03c775e3"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 93181,
+      "message_id": 1795260388672629,
+      "in_reply_to": 1795261034107,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "dd6335dbec716142ed0f432b03c775e3"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 93292,
+      "message_id": 1795260388672630,
+      "in_reply_to": 1795261034103,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "04534ca5f955932dee3e85b893065971"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 93292,
+      "message_id": 1795260388672630,
+      "in_reply_to": 1795261034103,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "04534ca5f955932dee3e85b893065971"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 93391,
+      "message_id": 1795260388672631,
+      "in_reply_to": 1795261034107,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "698e4c55ffad98ecbcdb17c0a28ca3a6"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 93391,
+      "message_id": 1795260388672631,
+      "in_reply_to": 1795261034107,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "698e4c55ffad98ecbcdb17c0a28ca3a6"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 93502,
+      "message_id": 1795260388672632,
+      "in_reply_to": 1795261034121,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "dfef4bd844de05331d8aebb0904421fa"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 93502,
+      "message_id": 1795260388672632,
+      "in_reply_to": 1795261034121,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "dfef4bd844de05331d8aebb0904421fa"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 98927,
+      "message_id": 1795260388672634,
+      "in_reply_to": 1795261034124,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "d26d4fd11be7bdd7c2d49764603a0a3f"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 98927,
+      "message_id": 1795260388672634,
+      "in_reply_to": 1795261034124,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "d26d4fd11be7bdd7c2d49764603a0a3f"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99038,
+      "message_id": 1795260388672635,
+      "in_reply_to": 1795261033451,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99038,
+      "message_id": 1795260388672635,
+      "in_reply_to": 1795261033451,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99126,
+      "message_id": 1795260388672636,
+      "in_reply_to": 1795261034143,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99126,
+      "message_id": 1795260388672636,
+      "in_reply_to": 1795261034143,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99178,
+      "message_id": 1795260388672637,
+      "in_reply_to": 1795261034144,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99178,
+      "message_id": 1795260388672637,
+      "in_reply_to": 1795261034144,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99230,
+      "message_id": 1795260388672638,
+      "in_reply_to": 1795261034140,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99230,
+      "message_id": 1795260388672638,
+      "in_reply_to": 1795261034140,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99294,
+      "message_id": 1795260388672639,
+      "in_reply_to": 1795261034144,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99294,
+      "message_id": 1795260388672639,
+      "in_reply_to": 1795261034144,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99358,
+      "message_id": 1795260388672640,
+      "in_reply_to": 1795261034158,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 99358,
+      "message_id": 1795260388672640,
+      "in_reply_to": 1795261034158,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 104982,
+      "message_id": 1795260388672645,
+      "in_reply_to": 1795261034161,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_login",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 104982,
+      "message_id": 1795260388672645,
+      "in_reply_to": 1795261034161,
+      "sas": {
+        "sas_method": "_result_sas_login"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 110536,
+      "message_id": 1795260388672649,
+      "in_reply_to": 1795261040076,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "2955176e341ca151a68c0137d12331a3"
+      }
+    },
+    {
+      "method": "_result_sas_certificate",
+      "direction": "hu_to_phone",
+      "session": 0,
+      "off": 110536,
+      "message_id": 1795260388672649,
+      "in_reply_to": 1795261040076,
+      "sas": {
+        "sas_method": "_result_sas_certificate",
+        "challenge_len": 16,
+        "challenge_hex": "2955176e341ca151a68c0137d12331a3"
+      }
+    }
+  ],
+  "crypto_results": [
+    {
+      "session": 1,
+      "login_off": 6304,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 6304,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 13888,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 13888,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 22262,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 22262,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 29788,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 29788,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 79589,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 79589,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 80148,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 80148,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 80745,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 80745,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 81304,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 81304,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 81875,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 81875,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 82968,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 82968,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 355573,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 355573,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 404702,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 404702,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 405273,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 405273,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 405832,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 405832,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 406391,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 406391,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 406950,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 406950,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 407509,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 407509,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 408462,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    },
+    {
+      "session": 1,
+      "login_off": 408462,
+      "verdict": "UNABLE",
+      "reason": "no challenge in session"
+    }
+  ]
+}
