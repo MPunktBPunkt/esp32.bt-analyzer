@@ -531,3 +531,4 @@ Machine-readable companion: `HOME_MULTITRACK_SCAN.json`.
 | AV_TRACK_CORRELATION | **SESSION_ONLY** (not per track) |
 | CDS_MUSIC_CORRELATION | **NOT PROVEN** (track); menu entry path **FACT** |
 | Next analysis | Field capture with explicit next/prev track **or** alternate album NP; optional 441/453 image-role decode |
+| E2E index | [`../F20_CONNECTED_MUSIC_END_TO_END_TIMELINE.md`](../F20_CONNECTED_MUSIC_END_TO_END_TIMELINE.md) |

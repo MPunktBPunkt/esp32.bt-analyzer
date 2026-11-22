@@ -134,6 +134,8 @@ All targets found as UTF-8 inside handle-23 `rhmi_setData` envelopes:
 
 **Follow-up (2026-11-22):** Home Entry + Multi-Track — [`RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md`](RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md) (`HOME_ENTRY_OBJECT_ID=NOT OBSERVED`; CDS Media/Radio→vis 50034 FACT; single NP track + EntICPlaylist 535; AV session-only; combined P@/H@ flow diagram).
 
+**Session index:** [`../F20_CONNECTED_MUSIC_END_TO_END_TIMELINE.md`](../F20_CONNECTED_MUSIC_END_TO_END_TIMELINE.md) — AUTH→AM→RHMI→CDS→AV→Music→PLAY→audio boundary with absolute `P@`/`H@`.
+
 ---
 
 ## 7. AV ↔ music instance

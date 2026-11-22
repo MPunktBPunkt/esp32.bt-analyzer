@@ -91,6 +91,8 @@ Multi-SAS: mehrere parallele OPEN-4004-Kanäle mit eigenen Cert/Challenge/Login 
 
 Detail: [`RHMI_MUSIC_UI_STATE_MACHINE.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md) · [`RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md) · [`RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md)
 
+**E2E Session-Index:** [`F20_CONNECTED_MUSIC_END_TO_END_TIMELINE.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/F20_CONNECTED_MUSIC_END_TO_END_TIMELINE.md) (AUTH→…→PLAY; Audio transport NOT PROVEN)
+
 ## 7. Was beschreibbar vs. offen ist
 
 **Geschlossen:** Auth, Bootstrap-Architektur, Handle-23 NP-Spine (444–447, 456, 655), AV-Kopplung, Spotify≠AM, Home-Entry-Object-ID Negativbefund, single-track SM + playlist 535.
