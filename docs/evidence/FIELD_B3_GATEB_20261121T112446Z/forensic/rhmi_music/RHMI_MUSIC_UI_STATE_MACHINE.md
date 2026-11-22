@@ -132,6 +132,8 @@ All targets found as UTF-8 inside handle-23 `rhmi_setData` envelopes:
 
 **Follow-up (2026-11-22):** Action/Event/Home/AV edges — [`RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md`](RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md) (336/248/660/661 wire-CLOSED; Home entry OPEN; RHMI↔AV ordered FACT).
 
+**Follow-up (2026-11-22):** Home Entry + Multi-Track — [`RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md`](RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md) (`HOME_ENTRY_OBJECT_ID=NOT OBSERVED`; CDS Media/Radio→vis 50034 FACT; single NP track + EntICPlaylist 535; AV session-only; combined P@/H@ flow diagram).
+
 ---
 
 ## 7. AV ↔ music instance
@@ -225,6 +227,8 @@ Sources: `resources/HANDLE23_CORRELATION.md` + `.json`, `ui_description_multimed
 4. **Duplicate `_messageId` on create:** Calendar + notification share 1795260933223.
 5. **26 undecodable DEADBEEF hits** on phone bin (fragments / JPEG false magics).
 6. **PropertyId→widget** beyond the 8 decoded enums (ENABLED/VISIBLE/…): full component tree for every control.
+7. **Track A→B:** not in this capture — needs next-track field session (`RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md`).
+8. **HOME_ENTRY_OBJECT_ID:** confirmed NOT OBSERVED; may be HU-native only.
 
 ---
 

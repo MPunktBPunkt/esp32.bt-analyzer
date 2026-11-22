@@ -1,0 +1,191 @@
+{
+  "artists": [
+    [
+      "Halestorm",
+      3
+    ],
+    [
+      "Halestorm, I Prevail",
+      1
+    ]
+  ],
+  "titles": [
+    [
+      "can u see me in the dark?",
+      7
+    ]
+  ],
+  "jpegs": [
+    {
+      "jpeg_off": 114315,
+      "len": 18474,
+      "sha256": "3df577892fcc5448",
+      "etch_off": 114251,
+      "handle": 23,
+      "modelId": 456,
+      "method": "rhmi_setData?"
+    },
+    {
+      "jpeg_off": 318603,
+      "len": 18126,
+      "sha256": "ed46591f603d6389",
+      "etch_off": 318539,
+      "handle": 23,
+      "modelId": 441,
+      "method": "rhmi_setData?"
+    },
+    {
+      "jpeg_off": 336814,
+      "len": 7353,
+      "sha256": "7d729a001251108b",
+      "etch_off": 336750,
+      "handle": 23,
+      "modelId": 453,
+      "method": "rhmi_setData?"
+    }
+  ],
+  "action_counts": {
+    "('P', 'rhmi_addActionEventHandler', -1)": 4,
+    "('P', 'rhmi_ackActionEvent', 336)": 3,
+    "('P', 'rhmi_ackActionEvent', 248)": 1,
+    "('H', 'rhmi_onActionEvent', 336)": 3,
+    "('H', 'rhmi_onActionEvent', 248)": 1
+  },
+  "milestones": [
+    {
+      "dir": "P",
+      "label": "rhmi_create music",
+      "off": 83527
+    },
+    {
+      "dir": "H",
+      "label": "_result_rhmi_create →23",
+      "off": 52642
+    },
+    {
+      "dir": "P",
+      "label": "addActionHandler wildcard",
+      "off": 93000
+    },
+    {
+      "dir": "P",
+      "label": "addHmiHandler wildcard",
+      "off": 93531
+    },
+    {
+      "dir": "H",
+      "label": "onActionEvent 336 #1",
+      "off": 60714
+    },
+    {
+      "dir": "P",
+      "label": "ackAction 336 #1",
+      "off": 102266
+    },
+    {
+      "dir": "P",
+      "label": "av_create",
+      "off": 102700
+    },
+    {
+      "dir": "H",
+      "label": "_result_av_create h=1",
+      "off": 68583
+    },
+    {
+      "dir": "P",
+      "label": "setData 445 artist",
+      "off": 112791
+    },
+    {
+      "dir": "P",
+      "label": "setData 446 title",
+      "off": 112870
+    },
+    {
+      "dir": "P",
+      "label": "setData 447 title",
+      "off": 114167
+    },
+    {
+      "dir": "P",
+      "label": "setData 456 cover jpeg",
+      "off": 114251
+    },
+    {
+      "dir": "H",
+      "label": "onActionEvent 336 #2",
+      "off": 73825
+    },
+    {
+      "dir": "P",
+      "label": "av_requestConnection",
+      "off": 134074
+    },
+    {
+      "dir": "P",
+      "label": "ackAction 336 #2",
+      "off": 134438
+    },
+    {
+      "dir": "H",
+      "label": "av_requestPlayerState PLAY",
+      "off": 75048
+    },
+    {
+      "dir": "H",
+      "label": "av_connectionGranted",
+      "off": 75709
+    },
+    {
+      "dir": "H",
+      "label": "onActionEvent 336 #3",
+      "off": 77751
+    },
+    {
+      "dir": "H",
+      "label": "onActionEvent 248",
+      "off": 79424
+    },
+    {
+      "dir": "P",
+      "label": "av_playerStateChanged PLAY",
+      "off": 202150
+    },
+    {
+      "dir": "H",
+      "label": "_result_av_playerStateChanged",
+      "off": 76691
+    },
+    {
+      "dir": "P",
+      "label": "setData 655 Spotify",
+      "off": 203436
+    },
+    {
+      "dir": "P",
+      "label": "triggerEvent 661",
+      "off": 203763
+    },
+    {
+      "dir": "P",
+      "label": "ackAction 336 #3",
+      "off": 204105
+    },
+    {
+      "dir": "P",
+      "label": "setData 444 Spotify",
+      "off": 204670
+    },
+    {
+      "dir": "P",
+      "label": "ackAction 248",
+      "off": 315513
+    },
+    {
+      "dir": "P",
+      "label": "triggerEvent 660",
+      "off": 315882
+    }
+  ]
+}

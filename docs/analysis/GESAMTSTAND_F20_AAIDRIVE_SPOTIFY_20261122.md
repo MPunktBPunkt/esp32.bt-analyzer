@@ -84,22 +84,27 @@ Multi-SAS: mehrere parallele OPEN-4004-Kanäle mit eigenen Cert/Challenge/Login 
 | 336 ≃ Music entry / 248 ≃ Apps toolbar select | **INFERENCE** (+ XML STRONG) |
 | 661 statusbar / 660 multimediaInfo | **INFERENCE** (+ XML STRONG) |
 | AV id = `…music` → ENTERTAINMENT → PLAY; coupled after Action 336 | **FACT** order |
-| BMW Home/Launcher Entry-Object-ID | **OPEN / NOT FOUND** |
+| BMW Home/Launcher Entry-Object-ID | **NOT OBSERVED** |
+| CDS Media/Radio → visibleContext 50034 near Action 336 | **FACT** (menu path) |
+| Multi-track NP (Track A→B) | **NOT OBSERVED** — single Halestorm NP; EntICPlaylist 535 multi-row |
+| AV per track change | **NOT OBSERVED** (session-only) |
 
-Detail: [`RHMI_MUSIC_UI_STATE_MACHINE.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md) · [`RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md)
+Detail: [`RHMI_MUSIC_UI_STATE_MACHINE.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md) · [`RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md) · [`RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/rhmi_music/RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md)
 
 ## 7. Was beschreibbar vs. offen ist
 
-**Geschlossen:** Auth, Bootstrap-Architektur, Handle-23 NP-Spine (444–447, 456, 655), AV-Kopplung, Spotify≠AM.
+**Geschlossen:** Auth, Bootstrap-Architektur, Handle-23 NP-Spine (444–447, 456, 655), AV-Kopplung, Spotify≠AM, Home-Entry-Object-ID Negativbefund, single-track SM + playlist 535.
 
-**Noch offen:** vollständige Property/Component-Semantik, 446-vs-447 wenn identische Strings, Home-Menü-Entry-Widget, Standalone-Signer.
+**Noch offen:** echte Track-A→B Feld-Session, 446-vs-447 Autorität, Property/Component-Semantik, Standalone-Signer.
 
 ## 8. Next workstream
 
 1. ~~Wire RHMI Music graph~~ → **done** (2026-11-22)
-2. Lab NP-spine stub mit wire-proven IDs (inkl. cover **456**)
-3. F20-Trial fremder RHMI-Client
-4. PiDrive Music/RHMI (nicht Spotify-AM)
+2. ~~Home Entry + Multi-Track analysis~~ → **done** (2026-11-22; Track B still needs new capture)
+3. Field capture with explicit next/prev track (close Track A→B)
+4. Lab NP-spine stub mit wire-proven IDs (inkl. cover **456**) — after Track-B model closed enough
+5. F20-Trial fremder RHMI-Client
+6. PiDrive Music/RHMI (nicht Spotify-AM)
 
 ## 9. Related
 

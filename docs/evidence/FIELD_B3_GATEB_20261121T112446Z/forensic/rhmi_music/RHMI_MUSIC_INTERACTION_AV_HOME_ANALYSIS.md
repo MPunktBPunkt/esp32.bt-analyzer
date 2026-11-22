@@ -99,11 +99,12 @@ Near pair2: HU `onHmiEvent` eventId=**11** componentId=**10** (`args={23:true}`)
 
 | Claim | Level |
 |-------|-------|
-| BMW **HOME_ENTRY** widget ID on wire | **OPEN / NOT FOUND** |
+| BMW **HOME_ENTRY** widget ID on wire | **NOT OBSERVED** (confirmed; see Home/Multitrack report) |
 | Music reachable via RHMI entry path | **INFERENCE:** Action **336** ↔ XML `entryButton`→`combinedAction 335`→`raAction 336` |
+| CDS Media/Radio → visibleContext 50034 near 336 | **FACT** (menu path; not an RHMI objectId) |
 | Spotify AM home tile | **REJECTED** |
 
-`HOME_ENTRY = OPEN` for a concrete home/launcher object. Closest closed edge: **Music Entry ≃ Action 336** (wire + DESCRIPTION entryButton).
+`HOME_ENTRY_OBJECT_ID = NOT OBSERVED`. Closest closed edge: **Music Entry ≃ Action 336** (wire + DESCRIPTION entryButton). Full menu/multitrack follow-up: [`RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md`](RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md).
 
 ---
 
@@ -234,14 +235,15 @@ RHMI HANDLE 23  (FACT …music)
 | Action 248 semantic (Apps select) | **INFERENCE** (+ XML STRONG) |
 | Event 661 wire + Spotify 655 | **CLOSED** (FACT); statusbar role **INFERENCE**/XML STRONG |
 | Event 660 wire after 248 | **CLOSED** (FACT); multimediaInfo role **INFERENCE**/XML STRONG |
-| Home entry object | **OPEN / NOT FOUND** |
+| Home entry object | **NOT OBSERVED** (confirmed in Home/Multitrack) |
 | RHMI↔AV coupling | **CLOSED** as ordered FACT graph; mediation **INFERENCE** |
-| Multi-track state machine | **OPEN** (single track) |
-| CDS music properties | **partial** (`entertainment.multimedia`, `hmi.graphicalContext` timing only) |
+| Multi-track state machine | **PARTIAL** — single NP + IC playlist 535; see Home/Multitrack |
+| CDS music properties | menu path **FACT**; track metadata **NOT PROVEN** |
 
 ---
 
 ## Artifacts
 
 - `INTERACTION_TIMELINE_PHONE.json` / `INTERACTION_TIMELINE_HU.json` (prior extract helpers)
+- Follow-up: `RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md`, `HOME_MULTITRACK_SCAN.json`
 - Parent: `RHMI_MUSIC_UI_STATE_MACHINE.md`

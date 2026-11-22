@@ -51,8 +51,11 @@ Standalone-Signer ohne MyBMW bleibt **OPEN** (Signierträger).
 | 445 artist / 446·447 title / 456 cover JPEG | **FACT** (+ XML roles **STRONG**) |
 | AV `…music` → ENTERTAINMENT → PLAY | **FACT** |
 | Spotify ∈ `am_registerApp` | **REJECTED** |
-| Home/Launcher Entry-Object-ID | **OPEN / NOT FOUND** |
+| Home/Launcher Entry-Object-ID | **NOT OBSERVED** — CDS Media/Radio→vis 50034 is the menu path FACT |
 | Action 336/248 · Event 660/661 wire map | **FACT** — see `forensic/rhmi_music/RHMI_MUSIC_INTERACTION_AV_HOME_ANALYSIS.md` |
+| Multi-track NP state machine | **PARTIAL** (single Halestorm NP + EntICPlaylist 535) — `RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md` |
+| AV per track change | **NOT OBSERVED** (session-only AV) |
+| CDS as track metadata bus | **NOT PROVEN** |
 
 ## Epistemic
 
@@ -69,5 +72,6 @@ Standalone-Signer ohne MyBMW bleibt **OPEN** (Signierträger).
 - [`RAW_FORENSIC_ANALYSIS.md`](RAW_FORENSIC_ANALYSIS.md)
 - [`ADDENDUM_RHMI_AM_20261121.md`](ADDENDUM_RHMI_AM_20261121.md)
 - [`forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md`](forensic/rhmi_music/RHMI_MUSIC_UI_STATE_MACHINE.md)
+- [`forensic/rhmi_music/RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md`](forensic/rhmi_music/RHMI_MUSIC_HOME_MULTITRACK_ANALYSIS.md)
 - [`GESAMTSTAND_F20_AAIDRIVE_SPOTIFY_20261122.md`](../../analysis/GESAMTSTAND_F20_AAIDRIVE_SPOTIFY_20261122.md)
 - [`SAS_STATUS_CRYPTO_CLOSED_20261120.md`](../../analysis/SAS_STATUS_CRYPTO_CLOSED_20261120.md)
