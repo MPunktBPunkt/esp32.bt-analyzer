@@ -451,10 +451,15 @@ Lab-Logs (`LAB_MUSIC_NP_SPINE_*`, `LAB_A2DP_BCL_CORR_*`, `AUDIOOK` B2A) sind **a
 
 ## 10. Nächster Feldtest (aus Timeline abgeleitet)
 
-Priorität vor Multi-Track A→B:
+**Locked proof cut:** [`NEXT_AUDIO_BOUNDARY_PROOF.md`](NEXT_AUDIO_BOUNDARY_PROOF.md)
 
-1. **hörbares** Playback (oder bewusster Fail) **und**
-2. paralleles Dual-Plane-Log (BCL/Etch **und** A2DP/transport-state; Transport erst benennen nach Nachweis),  
-   optional danach Next-Track für Track A→B,
+| P | Focus |
+|---|-------|
+| P0 | PLAY @ `0x315a6` → first audio-transport evidence **or** proven absence (dual-plane + shared monotonic clock) |
+| P1 | Name the transport only after evidence |
+| P2 | Transport ≠ HU audible |
+| P3 | Track A→B |
+| P4 | Home Entry Object-ID |
 
-damit die Grenze unter `P@0x000315a6` geschlossen werden kann.
+Minimal run: T0 capture → Music Entry → UI visible → PLAY → 10–20 s → observe audio plane → STOP.  
+Do **not** read post-PLAY 4004 bulk as audio.

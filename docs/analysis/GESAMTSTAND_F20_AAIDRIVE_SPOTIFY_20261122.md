@@ -97,17 +97,15 @@ Detail: [`RHMI_MUSIC_UI_STATE_MACHINE.md`](../evidence/FIELD_B3_GATEB_20261121T1
 
 **Geschlossen:** Auth, Bootstrap-Architektur, Handle-23 NP-Spine (444–447, 456, 655), AV-Kopplung, Spotify≠AM, Home-Entry-Object-ID Negativbefund, single-track SM + playlist 535.
 
-**Noch offen:** echte Track-A→B Feld-Session, 446-vs-447 Autorität, Property/Component-Semantik, Standalone-Signer.
+**Noch offen:** Audio-Transport / audible; Track A→B; Home Entry Object-ID; 446-vs-447; Standalone-Signer.
 
 ## 8. Next workstream
 
-1. ~~Wire RHMI Music graph~~ → **done** (2026-11-22)
-2. ~~Home Entry + Multi-Track analysis~~ → **done** (2026-11-22; Track B still needs new capture)
-3. ~~E2E timeline + PLAY @ P@0x315a6~~ → **done**; offline PLAY-boundary skim → [`PLAY_BOUNDARY_SKIM_20261122`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/PLAY_BOUNDARY_SKIM_20261122.md)
-4. **Next:** Dual-Plane field/lab (BCL + A2DP/transport) around PLAY — before Track A→B
-5. Track A→B field capture (secondary)
-6. Lab: AV PLAY stub + dual-plane logging (idrivesim P3b); PiDrive treats Etch PLAY as control-only
-7. F20-Trial / PiDrive Music RHMI after audio plane clearer
+1. ~~Wire RHMI / Home / Multitrack / E2E / PLAY skim~~ → **done** (2026-11-22)
+2. **P0 locked:** [`NEXT_AUDIO_BOUNDARY_PROOF`](../evidence/FIELD_B3_GATEB_20261121T112446Z/forensic/NEXT_AUDIO_BOUNDARY_PROOF.md) — dual-plane PLAY correlation (or absence)
+3. P1 identify transport · P2 HU backend · P3 Track A→B · P4 Home Entry
+4. Lab: AV PLAY stub + dual-plane logging (idrivesim); PiDrive: Etch PLAY = control-only
+5. F20-Trial / PiDrive Music RHMI after audio plane clearer
 
 ## 9. Related
 

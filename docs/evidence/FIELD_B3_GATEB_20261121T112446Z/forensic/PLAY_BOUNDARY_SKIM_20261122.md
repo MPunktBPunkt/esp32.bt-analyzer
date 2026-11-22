@@ -82,3 +82,5 @@ post-PLAY bulk on 4004  OBSERVED (RHMI-fragment INFERENCE)
 audio transport         NOT PROVEN
 audible playback        NOT OBSERVED
 ```
+
+Accepted next cut: [`NEXT_AUDIO_BOUNDARY_PROOF.md`](NEXT_AUDIO_BOUNDARY_PROOF.md) — dual-plane field protocol; P0 audio before Track A→B / Home Entry.
