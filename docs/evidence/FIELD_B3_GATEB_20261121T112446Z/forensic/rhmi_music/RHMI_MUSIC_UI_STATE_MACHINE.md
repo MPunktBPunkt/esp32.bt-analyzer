@@ -182,22 +182,20 @@ Offsets are phone→HU unless noted.
 
 **INFERENCE — now-playing spine (wire values + secondary XML roles):**
 
-| modelId | wire sample | role (INFERENCE / secondary) |
-|--------:|-------------|------------------------------|
-| 444 | Spotify | provider / app |
-| 445 | Halestorm[, I Prevail] | artist |
-| 444 | Spotify | XML `audioHmiState@24 textModel` |
-| 445 | Halestorm… | XML `artistTextModel` |
-| 446 | can u see me… | XML `albumTextModel` (wire often = title string) |
-| 447 | can u see me… | XML `trackTextModel` |
-| 451 / 452 | `2:32` / `3:58` | XML `currentTimeModel` / `elapsingTimeModel` |
-| 462 | `0.63` | XML `playbackProgressModel` |
-| 458 | RHMIDataTable | XML `playListModel` |
-| **456** | JPEG 18442 B @ etch≈0x1BE4B | XML **`coverImageModel`** — **FACT** cover |
-| 454 / 455 | PNG | artist/album image models |
-| 653 / 654 | Halestorm / title | XML multimediaInfoEvent 660 |
-| 655 | Spotify | XML statusbarEvent 661 textModel |
-| 505 | Zufallswiedergabe… | shuffle control label |
+| modelId | wire sample | role (XML `audioHmiState@24` + wire) |
+|--------:|-------------|--------------------------------------|
+| 444 | Spotify | `textModel` / provider |
+| 445 | Halestorm[, I Prevail] | `artistTextModel` |
+| 446 | can u see me… | `albumTextModel` (wire often = title) |
+| 447 | can u see me… | `trackTextModel` |
+| 451 / 452 | `2:32` / `3:58` | `currentTimeModel` / `elapsingTimeModel` |
+| 462 | `0.63` | `playbackProgressModel` |
+| 458 | RHMIDataTable | `playListModel` |
+| **456** | JPEG 18442 B @ etch≈0x1BE4B | **`coverImageModel` — FACT** |
+| 454 / 455 | PNG | artist/album images |
+| 653 / 654 | Halestorm / title | multimediaInfoEvent 660 |
+| 655 | Spotify | statusbarEvent 661 |
+| 505 | Zufallswiedergabe… | shuffle label |
 
 ---
 
