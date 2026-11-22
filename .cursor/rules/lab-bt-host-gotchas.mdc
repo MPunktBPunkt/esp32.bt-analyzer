@@ -1,30 +1,51 @@
 ---
-description: Lab/.108 BT host — pin loops, idrivesim vs f20_sim resource conflict, role switch
+description: Lab/.108 BT host — STANDARD topology (.131 HU / .87 Phone), pin loops, idrivesim conflict, PhoneUSB trap
 alwaysApply: true
 ---
 
-# Lab BT Host (.108) — First Checks
+# Lab BT Host (.108) — Standard + First Checks
 
-When Phone↔Lab HU or Phone-role ESP↔real F20 fails (connect flaps, wrong name, “wird verwendet”, `failed to register accept channel 6`):
+## STANDARD topology (default — always restore this)
 
-**Do not start with ESP OTA / RF theory.** Check `.108` host state first.
+Canonical write-up: `docs/analysis/LAB_STANDARD_TOPOLOGY_20261122.md`  
+Proof 2026-11-22: ACL + RFCOMM ch6 `.87`↔`.131` OK.
 
-## Smoking guns (2026-11-19)
+| Role | Device | BD | Air name | CoD | Power |
+|------|--------|-----|----------|-----|-------|
+| **Lab HU** | ESP `.131` | `C8:C9:A3:CB:7B:0A` | **BMW 38304** | `0x340408` | ON, discoverable, pairable |
+| **Lab Phone** | ESP `.87` | `C8:C9:A3:CB:37:96` | **BT-Analyzer-Phone** | phone | ON for dual-ESP / B3; else off |
+| **USB dongle** | `.108` | `C0:B8:83:34:F4:62` | PhoneUSB | — | **OFF** — never discoverable in HU-lab mode |
+| CSR | optional | `00:1A:7D:DA:71:02` | — | — | only when explicitly testing |
+
+**Must run**
+
+- Bridge `.131`: `hci_tcp_bridge.py …131 --local-name "BMW 38304"`
+- Bridge `.87` (when used): `--local-name "BT-Analyzer-Phone"`
+- Pair agent **only** those two BDs — **do not** register PhoneUSB
+- Lab HU stack: `bcl_dummy_hu_agent.py hu --hu-profile f20_sim --channel 6`
+- iDriveSim **off** (ch6 xor); drop-ins `idrivesim-*.conf` in `.d.off/`
+- ESP both: `wifi_ps=none`
+
+**Do not** leave PhoneUSB powered with auto-confirm agent — iPhone will pair to the wrong adapter (2026-11-22).
+
+## Smoking guns (host first — not RF/OTA)
 
 1. **Orphan alias pin:** `/tmp/bcl_dummy/alias_pin_persist.log` — abandoned `python3 -` can force **BMW 38304 on phone hci** forever.  
    `fuser -k /tmp/bcl_dummy/alias_pin_persist.log`
 2. Other loops: `cod_pin_home.log`, `cod_pin_home_fast.log`, `phone87_hold.log` — Alias BMW↔Phone + car CoD on phone.
 3. **Stale `hci_tcp_bridge`** after ESP reboot → `hci1 removed` / mid-connect drop. Restart bridges only after ESP `/api/status` ready.
 4. BlueZ **Alias ≠ HCI Name**; only one powered **BMW 38304**.
+5. **PhoneUSB** discoverable + pair-agent `always` → phone pairs to USB, not BMW.
+6. CoD drift: inquiry shows `0x400104` (PC) while Alias says BMW — re-`Write Class Device` `0x340408` (+ soft reset if sticky).
 
-## iDriveSim ↔ bt-analyzer resource conflict (Lösung)
+## iDriveSim ↔ bt-analyzer resource conflict
 
 **Konflikt:** Beide wollen RFCOMM **ch6** + BMW-Identität / Pair-Agent-Drop-Ins — nie parallel.
 
 | Ressource | iDriveSim | bt-analyzer Lab (`f20_sim`) |
 |-----------|-----------|------------------------------|
 | RFCOMM ch6 | `idrivesim-rfcomm-bridge.service` (Unit oft auf **`.87`**) | `bcl_dummy_hu_agent.py hu --hu-profile f20_sim` |
-| Pair-Agent | Drop-Ins `idrivesim-hu.conf` / `idrivesim-csr.conf` (BMW auf `.87` und/oder CSR) | `bmw-alias.conf` — BMW nur **`.131`**, `.87`=Phone |
+| Pair-Agent | Drop-Ins `idrivesim-hu.conf` / `idrivesim-csr.conf` | `bmw-alias.conf` — BMW nur **`.131`**, `.87`=Phone |
 | Symptom wenn falsch | Lab: `failed to register accept channel 6`; Phone sieht mehrere BMW / falschen Adapter | — |
 
 **→ Lab (Phone → `.131` / f20_sim):**
@@ -37,28 +58,30 @@ mv /etc/systemd/system/bt-pair-agent.service.d/idrivesim-*.conf \
    /etc/systemd/system/bt-pair-agent.service.d.off/ 2>/dev/null || true
 systemctl daemon-reload
 # dann nur .131 = BMW 38304 powered; ch6 frei für bcl_dummy_hu_agent
+# PhoneUSB down; pair-agent ohne F4:62
 ```
 
 **→ iDriveSim:** `bcl_dummy_hu_agent` stoppen, `idrivesim-*.conf` zurück nach `service.d/`, `systemctl restart idrivesim-rfcomm-bridge bt-pair-agent`.
 
 **Regel:** ch6 = idrivesim **xor** `bcl_dummy_hu_agent` — nie beide.
 
-## Roles
+## Roles (field vs lab)
 
-| ESP | BD | Lab Phone→`.131` | Field Phone→F20 | iDriveSim (typ.) |
-|-----|----|------------------|-----------------|------------------|
+| ESP | BD | **Lab default** | Field Phone→F20 | iDriveSim (typ.) |
+|-----|----|-----------------|-----------------|------------------|
 | `.131` | `…:7B:0A` | **HU / BMW 38304** | oft off | oft Phone (drop-in) |
-| `.87` | `…:37:96` | Phone / off | **BT-Analyzer-Phone** → F20 | **HU** für rfcomm-bridge |
+| `.87` | `…:37:96` | **Phone** | **BT-Analyzer-Phone** → F20 | **HU** für rfcomm-bridge |
 
 ## B3 relay (Phone→.131 / .87→HU)
 
 - Tool: `tools/b3_rfcomm_relay.py` (`rfcomm` + `--connect-adapter-bd`; `tcp-lab` for host-only).
-- **No** .131↔.87 bond required: two independent ACLs; host copies ch6 bytes.
-- BlueZ **Profile ch6 is host-global** — cannot run Profile HU + B3 listen both on ch6; lab air HU uses raw RFCOMM (`lab_b3_dual_esp_smoke.py`).
-- Weak WiFi (~−80): Classic inquiry between D1s often fails — use existing bonds + `wifi_ps=none`; tcp-lab still validates decode.
+- **No** .131↔.87 bond required for B3 byte-copy: two independent ACLs; host copies ch6 bytes.
+- Dual-ESP smoke / hold still useful: `tools/lab_p0_dual_esp_hold.py`, `tools/lab_b3_dual_esp_smoke.py`.
+- BlueZ **Profile ch6 is host-global** — cannot run Profile HU + B3 listen both on ch6; lab air HU uses raw RFCOMM when needed.
+- Weak WiFi (~−80): Classic inquiry between D1s often fails — use existing bonds + `wifi_ps=none`.
 
 ## Docs
 
+- Standard topology + iPhone/PhoneUSB fault: `docs/analysis/LAB_STANDARD_TOPOLOGY_20261122.md`
 - Full switch + field fault: `docs/analysis/LAB_IDRIVESIM_SWITCH_20261119.md`
 - B3 lab prep 2026-11-19: `docs/evidence/LAB_B3_TCP_DUALESP_PREP_20261119T0801Z/`
-- Host note: `/tmp/bcl_dummy/LAB_FAULT_20261119_FIELD.md` on `.108`

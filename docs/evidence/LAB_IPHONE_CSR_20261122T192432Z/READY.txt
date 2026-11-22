@@ -1,0 +1,17 @@
+stamp=20261122T192432Z
+remote=/tmp/bcl_dummy/LAB_IPHONE_CSR_20261122T192432Z
+Sun Nov 22 07:26:29 PM UTC 2026
+hci0 s "C0:B8:83:34:F4:62" s "BT-Analyzer-PhoneUSB" b false b true
+hci1 s "C8:C9:A3:CB:37:96" s "BT-Analyzer-Phone" b false b true
+hci2 s "C8:C9:A3:CB:7B:0A" s "BT-Analyzer-ESP131" b false b true
+hci3 s "00:1A:7D:DA:71:02" s "BMW 38304" b true b true
+hci3:	Type: Primary  Bus: USB
+	BD Address: 00:1A:7D:DA:71:02  ACL MTU: 310:10  SCO MTU: 64:8
+	UP RUNNING PSCAN ISCAN 
+	RX bytes:76641025 acl:244631 sco:0 events:41049 errors:0
+	TX bytes:4523759 acl:38093 sco:0 commands:8410 errors:0
+
+Connections:
+1309005 python3 /tmp/bcl_dummy/bcl_dummy_hu_agent.py hu --hu-profile f20_sim --channel 6 --name BMW 38304 --hold 7200 --log /tmp/bcl_dummy/hu_iphone.jsonl --ready /tmp/bcl_dummy/hu_iphone.ready --session-id LAB_IPHONE_CSR_20261122T192432Z
+1309039 btmon -i hci3 -w /tmp/bcl_dummy/LAB_IPHONE_CSR_20261122T192432Z/btmon/csr_hci3.btsnoop
+hu_ready=registered
