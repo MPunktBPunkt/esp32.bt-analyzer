@@ -41,7 +41,9 @@ Do **not** port the full Music tree. Stub only:
 | **336** | action (ack path) |
 | **248** | action (ack path) |
 
-Optional later (not in first lab proof): 451/452 time, 440/462 progress, 458 playlist.
+Optional later (not in first lab proof): 451/452 time, 440/462 progress, 458 playlist, **456 cover**, **AV PLAY sequence**.
+
+**Field gap vs this stub (2026-11-22):** real F20 issues `av_playerStateChanged(PLAY)` @ `P@0x000315a6` after Action 336/AV connect. Lab NP PASS has **no** `av_*` — UI-only. Audio transport still **NOT PROVEN** even when Etch PLAY exists (`PLAY_BOUNDARY_SKIM_20261122.md`). Next lab improvement: stub AV control plane + dual-plane A2DP logging.
 
 ## Lab proof chain
 
