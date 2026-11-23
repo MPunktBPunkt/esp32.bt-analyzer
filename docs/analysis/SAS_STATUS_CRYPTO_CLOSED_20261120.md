@@ -115,8 +115,8 @@ Arbeitsfokus: [`FIELD_GATE_B_CLOSED_NEXT_RHMI_TEMPLATE_20261121.md`](FIELD_GATE_
 2. Lab stub frozen — [`MUSIC_NP_SPINE_LAB_STUB_20261121.md`](MUSIC_NP_SPINE_LAB_STUB_20261121.md) (IDs 444·445·446/447·660·661·336·248)  
 3. Lab proof → **ein** F20-Feldversuch (Suffizienz fremder RHMI-Client) → dann PiDrive-Implementierung  
 4. Optional: RSA-VERIFY Field-Raw; Standalone-Signer später (nicht blocker)  
-5. Optional observe-only: PLT `PKCS12_parse` password regs (Alias↔Blob / Passwort-Ursprung) — siehe PKCS12-ANATOMY; **kein** Key-Dump / kein PW-Brute  
-6. Kein BT-Stack-/libaudio-Forensik als Blocker für RHMI/PiDrive; kein allgemeiner Technology-Audit
+5. Optional observe-only: APP_AUTH-PKEY O1–O6 (Modulus↔Field-SPKI) bzw. PLT `PKCS12_parse` password regs — [`PACK_A-N_EVAL`](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PACK_A-N_EVAL_THREE_CHAINS_20261123.md) + PKCS12-ANATOMY; **kein** Key-Dump / kein PW-Brute; Feature-PFX≠APP_AUTH  
+6. Kein BT-Stack-/libaudio-Forensik als Blocker für RHMI/PiDrive; kein allgemeiner Technology-Audit / kein neues Parallel-Audit nur für Pack A–N
 
 Tool für Field-SPP: `tools/b3_profile_relay.py` (SDP „BMW Connected“ ch6 + transparent relay).
 
@@ -126,3 +126,4 @@ Tool für Field-SPP: `tools/b3_profile_relay.py` (SDP „BMW Connected“ ch6 + 
 - [`SAS_SIGNER_CASE_A_CLOSED_20261119.md`](SAS_SIGNER_CASE_A_CLOSED_20261119.md) — native Architektur
 - [`GATE_APP_AUTH_ACCEPTANCE_20261118.md`](GATE_APP_AUTH_ACCEPTANCE_20261118.md) — Field gate
 - [`FIELD_DAY_ONE_VARIABLE_GATE.md`](FIELD_DAY_ONE_VARIABLE_GATE.md) — Operator-Runbook
+- [PACK_A-N_EVAL three chains](https://github.com/MPunktBPunkt/technology-audit/blob/main/audits/libaudio-signchallenge-pipeline-2026-11-19/PACK_A-N_EVAL_THREE_CHAINS_20261123.md) — Claim-Hygiene Feature≠APP_AUTH; optional O1–O6
