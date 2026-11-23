@@ -1,0 +1,5 @@
+Array,RelocationAddress,Target,TargetFunctionID,Note
+.fini_array,0x1e4ce8,0xbc768,F0002,dynamic RELATIVE relocation
+.fini_array,0x1e4cf0,0xbc750,F0000,dynamic RELATIVE relocation
+.init_array,0x1e4cf8,0x1ba430,F4984,dynamic RELATIVE relocation
+.init_array,0x1e4d00,0x1ba6b4,F4986,dynamic RELATIVE relocation
