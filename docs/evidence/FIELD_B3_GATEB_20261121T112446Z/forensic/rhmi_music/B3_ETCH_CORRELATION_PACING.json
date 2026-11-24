@@ -1,0 +1,81 @@
+{
+  "title": "B3 Etch request/response correlation + phone request pacing",
+  "capture": "FIELD_B3_GATEB_20261121T112446Z",
+  "method": "whole-bin DEADBEEF + etch_codec.decode_etch_message",
+  "envelopes": {
+    "phone_total": 468,
+    "phone_ok": 442,
+    "phone_decode_err": 26,
+    "hu_total": 619,
+    "hu_ok": 619,
+    "hu_decode_err": 0
+  },
+  "correlation": {
+    "hu_with_in_reply_to": 449,
+    "hu_matched_bit_exact": 426,
+    "hu_irt_present_but_phone_request_missing": 23,
+    "hu_no_in_reply_to_push": 170,
+    "push_methods": {
+      "cds_onPropertyChangedEvent": 155,
+      "rhmi_onActionEvent": 4,
+      "rhmi_onHmiEvent": 9,
+      "av_requestPlayerState": 1,
+      "av_connectionGranted": 1
+    },
+    "miss_methods": {
+      "_result_sas_certificate": 19,
+      "_result_rhmi_setData": 4
+    },
+    "note_miss": "Almost all residual misses are _result_sas_certificate (phone sas_certificate bodies fail decode) plus a few _result_rhmi_setData whose request envelopes fail decode (e.g. cover). Not HU-push ambiguity."
+  },
+  "epistemic": {
+    "can": [
+      "pair request\u2194response via message_id\u2194in_reply_to",
+      "classify HU_PUSH vs RESPONSE",
+      "measure phone outbound request gaps on phone clock"
+    ],
+    "cannot": [
+      "RTT / end-to-end latency",
+      "HU-internal processing time",
+      "phone receive timestamp of response"
+    ]
+  },
+  "phone_request_gaps_ms": {
+    "rhmi_setData": {
+      "n": 192,
+      "median_gap_ms": 23,
+      "p95_gap_ms": 111,
+      "max_gap_ms": 444
+    },
+    "rhmi_setProperty": {
+      "n": 50,
+      "median_gap_ms": 37,
+      "p95_gap_ms": 370,
+      "max_gap_ms": 1702
+    },
+    "rhmi_checkResource": {
+      "n": 11,
+      "median_gap_ms": 15,
+      "p95_gap_ms": 362,
+      "max_gap_ms": 362
+    },
+    "rhmi_initialize": {
+      "n": 5,
+      "median_gap_ms": 46,
+      "p95_gap_ms": 399,
+      "max_gap_ms": 399
+    },
+    "am_registerApp": {
+      "n": 5,
+      "median_gap_ms": 142,
+      "p95_gap_ms": 2487,
+      "max_gap_ms": 2487
+    },
+    "sas_login": {
+      "n": 18,
+      "median_gap_ms": 31,
+      "p95_gap_ms": 12119,
+      "max_gap_ms": 98166
+    }
+  }
+}

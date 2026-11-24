@@ -21,6 +21,7 @@ technology_audit:
   - /home/martin/projects/technology-audit/technologies/bmw-av/SHEET.md
   - /home/martin/projects/technology-audit/audits/bmw-rhmi-music-handle23-field-2026-11-21/
 machine_core: B3_RHMI_MUSIC_FORENSIC_TIMELINE_CORE.json
+correlation_pacing: B3_ETCH_CORRELATION_PACING.md / .json
 ```
 
 ## 0. Method / framing
@@ -29,16 +30,16 @@ machine_core: B3_RHMI_MUSIC_FORENSIC_TIMELINE_CORE.json
 
 | Quelle | `message_id`-Lesart | Span in diesem Capture |
 |--------|---------------------|------------------------|
-| Phone→HU | Epochen-**ms** (UTC 2026-11-21 11:35:13.532 → 11:37:20.076) | **126 544 ms** (~127 s), 337 msgs |
-| HU→Phone | Größenordnung Epochen-**µs**, faktisch **Monotonie-Zähler** (+1 … +10) | **623** Schritte / 573 msgs — **kein** nutzbarer Wall-Clock über die Session |
+| Phone→HU | Epochen-**ms** (UTC 2026-11-21 11:35:13.532 → 11:37:20.076) | **126 544 ms** (~127 s) |
+| HU→Phone | Größenordnung Epochen-**µs**, faktisch **Monotonie-Zähler** (+1 … +10) | **kein** nutzbarer Wall-Clock über die Session |
 
 Cross-bin merge bleibt: `P@`/`H@` + `_inReplyTo`↔Phone-`message_id`. Phone-seitige Events zusätzlich als `t+Δms` relativ zu `min(phone message_id)` möglich. HU-initiierte Events (`rhmi_onActionEvent`, `av_connectionGranted`, CDS, …) haben **keine** Phone-ms-Ankunftszeit im Capture.
 
-**FACT.** `in_reply_to` auf HU→Phone: **319 / 427** bit-genau ∈ Phone-`message_id` → Paarung **DIRECT** (nicht nur ORDERED). Die **108** Misses liegen fast alle bei `_result_rhmi_setData` / `_result_rhmi_setProperty` und zeigen auf IDs **im** Phone-Zeitfenster, die in `ETCH_TIMELINE.json` fehlen → **Decode-/Index-Lücke**, nicht „HU-initiiert“. (`ETCH_TIMELINE` fehlt u. a. `av_playerStateChanged@202150` und `ack 336@102266`; `INTERACTION_TIMELINE_*` ist für Music vollständiger.)
+**FACT (Full DEADBEEF-Scan, siehe `B3_ETCH_CORRELATION_PACING.md`).** HU **619** OK: **426** bit-genau Request↔Response; **170** ohne `_inReplyTo` = **HU_PUSH** (155 CDS + 9 onHmi + 4 onAction + AV grant/requestPlayerState) — vollständig erklärt; **23** `_inReplyTo` ohne dekodierten Phone-Request = Phone-Decode-Lücke (`sas_certificate` / große `setData`), nicht Push-Ambiguity. Ältere `ETCH_TIMELINE.json`-Zähler (319/427/108) sind dafür **superseded**.
 
-**FACT.** „HU-Verarbeitungslatenz in Phone-ms“ ist aus IDs **nicht** messbar: die Antwort trägt nur HU-Zähler-`message_id`, keinen Phone-Empfangszeitstempel.
+**FACT.** Weder HU-interne noch Ende-zu-Ende-**Latenz in ms** ist messbar: Antwort trägt keinen Phone-Empfangszeitstempel. Messbar ist nur die **Phone-Anfrage-Taktung** (Outbound-Gaps, z. B. `rhmi_setData` Median ~23 ms).
 
-**FACT.** Music-Phone-Spine nach `message_id` sortiert **ändert die Kausalreihenfolge nicht** (336→AV→NP→PLAY→661→248→660). Keine Neu-Sortierung der Forensic Timeline nötig — nur Anreicherung um Phone-`t+Δms` und DIRECT-Upgrade für gematchte `_result_*`.
+**FACT.** Music-Phone-Spine nach `message_id` sortiert **ändert die Kausalreihenfolge nicht** (336→AV→NP→PLAY→661→248→660). Keine Neu-Sortierung nötig — Annotation REQUEST/RESPONSE/HU_PUSH + Phone-`t+Δms`.
 
 **FACT.** `phone_to_hu.bin.txt` / `hu_to_phone.bin.txt` are **not present**. Authoritative byte sources are `raw/*.bin`. Textual indexes: `etch_messages_full.csv` (BCL-oriented, incomplete Etch method coverage) and the DEADBEEF forensic extracts under `forensic/rhmi_music/`.
 
