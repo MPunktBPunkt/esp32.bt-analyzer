@@ -49,9 +49,27 @@ void NetworkWifi::begin(String& deviceName, String& hubHost, int& hubPort) {
     wifiManager_.setAPCallback([](WiFiManager*) {
         Serial.println("[WiFi] Portal: " WIFI_AP_NAME);
     });
+#if defined(LAB_WIFI_SSID) && defined(LAB_WIFI_PASS)
+    // Lab-only: host has no WiFi client to reach BT-Analyzer-Setup portal after erase.
+    Serial.printf("[WiFi] LAB STA try ssid=%s\n", LAB_WIFI_SSID);
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(LAB_WIFI_SSID, LAB_WIFI_PASS);
+    {
+        const unsigned long t0 = millis();
+        while (WiFi.status() != WL_CONNECTED && millis() - t0 < 20000UL) delay(200);
+    }
+    if (WiFi.status() == WL_CONNECTED) {
+        Serial.printf("[WiFi] LAB STA ok ssid=%s ip=%s\n", LAB_WIFI_SSID,
+                      WiFi.localIP().toString().c_str());
+    } else {
+        Serial.println("[WiFi] LAB STA fail — falling back to portal");
+#endif
     if (!wifiManager_.autoConnect(WIFI_AP_NAME)) {
         Recovery::requestRestart(Recovery::WifiPortalTimeout, "autoConnect_fail");
     }
+#if defined(LAB_WIFI_SSID) && defined(LAB_WIFI_PASS)
+    }
+#endif
 
     prefs_.begin("esphub", false);
     prefs_.putString("name", String(pName.getValue()));
