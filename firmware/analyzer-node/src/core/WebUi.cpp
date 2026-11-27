@@ -18,7 +18,11 @@
 #include "ProgressWatch.h"
 #include "Recovery.h"
 #include "UiPages.h"
+#include "WgConfigStore.h"
+#include "net/WireGuardTransport.h"
+#include "ProjectConfig.h"
 
+#include <ArduinoJson.h>
 #include <Update.h>
 #include <WiFi.h>
 
@@ -67,6 +71,7 @@ void WebUi::registerRoutes() {
     webServer_.on("/status", HTTP_GET, [this]() { handleRoot(); });
     webServer_.on("/events", HTTP_GET, [this]() { handleEvents(); });
     webServer_.on("/api/status", HTTP_GET, [this]() { handleStatus(); });
+    webServer_.on("/api/wg/config", HTTP_POST, [this]() { handleWgConfigPost(); });
     webServer_.on("/api/diag/boot", HTTP_GET, [this]() {
         webServer_.sendHeader(F("Access-Control-Allow-Origin"), F("*"));
         webServer_.send(200, F("application/json"), PanicTail::buildDiagJson());
@@ -146,6 +151,26 @@ String WebUi::buildStatusJson() const {
     CpuLoad::appendStatusFields(j);
     if (ota_) ota_->appendStatusFields(j);
     if (modules_) modules_->appendStatusJson(j);
+    // Transport evidence only — no WG Web-UI.
+    j += ",\"wg\":{";
+    j += "\"enable\":";
+    j += (wgCfg_ && wgCfg_->wgEnable) ? "true" : "false";
+#if BT_ANALYZER_ENABLE_WIREGUARD
+    j += ",\"linked\":true";
+#else
+    j += ",\"linked\":false";
+#endif
+    j += ",\"active\":";
+    j += (wgTransport_ && wgTransport_->active()) ? "true" : "false";
+    j += ",\"peer_up\":";
+    j += (wgTransport_ && wgTransport_->peerUp()) ? "true" : "false";
+    j += ",\"err\":\"";
+    if (wgTransport_) {
+        String err = wgTransport_->lastError();
+        err.replace("\"", "");
+        j += err;
+    }
+    j += "\"}";
     j += ",\"ios\":" + ios + "}";
     return j;
 }
@@ -209,6 +234,55 @@ void WebUi::handleOtaUploadFinish() {
     }
     webServer_.send(200, F("text/plain"), F("OK - Neustart..."));
     Recovery::requestRestart(Recovery::WebOta, "web_upload_ok");
+}
+
+void WebUi::handleWgConfigPost() {
+    webServer_.sendHeader(F("Access-Control-Allow-Origin"), F("*"));
+    if (!wgCfg_) {
+        webServer_.send(503, F("application/json"), F("{\"ok\":false,\"err\":\"no_wg\"}"));
+        return;
+    }
+    if (!webServer_.hasArg("plain")) {
+        webServer_.send(400, F("application/json"), F("{\"ok\":false,\"err\":\"body\"}"));
+        return;
+    }
+    JsonDocument doc;
+    if (deserializeJson(doc, webServer_.arg("plain"))) {
+        webServer_.send(400, F("application/json"), F("{\"ok\":false,\"err\":\"json\"}"));
+        return;
+    }
+    if (!doc["wgEnable"].isNull()) wgCfg_->wgEnable = doc["wgEnable"].as<bool>();
+    if (doc["wgPrivateKey"].is<const char*>() && doc["wgPrivateKey"].as<String>().length())
+        wgCfg_->wgPrivateKey = doc["wgPrivateKey"].as<String>();
+    if (doc["wgPublicKey"].is<const char*>() && doc["wgPublicKey"].as<String>().length())
+        wgCfg_->wgPublicKey = doc["wgPublicKey"].as<String>();
+    if (doc["wgPresharedKey"].is<const char*>() && doc["wgPresharedKey"].as<String>().length())
+        wgCfg_->wgPresharedKey = doc["wgPresharedKey"].as<String>();
+    if (doc["wgAddress"].is<const char*>()) wgCfg_->wgAddress = doc["wgAddress"].as<String>();
+    if (doc["wgAllowedIps"].is<const char*>()) wgCfg_->wgAllowedIps = doc["wgAllowedIps"].as<String>();
+    if (doc["wgEndpointHost"].is<const char*>())
+        wgCfg_->wgEndpointHost = doc["wgEndpointHost"].as<String>();
+    if (!doc["wgEndpointPort"].isNull()) wgCfg_->wgEndpointPort = doc["wgEndpointPort"].as<uint16_t>();
+    if (!doc["wgKeepalive"].isNull()) wgCfg_->wgKeepalive = doc["wgKeepalive"].as<uint16_t>();
+    if (doc["wgConfigText"].is<const char*>()) {
+        if (!wgCfg_->importWgQuick(doc["wgConfigText"].as<String>())) {
+            webServer_.send(400, F("application/json"), F("{\"ok\":false,\"err\":\"wg_blob\"}"));
+            return;
+        }
+        wgCfg_->wgEnable = true;
+    }
+    if (!wgCfg_->save()) {
+        webServer_.send(500, F("application/json"), F("{\"ok\":false,\"err\":\"nvs\"}"));
+        return;
+    }
+    if (wgTransport_) {
+        wgTransport_->disable();
+        if (wgCfg_->wgEnable && wgCfg_->looksConfigured()) {
+            configTime(0, 0, "192.168.178.1", "pool.ntp.org", "time.nist.gov");
+            wgTransport_->enable();
+        }
+    }
+    webServer_.send(200, F("application/json"), F("{\"ok\":true}"));
 }
 
 void WebUi::handleNotFound() {

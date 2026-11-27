@@ -17,6 +17,8 @@
 
 class OtaService;
 class ModuleManager;
+class WgConfigStore;
+class WireGuardTransport;
 
 /**
  * @brief Status/OTA SPA (gzip PROGMEM from web/index.html), SSE, APIs.
@@ -26,6 +28,10 @@ public:
     void setHardware(const HardwareInfo* hw) { hw_ = hw; }
     void setOta(OtaService* ota) { ota_ = ota; }
     void setModules(ModuleManager* modules) { modules_ = modules; }
+    void setWg(WgConfigStore* cfg, WireGuardTransport* transport) {
+        wgCfg_ = cfg;
+        wgTransport_ = transport;
+    }
 
     void begin(const String& deviceName, const String& hubHost, int hubPort,
                unsigned long heartbeatIntervalMs);
@@ -49,6 +55,7 @@ private:
     void handleOtaPage();
     void handleOtaUpload();
     void handleOtaUploadFinish();
+    void handleWgConfigPost();
     void handleNotFound();
     void sseSend(const String& data);
 
@@ -57,6 +64,8 @@ private:
     const HardwareInfo* hw_ = nullptr;
     OtaService* ota_ = nullptr;
     ModuleManager* modules_ = nullptr;
+    WgConfigStore* wgCfg_ = nullptr;
+    WireGuardTransport* wgTransport_ = nullptr;
 
     String deviceName_ = DEVICE_NAME;
     String hubHost_ = HUB_HOST;

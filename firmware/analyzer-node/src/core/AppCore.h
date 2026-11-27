@@ -15,6 +15,8 @@
 #include "WebUi.h"
 #include "OtaService.h"
 #include "ModuleManager.h"
+#include "WgConfigStore.h"
+#include "net/WireGuardTransport.h"
 
 /**
  * @brief Central lifecycle (D-005); begin()/loop() replace monolithic setup/loop bodies.
@@ -39,6 +41,8 @@ private:
     WebUi web_;
     OtaService ota_;
     ModuleManager modules_;
+    WgConfigStore wgCfg_;
+    WireGuardTransport wireGuard_;
 
     String deviceName_ = DEVICE_NAME;
     String hubHost_ = HUB_HOST;
@@ -49,4 +53,5 @@ private:
     unsigned long lastSuccess_ = 0;
     bool otaPending_ = false;
     String otaUrl_;
+    bool lastWifiUp_ = false;
 };
