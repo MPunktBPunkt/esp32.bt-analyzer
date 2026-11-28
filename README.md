@@ -4,6 +4,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Gate](https://img.shields.io/badge/gate-BT18%20GATT-yellow)](docs/GATES.md)
 
+
+`MPunktBPunkt ESP32 · ANALYZER`
+
 ESP **on-chip Bluetooth HCI analyzer** (VHCI): Controller ↔ Host über die Board-Radio, Capture nach Debian.  
 **Kein USB-Dongle nötig** (Topologie **F_ONCHIP**).
 
@@ -156,7 +159,25 @@ python3 tools/bcl_sdp_probe.py -i hciN hu=<BD_ADDR> --records
 | PROXY | P0 + P1.0 **PASS** · HCI over TCP A1–A5 **PASS**, A6 (BMW HU) **OPEN** ([`docs/HCI_TCP.md`](docs/HCI_TCP.md)) · A2DP relay hörbar, abgehackt → Coex/Bitpool ([`docs/A2DP_RELAY.md`](docs/A2DP_RELAY.md)) · BCL over BT: B0.5/B0.6 **PASS** (synthetisch), B1 **OPEN** ([`docs/BCL_BT.md`](docs/BCL_BT.md), [`docs/CAR_A6_B1.md`](docs/CAR_A6_B1.md)) |
 | Scope | HCI analyzer ≠ universal host ([`docs/SCOPE_HOST_VS_ANALYZER.md`](docs/SCOPE_HOST_VS_ANALYZER.md)) |
 
-## License
+
+## Technical Evidence
+
+Investigation, validation and evidence:
+[MPunktBPunkt/technology-audit — esp32-bt-analyzer](https://github.com/MPunktBPunkt/technology-audit/tree/main/projects/esp32-bt-analyzer).
+
+The audit holds facts, lab evidence, limits, procedures and open questions.
+
+## Releases
+
+Version history: [GitHub Releases](https://github.com/MPunktBPunkt/esp32.bt-analyzer/releases).
+
+Current version: **0.3.20**
+
+## License & Support
 
 - Project code / docs: MIT (this repo).
 - Vendored `firmware/analyzer-node/src/core/` from ESP32.esp-hub: **GPL-3.0**.
+
+If this project is useful, you can support development:
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-00457C.svg?logo=paypal)](https://www.paypal.com/donate/?business=martin%40bchmnn.de&currency_code=EUR)
