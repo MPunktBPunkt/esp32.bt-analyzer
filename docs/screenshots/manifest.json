@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "project": "esp32.bt-analyzer",
+  "shots": [
+    {
+      "name": "lab-dashboard",
+      "output": "docs/screenshots/lab-dashboard.png",
+      "purpose": "Debian lab controller overview",
+      "url": "http://192.168.178.187:8081/",
+      "readyStrategy": "load+selector",
+      "readySelector": "#panel-overview",
+      "source": "lab host :8081",
+      "capture": "node capture.mjs --project bt-analyzer --shot lab-dashboard"
+    },
+    {
+      "name": "device-dashboard",
+      "output": "docs/screenshots/device-dashboard.png",
+      "purpose": "On-device Analyzer tab",
+      "url": "http://192.168.178.88/",
+      "readyStrategy": "load+selector",
+      "readySelector": "body",
+      "source": "ESP32-S3 .88",
+      "capture": "node capture.mjs --project bt-analyzer --shot device-dashboard"
+    }
+  ]
+}

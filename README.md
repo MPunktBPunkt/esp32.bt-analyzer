@@ -87,6 +87,29 @@ Methods: [`docs/LAB_METHODS.md`](docs/LAB_METHODS.md) · Evidence: [`docs/EVIDEN
 ./tools/run_lab_controller.sh start   # :8081 + :9751
 ```
 
+## Web Interface
+
+Lab host UI and on-device Analyzer UI are **different surfaces** (collector vs ESP). Real captures:
+
+### Lab Dashboard
+
+Debian controller (`:8081`) — overview / health / typical workflows.
+
+![Lab Dashboard](docs/screenshots/lab-dashboard.png)
+
+### Device Dashboard
+
+On-chip analyzer node (lab `.88`) — Analyzer tab, VHCI capture controls.
+
+![Device Dashboard](docs/screenshots/device-dashboard.png)
+
+Reproduction (from `ESP32.esp-hub/tools/screenshots` after `npm install` + Chromium):
+
+```bash
+node capture.mjs --project bt-analyzer --shot lab-dashboard
+node capture.mjs --project bt-analyzer --shot device-dashboard
+```
+
 Session API: `POST /api/v1/session/start` `{ip}` · `stop` · `GET …/download`.  
 Agent/btmon API: `GET /api/v1/agents` · `POST /api/v1/btmon/start` / `stop` · `GET /api/v1/btmon?since=&hci=` ([`controller/README.md`](controller/README.md)).
 
